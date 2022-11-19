@@ -2,7 +2,7 @@ import classNames from 'class-names';
 
 import useScrollPosition from '../hooks/useScrollPosition';
 
-import Container from './Container';
+import { Container } from '.';
 
 const styles = {
   nav: {
@@ -13,7 +13,7 @@ const styles = {
   },
 };
 
-export default function Navbar() {
+export function Navbar() {
   const scrollPosition = useScrollPosition();
   const isTopPosition = scrollPosition < 95;
 

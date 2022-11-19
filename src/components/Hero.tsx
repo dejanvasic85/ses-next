@@ -2,28 +2,41 @@ import React from 'react';
 
 import Image from 'next/image';
 
-export default function Hero() {
+export function Hero() {
   return (
-    <div className="from-primary to-secondary text-primary-content -mt-[4rem] grid place-items-center items-end bg-gradient-to-br md:pt-8">
+    <div className="from-blue-600 to-blue-800 text-primary-content -mt-[4rem] grid place-items-center items-end bg-gradient-to-br pt-12">
       <div className="hero-content col-start-1 row-start-1 w-full max-w-7xl flex-col justify-between gap-10 pb-10 lg:flex-row lg:items-end lg:gap-0 xl:gap-20">
         <div className="lg:pl-10 lg:pb-28 border-black">
           <div className="md:mb-2 md:py-4 text-center lg:py-10 lg:text-left">
             <div className="hero-content flex-col lg:gap-8 lg:flex-row">
-              <Image src="/logo.gif" alt="Storm Electrical Solutions" width={350} height={300} className="hidden lg:inline-block" />
-              <Image src="/logo.gif" alt="Storm Electrical Solutions" width={200} height={200} className="pt-8 lg:hidden" />
-              <div className="md:pt-12 pb-8">
+              <div className="rounded-3xl bg-base-200">
+                <Image
+                  src="/logo.gif"
+                  alt="Storm Electrical Solutions"
+                  width={350}
+                  height={300}
+                  className="hidden lg:inline-block"
+                />
+                <Image
+                  src="/logo.gif"
+                  alt="Storm Electrical Solutions"
+                  width={200}
+                  height={200}
+                  className="pt-8 lg:hidden"
+                />
+              </div>
+              <div className="md:pt-20 pb-12">
                 <h1 className="font-title mb-2 text-xl font-extrabold sm:text-5xl lg:text-6xl">
                   Storm Electrical Solutions
                 </h1>
                 <h2 className="font-title text-lg font-bold sm:text-2xl lg:text-3xl">Melbourne Electricians</h2>
-                <button className="btn btn-primary mt-4">Get a quote</button>
               </div>
             </div>
           </div>
         </div>
       </div>
       <svg
-        className="fill-purple-400 opacity-50 col-start-1 row-start-1 h-auto w-full"
+        className="fill-blue-400 opacity-50 col-start-1 row-start-1 h-auto w-full"
         width="1600"
         height="380"
         viewBox="0 0 1600 380"
