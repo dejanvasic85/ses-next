@@ -28,7 +28,7 @@ export default function Navbar() {
       <nav className="navbar w-full">
         <Container>
           <div className="hidden md:flex md:flex-1">
-            <a className="btn btn-ghost normal-case text-xl">SES</a>
+            <a className="btn btn-ghost normal-case text-xl">SES - Melbourne</a>
           </div>
           <div className="flex items-center justify-center w-full md:w-auto md:flex-none">
             <ul className="menu menu-horizontal p-0">

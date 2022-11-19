@@ -1,26 +1,28 @@
 import React from 'react';
 
+import Image from 'next/image';
+
 export default function Hero() {
   return (
-    <div className="from-primary to-secondary text-primary-content -mt-[4rem] grid place-items-center items-end bg-gradient-to-br pt-20">
-      <div className="hero-content col-start-1 row-start-1 w-full max-w-7xl flex-col justify-between gap-10 pb-40 lg:flex-row lg:items-end lg:gap-0 xl:gap-20">
-        <div className="lg:pl-10 lg:pb-48 border-black">
-          <div className="mb-2 py-4 text-center lg:py-10 lg:text-left">
-            <div className="hero-content flex-col lg:flex-row-reverse">
-              {/* <img src="https://placeimg.com/260/400/arch" className="max-w-sm rounded-lg shadow-2xl" /> */}
-              <div>
+    <div className="from-primary to-secondary text-primary-content -mt-[4rem] grid place-items-center items-end bg-gradient-to-br md:pt-8">
+      <div className="hero-content col-start-1 row-start-1 w-full max-w-7xl flex-col justify-between gap-10 pb-10 lg:flex-row lg:items-end lg:gap-0 xl:gap-20">
+        <div className="lg:pl-10 lg:pb-28 border-black">
+          <div className="md:mb-2 md:py-4 text-center lg:py-10 lg:text-left">
+            <div className="hero-content flex-col md:gap-8 md:flex-row">
+              <Image src="/logo.gif" alt="Storm Electrical Solutions" width={350} height={600} className="" />
+              <div className="md:pt-12">
                 <h1 className="font-title mb-2 text-xl font-extrabold sm:text-5xl lg:text-6xl">
                   Storm Electrical Solutions
                 </h1>
-                <h2 className="font-title text-lg font-extrabold sm:text-2xl lg:text-3xl">Melbourne Electricians</h2>
-                <button className="btn btn-primary mt-4">Get Started</button>
+                <h2 className="font-title text-lg font-bold sm:text-2xl lg:text-3xl">Melbourne Electricians</h2>
+                <button className="btn btn-primary mt-4">Get a quote</button>
               </div>
             </div>
           </div>
         </div>
       </div>
       <svg
-        className="fill-blue-400 opacity-50 col-start-1 row-start-1 h-auto w-full"
+        className="fill-purple-400 opacity-50 col-start-1 row-start-1 h-auto w-full"
         width="1600"
         height="380"
         viewBox="0 0 1600 380"
