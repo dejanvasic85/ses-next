@@ -5,7 +5,6 @@ class MyDocument extends Document {
     return (
       <Html data-theme="light">
         <Head>
-          <title>SES - Storm Electrical Solutions - Melbourne Electricians</title>
           <link rel="icon" href="/favicon.ico" />
           <meta
             name="description"
@@ -31,7 +30,7 @@ class MyDocument extends Document {
             name="twitter:description"
             content="Melbourne Electricians. Free Quotes. Lighting. Testing. Data. Air Conditioning. Emergency Call out. Upgrade your old Halogen lights for Free!"
           />
-          <meta name="twitter:title" content="SES - Storm Electrical Solutions - Melbourne Electricians" />
+          <meta name="twitter:title" content="Storm Electrical Solutions - Melbourne Electricians" />
           <meta
             name="twitter:image"
             content="http://sesmelbourne.com.au/wp-content/uploads/2016/03/SES-Storm-Electrical-Solutions.gif"
