@@ -8,9 +8,10 @@ export default function Hero() {
       <div className="hero-content col-start-1 row-start-1 w-full max-w-7xl flex-col justify-between gap-10 pb-10 lg:flex-row lg:items-end lg:gap-0 xl:gap-20">
         <div className="lg:pl-10 lg:pb-28 border-black">
           <div className="md:mb-2 md:py-4 text-center lg:py-10 lg:text-left">
-            <div className="hero-content flex-col md:gap-8 md:flex-row">
-              <Image src="/logo.gif" alt="Storm Electrical Solutions" width={350} height={600} className="" />
-              <div className="md:pt-12">
+            <div className="hero-content flex-col lg:gap-8 lg:flex-row">
+              <Image src="/logo.gif" alt="Storm Electrical Solutions" width={350} height={300} className="hidden lg:inline-block" />
+              <Image src="/logo.gif" alt="Storm Electrical Solutions" width={200} height={200} className="pt-8 lg:hidden" />
+              <div className="md:pt-12 pb-8">
                 <h1 className="font-title mb-2 text-xl font-extrabold sm:text-5xl lg:text-6xl">
                   Storm Electrical Solutions
                 </h1>
