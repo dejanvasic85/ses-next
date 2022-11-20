@@ -1,16 +1,17 @@
 import React from 'react';
 import { Icon } from '.';
 
-export function Footer() {
-  const now = new Date();
-  const thisYear = now.getFullYear();
+import { Icon } from './Icon/Icon';
 
+export function Footer() {
+  const today = new Date();
+  const year = today.getFullYear();
   return (
     <footer className="footer p-10 bg-neutral text-white">
       <div className="flex flex-col gap-2">
         <Icon name="bolt" size="xxxl" />
         <div>Storm Electrical Solutions. Melbourne electricians.</div>
-        <div>Copyright {thisYear}</div>
+        <div>Copyright {year}</div>
       </div>
       <div>
         <span className="footer-title">Services</span>
