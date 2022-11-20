@@ -2,7 +2,7 @@ import classNames from 'class-names';
 
 import useScrollPosition from '../hooks/useScrollPosition';
 
-import { Container } from '.';
+import { Container, Icon } from '.';
 
 const styles = {
   nav: {
@@ -29,7 +29,7 @@ export function Navbar({ contactPhone }) {
         <Container>
           <div className="hidden md:flex md:flex-1">
             <a className="btn btn-ghost normal-case text-xl" href="#">
-              SES - Melbourne
+              <Icon name="bolt" size="xxl" className="mr-2" /> SES - Melbourne
             </a>
           </div>
           <div className="flex items-center justify-center text-sm md:text-base w-full md:w-auto md:flex-none">
@@ -38,7 +38,7 @@ export function Navbar({ contactPhone }) {
                 <a className="rounded-lg" href="#services">
                   Services
                 </a>
-              </li> 
+              </li>
               <li>
                 <a className="rounded-lg" href="#about">
                   About Us

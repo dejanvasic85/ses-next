@@ -16,7 +16,7 @@ export default function Home({ contact, meta, services }) {
       <main>
         <Hero />
       </main>
-      <Services className="mt-32" services={services} />
+      <Services className="mt-32 pt-12 bg-slate-100" services={services} />
       <Footer />
     </>
   );
