@@ -73,8 +73,8 @@ export function HeroV2() {
               y2="474.645"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#9089FC"></stop>
-              <stop offset="1" stop-color="#FF80B5"></stop>
+              <stop stop-color="#007bc0"></stop>
+              <stop offset="1" stop-color="#AAAAAF"></stop>
             </linearGradient>
           </defs>
         </svg>
@@ -111,9 +111,6 @@ export function HeroV2() {
                 <div className="mt-8 flex gap-x-4 justify-center">
                   <a href="#" className="btn btn-primary">
                     Get a free quote
-                    <span className="text-indigo-200" aria-hidden="true">
-                      &rarr;
-                    </span>
                   </a>
                 </div>
               </div>
@@ -138,8 +135,8 @@ export function HeroV2() {
                       y2="474.645"
                       gradientUnits="userSpaceOnUse"
                     >
-                      <stop stop-color="#9089FC"></stop>
-                      <stop offset="1" stop-color="#FF80B5"></stop>
+                      <stop stop-color="#45C1E3"></stop>
+                      <stop offset="1" stop-color="#007bc0"></stop>
                     </linearGradient>
                   </defs>
                 </svg>
