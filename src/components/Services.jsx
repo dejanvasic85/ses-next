@@ -4,7 +4,7 @@ import { Container } from '.';
 
 function Icon() {
   return (
-    <div className="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-gray-200 text-primary flex-shrink-0">
+    <div className="w-16 h-16 inline-flex items-center justify-center rounded-full bg-gray-200 text-primary flex-shrink-0">
       <svg
         viewBox="0 0 24 24"
         height="48"
@@ -29,12 +29,12 @@ export function Services({ className, services }) {
         <h2 id="services" className="font-title mb-2 font-bold text-xl sm:text-3xl text-center lg:text-4xl">
           Our Services
         </h2>
-        <ul className="px-4 py-8 mx-auto grid md:grid-cols-3 gap-4">
+        <ul className="px-4 py-8 flex flex-wrap gap-4 justify-evenly">
           {services.map(({ name, description }, idx) => (
-            <li className="border-gray-200 border rounded p-4 flex gap-4" key={idx}>
+            <li className="border-gray-200 border rounded-lg p-4 flex gap-4 xl:w-1/3 md:w-1/2" key={idx}>
               <Icon />
               <div>
-                <h2 className="text-gray-900 text-lg title-font font-medium mb-3">{name}</h2>
+                <h2 className="text-gray-900 text-lg title-font font-medium">{name}</h2>
                 <p className="leading-relaxed text-base">{description}</p>
               </div>
             </li>
