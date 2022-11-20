@@ -8,14 +8,14 @@ const styles = {
   nav: {
     default:
       'sticky top-0 z-30 flex h-16 w-full justify-center bg-opacity-90 backdrop-blur transition-all duration-100',
-    top: 'text-primary-content',
+    top: 'text-base-content',
     scrolled: 'bg-base-100 text-base-content shadow-sm',
   },
 };
 
 export function Navbar() {
   const scrollPosition = useScrollPosition();
-  const isTopPosition = scrollPosition < 95;
+  const isTopPosition = scrollPosition < 10;
 
   return (
     <div

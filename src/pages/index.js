@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-import { Hero } from '../components';
+import { HeroV2 as Hero } from '../components';
 
 export default function Home() {
   return (
