@@ -14,7 +14,7 @@ export default function Home({ meta, services }) {
       <main>
         <Hero />
       </main>
-      <Services className="mt-24" services={services} />
+      <Services className="mt-32" services={services} />
     </>
   );
 }
@@ -52,13 +52,13 @@ export const getStaticProps = async () => {
           description: 'Test and Tag. Emergency Light Testing.',
         },
         {
+          name: 'Catering Maintenance - Emergency Call out',
+          description: 'Preventative Maintenance. Installations.',
+        },
+        {
           name: 'Lighting',
           description:
             'Free LED lamp changes as part of the VEET scheme. Business LED VEET Scheme incentives with lighting analysis to help save your business energy with funding from the Victorian Government.',
-        },
-        {
-          name: 'Catering Maintenance - Emergency Call out',
-          description: 'Preventative Maintenance. Installations.',
         },
       ],
     },
