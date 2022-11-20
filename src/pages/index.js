@@ -1,7 +1,7 @@
 import Head from 'next/head';
 
 import { content } from '../lib/content';
-import { Footer, HeroV2 as Hero, Navbar, Services } from '../components';
+import { Footer, HeroV1 as Hero, Navbar, Services } from '../components';
 
 export default function Home({ contact, meta, services }) {
   return (

@@ -8,7 +8,7 @@ const styles = {
   nav: {
     default:
       'sticky top-0 z-30 flex h-16 w-full justify-center bg-opacity-90 backdrop-blur transition-all duration-100',
-    top: 'text-base-content',
+    top: 'text-white',
     scrolled: 'bg-base-100 text-base-content shadow-sm',
   },
 };

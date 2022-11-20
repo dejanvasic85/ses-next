@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export function HeroV1() {
   return (
-    <div className="from-blue-600 to-blue-800 text-primary-content -mt-[4rem] grid place-items-center items-end bg-gradient-to-br pt-12">
+    <div className="from-primary to-secondary text-primary-content -mt-[4rem] grid place-items-center items-end bg-gradient-to-br pt-12">
       <div className="hero-content col-start-1 row-start-1 w-full max-w-7xl flex-col justify-between gap-10 pb-10 lg:flex-row lg:items-end lg:gap-0 xl:gap-20">
         <div className="lg:pl-10 lg:pb-28 border-black">
           <div className="md:mb-2 md:py-4 text-center lg:py-10 lg:text-left">
@@ -26,17 +26,21 @@ export function HeroV1() {
                 />
               </div>
               <div className="md:pt-20 pb-12">
-                <h1 className="font-title mb-2 text-xl font-extrabold sm:text-5xl lg:text-6xl">
+                <h1 className="font-title mb-2 text-xl font-extrabold sm:text-5xl lg:text-6xl text-white">
                   Storm Electrical Solutions
                 </h1>
                 <h2 className="font-title text-lg font-bold sm:text-2xl lg:text-3xl">Melbourne Electricians</h2>
+                <p className="mt-6 text-lg leading-8 text-white">
+                  Melbourne Electricians. Free Quotes. Lighting. Testing. Data. Air Conditioning. Emergency Call out.
+                  Upgrade your old Halogen lights for Free!
+                </p>
               </div>
             </div>
           </div>
         </div>
       </div>
       <svg
-        className="fill-blue-400 opacity-50 col-start-1 row-start-1 h-auto w-full"
+        className="fill-accent opacity-50 col-start-1 row-start-1 h-auto w-full"
         width="1600"
         height="380"
         viewBox="0 0 1600 380"
