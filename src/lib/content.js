@@ -40,7 +40,8 @@ export const content = {
     },
     {
       name: 'Lighting',
-      description: 'Free LED lamp changes as part of the VEET scheme.',
+      description:
+        'Free LED lamp changes as part of the VEET scheme Business LED VEET Scheme incentives with lighting analysis to help save your business energy with funding from the Victorian Government.',
       icon: 'light',
     },
   ],
