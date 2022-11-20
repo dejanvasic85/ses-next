@@ -1,107 +1,66 @@
 import Head from 'next/head';
 
-import { HeroV2 as Hero } from '../components';
+import { HeroV2 as Hero, Services } from '../components';
 
-export default function Home() {
+export default function Home({ meta, services }) {
   return (
     <>
       <Head>
-        <title>SES - Storm Electrical Solutions - Melbourne Electricians</title>
+        <title>{meta.title}</title>
         <link rel="icon" href="/favicon.ico" />
-        <meta
-          name="description"
-          content="Melbourne Electricians. Free Quotes. Lighting. Testing. Data. Air Conditioning. Emergency Call out. Upgrade your old Halogen lights for Free!*"
-        />
+        <meta name="description" content={meta.description} />
         <link rel="canonical" href="http://sesmelbourne.com.au/" />
       </Head>
-
       <main>
         <Hero />
       </main>
-
-      <section className="text-gray-600 body-font">
-        <div className="container px-5 py-24 mx-auto flex flex-wrap">
-          <div className="flex flex-wrap -m-4">
-            <div className="p-4 lg:w-1/2 md:w-full">
-              <div className="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col">
-                <div className="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    className="w-8 h-8"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                  </svg>
-                </div>
-                <div className="flex-grow">
-                  <h2 className="text-gray-900 text-lg title-font font-medium mb-3">Shooting Stars</h2>
-                  <p className="leading-relaxed text-base">
-                    Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice
-                    poutine.
-                  </p>
-                  <a className="mt-3 text-indigo-500 inline-flex items-center">
-                    Learn More
-                    <svg
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      className="w-4 h-4 ml-2"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M5 12h14M12 5l7 7-7 7"></path>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="p-4 lg:w-1/2 md:w-full">
-              <div className="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col">
-                <div className="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    className="w-10 h-10"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                  </svg>
-                </div>
-                <div className="flex-grow">
-                  <h2 className="text-gray-900 text-lg title-font font-medium mb-3">The Catalyzer</h2>
-                  <p className="leading-relaxed text-base">
-                    Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice
-                    poutine.
-                  </p>
-                  <a className="mt-3 text-indigo-500 inline-flex items-center">
-                    Learn More
-                    <svg
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      className="w-4 h-4 ml-2"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M5 12h14M12 5l7 7-7 7"></path>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Services className="mt-24" services={services} />
     </>
   );
 }
+
+export const getStaticProps = async () => {
+  return {
+    props: {
+      contact: {
+        phone: '+61 415 338 040',
+      },
+      meta: {
+        title: 'SES - Storm Electrical Solutions - Melbourne Electricians',
+        description:
+          'Melbourne Electricians. Free Quotes. Lighting. Testing. Data. Air Conditioning. Emergency Call out. Upgrade your old Halogen lights for Free!',
+      },
+      services: [
+        {
+          name: 'Air conditioning',
+          description: 'Split systems.',
+        },
+        {
+          name: 'Data and TV',
+          description: 'Installation, Repairs & Upgrades.',
+        },
+        {
+          name: 'Renewable Energy',
+          description: 'Including Wind & Solar.',
+        },
+        {
+          name: 'Testing',
+          description: 'Test and Tag. Emergency Light Testing.',
+        },
+        {
+          name: 'Telecommunications',
+          description: 'Test and Tag. Emergency Light Testing.',
+        },
+        {
+          name: 'Lighting',
+          description:
+            'Free LED lamp changes as part of the VEET scheme. Business LED VEET Scheme incentives with lighting analysis to help save your business energy with funding from the Victorian Government.',
+        },
+        {
+          name: 'Catering Maintenance - Emergency Call out',
+          description: 'Preventative Maintenance. Installations.',
+        },
+      ],
+    },
+  };
+};

@@ -5,7 +5,7 @@ import '../../styles/globals.css';
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <Navbar />
+      <Navbar contactPhone={pageProps.contact.phone} />
       <Component {...pageProps} />
       <Footer />
     </>
