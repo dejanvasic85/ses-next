@@ -1,8 +1,8 @@
 import Head from 'next/head';
 
-import { HeroV2 as Hero, Services } from '../components';
+import { Footer, HeroV2 as Hero, Navbar, Services } from '../components';
 
-export default function Home({ meta, services }) {
+export default function Home({ contact, meta, services }) {
   return (
     <>
       <Head>
@@ -11,10 +11,12 @@ export default function Home({ meta, services }) {
         <meta name="description" content={meta.description} />
         <link rel="canonical" href="http://sesmelbourne.com.au/" />
       </Head>
+      <Navbar contactPhone={contact.phone} />
       <main>
         <Hero />
       </main>
       <Services className="mt-32" services={services} />
+      <Footer />
     </>
   );
 }
@@ -57,8 +59,7 @@ export const getStaticProps = async () => {
         },
         {
           name: 'Lighting',
-          description:
-            'Free LED lamp changes as part of the VEET scheme. Business LED VEET Scheme incentives with lighting analysis to help save your business energy with funding from the Victorian Government.',
+          description: 'Free LED lamp changes as part of the VEET scheme.',
         },
       ],
     },
