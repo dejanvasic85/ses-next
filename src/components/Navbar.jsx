@@ -15,7 +15,7 @@ const styles = {
 
 export function Navbar({ contactPhone }) {
   const scrollPosition = useScrollPosition();
-  const isTopPosition = scrollPosition < 10;
+  const isTopPosition = scrollPosition < 5;
 
   return (
     <div
@@ -35,17 +35,23 @@ export function Navbar({ contactPhone }) {
           <div className="flex items-center justify-center text-sm md:text-base w-full md:w-auto md:flex-none">
             <ul className="menu menu-horizontal p-0">
               <li>
-                <a className="rounded-lg" href="#services">Services</a>
+                <a className="rounded-lg" href="#services">
+                  Services
+                </a>
+              </li> 
+              <li>
+                <a className="rounded-lg" href="#about">
+                  About Us
+                </a>
               </li>
               <li>
-                <a href="#about">About Us</a>
-              </li>
-              <li>
-                <a href="#contact">Contact Us</a>
+                <a className="rounded-lg" href="#contact">
+                  Contact Us
+                </a>
               </li>
               {contactPhone && (
                 <li>
-                  <a href={contactPhone}>
+                  <a className="rounded-lg" href={contactPhone}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
