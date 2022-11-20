@@ -9,7 +9,7 @@ export function HeroV1() {
         <div className="lg:pl-10 lg:pb-28 border-black">
           <div className="md:mb-2 md:py-4 text-center lg:py-10 lg:text-left">
             <div className="hero-content flex-col lg:gap-8 lg:flex-row">
-              <div className="rounded-3xl bg-base-200">
+              <div className="rounded-3xl bg-zinc-100">
                 <Image
                   src="/logo.gif"
                   alt="Storm Electrical Solutions"
@@ -22,11 +22,11 @@ export function HeroV1() {
                   alt="Storm Electrical Solutions"
                   width={200}
                   height={200}
-                  className="pt-8 lg:hidden"
+                  className="lg:hidden"
                 />
               </div>
               <div className="md:pt-20 pb-12">
-                <h1 className="font-title mb-2 text-xl font-extrabold sm:text-5xl lg:text-6xl text-white">
+                <h1 className="font-title mb-2 text-xl font-bold sm:text-5xl lg:text-6xl text-white">
                   Storm Electrical Solutions
                 </h1>
                 <h2 className="font-title text-lg font-bold sm:text-2xl lg:text-3xl">Melbourne Electricians</h2>
