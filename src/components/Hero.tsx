@@ -2,6 +2,8 @@ import React from 'react';
 
 import Image from 'next/image';
 
+import { Heading } from './Heading';
+
 export function HeroV1() {
   return (
     <div className="from-blue-600 to-blue-800 text-primary-content -mt-[4rem] grid place-items-center items-end bg-gradient-to-br pt-12">
@@ -26,9 +28,7 @@ export function HeroV1() {
                 />
               </div>
               <div className="md:pt-20 pb-12">
-                <h1 className="font-title mb-2 text-xl font-extrabold sm:text-5xl lg:text-6xl">
-                  Storm Electrical Solutions
-                </h1>
+                <Heading level={1}>Storm Electrical Solutions</Heading>
                 <h2 className="font-title text-lg font-bold sm:text-2xl lg:text-3xl">Melbourne Electricians</h2>
               </div>
             </div>
@@ -101,9 +101,7 @@ export function HeroV2() {
                 />
               </div>
               <div className="text-center">
-                <h1 className="text-4xl font-bold tracking-tight sm:text-6x text-gray-700">
-                  Storm Electrical Solutions
-                </h1>
+                <Heading level={1}>Storm Electrical Solutions</Heading>
                 <p className="mt-6 text-lg leading-8 text-gray-600">
                   Melbourne Electricians. Free Quotes. Lighting. Testing. Data. Air Conditioning. Emergency Call out.
                   Upgrade your old Halogen lights for Free!

@@ -20,7 +20,7 @@ export default function Home({ contact, meta, services, team }) {
         <Team introduction={team.introduction} members={team.members} />
       </div>
       <div id="services">
-        <Services className="mt-12 pt-20 bg-slate-100" services={services} />
+        <Services className="mt-8 pt-20 bg-slate-100" services={services} />
       </div>
       <div id="contact"></div>
       <Footer />
