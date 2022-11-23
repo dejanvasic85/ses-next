@@ -35,13 +35,13 @@ export function Navbar({ contactPhone }) {
           <div className="flex items-center justify-center text-sm md:text-base w-full md:w-auto md:flex-none">
             <ul className="menu menu-horizontal p-0">
               <li>
-                <a className="rounded-lg" href="#services">
-                  Services
+                <a className="rounded-lg" href="#about">
+                  About Us
                 </a>
               </li>
               <li>
-                <a className="rounded-lg" href="#about">
-                  About Us
+                <a className="rounded-lg" href="#services">
+                  Services
                 </a>
               </li>
               <li>

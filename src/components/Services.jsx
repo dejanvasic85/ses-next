@@ -15,7 +15,7 @@ export function Services({ className, services }) {
   return (
     <section className={className}>
       <Container>
-        <h2 id="services" className="font-title mb-2 font-bold text-2xl lg:text-3xl text-center">
+        <h2 className="font-title mb-2 font-bold text-2xl lg:text-3xl text-center">
           Our Services
         </h2>
         <ul className="px-4 py-8 flex flex-wrap gap-4 justify-evenly">

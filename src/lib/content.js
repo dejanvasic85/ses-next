@@ -1,3 +1,5 @@
+import { faker } from '@faker-js/faker';
+
 export const content = {
   contact: {
     phone: '+61 415 338 040',
@@ -45,4 +47,35 @@ export const content = {
       icon: 'light',
     },
   ],
+  team: {
+    introduction:
+      'We have trained experts in all areas of electrical work. Our team is made up of highly skilled electricians, who are all fully qualified and licensed.',
+    members: [
+      {
+        avatar: faker.image.avatar(),
+        fullName: faker.name.fullName(),
+        role: faker.name.jobTitle(),
+      },
+      {
+        avatar: faker.image.avatar(),
+        fullName: faker.name.fullName(),
+        role: faker.name.jobTitle(),
+      },
+      {
+        avatar: faker.image.avatar(),
+        fullName: faker.name.fullName(),
+        role: faker.name.jobTitle(),
+      },
+      {
+        avatar: faker.image.avatar(),
+        fullName: faker.name.fullName(),
+        role: faker.name.jobTitle(),
+      },
+      {
+        avatar: faker.image.avatar(),
+        fullName: faker.name.fullName(),
+        role: faker.name.jobTitle(),
+      },
+    ],
+  },
 };
