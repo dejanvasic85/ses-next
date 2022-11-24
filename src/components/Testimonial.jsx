@@ -1,7 +1,6 @@
 import React from 'react';
 
 export function Testimonial({ fullName, comment, rating }) {
-  console.log('rating', rating);
   const [firstName = '', lastName = ''] = fullName.split(' ');
 
   return (
@@ -24,41 +23,16 @@ export function Testimonial({ fullName, comment, rating }) {
 
         <div>
           <div className="rating">
-            <input
-              type="radio"
-              disabled
-              name={`rating-${fullName}`}
-              className="mask mask-star-2 bg-orange-400"
-              {...(rating === 1 ? { checked: true } : null)}
-            />
-            <input
-              type="radio"
-              disabled
-              name={`rating-${fullName}`}
-              className="mask mask-star-2 bg-orange-400"
-              {...(rating === 2 ? { checked: true } : null)}
-            />
-            <input
-              type="radio"
-              disabled
-              name={`rating-${fullName}`}
-              className="mask mask-star-2 bg-orange-400"
-              {...(rating === 3 ? { checked: true } : null)}
-            />
-            <input
-              type="radio"
-              disabled
-              name={`rating-${fullName}`}
-              className="mask mask-star-2 bg-orange-400"
-              {...(rating === 4 ? { checked: true } : null)}
-            />
-            <input
-              type="radio"
-              disabled
-              name={`rating-${fullName}`}
-              className="mask mask-star-2 bg-orange-400"
-              {...(rating === 5 ? { checked: true } : null)}
-            />
+            {Array.from({ length: 5 }, (_, idx) => (
+              <input
+                key={idx}
+                type="radio"
+                disabled
+                name={`rating-${fullName}`}
+                className="mask mask-star-2 bg-orange-400"
+                {...(rating === idx + 1 ? { checked: true } : null)}
+              />
+            ))}
           </div>
         </div>
       </div>
