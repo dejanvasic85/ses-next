@@ -1,9 +1,9 @@
 import Head from 'next/head';
 
 import { content } from '../lib/content';
-import { Footer, HeroV2 as Hero, Navbar, Services, Team } from '../components';
+import { About, Footer, HeroV2 as Hero, Navbar, Services, Team } from '../components';
 
-export default function Home({ contact, meta, services, team }) {
+export default function Home({ contact, meta, services, team, testimonials }) {
   return (
     <>
       <Head>
@@ -17,7 +17,7 @@ export default function Home({ contact, meta, services, team }) {
         <Hero />
       </main>
       <div id="about" className="mt-32 pt-20">
-        <Team introduction={team.introduction} members={team.members} />
+        <About team={team} testimonials={testimonials} />
       </div>
       <div id="services">
         <Services className="mt-8 pt-20 bg-slate-100" services={services} />

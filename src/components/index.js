@@ -1,3 +1,4 @@
+export { About } from './About';
 export { Container } from './Container';
 export { Icon } from './Icon/Icon';
 export { Footer } from './Footer';

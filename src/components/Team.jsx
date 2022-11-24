@@ -17,7 +17,7 @@ export function Team({ introduction, members }) {
                 <img src={avatar} loading="lazy" alt={fullName} className="w-full h-full object-cover object-center" />
               </div>
               <div>
-                <div className="text-indigo-500 md:text-lg font-bold text-center">{fullName}</div>
+                <div className="text-primary md:text-lg font-bold text-center">{fullName}</div>
                 <p className="text-gray-500 text-sm md:text-base text-center mb-3 md:mb-4">{role}</p>
               </div>
             </div>

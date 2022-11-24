@@ -78,4 +78,21 @@ export const content = {
       },
     ],
   },
+  testimonials: [
+    {
+      fullName: faker.name.fullName(),
+      comment: faker.lorem.paragraph(),
+      rating: faker.datatype.number({ min: 4, max: 5 }),
+    },
+    {
+      fullName: faker.name.fullName(),
+      comment: faker.lorem.paragraph(),
+      rating: faker.datatype.number({ min: 4, max: 5 }),
+    },
+    {
+      fullName: faker.name.fullName(),
+      comment: faker.lorem.paragraph(),
+      rating: faker.datatype.number({ min: 4, max: 5 }),
+    },
+  ],
 };
