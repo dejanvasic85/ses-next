@@ -31,6 +31,9 @@ export function About({ team, testimonials }) {
             <Testimonial {...testimonial} key={idx} />
           ))}
         </div>
+        <div className="mt-8">
+          <button className="btn btn-primary btn-outline">Leave feedback</button>
+        </div>
       </div>
     </Container>
   );
