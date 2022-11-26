@@ -20,7 +20,7 @@ export default function Home({ contact, meta, services, team, testimonials }) {
         <About team={team} testimonials={testimonials} />
       </div>
       <div id="services">
-        <Services className="mt-8 pt-12 bg-slate-100" services={services} />
+        <Services className="mt-16 pt-16 bg-slate-100" services={services} />
       </div>
       <div id="contact"></div>
       <Footer />
