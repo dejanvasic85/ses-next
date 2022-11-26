@@ -4,7 +4,6 @@ export const content = {
   about: [
     'At Storm Electrical Solutions we pride ourselves on being a forward thinking and innovative company offering a customer focused, quality service within the electrical industry.',
     'We can offer a great deal of experience and expertise in a wide range of commercial, industrial and residential projects large or small including installations, maintenance, fault finding and testing.',
-    'We keep abreast of the latest developments in renewable energy and the electrical industry to ensure our customers get the best possible service available.',
   ],
   contact: {
     phone: '+61 415 338 040',
@@ -56,11 +55,6 @@ export const content = {
     introduction:
       'We have trained experts in all areas of electrical work. Our team is made up of highly skilled electricians, who are all fully qualified and licensed.',
     members: [
-      {
-        avatar: faker.image.avatar(),
-        fullName: faker.name.fullName(),
-        role: faker.name.jobTitle(),
-      },
       {
         avatar: faker.image.avatar(),
         fullName: faker.name.fullName(),
