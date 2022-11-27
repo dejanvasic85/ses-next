@@ -3,10 +3,11 @@ import { faker } from '@faker-js/faker';
 export const content = {
   about: [
     'At Storm Electrical Solutions we pride ourselves on being a forward thinking and innovative company offering a customer focused, quality service within the electrical industry.',
-    'We can offer a great deal of experience and expertise in a wide range of commercial, industrial and residential projects large or small including installations, maintenance, fault finding and testing.',
+    'We offer a great deal of experience and expertise in a wide range of commercial, industrial and residential projects large or small including installations, maintenance, fault finding and testing.',
   ],
   contact: {
-    blurb: 'We provide services to all areas of Melbourne. Call us on 0415 338 040 or submit your details below for a free quote.',
+    blurb:
+      'We provide services to all areas of Melbourne. Call us on 0415 338 040 or submit your details below for a free quote.',
     callBack: 'Our team will be notified immediately and we will get back to you as soon as possible.',
     phone: '+61 415 338 040',
   },
@@ -22,6 +23,12 @@ export const content = {
       name: 'Air conditioning',
       description: 'Split systems.',
       icon: 'air',
+      imageGallery: [
+        {
+          src: 'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&q=75&fit=crop&crop=top&w=600&h=700',
+          alt: 'New air conditioning unit',
+        },
+      ],
     },
     {
       name: 'Data and TV',
@@ -32,6 +39,12 @@ export const content = {
       name: 'Renewable Energy',
       description: 'Including Wind & Solar.',
       icon: 'recycle',
+      imageGallery: [
+        {
+          src: 'http://sesmelbourne.com.au/wp-content/uploads/2017/07/Solar_panels.jpg',
+          alt: 'Solar panel upgrades and installation',
+        },
+      ],
     },
     {
       name: 'Testing',
@@ -53,6 +66,12 @@ export const content = {
       description:
         'Free LED lamp changes as part of the VEET scheme Business LED VEET Scheme incentives with lighting analysis to help save your business energy with funding from the Victorian Government.',
       icon: 'light',
+      imageGallery: [
+        {
+          src: 'http://sesmelbourne.com.au/wp-content/uploads/2017/07/downlights.jpg',
+          alt: 'LED replacement as part of VEET scheme',
+        },
+      ],
     },
   ],
   team: {

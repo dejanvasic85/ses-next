@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { Container } from '.';
+import { Container } from './Container';
+import { Gallery } from './Gallery';
 import { Heading } from './Heading';
-import { Icon } from '.';
+import { Icon } from './Icon/Icon';
 
 function IconContainer({ name }) {
   return (
@@ -13,6 +14,18 @@ function IconContainer({ name }) {
 }
 
 export function Services({ className, services }) {
+  const gallery = services
+    .reduce((prev, curr) => {
+      const { name, imageGallery = [] } = curr;
+      const imgs = imageGallery.map((imgMeta) => ({
+        serviceName: name,
+        ...imgMeta,
+      }));
+
+      return [...prev, ...imgs];
+    }, [])
+    .filter(Boolean);
+
   return (
     <div className={className}>
       <Container>
@@ -27,6 +40,7 @@ export function Services({ className, services }) {
           ))}
         </ul>
       </Container>
+      <Gallery imageGallery={gallery} />
     </div>
   );
 }
