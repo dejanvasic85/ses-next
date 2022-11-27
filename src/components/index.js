@@ -1,6 +1,7 @@
 export { About } from './About';
 export { Contact } from './Contact';
 export { Container } from './Container';
+export { FeedbackForm } from './FeedbackForm';
 export { Icon } from './Icon/Icon';
 export { Footer } from './Footer';
 export { HeroV1, HeroV2 } from './Hero';

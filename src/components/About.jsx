@@ -3,6 +3,7 @@ import { faker } from '@faker-js/faker';
 
 import { Container } from './Container';
 import { Heading } from './Heading';
+import { FeedbackForm } from './FeedbackForm';
 import { Modal } from './Modal';
 import { Team } from './Team';
 import { Testimonial } from './Testimonial';
@@ -24,7 +25,6 @@ export function About({ aboutIntro, team, testimonials }) {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log('response', data);
         setFeedbackSent(true);
         setLoading(false);
       });
@@ -46,9 +46,8 @@ export function About({ aboutIntro, team, testimonials }) {
           </button>
         </div>
       </div>
-      <Modal isOpen={modalOpen}>
-        This will be the feedback form
-        <button className="btn btn-primary btn-outline">Submit</button>
+      <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
+        <FeedbackForm />
       </Modal>
     </Container>
   );
