@@ -14,7 +14,7 @@ function IconContainer({ name }) {
 
 export function Services({ className, services }) {
   return (
-    <section className={className}>
+    <div className={className}>
       <Container>
         <Heading level={2}>Our Services</Heading>
         <ul className="px-4 py-8 flex flex-wrap gap-4 justify-evenly">
@@ -27,6 +27,6 @@ export function Services({ className, services }) {
           ))}
         </ul>
       </Container>
-    </section>
+    </div>
   );
 }

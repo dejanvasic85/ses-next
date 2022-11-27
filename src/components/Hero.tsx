@@ -107,7 +107,7 @@ export function HeroV2() {
                   Upgrade your old Halogen lights for Free!
                 </p>
                 <div className="mt-8 flex gap-x-4 justify-center">
-                  <a href="#" className="btn btn-primary">
+                  <a href="#contact" className="btn btn-primary">
                     Get a free quote
                   </a>
                 </div>

@@ -1,4 +1,5 @@
 export { About } from './About';
+export { Contact } from './Contact';
 export { Container } from './Container';
 export { Icon } from './Icon/Icon';
 export { Footer } from './Footer';
