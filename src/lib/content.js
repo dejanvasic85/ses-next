@@ -9,7 +9,7 @@ export const content = {
     blurb:
       'We provide services to all areas of Melbourne. Call us on 0415 338 040 or submit your details below for a free quote.',
     callBack: 'Our team will be notified immediately and we will get back to you as soon as possible.',
-    phone: '+61 415 338 040',
+    phone: '0415 338 040',
   },
   googleMapsLocation:
     'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d402589.81581793836!2d144.7729596601535!3d-37.97169289892203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad646b5d2ba4df7%3A0x4045675218ccd90!2sMelbourne%20VIC!5e0!3m2!1sen!2sau!4v1669503547251!5m2!1sen!2sau',
@@ -25,8 +25,8 @@ export const content = {
       icon: 'air',
       imageGallery: [
         {
-          src: 'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&q=75&fit=crop&crop=top&w=600&h=700',
-          alt: 'New air conditioning unit',
+          src: faker.image.business(800, 600, true),
+          alt: faker.lorem.words(4),
         },
       ],
     },
@@ -34,6 +34,12 @@ export const content = {
       name: 'Data and TV',
       description: 'Installation, Repairs & Upgrades.',
       icon: 'power',
+      imageGallery: [
+        {
+          src: faker.image.business(800, 600, true),
+          alt: faker.lorem.words(4),
+        },
+      ],
     },
     {
       name: 'Renewable Energy',
@@ -50,16 +56,34 @@ export const content = {
       name: 'Testing',
       description: 'Test and Tag. Emergency Light Testing.',
       icon: 'plug',
+      imageGallery: [
+        {
+          src: faker.image.business(800, 600, true),
+          alt: faker.lorem.words(4),
+        },
+      ],
     },
     {
       name: 'Telecommunications',
       description: 'Test and Tag. Emergency Light Testing.',
       icon: 'mobile',
+      imageGallery: [
+        {
+          src: faker.image.business(800, 600, true),
+          alt: faker.lorem.words(4),
+        },
+      ],
     },
     {
       name: 'Catering Maintenance - Emergency Call out',
       description: 'Preventative Maintenance. Installations.',
       icon: 'wrench',
+      imageGallery: [
+        {
+          src: faker.image.business(800, 600, true),
+          alt: faker.lorem.words(4),
+        },
+      ],
     },
     {
       name: 'Lighting',
