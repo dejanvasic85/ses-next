@@ -3,12 +3,14 @@ import { faker } from '@faker-js/faker';
 
 import { Container } from './Container';
 import { Heading } from './Heading';
+import { Modal } from './Modal';
 import { Team } from './Team';
 import { Testimonial } from './Testimonial';
 
 export function About({ aboutIntro, team, testimonials }) {
   const [loading, setLoading] = useState(false);
   const [feedbackSent, setFeedbackSent] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const handleLeaveFeedback = () => {
     setLoading(true);
@@ -39,9 +41,15 @@ export function About({ aboutIntro, team, testimonials }) {
           ))}
         </div>
         <div className="mt-8">
-          <button className="btn btn-primary btn-outline">Leave feedback</button>
+          <button className="btn btn-primary btn-outline" onClick={() => setModalOpen(true)}>
+            Leave feedback
+          </button>
         </div>
       </div>
+      <Modal isOpen={modalOpen}>
+        This will be the feedback form
+        <button className="btn btn-primary btn-outline">Submit</button>
+      </Modal>
     </Container>
   );
 }
