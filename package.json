@@ -12,6 +12,7 @@
   "dependencies": {
     "@faker-js/faker": "7.6.0",
     "@tailwindcss/typography": "0.5.8",
+    "aws-sdk": "2.1261.0",
     "class-names": "1.0.0",
     "daisyui": "2.39.1",
     "eslint": "8.27.0",
