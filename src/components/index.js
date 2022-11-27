@@ -7,5 +7,6 @@ export { Footer } from './Footer';
 export { HeroV1, HeroV2 } from './Hero';
 export { Modal } from './Modal';
 export { Navbar } from './Navbar';
+export { PopSuccess } from './PopSuccess';
 export { Services } from './Services';
 export { Team } from './Team';

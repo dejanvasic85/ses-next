@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { faker } from '@faker-js/faker';
+import classNames from 'class-names';
 
 import { Container } from './Container';
 import { Heading } from './Heading';
 import { FeedbackForm } from './FeedbackForm';
 import { Modal } from './Modal';
+import { PopSuccess } from './PopSuccess';
 import { Team } from './Team';
 import { Testimonial } from './Testimonial';
 
@@ -13,20 +14,17 @@ export function About({ aboutIntro, team, testimonials }) {
   const [feedbackSent, setFeedbackSent] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
-  const handleLeaveFeedback = () => {
+  const sendFeedback = (data) => {
     setLoading(true);
     fetch('/api/feedback', {
       method: 'POST',
-      body: JSON.stringify({
-        fullName: faker.name.fullName(),
-        comment: faker.lorem.paragraph(),
-        rating: faker.datatype.number({ min: 4, max: 5 }),
-      }),
+      body: JSON.stringify(data),
     })
       .then((res) => res.json())
-      .then((data) => {
+      .then(() => {
         setFeedbackSent(true);
         setLoading(false);
+        setModalOpen(false);
       });
   };
 
@@ -41,13 +39,17 @@ export function About({ aboutIntro, team, testimonials }) {
           ))}
         </div>
         <div className="mt-8">
-          <button className="btn btn-primary btn-outline" onClick={() => setModalOpen(true)}>
+          <PopSuccess show={feedbackSent}>Thank you! We will review your feedback shortly.</PopSuccess>
+          <button
+            className={classNames('btn btn-primary btn-outline', { hidden: feedbackSent })}
+            onClick={() => setModalOpen(true)}
+          >
             Leave feedback
           </button>
         </div>
       </div>
       <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
-        <FeedbackForm />
+        <FeedbackForm loading={loading} onSubmit={sendFeedback} />
       </Modal>
     </Container>
   );
