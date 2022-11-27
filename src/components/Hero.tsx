@@ -96,7 +96,7 @@ export function HeroV2() {
                   src="/logo.gif"
                   alt="Storm Electrical Solutions"
                   className="object-scale-down lg:hidden"
-                  width={300}
+                  width={500}
                   height={300}
                 />
               </div>
