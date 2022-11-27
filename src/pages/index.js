@@ -22,7 +22,7 @@ export default function Home({ about, contact, googleMapsLocation, meta, service
       <section id="services">
         <Services className="mt-16 pt-16 bg-slate-100" services={services} />
       </section>
-      <section id="contact">
+      <section id="contact" className="mt-12">
         <Contact contact={contact} location={googleMapsLocation} />
       </section>
       <Footer />
