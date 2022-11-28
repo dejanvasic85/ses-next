@@ -122,6 +122,11 @@ export const content = {
         fullName: faker.name.fullName(),
         role: faker.name.jobTitle(),
       },
+      {
+        avatar: faker.image.avatar(),
+        fullName: faker.name.fullName(),
+        role: faker.name.jobTitle(),
+      },
     ],
   },
   testimonials: [

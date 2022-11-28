@@ -38,7 +38,7 @@ export function About({ aboutIntro, team, testimonials }) {
             <Testimonial {...testimonial} key={idx} />
           ))}
         </div>
-        <div className="mt-8">
+        <div className="mt-4">
           <PopSuccess show={feedbackSent}>Thank you! We will review your feedback shortly.</PopSuccess>
           <button
             className={classNames('btn btn-primary btn-outline', { hidden: feedbackSent })}

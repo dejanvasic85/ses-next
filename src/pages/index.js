@@ -16,8 +16,8 @@ export default function Home({ about, contact, googleMapsLocation, meta, service
       <main>
         <Hero />
       </main>
-      <section id="services">
-        <Services className="mt-32 pt-20" services={services} />
+      <section id="services" className="mt-32 pt-24">
+        <Services services={services} className="mt-12" />
       </section>
       <section id="about" className="mt-16 pt-24">
         <About aboutIntro={about} team={team} testimonials={testimonials} />
