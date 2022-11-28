@@ -40,13 +40,13 @@ export function Navbar({ contactPhone }) {
                 </a>
               </li>
               <li>
-                <a className="rounded-lg" href="#services">
-                  Services
+                <a className="rounded-lg" href="#contact">
+                  Contact Us
                 </a>
               </li>
               <li>
-                <a className="rounded-lg" href="#contact">
-                  Contact Us
+                <a className="rounded-lg" href="#services">
+                  Services
                 </a>
               </li>
               {contactPhone && (

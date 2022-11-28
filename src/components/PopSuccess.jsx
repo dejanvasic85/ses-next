@@ -14,9 +14,12 @@ export function PopSuccess({ children, show }) {
         stiffness: 260,
         damping: 20,
       }}
-      className={classNames('flex items-center h-14 text-white rounded-lg mx-auto gap-2 bg-success justify-center')}
+      className={classNames(
+        'flex items-start md:items-center text-white text-sm md:text-base rounded-lg mx-auto gap-1 p-4 bg-success justify-center',
+      )}
     >
-      <Icon size="lg" name="tick-circle" /> <span>{children}</span>
+      <Icon size="lg" name="tick-circle" />
+      <span>{children}</span>
     </motion.div>
   );
 }

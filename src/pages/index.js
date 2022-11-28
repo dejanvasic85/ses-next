@@ -16,11 +16,11 @@ export default function Home({ about, contact, googleMapsLocation, meta, service
       <main>
         <Hero />
       </main>
-      <section id="about" className="mt-32 pt-20">
-        <About aboutIntro={about} team={team} testimonials={testimonials} />
-      </section>
       <section id="services">
-        <Services className="mt-16 pt-16 bg-slate-100" services={services} />
+        <Services className="mt-32 pt-20" services={services} />
+      </section>
+      <section id="about" className="mt-16 pt-24">
+        <About aboutIntro={about} team={team} testimonials={testimonials} />
       </section>
       <section id="contact" className="mt-12">
         <Contact contact={contact} location={googleMapsLocation} />

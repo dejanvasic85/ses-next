@@ -65,7 +65,7 @@ export const content = {
     },
     {
       name: 'Telecommunications',
-      description: 'Test and Tag. Emergency Light Testing.',
+      description: 'UPS Systems. Isolation Modules. Switchboard Upgrades',
       icon: 'mobile',
       imageGallery: [
         {
