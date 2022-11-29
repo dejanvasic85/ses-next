@@ -40,19 +40,19 @@ export function Team({ aboutIntro, introduction, members }) {
         <div className="sm:h-40 grid grid-cols-2 xl:grid-cols-4 sm:content-evenly rounded-lg gap-6 p-6">
           <div className="flex items-center justify-center gap-1 text-gray-400">
             <Icon name="space" size="xxxl" />
-            <span className="text-lg md:text-2xl xl:text-3xl">Confined spaces</span>
+            <span className="text-sm md:text-2xl xl:text-3xl">Confined spaces</span>
           </div>
           <div className="flex items-center justify-center gap-1 text-gray-400">
             <Icon name="height" size="xxxl" />
-            <span className="text-lg md:text-2xl xl:text-3xl">Working at heights</span>
+            <span className="text-sm md:text-2xl xl:text-3xl">Working at heights</span>
           </div>
           <div className="flex items-center justify-center gap-1 text-gray-400">
             <Icon name="signal-tower" size="xxxl" />
-            <span className="text-lg md:text-2xl xl:text-3xl">Tower rescue</span>
+            <span className="text-sm md:text-2xl xl:text-3xl">Tower rescue</span>
           </div>
           <div className="flex items-center justify-center gap-1 text-gray-400">
             <Icon name="bars-staggered" size="xxxl" />
-            <span className="text-lg md:text-2xl xl:text-3xl">Boom & scissor lift</span>
+            <span className="text-sm md:text-2xl xl:text-3xl">Boom & scissor lift</span>
           </div>
         </div>
       </div>
