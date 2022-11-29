@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'class-names';
 
+import { useLocalStorage } from '../hooks/useLocalStorage';
 import { Container } from './Container';
 import { Heading } from './Heading';
 import { FeedbackForm } from './FeedbackForm';
@@ -9,10 +10,17 @@ import { PopSuccess } from './PopSuccess';
 import { Team } from './Team';
 import { Testimonial } from './Testimonial';
 
+const feedbackStorageKey = 'feature-feedback';
+
 export function About({ aboutIntro, team, testimonials }) {
   const [loading, setLoading] = useState(false);
-  const [feedbackSent, setFeedbackSent] = useState(false);
+  const [feedbackSent, setFeedbackSent] = useLocalStorage('feature-feedback', false);
+  const [showFeedbackButton, setShowFeedbackButton] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+
+  useEffect(() => {
+    setShowFeedbackButton(!feedbackSent);
+  }, [feedbackSent]);
 
   const sendFeedback = (data) => {
     setLoading(true);
@@ -25,6 +33,7 @@ export function About({ aboutIntro, team, testimonials }) {
         setFeedbackSent(true);
         setLoading(false);
         setModalOpen(false);
+        localStorage.setItem(feedbackStorageKey, true);
       });
   };
 
@@ -40,12 +49,11 @@ export function About({ aboutIntro, team, testimonials }) {
         </div>
         <div className="mt-4">
           <PopSuccess show={feedbackSent}>Thank you! We will review your feedback shortly.</PopSuccess>
-          <button
-            className={classNames('btn btn-primary btn-outline', { hidden: feedbackSent })}
-            onClick={() => setModalOpen(true)}
-          >
-            Leave feedback
-          </button>
+          {showFeedbackButton && (
+            <button className={classNames('btn btn-primary btn-outline')} onClick={() => setModalOpen(true)}>
+              Leave feedback
+            </button>
+          )}
         </div>
       </div>
       <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>

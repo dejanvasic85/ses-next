@@ -14,14 +14,14 @@ export function FeedbackForm({ loading, onSubmit }) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="form-control w-full max-w-xs">
+      <div className="form-control w-full">
         <label className="label">
           <span className="label-text">Full name</span>
         </label>
         <input
           type="text"
           maxLength={100}
-          className={classNames('input input-bordered w-full max-w-xs', { 'input-error': fullNameError?.message })}
+          className={classNames('input input-bordered w-full', { 'input-error': fullNameError?.message })}
           {...register('fullName', {
             required: { value: true, message: 'Full name is required' },
           })}
@@ -33,7 +33,7 @@ export function FeedbackForm({ loading, onSubmit }) {
         )}
       </div>
 
-      <div className="form-control w-full max-w-xs">
+      <div className="form-control w-full">
         <label className="label">
           <span className="label-text">Comment</span>
         </label>
