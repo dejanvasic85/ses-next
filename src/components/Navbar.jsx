@@ -51,7 +51,7 @@ export function Navbar({ contactPhone }) {
               </li>
               {contactPhone && (
                 <li>
-                  <a className="rounded-lg" href={`tel:contactPhone`}>
+                  <a className="rounded-lg" href={`tel:${contactPhone}`}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
