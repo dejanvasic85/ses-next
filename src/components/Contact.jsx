@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 
+import { useContact } from '../hooks/useContact';
 import { ContactForm } from './ContactForm';
+import { PopSuccess } from './PopSuccess';
 
 export function Contact({ contact, location }) {
-  const [loading, setLoading] = useState(false);
+  const { loading, messageSent, sendMessage } = useContact();
 
   return (
     <div className="text-gray-600 body-font relative">
@@ -24,7 +26,14 @@ export function Contact({ contact, location }) {
         <div className="lg:w-1/3 md:w-1/2 bg-white rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10 shadow-md">
           <h2 className="text-gray-900 text-lg mb-1 font-medium title-font">Contact us</h2>
           {contact.blurb && <p className="leading-relaxed mb-5 text-gray-600">{contact.blurb}</p>}
-          <ContactForm loading={loading} onSubmit={(data) => console.log('submit this', data)} />
+
+          {!messageSent && <ContactForm loading={loading} onSubmit={sendMessage} />}
+          {messageSent && (
+            <PopSuccess show={messageSent}>
+              Thank you! Your message has been received and our team will get back to you.
+            </PopSuccess>
+          )}
+
           {contact.callBack && <p className="text-xs text-gray-500 mt-3">{contact.callBack}</p>}
         </div>
       </div>

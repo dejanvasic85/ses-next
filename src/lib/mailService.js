@@ -13,6 +13,16 @@ const ses = new SES({
 });
 
 const emailTemplates = {
+  contactEmailTemplate: {
+    bodyTemplate: `
+    <strong>SES incoming message</strong>
+    <p>A customer has left a message from your website. Please review the following:</p>
+    <p><strong>Email:</strong> {{email}}</p>
+    <p><strong>Phone:</strong> {{phone}} stars</p>
+    <p><strong>Message:</strong> {{message}}</p>
+    `,
+    subjectTemplate: `New SES message from {{email}}`,
+  },
   feedbackEmailTemplate: {
     bodyTemplate: `
     <strong>SES feedback available</strong>
