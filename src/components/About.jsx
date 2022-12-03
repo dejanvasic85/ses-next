@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'class-names';
 
-import { useLocalStorage } from '../hooks/useLocalStorage';
+import { useFeedback } from '../hooks/useFeedback';
+
 import { Container } from './Container';
 import { Heading } from './Heading';
 import { FeedbackForm } from './FeedbackForm';
@@ -10,32 +11,17 @@ import { PopSuccess } from './PopSuccess';
 import { Team } from './Team';
 import { Testimonial } from './Testimonial';
 
-const feedbackStorageKey = 'feature-feedback';
-
 export function About({ aboutIntro, team, testimonials }) {
-  const [loading, setLoading] = useState(false);
-  const [feedbackSent, setFeedbackSent] = useLocalStorage('feature-feedback', false);
   const [showFeedbackButton, setShowFeedbackButton] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const { sendFeedback, loading, feedbackSent } = useFeedback();
 
   useEffect(() => {
     setShowFeedbackButton(!feedbackSent);
+    if (feedbackSent) {
+      setModalOpen(false);
+    }
   }, [feedbackSent]);
-
-  const sendFeedback = (data) => {
-    setLoading(true);
-    fetch('/api/feedback', {
-      method: 'POST',
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then(() => {
-        setFeedbackSent(true);
-        setLoading(false);
-        setModalOpen(false);
-        localStorage.setItem(feedbackStorageKey, true);
-      });
-  };
 
   return (
     <Container>
