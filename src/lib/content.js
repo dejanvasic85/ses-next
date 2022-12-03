@@ -5,6 +5,7 @@ export const content = {
     'At Storm Electrical Solutions we pride ourselves on being a forward thinking and innovative company offering a customer focused, quality service within the electrical industry.',
     'We offer a great deal of experience and expertise in a wide range of commercial, industrial and residential projects large or small including installations, maintenance, fault finding and testing.',
   ],
+  baseUrl: 'http://sesmelbourne.com.au/',
   contact: {
     blurb:
       'We provide services to all areas of Melbourne. Call us on 0415 338 040 or submit your details below for a free quote.',

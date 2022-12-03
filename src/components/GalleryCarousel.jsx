@@ -7,6 +7,7 @@ export function GalleryCarousel({ imageGallery }) {
         <div key={idx} className="snap-always snap-center shrink-0 first:pl-8 last:pr-8">
           <div className="relative py-8">
             <img
+              alt={alt}
               className="shrink-0 w-80 h-60 lg:w-[440px] lg:h-[300px] object-cover rounded-lg shadow-xl bg-white"
               src={src}
             />
