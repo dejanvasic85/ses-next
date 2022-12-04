@@ -13,7 +13,7 @@ const sizeClassMap = {
   xxxl: 'h-12 w-12',
 };
 
-export function Icon({ className, name, size = 'md' }) {
+export function Icon({ className = '', name, size = 'md' }) {
   const sizeClass = sizeClassMap[size];
   return React.cloneElement(IconMap[name], { className: classNames(sizeClass, className) });
 }

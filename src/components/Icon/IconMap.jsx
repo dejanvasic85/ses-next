@@ -36,6 +36,23 @@ export const IconMap = {
       <path d="M12 2.02c-5.51 0-9.98 4.47-9.98 9.98s4.47 9.98 9.98 9.98 9.98-4.47 9.98-9.98S17.51 2.02 12 2.02zm0 17.96c-4.4 0-7.98-3.58-7.98-7.98S7.6 4.02 12 4.02 19.98 7.6 19.98 12 16.4 19.98 12 19.98zM12.75 5l-4.5 8.5h3.14V19l4.36-8.5h-3z"></path>
     </svg>
   ),
+  facebook: (
+    <svg
+      viewBox="0 0 448 512"
+      height="48"
+      width="48"
+      focusable="false"
+      role="img"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <title>Facebook</title>
+      <path
+        fill="currentColor"
+        d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.3V327.7h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69H262.8V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z"
+      ></path>
+    </svg>
+  ),
   height: (
     <svg viewBox="0 0 24 24" focusable="false" role="img" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
       <title>ArrowAutofitHeightDotted icon</title>
@@ -49,6 +66,15 @@ export const IconMap = {
         strokeLinejoin="round"
         d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"
       />
+    </svg>
+  ),
+  ['linked-in']: (
+    <svg viewBox="0 0 448 512" height="48" width="48" focusable="false" role="img" fill="currentColor">
+      <title>Linkedin icon</title>
+      <path
+        fill="currentColor"
+        d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"
+      ></path>
     </svg>
   ),
   mobile: (

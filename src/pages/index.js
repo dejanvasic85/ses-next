@@ -3,7 +3,17 @@ import Head from 'next/head';
 import { content } from '../lib/content';
 import { About, Contact, Footer, Hero, Navbar, Services } from '../components';
 
-export default function Home({ about, baseUrl, contact, googleMapsLocation, meta, services, team, testimonials }) {
+export default function Home({
+  about,
+  baseUrl,
+  contact,
+  googleMapsLocation,
+  meta,
+  social,
+  services,
+  team,
+  testimonials,
+}) {
   return (
     <>
       <Head>
@@ -14,7 +24,7 @@ export default function Home({ about, baseUrl, contact, googleMapsLocation, meta
       </Head>
       <Navbar contactPhone={contact.phone} />
       <main>
-        <Hero />
+        <Hero social={social} />
       </main>
       <section id="services" className="mt-32 pt-24">
         <Services services={services} className="mt-12" />

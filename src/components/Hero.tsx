@@ -3,8 +3,9 @@ import React from 'react';
 import Image from 'next/image';
 
 import { Heading } from './Heading';
+import { Icon } from './Icon/Icon';
 
-export function Hero() {
+export function Hero({ social }) {
   return (
     <div className="isolate bg-white">
       <div className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
@@ -65,6 +66,16 @@ export function Hero() {
                   <a href="#contact" className="btn btn-primary">
                     Get a free quote
                   </a>
+                  {social.facebook && (
+                    <a href={social.facebook} target="_blank" className="btn btn-primary">
+                      <Icon name="facebook" size="lg" />
+                    </a>
+                  )}
+                  {social.linkedIn && (
+                    <a href={social.linkedIn} target="_blank" className="btn btn-primary">
+                      <Icon name="linked-in" size="lg" />
+                    </a>
+                  )}
                 </div>
               </div>
               <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">

@@ -99,6 +99,10 @@ export const content = {
       ],
     },
   ],
+  social: {
+    facebook: 'https://www.facebook.com/stormelectricalsolutions',
+    linkedIn: 'https://www.linkedin.com/company/storm-electrical-solutions',
+  },
   team: {
     introduction:
       'We have trained experts in all areas of electrical work. Our team is made up of highly skilled electricians, who are all fully qualified and licensed.',
