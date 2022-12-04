@@ -3,8 +3,8 @@ import React from 'react';
 import { Heading } from './Heading';
 import { Icon } from './Icon/Icon';
 
-export function Team({ aboutIntro, introduction, members }) {
-  const [firstAbout, secondAbout] = aboutIntro;
+export function Team({ blurbs, members }) {
+  const [firstBlurb, secondBlurb] = blurbs;
 
   return (
     <>
@@ -12,7 +12,7 @@ export function Team({ aboutIntro, introduction, members }) {
         <div className="max-w-screen-xl px-4 md:px-8 mx-auto">
           <div className="mb-10 md:mb-16">
             <Heading level={2}>Meet our Team</Heading>
-            <p className="max-w-screen-md text-gray-500 md:text-lg text-center mx-auto">{introduction}</p>
+            <p className="max-w-screen-md text-gray-500 md:text-lg text-center mx-auto">{firstBlurb}</p>
           </div>
           <div className="flex flex-wrap justify-center items-stretch lg:flex-row gap-4 lg:gap-8">
             {members.map(({ avatar, fullName, role }) => (
@@ -35,7 +35,7 @@ export function Team({ aboutIntro, introduction, members }) {
         </div>
 
         <div className="mt-12 p-12 border-t-2">
-          <p className="max-w-screen-md text-gray-400 md:text-lg text-center mx-auto">{firstAbout}</p>
+          <p className="max-w-screen-md text-gray-400 md:text-lg text-center mx-auto">{secondBlurb}</p>
         </div>
         <div className="sm:h-40 grid grid-cols-2 xl:grid-cols-4 sm:content-evenly rounded-lg gap-6 p-6">
           <div className="flex items-center justify-center gap-1 text-gray-400">

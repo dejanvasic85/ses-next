@@ -57,7 +57,9 @@ export function Hero({ social }) {
                 />
               </div>
               <div className="text-center">
-                <Heading level={1}>Storm Electrical Solutions</Heading>
+                <Heading level={1}>
+                  <strong>Storm Electrical Solutions</strong>
+                </Heading>
                 <p className="mt-6 text-lg leading-8 text-gray-600">
                   Melbourne Electricians. Free Quotes. Lighting. Testing. Data. Air Conditioning. Emergency Call out.
                   Upgrade your old Halogen lights for Free!

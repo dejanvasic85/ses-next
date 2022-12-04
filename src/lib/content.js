@@ -104,8 +104,10 @@ export const content = {
     linkedIn: 'https://www.linkedin.com/company/storm-electrical-solutions',
   },
   team: {
-    introduction:
+    blurbs: [
       'We have trained experts in all areas of electrical work. Our team is made up of highly skilled electricians, who are all fully qualified and licensed.',
+      'At Storm Electrical Solutions we pride ourselves on being a forward thinking and innovative company offering a customer focused, quality service within the electrical industry.',
+    ],
     members: [
       {
         avatar: faker.image.avatar(),
