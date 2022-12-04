@@ -13,7 +13,7 @@ function IconContainer({ name }) {
   );
 }
 
-export const ServicesV1 = ({ className, services }) => {
+export const Services = ({ className, services }) => {
   const gallery = services
     .reduce((prev, curr) => {
       const { name, imageGallery = [] } = curr;

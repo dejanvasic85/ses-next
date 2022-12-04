@@ -1,7 +1,7 @@
 import Head from 'next/head';
 
 import { content } from '../lib/content';
-import { About, Contact, Footer, HeroV2 as Hero, Navbar, ServicesV1 as Services } from '../components';
+import { About, Contact, Footer, Hero, Navbar, Services } from '../components';
 
 export default function Home({ about, baseUrl, contact, googleMapsLocation, meta, services, team, testimonials }) {
   return (
