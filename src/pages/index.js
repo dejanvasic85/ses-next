@@ -35,7 +35,7 @@ export default function Home({
       <section id="contact" className="mt-16 pt-24">
         <Contact contact={contact} location={googleMapsLocation} />
       </section>
-      <Footer />
+      <Footer social={social} />
     </>
   );
 }
