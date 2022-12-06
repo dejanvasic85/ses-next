@@ -11,7 +11,7 @@ import { PopSuccess } from './PopSuccess';
 import { Team } from './Team';
 import { Testimonial } from './Testimonial';
 
-export function About({ aboutIntro, team, testimonials }) {
+export function About({ team, testimonials }) {
   const [showFeedbackButton, setShowFeedbackButton] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const { sendFeedback, loading, feedbackSent } = useFeedback();
