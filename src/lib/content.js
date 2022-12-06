@@ -9,7 +9,7 @@ export const content = {
   contact: {
     blurbs: [
       'Storm Electrical Solutions provides many services to all areas of Melbourne, with over 12 years experience in the electrical industry. SES can provide you with an extensive range of expertise within the commercial, Industrial and Residential sector.',
-      'We provide services to all areas of Melbourne. Call us on 0415 338 040 or submit your details below for a free quote.',
+      'Call us on 0415 338 040 or submit your details below for a free quote.',
     ],
     callBack: 'Our team will be notified immediately and we will get back to you as soon as possible.',
     phone: '0415 338 040',
