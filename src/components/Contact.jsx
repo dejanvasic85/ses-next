@@ -12,7 +12,7 @@ export function Contact({ className, contact, location }) {
   return (
     <div className={className}>
       <Heading level={2}>Contact us</Heading>
-      {firstBlurb && <p className="max-w-screen-md mb-12 text-gray-500 md:text-lg text-center mx-auto">{firstBlurb}</p>}
+      {firstBlurb && <p className="max-w-screen-md mb-12 text-gray-500 md:text-lg text-center mx-auto p-x-4">{firstBlurb}</p>}
       <div className="text-gray-600 body-font relative">
         <div className="absolute inset-0 bg-gray-300">
           <iframe
