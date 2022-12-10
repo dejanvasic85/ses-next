@@ -10,21 +10,21 @@ export default defineType({
       type: 'string',
       title: 'Company name',
       descripton: 'Hint: The main title in the homepage',
-      validation: Rule => Rule.required(),
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'tagline',
       type: 'string',
       title: 'Tagline',
       descripton: 'Hint: Appears below the title (company name)',
-      validation: Rule => Rule.required(),
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'shortTitle',
       type: 'string',
       title: 'Short Title',
       descripton: 'Hint: Appears in the desktop navbar',
-      validation: Rule => Rule.required(),
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       title: 'About blurbs',
@@ -45,7 +45,7 @@ export default defineType({
           title: 'Blurbs',
           description: 'Appears under the contact heading',
         },
-        {name: 'callBack', type: 'string', title: 'Call back'},
+        {name: 'callBack', type: 'string', title: 'Call back', description: 'Appears in the contact form'},
         {name: 'phone', type: 'string', title: 'Phone number'},
       ],
     }),
@@ -81,6 +81,27 @@ export default defineType({
       fields: [
         {name: 'facebook', type: 'url', title: 'Facebook'},
         {name: 'instagram', type: 'url', title: 'LinkedIn'},
+      ],
+    }),
+    defineField({
+      name: 'services',
+      title: 'Services',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'blurbs',
+          type: 'array',
+          of: [{type: 'string'}],
+          title: 'Blurbs',
+          description: 'Set up a few sentences as introductions to the services section',
+        }),
+        defineField({
+          name: 'items',
+          title: 'Items',
+          description: 'Links to the service documents',
+          type: 'array',
+          of: [{type: 'reference', to: [{type: 'service'}]}],
+        }),
       ],
     }),
     defineField({
