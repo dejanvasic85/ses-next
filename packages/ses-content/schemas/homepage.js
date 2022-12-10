@@ -6,9 +6,25 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'title',
+      name: 'companyName',
       type: 'string',
-      title: 'Homepage title',
+      title: 'Company name',
+      descripton: 'Hint: The main title in the homepage',
+      validation: Rule => Rule.required(),
+    }),
+    defineField({
+      name: 'tagline',
+      type: 'string',
+      title: 'Tagline',
+      descripton: 'Hint: Appears below the title (company name)',
+      validation: Rule => Rule.required(),
+    }),
+    defineField({
+      name: 'shortTitle',
+      type: 'string',
+      title: 'Short Title',
+      descripton: 'Hint: Appears in the desktop navbar',
+      validation: Rule => Rule.required(),
     }),
     defineField({
       title: 'About blurbs',
@@ -16,7 +32,7 @@ export default defineType({
       type: 'array',
       of: [{type: 'string'}],
     }),
-    defineField({title: 'Base URL', name: 'baseUrl', type: 'url'}),
+    defineField({title: 'Base URL', name: 'baseUrl', type: 'url', description: 'Your domain name'}),
     defineField({
       title: 'Contact',
       name: 'contact',

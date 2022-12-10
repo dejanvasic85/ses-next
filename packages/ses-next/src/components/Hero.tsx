@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Heading } from './Heading';
 import { Icon } from './Icon/Icon';
 
-export function Hero({ social }) {
+export function Hero({ companyName, social, tagline }) {
   return (
     <div className="isolate bg-white">
       <div className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
@@ -43,14 +43,14 @@ export function Hero({ social }) {
               <div className="rounded-3xl flex justify-center">
                 <Image
                   src="/logo.gif"
-                  alt="Storm Electrical Solutions"
+                  alt={companyName}
                   width={500}
                   height={300}
                   className="hidden lg:inline-block"
                 />
                 <Image
                   src="/logo.gif"
-                  alt="Storm Electrical Solutions"
+                  alt={companyName}
                   className="object-scale-down lg:hidden"
                   width={500}
                   height={300}
@@ -58,11 +58,10 @@ export function Hero({ social }) {
               </div>
               <div className="text-center">
                 <Heading level={1}>
-                  <strong>Storm Electrical Solutions</strong>
+                  <strong>{companyName}</strong>
                 </Heading>
                 <p className="mt-6 text-lg leading-8 text-gray-600">
-                  Melbourne Electricians. Free Quotes. Lighting. Testing. Data. Air Conditioning. Emergency Call out.
-                  Upgrade your old Halogen lights for Free!
+                  {tagline}
                 </p>
                 <div className="mt-8 flex gap-x-4 justify-center">
                   <a href="#contact" className="btn btn-primary">

@@ -1,16 +1,19 @@
 import Head from 'next/head';
 
-import { content } from '../lib/content';
+import { getHomePageContent } from '../lib/content/contentService';
 import { About, Contact, Footer, Hero, Navbar, Services } from '../components';
 
 export default function Home({
   about,
   baseUrl,
+  companyName,
   contact,
   googleMapsLocation,
   meta,
   social,
   services,
+  shortTitle,
+  tagline,
   team,
   testimonials,
 }) {
@@ -22,9 +25,9 @@ export default function Home({
         <meta name="description" content={meta.description} />
         <link rel="canonical" href={baseUrl} />
       </Head>
-      <Navbar contactPhone={contact.phone} />
+      <Navbar contactPhone={contact.phone} title={shortTitle} />
       <main>
-        <Hero social={social} />
+        <Hero companyName={companyName} social={social} tagline={tagline} />
       </main>
       <section id="services" className="mt-32 pt-24">
         <Services services={services} className="mt-12" />
@@ -41,6 +44,8 @@ export default function Home({
 }
 
 export const getStaticProps = async () => {
+  const content = await getHomePageContent();
+
   return {
     props: {
       ...content,
