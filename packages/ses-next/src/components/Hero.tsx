@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Heading } from './Heading';
 import { Icon } from './Icon/Icon';
 
-export function Hero({ companyName, social, tagline }) {
+export function Hero({ companyName, companyLogo, social, tagline }) {
   return (
     <div className="isolate bg-white">
       <div className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
@@ -42,14 +42,14 @@ export function Hero({ companyName, social, tagline }) {
             <div className="flex-col md:flex-row justify-center">
               <div className="rounded-3xl flex justify-center">
                 <Image
-                  src="/logo.gif"
+                  src={companyLogo}
                   alt={companyName}
                   width={500}
                   height={300}
                   className="hidden lg:inline-block"
                 />
                 <Image
-                  src="/logo.gif"
+                  src={companyLogo}
                   alt={companyName}
                   className="object-scale-down lg:hidden"
                   width={500}

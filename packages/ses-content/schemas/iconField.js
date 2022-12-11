@@ -5,7 +5,7 @@ export default defineField({
   type: 'string',
   options: {
     list: [
-      {title: 'Air conditioner', value: 'Air'},
+      {title: 'Air conditioner', value: 'air'},
       {title: 'Facebook', value: 'facebook'},
       {title: 'Height', value: 'height'},
       {title: 'Light', value: 'light'},

@@ -7,6 +7,7 @@ export default function Home({
   about,
   baseUrl,
   companyName,
+  companyLogo,
   contact,
   googleMapsLocation,
   meta,
@@ -28,7 +29,7 @@ export default function Home({
       </Head>
       <Navbar contactPhone={contact.phone} title={shortTitle} />
       <main>
-        <Hero companyName={companyName} social={social} tagline={tagline} />
+        <Hero companyName={companyName} companyLogo={companyLogo} social={social} tagline={tagline} />
       </main>
       <section id="services" className="mt-32 pt-24">
         <Services services={services} className="mt-12" />

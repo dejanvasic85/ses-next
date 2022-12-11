@@ -38,8 +38,8 @@ export function Team({ blurbs, members, training }) {
           <p className="max-w-screen-md text-gray-400 md:text-lg text-center mx-auto">{secondBlurb}</p>
         </div>
         <div className="sm:h-40 grid grid-cols-2 xl:grid-cols-4 sm:content-evenly rounded-lg gap-6 p-6">
-          {training.map(({ trainingTitle, icon }) => (
-            <div className="flex items-center justify-center gap-1 text-gray-400">
+          {training.map(({ trainingTitle, icon }, idx) => (
+            <div key={idx} className="flex items-center justify-center gap-1 text-gray-400">
               <Icon name={icon} size="xxxl" />
               <span className="text-sm md:text-2xl xl:text-3xl">{trainingTitle}</span>
             </div>

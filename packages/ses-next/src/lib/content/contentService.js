@@ -96,22 +96,34 @@ export const getHomePageContent = async () => {
 
   const { result: fullContent } = await contentResponse.json();
   const homepageItem = getByTypename(fullContent, 'homepage');
-  const { baseUrl, companyName, contact, meta, shortTitle, tagline } = homepageItem;
+  const {
+    baseUrl,
+    companyName,
+    contact,
+    googleMapsLocation,
+    meta,
+    shortTitle,
+    socialMedia: social,
+    tagline,
+  } = homepageItem;
   const services = mapServices(fullContent, homepageItem);
   const team = mapTeam(fullContent, homepageItem);
   const training = mapTraining(fullContent, homepageItem);
   const testimonials = mapTestimonials(fullContent, homepageItem);
+  const companyLogo = fullContent.find(({ _id }) => _id === homepageItem.companyLogo.asset._ref).url;
 
-  console.log('Success. Creating content object...');
+  console.log('Success. Creating content object...', companyLogo);
 
   return {
-    ...content,
     baseUrl,
     companyName,
+    companyLogo,
     contact,
+    googleMapsLocation,
     meta,
     services,
     shortTitle,
+    social,
     tagline,
     team,
     training,

@@ -31,8 +31,8 @@ export const Services = ({ className, services }) => {
     <div className={className}>
       <Container>
         <Heading level={2}>Our Services</Heading>
-        {blurbs.map((blurb) => (
-          <p className="max-w-screen-md mb-12 text-gray-500 md:text-lg text-center mx-auto p-x-4">{blurb}</p>
+        {blurbs.map((blurb, idx) => (
+          <p className="max-w-screen-md mb-12 text-gray-500 md:text-lg text-center mx-auto p-x-4" key={idx}>{blurb}</p>
         ))}
 
         <ul className="px-4 py-8 flex flex-wrap gap-4 justify-evenly">

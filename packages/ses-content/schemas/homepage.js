@@ -13,6 +13,12 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'companyLogo',
+      type: 'image',
+      title: 'Company Logo',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'tagline',
       type: 'string',
       title: 'Tagline',
@@ -30,7 +36,7 @@ export default defineType({
       title: 'About blurbs',
       name: 'about',
       type: 'array',
-      of: [{type: 'string'}],
+      of: [{type: 'text', rows: 4}],
     }),
     defineField({title: 'Base URL', name: 'baseUrl', type: 'url', description: 'Your domain name'}),
     defineField({
@@ -41,7 +47,7 @@ export default defineType({
         {
           name: 'blurbs',
           type: 'array',
-          of: [{type: 'string'}],
+          of: [{type: 'text', rows: 4}],
           title: 'Blurbs',
           description: 'Appears under the contact heading',
         },
@@ -85,7 +91,7 @@ export default defineType({
       type: 'object',
       fields: [
         {name: 'facebook', type: 'url', title: 'Facebook'},
-        {name: 'instagram', type: 'url', title: 'LinkedIn'},
+        {name: 'linkedIn', type: 'url', title: 'LinkedIn'},
       ],
     }),
     defineField({
@@ -96,7 +102,7 @@ export default defineType({
         defineField({
           name: 'blurbs',
           type: 'array',
-          of: [{type: 'string'}],
+          of: [{type: 'text', rows: 4}],
           title: 'Blurbs',
           description: 'Set up a few sentences as introductions to the services section',
         }),
@@ -117,7 +123,7 @@ export default defineType({
         defineField({
           name: 'blurbs',
           type: 'array',
-          of: [{type: 'string'}],
+          of: [{type: 'text', rows: 4}],
           title: 'Blurbs',
           description: 'Set up to two blurbs to appear in the teams section',
         }),

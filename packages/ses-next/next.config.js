@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    domains: [`cdn.sanity.io`],
+  },
   serverRuntimeConfig: {
     awsAccessKeyId: process.env.SES_AWS_ACCESS_KEY_ID,
     awsSecretAccessKey: process.env.SES_AWS_SECRET_ACCESS_KEY,
