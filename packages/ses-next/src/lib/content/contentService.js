@@ -39,6 +39,38 @@ const getServices = (data, homepageItem) => {
   };
 };
 
+const getTeamMember = (data, teamMemberItem) => {
+  const {
+    avatar: {
+      asset: { _ref },
+    },
+    name,
+    role,
+  } = teamMemberItem;
+
+  return {
+    avatar: data.find(({ _id }) => _id === _ref).url,
+    fullName: name,
+    role: role,
+  };
+};
+
+const getTeam = (data, homepageItem) => {
+  const {
+    team: { blurbs, members },
+  } = homepageItem;
+
+  return {
+    blurbs,
+    members: members.map((m) =>
+      getTeamMember(
+        data,
+        data.find(({ _id }) => _id === m._ref),
+      ),
+    ),
+  };
+};
+
 export const getHomePageContent = async () => {
   console.log('Querying content service');
   const contentResponse = await fetch(`https://j7d3pd5g.api.sanity.io/v2021-06-07/data/query/production?query=*[]`);
@@ -51,6 +83,7 @@ export const getHomePageContent = async () => {
   const homepageItem = getByTypename(fullContent, 'homepage');
   const { baseUrl, companyName, contact, meta, shortTitle, tagline } = homepageItem;
   const services = getServices(fullContent, homepageItem);
+  const team = getTeam(fullContent, homepageItem);
 
   return {
     ...content,
@@ -61,5 +94,6 @@ export const getHomePageContent = async () => {
     services,
     shortTitle,
     tagline,
+    team,
   };
 };

@@ -45,7 +45,12 @@ export default defineType({
           title: 'Blurbs',
           description: 'Appears under the contact heading',
         },
-        {name: 'callBack', type: 'string', title: 'Call back', description: 'Appears in the contact form'},
+        {
+          name: 'callBack',
+          type: 'string',
+          title: 'Call back',
+          description: 'Appears in the contact form',
+        },
         {name: 'phone', type: 'string', title: 'Phone number'},
       ],
     }),
@@ -109,13 +114,20 @@ export default defineType({
       name: 'team',
       type: 'object',
       fields: [
-        {
+        defineField({
           name: 'blurbs',
           type: 'array',
           of: [{type: 'string'}],
           title: 'Blurbs',
           description: 'Set up to two blurbs to appear in the teams section',
-        },
+        }),
+        defineField({
+          name: 'members',
+          title: 'Members',
+          description: 'Links to the team documents',
+          type: 'array',
+          of: [{type: 'reference', to: [{type: 'teamMember'}]}],
+        }),
       ],
     }),
   ],
