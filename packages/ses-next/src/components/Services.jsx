@@ -15,6 +15,7 @@ function IconContainer({ name }) {
 
 export const Services = ({ className, services }) => {
   const { blurbs, items } = services;
+  console.log('items', items);
   const gallery = items
     .reduce((prev, curr) => {
       const { name, imageGallery = [] } = curr;

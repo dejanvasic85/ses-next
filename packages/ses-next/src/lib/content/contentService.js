@@ -30,10 +30,13 @@ const getServices = (data, homepageItem) => {
     blurbs,
     items: items.map(({ _ref }) => {
       const service = data.find((item) => item._id === _ref);
+      const { name, description, icon } = service;
 
       return {
         imageGallery: getServiceShowcaseGallery(data, service),
-        service,
+        name,
+        description,
+        icon,
       };
     }),
   };
@@ -79,11 +82,15 @@ export const getHomePageContent = async () => {
     throw new Error('Content service returned a on-200 error!');
   }
 
+  console.log('Success. Mapping data');
+
   const { result: fullContent } = await contentResponse.json();
   const homepageItem = getByTypename(fullContent, 'homepage');
   const { baseUrl, companyName, contact, meta, shortTitle, tagline } = homepageItem;
   const services = getServices(fullContent, homepageItem);
   const team = getTeam(fullContent, homepageItem);
+
+  console.log('Success. Creating content object...');
 
   return {
     ...content,
