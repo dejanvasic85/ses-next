@@ -112,7 +112,7 @@ export const getHomePageContent = async () => {
   const testimonials = mapTestimonials(fullContent, homepageItem);
   const companyLogo = fullContent.find(({ _id }) => _id === homepageItem.companyLogo.asset._ref).url;
 
-  console.log('Success. Creating content object...', companyLogo);
+  console.log('Success. Creating content object...');
 
   return {
     baseUrl,
