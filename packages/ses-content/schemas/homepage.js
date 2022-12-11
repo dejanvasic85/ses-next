@@ -130,5 +130,11 @@ export default defineType({
         }),
       ],
     }),
+    defineField({
+      title: 'Training',
+      name: 'training',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'training'}]}],
+    }),
   ],
 })

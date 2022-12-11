@@ -4,7 +4,7 @@ const getByTypename = (data, type) => {
   return data.find(({ _type }) => _type === type);
 };
 
-const getServiceShowcaseGallery = (data, service) => {
+const mapServiceShowcaseGallery = (data, service) => {
   const { showcase = [] } = service;
   const showcaseItems = showcase.map((item) => data.find(({ _id }) => _id === item._ref));
 
@@ -21,7 +21,7 @@ const getServiceShowcaseGallery = (data, service) => {
   );
 };
 
-const getServices = (data, homepageItem) => {
+const mapServices = (data, homepageItem) => {
   const {
     services: { blurbs, items },
   } = homepageItem;
@@ -33,7 +33,7 @@ const getServices = (data, homepageItem) => {
       const { name, description, icon } = service;
 
       return {
-        imageGallery: getServiceShowcaseGallery(data, service),
+        imageGallery: mapServiceShowcaseGallery(data, service),
         name,
         description,
         icon,
@@ -42,7 +42,7 @@ const getServices = (data, homepageItem) => {
   };
 };
 
-const getTeamMember = (data, teamMemberItem) => {
+const mapTeamMember = (data, teamMemberItem) => {
   const {
     avatar: {
       asset: { _ref },
@@ -58,7 +58,7 @@ const getTeamMember = (data, teamMemberItem) => {
   };
 };
 
-const getTeam = (data, homepageItem) => {
+const mapTeam = (data, homepageItem) => {
   const {
     team: { blurbs, members },
   } = homepageItem;
@@ -66,12 +66,17 @@ const getTeam = (data, homepageItem) => {
   return {
     blurbs,
     members: members.map((m) =>
-      getTeamMember(
+      mapTeamMember(
         data,
         data.find(({ _id }) => _id === m._ref),
       ),
     ),
   };
+};
+
+const mapTraining = (data, homepageItem) => {
+  const { training } = homepageItem;
+  return training.map(({ _ref }) => data.find(({ _id }) => _id === _ref));
 };
 
 export const getHomePageContent = async () => {
@@ -87,8 +92,9 @@ export const getHomePageContent = async () => {
   const { result: fullContent } = await contentResponse.json();
   const homepageItem = getByTypename(fullContent, 'homepage');
   const { baseUrl, companyName, contact, meta, shortTitle, tagline } = homepageItem;
-  const services = getServices(fullContent, homepageItem);
-  const team = getTeam(fullContent, homepageItem);
+  const services = mapServices(fullContent, homepageItem);
+  const team = mapTeam(fullContent, homepageItem);
+  const training = mapTraining(fullContent, homepageItem);
 
   console.log('Success. Creating content object...');
 
@@ -102,5 +108,6 @@ export const getHomePageContent = async () => {
     shortTitle,
     tagline,
     team,
+    training,
   };
 };

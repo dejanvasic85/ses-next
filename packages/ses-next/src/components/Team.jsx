@@ -3,7 +3,7 @@ import React from 'react';
 import { Heading } from './Heading';
 import { Icon } from './Icon/Icon';
 
-export function Team({ blurbs, members }) {
+export function Team({ blurbs, members, training }) {
   const [firstBlurb, secondBlurb] = blurbs;
 
   return (
@@ -38,22 +38,12 @@ export function Team({ blurbs, members }) {
           <p className="max-w-screen-md text-gray-400 md:text-lg text-center mx-auto">{secondBlurb}</p>
         </div>
         <div className="sm:h-40 grid grid-cols-2 xl:grid-cols-4 sm:content-evenly rounded-lg gap-6 p-6">
-          <div className="flex items-center justify-center gap-1 text-gray-400">
-            <Icon name="space" size="xxxl" />
-            <span className="text-sm md:text-2xl xl:text-3xl">Confined spaces</span>
-          </div>
-          <div className="flex items-center justify-center gap-1 text-gray-400">
-            <Icon name="height" size="xxxl" />
-            <span className="text-sm md:text-2xl xl:text-3xl">Working at heights</span>
-          </div>
-          <div className="flex items-center justify-center gap-1 text-gray-400">
-            <Icon name="signal-tower" size="xxxl" />
-            <span className="text-sm md:text-2xl xl:text-3xl">Tower rescue</span>
-          </div>
-          <div className="flex items-center justify-center gap-1 text-gray-400">
-            <Icon name="bars-staggered" size="xxxl" />
-            <span className="text-sm md:text-2xl xl:text-3xl">Boom & scissor lift</span>
-          </div>
+          {training.map(({ trainingTitle, icon }) => (
+            <div className="flex items-center justify-center gap-1 text-gray-400">
+              <Icon name={icon} size="xxxl" />
+              <span className="text-sm md:text-2xl xl:text-3xl">{trainingTitle}</span>
+            </div>
+          ))}
         </div>
       </div>
     </>

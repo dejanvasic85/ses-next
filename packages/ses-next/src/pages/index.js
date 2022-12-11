@@ -16,6 +16,7 @@ export default function Home({
   tagline,
   team,
   testimonials,
+  training,
 }) {
   return (
     <>
@@ -33,7 +34,7 @@ export default function Home({
         <Services services={services} className="mt-12" />
       </section>
       <section id="about" className="mt-16 pt-24">
-        <About aboutIntro={about} team={team} testimonials={testimonials} />
+        <About aboutIntro={about} team={team} testimonials={testimonials} training={training} />
       </section>
       <section id="contact" className="mt-16 pt-24">
         <Contact contact={contact} location={googleMapsLocation} />
