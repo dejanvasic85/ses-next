@@ -4,6 +4,41 @@ const getByTypename = (data, type) => {
   return data.find(({ _type }) => _type === type);
 };
 
+const getServiceShowcaseGallery = (data, service) => {
+  const { showcase = [] } = service;
+  const showcaseItems = showcase.map((item) => data.find(({ _id }) => _id === item._ref));
+
+  return showcaseItems.map(
+    ({
+      title,
+      photo: {
+        asset: { _ref },
+      },
+    }) => ({
+      alt: title,
+      src: data.find((d) => d._id === _ref).url,
+    }),
+  );
+};
+
+const getServices = (data, homepageItem) => {
+  const {
+    services: { blurbs, items },
+  } = homepageItem;
+
+  return {
+    blurbs,
+    items: items.map(({ _ref }) => {
+      const service = data.find((item) => item._id === _ref);
+
+      return {
+        imageGallery: getServiceShowcaseGallery(data, service),
+        service,
+      };
+    }),
+  };
+};
+
 export const getHomePageContent = async () => {
   console.log('Querying content service');
   const contentResponse = await fetch(`https://j7d3pd5g.api.sanity.io/v2021-06-07/data/query/production?query=*[]`);
@@ -12,13 +47,18 @@ export const getHomePageContent = async () => {
     throw new Error('Content service returned a on-200 error!');
   }
 
-  const { result } = await contentResponse.json();
-  const { baseUrl, companyName, shortTitle, tagline } = getByTypename(result, 'homepage');
+  const { result: fullContent } = await contentResponse.json();
+  const homepageItem = getByTypename(fullContent, 'homepage');
+  const { baseUrl, companyName, contact, meta, shortTitle, tagline } = homepageItem;
+  const services = getServices(fullContent, homepageItem);
 
   return {
     ...content,
     baseUrl,
     companyName,
+    contact,
+    meta,
+    services,
     shortTitle,
     tagline,
   };

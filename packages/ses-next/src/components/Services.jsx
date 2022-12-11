@@ -14,7 +14,8 @@ function IconContainer({ name }) {
 }
 
 export const Services = ({ className, services }) => {
-  const gallery = services
+  const { blurbs, items } = services;
+  const gallery = items
     .reduce((prev, curr) => {
       const { name, imageGallery = [] } = curr;
       const imgs = imageGallery.map((imgMeta) => ({
@@ -30,8 +31,12 @@ export const Services = ({ className, services }) => {
     <div className={className}>
       <Container>
         <Heading level={2}>Our Services</Heading>
+        {blurbs.map((blurb) => (
+          <p className="max-w-screen-md mb-12 text-gray-500 md:text-lg text-center mx-auto p-x-4">{blurb}</p>
+        ))}
+
         <ul className="px-4 py-8 flex flex-wrap gap-4 justify-evenly">
-          {services.map(({ name, description, icon = 'bolt' }, idx) => (
+          {items.map(({ name, description, icon = 'bolt' }, idx) => (
             <li className="p-8 flex flex-col items-center text-center justify-center gap-4 w-full md:w-1/4" key={idx}>
               <IconContainer name={icon} />
               <h3 className="text-gray-900 text-lg title-font font-medium">{name}</h3>
