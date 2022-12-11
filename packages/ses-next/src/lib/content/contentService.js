@@ -79,6 +79,11 @@ const mapTraining = (data, homepageItem) => {
   return training.map(({ _ref }) => data.find(({ _id }) => _id === _ref));
 };
 
+const mapTestimonials = (data, homepageItem) => {
+  const { testimonials } = homepageItem;
+  return testimonials.map(({ _ref }) => data.find(({ _id }) => _id === _ref));
+};
+
 export const getHomePageContent = async () => {
   console.log('Querying content service');
   const contentResponse = await fetch(`https://j7d3pd5g.api.sanity.io/v2021-06-07/data/query/production?query=*[]`);
@@ -95,6 +100,7 @@ export const getHomePageContent = async () => {
   const services = mapServices(fullContent, homepageItem);
   const team = mapTeam(fullContent, homepageItem);
   const training = mapTraining(fullContent, homepageItem);
+  const testimonials = mapTestimonials(fullContent, homepageItem);
 
   console.log('Success. Creating content object...');
 
@@ -109,5 +115,6 @@ export const getHomePageContent = async () => {
     tagline,
     team,
     training,
+    testimonials,
   };
 };

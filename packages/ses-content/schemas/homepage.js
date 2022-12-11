@@ -136,5 +136,11 @@ export default defineType({
       type: 'array',
       of: [{type: 'reference', to: [{type: 'training'}]}],
     }),
+    defineField({
+      title: 'Testinomials',
+      name: 'testimonials',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'testimonial'}]}],
+    }),
   ],
 })
