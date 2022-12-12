@@ -11,7 +11,7 @@ import { PopSuccess } from './PopSuccess';
 import { Team } from './Team';
 import { Testimonial } from './Testimonial';
 
-export function About({ team, testimonials }) {
+export function About({ team, testimonials, training }) {
   const [showFeedbackButton, setShowFeedbackButton] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const { sendFeedback, loading, feedbackSent } = useFeedback();
@@ -25,7 +25,7 @@ export function About({ team, testimonials }) {
 
   return (
     <Container>
-      <Team blurbs={team.blurbs ?? []} members={team.members} />
+      <Team blurbs={team.blurbs ?? []} members={team.members} training={training} />
       <div className="px-4 md:px-8 mx-auto mt-12 text-center">
         <Heading level={2}>What others say about us</Heading>
         <div className="grid lg:grid-cols-3 gap-4 md:gap-8 mt-8">

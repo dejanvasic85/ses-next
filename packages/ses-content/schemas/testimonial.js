@@ -9,11 +9,14 @@ export default defineType({
       name: 'fullName',
       type: 'string',
       title: 'Full name',
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'comment',
-      type: 'string',
+      type: 'text',
       title: 'Comment',
+      rows: 5,
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'rating',
@@ -28,6 +31,7 @@ export default defineType({
           {title: '5', value: 5},
         ],
       },
+      validation: (Rule) => Rule.required(),
     },
   ],
 })

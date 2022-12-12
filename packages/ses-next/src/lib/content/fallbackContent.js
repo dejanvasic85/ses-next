@@ -21,86 +21,89 @@ export const content = {
     description:
       'Melbourne Electricians. Free Quotes. Lighting. Testing. Data. Air Conditioning. Emergency Call out. Upgrade your old Halogen lights for Free!',
   },
-  services: [
-    {
-      name: 'Air conditioning',
-      description: 'Split systems.',
-      icon: 'air',
-      imageGallery: [
-        {
-          src: faker.image.business(800, 600, true),
-          alt: faker.lorem.words(4),
-        },
-      ],
-    },
-    {
-      name: 'Data and TV',
-      description: 'Installation, Repairs & Upgrades.',
-      icon: 'power',
-      imageGallery: [
-        {
-          src: faker.image.business(800, 600, true),
-          alt: faker.lorem.words(4),
-        },
-      ],
-    },
-    {
-      name: 'Renewable Energy',
-      description: 'Including Wind & Solar.',
-      icon: 'recycle',
-      imageGallery: [
-        {
-          src: 'http://sesmelbourne.com.au/wp-content/uploads/2017/07/Solar_panels.jpg',
-          alt: 'Solar panel upgrades and installation',
-        },
-      ],
-    },
-    {
-      name: 'Testing',
-      description: 'Test and Tag. Emergency Light Testing.',
-      icon: 'plug',
-      imageGallery: [
-        {
-          src: faker.image.business(800, 600, true),
-          alt: faker.lorem.words(4),
-        },
-      ],
-    },
-    {
-      name: 'Telecommunications',
-      description: 'UPS Systems. Isolation Modules. Switchboard Upgrades',
-      icon: 'mobile',
-      imageGallery: [
-        {
-          src: faker.image.business(800, 600, true),
-          alt: faker.lorem.words(4),
-        },
-      ],
-    },
-    {
-      name: 'Catering Maintenance - Emergency Call out',
-      description: 'Preventative Maintenance. Installations.',
-      icon: 'wrench',
-      imageGallery: [
-        {
-          src: faker.image.business(800, 600, true),
-          alt: faker.lorem.words(4),
-        },
-      ],
-    },
-    {
-      name: 'Lighting',
-      description:
-        'Free LED lamp changes as part of the VEET scheme Business LED VEET Scheme incentives with lighting analysis to help save your business energy with funding from the Victorian Government.',
-      icon: 'light',
-      imageGallery: [
-        {
-          src: 'http://sesmelbourne.com.au/wp-content/uploads/2017/07/downlights.jpg',
-          alt: 'LED replacement as part of VEET scheme',
-        },
-      ],
-    },
-  ],
+  services: {
+    blurbs: [],
+    items: [
+      {
+        name: 'Air conditioning',
+        description: 'Split systems.',
+        icon: 'air',
+        imageGallery: [
+          {
+            src: faker.image.business(800, 600, true),
+            alt: faker.lorem.words(4),
+          },
+        ],
+      },
+      {
+        name: 'Data and TV',
+        description: 'Installation, Repairs & Upgrades.',
+        icon: 'power',
+        imageGallery: [
+          {
+            src: faker.image.business(800, 600, true),
+            alt: faker.lorem.words(4),
+          },
+        ],
+      },
+      {
+        name: 'Renewable Energy',
+        description: 'Including Wind & Solar.',
+        icon: 'recycle',
+        imageGallery: [
+          {
+            src: 'http://sesmelbourne.com.au/wp-content/uploads/2017/07/Solar_panels.jpg',
+            alt: 'Solar panel upgrades and installation',
+          },
+        ],
+      },
+      {
+        name: 'Testing',
+        description: 'Test and Tag. Emergency Light Testing.',
+        icon: 'plug',
+        imageGallery: [
+          {
+            src: faker.image.business(800, 600, true),
+            alt: faker.lorem.words(4),
+          },
+        ],
+      },
+      {
+        name: 'Telecommunications',
+        description: 'UPS Systems. Isolation Modules. Switchboard Upgrades',
+        icon: 'mobile',
+        imageGallery: [
+          {
+            src: faker.image.business(800, 600, true),
+            alt: faker.lorem.words(4),
+          },
+        ],
+      },
+      {
+        name: 'Catering Maintenance - Emergency Call out',
+        description: 'Preventative Maintenance. Installations.',
+        icon: 'wrench',
+        imageGallery: [
+          {
+            src: faker.image.business(800, 600, true),
+            alt: faker.lorem.words(4),
+          },
+        ],
+      },
+      {
+        name: 'Lighting',
+        description:
+          'Free LED lamp changes as part of the VEET scheme Business LED VEET Scheme incentives with lighting analysis to help save your business energy with funding from the Victorian Government.',
+        icon: 'light',
+        imageGallery: [
+          {
+            src: 'http://sesmelbourne.com.au/wp-content/uploads/2017/07/downlights.jpg',
+            alt: 'LED replacement as part of VEET scheme',
+          },
+        ],
+      },
+    ],
+  },
   social: {
     facebook: 'https://www.facebook.com/stormelectricalsolutions',
     linkedIn: 'https://www.linkedin.com/company/storm-electrical-solutions',

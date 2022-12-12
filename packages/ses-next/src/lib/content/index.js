@@ -1,0 +1,1 @@
+export { getHomePageContent } from './contentService';
