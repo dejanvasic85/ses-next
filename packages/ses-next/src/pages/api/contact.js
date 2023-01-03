@@ -4,6 +4,8 @@ export default function contactRoute(req, res) {
   const { email, phone, message } = JSON.parse(req.body);
   const contact = { email, phone, message };
 
+  console.log('/api/contact', contact);
+
   send({
     data: contact,
     template: 'contactEmailTemplate',

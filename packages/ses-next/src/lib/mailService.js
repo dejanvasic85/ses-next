@@ -51,10 +51,13 @@ export function send({ data, template }) {
     return Promise.resolve();
   }
 
+  const ToAddresses = [serverRuntimeConfig.emailTo, 'dejanvasic24@gmail.com'];
+  console.log('Sending email', { ToAddresses, subject });
+
   return ses
     .sendEmail({
       Destination: {
-        ToAddresses: [serverRuntimeConfig.emailTo],
+        ToAddresses,
       },
       Message: {
         Body: {
