@@ -1,5 +1,7 @@
 {
-  "scripts": {},
+  "scripts": {
+    "dev": "npm run dev -w ses-next"
+  },
   "workspaces": [
     "./packages/*"
   ],
