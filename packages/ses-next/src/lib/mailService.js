@@ -16,7 +16,7 @@ const emailTemplates = {
   contactEmailTemplate: {
     bodyTemplate: `
     <strong>SES incoming message</strong>
-    <p>A customer has left a message from your website. Please review the following:</p>
+    <p>A customer has completed a contact us form on your website at sesmelbourne.com.au. Please review the following:</p>
     <p><strong>Email:</strong> {{email}}</p>
     <p><strong>Phone:</strong> {{phone}} stars</p>
     <p><strong>Message:</strong> {{message}}</p>
