@@ -47,6 +47,8 @@ export function Hero({ companyName, companyLogo, social, tagline }) {
                   width={500}
                   height={300}
                   className="hidden lg:inline-block"
+                  priority
+                  loading="eager"
                 />
                 <Image
                   src={companyLogo}
@@ -54,6 +56,7 @@ export function Hero({ companyName, companyLogo, social, tagline }) {
                   className="object-scale-down lg:hidden"
                   width={500}
                   height={300}
+                  loading="eager"
                 />
               </div>
               <div className="text-center">
