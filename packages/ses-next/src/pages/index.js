@@ -23,9 +23,17 @@ export default function Home({
     <>
       <Head>
         <title>{meta.title}</title>
-        <link rel="icon" href="/favicon.ico" />
-        <meta name="description" content={meta.description} />
         <link rel="canonical" href={baseUrl} />
+        <meta name="description" content={meta.description} />
+        <meta property="og:image" content={companyLogo} />
+        <meta name="twitter:description" content={meta.description} />
+        <meta property="og:title" content="Storm Electrical Solutions Melbourne" />
+        <meta property="og:description" content={meta.description} />
+        <meta property="og:url" content={baseUrl} />
+        <meta property="og:site_name" content={companyName} />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={companyName} />
+        <meta name="twitter:image" content={companyLogo} />
       </Head>
       <Navbar contactPhone={contact.phone} title={shortTitle} />
       <main>
