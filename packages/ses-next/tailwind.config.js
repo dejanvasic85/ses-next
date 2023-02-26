@@ -7,7 +7,24 @@ module.exports = {
     './src/modules/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        popin: 'popin 0.5s ease-in-out',
+      },
+      keyframes: {
+        popin: {
+          '0%, 100%': {
+            transform: 'scale(0)',
+          },
+          '50%': {
+            transform: 'scale(1.1)',
+          },
+          '100%': {
+            transform: 'scale(1)',
+          },
+        },
+      },
+    },
   },
   plugins: [require('@tailwindcss/typography'), require('daisyui')],
   daisyui: {

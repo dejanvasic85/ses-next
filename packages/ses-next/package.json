@@ -18,7 +18,6 @@
     "daisyui": "2.50.2",
     "eslint": "8.34.0",
     "eslint-config-next": "13.1.6",
-    "framer-motion": "9.0.1",
     "next": "13.1.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -27,6 +26,7 @@
     "react-modal": "3.16.1"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "13.2.1",
     "autoprefixer": "10.4.13",
     "lighthouse": "10.0.1",
     "postcss": "8.4.21",

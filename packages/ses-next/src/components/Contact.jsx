@@ -34,7 +34,7 @@ export function Contact({ className, contact, location }) {
 
             {!messageSent && <ContactForm loading={loading} onSubmit={sendMessage} />}
             {messageSent && (
-              <PopSuccess show={messageSent}>
+              <PopSuccess>
                 Thank you! Your message has been received and our team will get back to you.
               </PopSuccess>
             )}
