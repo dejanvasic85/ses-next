@@ -1,15 +1,19 @@
 import { send } from '../../lib/mailService';
 
 export default function contactRoute(req, res) {
-  const { email, phone, message } = JSON.parse(req.body);
-  const contact = { email, phone, message };
-
+  const contact = JSON.parse(req.body);
   console.log('/api/contact', contact);
 
-  send({
-    data: contact,
-    template: 'contactEmailTemplate',
-  })
+  Promise.all([
+    send({
+      data: contact,
+      template: 'contactEmailTemplate',
+    }),
+    send({
+      data: contact,
+      template: 'thankYouForContactingTemplate',
+    }),
+  ])
     .then(() => {
       res.status(200).json({ message: 'Message received', contact });
     })

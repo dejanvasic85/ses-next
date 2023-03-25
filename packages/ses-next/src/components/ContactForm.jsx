@@ -10,7 +10,14 @@ export function ContactForm({ loading, onSubmit }) {
     formState: { errors },
     handleSubmit,
     register,
-  } = useForm({ defaultValues: { email: '', phone: '', message: '' } });
+  } = useForm({ defaultValues: { fullName: '', email: '', phone: '', message: '' } });
+
+  const {
+    fullName: fullNameError = {},
+    email: emailError = {},
+    phone: phoneError = {},
+    message: messageError = {},
+  } = errors;
 
   const handleReCaptchaVerify = useCallback(
     async (data) => {
@@ -27,10 +34,25 @@ export function ContactForm({ loading, onSubmit }) {
     [executeRecaptcha],
   );
 
-  const { email: emailError = {}, phone: phoneError = {}, message: messageError = {} } = errors;
-
   return (
     <form onSubmit={handleSubmit(handleReCaptchaVerify)}>
+      <div className="form-control w-full">
+        <label className="label">
+          <span className="label-text">Full name</span>
+        </label>
+        <input
+          type="text"
+          maxLength={100}
+          className={classNames('input input-bordered w-full', { 'input-error': fullNameError?.message })}
+          {...register('fullName')}
+        />
+        {fullNameError && (
+          <label className="label text-error">
+            <span className="label-text-alt text-error">{fullNameError?.message}</span>
+          </label>
+        )}
+      </div>
+
       <div className="form-control w-full">
         <label className="label">
           <span className="label-text">Email</span>

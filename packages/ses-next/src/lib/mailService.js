@@ -17,11 +17,21 @@ const emailTemplates = {
     bodyTemplate: `
     <strong>SES incoming message</strong>
     <p>A customer has completed a contact us form on your website at sesmelbourne.com.au. Please review the following:</p>
+    <p><strong>Full name:</strong> {{fullName}}</p>
     <p><strong>Email:</strong> {{email}}</p>
     <p><strong>Phone:</strong> {{phone}}</p>
     <p><strong>Message:</strong> {{message}}</p>
     `,
-    subjectTemplate: `New SES message from {{email}}`,
+    subjectTemplate: `New SES message from {{fullName}}`,
+  },
+  thankYouForContactingTemplate: {
+    bodyTemplate: `
+    <p>Dear {{fullName}},</p>
+    <p>Thank you for getting in touch with us on our website. We appreciate you taking the time to reach out to us.</p>
+    <p>We want you to know that your message has been received and we'll get back to you as soon as possible. Our team is currently reviewing your inquiry and will respond within one business day.</p>
+    <p>Thank you again for considering <strong>Storm Electrical Solutions</strong>. We look forward to speaking with you soon.</p>
+    `,
+    subjectTemplate: `Thank you for contacting SES`,
   },
   feedbackEmailTemplate: {
     bodyTemplate: `
