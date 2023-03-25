@@ -12,6 +12,7 @@ export default function contactRoute(req, res) {
     send({
       data: contact,
       template: 'thankYouForContactingTemplate',
+      to: contact.email,
     }),
   ])
     .then(() => {
