@@ -18,7 +18,7 @@ const emailTemplates = {
     <strong>SES incoming message</strong>
     <p>A customer has completed a contact us form on your website at sesmelbourne.com.au. Please review the following:</p>
     <p><strong>Email:</strong> {{email}}</p>
-    <p><strong>Phone:</strong> {{phone}} stars</p>
+    <p><strong>Phone:</strong> {{phone}}</p>
     <p><strong>Message:</strong> {{message}}</p>
     `,
     subjectTemplate: `New SES message from {{email}}`,
