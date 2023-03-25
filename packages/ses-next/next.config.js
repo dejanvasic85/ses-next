@@ -9,6 +9,7 @@ const nextConfig = {
     domains: [`cdn.sanity.io`],
   },
   publicRuntimeConfig: {
+    googleRecaptchaSiteKey: process.env.RECAPTCHA_SITE_KEY,
     googleTagManagerId: process.env.GTM_ID,
   },
   serverRuntimeConfig: {

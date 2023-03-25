@@ -23,7 +23,8 @@
     "react-dom": "18.2.0",
     "react-gtm-module": "2.0.11",
     "react-hook-form": "7.43.4",
-    "react-modal": "3.16.1"
+    "react-modal": "3.16.1",
+    "react-google-recaptcha-v3": "1.10.1"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "13.2.3",

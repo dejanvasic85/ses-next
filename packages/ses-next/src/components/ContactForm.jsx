@@ -1,20 +1,36 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import classNames from 'class-names';
-
 import { useForm } from 'react-hook-form';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 export function ContactForm({ loading, onSubmit }) {
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const {
     formState: { errors },
     handleSubmit,
     register,
   } = useForm({ defaultValues: { email: '', phone: '', message: '' } });
 
+  const handleReCaptchaVerify = useCallback(
+    async (data) => {
+      if (!executeRecaptcha) {
+        console.log('Execute recaptcha not yet available');
+        return;
+      }
+
+      const token = await executeRecaptcha();
+      if (token) {
+        onSubmit(data);
+      }
+    },
+    [executeRecaptcha],
+  );
+
   const { email: emailError = {}, phone: phoneError = {}, message: messageError = {} } = errors;
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(handleReCaptchaVerify)}>
       <div className="form-control w-full">
         <label className="label">
           <span className="label-text">Email</span>
