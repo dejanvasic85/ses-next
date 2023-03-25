@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
+
 import TagManager from 'react-gtm-module';
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import getConfig from 'next/config';
 
 const { publicRuntimeConfig } = getConfig();
@@ -20,7 +22,17 @@ function MyApp({ Component, pageProps }) {
     TagManager.initialize(tagManagerArgs);
   }, []);
 
-  return <Component {...pageProps} />;
+  return (
+    <GoogleReCaptchaProvider
+      reCaptchaKey={publicRuntimeConfig.googleRecaptchaSiteKey}
+      scriptProps={{
+        async: true,
+        defer: true,
+      }}
+    >
+      <Component {...pageProps} />
+    </GoogleReCaptchaProvider>
+  );
 }
 
 export default MyApp;
