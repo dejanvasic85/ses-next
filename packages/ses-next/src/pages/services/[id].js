@@ -1,42 +1,35 @@
 import Head from 'next/head';
 
-import { Navbar, Footer } from '../../components';
+import { Navbar, Footer, PageHead } from '../../components';
 import { getHomePageContent } from '../../lib/content/contentService';
 import { slugify } from '../../lib/slugify';
 
 export default function Service({
-  baseUrl,
+  canonicalUrl,
   companyName,
   companyLogo,
   contact,
   meta,
+  navLinks,
   social,
   shortTitle,
-  navLinks,
   service,
 }) {
   const { name } = service;
   return (
     <>
-      <Head>
-        <title>{meta.title}</title>
-        <link rel="canonical" href={baseUrl} />
-        <meta name="description" content={meta.description} />
-        <meta property="og:image" content={companyLogo} />
-        <meta name="twitter:description" content={meta.description} />
-        <meta property="og:title" content="Storm Electrical Solutions Melbourne" />
-        <meta property="og:description" content={meta.description} />
-        <meta property="og:url" content={baseUrl} />
-        <meta property="og:site_name" content={companyName} />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content={companyName} />
-        <meta name="twitter:image" content={companyLogo} />
-      </Head>
+      <PageHead
+        canonicalUrl={canonicalUrl}
+        companyLogo={companyLogo}
+        companyName={companyName}
+        description={meta.description}
+        socialTitle={companyName}
+        title={`${service.name} - ${meta.title}`}
+      />
       <Navbar contactPhone={contact.phone} title={shortTitle} links={navLinks} />
       <div class="bg-white py-6 sm:py-8 lg:py-12">
         <div class="mx-auto max-w-screen-md px-4 md:px-8">
           <h1 class="mb-4 text-center text-2xl font-bold text-gray-800 sm:text-3xl md:mb-6">{name}</h1>
-
           <p class="mb-6 text-gray-500 sm:text-lg md:mb-8">
             This is a section of some simple filler text, also known as placeholder text. It shares some characteristics
             of a real written text but is random or otherwise generated. It may be used to display a sample of fonts or
@@ -104,12 +97,20 @@ export default function Service({
 export const getStaticProps = async ({ params }) => {
   console.log('Page: Services getStaticProps, params: ', params);
   const content = await getHomePageContent();
+  const { baseUrl, companyName, companyLogo, contact, meta, social, shortTitle } = content;
   const service = content.services.items.find(({ name }) => slugify(name) === params.id);
+  const canonicalUrl = `${baseUrl}services/${params.id}`;
 
   return {
     props: {
-      ...content,
+      canonicalUrl,
+      companyName,
+      companyLogo,
+      contact,
+      meta,
       navLinks: { home: '/', services: '/#services', about: '/#about', contact: '/#contact' },
+      social,
+      shortTitle,
       service,
     },
   };

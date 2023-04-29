@@ -1,7 +1,7 @@
 import Head from 'next/head';
 
 import { getHomePageContent } from '../lib/content/contentService';
-import { About, Contact, Footer, Hero, Navbar, Services } from '../components';
+import { About, Contact, Footer, Hero, Navbar, PageHead, Services } from '../components';
 
 export default function Home({
   about,
@@ -21,20 +21,14 @@ export default function Home({
 }) {
   return (
     <>
-      <Head>
-        <title>{meta.title}</title>
-        <link rel="canonical" href={baseUrl} />
-        <meta name="description" content={meta.description} />
-        <meta property="og:image" content={companyLogo} />
-        <meta name="twitter:description" content={meta.description} />
-        <meta property="og:title" content="Storm Electrical Solutions Melbourne" />
-        <meta property="og:description" content={meta.description} />
-        <meta property="og:url" content={baseUrl} />
-        <meta property="og:site_name" content={companyName} />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content={companyName} />
-        <meta name="twitter:image" content={companyLogo} />
-      </Head>
+      <PageHead
+        canonicalUrl={baseUrl}
+        companyLogo={companyLogo}
+        companyName={companyName}
+        description={meta.description}
+        socialTitle={companyName}
+        title={meta.title}
+      />
       <Navbar contactPhone={contact.phone} title={shortTitle} />
       <main>
         <Hero companyName={companyName} companyLogo={companyLogo} social={social} tagline={tagline} />
