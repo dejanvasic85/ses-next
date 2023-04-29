@@ -84,17 +84,30 @@ const mapTestimonials = (data, homepageItem) => {
   return testimonials.map(({ _ref }) => data.find(({ _id }) => _id === _ref));
 };
 
-export const getHomePageContent = async () => {
-  console.log('Querying content service');
-  const contentResponse = await fetch(`https://j7d3pd5g.api.sanity.io/v2021-06-07/data/query/production?query=*[]`);
+const mapCompanyLogo = (data, homepageItem) => {
+  return data.find(({ _id }) => _id === homepageItem.companyLogo.asset._ref)?.url;
+};
 
-  if (contentResponse.status < 200 || contentResponse.status > 299) {
+const fetchFromApi = async (url) => {
+  console.log('Querying content service');
+  const response = await fetch(url);
+
+  if (response.status < 200 || response.status > 299) {
     throw new Error('Content service returned a on-200 error!');
   }
 
-  console.log('Success. Mapping data');
+  return response.json();
+};
 
-  const { result: fullContent } = await contentResponse.json();
+const composeContent = (fullContent, homepageItem) => {
+  return (...mappers) => mappers.map((mapper) => mapper(fullContent, homepageItem));
+};
+
+export const getHomePageContent = async () => {
+  const { result: fullContent } = await fetchFromApi(
+    `https://j7d3pd5g.api.sanity.io/v2021-06-07/data/query/production?query=*[]`,
+  );
+  console.log('Success. Mapping response to content...');
   const homepageItem = getByTypename(fullContent, 'homepage');
   const {
     baseUrl,
@@ -106,11 +119,14 @@ export const getHomePageContent = async () => {
     socialMedia: social,
     tagline,
   } = homepageItem;
-  const services = mapServices(fullContent, homepageItem);
-  const team = mapTeam(fullContent, homepageItem);
-  const training = mapTraining(fullContent, homepageItem);
-  const testimonials = mapTestimonials(fullContent, homepageItem);
-  const companyLogo = fullContent.find(({ _id }) => _id === homepageItem.companyLogo.asset._ref).url;
+
+  const [services, team, training, testimonials, companyLogo] = composeContent(fullContent, homepageItem)(
+    mapServices,
+    mapTeam,
+    mapTraining,
+    mapTestimonials,
+    mapCompanyLogo,
+  );
 
   console.log('Success. Creating content object...');
 
