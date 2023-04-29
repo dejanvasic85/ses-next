@@ -13,7 +13,11 @@ const styles = {
   },
 };
 
-export function Navbar({ contactPhone, title }) {
+export function Navbar({
+  contactPhone,
+  title,
+  links = { home: '#', about: '#about', services: '#services', contact: '#contact' },
+}) {
   const scrollPosition = useScrollPosition();
   const isTopPosition = scrollPosition < 5;
 
@@ -28,24 +32,24 @@ export function Navbar({ contactPhone, title }) {
       <nav className="navbar w-full">
         <Container>
           <div className="hidden md:flex md:flex-1">
-            <a className="btn btn-ghost normal-case text-xl" href="#">
+            <a className="btn btn-ghost normal-case text-xl" href={links.home}>
               <Icon name="bolt" size="xxl" className="mr-2" /> {title}
             </a>
           </div>
           <div className="flex items-center justify-center text-sm md:text-base w-full md:w-auto md:flex-none">
             <ul className="menu menu-horizontal p-0">
               <li>
-                <a className="rounded-lg" href="#services">
+                <a className="rounded-lg" href={links.services}>
                   Services
                 </a>
               </li>
               <li>
-                <a className="rounded-lg" href="#about">
+                <a className="rounded-lg" href={links.about}>
                   About Us
                 </a>
               </li>
               <li>
-                <a className="rounded-lg" href="#contact">
+                <a className="rounded-lg" href={links.contact}>
                   Contact Us
                 </a>
               </li>
