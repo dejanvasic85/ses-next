@@ -11,7 +11,6 @@
     "lighthouse": "lighthouse https://ses-next.vercel.app --chrome-flags=\"--headless\" --output html --output-path ./lighthouse.html --quiet --view"
   },
   "dependencies": {
-    "@faker-js/faker": "7.6.0",
     "@tailwindcss/typography": "0.5.9",
     "aws-sdk": "2.1343.0",
     "class-names": "1.0.0",
