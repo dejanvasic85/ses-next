@@ -33,3 +33,11 @@ Running the nextjs app:
 ```sh
 npm run dev -w ses-next
 ```
+
+## Deploying 
+
+__Website:__
+The project is deployed to vercel. It uses trunk based development where every main branch is pushed to production.
+
+__Sanity studio:__
+The sanity studio is deployed manually using the sanity cli.
