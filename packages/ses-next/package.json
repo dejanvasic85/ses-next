@@ -11,6 +11,8 @@
     "lighthouse": "lighthouse https://ses-next.vercel.app --chrome-flags=\"--headless\" --output html --output-path ./lighthouse.html --quiet --view"
   },
   "dependencies": {
+    "@portabletext/react": "3.0.0",
+    "@sanity/image-url": "1.0.2",
     "aws-sdk": "2.1343.0",
     "class-names": "1.0.0",
     "daisyui": "2.51.5",

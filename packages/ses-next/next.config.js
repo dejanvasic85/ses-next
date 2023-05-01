@@ -18,6 +18,8 @@ const nextConfig = {
     emailEnabled: process.env.EMAIL_ENABLED === 'true',
     emailFrom: process.env.EMAIL_FROM,
     emailTo: process.env.EMAIL_TO,
+    sanityProjectId: 'j7d3pd5g',
+    sanityDataset: 'production',
   },
   reactStrictMode: true,
 };
