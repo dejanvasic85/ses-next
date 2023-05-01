@@ -9,6 +9,7 @@ export default defineType({
   fields: [
     {name: 'name', type: 'string', title: 'Name'},
     {name: 'description', type: 'string', title: 'Description'},
+    {name: 'slug', type: 'slug', title: 'URL slug e.g. air-conditioning'},
     iconField,
     {
       name: 'showcase',
@@ -16,6 +17,13 @@ export default defineType({
       description: 'Showcase photos for this service',
       type: 'array',
       of: [{type: 'reference', to: [{type: 'showcase'}]}],
+    },
+    {
+      name: 'content',
+      title: 'Content',
+      description: 'This content will be displayed on the service page',
+      type: 'array',
+      of: [{type: 'block'}, {type: 'image'}],
     },
   ],
 })
