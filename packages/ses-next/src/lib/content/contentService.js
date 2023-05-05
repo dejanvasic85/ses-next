@@ -6,12 +6,16 @@ import { mapCompanyLogo, mapServices, mapTeam, mapTestimonials, mapTraining } fr
 
 const { serverRuntimeConfig } = getConfig();
 
-const getByTypename = (data, type) => {
-  return data.find(({ _type }) => _type === type);
+const getHomePage = (data) => {
+  return data.find(({ _type }) => _type === 'homepage');
 };
 
-const composeContent = (fullContent, homepageItem) => {
-  return (...mappers) => mappers.map((mapper) => mapper(fullContent, homepageItem));
+const getFaqItems = (data) => {
+  return data.filter(({ _type }) => _type === 'faq');
+};
+
+const composeContent = (fullContent, item) => {
+  return (...mappers) => mappers.map((mapper) => mapper(fullContent, item));
 };
 
 const fetchFromCacheOrApi = async () => {
@@ -27,7 +31,7 @@ const fetchFromCacheOrApi = async () => {
 export const getHomePageContent = async () => {
   const { result: fullContent } = await fetchFromCacheOrApi();
   console.log('Content: Mapping api response');
-  const homepageItem = getByTypename(fullContent, 'homepage');
+  const homepageItem = getHomePage(fullContent);
   const {
     baseUrl,
     companyName,
@@ -47,11 +51,14 @@ export const getHomePageContent = async () => {
     mapCompanyLogo,
   );
 
+  const faqItems = getFaqItems(fullContent).map(({ question, answer }) => ({ question, answer }));
+
   return {
     baseUrl,
     companyName,
     companyLogo,
     contact,
+    faqItems,
     googleMapsLocation,
     meta,
     services,

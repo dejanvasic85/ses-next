@@ -16,7 +16,7 @@ const styles = {
 export function Navbar({
   contactPhone,
   title,
-  links = { home: '#', about: '#about', services: '#services', contact: '#contact' },
+  links = { home: '#', about: '#about', services: '#services', contact: '#contact', faq: '/faq' },
 }) {
   const scrollPosition = useScrollPosition();
   const isTopPosition = scrollPosition < 5;
@@ -51,6 +51,11 @@ export function Navbar({
               <li>
                 <a className="rounded-lg" href={links.contact}>
                   Contact Us
+                </a>
+              </li>
+              <li>
+                <a className="rounded-lg" href={links.faq}>
+                  FAQ
                 </a>
               </li>
               {contactPhone && (

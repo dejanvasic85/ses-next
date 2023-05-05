@@ -29,7 +29,6 @@ export default function Service({
   service,
 }) {
   const { name, content } = service;
-  console.log('service', service);
   return (
     <>
       <PageHead
