@@ -15,11 +15,11 @@ export default function Faq({ contact, companyLogo, companyName, faqItems, meta,
       <Navbar contactPhone={contact.phone} title={shortTitle} links={navLinks} />
       <div className="bg-white py-6 sm:py-8 lg:py-12">
         <div className="container mx-auto max-w-screen-xl px-4 md:px-8">
-          <div class="mb-10 md:mb-16">
-            <h1 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">
+          <div className="mb-10 md:mb-16">
+            <h1 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">
               Frequently asked questions
             </h1>
-            <p class="mx-auto text-center text-gray-500 md:text-lg">
+            <p className="mx-auto text-center text-gray-500 md:text-lg">
               Check out our frequently asked questions to learn more about our services.
             </p>
           </div>

@@ -16,7 +16,7 @@ const styles = {
 export function Navbar({
   contactPhone,
   title,
-  links = { home: '#', about: '#about', services: '#services', contact: '#contact', faq: '/faq' },
+  links = { home: '/', services: '/#services', about: '/#about', contact: '/#contact', faq: '/faq' },
 }) {
   const scrollPosition = useScrollPosition();
   const isTopPosition = scrollPosition < 5;
