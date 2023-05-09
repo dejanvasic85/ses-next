@@ -10,6 +10,7 @@ export default defineType({
     {name: 'name', type: 'string', title: 'Name'},
     {name: 'description', type: 'string', title: 'Description'},
     {name: 'slug', type: 'slug', title: 'URL slug e.g. air-conditioning'},
+    {name: 'linkToReadMore', type: 'boolean', title: 'Show link to read more'},
     iconField,
     {
       name: 'showcase',
