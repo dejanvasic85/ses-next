@@ -1,20 +1,28 @@
 import Head from 'next/head';
+import { NextSeo, LocalBusinessJsonLd } from 'next-seo';
 
-export function PageHead({ canonicalUrl, companyName, companyLogo, description, title, socialTitle }) {
+export function PageHead({ canonicalUrl, companyName, companyLogo, description, phone, title, socialTitle }) {
   return (
-    <Head>
-      <title>{title}</title>
-      <link rel="canonical" href={canonicalUrl} />
-      <meta name="description" content={description} />
-      <meta property="og:image" content={companyLogo} />
-      <meta name="twitter:description" content={description} />
-      <meta property="og:title" content={socialTitle} />
-      <meta property="og:description" content={description} />
-      <meta property="og:url" content={canonicalUrl} />
-      <meta property="og:site_name" content={companyName} />
-      <meta name="twitter:card" content="summary" />
-      <meta name="twitter:title" content={companyName} />
-      <meta name="twitter:image" content={companyLogo} />
-    </Head>
+    <>
+      <Head>
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={companyName} />
+        <meta name="twitter:image" content={companyLogo} />
+        <meta name="twitter:description" content={description} />
+      </Head>
+      <NextSeo
+        title={title}
+        description={description}
+        canonical={canonicalUrl}
+        openGraph={{
+          url: canonicalUrl,
+          title: socialTitle,
+          description,
+          images: [{ url: companyLogo, alt: companyName }],
+          siteName: companyName,
+        }}
+      />
+      <LocalBusinessJsonLd type="LocalBusiness" images={[companyLogo]} name={companyName} telephone={phone} />
+    </>
   );
 }

@@ -1,5 +1,3 @@
-import Head from 'next/head';
-
 import { getHomePageContent } from '../lib/content/contentService';
 import { About, Contact, Footer, Hero, Navbar, PageHead, Services } from '../components';
 
@@ -26,6 +24,7 @@ export default function Home({
         companyLogo={companyLogo}
         companyName={companyName}
         description={meta.description}
+        phone={contact.phone}
         socialTitle={companyName}
         title={meta.title}
       />

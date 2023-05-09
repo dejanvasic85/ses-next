@@ -8,5 +8,6 @@
   ],
   "volta": {
     "node": "18.15.0"
-  }
+  },
+  "dependencies": {}
 }
