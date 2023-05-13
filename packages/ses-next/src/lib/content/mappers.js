@@ -24,12 +24,13 @@ export const mapServices = (data, homepageItem) => {
     blurbs,
     items: items.map(({ _ref }) => {
       const service = data.find((item) => item._id === _ref);
-      const { name, description, icon, slug, content } = service;
+      const { name, description, icon, slug, content, linkToReadMore = false } = service;
 
       return {
         imageGallery: mapServiceShowcaseGallery(data, service),
         name,
         description,
+        linkToReadMore,
         icon,
         slug: slug.current,
         content,

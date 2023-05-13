@@ -1,7 +1,8 @@
 {
   "scripts": {
     "dev:sanity": "npm run dev -w ses-content",
-    "dev": "npm run dev -w ses-next"
+    "dev": "npm run dev -w ses-next",
+    "clear-cache": "rm -rf ./ses-next/cache"
   },
   "workspaces": [
     "./packages/*"

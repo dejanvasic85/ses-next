@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 import { Container } from './Container';
 import { Heading } from './Heading';
@@ -12,6 +13,18 @@ function IconContainer({ name }) {
     </div>
   );
 }
+
+const ReadMore = ({ linkToReadMore, slug }) => {
+  if (!linkToReadMore || !slug) {
+    return null;
+  }
+
+  return (
+    <Link href={`/services/${slug}`} passHref={true} className="link link-primary">
+      Read more
+    </Link>
+  );
+};
 
 export const Services = ({ className, services }) => {
   const { blurbs, items } = services;
@@ -32,15 +45,18 @@ export const Services = ({ className, services }) => {
       <Container>
         <Heading level={2}>Our Services</Heading>
         {blurbs.map((blurb, idx) => (
-          <p className="max-w-screen-md mb-12 text-gray-500 md:text-lg text-center mx-auto p-x-4" key={idx}>{blurb}</p>
+          <p className="max-w-screen-md mb-12 text-gray-500 md:text-lg text-center mx-auto p-x-4" key={idx}>
+            {blurb}
+          </p>
         ))}
 
         <ul className="px-4 py-8 flex flex-wrap gap-4 justify-evenly">
-          {items.map(({ name, description, icon = 'bolt' }, idx) => (
+          {items.map(({ name, description, linkToReadMore, slug, icon = 'bolt' }, idx) => (
             <li className="p-8 flex flex-col items-center text-center justify-center gap-4 w-full md:w-1/4" key={idx}>
               <IconContainer name={icon} />
               <h3 className="text-gray-900 text-lg title-font font-medium">{name}</h3>
               <p className="leading-relaxed text-base">{description}</p>
+              <ReadMore linkToReadMore={linkToReadMore} slug={slug} />
             </li>
           ))}
         </ul>
