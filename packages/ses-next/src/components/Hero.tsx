@@ -4,6 +4,7 @@ import Image from 'next/image';
 
 import { Heading } from './Heading';
 import { Icon } from './Icon/Icon';
+import { LinkButton } from './LinkButton';
 
 export function Hero({ companyName, companyLogo, social, tagline }) {
   return (
@@ -63,22 +64,18 @@ export function Hero({ companyName, companyLogo, social, tagline }) {
                 <Heading level={1}>
                   <strong>{companyName}</strong>
                 </Heading>
-                <p className="mt-6 text-lg leading-8 text-gray-600">
-                  {tagline}
-                </p>
+                <p className="mt-6 text-lg leading-8 text-gray-600">{tagline}</p>
                 <div className="mt-8 flex gap-x-4 justify-center">
-                  <a href="#contact" className="btn btn-primary">
-                    Get a free quote
-                  </a>
+                  <LinkButton href="#contact">Get a free quote</LinkButton>
                   {social.facebook && (
-                    <a href={social.facebook} target="_blank" className="btn btn-primary">
+                    <LinkButton href={social.facebook} target="_blank">
                       <Icon name="facebook" size="lg" />
-                    </a>
+                    </LinkButton>
                   )}
                   {social.linkedIn && (
-                    <a href={social.linkedIn} target="_blank" className="btn btn-primary">
+                    <LinkButton href={social.linkedIn} target="_blank">
                       <Icon name="linked-in" size="lg" />
-                    </a>
+                    </LinkButton>
                   )}
                 </div>
               </div>

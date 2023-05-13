@@ -114,7 +114,7 @@ export function ContactForm({ loading, onSubmit }) {
         )}
       </div>
 
-      <button className={classNames('btn btn-primary mt-8', { loading })} type="submit">
+      <button className={classNames('btn btn-primary mt-8 text-white', { loading })} type="submit">
         Submit
       </button>
     </form>
