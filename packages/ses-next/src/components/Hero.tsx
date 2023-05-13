@@ -68,12 +68,12 @@ export function Hero({ companyName, companyLogo, social, tagline }) {
                 <div className="mt-8 flex gap-x-4 justify-center">
                   <LinkButton href="#contact">Get a free quote</LinkButton>
                   {social.facebook && (
-                    <LinkButton href={social.facebook} target="_blank">
+                    <LinkButton href={social.facebook} target="_blank" aria-label="Facebook page">
                       <Icon name="facebook" size="lg" />
                     </LinkButton>
                   )}
                   {social.linkedIn && (
-                    <LinkButton href={social.linkedIn} target="_blank">
+                    <LinkButton href={social.linkedIn} target="_blank" aria-label="Linkedin page">
                       <Icon name="linked-in" size="lg" />
                     </LinkButton>
                   )}

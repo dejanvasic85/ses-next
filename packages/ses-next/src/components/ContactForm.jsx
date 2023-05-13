@@ -35,31 +35,17 @@ export function ContactForm({ loading, onSubmit }) {
   );
 
   return (
-    <form onSubmit={handleSubmit(handleReCaptchaVerify)}>
+    <form onSubmit={handleSubmit(handleReCaptchaVerify)} id="contactForm">
       <div className="form-control w-full">
-        <label className="label">
-          <span className="label-text">Full name</span>
-        </label>
-        <input
-          type="text"
-          maxLength={100}
-          className={classNames('input input-bordered w-full', { 'input-error': fullNameError?.message })}
-          {...register('fullName')}
-        />
-        {fullNameError && (
-          <label className="label text-error">
-            <span className="label-text-alt text-error">{fullNameError?.message}</span>
-          </label>
-        )}
-      </div>
-
-      <div className="form-control w-full">
-        <label className="label">
+        <label className="label" htmlFor="email">
           <span className="label-text">Email</span>
         </label>
         <input
           type="text"
           maxLength={100}
+          id="email"
+          aria-invalid={!!emailError?.message}
+          aria-describedby={!!emailError?.message ? 'emailErrorMessage' : null}
           className={classNames('input input-bordered w-full', { 'input-error': emailError?.message })}
           {...register('email', {
             required: { value: true, message: 'Email is required' },
@@ -72,36 +58,68 @@ export function ContactForm({ loading, onSubmit }) {
         />
         {emailError && (
           <label className="label text-error">
-            <span className="label-text-alt text-error">{emailError?.message}</span>
+            <span className="label-text-alt text-error" id="emailErrorMessage">
+              {emailError?.message}
+            </span>
           </label>
         )}
       </div>
 
       <div className="form-control w-full">
-        <label className="label">
-          <span className="label-text">Phone</span>
+        <label className="label" htmlFor="fullName">
+          <span className="label-text">Full name</span>
         </label>
         <input
           type="text"
           maxLength={100}
+          id="fullName"
+          aria-invalid={!!fullNameError?.message}
+          aria-describedby={!!fullNameError?.message ? 'fullNameErrorMessage' : null}
+          className={classNames('input input-bordered w-full', { 'input-error': fullNameError?.message })}
+          {...register('fullName')}
+        />
+        {fullNameError && (
+          <label className="label text-error">
+            <span className="label-text-alt text-error" id="fullNameErrorMessage">
+              {fullNameError?.message}
+            </span>
+          </label>
+        )}
+      </div>
+
+      <div className="form-control w-full">
+        <label className="label" htmlFor="phone">
+          <span className="label-text">Phone</span>
+        </label>
+        <input
+          type="text"
+          id="phone"
+          maxLength={100}
+          aria-invalid={!!phoneError?.message}
+          aria-describedby={!!phoneError?.message ? 'phoneErrorMessage' : null}
           className={classNames('input input-bordered w-full', { 'input-error': phoneError?.message })}
           {...register('phone')}
         />
         {phoneError && (
           <label className="label text-error">
-            <span className="label-text-alt text-error">{phoneError?.message}</span>
+            <span className="label-text-alt text-error" id="phoneErrorMessage">
+              {phoneError?.message}
+            </span>
           </label>
         )}
       </div>
 
       <div className="form-control w-full">
-        <label className="label">
+        <label className="label" htmlFor="message">
           <span className="label-text">Message</span>
         </label>
         <textarea
           type="text"
+          id="message"
           maxLength={500}
           rows={4}
+          aria-invalid={!!messageError?.message}
+          aria-describedby={!!messageError?.message ? 'messageErrorMessage' : null}
           className={classNames('textarea textarea-bordered', { 'textarea-error': messageError?.message })}
           {...register('message', {
             required: { value: true, message: 'Message is required' },
@@ -109,12 +127,14 @@ export function ContactForm({ loading, onSubmit }) {
         />
         {messageError && (
           <label className="label text-error">
-            <span className="label-text-alt text-error">{messageError?.message}</span>
+            <span className="label-text-alt text-error" id="messageErrorMessage">
+              {messageError?.message}
+            </span>
           </label>
         )}
       </div>
 
-      <button className={classNames('btn btn-primary mt-8 text-white', { loading })} type="submit">
+      <button className={classNames('btn btn-primary mt-8 text-white', { loading })} type="submit" id="submit">
         Submit
       </button>
     </form>
