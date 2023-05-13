@@ -1,7 +1,5 @@
 import classNames from 'class-names';
 
-import useScrollPosition from '../hooks/useScrollPosition';
-
 import { Container, Icon } from '.';
 
 const styles = {
@@ -18,17 +16,8 @@ export function Navbar({
   title,
   links = { home: '/', services: '/#services', about: '/#about', contact: '/#contact', faq: '/faq' },
 }) {
-  const scrollPosition = useScrollPosition();
-  const isTopPosition = scrollPosition < 5;
-
   return (
-    <div
-      className={classNames(
-        styles.nav.default,
-        { [styles.nav.top]: isTopPosition },
-        { [styles.nav.scrolled]: !isTopPosition },
-      )}
-    >
+    <div className={classNames(styles.nav.default, styles.nav.scrolled)}>
       <nav className="navbar w-full">
         <Container>
           <div className="hidden md:flex md:flex-1">
