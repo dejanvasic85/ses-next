@@ -58,6 +58,7 @@ export function FeedbackForm({ loading, onSubmit }) {
           render={({ field }) => (
             <div className="rating">
               <input
+                aria-label="1 star"
                 type="radio"
                 name="feedback-rating"
                 className="mask mask-star-2 bg-orange-400"
@@ -65,6 +66,7 @@ export function FeedbackForm({ loading, onSubmit }) {
                 onChange={() => field.onChange(1)}
               />
               <input
+                aria-label="2 stars"
                 type="radio"
                 name="feedback-rating"
                 className="mask mask-star-2 bg-orange-400"
@@ -72,6 +74,7 @@ export function FeedbackForm({ loading, onSubmit }) {
                 onChange={() => field.onChange(2)}
               />
               <input
+                aria-label="3 stars"
                 type="radio"
                 name="feedback-rating"
                 className="mask mask-star-2 bg-orange-400"
@@ -79,6 +82,7 @@ export function FeedbackForm({ loading, onSubmit }) {
                 onChange={() => field.onChange(3)}
               />
               <input
+                aria-label="4 stars"
                 type="radio"
                 name="feedback-rating"
                 className="mask mask-star-2 bg-orange-400"
@@ -86,6 +90,7 @@ export function FeedbackForm({ loading, onSubmit }) {
                 onChange={() => field.onChange(4)}
               />
               <input
+                aria-label="5 stars"
                 type="radio"
                 name="feedback-rating"
                 className="mask mask-star-2 bg-orange-400"

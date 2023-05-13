@@ -14,6 +14,7 @@ export function Testimonial({ fullName, comment, rating }) {
                 key={idx}
                 type="radio"
                 disabled
+                aria-label={`${idx + 1} star`}
                 name={`rating-${fullName}`}
                 className="mask mask-star-2 bg-orange-400"
                 {...(rating === idx + 1 ? { checked: true } : null)}
