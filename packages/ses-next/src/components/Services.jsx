@@ -14,16 +14,8 @@ function IconContainer({ name }) {
   );
 }
 
-const ReadMore = ({ linkToReadMore, slug }) => {
-  if (!linkToReadMore || !slug) {
-    return null;
-  }
-
-  return (
-    <Link href={`/services/${slug}`} passHref={true} className="link link-primary">
-      Read more
-    </Link>
-  );
+const ConditionalWrap = ({ children, condition, wrapper }) => {
+  return condition ? wrapper(children) : children;
 };
 
 export const Services = ({ className, services }) => {
@@ -54,9 +46,19 @@ export const Services = ({ className, services }) => {
           {items.map(({ name, description, linkToReadMore, slug, icon = 'bolt' }, idx) => (
             <li className="p-8 flex flex-col items-center text-center justify-center gap-4 w-full md:w-1/4" key={idx}>
               <IconContainer name={icon} />
-              <h3 className="text-gray-900 text-lg title-font font-medium">{name}</h3>
+              <h3 className="text-gray-900 text-lg title-font font-medium">
+                <ConditionalWrap
+                  condition={linkToReadMore && slug}
+                  wrapper={(children) => (
+                    <Link href={`/services/${slug}`} className="underline">
+                      {children}
+                    </Link>
+                  )}
+                >
+                  {name}
+                </ConditionalWrap>
+              </h3>
               <p className="leading-relaxed text-base">{description}</p>
-              <ReadMore linkToReadMore={linkToReadMore} slug={slug} />
             </li>
           ))}
         </ul>
