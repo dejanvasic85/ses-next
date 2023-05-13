@@ -48,10 +48,10 @@ export function Navbar({
                 </a>
               </li>
               {contactPhone && (
-                <li>
+                <li className="hidden md:inline-block">
                   <a className="rounded-lg" href={`tel:${contactPhone}`}>
                     <Icon name="phone" />
-                    <span className="hidden md:inline-block">{contactPhone}</span>
+                    {contactPhone}
                   </a>
                 </li>
               )}

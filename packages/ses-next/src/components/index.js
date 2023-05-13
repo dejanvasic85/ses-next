@@ -7,6 +7,7 @@ export { Footer } from './Footer';
 export { Gallery } from './Gallery';
 export { GalleryCarousel } from './GalleryCarousel';
 export { Hero } from './Hero';
+export { LinkButton } from './LinkButton';
 export { Modal } from './Modal';
 export { Navbar } from './Navbar';
 export { PageHead } from './PageHead';

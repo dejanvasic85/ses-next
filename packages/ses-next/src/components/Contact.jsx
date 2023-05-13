@@ -2,8 +2,10 @@ import React from 'react';
 
 import { useContact } from '../hooks/useContact';
 import { Heading } from './Heading';
+import { LinkButton } from './LinkButton';
 import { ContactForm } from './ContactForm';
 import { PopSuccess } from './PopSuccess';
+import { Icon } from './Icon/Icon';
 
 export function Contact({ className, contact, location }) {
   const { loading, messageSent, sendMessage } = useContact();
@@ -12,7 +14,19 @@ export function Contact({ className, contact, location }) {
   return (
     <div className={className}>
       <Heading level={2}>Contact us</Heading>
-      {firstBlurb && <p className="max-w-screen-md mb-12 text-gray-500 md:text-lg text-center mx-auto px-4">{firstBlurb}</p>}
+      {firstBlurb && (
+        <>
+          <p className="max-w-screen-md mb-12 text-center mx-auto px-4 text-gray-500 md:text-lg">{firstBlurb}</p>
+        </>
+      )}
+      {contact.phone && (
+        <p className="max-w-screen-md mb-12 text-center mx-auto px-4">
+          <LinkButton href={`tel:${contact.phone}`}>
+            <Icon name="phone" size="lg" /> {contact.phone}
+          </LinkButton>
+        </p>
+      )}
+
       <div className="text-gray-600 body-font relative">
         <div className="absolute inset-0 bg-gray-300">
           <iframe
@@ -34,9 +48,7 @@ export function Contact({ className, contact, location }) {
 
             {!messageSent && <ContactForm loading={loading} onSubmit={sendMessage} />}
             {messageSent && (
-              <PopSuccess>
-                Thank you! Your message has been received and our team will get back to you.
-              </PopSuccess>
+              <PopSuccess>Thank you! Your message has been received and our team will get back to you.</PopSuccess>
             )}
 
             {contact.callBack && <p className="text-xs text-gray-500 mt-3">{contact.callBack}</p>}
