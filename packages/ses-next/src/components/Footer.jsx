@@ -1,13 +1,20 @@
 import React from 'react';
+import Link from 'next/link';
 
 import { Icon } from './Icon/Icon';
+
+const ConditionalWrap = ({ children, condition, wrapper }) => {
+  return condition ? wrapper(children) : children;
+};
 
 export function Footer({
   social = {},
   links = { home: '/', services: '/#services', about: '/#about', contact: '/#contact', faq: '/faq' },
+  services = { items: [] },
 }) {
   const today = new Date();
   const year = today.getFullYear();
+
   return (
     <footer className="footer p-10 bg-neutral text-white">
       <div className="flex flex-col gap-2">
@@ -31,6 +38,21 @@ export function Footer({
         <a className="link link-hover" href={links.faq}>
           FAQ
         </a>
+      </div>
+      <div>
+        <span className="footer-title">Services</span>
+        {services.items.map(({ name, linkToReadMore, slug }) => (
+          <ConditionalWrap
+            condition={linkToReadMore && slug}
+            wrapper={(children) => (
+              <Link href={`/services/${slug}`} className="link link-hover">
+                {children}
+              </Link>
+            )}
+          >
+            {name}
+          </ConditionalWrap>
+        ))}
       </div>
       <div>
         <span className="footer-title">Follow us</span>
