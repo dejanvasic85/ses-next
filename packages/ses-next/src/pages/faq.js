@@ -1,7 +1,17 @@
 import { getHomePageContent } from '../lib/content/contentService';
 import { Footer, Navbar, PageHead } from '../components';
 
-export default function Faq({ contact, companyLogo, companyName, faqItems, meta, navLinks, shortTitle, social }) {
+export default function Faq({
+  contact,
+  companyLogo,
+  companyName,
+  faqItems,
+  meta,
+  navLinks,
+  services,
+  shortTitle,
+  social,
+}) {
   return (
     <>
       <PageHead
@@ -36,14 +46,14 @@ export default function Faq({ contact, companyLogo, companyName, faqItems, meta,
           </div>
         </div>
       </div>
-      <Footer social={social} />
+      <Footer social={social} services={services} />
     </>
   );
 }
 
 export const getStaticProps = async () => {
   const content = await getHomePageContent();
-  const { contact, companyLogo, companyName, faqItems, meta, social, shortTitle } = content;
+  const { contact, companyLogo, companyName, faqItems, meta, services, social, shortTitle } = content;
 
   return {
     props: {
@@ -53,6 +63,7 @@ export const getStaticProps = async () => {
       faqItems,
       navLinks: { home: '/', services: '/#services', about: '/#about', contact: '/#contact' },
       meta,
+      services,
       social,
       shortTitle,
     },

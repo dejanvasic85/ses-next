@@ -26,6 +26,7 @@ export default function Service({
   social,
   shortTitle,
   service,
+  services,
 }) {
   const { name, content } = service;
   return (
@@ -63,7 +64,7 @@ export default function Service({
         </div>
       </div>
 
-      <Footer social={social} />
+      <Footer social={social} services={services} />
     </>
   );
 }
@@ -84,6 +85,7 @@ export const getStaticProps = async ({ params }) => {
       social,
       shortTitle,
       service,
+      services: content.services,
     },
   };
 };
