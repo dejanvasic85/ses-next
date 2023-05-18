@@ -1,4 +1,5 @@
 import { getHomePageContent } from '../lib/content/contentService';
+import { buildFetchFromApi, fetchFromApi } from '../lib/content/contentApi';
 
 const createLocXmlForUrl = (url) => `
     <url>
@@ -27,7 +28,7 @@ const Sitemap = () => {};
 
 export const getServerSideProps = async ({ res }) => {
   console.log('Page: sitemap getStaticProps');
-  const content = await getHomePageContent();
+  const content = await getHomePageContent(buildFetchFromApi);
 
   const sitemap = generateSitemap(content);
 
