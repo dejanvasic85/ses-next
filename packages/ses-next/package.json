@@ -11,29 +11,29 @@
     "lighthouse": "lighthouse https://ses-next.vercel.app --chrome-flags=\"--headless\" --output html --output-path ./lighthouse.html --quiet --view"
   },
   "dependencies": {
-    "@portabletext/react": "3.0.2",
+    "@portabletext/react": "3.0.4",
     "@sanity/image-url": "1.0.2",
-    "aws-sdk": "2.1401.0",
+    "aws-sdk": "2.1411.0",
     "class-names": "1.0.0",
     "daisyui": "3.1.9",
-    "eslint": "8.43.0",
-    "eslint-config-next": "13.4.6",
-    "next": "13.4.6",
-    "next-seo": "6.0.0",
+    "eslint": "8.44.0",
+    "eslint-config-next": "13.4.8",
+    "next": "13.4.8",
+    "next-seo": "6.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-google-recaptcha-v3": "1.10.1",
     "react-gtm-module": "2.0.11",
-    "react-hook-form": "7.45.0",
+    "react-hook-form": "7.45.1",
     "react-modal": "3.16.1"
     
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "13.4.6",
+    "@next/bundle-analyzer": "13.4.8",
     "@tailwindcss/typography": "0.5.9",
     "autoprefixer": "10.4.14",
     "lighthouse": "10.3.0",
-    "postcss": "8.4.24",
+    "postcss": "8.4.25",
     "prettier": "2.8.8",
     "tailwindcss": "3.3.2"
   }
