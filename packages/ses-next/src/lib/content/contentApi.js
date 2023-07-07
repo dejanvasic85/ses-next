@@ -1,10 +1,8 @@
-import getConfig from 'next/config';
-
-const { serverRuntimeConfig } = getConfig();
+import { config } from '../config';
 
 export const buildFetchFromApi = () =>
   fetchFromApi(
-    `https://${serverRuntimeConfig.sanityProjectId}.api.sanity.io/v2021-06-07/data/query/${serverRuntimeConfig.sanityDataset}?query=*[]`,
+    `https://${config.sanityProjectId}.api.sanity.io/v2021-06-07/data/query/${config.sanityDataset}?query=*[]`,
   );
 
 export const fetchFromApi = async (url) => {

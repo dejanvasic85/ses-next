@@ -8,19 +8,6 @@ const nextConfig = {
   images: {
     domains: [`cdn.sanity.io`],
   },
-  publicRuntimeConfig: {
-    googleRecaptchaSiteKey: process.env.RECAPTCHA_SITE_KEY,
-    googleTagManagerId: process.env.GTM_ID,
-  },
-  serverRuntimeConfig: {
-    awsAccessKeyId: process.env.SES_AWS_ACCESS_KEY_ID,
-    awsSecretAccessKey: process.env.SES_AWS_SECRET_ACCESS_KEY,
-    emailEnabled: process.env.EMAIL_ENABLED === 'true',
-    emailFrom: process.env.EMAIL_FROM,
-    emailTo: process.env.EMAIL_TO,
-    sanityProjectId: 'j7d3pd5g',
-    sanityDataset: 'production',
-  },
   reactStrictMode: true,
 };
 

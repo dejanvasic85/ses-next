@@ -4,13 +4,12 @@ import urlBuilder from '@sanity/image-url';
 
 import { Navbar, Footer, PageHead } from '../../components';
 import { getHomePageContent } from '../../lib/content/contentService';
-
-const { serverRuntimeConfig } = getConfig();
+import { config } from '../../lib/config';
 
 const CustomImage = (props) => {
   const src = urlBuilder({
-    projectId: serverRuntimeConfig.sanityProjectId,
-    dataset: serverRuntimeConfig.sanityDataset,
+    projectId: config.sanityProjectId,
+    dataset: config.sanityDataset,
   })
     .image(props.value)
     .url();

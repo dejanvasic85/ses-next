@@ -1,14 +1,12 @@
 import SES from 'aws-sdk/clients/ses';
 
-import getConfig from 'next/config';
-
-const { serverRuntimeConfig } = getConfig();
+import { config } from './config';
 
 const ses = new SES({
   region: 'ap-southeast-2',
   credentials: {
-    accessKeyId: serverRuntimeConfig.awsAccessKeyId,
-    secretAccessKey: serverRuntimeConfig.awsSecretAccessKey,
+    accessKeyId: config.awsAccessKeyId,
+    secretAccessKey: config.awsSecretAccessKey,
   },
 });
 

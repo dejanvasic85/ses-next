@@ -107,3 +107,5 @@ dist
 lighthouse.*
 
 cache/
+
+.env.local
