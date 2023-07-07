@@ -1,4 +1,3 @@
-import getConfig from 'next/config';
 import { PortableText } from '@portabletext/react';
 import urlBuilder from '@sanity/image-url';
 
