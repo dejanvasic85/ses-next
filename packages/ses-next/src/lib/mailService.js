@@ -43,7 +43,7 @@ const emailTemplates = {
   },
 };
 
-export function send({ data, template, to = serverRuntimeConfig.emailTo }) {
+export function send({ data, template, to = config.emailTo }) {
   const { bodyTemplate, subjectTemplate } = emailTemplates[template];
 
   const emailBody = Object.keys(data).reduce((prev, curr) => {
@@ -54,7 +54,7 @@ export function send({ data, template, to = serverRuntimeConfig.emailTo }) {
     return prev.replace(`{{${curr}}}`, data[curr]);
   }, subjectTemplate);
 
-  if (!serverRuntimeConfig.emailEnabled) {
+  if (!config.emailEnabled) {
     console.log('Email disabled, not sending email');
     return Promise.resolve();
   }
@@ -79,7 +79,7 @@ export function send({ data, template, to = serverRuntimeConfig.emailTo }) {
           Data: subject,
         },
       },
-      Source: serverRuntimeConfig.emailFrom,
+      Source: config.emailFrom,
     })
     .promise();
 }
