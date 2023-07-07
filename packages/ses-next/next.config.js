@@ -8,6 +8,10 @@ const nextConfig = {
   images: {
     domains: [`cdn.sanity.io`],
   },
+  publicRuntimeConfig: {
+    googleTagManagerId: process.env.GTM_ID,
+    googleRecaptchaSiteKey: process.env.RECAPTCHA_SITE_KEY,
+  },
   reactStrictMode: true,
 };
 
