@@ -13,23 +13,23 @@
   "dependencies": {
     "@portabletext/react": "3.0.4",
     "@sanity/image-url": "1.0.2",
-    "aws-sdk": "2.1425.0",
+    "aws-sdk": "2.1431.0",
     "class-names": "1.0.0",
     "daisyui": "3.5.1",
     "eslint": "8.46.0",
-    "eslint-config-next": "13.4.12",
-    "next": "13.4.12",
+    "eslint-config-next": "13.4.13",
+    "next": "13.4.13",
     "next-seo": "6.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-google-recaptcha-v3": "1.10.1",
     "react-gtm-module": "2.0.11",
-    "react-hook-form": "7.45.2",
+    "react-hook-form": "7.45.4",
     "react-modal": "3.16.1"
     
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "13.4.12",
+    "@next/bundle-analyzer": "13.4.13",
     "@tailwindcss/typography": "0.5.9",
     "autoprefixer": "10.4.14",
     "lighthouse": "10.4.0",
