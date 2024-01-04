@@ -43,6 +43,7 @@ export function Footer({
         <span className="footer-title">Services</span>
         {services.items.map(({ name, linkToReadMore, slug }) => (
           <ConditionalWrap
+            key={name}
             condition={linkToReadMore && slug}
             wrapper={(children) => (
               <Link href={`/services/${slug}`} className="link link-hover">
