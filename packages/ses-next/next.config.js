@@ -6,7 +6,12 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 const nextConfig = {
   images: {
-    domains: [`cdn.sanity.io`],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+      },
+    ],
   },
   publicRuntimeConfig: {
     googleTagManagerId: process.env.GTM_ID,
