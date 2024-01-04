@@ -72,6 +72,11 @@ export function Hero({ companyName, companyLogo, social, tagline }) {
                       <Icon name="facebook" size="lg" />
                     </LinkButton>
                   )}
+                  {social.instagram && (
+                    <LinkButton href={social.instagram} target="_blank" aria-label="Instagram page">
+                      <Icon name="instagram" size="lg" />
+                    </LinkButton>
+                  )}
                   {social.linkedIn && (
                     <LinkButton href={social.linkedIn} target="_blank" aria-label="Linkedin page">
                       <Icon name="linked-in" size="lg" />

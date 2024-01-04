@@ -63,6 +63,12 @@ export function Footer({
             Facebook
           </a>
         )}
+        {social.instagram && (
+          <a className="link link-hover flex gap-1" href={social.instagram} target="_blank">
+            <Icon name="instagram" />
+            Instagram
+          </a>
+        )}
         {social.linkedIn && (
           <a className="link link-hover flex gap-1" href={social.linkedIn} target="_blank">
             <Icon name="linked-in" />
