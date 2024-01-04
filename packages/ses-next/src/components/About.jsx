@@ -27,7 +27,7 @@ export function About({ team, testimonials, training }) {
     <Container>
       <Team blurbs={team.blurbs ?? []} members={team.members} training={training} />
       <div className="px-4 md:px-8 mx-auto mt-12 text-center">
-        <Heading level={2}>What others say about us</Heading>
+        <Heading level={2}>What our customers say</Heading>
         <div className="grid lg:grid-cols-3 gap-4 md:gap-8 mt-8">
           {testimonials.map((testimonial, idx) => (
             <Testimonial {...testimonial} key={idx} />
@@ -36,9 +36,11 @@ export function About({ team, testimonials, training }) {
         <div className="mt-4">
           <PopSuccess show={feedbackSent}>Thank you! We will review your feedback shortly.</PopSuccess>
           {showFeedbackButton && (
-            <button className={classNames('btn btn-primary btn-outline')} onClick={() => setModalOpen(true)}>
-              Leave feedback
-            </button>
+            <div className="mt-4">
+              <button className={classNames('btn btn-primary btn-outline')} onClick={() => setModalOpen(true)}>
+                Leave feedback
+              </button>
+            </div>
           )}
         </div>
       </div>

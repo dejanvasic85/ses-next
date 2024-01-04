@@ -37,6 +37,8 @@ export default function Home({
       </section>
       <section id="about" className="mt-16 pt-24">
         <About aboutIntro={about} team={team} testimonials={testimonials} training={training} />
+        <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+        <div class="elfsight-app-5b8be46d-4244-4376-9fab-f8d54cf4d870" data-elfsight-app-lazy></div>
       </section>
       <section id="contact" className="mt-16 pt-24">
         <Contact contact={contact} location={googleMapsLocation} />
@@ -47,7 +49,6 @@ export default function Home({
 }
 
 export const getStaticProps = async () => {
-  console.log('Page: Home getStaticProps');
   const content = await getHomePageContent();
 
   return {

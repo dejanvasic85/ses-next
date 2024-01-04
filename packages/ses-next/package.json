@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier format",
+    "cache:clear": "rm -rf cache/",
     "lighthouse": "lighthouse https://ses-next.vercel.app --chrome-flags=\"--headless\" --output html --output-path ./lighthouse.html --quiet --view"
   },
   "dependencies": {
@@ -26,7 +27,6 @@
     "react-gtm-module": "2.0.11",
     "react-hook-form": "7.49.2",
     "react-modal": "3.16.1"
-    
   },
   "devDependencies": {
     "@next/bundle-analyzer": "14.0.4",

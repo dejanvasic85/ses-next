@@ -33,5 +33,11 @@ export default defineType({
       },
       validation: (Rule) => Rule.required(),
     },
+    {
+      name: 'profileImgUrl',
+      type: 'string',
+      title: 'Avatar Url',
+      validation: (Rule) => Rule.optional(),
+    },
   ],
 })

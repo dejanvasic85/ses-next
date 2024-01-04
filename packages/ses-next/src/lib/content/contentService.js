@@ -22,7 +22,6 @@ const fetchFromCacheOrApi = async () => {
 
 export const getHomePageContent = async (contentFetch) => {
   const { result: fullContent } = contentFetch ? await contentFetch() : await fetchFromCacheOrApi();
-  console.log('Content: Mapping api response');
   const homepageItem = getHomePage(fullContent);
   const {
     baseUrl,
