@@ -39,5 +39,17 @@ export default defineType({
       title: 'Avatar Url',
       validation: (Rule) => Rule.optional(),
     },
+    {
+      name: 'date',
+      type: 'string',
+      title: 'Date',
+      validation: (Rule) => Rule.optional(),
+    },
+    {
+      name: 'reviewUrl',
+      type: 'string',
+      title: 'Review Url',
+      validation: (Rule) => Rule.optional(),
+    },
   ],
 })
