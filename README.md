@@ -6,7 +6,7 @@ It was used to experiment with [Sanity IO](https://www.sanity.io/) and [Nextjs](
 
 ## How does it work?
 
-Nextjs uses static site generation to build the pages from the content in Sanity. During the build, it would query the content API and generate the pages. 
+Nextjs uses static site generation to build the pages from the content in Sanity. During the build, it would query the content API and generate the pages.
 
 The schema for the content is configured first in source code within ses-content (sanity project). Once ready, the sanity studio can be launched the edit as well as publish the content.
 
@@ -34,10 +34,18 @@ Running the nextjs app:
 npm run dev -w ses-next
 ```
 
-## Deploying 
+## Deploying
 
-__Website:__
+**Website:**
 The project is deployed to vercel. It uses trunk based development where every main branch is pushed to production.
 
-__Sanity studio:__
+**Sanity studio:**
 The sanity studio is deployed manually using the sanity cli.
+
+Make the required schema changes in the content project and then deploy it straight to production using the following command.
+
+```sh
+npm run deploy -w ses-content
+```
+
+We don't use any other development database at the moment so just make sure that the content schema is backward compatible.
