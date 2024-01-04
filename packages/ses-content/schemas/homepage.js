@@ -92,6 +92,7 @@ export default defineType({
       fields: [
         {name: 'facebook', type: 'url', title: 'Facebook'},
         {name: 'linkedIn', type: 'url', title: 'LinkedIn'},
+        {name: 'instagram', type: 'url', title: 'Instagram'},
       ],
     }),
     defineField({
