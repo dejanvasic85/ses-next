@@ -5,14 +5,14 @@ import { Navbar, Footer, PageHead } from '../../components';
 import { getHomePageContent } from '../../lib/content/contentService';
 import { config } from '../../lib/config';
 
+const builder = urlBuilder({
+  projectId: config.sanityProjectId,
+  dataset: config.sanityDataset,
+});
+
 const CustomImage = (props) => {
-  const src = urlBuilder({
-    projectId: config.sanityProjectId,
-    dataset: config.sanityDataset,
-  })
-    .image(props.value)
-    .url();
-  return <img src={src} />;
+  const src = builder.image(props.value).url();
+  return <img src={src} alt="inline image" />;
 };
 
 export default function Service({
