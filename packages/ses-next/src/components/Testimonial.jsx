@@ -9,7 +9,7 @@ export function Testimonial(testimonial) {
   const [showMore, setShowMore] = React.useState(false);
 
   return (
-    <div className="px-4 pt-4 pb-8 rounded-3xl flex flex-col bg-slate-500 text-left">
+    <div className="p-4 rounded-3xl flex flex-col bg-slate-500 text-left">
       <div className="flex gap-2">
         <div className="flex">
           <div className="h-12 w-12 flex items-center justify-center">
@@ -18,12 +18,7 @@ export function Testimonial(testimonial) {
         </div>
         <div className="flex flex-col gap-4">
           <div className="flex flex-col mt-2">
-            <div className="flex gap-1 text-sm text-white md:text-base font-bold text-center link">
-              {fullName}
-              <div className="tooltip" data-tip="Verified Customer">
-                <Icon name="check-starburst" className="w-4 h-4" />
-              </div>
-            </div>
+            <div className="flex gap-1 text-sm text-white md:text-base font-bold text-center link">{fullName}</div>
             <em className="text-gray-200 text-sm">{date}</em>
           </div>
           <div className="rating">
