@@ -14,6 +14,6 @@ const sizeClassMap = {
 };
 
 export function Icon({ className = '', name, size = 'md' }) {
-  const sizeClass = sizeClassMap[size];
+  const sizeClass = className.includes('h-') || className.includes('w-') ? '' : sizeClassMap[size];
   return React.cloneElement(IconMap[name], { className: classNames(sizeClass, className) });
 }

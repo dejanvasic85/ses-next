@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "14.0.4",
+    "@tailwindcss/line-clamp": "0.4.4",
     "@tailwindcss/typography": "0.5.10",
     "autoprefixer": "10.4.16",
     "lighthouse": "11.4.0",
