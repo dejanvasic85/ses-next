@@ -25,7 +25,6 @@ export function Testimonial(testimonial) {
   const rating = starRatingMap[starRating];
   const [showMore, setShowMore] = React.useState(false);
 
-  console.log('profileUrl', profileUrl);
   return (
     <div className="p-4 rounded-3xl flex flex-col bg-slate-500 text-left">
       <div className="flex gap-2">
