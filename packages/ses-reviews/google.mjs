@@ -1,4 +1,5 @@
 import puppeteer from 'puppeteer';
+import fs from 'fs';
 
 (async () => {
   let browser;
@@ -22,6 +23,8 @@ import puppeteer from 'puppeteer';
       const reviews = [];
       // parse reviews
       document.querySelectorAll('div[data-review-id][aria-label]').forEach((parentEl) => {
+        const reviewUrlTemplate =
+          'https://www.google.com/maps/reviews/@-37.8354339,144.8650809,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1s{{reviewId}}!2m1!1s0x0:0xd077705b9fe576ea?hl=en&entry=ttu';
         parentEl.querySelector('button[aria-label="See more"]');
 
         const id = parentEl.getAttribute('data-review-id');
@@ -38,13 +41,14 @@ import puppeteer from 'puppeteer';
 
         const review = {
           id,
+          url: reviewUrlTemplate.replace('{{reviewId}}', id),
           reviewer: {
             profileUrl,
             profilePhotoUrl: profileImg.src,
             displayName: name,
           },
           comment,
-          starRating: starsEl.getAttribute('aria-label'),
+          starRating: Number(starsEl.getAttribute('aria-label').at(0)),
           date: dateEl.textContent,
         };
 
@@ -58,7 +62,7 @@ import puppeteer from 'puppeteer';
       };
     });
 
-    console.log(JSON.stringify(data, null, 2));
+    fs.writeFileSync('data.json', JSON.stringify(data, null, 2));
   } catch (err) {
     console.error(err);
     process.exit(1);

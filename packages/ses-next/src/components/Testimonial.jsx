@@ -6,23 +6,14 @@ import classNames from 'class-names';
 import { Icon } from './Icon/Icon';
 import { ConditionalWrap } from './ConditionalWrap';
 
-const starRatingMap = {
-  ONE: 1,
-  TWO: 2,
-  THREE: 3,
-  FOUR: 4,
-  FIVE: 5,
-};
-
 export function Testimonial(testimonial) {
   const {
     date,
     comment,
     starRating,
-    reviewer: { profilePhotoUrl, profileUrl, displayName, isAnonymous = false },
+    reviewer: { profilePhotoUrl, profileUrl, displayName },
     url,
   } = testimonial;
-  const rating = starRatingMap[starRating];
   const [showMore, setShowMore] = React.useState(false);
 
   return (
@@ -63,9 +54,9 @@ export function Testimonial(testimonial) {
                 type="radio"
                 disabled
                 aria-label={`${idx + 1} star`}
-                name={`rating-${displayName}`}
+                name={`starRating-${displayName}`}
                 className="mask mask-star-2 bg-orange-400 hover:cursor-default"
-                {...(rating === idx + 1 ? { checked: true } : null)}
+                {...(starRating === idx + 1 ? { checked: true } : null)}
               />
             ))}
           </div>
