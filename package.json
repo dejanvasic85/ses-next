@@ -5,7 +5,9 @@
     "clear-cache": "rm -rf ./ses-next/cache"
   },
   "workspaces": [
-    "./packages/*"
+    "./packages/ses-content",
+    "./packages/ses-next",
+    "./packages/ses-reviews"
   ],
   "volta": {
     "node": "20.10.0"

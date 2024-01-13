@@ -1,0 +1,11 @@
+{
+  "configurations": [
+    {
+      "name": "Launch reviews scraper",
+      "program": "${workspaceFolder}/packages/ses-reviews/google.mjs",
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node"
+    }
+  ]
+}

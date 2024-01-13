@@ -1,0 +1,16 @@
+{
+  "name": "ses-reviews",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start:google": "node google.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "puppeteer": "^21.7.0"
+  }
+}
