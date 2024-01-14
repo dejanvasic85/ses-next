@@ -1,3 +1,7 @@
-import data from './data.json';
+import ratingData from './data/rating.json';
+import reviewData from './data/reviews.json';
 
-export const googleReviews = data;
+export const googleReviews = {
+  ...ratingData,
+  reviews: reviewData.reviews,
+};

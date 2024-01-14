@@ -1,14 +1,15 @@
 import puppeteer from 'puppeteer';
 import fs from 'fs';
 
+import { URL } from './constants.mjs';
+
 (async () => {
+  console.log('Starting google reviews scrape');
   let browser;
   try {
-    browser = await puppeteer.launch({ headless: 'new', timeout: 0 });
+    browser = await puppeteer.launch({ headless: false, timeout: 0 });
     const [page] = await browser.pages();
-    page.goto(
-      'https://www.google.com/maps/place/Storm+Electrical+Solutions/@-37.8354296,144.862506,17z/data=!4m8!3m7!1s0x6ad667c1a4bda469:0xd077705b9fe576ea!8m2!3d-37.8354339!4d144.8650809!9m1!1b1!16s%2Fg%2F11f5ttzvmw?entry=ttu',
-    );
+    page.goto(URL);
 
     await page.waitForNavigation();
     await page.$$eval('button[aria-label="See more"]', (buttons) => {
@@ -16,15 +17,11 @@ import fs from 'fs';
     });
 
     const data = await page.evaluate(() => {
-      // parse overall stars and number of reviews
-      const [ratingElement] = document.getElementsByClassName('fontDisplayLarge');
-      const numberOfReviewsElement = ratingElement.nextSibling.nextSibling;
-
       const reviews = [];
-      // parse reviews
+      const REVIEW_URL_TEMPLATE =
+        'https://www.google.com/maps/reviews/@-37.8354339,144.8650809,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1s{{reviewId}}!2m1!1s0x0:0xd077705b9fe576ea?hl=en&entry=ttu';
+
       document.querySelectorAll('div[data-review-id][aria-label]').forEach((parentEl) => {
-        const reviewUrlTemplate =
-          'https://www.google.com/maps/reviews/@-37.8354339,144.8650809,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1s{{reviewId}}!2m1!1s0x0:0xd077705b9fe576ea?hl=en&entry=ttu';
         parentEl.querySelector('button[aria-label="See more"]');
 
         const id = parentEl.getAttribute('data-review-id');
@@ -41,7 +38,7 @@ import fs from 'fs';
 
         const review = {
           id,
-          url: reviewUrlTemplate.replace('{{reviewId}}', id),
+          url: REVIEW_URL_TEMPLATE.replace('{{reviewId}}', id),
           reviewer: {
             profileUrl,
             profilePhotoUrl: profileImg.src,
@@ -56,15 +53,13 @@ import fs from 'fs';
       });
 
       return {
-        overallRatingValue: ratingElement.textContent,
-        numberOfReviews: numberOfReviewsElement.textContent,
         reviews,
       };
     });
 
     const result = JSON.stringify(data, null, 2);
-    console.log('Google reviews', result);
-    fs.writeFileSync('data.json', result);
+    fs.writeFileSync('data/reviews.json', result);
+    console.log('Finished google reviews scrape', result);
   } catch (err) {
     console.error(err);
     process.exit(1);

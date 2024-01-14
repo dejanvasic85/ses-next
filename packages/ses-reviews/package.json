@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "update:reviews": "node google.mjs"
+    "update:rating": "node ./scrapeRating.mjs",
+    "update:reviews": "node ./scrapeReviews.mjs"
   },
   "keywords": [],
   "author": "",

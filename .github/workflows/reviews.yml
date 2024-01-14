@@ -1,9 +1,9 @@
-name: GitHub Actions Demo
+name: Google reviews
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
   update-reviews:
-    name: Update google reviews
+    name: Update google rating data
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
@@ -15,13 +15,13 @@ jobs:
       - name: Install
         run: npm install
       - name: Run
-        run: npm run update:reviews
+        run: npm run update:ratings
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
           branch: feat/update-google-reviews
-          title: 'feat: Google reviews updates'
+          title: 'feat: Google ratings updates'
           body: |
             This is an automated pull request to update the google reviews.
-          commit-message: 'feat: Google reviews updates'
+          commit-message: 'feat: Google ratings updates'
           labels: 'content'
