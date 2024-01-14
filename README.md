@@ -49,3 +49,15 @@ npm run deploy -w ses-content
 ```
 
 We don't use any other development database at the moment so just make sure that the content schema is backward compatible.
+
+## Google reviews
+
+The google reviews are not managed by content and instead they need to be fetched using puppeteer.
+
+To update reviews run the following command:
+
+```sh
+npm run update:reviews
+```
+
+This should update the data.json file in the ses-reviews package which is then used by the nextjs App during build time to update the google reviews content.

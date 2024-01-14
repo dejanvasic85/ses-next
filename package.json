@@ -4,7 +4,8 @@
     "dev": "npm run dev -w ses-next",
     "build": "npm run build -w ses-next",
     "clear-cache": "rm -rf ./ses-next/cache",
-    "deploy:content": "npm run build -w ses-content && npm run deploy -w ses-content"
+    "deploy:content": "npm run build -w ses-content && npm run deploy -w ses-content",
+    "update:reviews": "npm run update:reviews -w ses-reviews"
   },
   "workspaces": [
     "./packages/*"

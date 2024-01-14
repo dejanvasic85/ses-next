@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start:google": "node google.mjs"
+    "update:reviews": "node google.mjs"
   },
   "keywords": [],
   "author": "",
