@@ -15,7 +15,7 @@ jobs:
       - name: Install
         run: npm install
       - name: Run
-        run: npm run update:ratings
+        run: npm run update:rating
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
