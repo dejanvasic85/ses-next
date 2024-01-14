@@ -1,6 +1,7 @@
 name: Google reviews
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+on:
+  schedule:
+    - cron: 0 18 * * *
 jobs:
   update-reviews:
     name: Update google rating data
