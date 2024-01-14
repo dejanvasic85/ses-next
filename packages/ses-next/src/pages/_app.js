@@ -5,6 +5,7 @@ import TagManager from 'react-gtm-module';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
 import '../../styles/globals.css';
+import { Layout } from '../components/Layout';
 
 const { publicRuntimeConfig } = getConfig();
 
@@ -30,7 +31,9 @@ function MyApp({ Component, pageProps }) {
         defer: true,
       }}
     >
-      <Component {...pageProps} />
+      <Layout content={pageProps.content} pageUrl={pageProps.pageUrl} googleReviews={pageProps.googleReviews}>
+        <Component {...pageProps} />
+      </Layout>
     </GoogleReCaptchaProvider>
   );
 }

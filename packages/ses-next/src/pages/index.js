@@ -1,38 +1,22 @@
-import { googleReviews } from 'ses-reviews';
+import { About, Contact, Hero, Services } from '../components';
+import { getBasePageProps } from '../lib/basePageProps';
 
-import { getHomePageContent } from '../lib/content/contentService';
-import { About, Contact, Footer, Hero, Navbar, PageHead, Services } from '../components';
-
-export default function Home({
-  about,
-  baseUrl,
-  companyName,
-  companyLogo,
-  contact,
-  googleMapsLocation,
-  googleMapsLocationPlaceUrl,
-  googleReviews,
-  meta,
-  social,
-  services,
-  shortTitle,
-  tagline,
-  team,
-  training,
-}) {
+export default function Home({ content, googleReviews }) {
+  const {
+    about,
+    companyName,
+    companyLogo,
+    contact,
+    googleMapsLocation,
+    googleMapsLocationPlaceUrl,
+    social,
+    services,
+    tagline,
+    team,
+    training,
+  } = content;
   return (
     <>
-      <PageHead
-        canonicalUrl={baseUrl}
-        companyLogo={companyLogo}
-        companyName={companyName}
-        description={meta.description}
-        googleReviews={googleReviews}
-        phone={contact.phone}
-        socialTitle={companyName}
-        title={meta.title}
-      />
-      <Navbar contactPhone={contact.phone} title={shortTitle} />
       <main>
         <Hero
           companyName={companyName}
@@ -43,39 +27,31 @@ export default function Home({
           social={social}
           tagline={tagline}
         />
+
+        <section id="services" className="mt-32 pt-24">
+          <Services services={services} className="mt-12" />
+        </section>
+        <section id="about" className="mt-16 pt-24">
+          <About
+            aboutIntro={about}
+            team={team}
+            testimonials={googleReviews.reviews}
+            googleReviewsUrl={googleMapsLocationPlaceUrl}
+            training={training}
+          />
+        </section>
+        <section id="contact" className="mt-16 pt-24">
+          <Contact contact={contact} location={googleMapsLocation} />
+        </section>
       </main>
-      <section id="services" className="mt-32 pt-24">
-        <Services services={services} className="mt-12" />
-      </section>
-      <section id="about" className="mt-16 pt-24">
-        <About
-          aboutIntro={about}
-          team={team}
-          testimonials={googleReviews.reviews}
-          googleReviewsUrl={googleMapsLocationPlaceUrl}
-          training={training}
-        />
-      </section>
-      <section id="contact" className="mt-16 pt-24">
-        <Contact contact={contact} location={googleMapsLocation} />
-      </section>
-      <Footer social={social} services={services} />
     </>
   );
 }
 
 export const getStaticProps = async () => {
-  const content = await getHomePageContent();
-  const reviews = googleReviews.reviews.slice(0, 6);
-  console.log('googleMapsLocationPlaceUrl', content.googleMapsLocationPlaceUrl);
+  const props = await getBasePageProps({ pageUrl: '' });
 
   return {
-    props: {
-      ...content,
-      googleReviews: {
-        ...googleReviews,
-        reviews,
-      },
-    },
+    props,
   };
 };

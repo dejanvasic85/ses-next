@@ -1,8 +1,8 @@
 import { PortableText } from '@portabletext/react';
 import urlBuilder from '@sanity/image-url';
 
-import { Navbar, Footer, PageHead } from '../../components';
 import { getHomePageContent } from '../../lib/content/contentService';
+import { getBasePageProps } from '../../lib/basePageProps';
 import { config } from '../../lib/config';
 
 const builder = urlBuilder({
@@ -15,29 +15,10 @@ const CustomImage = (props) => {
   return <img src={src} alt="inline image" />;
 };
 
-export default function Service({
-  canonicalUrl,
-  companyName,
-  companyLogo,
-  contact,
-  meta,
-  social,
-  shortTitle,
-  service,
-  services,
-}) {
+export default function Service({ service }) {
   const { name, content } = service;
   return (
     <>
-      <PageHead
-        canonicalUrl={canonicalUrl}
-        companyLogo={companyLogo}
-        companyName={companyName}
-        description={meta.description}
-        socialTitle={companyName}
-        title={`${service.name} - ${meta.title}`}
-      />
-      <Navbar contactPhone={contact.phone} title={shortTitle} />
       <div className="bg-white py-6 sm:py-8 lg:py-12">
         <article className="mx-auto px-4 md:px-8 max-w-screen-lg prose lg:prose-lg">
           <h1 className="text-center">{name}</h1>
@@ -61,29 +42,18 @@ export default function Service({
           ))}
         </div>
       </div>
-
-      <Footer social={social} services={services} />
     </>
   );
 }
 
 export const getStaticProps = async ({ params }) => {
-  const content = await getHomePageContent();
-  const { baseUrl, companyName, companyLogo, contact, meta, social, shortTitle } = content;
-  const service = content.services.items.find(({ slug }) => slug === params.id);
-  const canonicalUrl = `${baseUrl}services/${params.id}`;
+  const props = await getBasePageProps({ pageUrl: `services/${params.id}` });
+  const service = props.content.services.items.find(({ slug }) => slug === params.id);
 
   return {
     props: {
-      canonicalUrl,
-      companyName,
-      companyLogo,
-      contact,
-      meta,
-      social,
-      shortTitle,
+      ...props,
       service,
-      services: content.services,
     },
   };
 };

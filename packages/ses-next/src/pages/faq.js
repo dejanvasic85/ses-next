@@ -1,28 +1,8 @@
-import { getHomePageContent } from '../lib/content/contentService';
-import { Footer, Navbar, PageHead } from '../components';
+import { getBasePageProps } from '../lib/basePageProps';
 
-export default function Faq({
-  contact,
-  companyLogo,
-  companyName,
-  faqItems,
-  meta,
-  navLinks,
-  services,
-  shortTitle,
-  social,
-}) {
+export default function Faq({ content: { faqItems } }) {
   return (
     <>
-      <PageHead
-        canonicalUrl={'/faq'}
-        companyLogo={companyLogo}
-        companyName={companyName}
-        description={meta.description}
-        socialTitle={companyName}
-        title={`Frequently asked questions - ${companyName}`}
-      />
-      <Navbar contactPhone={contact.phone} title={shortTitle} links={navLinks} />
       <div className="bg-white py-6 sm:py-8 lg:py-12">
         <div className="container mx-auto max-w-screen-xl px-4 md:px-8">
           <div className="mb-10 md:mb-16">
@@ -46,26 +26,16 @@ export default function Faq({
           </div>
         </div>
       </div>
-      <Footer social={social} services={services} />
     </>
   );
 }
 
 export const getStaticProps = async () => {
-  const content = await getHomePageContent();
-  const { contact, companyLogo, companyName, faqItems, meta, services, social, shortTitle } = content;
+  const props = await getBasePageProps({
+    pageUrl: 'faq',
+  });
 
   return {
-    props: {
-      contact,
-      companyLogo,
-      companyName,
-      faqItems,
-      navLinks: { home: '/', services: '/#services', about: '/#about', contact: '/#contact' },
-      meta,
-      services,
-      social,
-      shortTitle,
-    },
+    props,
   };
 };
