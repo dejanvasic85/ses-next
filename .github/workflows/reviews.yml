@@ -1,0 +1,27 @@
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
+jobs:
+  update-reviews:
+    name: Update google reviews
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Install volta
+        uses: volta-cli/action@v4
+      - name: Install
+        run: npm install
+      - name: Run
+        run: npm run update:reviews
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          branch: feat/update-google-reviews
+          title: 'feat: Google reviews updates'
+          body: |
+            This is an automated pull request to update the google reviews.
+          commit-message: 'feat: Google reviews updates'
+          labels: 'content'
