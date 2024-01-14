@@ -1,7 +1,7 @@
-import { About, Contact, Hero, Services } from '../components';
+import { About, Contact, Hero, Layout, Services } from '../components';
 import { getBasePageProps } from '../lib/basePageProps';
 
-export default function Home({ content, googleReviews }) {
+export default function Home({ content, googleReviews, pageUrl }) {
   const {
     about,
     companyName,
@@ -16,7 +16,7 @@ export default function Home({ content, googleReviews }) {
     training,
   } = content;
   return (
-    <>
+    <Layout content={content} pageUrl={pageUrl} googleReviews={googleReviews}>
       <main>
         <Hero
           companyName={companyName}
@@ -44,7 +44,7 @@ export default function Home({ content, googleReviews }) {
           <Contact contact={contact} location={googleMapsLocation} />
         </section>
       </main>
-    </>
+    </Layout>
   );
 }
 

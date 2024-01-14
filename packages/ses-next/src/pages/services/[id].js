@@ -4,6 +4,7 @@ import urlBuilder from '@sanity/image-url';
 import { getHomePageContent } from '../../lib/content/contentService';
 import { getBasePageProps } from '../../lib/basePageProps';
 import { config } from '../../lib/config';
+import { Layout } from '../../components';
 
 const builder = urlBuilder({
   projectId: config.sanityProjectId,
@@ -15,15 +16,15 @@ const CustomImage = (props) => {
   return <img src={src} alt="inline image" />;
 };
 
-export default function Service({ service }) {
-  const { name, content } = service;
+export default function Service({ content, service, pageUrl, googleReviews }) {
+  const { name, content: serviceContent } = service;
   return (
-    <>
+    <Layout content={content} pageUrl={pageUrl} googleReviews={googleReviews}>
       <div className="bg-white py-6 sm:py-8 lg:py-12">
         <article className="mx-auto px-4 md:px-8 max-w-screen-lg prose lg:prose-lg">
           <h1 className="text-center">{name}</h1>
           <PortableText
-            value={content}
+            value={serviceContent}
             components={{
               types: { image: CustomImage },
             }}
@@ -42,7 +43,7 @@ export default function Service({ service }) {
           ))}
         </div>
       </div>
-    </>
+    </Layout>
   );
 }
 
