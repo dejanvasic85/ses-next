@@ -61,10 +61,17 @@ export default defineType({
       ],
     }),
     defineField({
-      title: 'Google Maps location (url)',
+      title: 'Google Maps location embedded url',
       description:
         'You can get this by going to google maps doing a search and clicking share. Then click embed map and copy the url.',
       name: 'googleMapsLocation',
+      type: 'url',
+    }),
+    defineField({
+      title: 'Google Maps place url',
+      description:
+        'This is the actual url of the google place and you get it from the url of the google maps location. It should look something like this: https://www.google.com/maps/place/Your+Company+Name/@51.',
+      name: 'googleMapsLocationPlaceUrl',
       type: 'url',
     }),
     defineField({
