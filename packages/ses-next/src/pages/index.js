@@ -27,6 +27,7 @@ export default function Home({
         companyLogo={companyLogo}
         companyName={companyName}
         description={meta.description}
+        googleReviews={googleReviews}
         phone={contact.phone}
         socialTitle={companyName}
         title={meta.title}

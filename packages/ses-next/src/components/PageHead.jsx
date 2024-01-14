@@ -1,7 +1,28 @@
 import Head from 'next/head';
 import { NextSeo, LocalBusinessJsonLd } from 'next-seo';
 
-export function PageHead({ canonicalUrl, companyName, companyLogo, description, phone, title, socialTitle }) {
+export function PageHead({
+  canonicalUrl,
+  companyName,
+  companyLogo,
+  description,
+  googleReviews,
+  phone,
+  title,
+  socialTitle,
+}) {
+  const ratingCount = googleReviews.numberOfReviews.replace(' reviews', '');
+  const reviews = googleReviews.reviews.map(({ comment, reviewer, starRating }) => ({
+    author: reviewer.displayName,
+    reviewBody: comment,
+    reviewRating: {
+      bestRating: '5',
+      worstRating: '1',
+      reviewAspect: 'Ambiance',
+      ratingValue: String(starRating),
+    },
+  }));
+
   return (
     <>
       <Head>
@@ -22,7 +43,17 @@ export function PageHead({ canonicalUrl, companyName, companyLogo, description, 
           siteName: companyName,
         }}
       />
-      <LocalBusinessJsonLd type="LocalBusiness" images={[companyLogo]} name={companyName} telephone={phone} />
+      <LocalBusinessJsonLd
+        type="LocalBusiness"
+        images={[companyLogo]}
+        name={companyName}
+        telephone={phone}
+        rating={{
+          ratingValue: googleReviews.overallRatingValue,
+          ratingCount,
+        }}
+        review={reviews}
+      />
     </>
   );
 }
