@@ -5,8 +5,17 @@ import Image from 'next/image';
 import { Heading } from './Heading';
 import { Icon } from './Icon/Icon';
 import { LinkButton } from './LinkButton';
+import { Rating } from './Rating';
 
-export function Hero({ companyName, companyLogo, social, tagline }) {
+export function Hero({
+  companyName,
+  companyLogo,
+  social,
+  tagline,
+  googleReviewsUrl,
+  overallRatingValue,
+  numberOfReviews,
+}) {
   return (
     <div className="isolate bg-white">
       <div className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
@@ -82,6 +91,15 @@ export function Hero({ companyName, companyLogo, social, tagline }) {
                       <Icon name="linked-in" size="lg" />
                     </LinkButton>
                   )}
+                </div>
+                <div className="mt-6 flex flex-col justify-center items-center gap-4 bg-white border-2 md:w-1/2 m-auto p-4 rounded-3xl">
+                  <a className="text-base text-sm link" href={googleReviewsUrl} target="_blank">
+                    Average rating of {overallRatingValue} with {numberOfReviews}
+                  </a>
+                  <div className="flex items-center justify-center gap-2">
+                    <Rating name="overall" starRating={5} />{' '}
+                    <Image src="/google-logo.svg" alt="Google" width="80" height="15" />
+                  </div>
                 </div>
               </div>
               <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">

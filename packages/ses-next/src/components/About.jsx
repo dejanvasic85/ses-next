@@ -10,7 +10,7 @@ import { Modal } from './Modal';
 import { Team } from './Team';
 import { Testimonial } from './Testimonial';
 
-export function About({ team, testimonials, training }) {
+export function About({ team, testimonials, training, googleReviewsUrl }) {
   const [showFeedbackButton, setShowFeedbackButton] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const { sendFeedback, loading, feedbackSent } = useFeedback();
@@ -36,7 +36,7 @@ export function About({ team, testimonials, training }) {
           {showFeedbackButton && (
             <div className="mt-8 flex gap-4 justify-center items-center">
               <a
-                href="https://www.google.com/maps/place/Storm+Electrical+Solutions/@-37.8354339,144.8650809,15z/data=!4m2!3m1!1s0x0:0xd077705b9fe576ea?sa=X&ved=2ahUKEwjz-pjU39mDAxUEcmwGHTuOB8sQ_BJ6BAhFEAA"
+                href={googleReviewsUrl}
                 target="_blank"
                 className={classNames('link link-primary link-hover underline')}
               >

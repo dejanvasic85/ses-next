@@ -5,6 +5,7 @@ import classNames from 'class-names';
 
 import { Icon } from './Icon/Icon';
 import { ConditionalWrap } from './ConditionalWrap';
+import { Rating } from './Rating';
 
 export function Testimonial(testimonial) {
   const {
@@ -47,19 +48,7 @@ export function Testimonial(testimonial) {
             </ConditionalWrap>
             <em className="text-gray-200 text-sm">{date}</em>
           </div>
-          <div className="rating">
-            {Array.from({ length: 5 }, (_, idx) => (
-              <input
-                key={idx}
-                type="radio"
-                disabled
-                aria-label={`${idx + 1} star`}
-                name={`starRating-${displayName}`}
-                className="mask mask-star-2 bg-orange-400 hover:cursor-default"
-                {...(starRating === idx + 1 ? { checked: true } : null)}
-              />
-            ))}
-          </div>
+          <Rating starRating={starRating} name={displayName} />
           <div>
             <div className={classNames('pr-4 text-white', { 'line-clamp-4': !showMore })}>“{comment}”</div>
             <button className="text-gray-200 link" onClick={() => setShowMore(!showMore)}>

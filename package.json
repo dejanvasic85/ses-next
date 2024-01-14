@@ -3,15 +3,13 @@
     "dev:sanity": "npm run dev -w ses-content",
     "dev": "npm run dev -w ses-next",
     "build": "npm run build -w ses-next",
-    "clear-cache": "rm -rf ./ses-next/cache"
+    "clear-cache": "rm -rf ./ses-next/cache",
+    "deploy:content": "npm run build -w ses-content && npm run deploy -w ses-content"
   },
   "workspaces": [
-    "./packages/ses-content",
-    "./packages/ses-next",
-    "./packages/ses-reviews"
+    "./packages/*"
   ],
   "volta": {
     "node": "20.10.0"
-  },
-  "packageManager": "pnpm@8.14.1"
+  }
 }
