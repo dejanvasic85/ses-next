@@ -12,6 +12,8 @@ import { URL } from './constants.mjs';
     page.goto(URL);
 
     await page.waitForNavigation();
+    // pause for 5 seconds
+    await new Promise((resolve) => setTimeout(resolve, 5000));
     await page.$$eval('button[aria-label="See more"]', (buttons) => {
       buttons.forEach((btn) => btn.click());
     });
