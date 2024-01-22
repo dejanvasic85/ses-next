@@ -31,13 +31,6 @@ export default defineType({
       descripton: 'Hint: Appears below the main heading',
     }),
     defineField({
-      name: 'tagline',
-      type: 'string',
-      title: 'Tagline',
-      descripton: 'Hint: Appears below the title (company name)',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
       name: 'shortTitle',
       type: 'string',
       title: 'Short Title',
