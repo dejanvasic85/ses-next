@@ -19,6 +19,18 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'mainHeading',
+      type: 'string',
+      title: 'Main Heading',
+      descripton: 'Hint: Appears below the logo',
+    }),
+    defineField({
+      name: 'subHeading',
+      type: 'string',
+      title: 'Sub Heading',
+      descripton: 'Hint: Appears below the main heading',
+    }),
+    defineField({
       name: 'tagline',
       type: 'string',
       title: 'Tagline',
