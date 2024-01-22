@@ -11,7 +11,8 @@ export function Hero({
   companyName,
   companyLogo,
   social,
-  tagline,
+  mainHeading,
+  subHeading,
   googleReviewsUrl,
   overallRatingValue,
   numberOfReviews,
@@ -71,9 +72,9 @@ export function Hero({
               </div>
               <div className="text-center">
                 <Heading level={1}>
-                  <strong>{companyName}</strong>
+                  <strong>{mainHeading}</strong>
                 </Heading>
-                <p className="mt-6 text-lg leading-8 text-gray-600">{tagline}</p>
+                <h2 className="mt-6 text-base md:text-lg leading-8 text-gray-600">{subHeading}</h2>
                 <div className="mt-8 flex gap-x-4 justify-center">
                   <LinkButton href="#contact">Get a free quote</LinkButton>
                   {social.facebook && (

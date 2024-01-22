@@ -9,9 +9,10 @@ export default function Home({ content, googleReviews, pageUrl }) {
     contact,
     googleMapsLocation,
     googleMapsLocationPlaceUrl,
+    mainHeading,
+    subHeading,
     social,
     services,
-    tagline,
     team,
     training,
   } = content;
@@ -25,7 +26,8 @@ export default function Home({ content, googleReviews, pageUrl }) {
           numberOfReviews={googleReviews.numberOfReviews}
           overallRatingValue={googleReviews.overallRatingValue}
           social={social}
-          tagline={tagline}
+          mainHeading={mainHeading}
+          subHeading={subHeading}
         />
 
         <section id="services" className="mt-32 pt-24">

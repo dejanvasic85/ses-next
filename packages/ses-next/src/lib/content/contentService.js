@@ -32,7 +32,8 @@ export const getHomePageContent = async (contentFetch) => {
     meta,
     shortTitle,
     socialMedia: social,
-    tagline,
+    mainHeading,
+    subHeading,
   } = homepageItem;
 
   const [services, team, training, testimonials, companyLogo] = composeContent(fullContent, homepageItem)(
@@ -57,7 +58,8 @@ export const getHomePageContent = async (contentFetch) => {
     services,
     shortTitle,
     social,
-    tagline,
+    mainHeading,
+    subHeading,
     team,
     training,
     testimonials,
