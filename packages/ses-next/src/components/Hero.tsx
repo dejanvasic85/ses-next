@@ -49,7 +49,7 @@ export function Hero({
 
       <main>
         <div className="relative px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl pt-12 pb-16 sm:pt-24 sm:pb-20 md:p-0">
+          <div className="mx-auto max-w-3xl pt-10 pb-16 sm:pt-24 sm:pb-20 md:p-0">
             <div className="flex-col md:flex-row justify-center">
               <div className="rounded-3xl flex justify-center">
                 <Image
