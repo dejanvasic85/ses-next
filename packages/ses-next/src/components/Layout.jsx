@@ -2,7 +2,7 @@ import { PageHead } from './PageHead';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 
-export function Layout({ children, content, googleReviews, pageUrl }) {
+export function Layout({ children, content, googleReviews, pageUrl, title }) {
   const { companyName, companyLogo, contact, meta, services, shortTitle, social } = content;
   return (
     <>
@@ -14,7 +14,7 @@ export function Layout({ children, content, googleReviews, pageUrl }) {
         googleReviews={googleReviews}
         phone={contact.phone}
         socialTitle={companyName}
-        title={meta.title}
+        title={title || meta.title}
       />
       <Navbar contactPhone={contact.phone} title={shortTitle} />
       {children}

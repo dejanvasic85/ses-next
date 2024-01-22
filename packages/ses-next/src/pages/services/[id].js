@@ -16,10 +16,10 @@ const CustomImage = (props) => {
   return <img src={src} alt="inline image" />;
 };
 
-export default function Service({ content, service, pageUrl, googleReviews }) {
+export default function Service({ content, service, pageUrl, googleReviews, title }) {
   const { name, content: serviceContent } = service;
   return (
-    <Layout content={content} pageUrl={pageUrl} googleReviews={googleReviews}>
+    <Layout content={content} pageUrl={pageUrl} googleReviews={googleReviews} title={title}>
       <div className="bg-white py-6 sm:py-8 lg:py-12">
         <article className="mx-auto px-4 md:px-8 max-w-screen-lg prose lg:prose-lg">
           <h1 className="text-center">{name}</h1>
@@ -50,11 +50,13 @@ export default function Service({ content, service, pageUrl, googleReviews }) {
 export const getStaticProps = async ({ params }) => {
   const props = await getBasePageProps({ pageUrl: `services/${params.id}` });
   const service = props.content.services.items.find(({ slug }) => slug === params.id);
+  const [titlePrefix = ''] = props.content.meta.title.split('|');
 
   return {
     props: {
       ...props,
       service,
+      title: `${titlePrefix.trim()} | ${service.name}`,
     },
   };
 };
