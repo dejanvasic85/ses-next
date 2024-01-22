@@ -16,7 +16,7 @@ class MyDocument extends Document {
           <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
           <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
           <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
-          <meta name="robots" content="noodp" />
+          <meta name="robots" content="index, follow" />
           <meta property="og:locale" content="en_AU" />
           <meta property="og:type" content="website" />
         </Head>
