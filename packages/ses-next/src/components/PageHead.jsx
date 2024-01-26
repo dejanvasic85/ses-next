@@ -11,7 +11,8 @@ export function PageHead({
   title,
   socialTitle,
 }) {
-  const ratingCount = googleReviews.numberOfReviews.replace(' reviews', '');
+  const ratingCount = googleReviews.numberOfReviews.replace('reviews', '').trim();
+  const ratingValue = googleReviews.overallRatingValue.replace('.0', '').trim();
   const reviews = googleReviews.reviews.map(({ comment, reviewer, starRating }) => ({
     author: reviewer.displayName,
     reviewBody: comment,
@@ -49,8 +50,10 @@ export function PageHead({
         name={companyName}
         telephone={phone}
         rating={{
-          ratingValue: googleReviews.overallRatingValue,
+          ratingValue,
           ratingCount,
+          bestRating: '5',
+          worstRating: '0',
         }}
         review={reviews}
       />
