@@ -14,7 +14,7 @@
   "dependencies": {
     "@portabletext/react": "3.0.11",
     "@sanity/image-url": "1.0.2",
-    "aws-sdk": "2.1540.0",
+    "aws-sdk": "2.1545.0",
     "class-names": "1.0.0",
     "daisyui": "4.6.0",
     "eslint": "8.56.0",
@@ -33,7 +33,7 @@
     "@next/bundle-analyzer": "14.1.0",
     "@tailwindcss/typography": "0.5.10",
     "autoprefixer": "10.4.17",
-    "lighthouse": "11.4.0",
+    "lighthouse": "11.5.0",
     "postcss": "8.4.33",
     "tailwindcss": "3.4.1",
     "prettier": "3.2.4"
