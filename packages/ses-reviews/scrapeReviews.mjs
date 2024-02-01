@@ -35,7 +35,7 @@ import { URL } from './constants.mjs';
         const profileImg = photoButton.querySelector('img');
         const [, , , reviewDetailsEl] = secondChild.children;
         const [starsAndDateEl, commentsEl] = reviewDetailsEl.children;
-        const [starsEl, dateEl] = starsAndDateEl.querySelectorAll('span');
+        const [starsEl, dateEl] = starsAndDateEl.children;
         const comment = commentsEl.querySelector('span').textContent;
 
         const review = {
