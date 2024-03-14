@@ -18,6 +18,7 @@ const emailTemplates = {
     <p><strong>Full name:</strong> {{fullName}}</p>
     <p><strong>Email:</strong> {{email}}</p>
     <p><strong>Phone:</strong> {{phone}}</p>
+    <p><strong>Address:</strong> {{address}}</p>
     <p><strong>Message:</strong> {{message}}</p>
     `,
     subjectTemplate: `New SES message from {{fullName}}`,

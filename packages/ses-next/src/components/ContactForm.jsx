@@ -10,13 +10,14 @@ export function ContactForm({ loading, onSubmit }) {
     formState: { errors },
     handleSubmit,
     register,
-  } = useForm({ defaultValues: { fullName: '', email: '', phone: '', message: '' } });
+  } = useForm({ defaultValues: { fullName: '', email: '', phone: '', message: '', address: '' } });
 
   const {
     fullName: fullNameError = {},
     email: emailError = {},
     phone: phoneError = {},
     message: messageError = {},
+    address: addressError = {},
   } = errors;
 
   const handleReCaptchaVerify = useCallback(
@@ -104,6 +105,28 @@ export function ContactForm({ loading, onSubmit }) {
           <label className="label text-error">
             <span className="label-text-alt text-error" id="phoneErrorMessage">
               {phoneError?.message}
+            </span>
+          </label>
+        )}
+      </div>
+
+      <div className="form-control w-full">
+        <label className="label" htmlFor="address">
+          <span className="label-text">Address</span>
+        </label>
+        <input
+          type="text"
+          id="address"
+          maxLength={100}
+          aria-invalid={!!addressError?.message}
+          aria-describedby={!!addressError?.message ? 'addressErrorMessage' : null}
+          className={classNames('input input-bordered w-full', { 'input-error': addressError?.message })}
+          {...register('address')}
+        />
+        {addressError && (
+          <label className="label text-error">
+            <span className="label-text-alt text-error" id="addressErrorMessage">
+              {addressError?.message}
             </span>
           </label>
         )}
