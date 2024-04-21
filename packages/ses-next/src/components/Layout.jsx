@@ -17,7 +17,7 @@ export function Layout({ children, content, googleReviews, pageUrl, title }) {
         title={title || meta.title}
       />
       <Navbar contactPhone={contact.phone} title={shortTitle} />
-      {children}
+      <main>{children}</main>
       <Footer social={social} services={services} />
     </>
   );
