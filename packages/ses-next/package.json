@@ -16,7 +16,7 @@
     "@sanity/image-url": "1.0.2",
     "aws-sdk": "2.1603.0",
     "class-names": "1.0.0",
-    "daisyui": "4.10.1",
+    "daisyui": "4.10.2",
     "eslint": "8.57.0",
     "eslint-config-next": "14.1.4",
     "next": "14.1.4",
