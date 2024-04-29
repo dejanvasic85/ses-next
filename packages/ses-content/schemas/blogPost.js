@@ -16,9 +16,24 @@ export default defineType({
       type: 'slug',
     },
     {
+      type: 'image',
+      name: 'photo',
+      title: 'Photo',
+    },
+    {
       name: 'publishedAt',
       title: 'Published at',
       type: 'datetime',
+    },
+    {
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [
+        {
+          type: 'string',
+        },
+      ],
     },
     {
       name: 'body',

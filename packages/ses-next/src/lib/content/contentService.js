@@ -65,3 +65,8 @@ export const getHomePageContent = async (contentFetch) => {
     testimonials,
   };
 };
+
+export const getBlogPosts = async () => {
+  const { result: fullContent } = await fetchFromCacheOrApi();
+  return fullContent.filter(({ _type }) => _type === 'blog-post');
+};

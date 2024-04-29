@@ -1,11 +1,13 @@
-import { Layout } from '../../components';
-import { getBasePageProps } from '../../lib/basePageProps';
 import Link from 'next/link';
 
-export default function Home({ content, googleReviews, pageUrl }) {
+import { Layout } from '../../components';
+import { getBasePageProps } from '../../lib/basePageProps';
+import { getBlogPosts } from '../../lib/content/contentService';
+
+export default function Home({ content, googleReviews, pageUrl, tags }) {
   return (
     <Layout content={content} pageUrl={pageUrl} googleReviews={googleReviews}>
-      <div className="flex min-h-[50vh] w-full flex-col justify-center gap-6 p-4 lg:flex-row">
+      <div className="flex min-h-[50vh] w-full flex-col mt-6 justify-center gap-6 p-4 lg:flex-row">
         <section className="max-w-2xl max-lg:mx-auto max-lg:w-full">
           <div className="mx-auto sm:max-w-none">
             <div className="mb-8 px-6">
@@ -23,9 +25,18 @@ export default function Home({ content, googleReviews, pageUrl }) {
                 </div>
               </div>
             </div>
+            <ul class="menu menu-horizontal lg:menu-vertical lg:w-56">
+              <li class="menu-title">Tags</li>{' '}
+              {tags.map((tag) => (
+                <li class="menu-item">
+                  <Link href={`/blog/tag/${tag}`} className="menu-link">
+                    {tag}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
-
         <section className="mx-auto w-full max-w-2xl">Todo... List of articles here with previews</section>
       </div>
     </Layout>
@@ -33,9 +44,14 @@ export default function Home({ content, googleReviews, pageUrl }) {
 }
 
 export const getStaticProps = async () => {
-  const props = await getBasePageProps({ pageUrl: '' });
+  const baseProps = await getBasePageProps({ pageUrl: '' });
+  const blogPosts = await getBlogPosts();
+  const tags = blogPosts.flatMap(({ tags }) => tags);
 
   return {
-    props,
+    props: {
+      ...baseProps,
+      tags,
+    },
   };
 };
