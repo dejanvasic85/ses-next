@@ -76,16 +76,32 @@ export default function Home({ content, googleReviews, pageUrl, tags, blogPosts 
   );
 }
 
-export const getStaticProps = async () => {
+export const getStaticProps = async ({ params }) => {
   const baseProps = await getBasePageProps({ pageUrl: '' });
   const blogPosts = await getBlogPosts();
+  const post = blogPosts.find(({ slug }) => slug === params.slug);
   const tags = blogPosts.flatMap(({ tags }) => tags);
 
   return {
     props: {
       ...baseProps,
       blogPosts,
+      post,
       tags,
     },
+  };
+};
+
+export const getStaticPaths = async () => {
+  const blogPosts = await getBlogPosts();
+  const paths = blogPosts
+    .filter(({ slug }) => slug)
+    .map(({ slug }) => ({
+      params: { slug },
+    }));
+
+  return {
+    paths,
+    fallback: false,
   };
 };

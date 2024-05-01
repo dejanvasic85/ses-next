@@ -68,5 +68,15 @@ export const getHomePageContent = async (contentFetch) => {
 
 export const getBlogPosts = async () => {
   const { result: fullContent } = await fetchFromCacheOrApi();
-  return fullContent.filter(({ _type }) => _type === 'blog-post');
+  return fullContent
+    .filter(({ _type }) => _type === 'blog-post')
+    .map(({ _id, body, title, tags, slug, publishedAt, photo }) => ({
+      id: _id,
+      body,
+      title,
+      tags,
+      slug: slug.current,
+      publishedAt,
+      photo: fullContent.find(({ _id }) => _id === photo.asset._ref).url,
+    }));
 };
