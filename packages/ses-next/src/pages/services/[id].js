@@ -1,20 +1,8 @@
 import { PortableText } from '@portabletext/react';
-import urlBuilder from '@sanity/image-url';
 
 import { getHomePageContent } from '../../lib/content/contentService';
 import { getBasePageProps } from '../../lib/basePageProps';
-import { config } from '../../lib/config';
-import { Layout } from '../../components';
-
-const builder = urlBuilder({
-  projectId: config.sanityProjectId,
-  dataset: config.sanityDataset,
-});
-
-const CustomImage = (props) => {
-  const src = builder.image(props.value).url();
-  return <img src={src} alt="inline image" />;
-};
+import { Layout, CustomImage } from '../../components';
 
 export default function Service({ content, service, pageUrl, googleReviews, title }) {
   const { name, content: serviceContent } = service;

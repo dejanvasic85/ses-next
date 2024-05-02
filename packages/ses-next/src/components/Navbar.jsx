@@ -1,4 +1,5 @@
 import classNames from 'class-names';
+import NextLink from 'next/link';
 
 import { Container, Icon } from '.';
 
@@ -14,7 +15,14 @@ const styles = {
 export function Navbar({
   contactPhone,
   title,
-  links = { home: '/', services: '/#services', about: '/#about', contact: '/#contact', faq: '/faq', blog: '/blog' },
+  links = {
+    home: '/',
+    services: '/#services',
+    about: '/#about',
+    contact: '/#contact',
+    faq: '/faq',
+    blog: '/blog',
+  },
 }) {
   return (
     <div className={classNames(styles.nav.default, styles.nav.scrolled)}>
@@ -47,11 +55,11 @@ export function Navbar({
                   FAQ
                 </a>
               </li>
-              {/* <li>
-                <a className="rounded-lg" href={links.blog}>
+              <li>
+                <NextLink className="rounded-lg" href={links.blog}>
                   Blog
-                </a>
-              </li> */}
+                </NextLink>
+              </li>
               {contactPhone && (
                 <li className="hidden md:inline-block">
                   <a className="rounded-lg" href={`tel:${contactPhone}`}>

@@ -1,15 +1,17 @@
 import Link from 'next/link';
-import NextImage from 'next/image';
 
-import { Layout } from '../../components';
+import { PortableText } from '@portabletext/react';
+import { formatDistanceToNow } from 'date-fns';
+
+import { Layout, CustomImage } from '../../components';
 import { getBasePageProps } from '../../lib/basePageProps';
 import { getBlogPosts } from '../../lib/content/contentService';
 
-export default function Home({ content, googleReviews, pageUrl, tags, blogPosts }) {
+export default function BlogPost({ content, googleReviews, pageUrl, tags, post }) {
   return (
     <Layout content={content} pageUrl={pageUrl} googleReviews={googleReviews}>
-      <div className="flex min-h-[50vh] w-full flex-col mt-6 justify-center gap-6 p-4 lg:flex-row">
-        <section className="max-w-2xl max-lg:mx-auto max-lg:w-full">
+      <div className="flex min-h-[50vh] flex-col mt-6 justify-center gap-6 lg:flex-row container mx-auto">
+        <section className="max-w-xl max-lg:mx-auto max-lg:w-full">
           <div className="mx-auto sm:max-w-none">
             <div className="mb-8 px-6">
               <div className="flex items-center gap-3">
@@ -38,39 +40,21 @@ export default function Home({ content, googleReviews, pageUrl, tags, blogPosts 
             </ul>
           </div>
         </section>
-        <div className="mx-auto w-full max-w-2xl">
-          <div className="grid justify-items-stretch gap-6">
-            {blogPosts.map(({ id, title, tags, photo, slug, publishedAt }) => (
-              <Link
-                key={id}
-                class="card sm:card-side hover:bg-base-200 transition-colors sm:max-w-none"
-                href={`/blog/${slug}`}
-              >
-                <figure class="mx-auto w-full object-cover p-6 max-sm:pb-0 sm:max-w-[12rem] sm:pe-0">
-                  <NextImage
-                    width={200}
-                    height={200}
-                    loading="lazy"
-                    src={photo}
-                    class="border-base-content bg-base-300 rounded-btn border border-opacity-5"
-                    alt={title}
-                  />
-                </figure>
-                <div class="card-body">
-                  <h2 class="card-title">{title}</h2>{' '}
-                  <div>
-                    {tags.map((tag) => (
-                      <span class="badge" key={tag}>
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <p class="text-xs opacity-60">{new Date(publishedAt).toLocaleDateString()}</p>
-                </div>
-              </Link>
-            ))}
+        <article className="mx-auto w-full md:w-3/5 px-10 prose lg:prose-lg">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-tight md:leading-none mb-12 md:text-left">
+            {post.title}
+          </h1>
+          <div class="mb-2 text-gray-700 italic">
+            Published{` `}
+            <time title={post.publishedAt}>{formatDistanceToNow(new Date(post.publishedAt), { addSuffix: true })}</time>
           </div>
-        </div>
+          <PortableText
+            value={post.body}
+            components={{
+              types: { image: CustomImage },
+            }}
+          />
+        </article>
       </div>
     </Layout>
   );
