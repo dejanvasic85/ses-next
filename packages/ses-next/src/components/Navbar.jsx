@@ -34,7 +34,7 @@ export function Navbar({
             </a>
           </div>
           <div className="flex items-center justify-center text-sm md:text-base w-full md:w-auto md:flex-none">
-            <ul className="menu menu-horizontal p-0">
+            <ul className="menu menu-xs lg:menu-md menu-horizontal p-0">
               <li>
                 <a className="rounded-lg" href={links.services}>
                   Services

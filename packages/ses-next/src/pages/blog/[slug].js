@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import NextImage from 'next/image';
 
 import { PortableText } from '@portabletext/react';
 import { formatDistanceToNow } from 'date-fns';
@@ -44,6 +45,16 @@ export default function BlogPost({ content, googleReviews, pageUrl, tags, post }
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-tight md:leading-none mb-12 md:text-left">
             {post.title}
           </h1>
+          <figure class="w-full">
+            <NextImage
+              loading="lazy"
+              width={800}
+              height={400}
+              src={post.photo}
+              class="border-base-content bg-base-300 rounded-box border border-opacity-5"
+              alt={post.title}
+            />
+          </figure>
           <div class="mb-2 text-gray-700 italic">
             Published{` `}
             <time title={post.publishedAt}>{formatDistanceToNow(new Date(post.publishedAt), { addSuffix: true })}</time>
