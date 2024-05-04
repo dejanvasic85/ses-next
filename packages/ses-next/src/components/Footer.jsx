@@ -9,7 +9,7 @@ const ConditionalWrap = ({ children, condition, wrapper }) => {
 
 export function Footer({
   social = {},
-  links = { home: '/', services: '/#services', about: '/#about', contact: '/#contact', faq: '/faq' },
+  links = { home: '/', services: '/#services', about: '/#about', contact: '/#contact', faq: '/faq', blog: '/blog' },
   services = { items: [] },
 }) {
   const today = new Date();
@@ -26,18 +26,21 @@ export function Footer({
       </div>
       <div>
         <span className="footer-title">Company</span>
-        <a className="link link-hover" href={links.services}>
+        <Link className="link link-hover" href={links.services}>
           Services
-        </a>
-        <a className="link link-hover" href={links.about}>
+        </Link>
+        <Link className="link link-hover" href={links.about}>
           About us
-        </a>
-        <a className="link link-hover" href={links.contact}>
+        </Link>
+        <Link className="link link-hover" href={links.contact}>
           Contact us
-        </a>
-        <a className="link link-hover" href={links.faq}>
+        </Link>
+        <Link className="link link-hover" href={links.blog}>
+          Blog
+        </Link>
+        <Link className="link link-hover" href={links.faq}>
           FAQ
-        </a>
+        </Link>
       </div>
       <div>
         <span className="footer-title">Services</span>
@@ -58,22 +61,22 @@ export function Footer({
       <div>
         <span className="footer-title">Follow us</span>
         {social.facebook && (
-          <a className="link link-hover flex gap-1" href={social.facebook} target="_blank">
+          <Link className="link link-hover flex gap-1" href={social.facebook} target="_blank">
             <Icon name="facebook" />
             Facebook
-          </a>
+          </Link>
         )}
         {social.instagram && (
-          <a className="link link-hover flex gap-1" href={social.instagram} target="_blank">
+          <Link className="link link-hover flex gap-1" href={social.instagram} target="_blank">
             <Icon name="instagram" />
             Instagram
-          </a>
+          </Link>
         )}
         {social.linkedIn && (
-          <a className="link link-hover flex gap-1" href={social.linkedIn} target="_blank">
+          <Link className="link link-hover flex gap-1" href={social.linkedIn} target="_blank">
             <Icon name="linked-in" />
             Linked in
-          </a>
+          </Link>
         )}
       </div>
     </footer>
