@@ -70,8 +70,9 @@ export const getBlogPosts = async () => {
   const { result: fullContent } = await fetchFromCacheOrApi();
   return fullContent
     .filter(({ _type }) => _type === 'blog-post')
-    .map(({ _id, body, title, tags, slug, publishedAt, photo }) => ({
+    .map(({ _id, description, body, title, tags, slug, publishedAt, photo }) => ({
       id: _id,
+      description,
       body,
       title,
       tags,

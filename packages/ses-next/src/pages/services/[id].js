@@ -7,7 +7,6 @@ import { Layout, CustomImage } from '../../components';
 
 export default function Service({ content, service, pageUrl, title }) {
   const { name, content: serviceContent } = service;
-  console.log('service', service);
   return (
     <>
       <ProductJsonLd

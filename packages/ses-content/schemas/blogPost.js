@@ -11,6 +11,12 @@ export default defineType({
       type: 'string',
     },
     {
+      name: 'description',
+      title: 'Description',
+      type: 'string',
+      descripton: 'Hint: This will display in the blogs section',
+    },
+    {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
