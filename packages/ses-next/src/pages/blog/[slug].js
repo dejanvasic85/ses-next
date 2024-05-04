@@ -8,9 +8,9 @@ import { Layout, CustomImage } from '../../components';
 import { getBasePageProps } from '../../lib/basePageProps';
 import { getBlogPosts } from '../../lib/content/contentService';
 
-export default function BlogPost({ content, googleReviews, pageUrl, tags, post }) {
+export default function BlogPost({ content, pageUrl, tags, post }) {
   return (
-    <Layout content={content} pageUrl={pageUrl} googleReviews={googleReviews}>
+    <Layout content={content} pageUrl={pageUrl}>
       <div className="flex min-h-[50vh] flex-col mt-6 justify-center gap-6 lg:flex-row container mx-auto">
         <section className="max-w-xl max-lg:mx-auto max-lg:w-full">
           <div className="mx-auto sm:max-w-none">
