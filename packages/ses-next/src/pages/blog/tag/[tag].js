@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import NextImage from 'next/image';
 
-import { BlogMenu, Layout } from '../../components';
-import { getBasePageProps } from '../../lib/basePageProps';
-import { getBlogPosts } from '../../lib/content/contentService';
-import { tagsFromBlogs } from '../../lib/blogUtils';
+import { BlogMenu, Layout } from '../../../components';
+import { getBasePageProps } from '../../../lib/basePageProps';
+import { getBlogPosts } from '../../../lib/content/contentService';
+import { tagsFromBlogs } from '../../../lib/blogUtils';
 
-export default function Blog({ content, googleReviews, pageUrl, tags, blogPosts }) {
+export default function Tags({ content, googleReviews, pageUrl, tags, blogPosts }) {
   return (
     <Layout content={content} pageUrl={pageUrl} googleReviews={googleReviews}>
       <div className="flex min-h-[50vh] w-full flex-col mt-6 p-6 justify-center gap-6 lg:flex-row container mx-auto">
@@ -50,16 +50,36 @@ export default function Blog({ content, googleReviews, pageUrl, tags, blogPosts 
   );
 }
 
-export const getStaticProps = async () => {
-  const baseProps = await getBasePageProps({ pageUrl: 'blog' });
+export const getStaticProps = async ({ params }) => {
+  const baseProps = await getBasePageProps({ pageUrl: `blog/tag/${params.tag}` });
   const blogPosts = await getBlogPosts();
   const tags = tagsFromBlogs(blogPosts);
 
   return {
     props: {
       ...baseProps,
-      blogPosts,
+      blogPosts: blogPosts.filter(({ tags }) => tags.includes(params.tag)),
       tags,
     },
+  };
+};
+
+export const getStaticPaths = async () => {
+  const blogPosts = await getBlogPosts();
+
+  const tagSet = [];
+  blogPosts
+    .flatMap(({ tags }) => tags)
+    .forEach((tag) => {
+      if (!tagSet.includes(tag)) {
+        tagSet.push(tag);
+      }
+    });
+
+  const paths = tagSet.map((tag) => ({ params: { tag } }));
+
+  return {
+    paths,
+    fallback: false,
   };
 };

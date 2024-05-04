@@ -8,6 +8,7 @@ import { formatDistanceToNow } from 'date-fns';
 import { Layout, CustomImage } from '../../components';
 import { getBasePageProps } from '../../lib/basePageProps';
 import { getBlogPosts } from '../../lib/content/contentService';
+import { tagsFromBlogs } from '../../lib/blogUtils';
 
 export default function BlogPost({ content, pageUrl, tags, post }) {
   return (
@@ -21,7 +22,7 @@ export default function BlogPost({ content, pageUrl, tags, post }) {
         images={[post.photo]}
       />
       <Layout content={content} pageUrl={pageUrl}>
-        <div className="flex min-h-[50vh] flex-col mt-6 justify-center gap-6 lg:flex-row container mx-auto">
+        <div className="flex min-h-[50vh] flex-col mt-6 p-6 justify-center gap-6 lg:flex-row container mx-auto">
           <section className="max-w-xl max-lg:mx-auto max-lg:w-full">
             <div className="mx-auto sm:max-w-none">
               <div className="mb-8 px-6">
@@ -93,7 +94,7 @@ export const getStaticProps = async ({ params }) => {
   const baseProps = await getBasePageProps({ pageUrl: `blog/${params.slug}` });
   const blogPosts = await getBlogPosts();
   const post = blogPosts.find(({ slug }) => slug === params.slug);
-  const tags = blogPosts.flatMap(({ tags }) => tags);
+  const tags = tagsFromBlogs(blogPosts);
 
   return {
     props: {

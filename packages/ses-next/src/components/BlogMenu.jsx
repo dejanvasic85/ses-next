@@ -21,7 +21,7 @@ export const BlogMenu = ({ tags }) => {
       <ul className="menu menu-horizontal lg:menu-vertical lg:w-56">
         <li className="menu-title">Tags</li>{' '}
         {tags.map((tag) => (
-          <li className="menu-item" key={tag}>
+          <li className="menu-item mb-2" key={tag}>
             <Link href={`/blog/tag/${tag}`} className="menu-link">
               {tag}
             </Link>
