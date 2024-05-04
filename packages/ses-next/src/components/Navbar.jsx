@@ -1,4 +1,5 @@
 import classNames from 'class-names';
+import NextLink from 'next/link';
 
 import { Container, Icon } from '.';
 
@@ -14,7 +15,14 @@ const styles = {
 export function Navbar({
   contactPhone,
   title,
-  links = { home: '/', services: '/#services', about: '/#about', contact: '/#contact', faq: '/faq' },
+  links = {
+    home: '/',
+    services: '/#services',
+    about: '/#about',
+    contact: '/#contact',
+    faq: '/faq',
+    blog: '/blog',
+  },
 }) {
   return (
     <div className={classNames(styles.nav.default, styles.nav.scrolled)}>
@@ -26,7 +34,7 @@ export function Navbar({
             </a>
           </div>
           <div className="flex items-center justify-center text-sm md:text-base w-full md:w-auto md:flex-none">
-            <ul className="menu menu-horizontal p-0">
+            <ul className="menu menu-xs lg:menu-md menu-horizontal p-0">
               <li>
                 <a className="rounded-lg" href={links.services}>
                   Services
@@ -46,6 +54,11 @@ export function Navbar({
                 <a className="rounded-lg" href={links.faq}>
                   FAQ
                 </a>
+              </li>
+              <li>
+                <NextLink className="rounded-lg" href={links.blog}>
+                  Blog
+                </NextLink>
               </li>
               {contactPhone && (
                 <li className="hidden md:inline-block">

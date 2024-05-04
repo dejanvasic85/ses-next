@@ -1,6 +1,8 @@
 export { About } from './About';
+export { BlogMenu } from './BlogMenu';
 export { Contact } from './Contact';
 export { Container } from './Container';
+export { CustomImage } from './CustomImage';
 export { FeedbackForm } from './FeedbackForm';
 export { Icon } from './Icon/Icon';
 export { Footer } from './Footer';

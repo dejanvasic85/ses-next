@@ -17,6 +17,7 @@
     "aws-sdk": "2.1603.0",
     "class-names": "1.0.0",
     "daisyui": "4.10.2",
+    "date-fns": "3.6.0",
     "eslint": "8.57.0",
     "eslint-config-next": "14.2.3",
     "next": "14.2.3",
@@ -35,7 +36,7 @@
     "autoprefixer": "10.4.19",
     "lighthouse": "11.7.1",
     "postcss": "8.4.38",
-    "tailwindcss": "3.4.3",
-    "prettier": "3.2.5"
+    "prettier": "3.2.5",
+    "tailwindcss": "3.4.3"
   }
 }
