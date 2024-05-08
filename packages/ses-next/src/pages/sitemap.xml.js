@@ -31,7 +31,7 @@ const Sitemap = () => {};
 export const getServerSideProps = async ({ res }) => {
   console.log('Page: sitemap getStaticProps');
   const content = await getHomePageContent(buildFetchFromApi);
-  const blogPosts = await getBlogPosts();
+  const blogPosts = await getBlogPosts(buildFetchFromApi);
 
   const sitemap = generateSitemap(content, blogPosts);
 

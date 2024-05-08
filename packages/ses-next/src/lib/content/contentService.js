@@ -66,8 +66,8 @@ export const getHomePageContent = async (contentFetch) => {
   };
 };
 
-export const getBlogPosts = async () => {
-  const { result: fullContent } = await fetchFromCacheOrApi();
+export const getBlogPosts = async (contentFetch) => {
+  const { result: fullContent } = contentFetch ? await contentFetch() : await fetchFromCacheOrApi();
   return fullContent
     .filter(({ _type }) => _type === 'blog-post')
     .map(({ _id, description, body, title, tags, slug, publishedAt, photo }) => ({
