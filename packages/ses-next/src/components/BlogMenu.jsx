@@ -18,16 +18,16 @@ export const BlogMenu = ({ tags }) => {
           </div>
         </div>
       </div>
-      <ul className="menu menu-horizontal lg:menu-vertical lg:w-56">
-        <li className="menu-title text-gray-900">Tags</li>{' '}
+      <div className="px-4 flex gap-2 flex-wrap">
+        <h3 className="text-base">Tags</h3>
         {tags.map((tag) => (
-          <li className="menu-item mb-2" key={tag}>
+          <div className="badge md:badge-lg" key={tag}>
             <Link href={`/blog/tag/${tag}`} className="menu-link">
               {tag}
             </Link>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

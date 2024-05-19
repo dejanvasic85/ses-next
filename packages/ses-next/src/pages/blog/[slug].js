@@ -1,11 +1,10 @@
-import Link from 'next/link';
 import NextImage from 'next/image';
 import { ArticleJsonLd } from 'next-seo';
 
 import { PortableText } from '@portabletext/react';
 import { formatDistanceToNow } from 'date-fns';
 
-import { Layout, CustomImage, BlogMenu } from '../../components';
+import { Layout, BlogLayout, BlogMenu, CustomImage } from '../../components';
 import { getBasePageProps } from '../../lib/basePageProps';
 import { getBlogPosts } from '../../lib/content/contentService';
 import { tagsFromBlogs } from '../../lib/blogUtils';
@@ -22,10 +21,7 @@ export default function BlogPost({ content, pageUrl, tags, post }) {
         images={[post.photo]}
       />
       <Layout content={content} pageUrl={pageUrl}>
-        <div className="flex min-h-[50vh] flex-col mt-6 p-6 justify-center gap-6 lg:flex-row container mx-auto">
-          <section className="max-w-xl max-lg:mx-auto max-lg:w-full">
-            <BlogMenu tags={tags} />
-          </section>
+        <BlogLayout tags={tags}>
           <article className="mx-auto w-full md:w-3/5 px-10 prose lg:prose-lg">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-tight md:leading-none mb-12 md:text-left">
               {post.title}
@@ -53,7 +49,7 @@ export default function BlogPost({ content, pageUrl, tags, post }) {
               }}
             />
           </article>
-        </div>
+        </BlogLayout>
       </Layout>
     </>
   );

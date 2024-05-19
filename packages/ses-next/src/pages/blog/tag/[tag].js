@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import NextImage from 'next/image';
 
-import { BlogMenu, Layout } from '../../../components';
+import { BlogLayout, Layout } from '../../../components';
 import { getBasePageProps } from '../../../lib/basePageProps';
 import { getBlogPosts } from '../../../lib/content/contentService';
 import { tagsFromBlogs } from '../../../lib/blogUtils';
@@ -9,10 +9,7 @@ import { tagsFromBlogs } from '../../../lib/blogUtils';
 export default function Tags({ content, googleReviews, pageUrl, tags, blogPosts }) {
   return (
     <Layout content={content} pageUrl={pageUrl} googleReviews={googleReviews}>
-      <div className="flex min-h-[50vh] w-full flex-col mt-6 p-6 justify-center gap-6 lg:flex-row container mx-auto">
-        <section className="max-w-2xl max-lg:mx-auto max-lg:w-full">
-          <BlogMenu tags={tags} />
-        </section>
+      <BlogLayout tags={tags}>
         <div className="mx-auto w-full max-w-2xl">
           <div className="grid justify-items-stretch gap-6">
             {blogPosts.map(({ id, description, title, tags, photo, slug, publishedAt }) => (
@@ -45,7 +42,7 @@ export default function Tags({ content, googleReviews, pageUrl, tags, blogPosts 
             ))}
           </div>
         </div>
-      </div>
+      </BlogLayout>
     </Layout>
   );
 }

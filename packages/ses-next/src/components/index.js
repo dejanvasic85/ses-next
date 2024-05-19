@@ -1,4 +1,5 @@
 export { About } from './About';
+export { BlogLayout } from './BlogLayout';
 export { BlogMenu } from './BlogMenu';
 export { Contact } from './Contact';
 export { Container } from './Container';
