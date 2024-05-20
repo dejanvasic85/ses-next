@@ -47,6 +47,10 @@ export default function Home({ content, googleReviews, pageUrl }) {
           worstRating: '0',
         }}
         review={reviews}
+        areaServed={{
+          '@type': 'City',
+          name: 'Melbourne',
+        }}
       />
       <Layout content={content} pageUrl={pageUrl}>
         <main>

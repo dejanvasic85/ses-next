@@ -10,6 +10,7 @@ export default function Service({ content, service, pageUrl, title }) {
   return (
     <>
       <ProductJsonLd
+        type="Service"
         productName={service.name}
         description={service.description}
         images={service.imageGallery.map(({ src }) => src)}
