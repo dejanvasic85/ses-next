@@ -13,15 +13,20 @@ const generateSitemap = (content, blogPosts) => {
     services: { items = [] },
   } = content;
 
-  const knownPages = ['', 'faq'].map((page) => createLocXmlForUrl(`${baseUrl}${page}`)).join(' ');
+  const knownPages = ['', 'faq', 'blog'].map((page) => createLocXmlForUrl(`${baseUrl}${page}`)).join(' ');
   const servicePages = items.map(({ slug }) => createLocXmlForUrl(`${baseUrl}services/${slug}`)).join(' ');
   const blogPostUrls = blogPosts.map(({ slug }) => createLocXmlForUrl(`${baseUrl}blog/${slug}`)).join(' ');
+  const blogPostTagUrls = blogPosts
+    .flatMap(({ tags }) => tags)
+    .map((tag) => createLocXmlForUrl(`${baseUrl}blog/tag/${tag}`))
+    .join(' ');
 
   return `<?xml version="1.0" encoding="UTF-8"?>
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     ${knownPages}
     ${servicePages}
     ${blogPostUrls}
+    ${blogPostTagUrls}
    </urlset>
  `;
 };
