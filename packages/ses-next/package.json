@@ -31,7 +31,7 @@
     "ses-reviews": "*"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "14.2.3",
+    "@next/bundle-analyzer": "14.2.4",
     "@tailwindcss/typography": "0.5.13",
     "autoprefixer": "10.4.19",
     "lighthouse": "12.0.0",
