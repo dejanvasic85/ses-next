@@ -10,7 +10,7 @@ export default function Tags({ content, googleReviews, pageUrl, tags, blogPosts 
   return (
     <Layout content={content} pageUrl={pageUrl} googleReviews={googleReviews}>
       <BlogLayout tags={tags}>
-        <div className="mx-auto w-full max-w-2xl">
+        <div className="mx-auto w-full">
           <div className="grid justify-items-stretch gap-6">
             {blogPosts.map(({ id, description, title, tags, photo, slug, publishedAt }) => (
               <div key={id} className="card sm:card-side hover:bg-base-200 transition-colors sm:max-w-none">
