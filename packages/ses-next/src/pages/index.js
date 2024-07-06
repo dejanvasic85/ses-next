@@ -22,7 +22,9 @@ export default function Home({ content, googleReviews, pageUrl }) {
 
   const ratingCount = googleReviews.numberOfReviews.replace('reviews', '').trim();
   const ratingValue = googleReviews.overallRatingValue.replace('.0', '').trim();
-  const reviews = googleReviews.reviews.map(({ comment, reviewer, starRating }) => ({
+  const reviews = googleReviews.reviews.slice(0, 9);
+
+  const reviewsJson = reviews.map(({ comment, reviewer, starRating }) => ({
     author: reviewer.displayName,
     reviewBody: comment,
     reviewRating: {
@@ -46,7 +48,7 @@ export default function Home({ content, googleReviews, pageUrl }) {
           bestRating: '5',
           worstRating: '0',
         }}
-        review={reviews}
+        review={reviewsJson}
       />
       <Layout content={content} pageUrl={pageUrl}>
         <main>
@@ -67,7 +69,7 @@ export default function Home({ content, googleReviews, pageUrl }) {
             <About
               aboutIntro={about}
               team={team}
-              testimonials={googleReviews.reviews}
+              testimonials={reviews}
               googleReviewsUrl={googleMapsLocationPlaceUrl}
               training={training}
             />
