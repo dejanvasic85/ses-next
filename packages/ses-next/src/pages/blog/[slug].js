@@ -22,7 +22,7 @@ export default function BlogPost({ content, pageUrl, tags, post }) {
       />
       <Layout content={content} pageUrl={pageUrl}>
         <BlogLayout tags={tags}>
-          <article className="mx-auto w-full md:w-3/5 px-10 prose lg:prose-lg">
+          <article className="mx-auto w-full px-8 lg:px-0 prose lg:prose-lg">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-tight md:leading-none mb-12 md:text-left">
               {post.title}
             </h1>
