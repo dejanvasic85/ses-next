@@ -32,7 +32,7 @@ export function ContactForm({ loading, onSubmit }) {
         onSubmit(data);
       }
     },
-    [executeRecaptcha],
+    [executeRecaptcha, onSubmit],
   );
 
   return (
