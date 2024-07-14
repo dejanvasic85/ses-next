@@ -36,29 +36,29 @@ export function Navbar({
           <div className="flex items-center justify-center text-sm md:text-base w-full md:w-auto md:flex-none">
             <ul className="menu menu-xs lg:menu-md menu-horizontal p-0">
               <li className="">
-                <a className="rounded-lg" href="/">
+                <NextLink className="rounded-lg" href="/">
                   Home
-                </a>
+                </NextLink>
               </li>
               <li>
-                <a className="rounded-lg" href={links.services}>
+                <NextLink className="rounded-lg" href={links.services}>
                   Services
-                </a>
+                </NextLink>
               </li>
               <li>
-                <a className="rounded-lg" href={links.about}>
+                <NextLink className="rounded-lg" href={links.about}>
                   About Us
-                </a>
+                </NextLink>
               </li>
               <li>
-                <a className="rounded-lg" href={links.contact}>
+                <NextLink className="rounded-lg" href={links.contact}>
                   Contact Us
-                </a>
+                </NextLink>
               </li>
               <li>
-                <a className="rounded-lg" href={links.faq}>
+                <NextLink className="rounded-lg" href={links.faq}>
                   FAQ
-                </a>
+                </NextLink>
               </li>
               <li>
                 <NextLink className="rounded-lg" href={links.blog}>
@@ -67,10 +67,10 @@ export function Navbar({
               </li>
               {contactPhone && (
                 <li className="hidden md:inline-block">
-                  <a className="rounded-lg" href={`tel:${contactPhone}`}>
+                  <NextLink className="rounded-lg" href={`tel:${contactPhone}`}>
                     <Icon name="phone" />
                     {contactPhone}
-                  </a>
+                  </NextLink>
                 </li>
               )}
             </ul>

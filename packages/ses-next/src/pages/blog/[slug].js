@@ -4,7 +4,7 @@ import { ArticleJsonLd } from 'next-seo';
 import { PortableText } from '@portabletext/react';
 import { formatDistanceToNow } from 'date-fns';
 
-import { Layout, BlogLayout, BlogMenu, CustomImage } from '../../components';
+import { Layout, BlogLayout, CustomImage } from '../../components';
 import { getBasePageProps } from '../../lib/basePageProps';
 import { getBlogPosts } from '../../lib/content/contentService';
 import { tagsFromBlogs } from '../../lib/blogUtils';
