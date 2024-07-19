@@ -51,33 +51,31 @@ export default function Home({ content, googleReviews, pageUrl }) {
         review={reviewsJson}
       />
       <Layout content={content} pageUrl={pageUrl}>
-        <main>
-          <Hero
-            companyName={companyName}
-            companyLogo={companyLogo}
+        <Hero
+          companyName={companyName}
+          companyLogo={companyLogo}
+          googleReviewsUrl={googleMapsLocationPlaceUrl}
+          numberOfReviews={googleReviews.numberOfReviews}
+          overallRatingValue={googleReviews.overallRatingValue}
+          social={social}
+          mainHeading={mainHeading}
+          subHeading={subHeading}
+        />
+        <section id="services" className="mt-32 pt-24">
+          <Services services={services} className="mt-12" />
+        </section>
+        <section id="about" className="mt-16 pt-24">
+          <About
+            aboutIntro={about}
+            team={team}
+            testimonials={reviews}
             googleReviewsUrl={googleMapsLocationPlaceUrl}
-            numberOfReviews={googleReviews.numberOfReviews}
-            overallRatingValue={googleReviews.overallRatingValue}
-            social={social}
-            mainHeading={mainHeading}
-            subHeading={subHeading}
+            training={training}
           />
-          <section id="services" className="mt-32 pt-24">
-            <Services services={services} className="mt-12" />
-          </section>
-          <section id="about" className="mt-16 pt-24">
-            <About
-              aboutIntro={about}
-              team={team}
-              testimonials={reviews}
-              googleReviewsUrl={googleMapsLocationPlaceUrl}
-              training={training}
-            />
-          </section>
-          <section id="contact" className="mt-16 pt-24">
-            <Contact contact={contact} location={googleMapsLocation} />
-          </section>
-        </main>
+        </section>
+        <section id="contact" className="mt-16 pt-24">
+          <Contact contact={contact} location={googleMapsLocation} />
+        </section>
       </Layout>
     </>
   );
