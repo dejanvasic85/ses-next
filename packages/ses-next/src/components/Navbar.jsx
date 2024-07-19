@@ -25,7 +25,7 @@ export function Navbar({
   },
 }) {
   return (
-    <div className={classNames(styles.nav.default, styles.nav.scrolled)}>
+    <nav className={classNames(styles.nav.default, styles.nav.scrolled)}>
       <nav className="navbar w-full">
         <Container>
           <div className="hidden md:flex md:flex-1">
@@ -77,6 +77,6 @@ export function Navbar({
           </div>
         </Container>
       </nav>
-    </div>
+    </nav>
   );
 }
