@@ -26,7 +26,7 @@ export function Team({ blurbs, members, training }) {
                   />
                 </div>
                 <div>
-                  <div className="text-primary md:text-lg font-bold text-center">{fullName}</div>
+                  <div className="md:text-lg font-bold text-center">{fullName}</div>
                   <p className="text-gray-500 text-sm md:text-base text-center mb-3 md:mb-4">{role}</p>
                 </div>
               </div>
