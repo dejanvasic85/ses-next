@@ -25,7 +25,7 @@ export function Testimonial(testimonial) {
             <ConditionalWrap
               condition={!!profileUrl}
               wrapper={(children) => (
-                <Link href={profileUrl} target="_blank" className="link link-hover">
+                <Link href={profileUrl} target="_blank" className="">
                   {children}
                 </Link>
               )}
@@ -39,24 +39,24 @@ export function Testimonial(testimonial) {
             <ConditionalWrap
               condition={!!profileUrl}
               wrapper={(children) => (
-                <Link href={profileUrl} target="_blank" className="link link-hover">
+                <Link href={profileUrl} target="_blank" className="">
                   {children}
                 </Link>
               )}
             >
-              <div className="flex gap-1 text-sm text-white md:text-base font-bold text-center link">{displayName}</div>
+              <div className="inline text-sm text-white md:text-base font-bold border-b-2">{displayName}</div>
             </ConditionalWrap>
             <em className="text-gray-200 text-sm">{date}</em>
           </div>
           <Rating starRating={starRating} name={displayName} />
           <div>
             <div className={classNames('pr-4 text-white', { 'line-clamp-4': !showMore })}>“{comment}”</div>
-            <button className="text-gray-200 link" onClick={() => setShowMore(!showMore)}>
+            <button className="text-gray-200 border-b-2" onClick={() => setShowMore(!showMore)}>
               {showMore ? 'Show less' : 'Show more'}
             </button>
           </div>
           <div>
-            <Link className="tooltip link" data-tip="Posted on Google" href={url} target="_blank">
+            <Link className="tooltip" data-tip="Posted on Google" href={url} target="_blank">
               <Icon name="google-full" size="xl" className="w-14 text-white" />
             </Link>
           </div>

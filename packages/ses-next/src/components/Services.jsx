@@ -3,16 +3,7 @@ import Link from 'next/link';
 
 import { Container } from './Container';
 import { Heading } from './Heading';
-import { GalleryCarousel } from './GalleryCarousel';
 import { Icon } from './Icon/Icon';
-
-function IconContainer({ name }) {
-  return (
-    <div className="w-24 h-24 inline-flex items-center justify-center rounded-full bg-gray-200 text-primary flex-shrink-0">
-      <Icon name={name} size="xxxl" />
-    </div>
-  );
-}
 
 const ConditionalWrap = ({ children, condition, wrapper }) => {
   return condition ? wrapper(children) : children;
@@ -20,17 +11,6 @@ const ConditionalWrap = ({ children, condition, wrapper }) => {
 
 export const Services = ({ className, services }) => {
   const { blurbs, items } = services;
-  const gallery = items
-    .reduce((prev, curr) => {
-      const { name, imageGallery = [] } = curr;
-      const imgs = imageGallery.map((imgMeta) => ({
-        serviceName: name,
-        ...imgMeta,
-      }));
-
-      return [...prev, ...imgs];
-    }, [])
-    .filter(Boolean);
 
   return (
     <div className={className}>
@@ -42,27 +22,40 @@ export const Services = ({ className, services }) => {
           </p>
         ))}
 
-        <ul className="px-4 py-8 flex flex-wrap gap-4 justify-evenly">
-          {items.map(({ name, description, linkToReadMore, slug, icon = 'bolt' }, idx) => (
-            <li className="p-8 flex flex-col items-center text-center justify-center gap-4 w-full md:w-1/4" key={idx}>
-              <IconContainer name={icon} />
-              <h3 className="text-gray-900 text-lg title-font font-medium">
-                <ConditionalWrap
-                  condition={linkToReadMore && slug}
-                  wrapper={(children) => (
-                    <Link href={`/services/${slug}`} className="underline">
-                      {children}
-                    </Link>
-                  )}
-                >
-                  {name}
-                </ConditionalWrap>
-              </h3>
-              <p className="leading-relaxed text-base">{description}</p>
-            </li>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center">
+          {items.map(({ name, blurb, linkToReadMore, slug, icon = 'bolt', featuredImage }, idx) => (
+            <div className="group relative overflow-hidden rounded-lg " key={idx}>
+              <Link href={`/services/${slug}`} className="absolute inset-0 z-10" prefetch={false}>
+                <span className="sr-only">View {name}</span>
+              </Link>
+              <div className="flex h-full flex-col justify-between p-6">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-3">
+                    <div className="rounded-full bg-primary p-2 text-primary-foreground">
+                      <Icon name={icon} size="xl" className="text-white" />
+                    </div>
+                    <h3 className="text-lg font-semibold border-b-2 border-primary">
+                      <ConditionalWrap
+                        condition={linkToReadMore && slug}
+                        wrapper={(children) => <Link href={`/services/${slug}`}>{children}</Link>}
+                      >
+                        {name}
+                      </ConditionalWrap>
+                    </h3>
+                  </div>
+                  <p className="text-gray-500">{blurb}</p>
+                </div>
+                <img
+                  src={featuredImage.src}
+                  width={400}
+                  height={300}
+                  alt={featuredImage.alt}
+                  className="mt-4 aspect-video w-full rounded-lg object-cover object-center transition-all group-hover:scale-105"
+                />
+              </div>
+            </div>
           ))}
-        </ul>
-        <GalleryCarousel imageGallery={gallery} />
+        </div>
       </Container>
     </div>
   );

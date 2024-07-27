@@ -45,7 +45,7 @@ The sanity studio is deployed manually using the sanity cli.
 Make the required schema changes in the content project and then deploy it straight to production using the following command.
 
 ```sh
-npm run deploy -w ses-content
+npm run deploy:content
 ```
 
 We don't use any other development database at the moment so just make sure that the content schema is backward compatible.

@@ -9,6 +9,13 @@ export default defineType({
   fields: [
     {name: 'name', type: 'string', title: 'Name'},
     {name: 'description', type: 'string', title: 'Description'},
+    {
+      name: 'blurb',
+      type: 'text',
+      rows: 3,
+      title: 'Blurb',
+      description: 'Displays on the homepage and the product LD json for google',
+    },
     {name: 'slug', type: 'slug', title: 'URL slug e.g. air-conditioning'},
     {name: 'linkToReadMore', type: 'boolean', title: 'Show link to read more on homepage'},
     iconField,

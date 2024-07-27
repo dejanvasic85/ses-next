@@ -15,6 +15,22 @@ export const mapServiceShowcaseGallery = (data, service) => {
   );
 };
 
+export const mapFeaturedImage = (data, service) => {
+  const { showcase = [] } = service;
+  const featuredImage = showcase
+    .map((item) => data.find(({ _id }) => _id === item._ref))
+    .find(({ featured }) => featured === true);
+
+  if (!featuredImage) {
+    return null;
+  }
+
+  return {
+    alt: featuredImage.title,
+    src: data.find(({ _id }) => _id === featuredImage.photo.asset._ref).url,
+  };
+};
+
 export const mapServices = (data, homepageItem) => {
   const {
     services: { blurbs, items },
@@ -24,16 +40,20 @@ export const mapServices = (data, homepageItem) => {
     blurbs,
     items: items.map(({ _ref }) => {
       const service = data.find((item) => item._id === _ref);
-      const { name, description, icon, slug, content, linkToReadMore = false } = service;
+      const { name, blurb, description, icon, slug, content, linkToReadMore = false } = service;
+      const imageGallery = mapServiceShowcaseGallery(data, service);
+      const featuredImage = mapFeaturedImage(data, service);
 
       return {
-        imageGallery: mapServiceShowcaseGallery(data, service),
         name,
+        blurb,
         description,
         linkToReadMore,
         icon,
         slug: slug.current,
         content,
+        imageGallery,
+        featuredImage,
       };
     }),
   };
