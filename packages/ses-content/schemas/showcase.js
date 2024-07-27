@@ -15,5 +15,11 @@ export default defineType({
       name: 'photo',
       title: 'Photo',
     },
+    {
+      name: 'featured',
+      title: 'Featured',
+      type: 'boolean',
+      description: 'When checked, this item will be featured on the homepage',
+    },
   ],
 })
