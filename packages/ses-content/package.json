@@ -17,16 +17,16 @@
   "dependencies": {
     "@sanity/client": "6.21.1",
     "@sanity/import": "3.37.5",
-    "@sanity/vision": "3.52.0",
+    "@sanity/vision": "3.52.4",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-is": "18.3.1",
-    "sanity": "3.52.0",
+    "sanity": "3.52.4",
     "styled-components": "6.1.12"
   },
   "devDependencies": {
     "prettier": "3.3.3",
-    "typescript": "5.5.3"
+    "typescript": "5.5.4"
   },
   "prettier": {
     "semi": false,

@@ -12,6 +12,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "puppeteer": "22.13.1"
+    "puppeteer": "22.15.0"
   }
 }
