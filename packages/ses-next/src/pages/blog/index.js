@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import NextImage from 'next/image';
 
-import { BlogMenu, BlogLayout, Layout } from '../../components';
+import { BlogLayout, Layout } from '../../components';
 import { getBasePageProps } from '../../lib/basePageProps';
 import { getBlogPosts } from '../../lib/content/contentService';
 import { tagsFromBlogs } from '../../lib/blogUtils';
