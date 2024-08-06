@@ -1,11 +1,12 @@
 import { PortableText } from '@portabletext/react';
 import { ProductJsonLd } from 'next-seo';
+import Link from 'next/link';
 
-import { getHomePageContent } from '../../lib/content/contentService';
+import { getBlogPosts, getHomePageContent } from '../../lib/content/contentService';
 import { getBasePageProps } from '../../lib/basePageProps';
 import { Layout, CustomImage } from '../../components';
 
-export default function Service({ content, service, pageUrl, title }) {
+export default function Service({ blogPosts, content, service, pageUrl, title }) {
   const { name, content: serviceContent } = service;
   return (
     <>
@@ -26,6 +27,18 @@ export default function Service({ content, service, pageUrl, title }) {
               }}
             />
           </article>
+
+          <div className="mx-auto px-4 md:px-8 max-w-screen-lg prose lg:prose-lg">
+            <h2>Blog posts</h2>
+            <p>Check out some of our {service.name} blog posts:</p>
+            {blogPosts.map(({ id, title, slug }) => (
+              <div key={id}>
+                <Link href={`/blog/${slug}`} className="py-2">
+                  {title}
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="container mx-auto px-5 py-2 lg:px-32 lg:pt-12 pb-20">
@@ -48,12 +61,15 @@ export const getStaticProps = async ({ params }) => {
   const props = await getBasePageProps({ pageUrl: `services/${params.id}` });
   const service = props.content.services.items.find(({ slug }) => slug === params.id);
   const [titlePrefix = ''] = props.content.meta.title.split('|');
+  const posts = await getBlogPosts();
+  const blogPosts = posts.filter(({ tags }) => tags.includes(params.id));
 
   return {
     props: {
       ...props,
       service,
       title: `${titlePrefix.trim()} | ${service.name}`,
+      blogPosts,
     },
   };
 };
