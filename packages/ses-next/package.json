@@ -14,7 +14,7 @@
   "dependencies": {
     "@portabletext/react": "3.1.0",
     "@sanity/image-url": "1.0.2",
-    "aws-sdk": "2.1667.0",
+    "aws-sdk": "2.1673.0",
     "class-names": "1.0.0",
     "daisyui": "4.12.10",
     "date-fns": "3.6.0",
@@ -30,13 +30,13 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "14.2.5",
-    "@tailwindcss/typography": "0.5.13",
+    "@tailwindcss/typography": "0.5.14",
     "autoprefixer": "10.4.20",
     "eslint": "8.57.0",
     "eslint-config-next": "14.2.5",
-    "lighthouse": "12.1.0",
-    "postcss": "8.4.40",
+    "lighthouse": "12.2.0",
+    "postcss": "8.4.41",
     "prettier": "3.3.3",
-    "tailwindcss": "3.4.7"
+    "tailwindcss": "3.4.9"
   }
 }
