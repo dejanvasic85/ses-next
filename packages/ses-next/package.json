@@ -14,7 +14,7 @@
   "dependencies": {
     "@portabletext/react": "3.1.0",
     "@sanity/image-url": "1.0.2",
-    "aws-sdk": "2.1673.0",
+    "aws-sdk": "2.1683.0",
     "class-names": "1.0.0",
     "daisyui": "4.12.10",
     "date-fns": "3.6.0",
@@ -24,7 +24,7 @@
     "react-dom": "18.3.1",
     "react-google-recaptcha-v3": "1.10.1",
     "react-gtm-module": "2.0.11",
-    "react-hook-form": "7.52.2",
+    "react-hook-form": "7.53.0",
     "react-modal": "3.16.1",
     "ses-reviews": "*"
   },
@@ -37,6 +37,6 @@
     "lighthouse": "12.2.0",
     "postcss": "8.4.41",
     "prettier": "3.3.3",
-    "tailwindcss": "3.4.9"
+    "tailwindcss": "3.4.10"
   }
 }
