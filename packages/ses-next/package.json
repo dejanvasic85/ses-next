@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "15.1.2",
-    "@tailwindcss/typography": "0.5.15",
+    "@tailwindcss/typography": "0.5.16",
     "autoprefixer": "10.4.20",
     "eslint": "8.57.1",
     "eslint-config-next": "15.0.3",
