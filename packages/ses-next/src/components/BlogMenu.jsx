@@ -18,10 +18,10 @@ export const BlogMenu = ({ tags }) => {
           </div>
         </div>
       </div>
-      <div className="px-4 flex gap-2 flex-wrap">
-        <h3 className="text-base">Tags</h3>
+      <div className="px-4 flex gap-2 flex-wrap items-center">
+        <h3 className="text-base">Tags:</h3>
         {tags.map((tag) => (
-          <div className="badge md:badge-lg" key={tag}>
+          <div className="badge md:badge" key={tag}>
             <Link href={`/blog/tag/${tag}`} className="menu-link">
               {tag}
             </Link>

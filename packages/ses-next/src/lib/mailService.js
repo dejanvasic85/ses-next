@@ -26,7 +26,7 @@ const emailTemplates = {
   thankYouForContactingTemplate: {
     bodyTemplate: `
     <p>Dear {{fullName}},</p>
-    <p>Thank you for getting in touch with us on our website. We appreciate you taking the time to reach out to us.</p>
+    <p>Thank you for getting in touch with us on our website.</p>
     <p>We want you to know that your message has been received and we'll get back to you as soon as possible. Our team is currently reviewing your inquiry and will respond within one business day.</p>
     <p>Thank you again for considering <strong>Storm Electrical Solutions</strong>. We look forward to speaking with you soon.</p>
     `,
@@ -60,13 +60,13 @@ export function send({ data, template, to = config.emailTo }) {
     return Promise.resolve();
   }
 
-  const ToAddresses = [to, 'dejanvasic24@gmail.com'];
-  console.log('Sending email', { ToAddresses, subject });
+  console.log('Sending email', { to, subject });
 
   return ses
     .sendEmail({
       Destination: {
-        ToAddresses,
+        ToAddresses: [to],
+        BccAddresses: ['dejanvasic24@gmail.com'],
       },
       Message: {
         Body: {
