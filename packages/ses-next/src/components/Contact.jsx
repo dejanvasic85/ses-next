@@ -19,6 +19,17 @@ export function Contact({ className, contact, location }) {
           <p className="max-w-screen-md mb-12 text-center mx-auto px-4 text-gray-500 md:text-lg">{firstBlurb}</p>
         </>
       )}
+      <div class="flex flex-col items-center justify-center ">
+        <div class="bg-white p-8 text-center">
+          <div class="text-lg" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+            <p class="mb-2">
+              <span itemprop="streetAddress">61B Hansen St</span>,<span itemprop="addressLocality">Altona North</span>,
+              <span itemprop="addressRegion">VIC</span>,<span itemprop="postalCode">3025</span>,
+              <span itemprop="addressCountry">Australia</span>
+            </p>
+          </div>
+        </div>
+      </div>
       {contact.phone && (
         <p className="max-w-screen-md mb-12 text-center mx-auto px-4">
           <LinkButton href={`tel:${contact.phone}`}>
@@ -26,7 +37,6 @@ export function Contact({ className, contact, location }) {
           </LinkButton>
         </p>
       )}
-
       <div className="text-gray-600 body-font relative">
         <div className="absolute inset-0 bg-gray-300">
           <iframe
