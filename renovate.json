@@ -28,6 +28,10 @@
     {
       "matchPackageNames": ["eslint"],
       "allowedVersions": "< 9"
+    },
+    {
+      "matchPackageNames": ["tailwindcss"],
+      "allowedVersions": "< 4"
     }
   ]
 }
