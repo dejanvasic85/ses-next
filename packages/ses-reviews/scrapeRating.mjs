@@ -7,7 +7,11 @@ import { URL } from './constants.mjs';
   console.log('Starting google rating scrape');
   let browser;
   try {
-    browser = await puppeteer.launch({ headless: 'new', timeout: 0 });
+    browser = await puppeteer.launch({
+      headless: 'new',
+      timeout: 0,
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    });
     const [page] = await browser.pages();
     page.goto(URL);
 
@@ -17,10 +21,7 @@ import { URL } from './constants.mjs';
       const [ratingElement] = document.getElementsByClassName('fontDisplayLarge');
       const numberOfReviewsElement = ratingElement.nextSibling.nextSibling;
 
-      return {
-        overallRatingValue: ratingElement.textContent,
-        numberOfReviews: numberOfReviewsElement.textContent,
-      };
+      return { overallRatingValue: ratingElement.textContent, numberOfReviews: numberOfReviewsElement.textContent };
     });
 
     const result = JSON.stringify(data, null, 2);
