@@ -7,7 +7,11 @@ import { URL } from './constants.mjs';
   console.log('Starting google reviews scrape');
   let browser;
   try {
-    browser = await puppeteer.launch({ headless: false, timeout: 0 });
+    browser = await puppeteer.launch({
+      headless: false,
+      timeout: 0,
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    });
     const [page] = await browser.pages();
     page.goto(URL);
 
@@ -41,11 +45,7 @@ import { URL } from './constants.mjs';
         const review = {
           id,
           url: REVIEW_URL_TEMPLATE.replace('{{reviewId}}', id),
-          reviewer: {
-            profileUrl,
-            profilePhotoUrl: profileImg.src,
-            displayName: name,
-          },
+          reviewer: { profileUrl, profilePhotoUrl: profileImg.src, displayName: name },
           comment,
           starRating: Number(starsEl.getAttribute('aria-label').at(0)),
           date: dateEl.textContent,
@@ -54,9 +54,7 @@ import { URL } from './constants.mjs';
         reviews.push(review);
       });
 
-      return {
-        reviews,
-      };
+      return { reviews };
     });
 
     const result = JSON.stringify(data, null, 2);
