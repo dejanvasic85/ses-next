@@ -6,10 +6,10 @@ export const buildFetchFromApi = () =>
   );
 
 export const fetchFromApi = async (url) => {
-  console.log('Querying content service');
+  console.log('Querying content service', url);
   const response = await fetch(url);
 
-  if (response.status < 200 || response.status > 299) {
+  if (!response.ok) {
     throw new Error('Content service returned a on-200 error!');
   }
 

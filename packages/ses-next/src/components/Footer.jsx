@@ -9,7 +9,15 @@ const ConditionalWrap = ({ children, condition, wrapper }) => {
 
 export function Footer({
   social = {},
-  links = { home: '/', services: '/#services', about: '/#about', contact: '/#contact', faq: '/faq', blog: '/blog' },
+  links = {
+    home: '/',
+    services: '/#services',
+    about: '/#about',
+    contact: '/#contact',
+    faq: '/faq',
+    blog: '/blog',
+    terms: '/terms',
+  },
   services = { items: [] },
 }) {
   const today = new Date();
@@ -40,6 +48,9 @@ export function Footer({
         </Link>
         <Link className="link link-hover" href={links.faq}>
           FAQ
+        </Link>
+        <Link className="link link-hover" href={links.terms}>
+          Terms and Conditions
         </Link>
       </div>
       <div>
