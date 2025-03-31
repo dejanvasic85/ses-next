@@ -68,6 +68,7 @@ export const getHomePageContent = async (contentFetch) => {
 
 export const getBlogPosts = async (contentFetch) => {
   const { result: fullContent } = contentFetch ? await contentFetch() : await fetchFromCacheOrApi();
+
   return fullContent
     .filter(({ _type }) => _type === 'blog-post')
     .map(({ _id, description, body, title, tags, slug, publishedAt, photo }) => ({
@@ -79,5 +80,16 @@ export const getBlogPosts = async (contentFetch) => {
       slug: slug.current,
       publishedAt,
       photo: fullContent.find(({ _id }) => _id === photo.asset._ref).url,
+    }));
+};
+
+export const getTermsAndConditions = async (contentFetch) => {
+  const { result: fullContent } = contentFetch ? await contentFetch() : await fetchFromCacheOrApi();
+
+  return fullContent
+    .filter(({ _type }) => _type === 'terms-and-conditions')
+    .map(({ _id, terms }) => ({
+      id: _id,
+      terms,
     }));
 };

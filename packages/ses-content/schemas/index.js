@@ -5,6 +5,7 @@ import service from './service'
 import showcase from './showcase'
 import teamMember from './teamMember'
 import testimonial from './testimonial'
+import terms from './terms'
 import training from './training'
 
 export const schemaTypes = [
@@ -14,6 +15,7 @@ export const schemaTypes = [
   showcase,
   service,
   teamMember,
+  terms,
   testimonial,
   training,
 ]
