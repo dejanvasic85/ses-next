@@ -16,8 +16,7 @@
     "@sanity/image-url": "1.1.0",
     "aws-sdk": "2.1692.0",
     "class-names": "1.0.0",
-    "css-selector-tokenizer": "^0.8.0",
-    "daisyui": "4.12.24",
+    "daisyui": "4.12.23",
     "date-fns": "4.1.0",
     "next": "15.2.4",
     "next-seo": "6.6.0",
@@ -30,7 +29,7 @@
     "ses-reviews": "*"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "15.2.4",
+    "@next/bundle-analyzer": "15.1.6",
     "@tailwindcss/typography": "0.5.16",
     "autoprefixer": "10.4.21",
     "eslint": "8.57.1",
