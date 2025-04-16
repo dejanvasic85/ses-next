@@ -32,6 +32,10 @@
     {
       "matchPackageNames": ["tailwindcss"],
       "allowedVersions": "< 4"
+    },
+    {
+      "matchPackageNames": ["daisyui"],
+      "allowedVersions": "< 5"
     }
   ]
 }
