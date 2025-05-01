@@ -10,7 +10,7 @@ export default function Terms({ content, googleReviews, pageUrl, termsContent })
         <div className="container mx-auto max-w-screen-xl px-4 md:px-8">
           <div className="mb-10 md:mb-16">
             <h1 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Terms of Service</h1>
-            <p className="mx-auto text-center text-gray-500 md:text-lg">
+            <p className="mx-auto prose text-gray-500 md:text-lg">
               <PortableText
                 value={termsContent.terms}
                 components={{
