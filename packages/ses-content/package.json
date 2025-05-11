@@ -15,7 +15,7 @@
     "sanity"
   ],
   "dependencies": {
-    "@sanity/client": "7.1.0",
+    "@sanity/client": "7.2.1",
     "@sanity/import": "3.38.2",
     "@sanity/vision": "3.87.0",
     "react": "18.3.1",
