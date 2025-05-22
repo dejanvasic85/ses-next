@@ -1,14 +1,37 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import Link from 'next/link';
 
 import { Icon } from './Icon/Icon';
+import { Social, ServiceList } from '@/types';
 
-const ConditionalWrap = ({ children, condition, wrapper }) => {
+interface ConditionalWrapProps {
+  children: ReactNode;
+  condition: boolean;
+  wrapper: (children: ReactNode) => ReactNode;
+}
+
+const ConditionalWrap = ({ children, condition, wrapper }: ConditionalWrapProps) => {
   return condition ? wrapper(children) : children;
 };
 
+interface Links {
+  home: string;
+  services: string;
+  about: string;
+  contact: string;
+  faq: string;
+  blog: string;
+  terms: string;
+}
+
+interface FooterProps {
+  social: Social;
+  links?: Links;
+  services: ServiceList;
+}
+
 export function Footer({
-  social = {},
+  social = {} as Social,
   links = {
     home: '/',
     services: '/#services',
@@ -19,7 +42,7 @@ export function Footer({
     terms: '/terms',
   },
   services = { items: [] },
-}) {
+}: FooterProps) {
   const today = new Date();
   const year = today.getFullYear();
 
@@ -58,7 +81,7 @@ export function Footer({
         {services.items.map(({ name, linkToReadMore, slug }) => (
           <ConditionalWrap
             key={name}
-            condition={linkToReadMore && slug}
+            condition={!!linkToReadMore && !!slug}
             wrapper={(children) => (
               <Link href={`/services/${slug}`} className="link link-hover">
                 {children}

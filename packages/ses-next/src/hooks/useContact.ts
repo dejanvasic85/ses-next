@@ -1,10 +1,11 @@
 import { useState } from 'react';
+import { ContactFormData } from '@/types';
 
 export function useContact() {
-  const [loading, setLoading] = useState(false);
-  const [messageSent, setMessageSent] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [messageSent, setMessageSent] = useState<boolean>(false);
 
-  const sendMessage = (data) => {
+  const sendMessage = (data: ContactFormData): void => {
     setLoading(true);
     fetch('/api/contact', {
       method: 'POST',

@@ -1,8 +1,17 @@
+import React, { ReactNode } from 'react';
 import { PageHead } from './PageHead';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
+import { LayoutContent } from '@/types';
 
-export function Layout({ children, content, pageUrl, title }) {
+interface LayoutProps {
+  children: ReactNode;
+  content: LayoutContent;
+  pageUrl: string;
+  title?: string;
+}
+
+export function Layout({ children, content, pageUrl, title }: LayoutProps) {
   const { companyName, companyLogo, contact, meta, services, shortTitle, social } = content;
   return (
     <>

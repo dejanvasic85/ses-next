@@ -1,6 +1,10 @@
 import { getHomePageContent } from './content/contentService';
 
-export async function getBasePageProps({ pageUrl }) {
+interface GetBasePagePropsParams {
+  pageUrl: string;
+}
+
+export async function getBasePageProps({ pageUrl }: GetBasePagePropsParams) {
   const content = await getHomePageContent();
 
   return {

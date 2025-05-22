@@ -5,12 +5,27 @@ import { config } from './config';
 const ses = new SES({
   region: 'ap-southeast-2',
   credentials: {
-    accessKeyId: config.awsAccessKeyId,
-    secretAccessKey: config.awsSecretAccessKey,
+    accessKeyId: config.awsAccessKeyId || '',
+    secretAccessKey: config.awsSecretAccessKey || '',
   },
 });
 
-const emailTemplates = {
+interface TemplateData {
+  bodyTemplate: string;
+  subjectTemplate: string;
+}
+
+interface EmailTemplates {
+  [key: string]: TemplateData;
+}
+
+interface SendEmailParams {
+  data: Record<string, any>;
+  template: string;
+  to?: string;
+}
+
+const emailTemplates: EmailTemplates = {
   contactEmailTemplate: {
     bodyTemplate: `
     <strong>SES incoming message</strong>
@@ -44,7 +59,7 @@ const emailTemplates = {
   },
 };
 
-export function send({ data, template, to = config.emailTo }) {
+export function send({ data, template, to = config.emailTo }: SendEmailParams): Promise<any> {
   const { bodyTemplate, subjectTemplate } = emailTemplates[template];
 
   const emailBody = Object.keys(data).reduce((prev, curr) => {
@@ -57,6 +72,11 @@ export function send({ data, template, to = config.emailTo }) {
 
   if (!config.emailEnabled) {
     console.log('Email disabled, not sending email');
+    return Promise.resolve();
+  }
+
+  if (!to || !config.emailFrom) {
+    console.log('Missing email configuration, not sending email');
     return Promise.resolve();
   }
 
@@ -81,6 +101,6 @@ export function send({ data, template, to = config.emailTo }) {
         },
       },
       Source: config.emailFrom,
-    })
+    } as SES.Types.SendEmailRequest)
     .promise();
 }

@@ -1,7 +1,24 @@
-import Head from 'next/head';
+import React from 'react';
 import { NextSeo } from 'next-seo';
 
-export function PageHead({ canonicalUrl, companyName, companyLogo, description, title, socialTitle }) {
+interface PageHeadProps {
+  canonicalUrl: string;
+  companyName: string;
+  companyLogo: string;
+  description: string;
+  title: string;
+  socialTitle: string;
+  phone?: string;
+}
+
+export function PageHead({ 
+  canonicalUrl, 
+  companyName, 
+  companyLogo, 
+  description, 
+  title, 
+  socialTitle 
+}: PageHeadProps) {
   return (
     <>
       <NextSeo

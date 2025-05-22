@@ -1,8 +1,15 @@
+import { NextApiRequest, NextApiResponse } from 'next';
 import { send } from '../../lib/mailService';
+import { ContactFormData } from '@/types';
 
-export default function contactRoute(req, res) {
-  const contact = JSON.parse(req.body);
-  console.log('/api/contact', contact);
+type ApiResponse = {
+  message: string;
+  contact?: ContactFormData;
+  err?: any;
+};
+
+export default function contactRoute(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
+  const contact = JSON.parse(req.body) as ContactFormData;
 
   Promise.all([
     send({

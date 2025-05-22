@@ -1,3 +1,4 @@
+import React from 'react';
 import classNames from 'class-names';
 import NextLink from 'next/link';
 
@@ -12,6 +13,21 @@ const styles = {
   },
 };
 
+interface NavLinks {
+  home: string;
+  services: string;
+  about: string;
+  contact: string;
+  faq: string;
+  blog: string;
+}
+
+interface NavbarProps {
+  contactPhone: string;
+  title: string;
+  links?: NavLinks;
+}
+
 export function Navbar({
   contactPhone,
   title,
@@ -23,7 +39,7 @@ export function Navbar({
     faq: '/faq',
     blog: '/blog',
   },
-}) {
+}: NavbarProps) {
   return (
     <nav className={classNames(styles.nav.default, styles.nav.scrolled)}>
       <nav className="navbar w-full">
