@@ -60,14 +60,3 @@ export interface LayoutContent {
   shortTitle: string;
   social: Social;
 }
-
-export interface BasePageProps {
-  companyName: string;
-  companyLogo: string;
-  social: Social;
-  mainHeading: string;
-  subHeading: string;
-  googleReviewsUrl: string;
-  overallRatingValue: number;
-  numberOfReviews: number;
-}

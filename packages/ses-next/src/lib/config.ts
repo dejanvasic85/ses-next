@@ -43,12 +43,11 @@ export function getConfig(): AppConfig {
     return configCache;
   }
 
-  console.log('Parsing and validating config...', rawConfig);
-
   const parsedConfig = AppConfigSchema.parse(rawConfig);
 
   configCache = Object.freeze(parsedConfig);
 
   return configCache;
 }
-export const config = rawConfig;
+
+export const config = getConfig();

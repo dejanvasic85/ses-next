@@ -5,19 +5,18 @@ import { Heading } from './Heading';
 import { Icon } from './Icon/Icon';
 import { LinkButton } from './LinkButton';
 import { Rating } from './Rating';
-import { BasePageProps } from '@/types';
+import { Social } from '@/types';
 
-type HeroProps = Pick<
-  BasePageProps,
-  | 'companyName'
-  | 'companyLogo'
-  | 'social'
-  | 'mainHeading'
-  | 'subHeading'
-  | 'googleReviewsUrl'
-  | 'overallRatingValue'
-  | 'numberOfReviews'
->;
+interface HeroProps {
+  companyName: string;
+  companyLogo: string;
+  social: Social;
+  mainHeading: string;
+  subHeading: string;
+  googleReviewsUrl: string;
+  overallRatingValue: number;
+  numberOfReviews: number;
+}
 
 export function Hero({
   companyName,
