@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useLocalStorage } from './useLocalStorage';
+import { FeedbackFormData } from '@/types';
 
 const feedbackStorageKey = 'feature-feedback';
 
 export function useFeedback() {
-  const [loading, setLoading] = useState(false);
-  const [feedbackSent, setFeedbackSent] = useLocalStorage('feature-feedback', false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [feedbackSent, setFeedbackSent] = useLocalStorage<boolean>('feature-feedback', false);
 
-  const sendFeedback = (data) => {
+  const sendFeedback = (data: FeedbackFormData): void => {
     setLoading(true);
     fetch('/api/feedback', {
       method: 'POST',
@@ -17,7 +18,9 @@ export function useFeedback() {
       .then(() => {
         setFeedbackSent(true);
         setLoading(false);
-        localStorage.setItem(feedbackStorageKey, true);
+        if (typeof window !== 'undefined') {
+          localStorage.setItem(feedbackStorageKey, 'true');
+        }
       });
   };
 
