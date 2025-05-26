@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { send } from '../../lib/mailService';
-import { ContactFormData } from '@/types';
+import { ContactFormData } from '@/src/types';
 
 type ApiResponse = {
   message: string;

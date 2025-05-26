@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { PageHead } from './PageHead';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
-import { LayoutContent } from '@/types';
+import { LayoutContent } from '@/src/types';
 
 interface LayoutProps {
   children: ReactNode;

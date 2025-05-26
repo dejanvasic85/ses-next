@@ -5,7 +5,7 @@ import { Heading } from './Heading';
 import { Icon } from './Icon/Icon';
 import { LinkButton } from './LinkButton';
 import { Rating } from './Rating';
-import { Social } from '@/types';
+import { Social } from '@/src/types';
 
 interface HeroProps {
   companyName: string;
