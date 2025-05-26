@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useLocalStorage } from './useLocalStorage';
-import { FeedbackFormData } from '@/src/types';
+import { FeedbackFormData } from '@/types';
 
 const feedbackStorageKey = 'feature-feedback';
 

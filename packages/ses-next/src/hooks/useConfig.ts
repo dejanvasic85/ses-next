@@ -1,4 +1,4 @@
-import { ConfigContext } from '@/src/providers/ConfigProvider';
+import { ConfigContext } from '@/providers/ConfigProvider';
 
 import { useContext } from 'react';
 

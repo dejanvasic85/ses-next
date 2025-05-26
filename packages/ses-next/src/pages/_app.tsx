@@ -6,8 +6,8 @@ import TagManager from 'react-gtm-module';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
 import '../../styles/globals.css';
-import { BasePageProps } from '@/src/types';
-import { ConfigProvider } from '@/src/providers/ConfigProvider';
+import { BasePageProps } from '@/types';
+import { ConfigProvider } from '@/providers/ConfigProvider';
 
 const { publicRuntimeConfig } = getConfig();
 

@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import Link from 'next/link';
 
 import { Icon } from './Icon/Icon';
-import { Social, ServiceList } from '@/src/types';
+import { Social, ServiceList } from '@/types';
 
 interface ConditionalWrapProps {
   children: ReactNode;

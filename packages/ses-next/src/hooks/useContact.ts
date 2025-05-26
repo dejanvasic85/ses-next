@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ContactFormData } from '@/src/types';
+import { ContactFormData } from '@/types';
 
 export function useContact() {
   const [loading, setLoading] = useState<boolean>(false);

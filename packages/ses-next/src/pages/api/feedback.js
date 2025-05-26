@@ -1,4 +1,4 @@
-import { send } from '../../lib/mailService';
+import { send } from '@/lib/mailService';
 
 export default function feedbackRoute(req, res) {
   const { fullName, comment, rating } = JSON.parse(req.body);

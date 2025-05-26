@@ -1,9 +1,13 @@
 import urlBuilder from '@sanity/image-url';
 
-import { useConfig } from '@/src/hooks/useConfig';
+import { useConfig } from '@/hooks/useConfig';
 import { useMemo } from 'react';
 
-export const CustomImage = (props) => {
+interface CustomImageProps {
+  value: string;
+}
+
+export const CustomImage = (props: CustomImageProps) => {
   const { sanityDataset, sanityProjectId } = useConfig();
   const builder = useMemo(
     () =>

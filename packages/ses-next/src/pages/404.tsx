@@ -1,7 +1,7 @@
 import NextImage from 'next/image';
 import NextLink from 'next/link';
 
-import { getBasePageProps } from '../lib/basePageProps';
+import { getBasePageProps } from '@/lib/basePageProps';
 
 const NotFoundPage = () => {
   return (

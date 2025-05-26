@@ -1,6 +1,6 @@
 import { getHomePageContent } from './content/contentService';
-import { config } from '@/src/lib/config';
-import { BasePageProps } from '@/src/types';
+import { config } from '@/lib/config';
+import { BasePageProps } from '@/types';
 
 interface GetBasePagePropsParams {
   pageUrl: string;
