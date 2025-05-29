@@ -1,3 +1,4 @@
+import { GetStaticProps, GetStaticPaths } from 'next';
 import NextImage from 'next/image';
 import { ArticleJsonLd } from 'next-seo';
 
@@ -9,7 +10,14 @@ import { getBasePageProps } from '../../lib/basePageProps';
 import { getBlogPosts } from '../../lib/content/contentService';
 import { tagsFromBlogs } from '../../lib/blogUtils';
 
-export default function BlogPost({ content, pageUrl, tags, post }) {
+interface BlogPostProps {
+  content: any;
+  pageUrl: string;
+  tags: string[];
+  post: any;
+}
+
+export default function BlogPost({ content, pageUrl, tags, post }: BlogPostProps) {
   return (
     <>
       <ArticleJsonLd
@@ -55,7 +63,7 @@ export default function BlogPost({ content, pageUrl, tags, post }) {
   );
 }
 
-export const getStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const baseProps = await getBasePageProps({ pageUrl: `blog/${params.slug}` });
   const blogPosts = await getBlogPosts();
   const post = blogPosts.find(({ slug }) => slug === params.slug);
@@ -71,7 +79,7 @@ export const getStaticProps = async ({ params }) => {
   };
 };
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const blogPosts = await getBlogPosts();
   const paths = blogPosts
     .filter(({ slug }) => slug)

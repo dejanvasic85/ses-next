@@ -22,19 +22,18 @@ export interface Image {
 }
 
 export interface ContactFormData {
-  firstName: string;
-  lastName: string;
+  fullName: string;
   email: string;
   phone: string;
   message: string;
+  address: string;
   recaptchaToken?: string;
 }
 
 export interface FeedbackFormData {
-  name: string;
-  email: string;
+  fullName: string;
+  comment: string;
   rating: number;
-  message: string;
   recaptchaToken?: string;
 }
 
