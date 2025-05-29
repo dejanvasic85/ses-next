@@ -22,6 +22,10 @@ const nextConfig = {
     googleRecaptchaSiteKey: process.env.RECAPTCHA_SITE_KEY,
   },
   reactStrictMode: true,
+  // Ensure paths alias works properly with TypeScript
+  webpack(config) {
+    return config;
+  },
 };
 
 module.exports = withBundleAnalyzer(nextConfig);

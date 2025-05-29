@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npm run cache:clear && rm -rf .next/ && next dev",
+    "dev": "npm run cache:clear && next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "format": "prettier format",
     "cache:clear": "rm -rf cache/",
-    "lighthouse": "lighthouse https://ses-next.vercel.app --chrome-flags=\"--headless\" --output html --output-path ./lighthouse.html --quiet --view"
+    "lighthouse": "lighthouse https://ses-next.vercel.app --chrome-flags=\"--headless\" --output html --output-path ./lighthouse.html --quiet --view",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@portabletext/react": "3.2.1",
@@ -26,17 +27,24 @@
     "react-gtm-module": "2.0.11",
     "react-hook-form": "7.56.4",
     "react-modal": "3.16.3",
-    "ses-reviews": "*"
+    "ses-reviews": "*",
+    "zod": "3.25.20"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "15.3.2",
     "@tailwindcss/typography": "0.5.16",
+    "@types/node": "^22.15.21",
+    "@types/react": "^19.1.5",
+    "@types/react-dom": "^19.1.5",
+    "@types/react-gtm-module": "^2.0.4",
+    "@types/react-modal": "^3.16.3",
     "autoprefixer": "10.4.21",
     "eslint": "8.57.1",
     "eslint-config-next": "15.3.2",
     "lighthouse": "12.6.0",
     "postcss": "8.5.3",
     "prettier": "3.5.3",
-    "tailwindcss": "3.4.17"
+    "tailwindcss": "3.4.17",
+    "typescript": "^5.8.3"
   }
 }

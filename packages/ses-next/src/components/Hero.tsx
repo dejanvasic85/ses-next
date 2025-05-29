@@ -1,11 +1,22 @@
 import React from 'react';
-
 import Image from 'next/image';
 
 import { Heading } from './Heading';
 import { Icon } from './Icon/Icon';
 import { LinkButton } from './LinkButton';
 import { Rating } from './Rating';
+import { Social } from '@/types';
+
+interface HeroProps {
+  companyName: string;
+  companyLogo: string;
+  social: Social;
+  mainHeading: string;
+  subHeading: string;
+  googleReviewsUrl: string;
+  overallRatingValue: number;
+  numberOfReviews: number;
+}
 
 export function Hero({
   companyName,
@@ -16,7 +27,7 @@ export function Hero({
   googleReviewsUrl,
   overallRatingValue,
   numberOfReviews,
-}) {
+}: HeroProps) {
   return (
     <div className="isolate bg-white">
       <div className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
