@@ -5,7 +5,7 @@ import { ArticleJsonLd } from 'next-seo';
 import { PortableText } from '@portabletext/react';
 import { formatDistanceToNow } from 'date-fns';
 
-import { Layout, BlogLayout, CustomImage } from '../../components';
+import { Layout, BlogLayout, CustomImage } from '@/components';
 import { getBasePageProps } from '../../lib/basePageProps';
 import { getBlogPosts } from '../../lib/content/contentService';
 import { tagsFromBlogs } from '../../lib/blogUtils';
@@ -22,6 +22,7 @@ export default function BlogPost({ content, pageUrl, tags, post }: BlogPostProps
     <>
       <ArticleJsonLd
         type="BlogPosting"
+        description={post.title}
         authorName="SES Melbourne"
         title={post.title}
         url={pageUrl}
@@ -64,9 +65,9 @@ export default function BlogPost({ content, pageUrl, tags, post }: BlogPostProps
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const baseProps = await getBasePageProps({ pageUrl: `blog/${params.slug}` });
+  const baseProps = await getBasePageProps({ pageUrl: `blog/${params?.slug}` });
   const blogPosts = await getBlogPosts();
-  const post = blogPosts.find(({ slug }) => slug === params.slug);
+  const post = blogPosts.find(({ slug }) => slug === params?.slug);
   const tags = tagsFromBlogs(blogPosts);
 
   return {
