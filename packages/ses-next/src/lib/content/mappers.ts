@@ -209,17 +209,25 @@ export const mapTestimonials = (
       throw new Error(`Testimonial not found for reference: ${testimonialRef._ref}`);
     }
     
-    return {
+    const result: ProcessedTestimonial = {
       date: testimonial.date || '',
       comment: testimonial.comment,
       starRating: testimonial.rating,
       reviewer: {
-        profilePhotoUrl: testimonial.profileImgUrl,
-        profileUrl: testimonial.reviewUrl,
         displayName: testimonial.fullName,
       },
-      url: testimonial.reviewUrl,
     };
+
+    // Only add optional fields if they have values
+    if (testimonial.profileImgUrl) {
+      result.reviewer.profilePhotoUrl = testimonial.profileImgUrl;
+    }
+    if (testimonial.reviewUrl) {
+      result.reviewer.profileUrl = testimonial.reviewUrl;
+      result.url = testimonial.reviewUrl;
+    }
+
+    return result;
   });
 };
 
