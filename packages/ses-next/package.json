@@ -12,16 +12,16 @@
     "type:check": "tsc --noEmit"
   },
   "dependencies": {
-    "@portabletext/react": "3.2.4",
+    "@portabletext/react": "4.0.2",
     "@sanity/image-url": "1.2.0",
     "aws-sdk": "2.1692.0",
     "class-names": "1.0.0",
     "daisyui": "4.12.24",
     "date-fns": "4.1.0",
-    "next": "15.4.6",
+    "next": "15.5.2",
     "next-seo": "6.8.0",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
     "react-google-recaptcha-v3": "1.11.0",
     "react-gtm-module": "2.0.11",
     "react-hook-form": "7.62.0",
@@ -30,7 +30,7 @@
     "zod": "3.25.76"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "15.4.6",
+    "@next/bundle-analyzer": "15.5.2",
     "@tailwindcss/typography": "0.5.16",
     "@types/node": "24.3.0",
     "@types/react": "19.1.12",
@@ -39,7 +39,7 @@
     "@types/react-modal": "3.16.3",
     "autoprefixer": "10.4.21",
     "eslint": "8.57.1",
-    "eslint-config-next": "15.4.6",
+    "eslint-config-next": "15.5.2",
     "lighthouse": "12.8.2",
     "postcss": "8.5.6",
     "prettier": "3.6.2",

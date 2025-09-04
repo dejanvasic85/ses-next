@@ -22,7 +22,9 @@ export default function Terms({ content, googleReviews, pageUrl, termsContent }:
               <PortableText
                 value={termsContent.terms}
                 components={{
-                  types: { image: CustomImage },
+                  types: { 
+                    image: ({ value }) => <CustomImage value={value} />,
+                  },
                 }}
               />
             </p>

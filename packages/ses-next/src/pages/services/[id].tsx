@@ -32,7 +32,9 @@ export default function Service({ blogPosts, content, service, pageUrl, title }:
             <PortableText
               value={serviceContent}
               components={{
-                types: { image: CustomImage },
+                types: { 
+                  image: ({ value }) => <CustomImage value={value} />,
+                },
               }}
             />
           </article>
