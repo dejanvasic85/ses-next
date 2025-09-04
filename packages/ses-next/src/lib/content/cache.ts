@@ -5,11 +5,7 @@ type CacheRead<T> = () => Promise<T | null>;
 type CacheWrite<T> = (data: T) => Promise<void> | void;
 type CacheFactory<T> = () => Promise<T>;
 
-export const cache = async <T>(
-  read: CacheRead<T>,
-  write: CacheWrite<T>,
-  factory: CacheFactory<T>
-): Promise<T> => {
+export const cache = async <T>(read: CacheRead<T>, write: CacheWrite<T>, factory: CacheFactory<T>): Promise<T> => {
   let data = await read();
   if (data) {
     console.log(`Cache: hit`);

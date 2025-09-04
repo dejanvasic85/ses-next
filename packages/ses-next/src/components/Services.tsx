@@ -6,7 +6,11 @@ import { Heading } from './Heading';
 import { Icon } from './Icon/Icon';
 import type { IconMap } from './Icon/IconMap';
 
-const ConditionalWrap = ({ children, condition, wrapper }: {
+const ConditionalWrap = ({
+  children,
+  condition,
+  wrapper,
+}: {
   children: React.ReactNode;
   condition: boolean;
   wrapper: (children: React.ReactNode) => React.ReactNode;

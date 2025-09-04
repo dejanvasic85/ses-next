@@ -20,7 +20,7 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T
       return initialValue;
     }
   });
-  
+
   // Return a wrapped version of useState's setter function that ...
   // ... persists the new value to localStorage.
   const setValue: SetValue<T> = (value) => {
@@ -38,6 +38,6 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T
       console.log(error);
     }
   };
-  
+
   return [storedValue, setValue];
 }
