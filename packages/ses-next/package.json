@@ -7,10 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier format",
     "cache:clear": "rm -rf cache/",
     "lighthouse": "lighthouse https://ses-next.vercel.app --chrome-flags=\"--headless\" --output html --output-path ./lighthouse.html --quiet --view",
-    "typecheck": "tsc --noEmit"
+    "type:check": "tsc --noEmit"
   },
   "dependencies": {
     "@portabletext/react": "3.2.4",
