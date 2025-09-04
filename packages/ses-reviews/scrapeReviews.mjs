@@ -8,19 +8,74 @@ import { URL } from './constants.mjs';
   let browser;
   try {
     browser = await puppeteer.launch({
-      headless: false,
+      headless: true,
       timeout: 0,
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
     const [page] = await browser.pages();
-    page.goto(URL);
+    await page.goto(URL, { waitUntil: 'networkidle2' });
 
-    await page.waitForNavigation();
-    // pause for 5 seconds
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    // Wait for reviews container to load
+    await page.waitForSelector('div[data-review-id]', { timeout: 10000 });
+
+    // Auto-scroll to load all reviews with multiple strategies
+    let previousReviewCount = 0;
+    let currentReviewCount = 0;
+    let stableCount = 0;
+
+    do {
+      previousReviewCount = currentReviewCount;
+
+      // Try multiple scrolling strategies
+      await page.evaluate(() => {
+        // Strategy 1: Scroll the main container
+        const mainContainer = document.querySelector('div[role="main"]');
+        if (mainContainer) {
+          mainContainer.scrollTo(0, mainContainer.scrollHeight);
+        }
+
+        // Strategy 2: Scroll the reviews feed container
+        const reviewsFeed = document.querySelector('div[data-value="Sort"]')?.parentElement?.parentElement;
+        if (reviewsFeed) {
+          reviewsFeed.scrollTo(0, reviewsFeed.scrollHeight);
+        }
+
+        // Strategy 3: Scroll the window itself
+        window.scrollTo(0, document.body.scrollHeight);
+
+        // Strategy 4: Find and scroll any scrollable div containing reviews
+        const scrollableContainers = Array.from(document.querySelectorAll('div')).filter((div) => {
+          return div.scrollHeight > div.clientHeight && div.querySelector('div[data-review-id]');
+        });
+
+        scrollableContainers.forEach((container) => {
+          container.scrollTo(0, container.scrollHeight);
+        });
+      });
+
+      // Wait for potential new reviews to load
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+
+      currentReviewCount = await page.$$eval('div[data-review-id][aria-label]', (reviews) => reviews.length);
+      console.log(`Found ${currentReviewCount} reviews`);
+
+      // If count hasn't changed, increment stable counter
+      if (currentReviewCount === previousReviewCount) {
+        stableCount++;
+      } else {
+        stableCount = 0;
+      }
+
+      // Stop if we've had the same count for 2 consecutive attempts
+    } while (currentReviewCount > previousReviewCount || stableCount < 2);
+
+    // Expand all "See more" buttons
     await page.$$eval('button[aria-label="See more"]', (buttons) => {
       buttons.forEach((btn) => btn.click());
     });
+
+    // Wait for expanded content to load
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     const data = await page.evaluate(() => {
       const reviews = [];
@@ -40,7 +95,8 @@ import { URL } from './constants.mjs';
         const [, , , reviewDetailsEl] = secondChild.children;
         const [starsAndDateEl, commentsEl] = reviewDetailsEl.children;
         const [starsEl, dateEl] = starsAndDateEl.children;
-        const comment = commentsEl.querySelector('span').textContent;
+        const commentEl = commentsEl.querySelector('span');
+        const comment = commentEl ? commentEl.textContent : '';
 
         const review = {
           id,
