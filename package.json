@@ -14,5 +14,11 @@
   ],
   "volta": {
     "node": "22.19.0"
+  },
+  "devDependencies": {
+    "lint-staged": "15.5.2"
+  },
+  "lint-staged": {
+    "*": "prettier --write"
   }
 }
