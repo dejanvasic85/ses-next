@@ -71,21 +71,21 @@ export const SanityReferenceSchema = z.object({
 export const SanityBlockSchema = z.object({
   _type: z.literal('block'),
   _key: z.string(),
-  children: z.array(z.object({
-    _type: z.literal('span'),
-    _key: z.string(),
-    text: z.string(),
-    marks: z.array(z.string()).optional(),
-  })),
+  children: z.array(
+    z.object({
+      _type: z.literal('span'),
+      _key: z.string(),
+      text: z.string(),
+      marks: z.array(z.string()).optional(),
+    }),
+  ),
   markDefs: z.array(z.any()).optional(),
   style: z.string().optional(),
   level: z.number().optional(),
   listItem: z.string().optional(),
 });
 
-export const SanityPortableTextSchema = z.array(
-  z.union([SanityBlockSchema, SanityImageSchema])
-);
+export const SanityPortableTextSchema = z.array(z.union([SanityBlockSchema, SanityImageSchema]));
 
 // ============================================================================
 // DOCUMENT SCHEMAS (Based on Sanity schemas)
@@ -211,11 +211,13 @@ export const HomepageSchema = z.object({
     title: z.string(),
     description: z.string(),
   }),
-  socialMedia: z.object({
-    facebook: z.string().url().optional(),
-    linkedIn: z.string().url().optional(),
-    instagram: z.string().url().optional(),
-  }).optional(),
+  socialMedia: z
+    .object({
+      facebook: z.string().url().optional(),
+      linkedIn: z.string().url().optional(),
+      instagram: z.string().url().optional(),
+    })
+    .optional(),
   services: z.object({
     blurbs: z.array(z.string()).optional(),
     items: z.array(SanityReferenceSchema),
@@ -241,12 +243,16 @@ export const SanityImageAssetDocumentSchema = z.object({
   url: z.string().url(),
   originalFilename: z.string().optional(),
   size: z.number().optional(),
-  metadata: z.object({
-    dimensions: z.object({
-      width: z.number(),
-      height: z.number(),
-    }).optional(),
-  }).optional(),
+  metadata: z
+    .object({
+      dimensions: z
+        .object({
+          width: z.number(),
+          height: z.number(),
+        })
+        .optional(),
+    })
+    .optional(),
 });
 
 // ============================================================================
@@ -327,14 +333,20 @@ export const ProcessedServiceItemSchema = z.object({
   slug: z.string(),
   linkToReadMore: z.boolean().optional(),
   icon: IconSchema,
-  featuredImage: z.object({
-    src: z.string().url(),
-    alt: z.string(),
-  }).optional(),
-  imageGallery: z.array(z.object({
-    src: z.string().url(),
-    alt: z.string(),
-  })).optional(),
+  featuredImage: z
+    .object({
+      src: z.string().url(),
+      alt: z.string(),
+    })
+    .optional(),
+  imageGallery: z
+    .array(
+      z.object({
+        src: z.string().url(),
+        alt: z.string(),
+      }),
+    )
+    .optional(),
   content: z.any().optional(), // PortableText content
 });
 

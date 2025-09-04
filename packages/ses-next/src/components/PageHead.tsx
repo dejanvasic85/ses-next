@@ -11,14 +11,7 @@ interface PageHeadProps {
   phone?: string;
 }
 
-export function PageHead({ 
-  canonicalUrl, 
-  companyName, 
-  companyLogo, 
-  description, 
-  title, 
-  socialTitle 
-}: PageHeadProps) {
+export function PageHead({ canonicalUrl, companyName, companyLogo, description, title, socialTitle }: PageHeadProps) {
   return (
     <>
       <NextSeo

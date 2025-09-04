@@ -81,12 +81,7 @@ export default function Home({ content, googleReviews, pageUrl }: HomeProps) {
           <Services services={services} className="mt-12" />
         </section>
         <section id="about" className="mt-16 pt-24">
-          <About
-            team={team}
-            testimonials={reviews}
-            googleReviewsUrl={googleMapsLocationPlaceUrl}
-            training={training}
-          />
+          <About team={team} testimonials={reviews} googleReviewsUrl={googleMapsLocationPlaceUrl} training={training} />
         </section>
         <section id="contact" className="mt-16 pt-24">
           <Contact contact={contact} location={googleMapsLocation} />

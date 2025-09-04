@@ -1,6 +1,6 @@
-import { 
-  SanityDocument, 
-  Homepage, 
+import {
+  SanityDocument,
+  Homepage,
   Service,
   TeamMember,
   Training,
@@ -12,7 +12,7 @@ import {
   ProcessedTestimonial,
   ProcessedServiceItem,
   ProcessedTeamMember,
-  Icon
+  Icon,
 } from '@/types';
 
 // ============================================================================
@@ -30,9 +30,9 @@ interface FeaturedImage {
 }
 
 const findDocumentById = <T extends SanityDocument>(
-  data: SanityDocument[], 
-  id: string, 
-  type?: string
+  data: SanityDocument[],
+  id: string,
+  type?: string,
 ): T | undefined => {
   const doc = data.find((item) => item._id === id);
   if (doc && type && doc._type !== type) {
@@ -54,12 +54,9 @@ const findAssetById = (data: SanityDocument[], id: string): string => {
 // SHOWCASE/GALLERY MAPPERS
 // ============================================================================
 
-export const mapServiceShowcaseGallery = (
-  data: SanityDocument[], 
-  service: Service
-): ImageGalleryItem[] => {
+export const mapServiceShowcaseGallery = (data: SanityDocument[], service: Service): ImageGalleryItem[] => {
   const { showcase = [] } = service;
-  
+
   return showcase
     .map((item) => findDocumentById<Showcase>(data, item._ref, 'showcase'))
     .filter((showcase): showcase is Showcase => showcase !== undefined)
@@ -69,12 +66,9 @@ export const mapServiceShowcaseGallery = (
     }));
 };
 
-export const mapFeaturedImage = (
-  data: SanityDocument[], 
-  service: Service
-): FeaturedImage | null => {
+export const mapFeaturedImage = (data: SanityDocument[], service: Service): FeaturedImage | null => {
   const { showcase = [] } = service;
-  
+
   const featuredShowcase = showcase
     .map((item) => findDocumentById<Showcase>(data, item._ref, 'showcase'))
     .filter((showcase): showcase is Showcase => showcase !== undefined)
@@ -94,30 +88,20 @@ export const mapFeaturedImage = (
 // MAIN MAPPERS
 // ============================================================================
 
-export const mapServices = (
-  data: SanityDocument[], 
-  homepageItem: Homepage
-): ProcessedServiceList => {
-  const { services: { blurbs, items } } = homepageItem;
+export const mapServices = (data: SanityDocument[], homepageItem: Homepage): ProcessedServiceList => {
+  const {
+    services: { blurbs, items },
+  } = homepageItem;
 
   const processedItems: ProcessedServiceItem[] = items.map((serviceRef) => {
     const service = findDocumentById<Service>(data, serviceRef._ref, 'service');
-    
+
     if (!service) {
       throw new Error(`Service not found for reference: ${serviceRef._ref}`);
     }
 
-    const { 
-      _id,
-      name, 
-      blurb, 
-      description, 
-      icon, 
-      slug, 
-      content, 
-      linkToReadMore = false 
-    } = service;
-    
+    const { _id, name, blurb, description, icon, slug, content, linkToReadMore = false } = service;
+
     const imageGallery = mapServiceShowcaseGallery(data, service);
     const featuredImage = mapFeaturedImage(data, service);
 
@@ -141,10 +125,7 @@ export const mapServices = (
   };
 };
 
-export const mapTeamMember = (
-  data: SanityDocument[], 
-  teamMemberItem: TeamMember
-): ProcessedTeamMember => {
+export const mapTeamMember = (data: SanityDocument[], teamMemberItem: TeamMember): ProcessedTeamMember => {
   const { avatar, name, role } = teamMemberItem;
 
   return {
@@ -154,19 +135,18 @@ export const mapTeamMember = (
   };
 };
 
-export const mapTeam = (
-  data: SanityDocument[], 
-  homepageItem: Homepage
-): ProcessedTeam => {
-  const { team: { blurbs, members } } = homepageItem;
+export const mapTeam = (data: SanityDocument[], homepageItem: Homepage): ProcessedTeam => {
+  const {
+    team: { blurbs, members },
+  } = homepageItem;
 
   const processedMembers = members.map((memberRef) => {
     const teamMember = findDocumentById<TeamMember>(data, memberRef._ref, 'teamMember');
-    
+
     if (!teamMember) {
       throw new Error(`Team member not found for reference: ${memberRef._ref}`);
     }
-    
+
     return mapTeamMember(data, teamMember);
   });
 
@@ -176,19 +156,16 @@ export const mapTeam = (
   };
 };
 
-export const mapTraining = (
-  data: SanityDocument[], 
-  homepageItem: Homepage
-): ProcessedTraining[] => {
+export const mapTraining = (data: SanityDocument[], homepageItem: Homepage): ProcessedTraining[] => {
   const { training } = homepageItem;
-  
+
   return training.map((trainingRef) => {
     const trainingItem = findDocumentById<Training>(data, trainingRef._ref, 'training');
-    
+
     if (!trainingItem) {
       throw new Error(`Training item not found for reference: ${trainingRef._ref}`);
     }
-    
+
     return {
       trainingTitle: trainingItem.trainingTitle,
       icon: trainingItem.icon as Icon,
@@ -196,19 +173,16 @@ export const mapTraining = (
   });
 };
 
-export const mapTestimonials = (
-  data: SanityDocument[], 
-  homepageItem: Homepage
-): ProcessedTestimonial[] => {
+export const mapTestimonials = (data: SanityDocument[], homepageItem: Homepage): ProcessedTestimonial[] => {
   const { testimonials } = homepageItem;
-  
+
   return testimonials.map((testimonialRef) => {
     const testimonial = findDocumentById<Testimonial>(data, testimonialRef._ref, 'testimonial');
-    
+
     if (!testimonial) {
       throw new Error(`Testimonial not found for reference: ${testimonialRef._ref}`);
     }
-    
+
     const result: ProcessedTestimonial = {
       date: testimonial.date || '',
       comment: testimonial.comment,
@@ -231,9 +205,6 @@ export const mapTestimonials = (
   });
 };
 
-export const mapCompanyLogo = (
-  data: SanityDocument[], 
-  homepageItem: Homepage
-): string => {
+export const mapCompanyLogo = (data: SanityDocument[], homepageItem: Homepage): string => {
   return findAssetById(data, homepageItem.companyLogo.asset._ref);
 };

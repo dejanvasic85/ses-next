@@ -2,6 +2,7 @@
   "scripts": {
     "dev:sanity": "npm run dev -w ses-content",
     "dev": "npm run dev -w ses-next",
+    "format": "prettier --write .",
     "build": "npm run build -w ses-next",
     "clear-cache": "rm -rf ./ses-next/cache",
     "deploy:content": "npm run build -w ses-content && npm run deploy -w ses-content",
