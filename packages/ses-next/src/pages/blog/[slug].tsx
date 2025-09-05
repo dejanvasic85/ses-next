@@ -54,7 +54,9 @@ export default function BlogPost({ content, pageUrl, tags, post }: BlogPostProps
             <PortableText
               value={post.body}
               components={{
-                types: { image: CustomImage },
+                types: { 
+                  image: ({ value }) => <CustomImage value={value} />,
+                },
               }}
             />
           </article>
