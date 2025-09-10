@@ -1,3 +1,26 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@plugin "daisyui" {
+  themes: light --default;
+}
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  color-scheme: light;
+  
+  --color-primary: oklch(50% 0.15 240);
+  --color-secondary: oklch(70% 0.2 200);
+  --color-accent: oklch(70% 0.1 0);
+  --color-neutral: oklch(32% 0.1 250);
+  --color-base-100: oklch(100% 0 0);
+  --color-info: oklch(70% 0.2 200);
+  --color-success: oklch(72% 0.2 145);
+  --color-warning: oklch(80% 0.2 85);
+  --color-error: oklch(65% 0.2 25);
+}
+
+@theme {
+  --animate-popin: popin 0.5s ease-in-out;
+  --keyframes-popin: 0%, 100% { transform: scale(0); } 50% { transform: scale(1.1); } 100% { transform: scale(1); };
+}

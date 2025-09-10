@@ -52,7 +52,7 @@ export function Team({ blurbs, members, training }: TeamProps) {
           </div>
         </div>
 
-        <div className="mt-12 p-12 border-t-2">
+        <div className="mt-12 p-12">
           <p className="max-w-screen-md text-gray-500 md:text-lg text-center mx-auto">{secondBlurb}</p>
         </div>
         <div className="sm:h-40 grid grid-cols-2 xl:grid-cols-4 sm:content-evenly rounded-lg gap-6 p-6">

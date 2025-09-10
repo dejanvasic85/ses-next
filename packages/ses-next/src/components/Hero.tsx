@@ -103,8 +103,8 @@ export function Hero({
                   </LinkButton>
                 )}
               </div>
-              <div className="mt-6 flex flex-col justify-center items-center gap-4 bg-white border-2 md:w-1/2 m-auto p-4 rounded-3xl">
-                <a className="text-base text-sm link" href={googleReviewsUrl} target="_blank">
+              <div className="mt-6 flex flex-col justify-center items-center gap-4 bg-white border-gray-200 border md:w-1/2 m-auto p-4 rounded-3xl">
+                <a className="text-sm link" href={googleReviewsUrl} target="_blank">
                   Average rating of {overallRatingValue} with {numberOfReviews}
                 </a>
                 <div className="flex items-center justify-center gap-2">
