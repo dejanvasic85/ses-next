@@ -1,0 +1,25 @@
+{
+  "version": 1.1,
+  "atDirectives": [
+    {
+      "name": "@plugin",
+      "description": "Load a Tailwind CSS plugin",
+      "references": [
+        {
+          "name": "Tailwind CSS documentation",
+          "url": "https://tailwindcss.com/docs/plugins"
+        }
+      ]
+    },
+    {
+      "name": "@theme",
+      "description": "Define theme values in Tailwind CSS v4",
+      "references": [
+        {
+          "name": "Tailwind CSS v4 documentation",
+          "url": "https://tailwindcss.com/docs/v4-beta"
+        }
+      ]
+    }
+  ]
+}
