@@ -29,7 +29,7 @@ export default function Blog({ content, googleReviews, pageUrl, tags, blogPosts 
                     height={300}
                     loading="lazy"
                     src={photo}
-                    className="border-base-content bg-base-300 rounded-btn border border-opacity-5"
+                    className="bg-base-300 rounded-lg"
                     alt={title}
                   />
                 </figure>

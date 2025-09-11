@@ -43,9 +43,11 @@ export function ContactForm({ loading, onSubmit }: ContactFormProps) {
 
   return (
     <form onSubmit={handleSubmit(handleReCaptchaVerify)} id="contactForm">
-      <div className="form-control w-full">
+      <fieldset className="fieldset">
+        <legend className="fieldset-legend">Contact form</legend>
+
         <label className="label" htmlFor="email">
-          <span className="label-text">Email</span>
+          Email
         </label>
         <input
           type="text"
@@ -70,9 +72,7 @@ export function ContactForm({ loading, onSubmit }: ContactFormProps) {
             </span>
           </label>
         )}
-      </div>
 
-      <div className="form-control w-full">
         <label className="label" htmlFor="fullName">
           <span className="label-text">Full name</span>
         </label>
@@ -92,9 +92,7 @@ export function ContactForm({ loading, onSubmit }: ContactFormProps) {
             </span>
           </label>
         )}
-      </div>
 
-      <div className="form-control w-full">
         <label className="label" htmlFor="phone">
           <span className="label-text">Phone</span>
         </label>
@@ -114,9 +112,7 @@ export function ContactForm({ loading, onSubmit }: ContactFormProps) {
             </span>
           </label>
         )}
-      </div>
 
-      <div className="form-control w-full">
         <label className="label" htmlFor="address">
           <span className="label-text">Address</span>
         </label>
@@ -136,9 +132,7 @@ export function ContactForm({ loading, onSubmit }: ContactFormProps) {
             </span>
           </label>
         )}
-      </div>
 
-      <div className="form-control w-full">
         <label className="label" htmlFor="message">
           <span className="label-text">Message</span>
         </label>
@@ -148,7 +142,7 @@ export function ContactForm({ loading, onSubmit }: ContactFormProps) {
           rows={4}
           aria-invalid={!!messageError?.message}
           aria-describedby={!!messageError?.message ? 'messageErrorMessage' : undefined}
-          className={classNames('textarea textarea-bordered', { 'textarea-error': messageError?.message })}
+          className={classNames('textarea textarea-bordered w-full', { 'textarea-error': messageError?.message })}
           {...register('message', {
             required: { value: true, message: 'Message is required' },
           })}
@@ -160,7 +154,7 @@ export function ContactForm({ loading, onSubmit }: ContactFormProps) {
             </span>
           </label>
         )}
-      </div>
+      </fieldset>
 
       <button className={classNames('btn btn-primary mt-8 text-white', { loading })} type="submit" id="submit">
         Submit

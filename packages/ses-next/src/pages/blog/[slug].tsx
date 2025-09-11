@@ -41,7 +41,7 @@ export default function BlogPost({ content, pageUrl, tags, post }: BlogPostProps
                 width={800}
                 height={400}
                 src={post.photo}
-                className="border-base-content bg-base-300 rounded-box border border-opacity-5"
+                className="bg-base-300 rounded-box border-opacity-5"
                 alt={post.title}
               />
             </figure>
