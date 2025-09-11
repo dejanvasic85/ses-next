@@ -9,9 +9,12 @@
     "lint": "next lint",
     "cache:clear": "rm -rf cache/",
     "lighthouse": "lighthouse https://ses-next.vercel.app --chrome-flags=\"--headless\" --output html --output-path ./lighthouse.html --quiet --view",
-    "type:check": "tsc --noEmit"
+    "type:check": "tsc --noEmit",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
   },
   "dependencies": {
+    "@playwright/test": "1.55.0",
     "@portabletext/react": "4.0.2",
     "@sanity/image-url": "1.2.0",
     "@tailwindcss/postcss": "4.1.13",

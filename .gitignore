@@ -109,3 +109,5 @@ lighthouse.*
 cache/
 
 .env.local
+
+packages/ses-next/playwright-report/
