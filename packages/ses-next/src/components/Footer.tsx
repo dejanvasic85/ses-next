@@ -47,7 +47,7 @@ export function Footer({
   const year = today.getFullYear();
 
   return (
-    <footer className="footer p-10 bg-neutral text-white">
+    <footer className="footer p-10 bg-slate-700 text-white grid grid-cols-1 lg:grid-cols-4">
       <div className="flex flex-col gap-2">
         <Icon name="bolt" size="xxxl" />
         <div>
