@@ -310,7 +310,7 @@
       },
       "comment": "I highly recommend Storm Electrical Solutions. They have done a few jobs for us and we are really happy with the  work completed. They are super friendly, punctual and very professional!",
       "starRating": 5,
-      "date": "11 months ago"
+      "date": "a year ago"
     },
     {
       "id": "ChdDSUhNMG9nS0VJQ0FnSURjN0lIUnd3RRAB",
@@ -589,18 +589,6 @@
       "date": "a year ago"
     },
     {
-      "id": "ChdDSUhNMG9nS0VJQ0FnSUNaM18zYm13RRAB",
-      "url": "https://www.google.com/maps/reviews/@-37.8354339,144.8650809,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1sChdDSUhNMG9nS0VJQ0FnSUNaM18zYm13RRAB!2m1!1s0x0:0xd077705b9fe576ea?hl=en&entry=ttu",
-      "reviewer": {
-        "profileUrl": "https://www.google.com/maps/contrib/106791209847179579590/reviews?hl=en",
-        "profilePhotoUrl": "https://lh3.googleusercontent.com/a-/ALV-UjUZWIn4NSMmmulLkVa5IddPLD0xX6BIqdFGLUWkq8pZI9JY31I=w36-h36-p-rp-mo-br100",
-        "displayName": "Clair Oakley"
-      },
-      "comment": "Highly recommend Karl's service and team. He is very transparent in his quoting and delivery and I would use him again next time.",
-      "starRating": 5,
-      "date": "a year ago"
-    },
-    {
       "id": "ChdDSUhNMG9nS0VJQ0FnSURjZ0l1MnNBRRAB",
       "url": "https://www.google.com/maps/reviews/@-37.8354339,144.8650809,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1sChdDSUhNMG9nS0VJQ0FnSURjZ0l1MnNBRRAB!2m1!1s0x0:0xd077705b9fe576ea?hl=en&entry=ttu",
       "reviewer": {
@@ -611,6 +599,18 @@
       "comment": "The guys were fantastic. Great quality, and their attention to detail was first class, positioning the down lights perfectly throughout the room. Really easy to deal with, great value. Will definitely be using them again.",
       "starRating": 5,
       "date": "5 years ago"
+    },
+    {
+      "id": "ChdDSUhNMG9nS0VJQ0FnSUNaM18zYm13RRAB",
+      "url": "https://www.google.com/maps/reviews/@-37.8354339,144.8650809,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1sChdDSUhNMG9nS0VJQ0FnSUNaM18zYm13RRAB!2m1!1s0x0:0xd077705b9fe576ea?hl=en&entry=ttu",
+      "reviewer": {
+        "profileUrl": "https://www.google.com/maps/contrib/106791209847179579590/reviews?hl=en",
+        "profilePhotoUrl": "https://lh3.googleusercontent.com/a-/ALV-UjUZWIn4NSMmmulLkVa5IddPLD0xX6BIqdFGLUWkq8pZI9JY31I=w36-h36-p-rp-mo-br100",
+        "displayName": "Clair Oakley"
+      },
+      "comment": "Highly recommend Karl's service and team. He is very transparent in his quoting and delivery and I would use him again next time.",
+      "starRating": 5,
+      "date": "a year ago"
     },
     {
       "id": "ChZDSUhNMG9nS0VJQ0FnSUNLOHYteFpnEAE",
@@ -838,7 +838,7 @@
       },
       "comment": "Karl came to the rescue and provided trustworthy advice and a remedy to the problem at our office. Would recommend for sure and will be using for any electric needs moving forward.",
       "starRating": 5,
-      "date": "4 years ago"
+      "date": "5 years ago"
     },
     {
       "id": "ChdDSUhNMG9nS0VJQ0FnSURTMnNXWWhBRRAB",
@@ -1090,7 +1090,7 @@
       },
       "comment": "Great honest service. Thanks Mike",
       "starRating": 5,
-      "date": "9 months ago"
+      "date": "10 months ago"
     },
     {
       "id": "ChdDSUhNMG9nS0VJQ0FnSUNOMXJXNWtnRRAB",
