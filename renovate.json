@@ -13,6 +13,7 @@
     "group:allNonMajor",
     "schedule:earlyMondays"
   ],
+  "automerge": true,
   "commitMessageAction": "",
   "labels": ["dependencies"],
   "prConcurrentLimit": 3,
