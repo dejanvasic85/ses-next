@@ -22,6 +22,7 @@ jobs:
           npm run update:rating
           npm run update:reviews
       - name: Create Pull Request
+        id: cpr
         uses: peter-evans/create-pull-request@v7
         with:
           branch: feat/update-google-reviews
@@ -30,3 +31,9 @@ jobs:
             This is an automated pull request to update the google reviews.
           commit-message: 'feat: Google ratings updates'
           labels: 'content'
+
+      - name: Enable auto-merge for PR
+        if: steps.cpr.outputs.pull-request-operation == 'created'
+        run: gh pr merge --auto --squash ${{ steps.cpr.outputs.pull-request-number }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
