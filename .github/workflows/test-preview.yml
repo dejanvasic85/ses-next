@@ -3,8 +3,6 @@ name: Test Preview Deployment
 on:
   pull_request:
     types: [opened, synchronize, reopened]
-    paths:
-      - 'packages/ses-next/**'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
