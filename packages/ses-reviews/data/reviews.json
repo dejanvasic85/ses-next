@@ -82,7 +82,7 @@
       },
       "comment": "Great service from Karl & his team from the moment I rang to enquire. Quick, friendly and well priced, thank you!",
       "starRating": 5,
-      "date": "a month ago"
+      "date": "2 months ago"
     },
     {
       "id": "ChZDSUhNMG9nS0VJQ0FnSUQ3bjRXNFdBEAE",
@@ -241,18 +241,6 @@
       "date": "2 years ago"
     },
     {
-      "id": "ChdDSUhNMG9nS0VJQ0FnSUMtNWRfcjh3RRAB",
-      "url": "https://www.google.com/maps/reviews/@-37.8354339,144.8650809,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1sChdDSUhNMG9nS0VJQ0FnSUMtNWRfcjh3RRAB!2m1!1s0x0:0xd077705b9fe576ea?hl=en&entry=ttu",
-      "reviewer": {
-        "profileUrl": "https://www.google.com/maps/contrib/107489313271045900576/reviews?hl=en",
-        "profilePhotoUrl": "https://lh3.googleusercontent.com/a/ACg8ocLAeqRtCOy6PQgzYsLKhbEtGwWJ9vLEoa16Z09l-tgPlzv7KQ=w36-h36-p-rp-mo-ba2-br100",
-        "displayName": "Shikha Kuckreja"
-      },
-      "comment": "I highly recommend SES! Karl from SES installed a ceiling fan in my apartment (replacing an existing light fixture). Thank you so much for the great service, Karl.\nFrom the get go, he was extremely professional and reliable. I would 100% use their services again.",
-      "starRating": 5,
-      "date": "2 years ago"
-    },
-    {
       "id": "ChZDSUhNMG9nS0VJQ0FnSURjN0lhaER3EAE",
       "url": "https://www.google.com/maps/reviews/@-37.8354339,144.8650809,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1sChZDSUhNMG9nS0VJQ0FnSURjN0lhaER3EAE!2m1!1s0x0:0xd077705b9fe576ea?hl=en&entry=ttu",
       "reviewer": {
@@ -335,6 +323,18 @@
       "comment": "Karl and David installed new down lights throughout our home. They did a fantastic job and I would hire them again in a heart beat. They were communicative, reliable, on time, pleasant to have around, did a great job on the lights, asked questions AND cleaned up after themselves at the end of every day. Very impressed.",
       "starRating": 5,
       "date": "5 years ago"
+    },
+    {
+      "id": "ChdDSUhNMG9nS0VJQ0FnSUMtNWRfcjh3RRAB",
+      "url": "https://www.google.com/maps/reviews/@-37.8354339,144.8650809,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1sChdDSUhNMG9nS0VJQ0FnSUMtNWRfcjh3RRAB!2m1!1s0x0:0xd077705b9fe576ea?hl=en&entry=ttu",
+      "reviewer": {
+        "profileUrl": "https://www.google.com/maps/contrib/107489313271045900576/reviews?hl=en",
+        "profilePhotoUrl": "https://lh3.googleusercontent.com/a/ACg8ocLAeqRtCOy6PQgzYsLKhbEtGwWJ9vLEoa16Z09l-tgPlzv7KQ=w36-h36-p-rp-mo-ba2-br100",
+        "displayName": "Shikha Kuckreja"
+      },
+      "comment": "I highly recommend SES! Karl from SES installed a ceiling fan in my apartment (replacing an existing light fixture). Thank you so much for the great service, Karl.\nFrom the get go, he was extremely professional and reliable. I would 100% use their services again.",
+      "starRating": 5,
+      "date": "2 years ago"
     },
     {
       "id": "ChZDSUhNMG9nS0VJQ0FnSUNoZ01tM09nEAE",
@@ -809,7 +809,7 @@
       "url": "https://www.google.com/maps/reviews/@-37.8354339,144.8650809,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1sChdDSUhNMG9nS0VJQ0FnSUNXb3JMWWd3RRAB!2m1!1s0x0:0xd077705b9fe576ea?hl=en&entry=ttu",
       "reviewer": {
         "profileUrl": "https://www.google.com/maps/contrib/112340855291379218843/reviews?hl=en",
-        "profilePhotoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJfwScpuC8dSyXCbdY0LNBXzkLpflBcpO-x5V9kKLXKtZPUEw=w36-h36-p-rp-mo-br100",
+        "profilePhotoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJfwScpuC8dSyXCbdY0LNBXzkLpflBcpO-x5V9kKLXKtZPUEw=w36-h36-p-rp-mo-ba2-br100",
         "displayName": "Yolanda Giannone"
       },
       "comment": "These guys were so good! Very reliable and so reasonably priced compared with other quotes we got for the same job!",
