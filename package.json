@@ -13,10 +13,10 @@
     "./packages/*"
   ],
   "volta": {
-    "node": "22.19.0"
+    "node": "22.20.0"
   },
   "devDependencies": {
-    "lint-staged": "16.1.6"
+    "lint-staged": "16.2.3"
   },
   "lint-staged": {
     "*": "prettier --write"
