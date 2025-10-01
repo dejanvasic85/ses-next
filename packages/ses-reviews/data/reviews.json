@@ -34,7 +34,7 @@
       },
       "comment": "Karl was friendly, punctual and repaired our electrical issues very quickly. Very happy with his work.",
       "starRating": 5,
-      "date": "a month ago"
+      "date": "2 months ago"
     },
     {
       "id": "ChZDSUhNMG9nS0VKdmkwSnpTeGZtUEpREAE",
@@ -421,18 +421,6 @@
       "date": "a year ago"
     },
     {
-      "id": "ChZDSUhNMG9nS0VJQ0FnSUN0c3NiSVhBEAE",
-      "url": "https://www.google.com/maps/reviews/@-37.8354339,144.8650809,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1sChZDSUhNMG9nS0VJQ0FnSUN0c3NiSVhBEAE!2m1!1s0x0:0xd077705b9fe576ea?hl=en&entry=ttu",
-      "reviewer": {
-        "profileUrl": "https://www.google.com/maps/contrib/112978211055558477813/reviews?hl=en",
-        "profilePhotoUrl": "https://lh3.googleusercontent.com/a-/ALV-UjX5DcH433PNDm9e3yG6s-Skj7qha-kqfJDZ__qXJu7_q93P1qc=w36-h36-p-rp-mo-br100",
-        "displayName": "Ariel X"
-      },
-      "comment": "Karl is very professional. Our cctv and lights can't work due to electrical problems. Other electrical company quotes us for 2 people with at least 4 hours to find solution. But Karl helped us solve the problem within only 20 minutes!! much thanks!",
-      "starRating": 5,
-      "date": "a year ago"
-    },
-    {
       "id": "ChdDSUhNMG9nS0VJQ0FnSUNlLU1qNy13RRAB",
       "url": "https://www.google.com/maps/reviews/@-37.8354339,144.8650809,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1sChdDSUhNMG9nS0VJQ0FnSUNlLU1qNy13RRAB!2m1!1s0x0:0xd077705b9fe576ea?hl=en&entry=ttu",
       "reviewer": {
@@ -515,6 +503,18 @@
       "comment": "I've used Karl and his team a number of times. They are always friendly,  helpful, and knowledgeable, and they go the extra mile. Also competitively priced!",
       "starRating": 5,
       "date": "2 years ago"
+    },
+    {
+      "id": "ChZDSUhNMG9nS0VJQ0FnSUN0c3NiSVhBEAE",
+      "url": "https://www.google.com/maps/reviews/@-37.8354339,144.8650809,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1sChZDSUhNMG9nS0VJQ0FnSUN0c3NiSVhBEAE!2m1!1s0x0:0xd077705b9fe576ea?hl=en&entry=ttu",
+      "reviewer": {
+        "profileUrl": "https://www.google.com/maps/contrib/112978211055558477813/reviews?hl=en",
+        "profilePhotoUrl": "https://lh3.googleusercontent.com/a-/ALV-UjX5DcH433PNDm9e3yG6s-Skj7qha-kqfJDZ__qXJu7_q93P1qc=w36-h36-p-rp-mo-br100",
+        "displayName": "Ariel X"
+      },
+      "comment": "Karl is very professional. Our cctv and lights can't work due to electrical problems. Other electrical company quotes us for 2 people with at least 4 hours to find solution. But Karl helped us solve the problem within only 20 minutes!! much thanks!",
+      "starRating": 5,
+      "date": "a year ago"
     },
     {
       "id": "ChZDSUhNMG9nS0VJQ0FnSUR6enFPcUlBEAE",
@@ -797,7 +797,7 @@
       "url": "https://www.google.com/maps/reviews/@-37.8354339,144.8650809,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1sChdDSUhNMG9nS0VJQ0FnSUNXb3JMWWd3RRAB!2m1!1s0x0:0xd077705b9fe576ea?hl=en&entry=ttu",
       "reviewer": {
         "profileUrl": "https://www.google.com/maps/contrib/112340855291379218843/reviews?hl=en",
-        "profilePhotoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJfwScpuC8dSyXCbdY0LNBXzkLpflBcpO-x5V9kKLXKtZPUEw=w36-h36-p-rp-mo-br100",
+        "profilePhotoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJfwScpuC8dSyXCbdY0LNBXzkLpflBcpO-x5V9kKLXKtZPUEw=w36-h36-p-rp-mo-ba2-br100",
         "displayName": "Yolanda Giannone"
       },
       "comment": "These guys were so good! Very reliable and so reasonably priced compared with other quotes we got for the same job!",
@@ -1150,7 +1150,7 @@
       },
       "comment": "Best sparky.Use them for 2 jobs with mo hiccup. Highly recommended",
       "starRating": 5,
-      "date": "15 hours ago"
+      "date": "a day ago"
     },
     {
       "id": "ChdDSUhNMG9nS0VJQ0FnSURaaVBUdml3RRAB",
