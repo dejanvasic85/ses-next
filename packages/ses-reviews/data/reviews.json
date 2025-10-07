@@ -61,18 +61,6 @@
       "date": "4 months ago"
     },
     {
-      "id": "Ci9DQUlRQUNvZENodHljRjlvT21STWJtdG9kVlJxVVdOWFRHRXplV3hCTWkxSmRuYxAB",
-      "url": "https://www.google.com/maps/reviews/@-37.8354339,144.8650809,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT21STWJtdG9kVlJxVVdOWFRHRXplV3hCTWkxSmRuYxAB!2m1!1s0x0:0xd077705b9fe576ea?hl=en&entry=ttu",
-      "reviewer": {
-        "profileUrl": "https://www.google.com/maps/contrib/118245795333494269232/reviews?hl=en-US",
-        "profilePhotoUrl": "https://lh3.googleusercontent.com/a/ACg8ocIl1UxOIARQUTqaXeOfj76RkPsUW-OZO5ElnM4RZSfK4E56WA=w36-h36-p-rp-mo-br100",
-        "displayName": "Linden Sime"
-      },
-      "comment": "Great service from Karl & his team from the moment I rang to enquire. Quick, friendly and well priced, thank you!",
-      "starRating": 5,
-      "date": "2 months ago"
-    },
-    {
       "id": "ChdDSUhNMG9nS0VJQ0FnTUNBMDR6ZXh3RRAB",
       "url": "https://www.google.com/maps/reviews/@-37.8354339,144.8650809,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1sChdDSUhNMG9nS0VJQ0FnTUNBMDR6ZXh3RRAB!2m1!1s0x0:0xd077705b9fe576ea?hl=en&entry=ttu",
       "reviewer": {
@@ -83,6 +71,18 @@
       "comment": "Karl and his team are fantastic to deal with. Proper advice, very competitive pricing and tradesman who actually cleaned up after themselves! Highly recommend.",
       "starRating": 5,
       "date": "8 months ago"
+    },
+    {
+      "id": "Ci9DQUlRQUNvZENodHljRjlvT21STWJtdG9kVlJxVVdOWFRHRXplV3hCTWkxSmRuYxAB",
+      "url": "https://www.google.com/maps/reviews/@-37.8354339,144.8650809,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT21STWJtdG9kVlJxVVdOWFRHRXplV3hCTWkxSmRuYxAB!2m1!1s0x0:0xd077705b9fe576ea?hl=en&entry=ttu",
+      "reviewer": {
+        "profileUrl": "https://www.google.com/maps/contrib/118245795333494269232/reviews?hl=en-US",
+        "profilePhotoUrl": "https://lh3.googleusercontent.com/a/ACg8ocIl1UxOIARQUTqaXeOfj76RkPsUW-OZO5ElnM4RZSfK4E56WA=w36-h36-p-rp-mo-br100",
+        "displayName": "Linden Sime"
+      },
+      "comment": "Great service from Karl & his team from the moment I rang to enquire. Quick, friendly and well priced, thank you!",
+      "starRating": 5,
+      "date": "2 months ago"
     },
     {
       "id": "ChZDSUhNMG9nS0VJQ0FnSUQ3bjRXNFdBEAE",
@@ -118,7 +118,7 @@
       },
       "comment": "Karl was extremely helpful and very professional. Storm team was quick, clean, friendly and their services were very fairly priced. They did an amazing job at our place, one of the best electricians out there for sure. Definitely recommend their services for any electrical job.\nThanks again mates!",
       "starRating": 5,
-      "date": "a year ago"
+      "date": "2 years ago"
     },
     {
       "id": "ChdDSUhNMG9nS0VJQ0FnSUQxazc3NnZnRRAB",
@@ -394,7 +394,7 @@
       },
       "comment": "Karl & Dave were fantastic. Really happy with their patience on a slightly difficult upgrade (at least you didn't have to get wet :)' ) Appreciated the respect for my place and the job looks amazing. Could't recommend Storm highly enough. Thanks guys.",
       "starRating": 5,
-      "date": "3 years ago"
+      "date": "4 years ago"
     },
     {
       "id": "ChdDSUhNMG9nS0VJQ0FnSURoM09QRHFnRRAB",
@@ -1150,7 +1150,7 @@
       },
       "comment": "Best sparky.Use them for 2 jobs with mo hiccup. Highly recommended",
       "starRating": 5,
-      "date": "6 days ago"
+      "date": "a week ago"
     },
     {
       "id": "ChdDSUhNMG9nS0VJQ0FnSURaaVBUdml3RRAB",
