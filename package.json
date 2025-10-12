@@ -16,7 +16,7 @@
     "node": "22.20.0"
   },
   "devDependencies": {
-    "lint-staged": "16.2.3"
+    "lint-staged": "16.2.4"
   },
   "lint-staged": {
     "*": "prettier --write"
