@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import classNames from 'class-names';
 import { Controller, useForm } from 'react-hook-form';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { FeedbackFormData } from '@/types';
 
 interface FeedbackFormProps {
@@ -9,6 +10,7 @@ interface FeedbackFormProps {
 }
 
 export function FeedbackForm({ loading, onSubmit }: FeedbackFormProps) {
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const {
     register,
     handleSubmit,
@@ -18,8 +20,23 @@ export function FeedbackForm({ loading, onSubmit }: FeedbackFormProps) {
 
   const { fullName: fullNameError, comment: commentError } = errors;
 
+  const handleReCaptchaVerify = useCallback(
+    async (data: FeedbackFormData) => {
+      if (!executeRecaptcha) {
+        console.log('Execute recaptcha not yet available');
+        return;
+      }
+
+      const token = await executeRecaptcha('feedback_form');
+      if (token) {
+        onSubmit({ ...data, recaptchaToken: token });
+      }
+    },
+    [executeRecaptcha, onSubmit],
+  );
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(handleReCaptchaVerify)}>
       <div className="form-control w-full">
         <label className="label">
           <span className="label-text">Full name</span>

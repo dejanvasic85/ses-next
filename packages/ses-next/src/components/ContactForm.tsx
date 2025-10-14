@@ -33,9 +33,9 @@ export function ContactForm({ loading, onSubmit }: ContactFormProps) {
         return;
       }
 
-      const token = await executeRecaptcha();
+      const token = await executeRecaptcha('contact_form');
       if (token) {
-        onSubmit(data);
+        onSubmit({ ...data, recaptchaToken: token });
       }
     },
     [executeRecaptcha, onSubmit],
