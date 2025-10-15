@@ -99,43 +99,15 @@ export function Navbar({
 
             <div className="hidden md:flex flex-1 md:justify-end">
               <Menu>
-                <MenuLinkItem href={links.home} className="flex items-center gap-1">
-                  <Icon name="home" className="lg:hidden" />
-                  <span className="hidden lg:block">Home</span>
-                </MenuLinkItem>
-                <MenuLinkItem href={links.services}>Services</MenuLinkItem>
-                <MenuLinkItem href={links.about}>About</MenuLinkItem>
-                <MenuLinkItem href={links.contact}>Contact</MenuLinkItem>
-                <MenuLinkItem href={links.faq}>FAQ</MenuLinkItem>
-                <MenuLinkItem href={links.blog}>Blog</MenuLinkItem>
-                {contactPhone && (
-                  <MenuLinkItem href={`tel:${contactPhone}`} className="flex items-center gap-1">
-                    <Icon name="phone" />
-                    <span className="hidden lg:block">{contactPhone}</span>
-                  </MenuLinkItem>
-                )}
+                <MenuItems links={links} contactPhone={contactPhone} />
               </Menu>
             </div>
           </div>
         </Container>
       </nav>
       <MobileMenu isOpen={isMobileMenuOpen} onClose={handleCloseMobileMenu}>
-        <Menu direction="vertical" className="mt-8">
-          <MenuLinkItem href={links.home} className="flex items-center gap-1">
-            <Icon name="home" className="lg:hidden" />
-            <span className="hidden lg:block">Home</span>
-          </MenuLinkItem>
-          <MenuLinkItem href={links.services}>Services</MenuLinkItem>
-          <MenuLinkItem href={links.about}>About</MenuLinkItem>
-          <MenuLinkItem href={links.contact}>Contact</MenuLinkItem>
-          <MenuLinkItem href={links.faq}>FAQ</MenuLinkItem>
-          <MenuLinkItem href={links.blog}>Blog</MenuLinkItem>
-          {contactPhone && (
-            <MenuLinkItem href={`tel:${contactPhone}`} className="flex items-center gap-1">
-              <Icon name="phone" />
-              <span className="hidden lg:block">{contactPhone}</span>
-            </MenuLinkItem>
-          )}
+        <Menu direction="vertical" size="lg" className="mt-16">
+          <MenuItems links={links} contactPhone={contactPhone} />
         </Menu>
       </MobileMenu>
     </>
@@ -160,17 +132,22 @@ function MenuLinkItem({ href, children, className }: MenuLinkItemProps) {
 interface MenuProps extends React.PropsWithChildren {
   className?: string;
   direction?: 'horizontal' | 'vertical';
+  size?: 'md' | 'lg';
 }
 
-function Menu({ children, className, direction = 'horizontal' }: MenuProps) {
+function Menu({ children, className, direction = 'horizontal', size = 'md' }: MenuProps) {
   return (
     <ul
       className={classNames(
-        'flex items-center h-16 text-xs md:text-sm justify-center w-full gap-1 lg:gap-2 md:w-auto md:flex-none',
+        'flex items-center h-16 md:text-sm justify-center w-full gap-1 lg:gap-2 md:w-auto md:flex-none',
         className,
         {
           'flex-col': direction === 'vertical',
           'flex-row': direction === 'horizontal',
+        },
+        {
+          'text-md': size === 'md',
+          'text-lg': size === 'lg',
         },
       )}
     >
@@ -209,3 +186,26 @@ export const MobileMenu = ({ isOpen, onClose, children }: MobileMenuProps) => {
     </div>
   );
 };
+
+function MenuItems({ links, contactPhone }: Pick<NavbarProps, 'links' | 'contactPhone'>) {
+  if (!links) return null;
+  return (
+    <>
+      <MenuLinkItem href={links.home} className="md:flex items-center gap-1 hidden">
+        <Icon name="home" className="lg:hidden" />
+        <span className="hidden lg:block">Home</span>
+      </MenuLinkItem>
+      <MenuLinkItem href={links.services}>Services</MenuLinkItem>
+      <MenuLinkItem href={links.about}>About</MenuLinkItem>
+      <MenuLinkItem href={links.contact}>Contact</MenuLinkItem>
+      <MenuLinkItem href={links.faq}>FAQ</MenuLinkItem>
+      <MenuLinkItem href={links.blog}>Blog</MenuLinkItem>
+      {contactPhone && (
+        <MenuLinkItem href={`tel:${contactPhone}`} className="md:flex items-center gap-1 hidden">
+          <Icon name="phone" />
+          <span className="hidden lg:block">{contactPhone}</span>
+        </MenuLinkItem>
+      )}
+    </>
+  );
+}
