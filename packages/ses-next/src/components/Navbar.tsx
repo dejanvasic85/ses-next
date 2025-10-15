@@ -107,7 +107,7 @@ export function Navbar({
       </nav>
       <MobileMenu isOpen={isMobileMenuOpen} onClose={handleCloseMobileMenu}>
         <Menu direction="vertical" size="lg" className="mt-16">
-          <MenuItems links={links} contactPhone={contactPhone} />
+          <MenuItems links={links} contactPhone={contactPhone} onClick={handleCloseMobileMenu} />
         </Menu>
       </MobileMenu>
     </>
@@ -117,12 +117,17 @@ export function Navbar({
 interface MenuLinkItemProps extends React.PropsWithChildren {
   href: string;
   className?: string;
+  onClick?: () => void;
 }
 
-function MenuLinkItem({ href, children, className }: MenuLinkItemProps) {
+function MenuLinkItem({ href, children, className, onClick }: MenuLinkItemProps) {
   return (
     <li>
-      <NextLink href={href} className={classNames('hover:bg-slate-500 hover:text-white rounded p-2', className)}>
+      <NextLink
+        href={href}
+        className={classNames('hover:bg-slate-500 hover:text-white rounded p-2', className)}
+        onClick={onClick}
+      >
         {children}
       </NextLink>
     </li>
@@ -169,14 +174,14 @@ export const MobileMenu = ({ isOpen, onClose, children }: MobileMenuProps) => {
   return (
     <div
       className={classNames(
-        `fixed inset-0 z-50 bg-black/30 flex justify-end transition-opacity duration-200 ease-out`,
+        `fixed inset-0 z-50 bg-black/30 flex justify-end transition-opacity duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]`,
         isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none',
       )}
       onClick={onClose}
     >
       <div
         className={classNames(
-          'w-4/5 max-w-xs bg-white h-full shadow-lg p-4 transform transition-transform duration-200 ease-out',
+          'w-4/5 max-w-xs bg-white h-full shadow-lg p-4 transform transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]',
           isOpen ? 'translate-x-0' : 'translate-x-full',
         )}
         onClick={handleClickInsideMenu}
@@ -187,21 +192,35 @@ export const MobileMenu = ({ isOpen, onClose, children }: MobileMenuProps) => {
   );
 };
 
-function MenuItems({ links, contactPhone }: Pick<NavbarProps, 'links' | 'contactPhone'>) {
+interface MenuItemsProps extends Pick<NavbarProps, 'links' | 'contactPhone'> {
+  onClick?: () => void;
+}
+
+function MenuItems({ links, contactPhone, onClick }: MenuItemsProps) {
   if (!links) return null;
   return (
     <>
-      <MenuLinkItem href={links.home} className="md:flex items-center gap-1 hidden">
+      <MenuLinkItem href={links.home} className="md:flex items-center gap-1 hidden" onClick={onClick}>
         <Icon name="home" className="lg:hidden" />
         <span className="hidden lg:block">Home</span>
       </MenuLinkItem>
-      <MenuLinkItem href={links.services}>Services</MenuLinkItem>
-      <MenuLinkItem href={links.about}>About</MenuLinkItem>
-      <MenuLinkItem href={links.contact}>Contact</MenuLinkItem>
-      <MenuLinkItem href={links.faq}>FAQ</MenuLinkItem>
-      <MenuLinkItem href={links.blog}>Blog</MenuLinkItem>
+      <MenuLinkItem href={links.services} onClick={onClick}>
+        Services
+      </MenuLinkItem>
+      <MenuLinkItem href={links.about} onClick={onClick}>
+        About
+      </MenuLinkItem>
+      <MenuLinkItem href={links.contact} onClick={onClick}>
+        Contact
+      </MenuLinkItem>
+      <MenuLinkItem href={links.faq} onClick={onClick}>
+        FAQ
+      </MenuLinkItem>
+      <MenuLinkItem href={links.blog} onClick={onClick}>
+        Blog
+      </MenuLinkItem>
       {contactPhone && (
-        <MenuLinkItem href={`tel:${contactPhone}`} className="md:flex items-center gap-1 hidden">
+        <MenuLinkItem href={`tel:${contactPhone}`} onClick={onClick} className="md:flex items-center gap-1 hidden">
           <Icon name="phone" />
           <span className="hidden lg:block">{contactPhone}</span>
         </MenuLinkItem>
