@@ -105,7 +105,7 @@ export function Navbar({
           </div>
         </Container>
       </nav>
-      <MobileMenu isOpen={isMobileMenuOpen} onClose={handleCloseMobileMenu}>
+      <MobileMenu isOpen={isMobileMenuOpen} contactPhone={contactPhone} onClose={handleCloseMobileMenu}>
         <Menu direction="vertical" size="lg" className="mt-16">
           <MenuItems links={links} contactPhone={contactPhone} onClick={handleCloseMobileMenu} />
         </Menu>
@@ -164,31 +164,40 @@ function Menu({ children, className, direction = 'horizontal', size = 'md' }: Me
 interface MobileMenuProps extends PropsWithChildren {
   isOpen?: boolean;
   onClose?: () => void;
+  contactPhone?: string;
 }
 
-export const MobileMenu = ({ isOpen, onClose, children }: MobileMenuProps) => {
+export const MobileMenu = ({ isOpen, onClose, children, contactPhone }: MobileMenuProps) => {
   const handleClickInsideMenu = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
 
   return (
-    <div
-      className={classNames(
-        `fixed inset-0 z-50 bg-black/30 flex justify-end transition-opacity duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]`,
-        isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none',
-      )}
-      onClick={onClose}
-    >
+    <>
       <div
         className={classNames(
-          'w-4/5 max-w-xs bg-white h-full shadow-lg p-4 transform transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]',
-          isOpen ? 'translate-x-0' : 'translate-x-full',
+          `fixed inset-0 z-50 bg-black/30 flex justify-end transition-opacity duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]`,
+          isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none',
         )}
-        onClick={handleClickInsideMenu}
+        onClick={onClose}
       >
-        {children}
+        <div
+          className={classNames(
+            'w-4/5 max-w-xs bg-white h-full shadow-lg p-4 transform transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]',
+            isOpen ? 'translate-x-0' : 'translate-x-full',
+          )}
+          onClick={handleClickInsideMenu}
+        >
+          <header className="flex items-center justify-between p-4 border-b">
+            <span className="text-xl font-semibold">Menu</span>
+            <button onClick={onClose} aria-label="Close menu">
+              <Icon name="close" size="lg" />
+            </button>
+          </header>
+          <main>{children}</main>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
