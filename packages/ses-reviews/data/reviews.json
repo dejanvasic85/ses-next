@@ -529,18 +529,6 @@
       "date": "a year ago"
     },
     {
-      "id": "ChZDSUhNMG9nS0VJQ0FnSUR6enFPcUlBEAE",
-      "url": "https://www.google.com/maps/reviews/@-37.8354339,144.8650809,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1sChZDSUhNMG9nS0VJQ0FnSUR6enFPcUlBEAE!2m1!1s0x0:0xd077705b9fe576ea?hl=en&entry=ttu",
-      "reviewer": {
-        "profileUrl": "https://www.google.com/maps/contrib/114426586662249637480/reviews?hl=en",
-        "profilePhotoUrl": "https://lh3.googleusercontent.com/a/ACg8ocKLT2F8CCk6B3qRVLXhFsvpGUCfYGo46x6B-EKx302FoUSwZQ=w36-h36-p-rp-mo-br100",
-        "displayName": "Amy Murray"
-      },
-      "comment": "Fixed our aircon during a week it was 38 degrees each day. Great service at very reasonable prices. Would not hesitate to recommend.",
-      "starRating": 5,
-      "date": "a year ago"
-    },
-    {
       "id": "ChdDSUhNMG9nS0VJQ0FnSUNHdk5UM3NnRRAB",
       "url": "https://www.google.com/maps/reviews/@-37.8354339,144.8650809,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1sChdDSUhNMG9nS0VJQ0FnSUNHdk5UM3NnRRAB!2m1!1s0x0:0xd077705b9fe576ea?hl=en&entry=ttu",
       "reviewer": {
@@ -563,6 +551,18 @@
       "comment": "Karl was recommended by another local business. Karl is friendly fast and the fit out is extremely well done going out of his way to do what we needed. highly recommend.",
       "starRating": 5,
       "date": "3 years ago"
+    },
+    {
+      "id": "ChZDSUhNMG9nS0VJQ0FnSUR6enFPcUlBEAE",
+      "url": "https://www.google.com/maps/reviews/@-37.8354339,144.8650809,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1sChZDSUhNMG9nS0VJQ0FnSUR6enFPcUlBEAE!2m1!1s0x0:0xd077705b9fe576ea?hl=en&entry=ttu",
+      "reviewer": {
+        "profileUrl": "https://www.google.com/maps/contrib/114426586662249637480/reviews?hl=en",
+        "profilePhotoUrl": "https://lh3.googleusercontent.com/a/ACg8ocKLT2F8CCk6B3qRVLXhFsvpGUCfYGo46x6B-EKx302FoUSwZQ=w36-h36-p-rp-mo-br100",
+        "displayName": "Amy Murray"
+      },
+      "comment": "Fixed our aircon during a week it was 38 degrees each day. Great service at very reasonable prices. Would not hesitate to recommend.",
+      "starRating": 5,
+      "date": "a year ago"
     },
     {
       "id": "ChdDSUhNMG9nS0VJQ0FnSUM2djV5SjVBRRAB",
