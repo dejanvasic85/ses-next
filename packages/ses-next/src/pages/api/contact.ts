@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { send } from '@/lib/mailService';
 import { ContactFormData } from '@/types';
+import { config } from '@/lib/config';
 
 type ApiResponse = {
   message: string;
@@ -9,7 +10,7 @@ type ApiResponse = {
 };
 
 async function verifyRecaptcha(token: string): Promise<boolean> {
-  const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+  const secretKey = config.googleRecaptchaSecretKey;
 
   if (!secretKey) {
     console.error('RECAPTCHA_SECRET_KEY is not configured');

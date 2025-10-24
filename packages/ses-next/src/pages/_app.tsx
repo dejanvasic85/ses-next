@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import getConfig from 'next/config';
 import type { AppProps } from 'next/app';
 
 import TagManager from 'react-gtm-module';
@@ -8,18 +7,17 @@ import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import '../../styles/globals.css';
 import { BasePageProps } from '@/types';
 import { ConfigProvider } from '@/providers/ConfigProvider';
-
-const { publicRuntimeConfig } = getConfig();
+import { clientConfig } from '@/clientConfig';
 
 function MyApp({ Component, pageProps }: AppProps<BasePageProps>) {
   useEffect(() => {
-    if (!publicRuntimeConfig.googleTagManagerId) {
+    if (!clientConfig.googleTagManagerId) {
       console.log('Google Tag Manager ID not set, not initializing GTM');
       return;
     }
 
     const tagManagerArgs = {
-      gtmId: publicRuntimeConfig.googleTagManagerId,
+      gtmId: clientConfig.googleTagManagerId,
     };
 
     TagManager.initialize(tagManagerArgs);
@@ -31,7 +29,7 @@ function MyApp({ Component, pageProps }: AppProps<BasePageProps>) {
       sanityDataset={pageProps.publicConfig.sanityDataset}
     >
       <GoogleReCaptchaProvider
-        reCaptchaKey={publicRuntimeConfig.googleRecaptchaSiteKey}
+        reCaptchaKey={clientConfig.googleRecaptchaSiteKey}
         scriptProps={{
           async: true,
           defer: true,

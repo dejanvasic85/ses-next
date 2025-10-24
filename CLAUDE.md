@@ -1,6 +1,6 @@
 # Technical Requirements
 
-- Next.js v15
+- Next.js v16
 - Tailwind CSS V4
 - Sanity CMS (schema located under apps/content-studio) v4
 - Accessibility (a11y) AAA compliant
