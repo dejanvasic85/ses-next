@@ -1,5 +1,6 @@
 'use client';
 
+import { Activity } from 'react';
 import { useState, useCallback, useEffect } from 'react';
 import Image from 'next/image';
 
@@ -72,7 +73,9 @@ export function ImageCarousel({ images, serviceName }: ImageCarouselProps) {
     <div className="container mx-auto px-5 py-2 lg:px-32 lg:pt-12 pb-20">
       <div className="relative w-full">
         <div className="mb-4 flex items-center justify-between">
-          {serviceName && <h2 className="text-2xl font-bold text-gray-900">{serviceName} Gallery</h2>}
+          <Activity mode={serviceName ? 'visible' : 'hidden'}>
+            <h2 className="text-2xl font-bold text-gray-900">{serviceName} Gallery</h2>
+          </Activity>
           <span className="text-sm text-gray-600">
             {currentIndex + 1} / {images.length}
           </span>
@@ -99,11 +102,11 @@ export function ImageCarousel({ images, serviceName }: ImageCarouselProps) {
           </div>
         </div>
 
-        {currentImage.alt && (
+        <Activity mode={currentImage.alt ? 'visible' : 'hidden'}>
           <div className="mt-4 bg-gray-900 text-white p-4 text-center rounded-lg">{currentImage.alt}</div>
-        )}
+        </Activity>
 
-        {images.length > 1 && (
+        <Activity mode={images.length > 1 ? 'visible' : 'hidden'}>
           <div className="flex justify-center mt-4 gap-2">
             {images.map((_, index) => (
               <button
@@ -117,9 +120,9 @@ export function ImageCarousel({ images, serviceName }: ImageCarouselProps) {
               />
             ))}
           </div>
-        )}
+        </Activity>
 
-        {currentIndex > 0 && (
+        <Activity mode={currentIndex > 0 ? 'visible' : 'hidden'}>
           <button
             onClick={goToPrevious}
             disabled={isTransitioning}
@@ -131,9 +134,9 @@ export function ImageCarousel({ images, serviceName }: ImageCarouselProps) {
             </svg>
             <span className="sr-only">Previous</span>
           </button>
-        )}
+        </Activity>
 
-        {currentIndex < images.length - 1 && (
+        <Activity mode={currentIndex < images.length - 1 ? 'visible' : 'hidden'}>
           <button
             onClick={goToNext}
             disabled={isTransitioning}
@@ -145,7 +148,7 @@ export function ImageCarousel({ images, serviceName }: ImageCarouselProps) {
             </svg>
             <span className="sr-only">Next</span>
           </button>
-        )}
+        </Activity>
       </div>
     </div>
   );

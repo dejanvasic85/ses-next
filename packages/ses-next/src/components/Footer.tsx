@@ -1,4 +1,5 @@
-import React, { ReactNode } from 'react';
+import { Activity } from 'react';
+import { ReactNode } from 'react';
 import Link from 'next/link';
 
 import { Icon } from './Icon/Icon';
@@ -94,24 +95,24 @@ export function Footer({
       </div>
       <div>
         <span className="footer-title">Follow us</span>
-        {social.facebook && (
-          <Link className="link link-hover flex gap-1" href={social.facebook} target="_blank">
+        <Activity mode={social.facebook ? 'visible' : 'hidden'}>
+          <Link className="link link-hover flex gap-1" href={social.facebook ?? ''} target="_blank">
             <Icon name="facebook" />
             Facebook
           </Link>
-        )}
-        {social.instagram && (
-          <Link className="link link-hover flex gap-1" href={social.instagram} target="_blank">
+        </Activity>
+        <Activity mode={social.instagram ? 'visible' : 'hidden'}>
+          <Link className="link link-hover flex gap-1" href={social.instagram ?? ''} target="_blank">
             <Icon name="instagram" />
             Instagram
           </Link>
-        )}
-        {social.linkedIn && (
-          <Link className="link link-hover flex gap-1" href={social.linkedIn} target="_blank">
+        </Activity>
+        <Activity mode={social.linkedIn ? 'visible' : 'hidden'}>
+          <Link className="link link-hover flex gap-1" href={social.linkedIn ?? ''} target="_blank">
             <Icon name="linked-in" />
             Linked in
           </Link>
-        )}
+        </Activity>
       </div>
     </footer>
   );
