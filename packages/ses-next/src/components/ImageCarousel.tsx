@@ -81,18 +81,22 @@ export function ImageCarousel({ images, serviceName }: ImageCarouselProps) {
           </span>
         </div>
 
-        <div className="relative overflow-hidden rounded-lg bg-gray-100 min-h-[400px] md:min-h-[500px] lg:min-h-[600px]">
+        <div className="relative overflow-hidden rounded-lg bg-gray-100">
           <div
-            className="flex h-full transition-transform duration-500 ease-in-out"
+            className="flex transition-transform duration-500 ease-in-out"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
             {images.map((image, index) => (
-              <div key={index} className="w-full flex-shrink-0 relative p-4" style={{ minHeight: '400px' }}>
+              <div
+                key={index}
+                className="w-full flex-shrink-0 relative"
+                style={{ height: '70vh', maxHeight: '800px', minHeight: '400px' }}
+              >
                 <Image
                   src={image.src}
                   alt={image.alt}
                   fill
-                  className="object-contain"
+                  className="object-contain p-4"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                   priority={index === 0}
                   {...(index !== 0 && { loading: 'lazy' })}
