@@ -1,3 +1,4 @@
+import { Activity } from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { PortableText } from '@portabletext/react';
 import { ProductJsonLd } from 'next-seo';
@@ -38,8 +39,9 @@ export default function Service({ blogPosts, content, service, pageUrl, title }:
               }}
             />
           </article>
+          <ImageCarousel images={service.imageGallery} serviceName={service.name} />
 
-          {blogPosts.length > 0 && (
+          <Activity mode={blogPosts.length > 0 ? 'visible' : 'hidden'}>
             <div className="mx-auto px-4 md:px-8 max-w-screen-lg mt-12 mb-8">
               <h2 className="text-3xl font-bold text-gray-900 mb-2">Related Blog Posts</h2>
               <p className="text-gray-600 mb-6">Explore our {service.name.toLowerCase()} articles and insights</p>
@@ -77,10 +79,8 @@ export default function Service({ blogPosts, content, service, pageUrl, title }:
                 ))}
               </div>
             </div>
-          )}
+          </Activity>
         </div>
-
-        <ImageCarousel images={service.imageGallery} serviceName={service.name} />
       </Layout>
     </>
   );
