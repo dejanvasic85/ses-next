@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback, useEffect } from 'react';
+import Image from 'next/image';
 
 interface ImageCarouselProps {
   images: Array<{
@@ -83,12 +84,15 @@ export function ImageCarousel({ images, serviceName }: ImageCarouselProps) {
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
             {images.map((image, index) => (
-              <div key={index} className="w-full flex-shrink-0 relative flex items-center justify-center p-4">
-                <img
+              <div key={index} className="w-full flex-shrink-0 relative p-4" style={{ minHeight: '400px' }}>
+                <Image
                   src={image.src}
                   alt={image.alt}
-                  className="max-w-full max-h-[calc(100vh-400px)] md:max-h-[calc(100vh-300px)] object-contain"
-                  loading={index === currentIndex ? 'eager' : 'lazy'}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                  priority={index === 0}
+                  {...(index !== 0 && { loading: 'lazy' })}
                 />
               </div>
             ))}

@@ -3,6 +3,7 @@ import { GetStaticProps, GetStaticPaths } from 'next';
 import { PortableText } from '@portabletext/react';
 import { ProductJsonLd } from 'next-seo';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import { getBlogPosts, getHomePageContent } from '../../lib/content/contentService';
 import { getBasePageProps } from '../../lib/basePageProps';
@@ -53,10 +54,12 @@ export default function Service({ blogPosts, content, service, pageUrl, title }:
                     className="group block bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden"
                   >
                     <div className="aspect-video relative overflow-hidden bg-gray-200">
-                      <img
+                      <Image
                         src={photo}
                         alt={title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       />
                     </div>
                     <div className="p-5">
