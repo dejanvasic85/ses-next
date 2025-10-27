@@ -1,4 +1,5 @@
-import React, { useCallback } from 'react';
+import { Activity } from 'react';
+import { useCallback } from 'react';
 
 import classNames from 'class-names';
 import { useForm } from 'react-hook-form';
@@ -65,13 +66,13 @@ export function ContactForm({ loading, onSubmit }: ContactFormProps) {
             },
           })}
         />
-        {emailError && (
+        <Activity mode={emailError ? 'visible' : 'hidden'}>
           <label className="label text-error">
             <span className="label-text-alt text-error" id="emailErrorMessage">
               {emailError?.message}
             </span>
           </label>
-        )}
+        </Activity>
 
         <label className="label" htmlFor="fullName">
           <span className="label-text">Full name</span>
@@ -85,13 +86,13 @@ export function ContactForm({ loading, onSubmit }: ContactFormProps) {
           className={classNames('input input-bordered w-full', { 'input-error': fullNameError?.message })}
           {...register('fullName')}
         />
-        {fullNameError && (
+        <Activity mode={fullNameError ? 'visible' : 'hidden'}>
           <label className="label text-error">
             <span className="label-text-alt text-error" id="fullNameErrorMessage">
               {fullNameError?.message}
             </span>
           </label>
-        )}
+        </Activity>
 
         <label className="label" htmlFor="phone">
           <span className="label-text">Phone</span>
@@ -105,13 +106,13 @@ export function ContactForm({ loading, onSubmit }: ContactFormProps) {
           className={classNames('input input-bordered w-full', { 'input-error': phoneError?.message })}
           {...register('phone')}
         />
-        {phoneError && (
+        <Activity mode={phoneError ? 'visible' : 'hidden'}>
           <label className="label text-error">
             <span className="label-text-alt text-error" id="phoneErrorMessage">
               {phoneError?.message}
             </span>
           </label>
-        )}
+        </Activity>
 
         <label className="label" htmlFor="address">
           <span className="label-text">Address</span>
@@ -125,13 +126,13 @@ export function ContactForm({ loading, onSubmit }: ContactFormProps) {
           className={classNames('input input-bordered w-full', { 'input-error': addressError?.message })}
           {...register('address')}
         />
-        {addressError && (
+        <Activity mode={addressError ? 'visible' : 'hidden'}>
           <label className="label text-error">
             <span className="label-text-alt text-error" id="addressErrorMessage">
               {addressError?.message}
             </span>
           </label>
-        )}
+        </Activity>
 
         <label className="label" htmlFor="message">
           <span className="label-text">Message</span>
@@ -147,13 +148,13 @@ export function ContactForm({ loading, onSubmit }: ContactFormProps) {
             required: { value: true, message: 'Message is required' },
           })}
         />
-        {messageError && (
+        <Activity mode={messageError ? 'visible' : 'hidden'}>
           <label className="label text-error">
             <span className="label-text-alt text-error" id="messageErrorMessage">
               {messageError?.message}
             </span>
           </label>
-        )}
+        </Activity>
       </fieldset>
 
       <button className={classNames('btn btn-primary mt-8 text-white', { loading })} type="submit" id="submit">

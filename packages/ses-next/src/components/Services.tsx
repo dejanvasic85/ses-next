@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import { Container } from './Container';
 import { Heading } from './Heading';
@@ -76,13 +77,15 @@ export const Services = ({ className, services }: ServicesProps) => {
                   </div>
                   <p className="text-gray-500">{blurb}</p>
                 </div>
-                <img
-                  src={featuredImage.src}
-                  width={400}
-                  height={300}
-                  alt={featuredImage.alt}
-                  className="mt-4 aspect-video w-full rounded-lg object-cover object-center transition-all group-hover:scale-105"
-                />
+                <div className="mt-4 aspect-video w-full rounded-lg overflow-hidden relative">
+                  <Image
+                    src={featuredImage.src}
+                    alt={featuredImage.alt}
+                    fill
+                    className="object-cover object-center transition-all group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                </div>
               </div>
             </div>
           ))}

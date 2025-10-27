@@ -1,4 +1,4 @@
-import React from 'react';
+import { Activity } from 'react';
 import Image from 'next/image';
 
 import { Heading } from './Heading';
@@ -87,21 +87,21 @@ export function Hero({
               <h2 className="mt-6 text-base md:text-lg leading-8 text-gray-600">{subHeading}</h2>
               <div className="mt-8 flex gap-x-4 justify-center">
                 <LinkButton href="#contact">Get a free quote</LinkButton>
-                {social.facebook && (
+                <Activity mode={social.facebook ? 'visible' : 'hidden'}>
                   <LinkButton href={social.facebook} target="_blank" aria-label="Facebook page">
                     <Icon name="facebook" size="lg" />
                   </LinkButton>
-                )}
-                {social.instagram && (
+                </Activity>
+                <Activity mode={social.instagram ? 'visible' : 'hidden'}>
                   <LinkButton href={social.instagram} target="_blank" aria-label="Instagram page">
                     <Icon name="instagram" size="lg" />
                   </LinkButton>
-                )}
-                {social.linkedIn && (
+                </Activity>
+                <Activity mode={social.linkedIn ? 'visible' : 'hidden'}>
                   <LinkButton href={social.linkedIn} target="_blank" aria-label="Linkedin page">
                     <Icon name="linked-in" size="lg" />
                   </LinkButton>
-                )}
+                </Activity>
               </div>
               <div className="mt-6 flex flex-col justify-center items-center gap-4 bg-white border-gray-200 border md:w-1/2 m-auto p-4 rounded-3xl">
                 <a className="text-sm link" href={googleReviewsUrl} target="_blank">

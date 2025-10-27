@@ -1,4 +1,5 @@
-import React, { useState, useEffect, type PropsWithChildren } from 'react';
+import { Activity } from 'react';
+import { useState, useEffect, type PropsWithChildren } from 'react';
 import classNames from 'class-names';
 import NextLink from 'next/link';
 
@@ -90,11 +91,11 @@ export function Navbar({
               >
                 <Icon name="menu" size="xl" />
               </button>
-              {contactPhone && (
+              <Activity mode={contactPhone ? 'visible' : 'hidden'}>
                 <a href={`tel:${contactPhone}`} className="p-2 hover:bg-slate-200 rounded" aria-label="Call us">
                   <Icon name="phone" size="lg" />
                 </a>
-              )}
+              </Activity>
             </div>
 
             <div className="hidden md:flex flex-1 md:justify-end">
@@ -228,12 +229,12 @@ function MenuItems({ links, contactPhone, onClick }: MenuItemsProps) {
       <MenuLinkItem href={links.blog} onClick={onClick}>
         Blog
       </MenuLinkItem>
-      {contactPhone && (
+      <Activity mode={contactPhone ? 'visible' : 'hidden'}>
         <MenuLinkItem href={`tel:${contactPhone}`} onClick={onClick} className="md:flex items-center gap-1 hidden">
           <Icon name="phone" />
           <span className="hidden lg:block">{contactPhone}</span>
         </MenuLinkItem>
-      )}
+      </Activity>
     </>
   );
 }
