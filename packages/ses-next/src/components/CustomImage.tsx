@@ -1,4 +1,5 @@
 import urlBuilder from '@sanity/image-url';
+import Image from 'next/image';
 
 import { useConfig } from '@/hooks/useConfig';
 import { useMemo } from 'react';
@@ -19,5 +20,14 @@ export const CustomImage = (props: CustomImageProps) => {
   );
 
   const src = builder.image(props.value).url();
-  return <img src={src} alt="inline image" />;
+  return (
+    <Image
+      src={src}
+      alt="inline image"
+      width={800}
+      height={600}
+      className="w-full h-auto"
+      sizes="(max-width: 768px) 100vw, 800px"
+    />
+  );
 };

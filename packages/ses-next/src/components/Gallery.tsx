@@ -1,4 +1,4 @@
-import React from 'react';
+import Image from 'next/image';
 
 interface GalleryImage {
   serviceName: string;
@@ -22,14 +22,15 @@ export function Gallery({ imageGallery }: GalleryProps) {
                 key={idx}
                 className="group h-96 flex items-end bg-gray-100 rounded-lg overflow-hidden shadow-lg relative p-4"
               >
-                <img
+                <Image
                   src={src}
-                  loading="lazy"
                   alt={alt}
-                  className="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200"
+                  fill
+                  className="object-cover object-center group-hover:scale-110 transition duration-200"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
                 />
 
-                <div className="w-full flex flex-col bg-white text-center rounded-lg relative p-2">
+                <div className="w-full flex flex-col bg-white text-center rounded-lg relative p-2 z-10">
                   <span className="text-gray-500 text-sm">{alt}</span>
                   <span className="text-gray-800 font-bold">{serviceName}</span>
                 </div>

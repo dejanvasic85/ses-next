@@ -1,4 +1,4 @@
-import React from 'react';
+import Image from 'next/image';
 
 import { Heading } from './Heading';
 import { Icon } from './Icon/Icon';
@@ -35,12 +35,13 @@ export function Team({ blurbs, members, training }: TeamProps) {
           <div className="flex flex-wrap justify-center items-stretch lg:flex-row gap-4 lg:gap-8">
             {members.map(({ avatar, fullName, role }) => (
               <div key={fullName} className="flex flex-col items-center w-full md:w-1/4 rounded-lg p-4 lg:p-8">
-                <div className="w-24 md:w-32 h-24 md:h-32 bg-slate-200 rounded-full overflow-hidden shadow-lg mb-2 md:mb-4">
-                  <img
+                <div className="w-24 md:w-32 h-24 md:h-32 bg-slate-200 rounded-full overflow-hidden shadow-lg mb-2 md:mb-4 relative">
+                  <Image
                     src={avatar}
-                    loading="lazy"
                     alt={fullName}
-                    className="w-full h-full object-cover object-center"
+                    fill
+                    className="object-cover object-center"
+                    sizes="(max-width: 768px) 96px, 128px"
                   />
                 </div>
                 <div>
