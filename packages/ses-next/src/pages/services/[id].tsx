@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 import { getBlogPosts, getHomePageContent } from '../../lib/content/contentService';
 import { getBasePageProps } from '../../lib/basePageProps';
-import { Layout, CustomImage } from '../../components';
+import { Layout, CustomImage, ImageCarousel } from '../../components';
 
 interface ServiceProps {
   blogPosts: any[];
@@ -32,7 +32,7 @@ export default function Service({ blogPosts, content, service, pageUrl, title }:
             <PortableText
               value={serviceContent}
               components={{
-                types: { 
+                types: {
                   image: ({ value }) => <CustomImage value={value} />,
                 },
               }}
@@ -52,17 +52,7 @@ export default function Service({ blogPosts, content, service, pageUrl, title }:
           </div>
         </div>
 
-        <div className="container mx-auto px-5 py-2 lg:px-32 lg:pt-12 pb-20">
-          <div className="-m-1 flex flex-wrap md:-m-2">
-            {service.imageGallery.map(({ alt, src }: any, idx: number) => (
-              <div className="flex w-1/3 flex-wrap" key={idx}>
-                <div className="w-full p-1 md:p-2">
-                  <img alt={alt} className="block h-full w-full rounded-lg object-cover object-center" src={src} />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <ImageCarousel images={service.imageGallery} serviceName={service.name} />
       </Layout>
     </>
   );
