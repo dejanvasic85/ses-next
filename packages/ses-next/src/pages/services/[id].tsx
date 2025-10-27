@@ -39,17 +39,45 @@ export default function Service({ blogPosts, content, service, pageUrl, title }:
             />
           </article>
 
-          <div className="mx-auto px-4 md:px-8 max-w-screen-lg prose lg:prose-lg">
-            <h2>Blog posts</h2>
-            <p>Check out some of our {service.name} blog posts:</p>
-            {blogPosts.map(({ id, title, slug }: any) => (
-              <div key={id}>
-                <Link href={`/blog/${slug}`} className="py-2">
-                  {title}
-                </Link>
+          {blogPosts.length > 0 && (
+            <div className="mx-auto px-4 md:px-8 max-w-screen-lg mt-12 mb-8">
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">Related Blog Posts</h2>
+              <p className="text-gray-600 mb-6">Explore our {service.name.toLowerCase()} articles and insights</p>
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {blogPosts.map(({ id, title, slug, description, photo, publishedAt }: any) => (
+                  <Link
+                    key={id}
+                    href={`/blog/${slug}`}
+                    className="group block bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden"
+                  >
+                    <div className="aspect-video relative overflow-hidden bg-gray-200">
+                      <img
+                        src={photo}
+                        alt={title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                    <div className="p-5">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
+                        {title}
+                      </h3>
+                      <p className="text-gray-600 text-sm mb-3 line-clamp-3">{description}</p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-gray-500">
+                          {new Date(publishedAt).toLocaleDateString('en-AU', {
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric',
+                          })}
+                        </span>
+                        <span className="text-blue-600 text-sm font-medium group-hover:underline">Read more →</span>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          )}
         </div>
 
         <ImageCarousel images={service.imageGallery} serviceName={service.name} />
