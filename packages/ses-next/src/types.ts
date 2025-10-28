@@ -6,7 +6,7 @@ import { z } from 'zod';
 
 export const ContactFormDataSchema = z.object({
   fullName: z.string().min(1, 'Full name is required'),
-  email: z.string().email('Please enter a valid email'),
+  email: z.email({ message: 'Please enter a valid email' }),
   phone: z.string().min(1, 'Phone number is required'),
   message: z.string().min(1, 'Message is required'),
   address: z.string().min(1, 'Address is required'),
@@ -99,14 +99,14 @@ export const SanityPortableTextSchema = z.array(z.union([SanityBlockSchema, Sani
 // ============================================================================
 
 export const GoogleReviewerSchema = z.object({
-  profileUrl: z.string().url(),
-  profilePhotoUrl: z.string().url(),
+  profileUrl: z.url(),
+  profilePhotoUrl: z.url(),
   displayName: z.string(),
 });
 
 export const GoogleReviewSchema = z.object({
   id: z.string(),
-  url: z.string().url(),
+  url: z.url(),
   reviewer: GoogleReviewerSchema,
   comment: z.string(),
   starRating: z.number().min(1).max(5),
@@ -239,23 +239,23 @@ export const HomepageSchema = z.object({
   subHeading: z.string().optional(),
   shortTitle: z.string(),
   about: z.array(z.string()).optional(),
-  baseUrl: z.string().url(),
+  baseUrl: z.url(),
   contact: z.object({
     blurbs: z.array(z.string()).optional(),
     callBack: z.string().optional(),
     phone: z.string(),
   }),
-  googleMapsLocation: z.string().url().optional(),
-  googleMapsLocationPlaceUrl: z.string().url().optional(),
+  googleMapsLocation: z.url().optional(),
+  googleMapsLocationPlaceUrl: z.url().optional(),
   meta: z.object({
     title: z.string(),
     description: z.string(),
   }),
   socialMedia: z
     .object({
-      facebook: z.string().url().optional(),
-      linkedIn: z.string().url().optional(),
-      instagram: z.string().url().optional(),
+      facebook: z.url().optional(),
+      linkedIn: z.url().optional(),
+      instagram: z.url().optional(),
     })
     .optional(),
   services: z.object({
@@ -280,7 +280,7 @@ export const SanityImageAssetDocumentSchema = z.object({
   _rev: z.string().optional(),
   _createdAt: z.string().optional(),
   _updatedAt: z.string().optional(),
-  url: z.string().url(),
+  url: z.url(),
   originalFilename: z.string().optional(),
   size: z.number().optional(),
   metadata: z
@@ -317,17 +317,17 @@ export const SanityDocumentSchema = z.union([
 // ============================================================================
 
 export const ImageSchema = z.object({
-  url: z.string().url(),
+  url: z.url(),
   alt: z.string().optional(),
   width: z.number().optional(),
   height: z.number().optional(),
 });
 
 export const SocialSchema = z.object({
-  facebook: z.string().url().optional(),
-  instagram: z.string().url().optional(),
-  linkedIn: z.string().url().optional(),
-  twitter: z.string().url().optional(),
+  facebook: z.url().optional(),
+  instagram: z.url().optional(),
+  linkedIn: z.url().optional(),
+  twitter: z.url().optional(),
 });
 
 export const MetaSchema = z.object({
@@ -337,13 +337,13 @@ export const MetaSchema = z.object({
 
 export const ContactSchema = z.object({
   phone: z.string(),
-  email: z.string().email().optional(),
+  email: z.email().optional(),
   blurbs: z.array(z.string()).optional(),
   callBack: z.string().optional(),
 });
 
 export const ProcessedTeamMemberSchema = z.object({
-  avatar: z.string().url(),
+  avatar: z.url(),
   fullName: z.string(),
   role: z.string(),
 });
@@ -358,11 +358,11 @@ export const ProcessedTestimonialSchema = z.object({
   comment: z.string(),
   starRating: z.number().min(1).max(5),
   reviewer: z.object({
-    profilePhotoUrl: z.string().url().optional(),
-    profileUrl: z.string().url().optional(),
+    profilePhotoUrl: z.url().optional(),
+    profileUrl: z.url().optional(),
     displayName: z.string(),
   }),
-  url: z.string().url().optional(),
+  url: z.url().optional(),
 });
 
 export const ProcessedServiceItemSchema = z.object({
@@ -375,14 +375,14 @@ export const ProcessedServiceItemSchema = z.object({
   icon: IconSchema,
   featuredImage: z
     .object({
-      src: z.string().url(),
+      src: z.url(),
       alt: z.string(),
     })
     .optional(),
   imageGallery: z
     .array(
       z.object({
-        src: z.string().url(),
+        src: z.url(),
         alt: z.string(),
       }),
     )
@@ -405,7 +405,7 @@ export const ProcessedBlogPostSchema = z.object({
   title: z.string(),
   description: z.string(),
   slug: z.string(),
-  photo: z.string().url(),
+  photo: z.url(),
   publishedAt: z.string(),
   tags: z.array(z.string()),
   body: SanityPortableTextSchema,
@@ -413,7 +413,7 @@ export const ProcessedBlogPostSchema = z.object({
 
 export const LayoutContentSchema = z.object({
   companyName: z.string(),
-  companyLogo: z.string().url(),
+  companyLogo: z.url(),
   contact: ContactSchema,
   meta: MetaSchema,
   services: ProcessedServiceListSchema,
