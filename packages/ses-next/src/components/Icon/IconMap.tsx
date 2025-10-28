@@ -28,7 +28,6 @@ export const IconMap = {
       height="48"
       width="48"
       focusable="false"
-
       fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
     >

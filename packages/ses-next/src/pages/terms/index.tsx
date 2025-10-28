@@ -2,13 +2,18 @@ import { GetStaticProps } from 'next';
 import { PortableText } from '@portabletext/react';
 import { Layout, CustomImage } from '../../components';
 import { getBasePageProps } from '../../lib/basePageProps';
-import { getTermsAndConditions } from '../../lib/content/contentService';
+import {
+  getTermsAndConditions,
+  ProcessedTermsAndConditions,
+  HomePageContentResult,
+} from '../../lib/content/contentService';
+import type { GoogleReviews } from '@/types';
 
 interface TermsProps {
-  content: any;
-  googleReviews: any;
+  content: HomePageContentResult;
+  googleReviews: GoogleReviews;
   pageUrl: string;
-  termsContent: any;
+  termsContent: ProcessedTermsAndConditions;
 }
 
 export default function Terms({ content, googleReviews, pageUrl, termsContent }: TermsProps) {
@@ -22,7 +27,7 @@ export default function Terms({ content, googleReviews, pageUrl, termsContent }:
               <PortableText
                 value={termsContent.terms}
                 components={{
-                  types: { 
+                  types: {
                     image: ({ value }) => <CustomImage value={value} />,
                   },
                 }}

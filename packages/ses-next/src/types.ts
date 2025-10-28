@@ -68,6 +68,13 @@ export const SanityReferenceSchema = z.object({
   _type: z.literal('reference'),
 });
 
+export const SanityMarkDefSchema = z
+  .object({
+    _key: z.string(),
+    _type: z.string(),
+  })
+  .passthrough();
+
 export const SanityBlockSchema = z.object({
   _type: z.literal('block'),
   _key: z.string(),
@@ -79,13 +86,46 @@ export const SanityBlockSchema = z.object({
       marks: z.array(z.string()).optional(),
     }),
   ),
-  markDefs: z.array(z.any()).optional(),
+  markDefs: z.array(SanityMarkDefSchema).optional(),
   style: z.string().optional(),
   level: z.number().optional(),
   listItem: z.string().optional(),
 });
 
 export const SanityPortableTextSchema = z.array(z.union([SanityBlockSchema, SanityImageSchema]));
+
+// ============================================================================
+// GOOGLE REVIEWS SCHEMAS
+// ============================================================================
+
+export const GoogleReviewerSchema = z.object({
+  profileUrl: z.string().url(),
+  profilePhotoUrl: z.string().url(),
+  displayName: z.string(),
+});
+
+export const GoogleReviewSchema = z.object({
+  id: z.string(),
+  url: z.string().url(),
+  reviewer: GoogleReviewerSchema,
+  comment: z.string(),
+  starRating: z.number().min(1).max(5),
+  date: z.string(),
+});
+
+export const GoogleReviewsSchema = z.object({
+  overallRatingValue: z.string(),
+  numberOfReviews: z.string(),
+  reviews: z.array(GoogleReviewSchema),
+});
+
+// ============================================================================
+// SANITY API RESPONSE SCHEMAS
+// ============================================================================
+
+export const SanityApiResponseSchema = z.object({
+  result: z.array(z.unknown()),
+});
 
 // ============================================================================
 // DOCUMENT SCHEMAS (Based on Sanity schemas)
@@ -347,7 +387,7 @@ export const ProcessedServiceItemSchema = z.object({
       }),
     )
     .optional(),
-  content: z.any().optional(), // PortableText content
+  content: SanityPortableTextSchema.optional(),
 });
 
 export const ProcessedServiceListSchema = z.object({
@@ -368,7 +408,7 @@ export const ProcessedBlogPostSchema = z.object({
   photo: z.string().url(),
   publishedAt: z.string(),
   tags: z.array(z.string()),
-  body: z.any(), // PortableText content
+  body: SanityPortableTextSchema,
 });
 
 export const LayoutContentSchema = z.object({
@@ -391,6 +431,14 @@ export const BasePagePropsSchema = z.object({
 });
 
 // ============================================================================
+// EMAIL TEMPLATE TYPES
+// ============================================================================
+
+export type ContactEmailData = ContactFormData;
+export type FeedbackEmailData = FeedbackFormData;
+export type EmailTemplateData = ContactEmailData | FeedbackEmailData;
+
+// ============================================================================
 // TYPE EXPORTS
 // ============================================================================
 
@@ -400,6 +448,12 @@ export type SanitySlug = z.infer<typeof SanitySlugSchema>;
 export type SanityReference = z.infer<typeof SanityReferenceSchema>;
 export type SanityBlock = z.infer<typeof SanityBlockSchema>;
 export type SanityPortableText = z.infer<typeof SanityPortableTextSchema>;
+export type SanityMarkDef = z.infer<typeof SanityMarkDefSchema>;
+export type SanityApiResponse = z.infer<typeof SanityApiResponseSchema>;
+
+export type GoogleReviewer = z.infer<typeof GoogleReviewerSchema>;
+export type GoogleReview = z.infer<typeof GoogleReviewSchema>;
+export type GoogleReviews = z.infer<typeof GoogleReviewsSchema>;
 
 export type FAQ = z.infer<typeof FAQSchema>;
 export type TeamMember = z.infer<typeof TeamMemberSchema>;
@@ -444,7 +498,7 @@ export interface ServiceItem {
     src: string;
     alt: string;
   }[];
-  content?: any;
+  content?: SanityPortableText;
 }
 
 export interface ServiceList {

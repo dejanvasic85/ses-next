@@ -22,17 +22,17 @@ const ConditionalWrap = ({
 interface ServiceItem {
   name: string;
   blurb: string;
-  linkToReadMore: boolean;
+  linkToReadMore?: boolean;
   slug: string;
   icon: string;
-  featuredImage: {
+  featuredImage?: {
     src: string;
     alt: string;
   };
 }
 
 interface ServicesData {
-  blurbs: string[];
+  blurbs?: string[];
   items: ServiceItem[];
 }
 
@@ -48,8 +48,8 @@ export const Services = ({ className, services }: ServicesProps) => {
     <div className={className}>
       <Container>
         <Heading level={2}>Our Services</Heading>
-        {blurbs.map((blurb, idx) => (
-          <p className="max-w-screen-md mb-12 text-gray-500 md:text-lg text-center mx-auto p-x-4" key={idx}>
+        {blurbs?.map((blurb, idx) => (
+          <p key={idx} className="mb-5 text-gray-500 sm:text-lg">
             {blurb}
           </p>
         ))}
@@ -77,15 +77,17 @@ export const Services = ({ className, services }: ServicesProps) => {
                   </div>
                   <p className="text-gray-500">{blurb}</p>
                 </div>
-                <div className="mt-4 aspect-video w-full rounded-lg overflow-hidden relative">
-                  <Image
-                    src={featuredImage.src}
-                    alt={featuredImage.alt}
-                    fill
-                    className="object-cover object-center transition-all group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                </div>
+                {featuredImage && (
+                  <div className="mt-4 aspect-video w-full rounded-lg overflow-hidden relative">
+                    <Image
+                      src={featuredImage.src}
+                      alt={featuredImage.alt}
+                      fill
+                      className="object-cover object-center transition-all group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  </div>
+                )}
               </div>
             </div>
           ))}

@@ -6,13 +6,15 @@ import { BlogLayout, Layout } from '../../../components';
 import { getBasePageProps } from '../../../lib/basePageProps';
 import { getBlogPosts } from '../../../lib/content/contentService';
 import { tagsFromBlogs } from '../../../lib/blogUtils';
+import type { HomePageContentResult } from '@/lib/content/contentService';
+import type { GoogleReviews, ProcessedBlogPost } from '@/types';
 
 interface TagsProps {
-  content: any;
-  googleReviews: any;
+  content: HomePageContentResult;
+  googleReviews: GoogleReviews;
   pageUrl: string;
   tags: string[];
-  blogPosts: any[];
+  blogPosts: ProcessedBlogPost[];
 }
 
 export default function Tags({ content, googleReviews, pageUrl, tags, blogPosts }: TagsProps) {
@@ -40,7 +42,7 @@ export default function Tags({ content, googleReviews, pageUrl, tags, blogPosts 
                   <p className="text-xs opacity-60">{new Date(publishedAt).toLocaleDateString()}</p>
                   <p className="text-sm opacity-60">{description}</p>
                   <div>
-                    {tags.map((tag: string) => (
+                    {tags.map((tag) => (
                       <span className="badge" key={tag}>
                         {tag}
                       </span>
@@ -77,7 +79,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const tagSet: string[] = [];
   blogPosts
     .flatMap(({ tags }) => tags)
-    .forEach((tag: string) => {
+    .forEach((tag) => {
       if (!tagSet.includes(tag)) {
         tagSet.push(tag);
       }

@@ -36,7 +36,7 @@ interface AboutProps {
   team: TeamData;
   testimonials: TestimonialData[];
   training: TrainingData[];
-  googleReviewsUrl: string;
+  googleReviewsUrl?: string;
 }
 
 export function About({ team, testimonials, training, googleReviewsUrl }: AboutProps) {

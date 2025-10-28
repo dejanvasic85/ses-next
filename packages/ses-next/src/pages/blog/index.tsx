@@ -6,13 +6,15 @@ import { BlogLayout, Layout } from '../../components';
 import { getBasePageProps } from '../../lib/basePageProps';
 import { getBlogPosts } from '../../lib/content/contentService';
 import { tagsFromBlogs } from '../../lib/blogUtils';
+import type { HomePageContentResult } from '@/lib/content/contentService';
+import type { GoogleReviews, ProcessedBlogPost } from '@/types';
 
 interface BlogProps {
-  content: any;
-  googleReviews: any;
+  content: HomePageContentResult;
+  googleReviews: GoogleReviews;
   pageUrl: string;
   tags: string[];
-  blogPosts: any[];
+  blogPosts: ProcessedBlogPost[];
 }
 
 export default function Blog({ content, googleReviews, pageUrl, tags, blogPosts }: BlogProps) {
@@ -40,7 +42,7 @@ export default function Blog({ content, googleReviews, pageUrl, tags, blogPosts 
                   <p className="text-xs opacity-60">{new Date(publishedAt).toLocaleDateString()}</p>
                   <p className="text-sm opacity-60">{description}</p>
                   <div>
-                    {tags.map((tag: string) => (
+                    {tags.map((tag) => (
                       <span className="badge" key={tag}>
                         {tag}
                       </span>

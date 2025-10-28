@@ -15,18 +15,15 @@ import {
   ProcessedTraining,
   ProcessedTestimonial,
   Social,
+  SanityPortableText,
 } from '@/types';
 import { jsonFileCacher } from './cache';
-import { buildFetchFromApi } from './contentApi';
+import { buildFetchFromApi, CacheApiResponse } from './contentApi';
 import { mapCompanyLogo, mapServices, mapTeam, mapTestimonials, mapTraining } from './mappers';
 
 // ============================================================================
 // TYPE DEFINITIONS
 // ============================================================================
-
-interface CacheApiResponse {
-  result: SanityDocument[];
-}
 
 interface HomePageContentResult {
   baseUrl: string;
@@ -54,12 +51,15 @@ interface HomePageContentResult {
   testimonials: ProcessedTestimonial[];
 }
 
-interface ProcessedTermsAndConditions {
+export interface ProcessedTermsAndConditions {
   id: string;
-  terms: any; // PortableText content
+  terms: SanityPortableText;
 }
 
-type MapperFunction = (fullContent: SanityDocument[], item: Homepage) => any;
+type MapperFunction = (
+  fullContent: SanityDocument[],
+  item: Homepage,
+) => ProcessedServiceList | ProcessedTeam | ProcessedTraining[] | ProcessedTestimonial[] | string;
 
 // ============================================================================
 // HELPER FUNCTIONS
@@ -142,13 +142,19 @@ export const getHomePageContent = async (
       subHeading,
     } = homepageItem;
 
-    const [services, team, training, testimonials, companyLogo] = composeContent(fullContent, homepageItem)(
+    const contentResults = composeContent(fullContent, homepageItem)(
       mapServices,
       mapTeam,
       mapTraining,
       mapTestimonials,
       mapCompanyLogo,
     );
+
+    const services = contentResults[0] as ProcessedServiceList;
+    const team = contentResults[1] as ProcessedTeam;
+    const training = contentResults[2] as ProcessedTraining[];
+    const testimonials = contentResults[3] as ProcessedTestimonial[];
+    const companyLogo = contentResults[4] as string;
 
     const faqItems = getFaqItems(fullContent).map(({ question, answer }) => ({
       question,
@@ -231,4 +237,4 @@ export const getTermsAndConditions = async (
 // TYPE EXPORTS FOR CONSUMERS
 // ============================================================================
 
-export type { HomePageContentResult, ProcessedTermsAndConditions, CacheApiResponse };
+export type { HomePageContentResult, CacheApiResponse };

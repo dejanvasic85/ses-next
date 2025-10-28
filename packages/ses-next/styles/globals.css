@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @plugin "@tailwindcss/typography";
 
@@ -7,10 +7,10 @@
 }
 
 @plugin "daisyui/theme" {
-  name: "light";
+  name: 'light';
   default: true;
   color-scheme: light;
-  
+
   --color-primary: oklch(50% 0.15 240);
   --color-secondary: oklch(70% 0.2 200);
   --color-accent: oklch(70% 0.1 0);
@@ -24,5 +24,5 @@
 
 @theme {
   --animate-popin: popin 0.5s ease-in-out;
-  --keyframes-popin: 0%, 100% { transform: scale(0); } 50% { transform: scale(1.1); } 100% { transform: scale(1); };
+  --keyframes-popin: 0%, 100% {transform: scale(0) ;} 50% {transform: scale(1.1) ;} 100% {transform: scale(1) ;};
 }

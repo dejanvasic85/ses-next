@@ -1,10 +1,12 @@
 import { GetStaticProps } from 'next';
 import { getBasePageProps } from '../lib/basePageProps';
 import { Layout } from '../components';
+import type { HomePageContentResult } from '@/lib/content/contentService';
+import type { GoogleReviews } from '@/types';
 
 interface FaqProps {
-  content: any;
-  googleReviews: any;
+  content: HomePageContentResult;
+  googleReviews: GoogleReviews;
   pageUrl: string;
 }
 
@@ -23,7 +25,7 @@ export default function Faq({ content, googleReviews, pageUrl }: FaqProps) {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2 md:gap-8">
-            {content.faqItems.map(({ question, answer }: any, idx: number) => (
+            {content.faqItems.map(({ question, answer }, idx: number) => (
               <div className="rounded-lg bg-gray-100 p-5" key={idx}>
                 <div className="mb-4 flex items-center justify-between gap-4 border-b pb-4">
                   <h3 className="font-semibold text-indigo-500 sm:text-lg md:text-xl">{question}</h3>
