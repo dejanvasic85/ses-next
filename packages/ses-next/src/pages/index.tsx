@@ -4,16 +4,17 @@ import { googleReviews } from 'ses-reviews';
 
 import { About, Contact, Hero, Layout, Services } from '../components';
 import { getBasePageProps } from '../lib/basePageProps';
+import type { HomePageContentResult } from '@/lib/content/contentService';
+import type { GoogleReviews } from '@/types';
 
 interface HomeProps {
-  content: any;
-  googleReviews: any;
+  content: HomePageContentResult;
+  googleReviews: GoogleReviews;
   pageUrl: string;
 }
 
 export default function Home({ content, googleReviews, pageUrl }: HomeProps) {
   const {
-    about,
     companyName,
     companyLogo,
     contact,
@@ -27,11 +28,11 @@ export default function Home({ content, googleReviews, pageUrl }: HomeProps) {
     training,
   } = content;
 
-  const ratingCount = googleReviews.numberOfReviews.replace('reviews', '').trim();
-  const ratingValue = googleReviews.overallRatingValue.replace('.0', '').trim();
+  const ratingCount = Number(googleReviews.numberOfReviews.replace('reviews', '').trim());
+  const ratingValue = Number(googleReviews.overallRatingValue.replace('.0', '').trim());
   const reviews = googleReviews.reviews.slice(0, 9);
 
-  const reviewsJson = reviews.map(({ comment, reviewer, starRating }: any) => ({
+  const reviewsJson = reviews.map(({ comment, reviewer, starRating }) => ({
     author: reviewer.displayName,
     reviewBody: comment,
     reviewRating: {
@@ -49,7 +50,7 @@ export default function Home({ content, googleReviews, pageUrl }: HomeProps) {
         id={pageUrl}
         images={[companyLogo]}
         name={companyName}
-        description={content.meta?.description || ''}
+        description={content.meta.description}
         address={{
           streetAddress: '61B Hansen St',
           addressLocality: 'Altona North',
@@ -59,8 +60,8 @@ export default function Home({ content, googleReviews, pageUrl }: HomeProps) {
         }}
         telephone={contact.phone}
         rating={{
-          ratingValue,
-          ratingCount,
+          ratingValue: String(ratingValue),
+          ratingCount: String(ratingCount),
           bestRating: '5',
           worstRating: '0',
         }}
@@ -71,8 +72,8 @@ export default function Home({ content, googleReviews, pageUrl }: HomeProps) {
           companyName={companyName}
           companyLogo={companyLogo}
           googleReviewsUrl={googleMapsLocationPlaceUrl}
-          numberOfReviews={googleReviews.numberOfReviews}
-          overallRatingValue={googleReviews.overallRatingValue}
+          numberOfReviews={ratingCount}
+          overallRatingValue={ratingValue}
           social={social}
           mainHeading={mainHeading}
           subHeading={subHeading}

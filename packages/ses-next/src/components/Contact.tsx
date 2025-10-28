@@ -16,7 +16,7 @@ interface ContactData {
 interface ContactProps {
   className?: string;
   contact: ContactData;
-  location: string;
+  location?: string;
 }
 
 export function Contact({ className, contact, location }: ContactProps) {

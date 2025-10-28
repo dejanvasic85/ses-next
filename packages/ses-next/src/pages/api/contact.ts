@@ -6,7 +6,7 @@ import { config } from '@/lib/config';
 type ApiResponse = {
   message: string;
   contact?: ContactFormData;
-  err?: any;
+  err?: Error | unknown;
 };
 
 async function verifyRecaptcha(token: string): Promise<boolean> {

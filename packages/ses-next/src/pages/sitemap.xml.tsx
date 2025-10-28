@@ -1,6 +1,8 @@
 import { GetServerSideProps } from 'next';
 import { getHomePageContent, getBlogPosts } from '../lib/content/contentService';
 import { buildFetchFromApi } from '../lib/content/contentApi';
+import type { HomePageContentResult } from '@/lib/content/contentService';
+import type { ProcessedBlogPost } from '@/types';
 
 const createLocXmlForUrl = (url: string): string => `
     <url>
@@ -8,17 +10,17 @@ const createLocXmlForUrl = (url: string): string => `
     </url>
 `;
 
-const generateSitemap = (content: any, blogPosts: any[]): string => {
+const generateSitemap = (content: HomePageContentResult, blogPosts: ProcessedBlogPost[]): string => {
   const {
     baseUrl,
     services: { items = [] },
   } = content;
 
   const knownPages = ['', 'faq', 'blog'].map((page) => createLocXmlForUrl(`${baseUrl}${page}`)).join(' ');
-  const servicePages = items.map(({ slug }: any) => createLocXmlForUrl(`${baseUrl}services/${slug}`)).join(' ');
-  const blogPostUrls = blogPosts.map(({ slug }: any) => createLocXmlForUrl(`${baseUrl}blog/${slug}`)).join(' ');
+  const servicePages = items.map(({ slug }) => createLocXmlForUrl(`${baseUrl}services/${slug}`)).join(' ');
+  const blogPostUrls = blogPosts.map(({ slug }) => createLocXmlForUrl(`${baseUrl}blog/${slug}`)).join(' ');
   const blogPostTagUrls = blogPosts
-    .flatMap(({ tags }: any) => tags)
+    .flatMap(({ tags }) => tags)
     .map((tag) => createLocXmlForUrl(`${baseUrl}blog/tag/${tag}`))
     .join(' ');
 

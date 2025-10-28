@@ -1,6 +1,7 @@
 import SES from 'aws-sdk/clients/ses';
 
 import { config } from './config';
+import type { ContactFormData, FeedbackFormData } from '@/types';
 
 const ses = new SES({
   region: 'ap-southeast-2',
@@ -19,8 +20,10 @@ interface EmailTemplates {
   [key: string]: TemplateData;
 }
 
+type EmailData = ContactFormData | FeedbackFormData;
+
 interface SendEmailParams {
-  data: Record<string, any>;
+  data: EmailData;
   template: string;
   to?: string;
 }
@@ -59,15 +62,21 @@ const emailTemplates: EmailTemplates = {
   },
 };
 
-export function send({ data, template, to = config.emailTo }: SendEmailParams): Promise<any> {
+export function send({
+  data,
+  template,
+  to = config.emailTo,
+}: SendEmailParams): Promise<SES.Types.SendEmailResponse | void> {
   const { bodyTemplate, subjectTemplate } = emailTemplates[template];
 
   const emailBody = Object.keys(data).reduce((prev, curr) => {
-    return prev.replace(`{{${curr}}}`, data[curr]);
+    const value = data[curr as keyof EmailData];
+    return prev.replace(`{{${curr}}}`, String(value));
   }, bodyTemplate);
 
   const subject = Object.keys(data).reduce((prev, curr) => {
-    return prev.replace(`{{${curr}}}`, data[curr]);
+    const value = data[curr as keyof EmailData];
+    return prev.replace(`{{${curr}}}`, String(value));
   }, subjectTemplate);
 
   if (!config.emailEnabled) {

@@ -9,12 +9,14 @@ import { Layout, BlogLayout, CustomImage } from '@/components';
 import { getBasePageProps } from '../../lib/basePageProps';
 import { getBlogPosts } from '../../lib/content/contentService';
 import { tagsFromBlogs } from '../../lib/blogUtils';
+import type { HomePageContentResult } from '@/lib/content/contentService';
+import type { ProcessedBlogPost } from '@/types';
 
 interface BlogPostProps {
-  content: any;
+  content: HomePageContentResult;
   pageUrl: string;
   tags: string[];
-  post: any;
+  post: ProcessedBlogPost;
 }
 
 export default function BlogPost({ content, pageUrl, tags, post }: BlogPostProps) {
@@ -54,7 +56,7 @@ export default function BlogPost({ content, pageUrl, tags, post }: BlogPostProps
             <PortableText
               value={post.body}
               components={{
-                types: { 
+                types: {
                   image: ({ value }) => <CustomImage value={value} />,
                 },
               }}
