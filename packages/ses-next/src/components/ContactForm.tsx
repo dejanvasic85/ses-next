@@ -1,7 +1,7 @@
 import { Activity } from 'react';
 import { useCallback } from 'react';
 
-import classNames from 'class-names';
+import classNames from 'classnames';
 import { useForm } from 'react-hook-form';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { ContactFormData } from '@/types';

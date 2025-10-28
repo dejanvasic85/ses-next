@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import classNames from 'class-names';
+import classNames from 'classnames';
 
 import { Icon } from './Icon/Icon';
 import { ConditionalWrap } from './ConditionalWrap';

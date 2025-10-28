@@ -21,7 +21,7 @@
     "@tailwindcss/typography": "0.5.19",
     "autoprefixer": "10.4.21",
     "aws-sdk": "2.1692.0",
-    "class-names": "1.0.0",
+    "classnames": "2.5.1",
     "daisyui": "5.1.6",
     "date-fns": "4.1.0",
     "eslint": "9.38.0",

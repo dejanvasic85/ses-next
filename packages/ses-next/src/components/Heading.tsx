@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'class-names';
+import classNames from 'classnames';
 
 interface HeadingProps {
   level: 1 | 2 | 3 | 4 | 5 | 6;

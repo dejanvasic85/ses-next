@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'class-names';
+import classNames from 'classnames';
 
 import { Icon } from './Icon/Icon';
 

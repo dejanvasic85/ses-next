@@ -1,6 +1,6 @@
 import { Activity } from 'react';
 import { useState, useEffect, type PropsWithChildren } from 'react';
-import classNames from 'class-names';
+import classNames from 'classnames';
 import NextLink from 'next/link';
 
 import { Container, Icon } from '.';
