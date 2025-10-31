@@ -13,13 +13,21 @@ import { URL } from './constants.mjs';
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
     const [page] = await browser.pages();
-    page.goto(URL);
+    await page.goto(URL, { waitUntil: 'networkidle2' });
 
-    await page.waitForNavigation();
+    // Wait for the rating element to be present
+    await page.waitForSelector('.fontDisplayLarge', { timeout: 10000 });
 
     const data = await page.evaluate(() => {
       const [ratingElement] = document.getElementsByClassName('fontDisplayLarge');
-      const numberOfReviewsElement = ratingElement.nextSibling.nextSibling;
+      if (!ratingElement) {
+        throw new Error('Rating element not found');
+      }
+
+      const numberOfReviewsElement = ratingElement.nextElementSibling?.nextElementSibling;
+      if (!numberOfReviewsElement) {
+        throw new Error('Number of reviews element not found');
+      }
 
       return { overallRatingValue: ratingElement.textContent, numberOfReviews: numberOfReviewsElement.textContent };
     });
