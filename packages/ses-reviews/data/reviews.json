@@ -745,18 +745,6 @@
       "date": "3 years ago"
     },
     {
-      "id": "ChZDSUhNMG9nS0VJQ0FnSUNlbC15eUNnEAE",
-      "url": "https://www.google.com/maps/reviews/@-37.8354339,144.8650809,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1sChZDSUhNMG9nS0VJQ0FnSUNlbC15eUNnEAE!2m1!1s0x0:0xd077705b9fe576ea?hl=en&entry=ttu",
-      "reviewer": {
-        "profileUrl": "https://www.google.com/maps/contrib/111210685026318945115/reviews?hl=en",
-        "profilePhotoUrl": "https://lh3.googleusercontent.com/a/ACg8ocKAG6XusCB4vU0AEE9257dRYXxS7bReTOoTwQMxPLSqF-xBKA=w36-h36-p-rp-mo-br100",
-        "displayName": "Catlas Design Team"
-      },
-      "comment": "⭐️⭐️⭐️⭐️⭐️ \"When we learned very quickly that electricity was something best left to the experts, Karl & the team was our first call--and our only call. We had planned to get quotes from several electricians, but once we met Karl , we stopped searching. Not only was he prompt, honest, and very courteous, he was also extremely professional. Karl was very upfront with project costs and timelines, and had everything done well ahead of schedule and completion times.  Iv used many electricians historically and can attest and confirm It's a really rare find to see  Karl’s level of work ethic (and commitment to a job well done) these days. Thank you for your help with the many jobs you have competed for us , Aircon Install , Split System installation, Alarm and CCTV installation , LED installation and plug install to name a few. We wont hesitate to call on you again.\n- CATLAS DESIGN",
-      "starRating": 5,
-      "date": "3 years ago"
-    },
-    {
       "id": "ChdDSUhNMG9nS0VJQ0FnSUN5aGR1Q29RRRAB",
       "url": "https://www.google.com/maps/reviews/@-37.8354339,144.8650809,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1sChdDSUhNMG9nS0VJQ0FnSUN5aGR1Q29RRRAB!2m1!1s0x0:0xd077705b9fe576ea?hl=en&entry=ttu",
       "reviewer": {
@@ -779,6 +767,18 @@
       "comment": "Karl and the team did an amazing job on our major renovation, very professional and easy to communicate with -  highly recommended.",
       "starRating": 5,
       "date": "6 years ago"
+    },
+    {
+      "id": "ChZDSUhNMG9nS0VJQ0FnSUNlbC15eUNnEAE",
+      "url": "https://www.google.com/maps/reviews/@-37.8354339,144.8650809,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1sChZDSUhNMG9nS0VJQ0FnSUNlbC15eUNnEAE!2m1!1s0x0:0xd077705b9fe576ea?hl=en&entry=ttu",
+      "reviewer": {
+        "profileUrl": "https://www.google.com/maps/contrib/111210685026318945115/reviews?hl=en",
+        "profilePhotoUrl": "https://lh3.googleusercontent.com/a/ACg8ocKAG6XusCB4vU0AEE9257dRYXxS7bReTOoTwQMxPLSqF-xBKA=w36-h36-p-rp-mo-br100",
+        "displayName": "Catlas Design Team"
+      },
+      "comment": "⭐️⭐️⭐️⭐️⭐️ \"When we learned very quickly that electricity was something best left to the experts, Karl & the team was our first call--and our only call. We had planned to get quotes from several electricians, but once we met Karl , we stopped searching. Not only was he prompt, honest, and very courteous, he was also extremely professional. Karl was very upfront with project costs and timelines, and had everything done well ahead of schedule and completion times.  Iv used many electricians historically and can attest and confirm It's a really rare find to see  Karl’s level of work ethic (and commitment to a job well done) these days. Thank you for your help with the many jobs you have competed for us , Aircon Install , Split System installation, Alarm and CCTV installation , LED installation and plug install to name a few. We wont hesitate to call on you again.\n- CATLAS DESIGN",
+      "starRating": 5,
+      "date": "3 years ago"
     },
     {
       "id": "ChdDSUhNMG9nS0VJQ0FnTURnMnZmYTZBRRAB",
@@ -1270,7 +1270,7 @@
       },
       "comment": "",
       "starRating": 5,
-      "date": "13 hours ago"
+      "date": "a day ago"
     },
     {
       "id": "ChdDSUhNMG9nS0VJQ0FnSUNoZ1BHMmd3RRAB",
