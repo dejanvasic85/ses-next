@@ -109,18 +109,6 @@
       "date": "9 months ago"
     },
     {
-      "id": "ChZDSUhNMG9nS0VJQ0FnSURadmJxR0tnEAE",
-      "url": "https://www.google.com/maps/reviews/@-37.8354339,144.8650809,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1sChZDSUhNMG9nS0VJQ0FnSURadmJxR0tnEAE!2m1!1s0x0:0xd077705b9fe576ea?hl=en&entry=ttu",
-      "reviewer": {
-        "profileUrl": "https://www.google.com/maps/contrib/116174992473599780237/reviews?hl=en",
-        "profilePhotoUrl": "https://lh3.googleusercontent.com/a/ACg8ocL0fwjVeSPPTEEA7B8prxBm4vmRjzfOU1R-jyTiKsmAGI25cQ=w36-h36-p-rp-mo-br100",
-        "displayName": "Shaibal Bhattacharyya"
-      },
-      "comment": "Karl was extremely helpful and very professional. Storm team was quick, clean, friendly and their services were very fairly priced. They did an amazing job at our place, one of the best electricians out there for sure. Definitely recommend their services for any electrical job.\nThanks again mates!",
-      "starRating": 5,
-      "date": "2 years ago"
-    },
-    {
       "id": "Ci9DQUlRQUNvZENodHljRjlvT2poTlQwZ3RhRGRNTW00MFlqQTNOMUZWVmxwd2JHYxAB",
       "url": "https://www.google.com/maps/reviews/@-37.8354339,144.8650809,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT2poTlQwZ3RhRGRNTW00MFlqQTNOMUZWVmxwd2JHYxAB!2m1!1s0x0:0xd077705b9fe576ea?hl=en&entry=ttu",
       "reviewer": {
@@ -213,6 +201,18 @@
         "displayName": "Renato Ribas"
       },
       "comment": "Karl and his team are trusted experts. He came and advised about the sizing of my unit, they've implemented a new and better one (as the old was a write off) and kept it clean and neat. I live in a two storey home so having experienced professionals who will not rip you off to deliver a fantastic job is always a great thing! 👍",
+      "starRating": 5,
+      "date": "2 years ago"
+    },
+    {
+      "id": "ChZDSUhNMG9nS0VJQ0FnSURadmJxR0tnEAE",
+      "url": "https://www.google.com/maps/reviews/@-37.8354339,144.8650809,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1sChZDSUhNMG9nS0VJQ0FnSURadmJxR0tnEAE!2m1!1s0x0:0xd077705b9fe576ea?hl=en&entry=ttu",
+      "reviewer": {
+        "profileUrl": "https://www.google.com/maps/contrib/116174992473599780237/reviews?hl=en",
+        "profilePhotoUrl": "https://lh3.googleusercontent.com/a/ACg8ocL0fwjVeSPPTEEA7B8prxBm4vmRjzfOU1R-jyTiKsmAGI25cQ=w36-h36-p-rp-mo-br100",
+        "displayName": "Shaibal Bhattacharyya"
+      },
+      "comment": "Karl was extremely helpful and very professional. Storm team was quick, clean, friendly and their services were very fairly priced. They did an amazing job at our place, one of the best electricians out there for sure. Definitely recommend their services for any electrical job.\nThanks again mates!",
       "starRating": 5,
       "date": "2 years ago"
     },
@@ -1270,7 +1270,7 @@
       },
       "comment": "",
       "starRating": 5,
-      "date": "a day ago"
+      "date": "2 days ago"
     },
     {
       "id": "ChdDSUhNMG9nS0VJQ0FnSUNoZ1BHMmd3RRAB",
