@@ -24,12 +24,12 @@ export default function BlogPost({ content, pageUrl, tags, post }: BlogPostProps
     <>
       <ArticleJsonLd
         type="BlogPosting"
+        headline={post.title}
         description={post.title}
-        authorName="SES Melbourne"
-        title={post.title}
+        author="SES Melbourne"
         url={pageUrl}
         datePublished={post.publishedAt}
-        images={[post.photo]}
+        image={post.photo}
       />
       <Layout content={content} pageUrl={pageUrl}>
         <BlogLayout tags={tags}>
