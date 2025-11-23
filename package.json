@@ -13,7 +13,7 @@
     "./packages/*"
   ],
   "volta": {
-    "node": "22.21.1"
+    "node": "24.11.1"
   },
   "devDependencies": {
     "lint-staged": "16.2.6"
