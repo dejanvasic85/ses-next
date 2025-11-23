@@ -24,10 +24,16 @@ export default function Service({ blogPosts, content, service, pageUrl, title }:
   return (
     <>
       <ProductJsonLd
-        type="Service"
-        productName={service.name}
+        type="Product"
+        name={service.name}
         description={service.description}
-        images={service.imageGallery?.map(({ src }) => src) ?? []}
+        image={service.imageGallery?.map(({ src }) => src) ?? []}
+        offers={{
+          availability: 'InStock',
+          priceCurrency: 'AUD',
+          url: pageUrl,
+          seller: content.companyName,
+        }}
       />
       <Layout content={content} pageUrl={pageUrl} title={title}>
         <div className="bg-white py-6 sm:py-8 lg:py-12">

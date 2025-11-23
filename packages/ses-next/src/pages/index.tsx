@@ -47,8 +47,6 @@ export default function Home({ content, googleReviews, pageUrl }: HomeProps) {
     <>
       <LocalBusinessJsonLd
         type="LocalBusiness"
-        id={pageUrl}
-        images={[companyLogo]}
         name={companyName}
         description={content.meta.description}
         address={{
@@ -59,11 +57,13 @@ export default function Home({ content, googleReviews, pageUrl }: HomeProps) {
           addressCountry: 'AU',
         }}
         telephone={contact.phone}
-        rating={{
-          ratingValue: String(ratingValue),
-          ratingCount: String(ratingCount),
-          bestRating: '5',
-          worstRating: '0',
+        image={companyLogo}
+        url={pageUrl}
+        aggregateRating={{
+          ratingValue: ratingValue,
+          ratingCount: ratingCount,
+          bestRating: 5,
+          worstRating: 0,
         }}
         review={reviewsJson}
       />
