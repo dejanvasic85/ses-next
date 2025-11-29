@@ -55,6 +55,12 @@ export function Footer({
           <strong>Storm Electrical Solutions. Melbourne electricians.</strong>
         </div>
         <div>Copyright {year} All rights reserved</div>
+        <div>
+          Developed by:{' '}
+          <Link href="https://dejan.vasic.com.au" target="_blank" className="link link-hover">
+            Dejan Vasic
+          </Link>
+        </div>
       </div>
       <div>
         <span className="footer-title">Company</span>
