@@ -8,15 +8,33 @@ import { URL } from './constants.mjs';
   let browser;
   try {
     browser = await puppeteer.launch({
-      headless: true,
+      headless: 'new',
       timeout: 0,
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-blink-features=AutomationControlled',
+        '--disable-dev-shm-usage',
+      ],
     });
     const [page] = await browser.pages();
-    await page.goto(URL, { waitUntil: 'networkidle2' });
 
-    // Wait for reviews container to load
-    await page.waitForSelector('div[data-review-id]', { timeout: 10000 });
+    // Set user agent to avoid detection
+    await page.setUserAgent(
+      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    );
+
+    // Remove webdriver property
+    await page.evaluateOnNewDocument(() => {
+      Object.defineProperty(navigator, 'webdriver', {
+        get: () => false,
+      });
+    });
+
+    await page.goto(URL, { waitUntil: 'networkidle2', timeout: 30000 });
+
+    // Wait for reviews container to load with increased timeout
+    await page.waitForSelector('div[data-review-id]', { timeout: 30000 });
 
     // Auto-scroll to load all reviews with multiple strategies
     let previousReviewCount = 0;
