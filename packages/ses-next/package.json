@@ -16,7 +16,7 @@
   "dependencies": {
     "@playwright/test": "1.57.0",
     "@portabletext/react": "5.0.0",
-    "@sanity/image-url": "1.2.0",
+    "@sanity/image-url": "2.0.1",
     "@tailwindcss/postcss": "4.1.17",
     "@tailwindcss/typography": "0.5.19",
     "autoprefixer": "10.4.22",
