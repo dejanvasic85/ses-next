@@ -1,4 +1,4 @@
-import urlBuilder from '@sanity/image-url';
+import { createImageUrlBuilder } from '@sanity/image-url';
 import Image from 'next/image';
 
 import { useConfig } from '@/hooks/useConfig';
@@ -12,7 +12,7 @@ export const CustomImage = (props: CustomImageProps) => {
   const { sanityDataset, sanityProjectId } = useConfig();
   const builder = useMemo(
     () =>
-      urlBuilder({
+      createImageUrlBuilder({
         projectId: sanityProjectId,
         dataset: sanityDataset,
       }),
