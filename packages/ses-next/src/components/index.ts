@@ -1,6 +1,8 @@
 export { About } from './About';
+export { BlogFilterMobile } from './BlogFilterMobile';
 export { BlogLayout } from './BlogLayout';
 export { BlogMenu } from './BlogMenu';
+export { BlogSidebar } from './BlogSidebar';
 export { Contact } from './Contact';
 export { Container } from './Container';
 export { CustomImage } from './CustomImage';
