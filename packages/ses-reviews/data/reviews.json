@@ -94,7 +94,7 @@
       },
       "comment": "Karl and his team are fantastic to deal with. Proper advice, very competitive pricing and tradesman who actually cleaned up after themselves! Highly recommend.",
       "starRating": 5,
-      "date": "9 months ago"
+      "date": "10 months ago"
     },
     {
       "id": "ChZDSUhNMG9nS0VKdmkwSnpTeGZtUEpREAE",
@@ -949,18 +949,6 @@
       "date": "3 years ago"
     },
     {
-      "id": "ChdDSUhNMG9nS0VJQ0FnSUNkelBhTi1RRRAB",
-      "url": "https://www.google.com/maps/reviews/@-37.8354339,144.8650809,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1sChdDSUhNMG9nS0VJQ0FnSUNkelBhTi1RRRAB!2m1!1s0x0:0xd077705b9fe576ea?hl=en&entry=ttu",
-      "reviewer": {
-        "profileUrl": "https://www.google.com/maps/contrib/108179981004260664042/reviews?hl=en",
-        "profilePhotoUrl": "https://lh3.googleusercontent.com/a-/ALV-UjWmpk7Z8YNTJEpubkn2ctg44GD6-iBM3Bzn7Z_UrBmfFK5l96o-=w36-h36-p-rp-mo-br100",
-        "displayName": "Alex H"
-      },
-      "comment": "Sal was really great - very polite and a huge help -\nWould recommend",
-      "starRating": 5,
-      "date": "a year ago"
-    },
-    {
       "id": "ChdDSUhNMG9nS0VJQ0FnSURlb2F5NjlnRRAB",
       "url": "https://www.google.com/maps/reviews/@-37.8354339,144.8650809,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1sChdDSUhNMG9nS0VJQ0FnSURlb2F5NjlnRRAB!2m1!1s0x0:0xd077705b9fe576ea?hl=en&entry=ttu",
       "reviewer": {
@@ -981,6 +969,18 @@
         "displayName": "Jessica Beard"
       },
       "comment": "Excellent attention to detail. Very responsive. Definitely will use again.",
+      "starRating": 5,
+      "date": "a year ago"
+    },
+    {
+      "id": "ChdDSUhNMG9nS0VJQ0FnSUNkelBhTi1RRRAB",
+      "url": "https://www.google.com/maps/reviews/@-37.8354339,144.8650809,17z/data=!3m1!4b1!4m6!14m5!1m4!2m3!1sChdDSUhNMG9nS0VJQ0FnSUNkelBhTi1RRRAB!2m1!1s0x0:0xd077705b9fe576ea?hl=en&entry=ttu",
+      "reviewer": {
+        "profileUrl": "https://www.google.com/maps/contrib/108179981004260664042/reviews?hl=en",
+        "profilePhotoUrl": "https://lh3.googleusercontent.com/a-/ALV-UjWmpk7Z8YNTJEpubkn2ctg44GD6-iBM3Bzn7Z_UrBmfFK5l96o-=w36-h36-p-rp-mo-br100",
+        "displayName": "Alex H"
+      },
+      "comment": "Sal was really great - very polite and a huge help -\nWould recommend",
       "starRating": 5,
       "date": "a year ago"
     },
