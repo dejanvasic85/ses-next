@@ -3,9 +3,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import classNames from 'class-names';
 
-import { Icon } from './Icon/Icon';
-import { ConditionalWrap } from './ConditionalWrap';
-import { Rating } from './Rating';
+import { Icon } from '@/components/Icon/Icon';
+import { ConditionalWrap } from '@/components/ConditionalWrap';
+import { Rating } from '@/components/Rating';
 
 interface TestimonialReviewer {
   profilePhotoUrl: string;

@@ -5,9 +5,9 @@ import { ProductJsonLd } from 'next-seo';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { getBlogPosts, getHomePageContent } from '../../lib/content/contentService';
-import { getBasePageProps } from '../../lib/basePageProps';
-import { Layout, CustomImage, ImageCarousel } from '../../components';
+import { getBlogPosts, getHomePageContent } from '@/lib/content/contentService';
+import { getBasePageProps } from '@/lib/basePageProps';
+import { Layout, CustomImage, ImageCarousel } from '@/components';
 import type { HomePageContentResult } from '@/lib/content/contentService';
 import type { ProcessedBlogPost, ProcessedServiceItem } from '@/types';
 

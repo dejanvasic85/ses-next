@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'class-names';
 
-import { IconMap } from './IconMap';
+import { IconMap } from '@/components/Icon/IconMap';
 
 const sizeClassMap = {
   xs: 'h-3 w-3',

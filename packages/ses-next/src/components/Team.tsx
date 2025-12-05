@@ -1,8 +1,8 @@
 import Image from 'next/image';
 
-import { Heading } from './Heading';
-import { Icon } from './Icon/Icon';
-import type { IconMap } from './Icon/IconMap';
+import { Heading } from '@/components/Heading';
+import { Icon } from '@/components/Icon/Icon';
+import type { IconMap } from '@/components/Icon/IconMap';
 
 interface TeamMember {
   avatar: string;

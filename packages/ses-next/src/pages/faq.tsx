@@ -1,6 +1,6 @@
 import { GetStaticProps } from 'next';
-import { getBasePageProps } from '../lib/basePageProps';
-import { Layout } from '../components';
+import { getBasePageProps } from '@/lib/basePageProps';
+import { Layout } from '@/components';
 import type { HomePageContentResult } from '@/lib/content/contentService';
 import type { GoogleReviews } from '@/types';
 

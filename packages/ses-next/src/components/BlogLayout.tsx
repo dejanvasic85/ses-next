@@ -1,7 +1,7 @@
 import React from 'react';
-import { BlogMenu } from './BlogMenu';
-import { BlogSidebar } from './BlogSidebar';
-import { BlogFilterMobile } from './BlogFilterMobile';
+import { BlogMenu } from '@/components/BlogMenu';
+import { BlogSidebar } from '@/components/BlogSidebar';
+import { BlogFilterMobile } from '@/components/BlogFilterMobile';
 import type { TagWithCount } from '@/lib/blogUtils';
 
 interface BlogLayoutProps {

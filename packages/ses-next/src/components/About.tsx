@@ -1,10 +1,10 @@
 import classNames from 'class-names';
 
-import { Container } from './Container';
-import { Heading } from './Heading';
-import { Modal } from './Modal';
-import { Team } from './Team';
-import { Testimonial } from './Testimonial';
+import { Container } from '@/components/Container';
+import { Heading } from '@/components/Heading';
+import { Modal } from '@/components/Modal';
+import { Team } from '@/components/Team';
+import { Testimonial } from '@/components/Testimonial';
 
 interface TeamData {
   blurbs?: string[];

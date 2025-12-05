@@ -17,9 +17,9 @@ import {
   Social,
   SanityPortableText,
 } from '@/types';
-import { jsonFileCacher } from './cache';
-import { buildFetchFromApi, CacheApiResponse } from './contentApi';
-import { mapCompanyLogo, mapServices, mapTeam, mapTestimonials, mapTraining } from './mappers';
+import { jsonFileCacher } from '@/lib/content/cache';
+import { buildFetchFromApi, CacheApiResponse } from '@/lib/content/contentApi';
+import { mapCompanyLogo, mapServices, mapTeam, mapTestimonials, mapTraining } from '@/lib/content/mappers';
 
 // ============================================================================
 // TYPE DEFINITIONS

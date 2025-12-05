@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
-import { PageHead } from './PageHead';
-import { Navbar } from './Navbar';
-import { Footer } from './Footer';
+import { PageHead } from '@/components/PageHead';
+import { Navbar } from '@/components/Navbar';
+import { Footer } from '@/components/Footer';
 import { LayoutContent } from '@/types';
 
 interface LayoutProps {
