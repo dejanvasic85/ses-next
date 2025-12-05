@@ -5,53 +5,56 @@ import NextImage from 'next/image';
 import { BlogLayout, Layout } from '../../components';
 import { getBasePageProps } from '../../lib/basePageProps';
 import { getBlogPosts } from '../../lib/content/contentService';
-import { tagsFromBlogs } from '../../lib/blogUtils';
+import { tagsWithCountFromBlogs, type TagWithCount } from '../../lib/blogUtils';
 import type { HomePageContentResult } from '@/lib/content/contentService';
-import type { GoogleReviews, ProcessedBlogPost } from '@/types';
+import type { ProcessedBlogPost } from '@/types';
 
 interface BlogProps {
   content: HomePageContentResult;
-  googleReviews: GoogleReviews;
   pageUrl: string;
-  tags: string[];
+  tagsWithCount: TagWithCount[];
   blogPosts: ProcessedBlogPost[];
 }
 
-export default function Blog({ content, googleReviews, pageUrl, tags, blogPosts }: BlogProps) {
+export default function Blog({ content, pageUrl, tagsWithCount, blogPosts }: BlogProps) {
   return (
     <Layout content={content} pageUrl={pageUrl}>
-      <BlogLayout tags={tags}>
-        <div className="mx-auto w-full">
-          <div className="grid justify-items-stretch gap-6">
-            {blogPosts.map(({ id, description, title, tags, photo, slug, publishedAt }) => (
-              <div key={id} className="card sm:card-side hover:bg-base-200 transition-colors sm:max-w-none">
-                <figure className="mx-auto w-full object-cover p-6 max-sm:pb-0 sm:max-w-[12rem] sm:pe-0">
-                  <NextImage
-                    width={300}
-                    height={300}
-                    loading="lazy"
-                    src={photo}
-                    className="bg-base-300 rounded-lg"
-                    alt={title}
-                  />
-                </figure>
-                <div className="card-body">
-                  <h2 className="card-title underline">
-                    <Link href={`/blog/${slug}`}>{title}</Link>
-                  </h2>
-                  <p className="text-xs opacity-60">{new Date(publishedAt).toLocaleDateString()}</p>
-                  <p className="text-sm opacity-60">{description}</p>
-                  <div>
-                    {tags.map((tag) => (
-                      <span className="badge" key={tag}>
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+      <BlogLayout tagsWithCount={tagsWithCount} totalPosts={blogPosts.length}>
+        <div className="grid gap-6">
+          {blogPosts.map(({ id, description, title, tags, photo, slug, publishedAt }) => (
+            <article key={id} className="card sm:card-side hover:bg-base-200 transition-colors">
+              <figure className="w-full p-4 max-sm:pb-0 sm:w-48 sm:shrink-0 sm:pe-0">
+                <NextImage
+                  width={300}
+                  height={300}
+                  loading="lazy"
+                  src={photo}
+                  className="bg-base-300 rounded-lg w-full h-auto object-cover aspect-square"
+                  alt={title}
+                />
+              </figure>
+              <div className="card-body">
+                <h2 className="card-title">
+                  <Link href={`/blog/${slug}`} className="hover:underline">
+                    {title}
+                  </Link>
+                </h2>
+                <p className="text-xs opacity-60">{new Date(publishedAt).toLocaleDateString()}</p>
+                <p className="text-sm opacity-60 line-clamp-2">{description}</p>
+                <div className="flex flex-wrap gap-1 mt-2">
+                  {tags.map((tag) => (
+                    <Link
+                      key={tag}
+                      href={`/blog/tag/${encodeURIComponent(tag)}`}
+                      className="badge badge-outline badge-sm hover:badge-primary"
+                    >
+                      {tag}
+                    </Link>
+                  ))}
                 </div>
               </div>
-            ))}
-          </div>
+            </article>
+          ))}
         </div>
       </BlogLayout>
     </Layout>
@@ -61,13 +64,13 @@ export default function Blog({ content, googleReviews, pageUrl, tags, blogPosts 
 export const getStaticProps: GetStaticProps = async () => {
   const baseProps = await getBasePageProps({ pageUrl: 'blog' });
   const blogPosts = await getBlogPosts();
-  const tags = tagsFromBlogs(blogPosts);
+  const tagsWithCount = tagsWithCountFromBlogs(blogPosts);
 
   return {
     props: {
       ...baseProps,
       blogPosts: blogPosts.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()),
-      tags,
+      tagsWithCount,
     },
   };
 };

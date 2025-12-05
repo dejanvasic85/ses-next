@@ -1,18 +1,26 @@
 import React from 'react';
 import { BlogMenu } from './BlogMenu';
+import { BlogSidebar } from './BlogSidebar';
+import { BlogFilterMobile } from './BlogFilterMobile';
+import type { TagWithCount } from '@/lib/blogUtils';
 
 interface BlogLayoutProps {
-  tags: string[];
+  tagsWithCount: TagWithCount[];
+  totalPosts: number;
   children: React.ReactNode;
 }
 
-export const BlogLayout = ({ tags, children }: BlogLayoutProps) => {
+export const BlogLayout = ({ tagsWithCount, totalPosts, children }: BlogLayoutProps) => {
   return (
-    <div className="flex min-h-[50vh] w-full lg:w-3/5 flex-col mt-6 gap-6 container mx-auto mb-12">
-      <section>
-        <BlogMenu tags={tags} />
-      </section>
-      {children}
+    <div className="container mx-auto px-4 mt-6 mb-12">
+      <BlogMenu />
+      <div className="flex gap-8 mt-6">
+        <main className="flex-1 min-w-0">
+          <BlogFilterMobile tagsWithCount={tagsWithCount} totalPosts={totalPosts} />
+          {children}
+        </main>
+        <BlogSidebar tagsWithCount={tagsWithCount} totalPosts={totalPosts} />
+      </div>
     </div>
   );
 };
