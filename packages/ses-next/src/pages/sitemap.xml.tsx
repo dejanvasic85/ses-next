@@ -1,6 +1,6 @@
 import { GetServerSideProps } from 'next';
-import { getHomePageContent, getBlogPosts } from '../lib/content/contentService';
-import { buildFetchFromApi } from '../lib/content/contentApi';
+import { getHomePageContent, getBlogPosts } from '@/lib/content/contentService';
+import { buildFetchFromApi } from '@/lib/content/contentApi';
 import type { HomePageContentResult } from '@/lib/content/contentService';
 import type { ProcessedBlogPost } from '@/types';
 

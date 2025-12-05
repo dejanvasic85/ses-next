@@ -2,10 +2,10 @@ import { GetStaticProps, GetStaticPaths } from 'next';
 import Link from 'next/link';
 import NextImage from 'next/image';
 
-import { BlogLayout, Layout } from '../../../components';
-import { getBasePageProps } from '../../../lib/basePageProps';
-import { getBlogPosts } from '../../../lib/content/contentService';
-import { tagsWithCountFromBlogs, type TagWithCount } from '../../../lib/blogUtils';
+import { BlogLayout, Layout } from '@/components';
+import { getBasePageProps } from '@/lib/basePageProps';
+import { getBlogPosts } from '@/lib/content/contentService';
+import { tagsWithCountFromBlogs, type TagWithCount } from '@/lib/blogUtils';
 import type { HomePageContentResult } from '@/lib/content/contentService';
 import type { ProcessedBlogPost } from '@/types';
 

@@ -6,9 +6,9 @@ import { PortableText } from '@portabletext/react';
 import { formatDistanceToNow } from 'date-fns';
 
 import { Layout, BlogLayout, CustomImage } from '@/components';
-import { getBasePageProps } from '../../lib/basePageProps';
-import { getBlogPosts } from '../../lib/content/contentService';
-import { tagsWithCountFromBlogs, type TagWithCount } from '../../lib/blogUtils';
+import { getBasePageProps } from '@/lib/basePageProps';
+import { getBlogPosts } from '@/lib/content/contentService';
+import { tagsWithCountFromBlogs, type TagWithCount } from '@/lib/blogUtils';
 import type { HomePageContentResult } from '@/lib/content/contentService';
 import type { ProcessedBlogPost } from '@/types';
 

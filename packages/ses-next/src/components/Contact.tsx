@@ -1,11 +1,11 @@
 import { Activity } from 'react';
 
-import { useContact } from '../hooks/useContact';
-import { Heading } from './Heading';
-import { LinkButton } from './LinkButton';
-import { ContactForm } from './ContactForm';
-import { PopSuccess } from './PopSuccess';
-import { Icon } from './Icon/Icon';
+import { useContact } from '@/hooks/useContact';
+import { Heading } from '@/components/Heading';
+import { LinkButton } from '@/components/LinkButton';
+import { ContactForm } from '@/components/ContactForm';
+import { PopSuccess } from '@/components/PopSuccess';
+import { Icon } from '@/components/Icon/Icon';
 
 interface ContactData {
   blurbs?: string[];

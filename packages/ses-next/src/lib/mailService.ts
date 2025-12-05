@@ -1,6 +1,6 @@
 import SES from 'aws-sdk/clients/ses';
 
-import { config } from './config';
+import { config } from '@/lib/config';
 import type { ContactFormData, FeedbackFormData } from '@/types';
 
 const ses = new SES({

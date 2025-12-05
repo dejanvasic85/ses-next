@@ -2,7 +2,7 @@ import { Activity } from 'react';
 import { ReactNode } from 'react';
 import Link from 'next/link';
 
-import { Icon } from './Icon/Icon';
+import { Icon } from '@/components/Icon/Icon';
 import { Social, ServiceList } from '@/types';
 
 interface ConditionalWrapProps {

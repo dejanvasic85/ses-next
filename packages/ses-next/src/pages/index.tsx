@@ -2,8 +2,8 @@ import { GetStaticProps } from 'next';
 import { LocalBusinessJsonLd } from 'next-seo';
 import { googleReviews } from 'ses-reviews';
 
-import { About, Contact, Hero, Layout, Services } from '../components';
-import { getBasePageProps } from '../lib/basePageProps';
+import { About, Contact, Hero, Layout, Services } from '@/components';
+import { getBasePageProps } from '@/lib/basePageProps';
 import type { HomePageContentResult } from '@/lib/content/contentService';
 import type { GoogleReviews } from '@/types';
 

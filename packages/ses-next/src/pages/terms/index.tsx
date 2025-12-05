@@ -1,12 +1,12 @@
 import { GetStaticProps } from 'next';
 import { PortableText } from '@portabletext/react';
-import { Layout, CustomImage } from '../../components';
-import { getBasePageProps } from '../../lib/basePageProps';
+import { Layout, CustomImage } from '@/components';
+import { getBasePageProps } from '@/lib/basePageProps';
 import {
   getTermsAndConditions,
   ProcessedTermsAndConditions,
   HomePageContentResult,
-} from '../../lib/content/contentService';
+} from '@/lib/content/contentService';
 import type { GoogleReviews } from '@/types';
 
 interface TermsProps {

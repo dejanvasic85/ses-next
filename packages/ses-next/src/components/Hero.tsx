@@ -1,10 +1,10 @@
 import { Activity } from 'react';
 import Image from 'next/image';
 
-import { Heading } from './Heading';
-import { Icon } from './Icon/Icon';
-import { LinkButton } from './LinkButton';
-import { Rating } from './Rating';
+import { Heading } from '@/components/Heading';
+import { Icon } from '@/components/Icon/Icon';
+import { LinkButton } from '@/components/LinkButton';
+import { Rating } from '@/components/Rating';
 import { Social } from '@/types';
 
 interface HeroProps {

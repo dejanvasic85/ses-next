@@ -1,4 +1,4 @@
-import { getHomePageContent, HomePageContentResult } from './content/contentService';
+import { getHomePageContent, HomePageContentResult } from '@/lib/content/contentService';
 import { config } from '@/lib/config';
 import { BasePageProps } from '@/types';
 

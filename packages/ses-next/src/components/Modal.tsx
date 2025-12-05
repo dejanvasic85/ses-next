@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 
-import { Icon } from './Icon/Icon';
+import { Icon } from '@/components/Icon/Icon';
 
 ReactModal.setAppElement('#__next');
 

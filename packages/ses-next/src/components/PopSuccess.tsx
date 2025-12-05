@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'class-names';
 
-import { Icon } from './Icon/Icon';
+import { Icon } from '@/components/Icon/Icon';
 
 interface PopSuccessProps {
   children: React.ReactNode;

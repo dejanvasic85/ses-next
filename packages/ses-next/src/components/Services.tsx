@@ -2,10 +2,10 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { Container } from './Container';
-import { Heading } from './Heading';
-import { Icon } from './Icon/Icon';
-import type { IconMap } from './Icon/IconMap';
+import { Container } from '@/components/Container';
+import { Heading } from '@/components/Heading';
+import { Icon } from '@/components/Icon/Icon';
+import type { IconMap } from '@/components/Icon/IconMap';
 
 const ConditionalWrap = ({
   children,
