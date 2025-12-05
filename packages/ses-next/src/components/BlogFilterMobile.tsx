@@ -80,7 +80,7 @@ export const BlogFilterMobile = ({ tagsWithCount, totalPosts }: BlogFilterMobile
             {tagsWithCount.map(({ name, count }) => (
               <li key={name}>
                 <Link
-                  href={`/blog/tag/${name}`}
+                  href={`/blog/tag/${encodeURIComponent(name)}`}
                   onClick={handleLinkClick}
                   className={`flex justify-between ${currentTag === name ? 'active' : ''}`}
                 >

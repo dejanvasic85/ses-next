@@ -28,7 +28,7 @@ export const BlogSidebar = ({ tagsWithCount, totalPosts }: BlogSidebarProps) => 
             {tagsWithCount.map(({ name, count }) => (
               <li key={name}>
                 <Link
-                  href={`/blog/tag/${name}`}
+                  href={`/blog/tag/${encodeURIComponent(name)}`}
                   className={`flex justify-between ${currentTag === name ? 'active' : ''}`}
                 >
                   <span className="capitalize">{name.replace(/-/g, ' ')}</span>

@@ -7,11 +7,10 @@ import { getBasePageProps } from '../../lib/basePageProps';
 import { getBlogPosts } from '../../lib/content/contentService';
 import { tagsWithCountFromBlogs, type TagWithCount } from '../../lib/blogUtils';
 import type { HomePageContentResult } from '@/lib/content/contentService';
-import type { GoogleReviews, ProcessedBlogPost } from '@/types';
+import type { ProcessedBlogPost } from '@/types';
 
 interface BlogProps {
   content: HomePageContentResult;
-  googleReviews: GoogleReviews;
   pageUrl: string;
   tagsWithCount: TagWithCount[];
   blogPosts: ProcessedBlogPost[];
@@ -46,7 +45,7 @@ export default function Blog({ content, pageUrl, tagsWithCount, blogPosts }: Blo
                   {tags.map((tag) => (
                     <Link
                       key={tag}
-                      href={`/blog/tag/${tag}`}
+                      href={`/blog/tag/${encodeURIComponent(tag)}`}
                       className="badge badge-outline badge-sm hover:badge-primary"
                     >
                       {tag}
