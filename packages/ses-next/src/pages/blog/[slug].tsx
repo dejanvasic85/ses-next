@@ -8,18 +8,19 @@ import { formatDistanceToNow } from 'date-fns';
 import { Layout, BlogLayout, CustomImage } from '@/components';
 import { getBasePageProps } from '../../lib/basePageProps';
 import { getBlogPosts } from '../../lib/content/contentService';
-import { tagsFromBlogs } from '../../lib/blogUtils';
+import { tagsWithCountFromBlogs, type TagWithCount } from '../../lib/blogUtils';
 import type { HomePageContentResult } from '@/lib/content/contentService';
 import type { ProcessedBlogPost } from '@/types';
 
 interface BlogPostProps {
   content: HomePageContentResult;
   pageUrl: string;
-  tags: string[];
+  tagsWithCount: TagWithCount[];
+  totalPosts: number;
   post: ProcessedBlogPost;
 }
 
-export default function BlogPost({ content, pageUrl, tags, post }: BlogPostProps) {
+export default function BlogPost({ content, pageUrl, tagsWithCount, totalPosts, post }: BlogPostProps) {
   return (
     <>
       <ArticleJsonLd
@@ -32,7 +33,7 @@ export default function BlogPost({ content, pageUrl, tags, post }: BlogPostProps
         image={post.photo}
       />
       <Layout content={content} pageUrl={pageUrl}>
-        <BlogLayout tags={tags}>
+        <BlogLayout tagsWithCount={tagsWithCount} totalPosts={totalPosts}>
           <article className="mx-auto w-full px-8 lg:px-0 prose lg:prose-lg">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-tight md:leading-none mb-12 md:text-left">
               {post.title}
@@ -72,14 +73,14 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const baseProps = await getBasePageProps({ pageUrl: `blog/${params?.slug}` });
   const blogPosts = await getBlogPosts();
   const post = blogPosts.find(({ slug }) => slug === params?.slug);
-  const tags = tagsFromBlogs(blogPosts);
+  const tagsWithCount = tagsWithCountFromBlogs(blogPosts);
 
   return {
     props: {
       ...baseProps,
-      blogPosts,
       post,
-      tags,
+      tagsWithCount,
+      totalPosts: blogPosts.length,
     },
   };
 };
