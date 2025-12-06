@@ -30,6 +30,15 @@ export function Testimonial(testimonial: TestimonialProps) {
     url,
   } = testimonial;
   const [showMore, setShowMore] = React.useState(false);
+  const [isClamped, setIsClamped] = React.useState(false);
+  const textRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    const element = textRef.current;
+    if (element) {
+      setIsClamped(element.scrollHeight > element.clientHeight);
+    }
+  }, [comment]);
 
   return (
     <div className="p-4 rounded-3xl flex flex-col bg-slate-500 text-left">
@@ -64,10 +73,14 @@ export function Testimonial(testimonial: TestimonialProps) {
           </div>
           <Rating starRating={starRating} name={displayName} />
           <div>
-            <div className={classNames('pr-4 text-white', { 'line-clamp-4': !showMore })}>“{comment}”</div>
-            <button className="text-white border-b-2" onClick={() => setShowMore(!showMore)}>
-              {showMore ? 'Show less' : 'Show more'}
-            </button>
+            <div ref={textRef} className={classNames('pr-4 text-white', { 'line-clamp-4': !showMore })}>
+              "{comment}"
+            </div>
+            {(isClamped || showMore) && (
+              <button className="text-white border-b-2" onClick={() => setShowMore(!showMore)}>
+                {showMore ? 'Show less' : 'Show more'}
+              </button>
+            )}
           </div>
           <div>
             <Link
