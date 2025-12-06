@@ -1,39 +1,65 @@
 import { Activity } from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { PortableText } from '@portabletext/react';
-import { ProductJsonLd } from 'next-seo';
+import { LocalBusinessJsonLd } from 'next-seo';
 import Link from 'next/link';
 import Image from 'next/image';
+import { googleReviews } from 'ses-reviews';
 
 import { getBlogPosts, getHomePageContent } from '@/lib/content/contentService';
 import { getBasePageProps } from '@/lib/basePageProps';
 import { Layout, CustomImage, ImageCarousel } from '@/components';
 import type { HomePageContentResult } from '@/lib/content/contentService';
-import type { ProcessedBlogPost, ProcessedServiceItem } from '@/types';
+import type { ProcessedBlogPost, ProcessedServiceItem, GoogleReviews } from '@/types';
 
 interface ServiceProps {
   blogPosts: ProcessedBlogPost[];
   content: HomePageContentResult;
+  googleReviews: GoogleReviews;
   service: ProcessedServiceItem;
   pageUrl: string;
   title: string;
 }
 
-export default function Service({ blogPosts, content, service, pageUrl, title }: ServiceProps) {
+export default function Service({ blogPosts, content, googleReviews: reviews, service, pageUrl, title }: ServiceProps) {
   const { name, content: serviceContent } = service;
+
+  const ratingCount = Number(reviews.numberOfReviews.replace('reviews', '').trim());
+  const ratingValue = Number(reviews.overallRatingValue.replace('.0', '').trim());
+  const reviewsJson = reviews.reviews.slice(0, 9).map(({ comment, reviewer, starRating }) => ({
+    author: reviewer.displayName,
+    reviewBody: comment,
+    reviewRating: {
+      bestRating: '5',
+      worstRating: '1',
+      reviewAspect: 'Ambiance',
+      ratingValue: String(starRating),
+    },
+  }));
+
   return (
     <>
-      <ProductJsonLd
-        type="Product"
-        name={service.name}
+      <LocalBusinessJsonLd
+        type="LocalBusiness"
+        name={content.companyName}
         description={service.description}
-        image={service.imageGallery?.map(({ src }) => src) ?? []}
-        offers={{
-          availability: 'InStock',
-          priceCurrency: 'AUD',
-          url: pageUrl,
-          seller: content.companyName,
+        address={{
+          streetAddress: '61B Hansen St',
+          addressLocality: 'Altona North',
+          addressRegion: 'VIC',
+          postalCode: '3025',
+          addressCountry: 'AU',
         }}
+        telephone={content.contact.phone}
+        image={content.companyLogo}
+        url={pageUrl}
+        aggregateRating={{
+          ratingValue: ratingValue,
+          ratingCount: ratingCount,
+          bestRating: 5,
+          worstRating: 0,
+        }}
+        review={reviewsJson}
       />
       <Layout content={content} pageUrl={pageUrl} title={title}>
         <div className="bg-white py-6 sm:py-8 lg:py-12">
@@ -110,6 +136,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       ...props,
+      googleReviews,
       service: service!,
       title: `${titlePrefix.trim()} | ${service!.name}`,
       blogPosts,
