@@ -87,6 +87,8 @@ export function Hero({
               <h2 className="mt-6 text-base md:text-lg leading-8 text-gray-600">{subHeading}</h2>
               <div className="mt-8 flex gap-x-4 justify-center">
                 <LinkButton href="#contact">Get a free quote</LinkButton>
+              </div>
+              <div className="mt-8 flex gap-x-4 justify-center">
                 <Activity mode={social.facebook ? 'visible' : 'hidden'}>
                   <LinkButton href={social.facebook} target="_blank" aria-label="Facebook page">
                     <Icon name="facebook" size="lg" />
