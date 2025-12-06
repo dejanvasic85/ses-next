@@ -4,7 +4,7 @@
     "dev": "npm run dev -w ses-next",
     "format": "prettier --write .",
     "type:check": "turbo type:check",
-    "build": "npm run build -w ses-next",
+    "build": "turbo build",
     "clear-cache": "rm -rf ./ses-next/cache",
     "deploy:content": "npm run build -w ses-content && npm run deploy -w ses-content",
     "update:rating": "npm run update:rating -w ses-reviews",
@@ -22,5 +22,6 @@
   },
   "lint-staged": {
     "*": "prettier --write"
-  }
+  },
+  "packageManager": "npm@11.6.4"
 }
