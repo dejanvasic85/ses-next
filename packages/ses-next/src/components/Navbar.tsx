@@ -75,7 +75,7 @@ export function Navbar({
         <Container>
           <div className="flex items-center justify-between h-16 w-full">
             <div className="md:flex md:flex-1">
-              <NextLink className="btn btn-ghost normal-case text-xl" href={links.home}>
+              <NextLink className="btn btn-ghost normal-case text-base sm:text-xl whitespace-nowrap" href={links.home}>
                 <Icon name="bolt" size="xxl" className="mr-2" /> {title}
               </NextLink>
             </div>

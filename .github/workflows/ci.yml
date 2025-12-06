@@ -28,6 +28,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Type check
+        run: npm run type:check
+
       - name: Wait for Vercel deployment
         id: vercel-deployment
         uses: patrickedqvist/wait-for-vercel-preview@v1.3.2

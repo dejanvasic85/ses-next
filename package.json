@@ -3,7 +3,8 @@
     "dev:sanity": "npm run dev -w ses-content",
     "dev": "npm run dev -w ses-next",
     "format": "prettier --write .",
-    "build": "npm run build -w ses-next",
+    "type:check": "turbo type:check",
+    "build": "turbo build",
     "clear-cache": "rm -rf ./ses-next/cache",
     "deploy:content": "npm run build -w ses-content && npm run deploy -w ses-content",
     "update:rating": "npm run update:rating -w ses-reviews",
@@ -16,9 +17,11 @@
     "node": "24.11.1"
   },
   "devDependencies": {
-    "lint-staged": "16.2.7"
+    "lint-staged": "16.2.7",
+    "turbo": "2.6.3"
   },
   "lint-staged": {
     "*": "prettier --write"
-  }
+  },
+  "packageManager": "npm@11.6.4"
 }
