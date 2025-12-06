@@ -3,7 +3,17 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "outputs": [".next/**", "!.next/cache/**"],
+      "env": [
+        "SES_AWS_ACCESS_KEY_ID",
+        "SES_AWS_SECRET_ACCESS_KEY",
+        "EMAIL_ENABLED",
+        "EMAIL_FROM",
+        "EMAIL_TO",
+        "NEXT_PUBLIC_GTM_ID",
+        "NEXT_PUBLIC_RECAPTCHA_SITE_KEY",
+        "RECAPTCHA_SECRET_KEY"
+      ]
     },
     "lint": {
       "dependsOn": ["^lint"]
