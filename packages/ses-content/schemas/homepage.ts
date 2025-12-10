@@ -9,7 +9,7 @@ export default defineType({
       name: 'companyName',
       type: 'string',
       title: 'Company name',
-      descripton: 'Hint: The main title in the homepage',
+      description: 'Hint: The main title in the homepage',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -22,19 +22,19 @@ export default defineType({
       name: 'mainHeading',
       type: 'string',
       title: 'Main Heading',
-      descripton: 'Hint: Appears below the logo',
+      description: 'Hint: Appears below the logo',
     }),
     defineField({
       name: 'subHeading',
       type: 'string',
       title: 'Sub Heading',
-      descripton: 'Hint: Appears below the main heading',
+      description: 'Hint: Appears below the main heading',
     }),
     defineField({
       name: 'shortTitle',
       type: 'string',
       title: 'Short Title',
-      descripton: 'Hint: Appears in the desktop navbar',
+      description: 'Hint: Appears in the desktop navbar',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
