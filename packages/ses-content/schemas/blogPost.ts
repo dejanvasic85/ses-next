@@ -14,7 +14,7 @@ export default defineType({
       name: 'description',
       title: 'Description',
       type: 'string',
-      descripton: 'Hint: This will display in the blogs section',
+      description: 'Hint: This will display in the blogs section',
     },
     {
       name: 'slug',
