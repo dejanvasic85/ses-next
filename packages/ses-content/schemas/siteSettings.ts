@@ -32,27 +32,6 @@ export default defineType({
       description: 'Your domain name (e.g., https://example.com)',
     }),
     defineField({
-      title: 'Contact',
-      name: 'contact',
-      type: 'object',
-      fields: [
-        {
-          name: 'blurbs',
-          type: 'array',
-          of: [{type: 'text', rows: 4}],
-          title: 'Blurbs',
-          description: 'Appears under the contact heading',
-        },
-        {
-          name: 'callBack',
-          type: 'string',
-          title: 'Call back',
-          description: 'Appears in the contact form',
-        },
-        {name: 'phone', type: 'string', title: 'Phone number'},
-      ],
-    }),
-    defineField({
       title: 'Google Maps location embedded url',
       description:
         'You can get this by going to google maps doing a search and clicking share. Then click embed map and copy the url.',
