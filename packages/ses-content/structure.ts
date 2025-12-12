@@ -18,8 +18,8 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem('training').title('Training'),
       S.documentTypeListItem('testimonial').title('Testimonials'),
       S.divider(),
-      S.documentTypeListItem('blogPost').title('Blog Posts'),
+      S.documentTypeListItem('blog-post').title('Blog Posts'),
       S.documentTypeListItem('faq').title('FAQs'),
       S.documentTypeListItem('showcase').title('Showcase'),
-      S.documentTypeListItem('terms').title('Terms & Conditions'),
+      S.documentTypeListItem('terms-and-conditions').title('Terms & Conditions'),
     ])
