@@ -126,39 +126,15 @@ export const getTermsAndConditions = async (): Promise<ProcessedTermsAndConditio
   }
 };
 
-export const getSiteSettings = async (): Promise<SiteSettingsContentModel> => {
+export const getFAQs = async (): Promise<Array<{ question: string; answer: string }>> => {
   try {
-    const siteSettings = await getSiteSettings();
-    return {
-      companyName: siteSettings.companyName,
-      companyLogo: mapSiteSettingsCompanyLogo(siteSettings),
-      contact: {
-        phone: siteSettings.contact.phone,
-        email: siteSettings.contact.email,
-        blurbs: siteSettings.contact.blurbs,
-        callBack: siteSettings.contact.callBack,
-      },
-      faqItems: siteSettings.faqItems.map(({ question, answer }) => ({
-        question,
-        answer,
-      })),
-      googleMapsLocation: siteSettings.googleMapsLocation,
-      googleMapsLocationPlaceUrl: siteSettings.googleMapsLocationPlaceUrl,
-      meta: siteSettings.meta,
-      services: mapHomepageServices(siteSettings.services),
-      shortTitle: siteSettings.shortTitle,
-      social: {
-        facebook: siteSettings.social.facebook,
-        linkedIn: siteSettings.social.linkedIn,
-        twitter: null,
-      },
-      mainHeading: siteSettings.mainHeading,
-      subHeading: siteSettings.subHeading,
-      team: mapHomepageTeam(siteSettings.team),
-      training: mapHomepageTraining(siteSettings.training),
-    };
+    const faqs = await getAllFAQs();
+    return faqs.map(({ question, answer }) => ({
+      question,
+      answer,
+    }));
   } catch (error) {
-    console.error('Error in getSiteSettings:', error);
-    throw new Error('Failed to fetch site settings');
+    console.error('Error in getFAQs:', error);
+    throw new Error('Failed to fetch FAQs');
   }
 };
