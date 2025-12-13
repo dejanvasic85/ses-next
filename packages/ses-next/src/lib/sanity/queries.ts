@@ -1,26 +1,23 @@
 import { sanityClient } from '@/lib/sanity/client';
-import {
-  BlogPost,
-  BlogPostSchema,
-  FAQ,
-  FAQSchema,
-  Homepage,
-  HomepageSchema,
-  ProcessedBlogPost,
-  ProcessedServiceItem,
-  ProcessedServiceList,
-  ProcessedTeam,
-  ProcessedTeamMember,
-  ProcessedTestimonial,
-  ProcessedTraining,
-  Service,
-  Showcase,
-  TeamMember,
-  TermsAndConditions,
-  TermsAndConditionsSchema,
-  Testimonial,
-  Training,
+import type {
+  BlogPost as SanityBlogPost,
+  FAQ as SanityFAQ,
+  Homepage as SanityHomepage,
+  Service as SanityService,
+  Showcase as SanityShowcase,
+  TeamMember as SanityTeamMember,
+  TermsAndConditions as SanityTermsAndConditions,
+  Testimonial as SanityTestimonial,
+  Training as SanityTraining,
+  ProcessedBlogPost as BlogPost,
+  ProcessedServiceItem as ServiceItem,
+  ProcessedServiceList as ServiceList,
+  ProcessedTeam as Team,
+  ProcessedTeamMember as TeamMember,
+  ProcessedTestimonial as Testimonial,
+  ProcessedTraining as Training,
 } from '@/types';
+import { BlogPostSchema, FAQSchema, HomepageSchema, TermsAndConditionsSchema } from '@/types';
 
 // ============================================================================
 // GROQ QUERIES
@@ -143,10 +140,10 @@ const termsAndConditionsQuery = `*[_type == "terms-and-conditions"]{
 }`;
 
 // ============================================================================
-// DATA TYPES (GROQ query results with resolved references)
+// CONTENT MODELS (GROQ query results with resolved references)
 // ============================================================================
 
-type ShowcaseData = Omit<Showcase, 'photo'> & {
+type ShowcaseContentModel = Omit<SanityShowcase, 'photo'> & {
   photo: {
     asset: {
       url: string;
@@ -154,11 +151,11 @@ type ShowcaseData = Omit<Showcase, 'photo'> & {
   };
 };
 
-type ServiceData = Omit<Service, 'showcase'> & {
-  showcase?: ShowcaseData[];
+type ServiceContentModel = Omit<SanityService, 'showcase'> & {
+  showcase?: ShowcaseContentModel[];
 };
 
-type TeamMemberData = Omit<TeamMember, 'avatar'> & {
+type TeamMemberContentModel = Omit<SanityTeamMember, 'avatar'> & {
   avatar: {
     asset: {
       url: string;
@@ -166,7 +163,7 @@ type TeamMemberData = Omit<TeamMember, 'avatar'> & {
   };
 };
 
-type BlogPostData = Omit<BlogPost, 'photo'> & {
+type BlogPostContentModel = Omit<SanityBlogPost, 'photo'> & {
   photo: {
     asset: {
       url: string;
@@ -174,7 +171,15 @@ type BlogPostData = Omit<BlogPost, 'photo'> & {
   };
 };
 
-export type HomepageData = Omit<Homepage, 'companyLogo' | 'services' | 'team' | 'training' | 'testimonials'> & {
+type TrainingContentModel = SanityTraining;
+type TestimonialContentModel = SanityTestimonial;
+type FAQContentModel = SanityFAQ;
+type TermsAndConditionsContentModel = SanityTermsAndConditions;
+
+export type HomepageContentModel = Omit<
+  SanityHomepage,
+  'companyLogo' | 'services' | 'team' | 'training' | 'testimonials'
+> & {
   companyLogo: {
     asset: {
       url: string;
@@ -182,73 +187,73 @@ export type HomepageData = Omit<Homepage, 'companyLogo' | 'services' | 'team' | 
   };
   services: {
     blurbs?: string[];
-    items: ServiceData[];
+    items: ServiceContentModel[];
   };
   team: {
     blurbs?: string[];
-    members: TeamMemberData[];
+    members: TeamMemberContentModel[];
   };
-  training: Training[];
-  testimonials: Testimonial[];
+  training: TrainingContentModel[];
+  testimonials: TestimonialContentModel[];
 };
 
 // ============================================================================
 // QUERY FUNCTIONS
 // ============================================================================
 
-export const getHomepage = async (): Promise<HomepageData> => {
+export const getHomepage = async (): Promise<HomepageContentModel> => {
   const result = await sanityClient.fetch(homepageQuery);
   return result;
 };
 
-export const getAllBlogPosts = async (): Promise<BlogPostData[]> => {
+export const getAllBlogPosts = async (): Promise<BlogPostContentModel[]> => {
   const result = await sanityClient.fetch(allBlogPostsQuery);
   return result;
 };
 
-export const getBlogPostBySlug = async (slug: string): Promise<BlogPostData | null> => {
+export const getBlogPostBySlug = async (slug: string): Promise<BlogPostContentModel | null> => {
   const result = await sanityClient.fetch(blogPostBySlugQuery, { slug });
   if (!result) return null;
   return result;
 };
 
-export const getAllFAQs = async (): Promise<FAQ[]> => {
+export const getAllFAQs = async (): Promise<FAQContentModel[]> => {
   const result = await sanityClient.fetch(allFaqsQuery);
   return result.map((faq: unknown) => FAQSchema.parse(faq));
 };
 
-export const getAllTermsAndConditions = async (): Promise<TermsAndConditions[]> => {
+export const getAllTermsAndConditions = async (): Promise<TermsAndConditionsContentModel[]> => {
   const result = await sanityClient.fetch(termsAndConditionsQuery);
   return result.map((terms: unknown) => TermsAndConditionsSchema.parse(terms));
 };
 
 // ============================================================================
-// HELPER FUNCTIONS TO PROCESS QUERY RESULTS
+// MAPPER FUNCTIONS (Convert content models to app models)
 // ============================================================================
 
-export const processBlogPost = (post: BlogPostData): ProcessedBlogPost => {
-  const photoUrl = post.photo.asset.url;
+export const mapBlogPost = (model: BlogPostContentModel): BlogPost => {
+  const photoUrl = model.photo.asset.url;
 
   return {
-    id: post._id,
-    title: post.title,
-    description: post.description,
-    slug: post.slug.current,
+    id: model._id,
+    title: model.title,
+    description: model.description,
+    slug: model.slug.current,
     photo: photoUrl,
-    publishedAt: post.publishedAt,
-    tags: post.tags,
-    body: post.body,
+    publishedAt: model.publishedAt,
+    tags: model.tags,
+    body: model.body,
   };
 };
 
-export const processService = (service: ServiceData): ProcessedServiceItem => {
+export const mapService = (model: ServiceContentModel): ServiceItem => {
   const imageGallery =
-    service.showcase?.map((item) => ({
+    model.showcase?.map((item) => ({
       alt: item.title,
       src: item.photo.asset.url,
     })) || [];
 
-  const featuredShowcase = service.showcase?.find((item) => item.featured === true);
+  const featuredShowcase = model.showcase?.find((item) => item.featured === true);
   const featuredImage = featuredShowcase
     ? {
         alt: featuredShowcase.title,
@@ -257,79 +262,79 @@ export const processService = (service: ServiceData): ProcessedServiceItem => {
     : undefined;
 
   return {
-    id: service._id,
-    name: service.name,
-    blurb: service.blurb,
-    description: service.description,
-    linkToReadMore: service.linkToReadMore,
-    icon: service.icon,
-    slug: service.slug.current,
-    content: service.content,
+    id: model._id,
+    name: model.name,
+    blurb: model.blurb,
+    description: model.description,
+    linkToReadMore: model.linkToReadMore,
+    icon: model.icon,
+    slug: model.slug.current,
+    content: model.content,
     imageGallery,
     featuredImage,
   };
 };
 
-export const processTeamMember = (member: TeamMemberData): ProcessedTeamMember => {
-  const avatarUrl = member.avatar.asset.url;
+export const mapTeamMember = (model: TeamMemberContentModel): TeamMember => {
+  const avatarUrl = model.avatar.asset.url;
 
   return {
     avatar: avatarUrl,
-    fullName: member.name,
-    role: member.role,
+    fullName: model.name,
+    role: model.role,
   };
 };
 
-export const processTraining = (training: Training): ProcessedTraining => {
+export const mapTraining = (model: TrainingContentModel): Training => {
   return {
-    trainingTitle: training.trainingTitle,
-    icon: training.icon,
+    trainingTitle: model.trainingTitle,
+    icon: model.icon,
   };
 };
 
-export const processTestimonial = (testimonial: Testimonial): ProcessedTestimonial => {
-  const result: ProcessedTestimonial = {
-    date: testimonial.date || '',
-    comment: testimonial.comment,
-    starRating: testimonial.rating,
+export const mapTestimonial = (model: TestimonialContentModel): Testimonial => {
+  const result: Testimonial = {
+    date: model.date || '',
+    comment: model.comment,
+    starRating: model.rating,
     reviewer: {
-      displayName: testimonial.fullName,
+      displayName: model.fullName,
     },
   };
 
-  if (testimonial.profileImgUrl) {
-    result.reviewer.profilePhotoUrl = testimonial.profileImgUrl;
+  if (model.profileImgUrl) {
+    result.reviewer.profilePhotoUrl = model.profileImgUrl;
   }
-  if (testimonial.reviewUrl) {
-    result.reviewer.profileUrl = testimonial.reviewUrl;
-    result.url = testimonial.reviewUrl;
+  if (model.reviewUrl) {
+    result.reviewer.profileUrl = model.reviewUrl;
+    result.url = model.reviewUrl;
   }
 
   return result;
 };
 
-export const processHomepageServices = (homepage: HomepageData): ProcessedServiceList => {
+export const mapHomepageServices = (model: HomepageContentModel): ServiceList => {
   return {
-    blurbs: homepage.services.blurbs,
-    items: homepage.services.items.map(processService),
+    blurbs: model.services.blurbs,
+    items: model.services.items.map(mapService),
   };
 };
 
-export const processHomepageTeam = (homepage: HomepageData): ProcessedTeam => {
+export const mapHomepageTeam = (model: HomepageContentModel): Team => {
   return {
-    blurbs: homepage.team.blurbs,
-    members: homepage.team.members.map(processTeamMember),
+    blurbs: model.team.blurbs,
+    members: model.team.members.map(mapTeamMember),
   };
 };
 
-export const processHomepageTraining = (homepage: HomepageData): ProcessedTraining[] => {
-  return homepage.training.map(processTraining);
+export const mapHomepageTraining = (model: HomepageContentModel): Training[] => {
+  return model.training.map(mapTraining);
 };
 
-export const processHomepageTestimonials = (homepage: HomepageData): ProcessedTestimonial[] => {
-  return homepage.testimonials.map(processTestimonial);
+export const mapHomepageTestimonials = (model: HomepageContentModel): Testimonial[] => {
+  return model.testimonials.map(mapTestimonial);
 };
 
-export const processHomepageCompanyLogo = (homepage: HomepageData): string => {
-  return homepage.companyLogo.asset.url;
+export const mapHomepageCompanyLogo = (model: HomepageContentModel): string => {
+  return model.companyLogo.asset.url;
 };

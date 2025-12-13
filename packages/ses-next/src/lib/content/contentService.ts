@@ -1,9 +1,9 @@
-import {
-  ProcessedBlogPost,
-  ProcessedServiceList,
-  ProcessedTeam,
-  ProcessedTraining,
-  ProcessedTestimonial,
+import type {
+  ProcessedBlogPost as BlogPost,
+  ProcessedServiceList as ServiceList,
+  ProcessedTeam as Team,
+  ProcessedTraining as Training,
+  ProcessedTestimonial as Testimonial,
   Social,
   SanityPortableText,
 } from '@/types';
@@ -12,12 +12,12 @@ import {
   getAllBlogPosts,
   getAllFAQs,
   getAllTermsAndConditions,
-  processBlogPost,
-  processHomepageServices,
-  processHomepageTeam,
-  processHomepageTraining,
-  processHomepageTestimonials,
-  processHomepageCompanyLogo,
+  mapBlogPost,
+  mapHomepageServices,
+  mapHomepageTeam,
+  mapHomepageTraining,
+  mapHomepageTestimonials,
+  mapHomepageCompanyLogo,
 } from '@/lib/sanity/queries';
 
 // ============================================================================
@@ -40,14 +40,14 @@ export interface HomePageContentResult {
     title: string;
     description: string;
   };
-  services: ProcessedServiceList;
+  services: ServiceList;
   shortTitle: string;
   social: Social;
   mainHeading?: string;
   subHeading?: string;
-  team: ProcessedTeam;
-  training: ProcessedTraining[];
-  testimonials: ProcessedTestimonial[];
+  team: Team;
+  training: Training[];
+  testimonials: Testimonial[];
 }
 
 export interface ProcessedTermsAndConditions {
@@ -76,11 +76,11 @@ export const getHomePageContent = async (): Promise<HomePageContentResult> => {
       subHeading,
     } = homepage;
 
-    const services = processHomepageServices(homepage);
-    const team = processHomepageTeam(homepage);
-    const training = processHomepageTraining(homepage);
-    const testimonials = processHomepageTestimonials(homepage);
-    const companyLogo = processHomepageCompanyLogo(homepage);
+    const services = mapHomepageServices(homepage);
+    const team = mapHomepageTeam(homepage);
+    const training = mapHomepageTraining(homepage);
+    const testimonials = mapHomepageTestimonials(homepage);
+    const companyLogo = mapHomepageCompanyLogo(homepage);
 
     const faqItems = faqs.map(({ question, answer }) => ({
       question,
@@ -111,10 +111,10 @@ export const getHomePageContent = async (): Promise<HomePageContentResult> => {
   }
 };
 
-export const getBlogPosts = async (): Promise<ProcessedBlogPost[]> => {
+export const getBlogPosts = async (): Promise<BlogPost[]> => {
   try {
     const blogPosts = await getAllBlogPosts();
-    return blogPosts.map(processBlogPost);
+    return blogPosts.map(mapBlogPost);
   } catch (error) {
     console.error('Error in getBlogPosts:', error);
     throw new Error('Failed to fetch blog posts');
