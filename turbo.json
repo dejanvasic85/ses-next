@@ -19,10 +19,16 @@
       "dependsOn": ["^lint"]
     },
     "type:check": {
-      "cache": false,
-      "dependsOn": ["^type:check"]
+      "dependsOn": ["^type:check"],
+      "cache": false
     },
     "dev": {
+      "dependsOn": ["^dev"],
+      "cache": false,
+      "persistent": true
+    },
+    "dev:content": {
+      "dependsOn": ["^dev:content"],
       "cache": false,
       "persistent": true
     }

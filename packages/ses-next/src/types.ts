@@ -278,7 +278,7 @@ export const SiteSettingsSchema = z.object({
   _updatedAt: z.string().optional(),
   companyName: z.string(),
   companyLogo: SanityImageSchema,
-  shortTitle: z.string().optional(),
+  shortTitle: z.string(),
   baseUrl: z.url(),
   googleMapsLocation: z.url().optional(),
   googleMapsLocationPlaceUrl: z.url().optional(),

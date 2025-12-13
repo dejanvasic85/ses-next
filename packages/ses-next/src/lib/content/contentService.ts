@@ -8,6 +8,7 @@ import type {
   SanityPortableText,
 } from '@/types';
 import {
+  getSiteSettings,
   getHomepage,
   getAllBlogPosts,
   getAllFAQs,
@@ -17,7 +18,7 @@ import {
   mapHomepageTeam,
   mapHomepageTraining,
   mapHomepageTestimonials,
-  mapHomepageCompanyLogo,
+  mapSiteSettingsCompanyLogo,
 } from '@/lib/sanity/queries';
 
 // ============================================================================
@@ -61,26 +62,25 @@ export interface ProcessedTermsAndConditions {
 
 export const getHomePageContent = async (): Promise<HomePageContentResult> => {
   try {
-    const [homepage, faqs] = await Promise.all([getHomepage(), getAllFAQs()]);
+    const [siteSettings, homepage, faqs] = await Promise.all([getSiteSettings(), getHomepage(), getAllFAQs()]);
 
     const {
       baseUrl,
       companyName,
-      contact,
       googleMapsLocation,
       googleMapsLocationPlaceUrl,
       meta,
       shortTitle,
       socialMedia: social = {},
-      mainHeading,
-      subHeading,
-    } = homepage;
+    } = siteSettings;
+
+    const { contact, mainHeading, subHeading } = homepage;
 
     const services = mapHomepageServices(homepage);
     const team = mapHomepageTeam(homepage);
     const training = mapHomepageTraining(homepage);
     const testimonials = mapHomepageTestimonials(homepage);
-    const companyLogo = mapHomepageCompanyLogo(homepage);
+    const companyLogo = mapSiteSettingsCompanyLogo(siteSettings);
 
     const faqItems = faqs.map(({ question, answer }) => ({
       question,

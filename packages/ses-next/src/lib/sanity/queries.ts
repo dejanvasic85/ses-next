@@ -5,6 +5,7 @@ import type {
   Homepage as SanityHomepage,
   Service as SanityService,
   Showcase as SanityShowcase,
+  SiteSettings as SanitySiteSettings,
   TeamMember as SanityTeamMember,
   TermsAndConditions as SanityTermsAndConditions,
   Testimonial as SanityTestimonial,
@@ -17,11 +18,29 @@ import type {
   ProcessedTestimonial as Testimonial,
   ProcessedTraining as Training,
 } from '@/types';
-import { BlogPostSchema, FAQSchema, HomepageSchema, TermsAndConditionsSchema } from '@/types';
+import { BlogPostSchema, FAQSchema, HomepageSchema, SiteSettingsSchema, TermsAndConditionsSchema } from '@/types';
 
 // ============================================================================
 // GROQ QUERIES
 // ============================================================================
+
+const siteSettingsQuery = `*[_type == "siteSettings"][0]{
+  _id,
+  _type,
+  companyName,
+  companyLogo{
+    asset->{
+      _id,
+      url
+    }
+  },
+  shortTitle,
+  baseUrl,
+  googleMapsLocation,
+  googleMapsLocationPlaceUrl,
+  meta,
+  socialMedia
+}`;
 
 const homepageQuery = `*[_type == "homepage"][0]{
   _id,
@@ -176,6 +195,14 @@ type TestimonialContentModel = SanityTestimonial;
 type FAQContentModel = SanityFAQ;
 type TermsAndConditionsContentModel = SanityTermsAndConditions;
 
+export type SiteSettingsContentModel = Omit<SanitySiteSettings, 'companyLogo'> & {
+  companyLogo: {
+    asset: {
+      url: string;
+    };
+  };
+};
+
 export type HomepageContentModel = Omit<
   SanityHomepage,
   'companyLogo' | 'services' | 'team' | 'training' | 'testimonials'
@@ -200,6 +227,11 @@ export type HomepageContentModel = Omit<
 // ============================================================================
 // QUERY FUNCTIONS
 // ============================================================================
+
+export const getSiteSettings = async (): Promise<SiteSettingsContentModel> => {
+  const result = await sanityClient.fetch(siteSettingsQuery);
+  return result;
+};
 
 export const getHomepage = async (): Promise<HomepageContentModel> => {
   const result = await sanityClient.fetch(homepageQuery);
@@ -336,5 +368,9 @@ export const mapHomepageTestimonials = (model: HomepageContentModel): Testimonia
 };
 
 export const mapHomepageCompanyLogo = (model: HomepageContentModel): string => {
+  return model.companyLogo.asset.url;
+};
+
+export const mapSiteSettingsCompanyLogo = (model: SiteSettingsContentModel): string => {
   return model.companyLogo.asset.url;
 };

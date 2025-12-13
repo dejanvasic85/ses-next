@@ -13,17 +13,20 @@ The project had numerous `any` type annotations that reduced type safety and mad
 ### 1. New Type Definitions Added to `types.ts`
 
 #### Google Reviews Types
+
 - `GoogleReviewerSchema` - Schema for Google review author information
 - `GoogleReviewSchema` - Schema for individual Google reviews
 - `GoogleReviewsSchema` - Schema for the complete Google reviews data structure
 - Exported corresponding TypeScript types: `GoogleReviewer`, `GoogleReview`, `GoogleReviews`
 
 #### Sanity API Response Types
+
 - `SanityApiResponseSchema` - Schema for raw Sanity API responses
 - `SanityMarkDefSchema` - Schema for Sanity portable text mark definitions
 - Exported `SanityApiResponse`, `SanityMarkDef` types
 
 #### Email Template Types
+
 - `ContactEmailData` - Type alias for contact form email data
 - `FeedbackEmailData` - Type alias for feedback form email data
 - `EmailTemplateData` - Union type for all email template data
@@ -31,6 +34,7 @@ The project had numerous `any` type annotations that reduced type safety and mad
 ### 2. Content API Improvements (`lib/content/contentApi.ts`)
 
 **Before:**
+
 ```typescript
 export const fetchFromApi = async (url: string): Promise<any> => {
   // ...
@@ -39,11 +43,12 @@ export const fetchFromApi = async (url: string): Promise<any> => {
 ```
 
 **After:**
+
 ```typescript
 export const fetchFromApi = async (url: string): Promise<CacheApiResponse> => {
   // ...
   const rawData = (await response.json()) as SanityApiRawResponse;
-  
+
   // Validate each document in the result array
   const validatedResult = rawData.result.map((item, index) => {
     try {
@@ -53,12 +58,13 @@ export const fetchFromApi = async (url: string): Promise<CacheApiResponse> => {
       throw new Error(`Failed to validate Sanity document at index ${index}`);
     }
   });
-  
+
   return { result: validatedResult };
 };
 ```
 
 **Benefits:**
+
 - Runtime validation of all Sanity data using Zod schemas
 - Type-safe API responses
 - Clear error messages when data doesn't match expected schema
@@ -66,6 +72,7 @@ export const fetchFromApi = async (url: string): Promise<CacheApiResponse> => {
 ### 3. Content Service Improvements (`lib/content/contentService.ts`)
 
 **Before:**
+
 ```typescript
 interface ProcessedTermsAndConditions {
   id: string;
@@ -76,6 +83,7 @@ type MapperFunction = (fullContent: SanityDocument[], item: Homepage) => any;
 ```
 
 **After:**
+
 ```typescript
 export interface ProcessedTermsAndConditions {
   id: string;
@@ -89,6 +97,7 @@ type MapperFunction = (
 ```
 
 **Benefits:**
+
 - Proper typing for Sanity Portable Text content
 - Type-safe mapper functions with explicit return types
 - Exported interfaces for use in components
@@ -96,6 +105,7 @@ type MapperFunction = (
 ### 4. Mail Service Improvements (`lib/mailService.ts`)
 
 **Before:**
+
 ```typescript
 interface SendEmailParams {
   data: Record<string, any>;
@@ -109,6 +119,7 @@ export function send({ data, template, to }: SendEmailParams): Promise<any> {
 ```
 
 **After:**
+
 ```typescript
 type EmailData = ContactFormData | FeedbackFormData;
 
@@ -130,6 +141,7 @@ export function send({
 ```
 
 **Benefits:**
+
 - Type-safe email data based on form schemas
 - Proper AWS SES types
 - Type-safe access to email data properties
@@ -137,6 +149,7 @@ export function send({
 ### 5. API Route Improvements (`pages/api/contact.ts`)
 
 **Before:**
+
 ```typescript
 type ApiResponse = {
   message: string;
@@ -146,6 +159,7 @@ type ApiResponse = {
 ```
 
 **After:**
+
 ```typescript
 type ApiResponse = {
   message: string;
@@ -155,6 +169,7 @@ type ApiResponse = {
 ```
 
 **Benefits:**
+
 - More specific error typing
 - Maintains flexibility while being more descriptive than `any`
 
@@ -163,59 +178,71 @@ type ApiResponse = {
 All page components were updated to use proper types:
 
 #### `pages/index.tsx`
+
 - `content: any` → `content: HomePageContentResult`
 - `googleReviews: any` → `googleReviews: GoogleReviews`
 - Fixed rating value conversions to proper number types
 - Removed references to non-existent `about` property
 
 #### `pages/faq.tsx`
+
 - `content: any` → `content: HomePageContentResult`
 - `googleReviews: any` → `googleReviews: GoogleReviews`
 - Removed `any` from map callback types
 
 #### `pages/blog/index.tsx` and `pages/blog/tag/[tag].tsx`
+
 - `content: any` → `content: HomePageContentResult`
 - `googleReviews: any` → `googleReviews: GoogleReviews`
 - `blogPosts: any[]` → `blogPosts: ProcessedBlogPost[]`
 
 #### `pages/blog/[slug].tsx`
+
 - `content: any` → `content: HomePageContentResult`
 - `post: any` → `post: ProcessedBlogPost`
 
 #### `pages/services/[id].tsx`
+
 - `content: any` → `content: HomePageContentResult`
 - `service: any` → `service: ProcessedServiceItem`
 - `blogPosts: any[]` → `blogPosts: ProcessedBlogPost[]`
 - Added proper null checks for optional service content
 
 #### `pages/terms/index.tsx`
+
 - `content: any` → `content: HomePageContentResult`
 - `googleReviews: any` → `googleReviews: GoogleReviews`
 - `termsContent: any` → `termsContent: ProcessedTermsAndConditions`
 
 #### `pages/sitemap.xml.tsx`
+
 - Properly typed `content` and `blogPosts` parameters
 - Removed `any` from map callbacks
 
 ### 7. Component Improvements
 
 #### `components/Services.tsx`
+
 - Made `blurbs` optional in `ServicesData` interface
 - Made `linkToReadMore` and `featuredImage` optional in `ServiceItem` interface
 - Added null checks for optional properties
 
 #### `components/Hero.tsx`
+
 - Made `mainHeading`, `subHeading`, and `googleReviewsUrl` optional
 
 #### `components/About.tsx`
+
 - Made `googleReviewsUrl` optional
 
 #### `components/Contact.tsx`
+
 - Made `location` optional
 
 ### 8. Schema Improvements (`types.ts`)
 
 Updated Portable Text content types:
+
 - `ProcessedServiceItemSchema.content` - Changed from `z.any()` to `SanityPortableTextSchema`
 - `ProcessedBlogPostSchema.body` - Changed from `z.any()` to `SanityPortableTextSchema`
 - `SanityBlockSchema.markDefs` - Changed from `z.array(z.any())` to `z.array(SanityMarkDefSchema)`
@@ -223,6 +250,7 @@ Updated Portable Text content types:
 ## Results
 
 ### Type Safety Improvements
+
 - ✅ Zero `any` types remaining in the codebase
 - ✅ All TypeScript checks passing (`npm run type:check`)
 - ✅ All linting checks passing (`npm run lint`)

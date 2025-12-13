@@ -4,6 +4,7 @@ export default defineType({
   title: 'Homepage',
   name: 'homepage',
   type: 'document',
+  __experimental_tags: ['deprecated'],
   fields: [
     defineField({
       name: 'companyName',
