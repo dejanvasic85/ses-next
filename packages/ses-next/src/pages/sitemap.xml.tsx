@@ -1,6 +1,5 @@
 import { GetServerSideProps } from 'next';
 import { getHomePageContent, getBlogPosts } from '@/lib/content/contentService';
-import { buildFetchFromApi } from '@/lib/content/contentApi';
 import type { HomePageContentResult } from '@/lib/content/contentService';
 import type { ProcessedBlogPost } from '@/types';
 
@@ -38,8 +37,8 @@ const Sitemap = () => {};
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   console.log('Page: sitemap getStaticProps');
-  const content = await getHomePageContent(buildFetchFromApi);
-  const blogPosts = await getBlogPosts(buildFetchFromApi);
+  const content = await getHomePageContent();
+  const blogPosts = await getBlogPosts();
 
   const sitemap = generateSitemap(content, blogPosts);
 

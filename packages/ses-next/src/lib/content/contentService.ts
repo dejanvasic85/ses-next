@@ -1,14 +1,4 @@
 import {
-  SanityDocumentSchema,
-  SanityDocument,
-  Homepage,
-  HomepageSchema,
-  BlogPost,
-  BlogPostSchema,
-  TermsAndConditions,
-  TermsAndConditionsSchema,
-  FAQ,
-  FAQSchema,
   ProcessedBlogPost,
   ProcessedServiceList,
   ProcessedTeam,
@@ -17,15 +7,24 @@ import {
   Social,
   SanityPortableText,
 } from '@/types';
-import { jsonFileCacher } from '@/lib/content/cache';
-import { buildFetchFromApi, CacheApiResponse } from '@/lib/content/contentApi';
-import { mapCompanyLogo, mapServices, mapTeam, mapTestimonials, mapTraining } from '@/lib/content/mappers';
+import {
+  getHomepage,
+  getAllBlogPosts,
+  getAllFAQs,
+  getAllTermsAndConditions,
+  processBlogPost,
+  processHomepageServices,
+  processHomepageTeam,
+  processHomepageTraining,
+  processHomepageTestimonials,
+  processHomepageCompanyLogo,
+} from '@/lib/sanity/queries';
 
 // ============================================================================
 // TYPE DEFINITIONS
 // ============================================================================
 
-interface HomePageContentResult {
+export interface HomePageContentResult {
   baseUrl: string;
   companyName: string;
   companyLogo: string;
@@ -56,78 +55,13 @@ export interface ProcessedTermsAndConditions {
   terms: SanityPortableText;
 }
 
-type MapperFunction = (
-  fullContent: SanityDocument[],
-  item: Homepage,
-) => ProcessedServiceList | ProcessedTeam | ProcessedTraining[] | ProcessedTestimonial[] | string;
-
-// ============================================================================
-// HELPER FUNCTIONS
-// ============================================================================
-
-const getHomePage = (data: SanityDocument[]): Homepage => {
-  const homepage = data.find((doc): doc is Homepage => doc._type === 'homepage');
-  if (!homepage) {
-    throw new Error('Homepage document not found');
-  }
-  return HomepageSchema.parse(homepage);
-};
-
-const getFaqItems = (data: SanityDocument[]): FAQ[] => {
-  const faqItems = data.filter((doc): doc is FAQ => doc._type === 'faq');
-  return faqItems.map((faq) => FAQSchema.parse(faq));
-};
-
-const getBlogPostDocuments = (data: SanityDocument[]): BlogPost[] => {
-  const blogPosts = data.filter((doc): doc is BlogPost => doc._type === 'blog-post');
-  return blogPosts.map((post) => BlogPostSchema.parse(post));
-};
-
-const getTermsDocuments = (data: SanityDocument[]): TermsAndConditions[] => {
-  const termsDocuments = data.filter((doc): doc is TermsAndConditions => doc._type === 'terms-and-conditions');
-  return termsDocuments.map((terms) => TermsAndConditionsSchema.parse(terms));
-};
-
-const composeContent = (fullContent: SanityDocument[], item: Homepage) => {
-  return (...mappers: MapperFunction[]) => mappers.map((mapper) => mapper(fullContent, item));
-};
-
-const validateSanityData = (data: unknown[]): SanityDocument[] => {
-  return data.map((item, index) => {
-    try {
-      return SanityDocumentSchema.parse(item);
-    } catch (error) {
-      console.warn(`Invalid document at index ${index}:`, error);
-      throw new Error(`Failed to validate Sanity document at index ${index}`);
-    }
-  });
-};
-
-const fetchFromCacheOrApi = async (): Promise<CacheApiResponse> => {
-  const date = new Date();
-  const cacheKey = `content-data-${date.getMonth() + 1}-${date.getFullYear()}`;
-  const response = await jsonFileCacher(cacheKey, buildFetchFromApi);
-
-  // Validate the response structure
-  if (!response || !Array.isArray(response.result)) {
-    throw new Error('Invalid response structure from cache/API');
-  }
-
-  return {
-    result: validateSanityData(response.result),
-  };
-};
-
 // ============================================================================
 // EXPORTED FUNCTIONS
 // ============================================================================
 
-export const getHomePageContent = async (
-  contentFetch?: () => Promise<CacheApiResponse>,
-): Promise<HomePageContentResult> => {
+export const getHomePageContent = async (): Promise<HomePageContentResult> => {
   try {
-    const { result: fullContent } = contentFetch ? await contentFetch() : await fetchFromCacheOrApi();
-    const homepageItem = getHomePage(fullContent);
+    const [homepage, faqs] = await Promise.all([getHomepage(), getAllFAQs()]);
 
     const {
       baseUrl,
@@ -140,23 +74,15 @@ export const getHomePageContent = async (
       socialMedia: social = {},
       mainHeading,
       subHeading,
-    } = homepageItem;
+    } = homepage;
 
-    const contentResults = composeContent(fullContent, homepageItem)(
-      mapServices,
-      mapTeam,
-      mapTraining,
-      mapTestimonials,
-      mapCompanyLogo,
-    );
+    const services = processHomepageServices(homepage);
+    const team = processHomepageTeam(homepage);
+    const training = processHomepageTraining(homepage);
+    const testimonials = processHomepageTestimonials(homepage);
+    const companyLogo = processHomepageCompanyLogo(homepage);
 
-    const services = contentResults[0] as ProcessedServiceList;
-    const team = contentResults[1] as ProcessedTeam;
-    const training = contentResults[2] as ProcessedTraining[];
-    const testimonials = contentResults[3] as ProcessedTestimonial[];
-    const companyLogo = contentResults[4] as string;
-
-    const faqItems = getFaqItems(fullContent).map(({ question, answer }) => ({
+    const faqItems = faqs.map(({ question, answer }) => ({
       question,
       answer,
     }));
@@ -185,44 +111,19 @@ export const getHomePageContent = async (
   }
 };
 
-export const getBlogPosts = async (contentFetch?: () => Promise<CacheApiResponse>): Promise<ProcessedBlogPost[]> => {
+export const getBlogPosts = async (): Promise<ProcessedBlogPost[]> => {
   try {
-    const { result: fullContent } = contentFetch ? await contentFetch() : await fetchFromCacheOrApi();
-    const blogPosts = getBlogPostDocuments(fullContent);
-
-    return blogPosts.map((post) => {
-      const { _id, description, body, title, tags, slug, publishedAt, photo } = post;
-
-      // Find the photo asset in the fullContent
-      const photoAsset = fullContent.find((doc) => doc._id === photo.asset._ref);
-      if (!photoAsset || !('url' in photoAsset)) {
-        throw new Error(`Photo asset not found for blog post: ${title}`);
-      }
-
-      return {
-        id: _id,
-        description,
-        body,
-        title,
-        tags,
-        slug: slug.current,
-        publishedAt,
-        photo: photoAsset.url as string,
-      };
-    });
+    const blogPosts = await getAllBlogPosts();
+    return blogPosts.map(processBlogPost);
   } catch (error) {
     console.error('Error in getBlogPosts:', error);
     throw new Error('Failed to fetch blog posts');
   }
 };
 
-export const getTermsAndConditions = async (
-  contentFetch?: () => Promise<CacheApiResponse>,
-): Promise<ProcessedTermsAndConditions[]> => {
+export const getTermsAndConditions = async (): Promise<ProcessedTermsAndConditions[]> => {
   try {
-    const { result: fullContent } = contentFetch ? await contentFetch() : await fetchFromCacheOrApi();
-    const termsDocuments = getTermsDocuments(fullContent);
-
+    const termsDocuments = await getAllTermsAndConditions();
     return termsDocuments.map(({ _id, terms }) => ({
       id: _id,
       terms,
@@ -232,9 +133,3 @@ export const getTermsAndConditions = async (
     throw new Error('Failed to fetch terms and conditions');
   }
 };
-
-// ============================================================================
-// TYPE EXPORTS FOR CONSUMERS
-// ============================================================================
-
-export type { HomePageContentResult, CacheApiResponse };

@@ -1,13 +1,12 @@
 {
   "name": "ses-next",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "npm run cache:clear && next dev",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "cache:clear": "rm -rf cache/",
     "lighthouse": "lighthouse https://ses-next.vercel.app --chrome-flags=\"--headless\" --output html --output-path ./lighthouse.html --quiet --view",
     "type:check": "tsc --noEmit",
     "test:e2e": "playwright test",
