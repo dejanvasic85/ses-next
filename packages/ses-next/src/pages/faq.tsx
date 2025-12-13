@@ -45,9 +45,7 @@ export default function Faq({ content, faqItems, pageUrl }: FaqProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const baseProps = await getBasePageProps({
-    pageUrl: '/faq',
-  });
+  const baseProps = await getBasePageProps({ pageUrl: 'faq' });
   const faqItems = await getFAQs();
 
   return {
