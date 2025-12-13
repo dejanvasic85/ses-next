@@ -32,7 +32,7 @@ export default function Faq({ content, faqItems, pageUrl }: FaqProps) {
             {faqItems.map(({ question, answer }, idx: number) => (
               <div className="rounded-lg bg-gray-100 p-5" key={idx}>
                 <div className="mb-4 flex items-center justify-between gap-4 border-b pb-4">
-                  <h3 className="font-semibold text-indigo-500 sm:text-lg md:text-xl">{question}</h3>
+                  <h3 className="font-semibold text-primary sm:text-lg md:text-xl">{question}</h3>
                 </div>
                 <p className="text-gray-500">{answer}</p>
               </div>

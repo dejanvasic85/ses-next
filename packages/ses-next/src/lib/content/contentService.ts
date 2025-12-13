@@ -1,13 +1,4 @@
-import type {
-  BlogPost,
-  ServiceList,
-  Team,
-  Training,
-  Social,
-  SanityPortableText,
-  SanitySiteSettings,
-  SiteSettingsContentModel,
-} from '@/types';
+import type { BlogPost, ServiceList, Team, Training, Social, SanityPortableText } from '@/types';
 import {
   getSiteSettings,
   getHomepage,
@@ -19,6 +10,7 @@ import {
   mapHomepageTeam,
   mapHomepageTraining,
   mapSiteSettingsCompanyLogo,
+  mapSocialMedia,
 } from '@/lib/sanity/queries';
 
 // ============================================================================
@@ -68,12 +60,7 @@ export const getHomePageContent = async (): Promise<HomePageContentResult> => {
 
     const { contact, mainHeading, subHeading } = homepage;
 
-    const social = {
-      facebook: socialMedia?.facebook || null,
-      instagram: socialMedia?.instagram || null,
-      linkedIn: socialMedia?.linkedIn || null,
-      twitter: null,
-    };
+    const social = mapSocialMedia(socialMedia);
 
     const services = mapHomepageServices(homepage);
     const team = mapHomepageTeam(homepage);

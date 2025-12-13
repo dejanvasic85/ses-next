@@ -36,7 +36,7 @@ const generateSitemap = (content: HomePageContentResult, blogPosts: BlogPost[]):
 const Sitemap = () => {};
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
-  console.log('Page: sitemap getStaticProps');
+  console.log('Page: sitemap getServerSideProps');
   const content = await getHomePageContent();
   const blogPosts = await getBlogPosts();
 

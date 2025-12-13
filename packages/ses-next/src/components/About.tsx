@@ -4,7 +4,7 @@ import { Container } from '@/components/Container';
 import { Heading } from '@/components/Heading';
 import { Team } from '@/components/Team';
 import { Testimonial } from '@/components/Testimonial';
-import { Team as TypeType } from '@/types';
+import { Team as TeamType } from '@/types';
 
 interface TestimonialData {
   date: string;
@@ -24,7 +24,7 @@ interface TrainingData {
 }
 
 interface AboutProps {
-  team: TypeType;
+  team: TeamType;
   testimonials: TestimonialData[];
   training: TrainingData[];
   googleReviewsUrl: string | null;

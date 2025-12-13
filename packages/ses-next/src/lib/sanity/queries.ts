@@ -13,6 +13,7 @@ import type {
   Training,
   TrainingContentModel,
   SiteSettingsContentModel,
+  SiteSettings,
   Social,
   HomepageContentModel,
   SanityTermsAndConditions,
@@ -268,13 +269,21 @@ export const mapSiteSettingsCompanyLogo = (model: SiteSettingsContentModel): str
   return model.companyLogo.asset.url;
 };
 
-export const mapSiteSettings = (model: SiteSettingsContentModel) => {
-  const social: Social = {
-    facebook: model.socialMedia?.facebook || null,
-    instagram: model.socialMedia?.instagram || null,
-    linkedIn: model.socialMedia?.linkedIn || null,
+export const mapSocialMedia = (
+  socialMedia?: { facebook?: string | null; instagram?: string | null; linkedIn?: string | null } | null,
+): Social => {
+  return {
+    facebook: socialMedia?.facebook || null,
+    instagram: socialMedia?.instagram || null,
+    linkedIn: socialMedia?.linkedIn || null,
     twitter: null,
   };
+};
+
+export const mapSiteSettings = (
+  model: SiteSettingsContentModel,
+): Omit<SiteSettings, 'contact' | 'services'> => {
+  const social = mapSocialMedia(model.socialMedia);
 
   return {
     companyName: model.companyName,

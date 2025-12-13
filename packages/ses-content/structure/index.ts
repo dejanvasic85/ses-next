@@ -1,6 +1,6 @@
-import {StructureBuilder, StructureResolverContext} from 'sanity/desk'
+import {StructureBuilder} from 'sanity/desk'
 
-export const structure = (S: StructureBuilder, context: StructureResolverContext) => {
+export const structure = (S: StructureBuilder) => {
   return S.list()
     .title('Content')
     .items([
