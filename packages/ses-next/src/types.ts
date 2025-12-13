@@ -346,120 +346,131 @@ const SanityAssetSchema = z.object({
   url: z.string().url(),
 });
 
-export const ShowcaseContentModelSchema = z.object({
-  _id: z.string(),
-  _type: z.literal('showcase'),
-  title: z.string(),
-  featured: z.boolean().optional(),
-  photo: z.object({
-    asset: SanityAssetSchema,
-  }),
-});
+export const ShowcaseContentModelSchema = z
+  .object({
+    _id: z.string(),
+    _type: z.literal('showcase'),
+    title: z.string(),
+    featured: z.boolean().nullable(),
+    photo: z.object({
+      asset: SanityAssetSchema,
+    }),
+  })
+  .passthrough();
 
-export const ServiceContentModelSchema = z.object({
-  _id: z.string(),
-  _type: z.literal('service'),
-  name: z.string(),
-  description: z.string(),
-  blurb: z.string(),
-  slug: SanitySlugSchema,
-  linkToReadMore: z.boolean().optional(),
-  icon: IconSchema,
-  content: SanityPortableTextSchema.optional(),
-  showcase: z.array(ShowcaseContentModelSchema).optional(),
-});
+export const ServiceContentModelSchema = z
+  .object({
+    _id: z.string(),
+    _type: z.literal('service'),
+    name: z.string(),
+    description: z.string(),
+    blurb: z.string(),
+    slug: SanitySlugSchema,
+    linkToReadMore: z.boolean().nullable(),
+    icon: IconSchema,
+    content: SanityPortableTextSchema.nullable(),
+    showcase: z.array(ShowcaseContentModelSchema).nullable(),
+  })
+  .passthrough();
 
-export const TeamMemberContentModelSchema = z.object({
-  _id: z.string(),
-  _type: z.literal('teamMember'),
-  name: z.string(),
-  role: z.string(),
-  avatar: z.object({
-    asset: SanityAssetSchema,
-  }),
-});
+export const TeamMemberContentModelSchema = z
+  .object({
+    _id: z.string(),
+    _type: z.literal('teamMember'),
+    name: z.string(),
+    role: z.string(),
+    avatar: z.object({
+      asset: SanityAssetSchema,
+    }),
+  })
+  .passthrough();
 
-export const BlogPostContentModelSchema = z.object({
-  _id: z.string(),
-  _type: z.literal('blog-post'),
-  title: z.string(),
-  description: z.string(),
-  slug: SanitySlugSchema,
-  photo: z.object({
-    asset: SanityAssetSchema,
-  }),
-  publishedAt: z.string(),
-  tags: z.array(z.string()),
-  body: SanityPortableTextSchema,
-});
+export const BlogPostContentModelSchema = z
+  .object({
+    _id: z.string(),
+    _type: z.literal('blog-post'),
+    title: z.string(),
+    description: z.string(),
+    slug: SanitySlugSchema,
+    photo: z.object({
+      asset: SanityAssetSchema,
+    }),
+    publishedAt: z.string(),
+    tags: z.array(z.string()),
+    body: SanityPortableTextSchema,
+  })
+  .passthrough();
 
 export const TrainingContentModelSchema = TrainingSchema;
 export const TestimonialContentModelSchema = TestimonialSchema;
 
-export const SiteSettingsContentModelSchema = z.object({
-  _id: z.string(),
-  _type: z.literal('siteSettings'),
-  companyName: z.string(),
-  companyLogo: z.object({
-    asset: SanityAssetSchema,
-  }),
-  shortTitle: z.string(),
-  baseUrl: z.string().url(),
-  googleMapsLocation: z.string().url().optional(),
-  googleMapsLocationPlaceUrl: z.string().url().optional(),
-  meta: z.object({
-    title: z.string(),
-    description: z.string(),
-  }),
-  socialMedia: z
-    .object({
-      facebook: z.string().url().optional(),
-      linkedIn: z.string().url().optional(),
-      instagram: z.string().url().optional(),
-    })
-    .optional(),
-});
+export const SiteSettingsContentModelSchema = z
+  .object({
+    _id: z.string(),
+    _type: z.literal('siteSettings'),
+    companyName: z.string(),
+    companyLogo: z.object({
+      asset: SanityAssetSchema,
+    }),
+    shortTitle: z.string(),
+    baseUrl: z.string().url(),
+    googleMapsLocation: z.string().url().nullable(),
+    googleMapsLocationPlaceUrl: z.string().url().nullable(),
+    meta: z.object({
+      title: z.string(),
+      description: z.string(),
+    }),
+    socialMedia: z
+      .object({
+        facebook: z.string().url().nullable(),
+        linkedIn: z.string().url().nullable(),
+        instagram: z.string().url().nullable(),
+      })
+      .nullable(),
+  })
+  .passthrough();
 
-export const HomepageContentModelSchema = z.object({
-  _id: z.string(),
-  _type: z.literal('homepage'),
-  companyName: z.string(),
-  companyLogo: z.object({
-    asset: SanityAssetSchema,
-  }),
-  mainHeading: z.string().optional(),
-  subHeading: z.string().optional(),
-  shortTitle: z.string(),
-  baseUrl: z.string().url(),
-  contact: z.object({
-    blurbs: z.array(z.string()).optional(),
-    callBack: z.string().optional(),
-    phone: z.string(),
-  }),
-  googleMapsLocation: z.string().url().optional(),
-  googleMapsLocationPlaceUrl: z.string().url().optional(),
-  meta: z.object({
-    title: z.string(),
-    description: z.string(),
-  }),
-  socialMedia: z
-    .object({
-      facebook: z.string().url().optional(),
-      linkedIn: z.string().url().optional(),
-      instagram: z.string().url().optional(),
-    })
-    .optional(),
-  services: z.object({
-    blurbs: z.array(z.string()).optional(),
-    items: z.array(ServiceContentModelSchema),
-  }),
-  team: z.object({
-    blurbs: z.array(z.string()).optional(),
-    members: z.array(TeamMemberContentModelSchema),
-  }),
-  training: z.array(TrainingContentModelSchema),
-  testimonials: z.array(TestimonialContentModelSchema),
-});
+export const HomepageContentModelSchema = z
+  .object({
+    _id: z.string(),
+    _type: z.literal('homepage'),
+    companyName: z.string(),
+    companyLogo: z.object({
+      asset: SanityAssetSchema,
+    }),
+    mainHeading: z.string().nullable(),
+    subHeading: z.string().nullable(),
+    shortTitle: z.string(),
+    baseUrl: z.string().url(),
+    contact: z.object({
+      blurbs: z.array(z.string()).nullable(),
+      callBack: z.string().nullable(),
+      phone: z.string(),
+    }),
+    googleMapsLocation: z.string().url().nullable(),
+    googleMapsLocationPlaceUrl: z.string().url().nullable(),
+    meta: z.object({
+      title: z.string(),
+      description: z.string(),
+    }),
+    socialMedia: z
+      .object({
+        facebook: z.string().url().nullable(),
+        linkedIn: z.string().url().nullable(),
+        instagram: z.string().url().nullable(),
+      })
+      .nullable(),
+    services: z.object({
+      blurbs: z.array(z.string()).nullable(),
+      items: z.array(ServiceContentModelSchema),
+    }),
+    team: z.object({
+      blurbs: z.array(z.string()).nullable(),
+      members: z.array(TeamMemberContentModelSchema),
+    }),
+    training: z.array(TrainingContentModelSchema),
+  })
+  .passthrough();
 
 // ============================================================================
 // MAPPED TYPES (for frontend use - no schemas needed, manually constructed)
@@ -473,10 +484,10 @@ export const ImageSchema = z.object({
 });
 
 export const SocialSchema = z.object({
-  facebook: z.url().optional(),
-  instagram: z.url().optional(),
-  linkedIn: z.url().optional(),
-  twitter: z.url().optional(),
+  facebook: z.url().nullable(),
+  instagram: z.url().nullable(),
+  linkedIn: z.url().nullable(),
+  twitter: z.url().nullable(),
 });
 
 export const MetaSchema = z.object({
@@ -486,9 +497,9 @@ export const MetaSchema = z.object({
 
 export const ContactSchema = z.object({
   phone: z.string(),
-  email: z.email().optional(),
-  blurbs: z.array(z.string()).optional(),
-  callBack: z.string().optional(),
+  email: z.email().nullable(),
+  blurbs: z.array(z.string()).nullable(),
+  callBack: z.string().nullable(),
 });
 
 // Mapped types as plain TypeScript types (no zod schemas needed)
@@ -503,44 +514,34 @@ export type Training = {
   icon: Icon;
 };
 
-export type Testimonial = {
-  date: string;
-  comment: string;
-  starRating: number;
-  reviewer: {
-    profilePhotoUrl?: string;
-    profileUrl?: string;
-    displayName: string;
-  };
-  url?: string;
-};
-
 export type ServiceItem = {
   id: string;
   name: string;
   blurb: string;
   description: string;
   slug: string;
-  linkToReadMore?: boolean;
+  linkToReadMore: boolean | null;
   icon: Icon;
-  featuredImage?: {
+  featuredImage: {
     src: string;
     alt: string;
-  };
-  imageGallery?: {
-    src: string;
-    alt: string;
-  }[];
-  content?: SanityPortableText;
+  } | null;
+  imageGallery:
+    | {
+        src: string;
+        alt: string;
+      }[]
+    | null;
+  content: SanityPortableText | null;
 };
 
 export type ServiceList = {
-  blurbs?: string[];
+  blurbs: string[] | null;
   items: ServiceItem[];
 };
 
 export type Team = {
-  blurbs?: string[];
+  blurbs: string[] | null;
   members: TeamMember[];
 };
 
@@ -558,7 +559,11 @@ export type BlogPost = {
 export type LayoutContent = {
   companyName: string;
   companyLogo: string;
-  contact: Contact;
+  contact: {
+    phone: string;
+    blurbs: string[] | null;
+    callBack: string | null;
+  };
   meta: Meta;
   services: ServiceList;
   shortTitle: string;
@@ -605,7 +610,6 @@ export type GoogleReviews = z.infer<typeof GoogleReviewsSchema>;
 export type SanityFAQ = z.infer<typeof FAQSchema>;
 export type SanityTeamMember = z.infer<typeof TeamMemberSchema>;
 export type SanityTraining = z.infer<typeof TrainingSchema>;
-export type SanityTestimonial = z.infer<typeof TestimonialSchema>;
 export type SanityShowcase = z.infer<typeof ShowcaseSchema>;
 export type SanityService = z.infer<typeof ServiceSchema>;
 export type SanityBlogPost = z.infer<typeof BlogPostSchema>;
@@ -621,7 +625,6 @@ export type ServiceContentModel = z.infer<typeof ServiceContentModelSchema>;
 export type TeamMemberContentModel = z.infer<typeof TeamMemberContentModelSchema>;
 export type BlogPostContentModel = z.infer<typeof BlogPostContentModelSchema>;
 export type TrainingContentModel = z.infer<typeof TrainingContentModelSchema>;
-export type TestimonialContentModel = z.infer<typeof TestimonialContentModelSchema>;
 export type SiteSettingsContentModel = z.infer<typeof SiteSettingsContentModelSchema>;
 export type HomepageContentModel = z.infer<typeof HomepageContentModelSchema>;
 
@@ -631,5 +634,5 @@ export type Social = z.infer<typeof SocialSchema>;
 export type Meta = z.infer<typeof MetaSchema>;
 export type Contact = z.infer<typeof ContactSchema>;
 
-// Mapped types (BlogPost, ServiceItem, ServiceList, Team, TeamMember, Training, Testimonial)
+// Mapped types (BlogPost, ServiceItem, ServiceList, Team, TeamMember, Training)
 // and LayoutContent, BasePageProps are defined above as plain TypeScript types (no schemas)

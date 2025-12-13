@@ -4,8 +4,9 @@ import { googleReviews } from 'ses-reviews';
 
 import { About, Contact, Hero, Layout, Services } from '@/components';
 import { getBasePageProps } from '@/lib/basePageProps';
-import type { HomePageContentResult } from '@/lib/content/contentService';
+import { getHomePageContent, type HomePageContentResult } from '@/lib/content/contentService';
 import type { GoogleReviews } from '@/types';
+import { getHomepage } from '@/lib/sanity/queries';
 
 interface HomeProps {
   content: HomePageContentResult;

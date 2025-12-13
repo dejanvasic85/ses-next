@@ -4,7 +4,6 @@ export default defineType({
   title: 'Homepage',
   name: 'homepage',
   type: 'document',
-  __experimental_tags: ['deprecated'],
   fields: [
     defineField({
       name: 'companyName',
@@ -155,12 +154,6 @@ export default defineType({
       name: 'training',
       type: 'array',
       of: [{type: 'reference', to: [{type: 'training'}]}],
-    }),
-    defineField({
-      title: 'Testinomials',
-      name: 'testimonials',
-      type: 'array',
-      of: [{type: 'reference', to: [{type: 'testimonial'}]}],
     }),
   ],
 })

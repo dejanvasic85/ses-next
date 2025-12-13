@@ -5,7 +5,6 @@ import service from './service'
 import showcase from './showcase'
 import siteSettings from './siteSettings'
 import teamMember from './teamMember'
-import testimonial from './testimonial'
 import terms from './terms'
 import training from './training'
 
@@ -18,6 +17,5 @@ export const schemaTypes = [
   siteSettings,
   teamMember,
   terms,
-  testimonial,
   training,
 ]

@@ -2,18 +2,9 @@ import classNames from 'class-names';
 
 import { Container } from '@/components/Container';
 import { Heading } from '@/components/Heading';
-import { Modal } from '@/components/Modal';
 import { Team } from '@/components/Team';
 import { Testimonial } from '@/components/Testimonial';
-
-interface TeamData {
-  blurbs?: string[];
-  members: {
-    avatar: string;
-    fullName: string;
-    role: string;
-  }[];
-}
+import { Team as TypeType } from '@/types';
 
 interface TestimonialData {
   date: string;
@@ -33,10 +24,10 @@ interface TrainingData {
 }
 
 interface AboutProps {
-  team: TeamData;
+  team: TypeType;
   testimonials: TestimonialData[];
   training: TrainingData[];
-  googleReviewsUrl?: string;
+  googleReviewsUrl: string | null;
 }
 
 export function About({ team, testimonials, training, googleReviewsUrl }: AboutProps) {
@@ -50,13 +41,19 @@ export function About({ team, testimonials, training, googleReviewsUrl }: AboutP
             <Testimonial {...testimonial} key={idx} />
           ))}
         </div>
-        <div className="mt-4">
-          <div className="mt-8 flex gap-4 justify-center items-center">
-            <a href={googleReviewsUrl} target="_blank" className={classNames('link link-primary link-hover underline')}>
-              View more reviews on Google
-            </a>
+        {googleReviewsUrl && (
+          <div className="mt-4">
+            <div className="mt-8 flex gap-4 justify-center items-center">
+              <a
+                href={googleReviewsUrl}
+                target="_blank"
+                className={classNames('link link-primary link-hover underline')}
+              >
+                View more reviews on Google
+              </a>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </Container>
   );

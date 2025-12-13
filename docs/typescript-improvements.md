@@ -93,7 +93,7 @@ export interface ProcessedTermsAndConditions {
 type MapperFunction = (
   fullContent: SanityDocument[],
   item: Homepage,
-) => ProcessedServiceList | ProcessedTeam | ProcessedTraining[] | ProcessedTestimonial[] | string;
+) => ProcessedServiceList | ProcessedTeam | ProcessedTraining[] | string;
 ```
 
 **Benefits:**

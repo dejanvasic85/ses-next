@@ -113,14 +113,14 @@ export const mapServices = (data: SanityDocument[], homepageItem: SanityHomepage
       linkToReadMore,
       icon: icon as Icon,
       slug: slug.current,
-      content,
+      content: content ?? null,
       imageGallery,
-      featuredImage: featuredImage || undefined,
+      featuredImage: featuredImage || null,
     };
   });
 
   return {
-    blurbs,
+    blurbs: blurbs || null,
     items: processedItems,
   };
 };
@@ -151,7 +151,7 @@ export const mapTeam = (data: SanityDocument[], homepageItem: SanityHomepage): T
   });
 
   return {
-    blurbs,
+    blurbs: blurbs || null,
     members: processedMembers,
   };
 };
@@ -183,25 +183,17 @@ export const mapTestimonials = (data: SanityDocument[], homepageItem: SanityHome
       throw new Error(`Testimonial not found for reference: ${testimonialRef._ref}`);
     }
 
-    const result: Testimonial = {
+    return {
       date: testimonial.date || '',
       comment: testimonial.comment,
       starRating: testimonial.rating,
       reviewer: {
         displayName: testimonial.fullName,
+        profilePhotoUrl: testimonial.profileImgUrl || null,
+        profileUrl: testimonial.reviewUrl || null,
       },
+      url: testimonial.reviewUrl || null,
     };
-
-    // Only add optional fields if they have values
-    if (testimonial.profileImgUrl) {
-      result.reviewer.profilePhotoUrl = testimonial.profileImgUrl;
-    }
-    if (testimonial.reviewUrl) {
-      result.reviewer.profileUrl = testimonial.reviewUrl;
-      result.url = testimonial.reviewUrl;
-    }
-
-    return result;
   });
 };
 

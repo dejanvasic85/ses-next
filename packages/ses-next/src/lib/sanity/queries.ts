@@ -10,8 +10,6 @@ import type {
   Team,
   TeamMember,
   TeamMemberContentModel,
-  Testimonial,
-  TestimonialContentModel,
   Training,
   TrainingContentModel,
   SiteSettingsContentModel,
@@ -67,10 +65,11 @@ const homepageQuery = `*[_type == "homepage"][0]{
   googleMapsLocationPlaceUrl,
   meta,
   socialMedia,
-  services{
+  services {
     blurbs,
     items[]->{
       _id,
+      _type,
       name,
       description,
       blurb,
@@ -80,6 +79,7 @@ const homepageQuery = `*[_type == "homepage"][0]{
       content,
       showcase[]->{
         _id,
+        _type,
         title,
         featured,
         photo{
@@ -94,6 +94,7 @@ const homepageQuery = `*[_type == "homepage"][0]{
     blurbs,
     members[]->{
       _id,
+      _type,
       name,
       role,
       avatar{
@@ -105,18 +106,10 @@ const homepageQuery = `*[_type == "homepage"][0]{
   },
   training[]->{
     _id,
+    _type,
     trainingTitle,
     icon
   },
-  testimonials[]->{
-    _id,
-    fullName,
-    comment,
-    rating,
-    profileImgUrl,
-    date,
-    reviewUrl
-  }
 }`;
 
 const allBlogPostsQuery = `*[_type == "blog-post"] | order(publishedAt desc){
@@ -223,7 +216,7 @@ export const mapService = (model: ServiceContentModel): ServiceItem => {
     model.showcase?.map((item) => ({
       alt: item.title,
       src: item.photo.asset.url,
-    })) || [];
+    })) || null;
 
   const featuredShowcase = model.showcase?.find((item) => item.featured === true);
   const featuredImage = featuredShowcase
@@ -231,7 +224,7 @@ export const mapService = (model: ServiceContentModel): ServiceItem => {
         alt: featuredShowcase.title,
         src: featuredShowcase.photo.asset.url,
       }
-    : undefined;
+    : null;
 
   return {
     id: model._id,
@@ -264,27 +257,6 @@ export const mapTraining = (model: TrainingContentModel): Training => {
   };
 };
 
-export const mapTestimonial = (model: TestimonialContentModel): Testimonial => {
-  const result: Testimonial = {
-    date: model.date || '',
-    comment: model.comment,
-    starRating: model.rating,
-    reviewer: {
-      displayName: model.fullName,
-    },
-  };
-
-  if (model.profileImgUrl) {
-    result.reviewer.profilePhotoUrl = model.profileImgUrl;
-  }
-  if (model.reviewUrl) {
-    result.reviewer.profileUrl = model.reviewUrl;
-    result.url = model.reviewUrl;
-  }
-
-  return result;
-};
-
 export const mapHomepageServices = (model: HomepageContentModel): ServiceList => {
   return {
     blurbs: model.services.blurbs,
@@ -301,10 +273,6 @@ export const mapHomepageTeam = (model: HomepageContentModel): Team => {
 
 export const mapHomepageTraining = (model: HomepageContentModel): Training[] => {
   return model.training.map(mapTraining);
-};
-
-export const mapHomepageTestimonials = (model: HomepageContentModel): Testimonial[] => {
-  return model.testimonials.map(mapTestimonial);
 };
 
 export const mapHomepageCompanyLogo = (model: HomepageContentModel): string => {

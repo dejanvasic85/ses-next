@@ -9,7 +9,6 @@ import {
   mapHomepageServices,
   mapHomepageTeam,
   mapHomepageTraining,
-  mapHomepageTestimonials,
   mapSiteSettingsCompanyLogo,
 } from '@/lib/sanity/queries';
 
@@ -23,12 +22,12 @@ export interface HomePageContentResult {
   companyLogo: string;
   contact: {
     phone: string;
-    blurbs?: string[];
-    callBack?: string;
+    blurbs: string[] | null;
+    callBack: string | null;
   };
   faqItems: Array<{ question: string; answer: string }>;
-  googleMapsLocation?: string;
-  googleMapsLocationPlaceUrl?: string;
+  googleMapsLocation: string | null;
+  googleMapsLocationPlaceUrl: string | null;
   meta: {
     title: string;
     description: string;
@@ -36,11 +35,10 @@ export interface HomePageContentResult {
   services: ServiceList;
   shortTitle: string;
   social: Social;
-  mainHeading?: string;
-  subHeading?: string;
+  mainHeading: string | null;
+  subHeading: string | null;
   team: Team;
   training: Training[];
-  testimonials: Testimonial[];
 }
 
 export interface ProcessedTermsAndConditions {
@@ -56,22 +54,21 @@ export const getHomePageContent = async (): Promise<HomePageContentResult> => {
   try {
     const [siteSettings, homepage, faqs] = await Promise.all([getSiteSettings(), getHomepage(), getAllFAQs()]);
 
-    const {
-      baseUrl,
-      companyName,
-      googleMapsLocation,
-      googleMapsLocationPlaceUrl,
-      meta,
-      shortTitle,
-      socialMedia: social = {},
-    } = siteSettings;
+    const { baseUrl, companyName, googleMapsLocation, googleMapsLocationPlaceUrl, meta, shortTitle, socialMedia } =
+      siteSettings;
 
     const { contact, mainHeading, subHeading } = homepage;
+
+    const social = {
+      facebook: socialMedia?.facebook || null,
+      instagram: socialMedia?.instagram || null,
+      linkedIn: socialMedia?.linkedIn || null,
+      twitter: null,
+    };
 
     const services = mapHomepageServices(homepage);
     const team = mapHomepageTeam(homepage);
     const training = mapHomepageTraining(homepage);
-    const testimonials = mapHomepageTestimonials(homepage);
     const companyLogo = mapSiteSettingsCompanyLogo(siteSettings);
 
     const faqItems = faqs.map(({ question, answer }) => ({
@@ -83,7 +80,11 @@ export const getHomePageContent = async (): Promise<HomePageContentResult> => {
       baseUrl,
       companyName,
       companyLogo,
-      contact,
+      contact: {
+        phone: contact.phone,
+        blurbs: contact.blurbs,
+        callBack: contact.callBack,
+      },
       faqItems,
       googleMapsLocation,
       googleMapsLocationPlaceUrl,
@@ -95,7 +96,6 @@ export const getHomePageContent = async (): Promise<HomePageContentResult> => {
       subHeading,
       team,
       training,
-      testimonials,
     };
   } catch (error) {
     console.error('Error in getHomePageContent:', error);

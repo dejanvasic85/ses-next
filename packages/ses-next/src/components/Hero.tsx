@@ -11,9 +11,9 @@ interface HeroProps {
   companyName: string;
   companyLogo: string;
   social: Social;
-  mainHeading?: string;
-  subHeading?: string;
-  googleReviewsUrl?: string;
+  mainHeading: string | null;
+  subHeading: string | null;
+  googleReviewsUrl: string | null;
   overallRatingValue: number;
   numberOfReviews: number;
 }
@@ -89,26 +89,30 @@ export function Hero({
                 <LinkButton href="#contact">Get a free quote</LinkButton>
               </div>
               <div className="mt-8 flex gap-x-4 justify-center">
-                <Activity mode={social.facebook ? 'visible' : 'hidden'}>
+                {social.facebook && (
                   <LinkButton href={social.facebook} target="_blank" aria-label="Facebook page">
                     <Icon name="facebook" size="lg" />
                   </LinkButton>
-                </Activity>
-                <Activity mode={social.instagram ? 'visible' : 'hidden'}>
+                )}
+
+                {social.instagram && (
                   <LinkButton href={social.instagram} target="_blank" aria-label="Instagram page">
                     <Icon name="instagram" size="lg" />
                   </LinkButton>
-                </Activity>
-                <Activity mode={social.linkedIn ? 'visible' : 'hidden'}>
-                  <LinkButton href={social.linkedIn} target="_blank" aria-label="Linkedin page">
+                )}
+
+                {social.linkedIn && (
+                  <LinkButton href={social.linkedIn} target="_blank" aria-label="LinkedIn page">
                     <Icon name="linked-in" size="lg" />
                   </LinkButton>
-                </Activity>
+                )}
               </div>
               <div className="mt-6 flex flex-col justify-center items-center gap-4 bg-white border-gray-200 border md:w-1/2 m-auto p-4 rounded-3xl">
-                <a className="text-sm link" href={googleReviewsUrl} target="_blank">
-                  Average rating of {overallRatingValue} with {numberOfReviews}
-                </a>
+                {googleReviewsUrl && (
+                  <a className="text-sm link" href={googleReviewsUrl} target="_blank">
+                    Average rating of {overallRatingValue} with {numberOfReviews}
+                  </a>
+                )}
                 <div className="flex items-center justify-center gap-2">
                   <Rating name="overall" starRating={5} />{' '}
                   <Image src="/google-logo.svg" alt="Google" width="80" height="15" />
