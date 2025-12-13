@@ -10,13 +10,13 @@ import { getBlogPosts, getHomePageContent } from '@/lib/content/contentService';
 import { getBasePageProps } from '@/lib/basePageProps';
 import { Layout, CustomImage, ImageCarousel } from '@/components';
 import type { HomePageContentResult } from '@/lib/content/contentService';
-import type { ProcessedBlogPost, ProcessedServiceItem, GoogleReviews } from '@/types';
+import type { BlogPost, ServiceItem, GoogleReviews } from '@/types';
 
 interface ServiceProps {
-  blogPosts: ProcessedBlogPost[];
+  blogPosts: BlogPost[];
   content: HomePageContentResult;
   googleReviews: GoogleReviews;
-  service: ProcessedServiceItem;
+  service: ServiceItem;
   pageUrl: string;
   title: string;
 }

@@ -339,7 +339,130 @@ export const SanityDocumentSchema = z.union([
 ]);
 
 // ============================================================================
-// PROCESSED/MAPPED SCHEMAS (for frontend use)
+// CONTENT MODEL SCHEMAS (GROQ query results with resolved references)
+// ============================================================================
+
+const SanityAssetSchema = z.object({
+  url: z.string().url(),
+});
+
+export const ShowcaseContentModelSchema = z.object({
+  _id: z.string(),
+  _type: z.literal('showcase'),
+  title: z.string(),
+  featured: z.boolean().optional(),
+  photo: z.object({
+    asset: SanityAssetSchema,
+  }),
+});
+
+export const ServiceContentModelSchema = z.object({
+  _id: z.string(),
+  _type: z.literal('service'),
+  name: z.string(),
+  description: z.string(),
+  blurb: z.string(),
+  slug: SanitySlugSchema,
+  linkToReadMore: z.boolean().optional(),
+  icon: IconSchema,
+  content: SanityPortableTextSchema.optional(),
+  showcase: z.array(ShowcaseContentModelSchema).optional(),
+});
+
+export const TeamMemberContentModelSchema = z.object({
+  _id: z.string(),
+  _type: z.literal('teamMember'),
+  name: z.string(),
+  role: z.string(),
+  avatar: z.object({
+    asset: SanityAssetSchema,
+  }),
+});
+
+export const BlogPostContentModelSchema = z.object({
+  _id: z.string(),
+  _type: z.literal('blog-post'),
+  title: z.string(),
+  description: z.string(),
+  slug: SanitySlugSchema,
+  photo: z.object({
+    asset: SanityAssetSchema,
+  }),
+  publishedAt: z.string(),
+  tags: z.array(z.string()),
+  body: SanityPortableTextSchema,
+});
+
+export const TrainingContentModelSchema = TrainingSchema;
+export const TestimonialContentModelSchema = TestimonialSchema;
+
+export const SiteSettingsContentModelSchema = z.object({
+  _id: z.string(),
+  _type: z.literal('siteSettings'),
+  companyName: z.string(),
+  companyLogo: z.object({
+    asset: SanityAssetSchema,
+  }),
+  shortTitle: z.string(),
+  baseUrl: z.string().url(),
+  googleMapsLocation: z.string().url().optional(),
+  googleMapsLocationPlaceUrl: z.string().url().optional(),
+  meta: z.object({
+    title: z.string(),
+    description: z.string(),
+  }),
+  socialMedia: z
+    .object({
+      facebook: z.string().url().optional(),
+      linkedIn: z.string().url().optional(),
+      instagram: z.string().url().optional(),
+    })
+    .optional(),
+});
+
+export const HomepageContentModelSchema = z.object({
+  _id: z.string(),
+  _type: z.literal('homepage'),
+  companyName: z.string(),
+  companyLogo: z.object({
+    asset: SanityAssetSchema,
+  }),
+  mainHeading: z.string().optional(),
+  subHeading: z.string().optional(),
+  shortTitle: z.string(),
+  baseUrl: z.string().url(),
+  contact: z.object({
+    blurbs: z.array(z.string()).optional(),
+    callBack: z.string().optional(),
+    phone: z.string(),
+  }),
+  googleMapsLocation: z.string().url().optional(),
+  googleMapsLocationPlaceUrl: z.string().url().optional(),
+  meta: z.object({
+    title: z.string(),
+    description: z.string(),
+  }),
+  socialMedia: z
+    .object({
+      facebook: z.string().url().optional(),
+      linkedIn: z.string().url().optional(),
+      instagram: z.string().url().optional(),
+    })
+    .optional(),
+  services: z.object({
+    blurbs: z.array(z.string()).optional(),
+    items: z.array(ServiceContentModelSchema),
+  }),
+  team: z.object({
+    blurbs: z.array(z.string()).optional(),
+    members: z.array(TeamMemberContentModelSchema),
+  }),
+  training: z.array(TrainingContentModelSchema),
+  testimonials: z.array(TestimonialContentModelSchema),
+});
+
+// ============================================================================
+// MAPPED TYPES (for frontend use - no schemas needed, manually constructed)
 // ============================================================================
 
 export const ImageSchema = z.object({
@@ -368,148 +491,31 @@ export const ContactSchema = z.object({
   callBack: z.string().optional(),
 });
 
-export const ProcessedTeamMemberSchema = z.object({
-  avatar: z.url(),
-  fullName: z.string(),
-  role: z.string(),
-});
+// Mapped types as plain TypeScript types (no zod schemas needed)
+export type TeamMember = {
+  avatar: string;
+  fullName: string;
+  role: string;
+};
 
-export const ProcessedTrainingSchema = z.object({
-  trainingTitle: z.string(),
-  icon: IconSchema,
-});
+export type Training = {
+  trainingTitle: string;
+  icon: Icon;
+};
 
-export const ProcessedTestimonialSchema = z.object({
-  date: z.string(),
-  comment: z.string(),
-  starRating: z.number().min(1).max(5),
-  reviewer: z.object({
-    profilePhotoUrl: z.url().optional(),
-    profileUrl: z.url().optional(),
-    displayName: z.string(),
-  }),
-  url: z.url().optional(),
-});
+export type Testimonial = {
+  date: string;
+  comment: string;
+  starRating: number;
+  reviewer: {
+    profilePhotoUrl?: string;
+    profileUrl?: string;
+    displayName: string;
+  };
+  url?: string;
+};
 
-export const ProcessedServiceItemSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  blurb: z.string(),
-  description: z.string(),
-  slug: z.string(),
-  linkToReadMore: z.boolean().optional(),
-  icon: IconSchema,
-  featuredImage: z
-    .object({
-      src: z.url(),
-      alt: z.string(),
-    })
-    .optional(),
-  imageGallery: z
-    .array(
-      z.object({
-        src: z.url(),
-        alt: z.string(),
-      }),
-    )
-    .optional(),
-  content: SanityPortableTextSchema.optional(),
-});
-
-export const ProcessedServiceListSchema = z.object({
-  blurbs: z.array(z.string()).optional(),
-  items: z.array(ProcessedServiceItemSchema),
-});
-
-export const ProcessedTeamSchema = z.object({
-  blurbs: z.array(z.string()).optional(),
-  members: z.array(ProcessedTeamMemberSchema),
-});
-
-export const ProcessedBlogPostSchema = z.object({
-  id: z.string(),
-  title: z.string(),
-  description: z.string(),
-  slug: z.string(),
-  photo: z.url(),
-  publishedAt: z.string(),
-  tags: z.array(z.string()),
-  body: SanityPortableTextSchema,
-});
-
-export const LayoutContentSchema = z.object({
-  companyName: z.string(),
-  companyLogo: z.url(),
-  contact: ContactSchema,
-  meta: MetaSchema,
-  services: ProcessedServiceListSchema,
-  shortTitle: z.string(),
-  social: SocialSchema,
-});
-
-export const BasePagePropsSchema = z.object({
-  pageUrl: z.string(),
-  publicConfig: z.object({
-    sanityProjectId: z.string(),
-    sanityDataset: z.string(),
-  }),
-  content: z.unknown(),
-});
-
-// ============================================================================
-// EMAIL TEMPLATE TYPES
-// ============================================================================
-
-export type ContactEmailData = ContactFormData;
-export type FeedbackEmailData = FeedbackFormData;
-export type EmailTemplateData = ContactEmailData | FeedbackEmailData;
-
-// ============================================================================
-// TYPE EXPORTS
-// ============================================================================
-
-export type Icon = z.infer<typeof IconSchema>;
-export type SanityImage = z.infer<typeof SanityImageSchema>;
-export type SanitySlug = z.infer<typeof SanitySlugSchema>;
-export type SanityReference = z.infer<typeof SanityReferenceSchema>;
-export type SanityBlock = z.infer<typeof SanityBlockSchema>;
-export type SanityPortableText = z.infer<typeof SanityPortableTextSchema>;
-export type SanityMarkDef = z.infer<typeof SanityMarkDefSchema>;
-export type SanityApiResponse = z.infer<typeof SanityApiResponseSchema>;
-
-export type GoogleReviewer = z.infer<typeof GoogleReviewerSchema>;
-export type GoogleReview = z.infer<typeof GoogleReviewSchema>;
-export type GoogleReviews = z.infer<typeof GoogleReviewsSchema>;
-
-export type FAQ = z.infer<typeof FAQSchema>;
-export type TeamMember = z.infer<typeof TeamMemberSchema>;
-export type Training = z.infer<typeof TrainingSchema>;
-export type Testimonial = z.infer<typeof TestimonialSchema>;
-export type Showcase = z.infer<typeof ShowcaseSchema>;
-export type Service = z.infer<typeof ServiceSchema>;
-export type BlogPost = z.infer<typeof BlogPostSchema>;
-export type TermsAndConditions = z.infer<typeof TermsAndConditionsSchema>;
-export type Homepage = z.infer<typeof HomepageSchema>;
-export type SiteSettings = z.infer<typeof SiteSettingsSchema>;
-export type SanityImageAssetDocument = z.infer<typeof SanityImageAssetDocumentSchema>;
-export type SanityDocument = z.infer<typeof SanityDocumentSchema>;
-
-export type Image = z.infer<typeof ImageSchema>;
-export type Social = z.infer<typeof SocialSchema>;
-export type Meta = z.infer<typeof MetaSchema>;
-export type Contact = z.infer<typeof ContactSchema>;
-export type ProcessedTeamMember = z.infer<typeof ProcessedTeamMemberSchema>;
-export type ProcessedTraining = z.infer<typeof ProcessedTrainingSchema>;
-export type ProcessedTestimonial = z.infer<typeof ProcessedTestimonialSchema>;
-export type ProcessedServiceItem = z.infer<typeof ProcessedServiceItemSchema>;
-export type ProcessedServiceList = z.infer<typeof ProcessedServiceListSchema>;
-export type ProcessedTeam = z.infer<typeof ProcessedTeamSchema>;
-export type ProcessedBlogPost = z.infer<typeof ProcessedBlogPostSchema>;
-export type LayoutContent = z.infer<typeof LayoutContentSchema>;
-export type BasePageProps = z.infer<typeof BasePagePropsSchema>;
-
-// Legacy interfaces for backward compatibility - aligned with ProcessedServiceItem
-export interface ServiceItem {
+export type ServiceItem = {
   id: string;
   name: string;
   blurb: string;
@@ -526,9 +532,104 @@ export interface ServiceItem {
     alt: string;
   }[];
   content?: SanityPortableText;
-}
+};
 
-export interface ServiceList {
+export type ServiceList = {
   blurbs?: string[];
   items: ServiceItem[];
-}
+};
+
+export type Team = {
+  blurbs?: string[];
+  members: TeamMember[];
+};
+
+export type BlogPost = {
+  id: string;
+  title: string;
+  description: string;
+  slug: string;
+  photo: string;
+  publishedAt: string;
+  tags: string[];
+  body: SanityPortableText;
+};
+
+export type LayoutContent = {
+  companyName: string;
+  companyLogo: string;
+  contact: Contact;
+  meta: Meta;
+  services: ServiceList;
+  shortTitle: string;
+  social: Social;
+};
+
+export type BasePageProps = {
+  pageUrl: string;
+  publicConfig: {
+    sanityProjectId: string;
+    sanityDataset: string;
+  };
+  content: unknown;
+};
+
+// ============================================================================
+// EMAIL TEMPLATE TYPES
+// ============================================================================
+
+export type ContactEmailData = ContactFormData;
+export type FeedbackEmailData = FeedbackFormData;
+export type EmailTemplateData = ContactEmailData | FeedbackEmailData;
+
+// ============================================================================
+// TYPE EXPORTS
+// ============================================================================
+
+// Common types
+export type Icon = z.infer<typeof IconSchema>;
+export type SanityImage = z.infer<typeof SanityImageSchema>;
+export type SanitySlug = z.infer<typeof SanitySlugSchema>;
+export type SanityReference = z.infer<typeof SanityReferenceSchema>;
+export type SanityBlock = z.infer<typeof SanityBlockSchema>;
+export type SanityPortableText = z.infer<typeof SanityPortableTextSchema>;
+export type SanityMarkDef = z.infer<typeof SanityMarkDefSchema>;
+export type SanityApiResponse = z.infer<typeof SanityApiResponseSchema>;
+
+// Google Reviews types
+export type GoogleReviewer = z.infer<typeof GoogleReviewerSchema>;
+export type GoogleReview = z.infer<typeof GoogleReviewSchema>;
+export type GoogleReviews = z.infer<typeof GoogleReviewsSchema>;
+
+// Raw Sanity document types (with Sanity prefix to avoid conflicts)
+export type SanityFAQ = z.infer<typeof FAQSchema>;
+export type SanityTeamMember = z.infer<typeof TeamMemberSchema>;
+export type SanityTraining = z.infer<typeof TrainingSchema>;
+export type SanityTestimonial = z.infer<typeof TestimonialSchema>;
+export type SanityShowcase = z.infer<typeof ShowcaseSchema>;
+export type SanityService = z.infer<typeof ServiceSchema>;
+export type SanityBlogPost = z.infer<typeof BlogPostSchema>;
+export type SanityTermsAndConditions = z.infer<typeof TermsAndConditionsSchema>;
+export type SanityHomepage = z.infer<typeof HomepageSchema>;
+export type SanitySiteSettings = z.infer<typeof SiteSettingsSchema>;
+export type SanityImageAssetDocument = z.infer<typeof SanityImageAssetDocumentSchema>;
+export type SanityDocument = z.infer<typeof SanityDocumentSchema>;
+
+// ContentModel types (GROQ query results with resolved references)
+export type ShowcaseContentModel = z.infer<typeof ShowcaseContentModelSchema>;
+export type ServiceContentModel = z.infer<typeof ServiceContentModelSchema>;
+export type TeamMemberContentModel = z.infer<typeof TeamMemberContentModelSchema>;
+export type BlogPostContentModel = z.infer<typeof BlogPostContentModelSchema>;
+export type TrainingContentModel = z.infer<typeof TrainingContentModelSchema>;
+export type TestimonialContentModel = z.infer<typeof TestimonialContentModelSchema>;
+export type SiteSettingsContentModel = z.infer<typeof SiteSettingsContentModelSchema>;
+export type HomepageContentModel = z.infer<typeof HomepageContentModelSchema>;
+
+// Other helper types
+export type Image = z.infer<typeof ImageSchema>;
+export type Social = z.infer<typeof SocialSchema>;
+export type Meta = z.infer<typeof MetaSchema>;
+export type Contact = z.infer<typeof ContactSchema>;
+
+// Mapped types (BlogPost, ServiceItem, ServiceList, Team, TeamMember, Training, Testimonial)
+// and LayoutContent, BasePageProps are defined above as plain TypeScript types (no schemas)

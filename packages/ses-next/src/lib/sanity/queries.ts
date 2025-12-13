@@ -1,24 +1,30 @@
 import { sanityClient } from '@/lib/sanity/client';
 import type {
-  BlogPost as SanityBlogPost,
-  FAQ as SanityFAQ,
-  Homepage as SanityHomepage,
-  Service as SanityService,
-  Showcase as SanityShowcase,
-  SiteSettings as SanitySiteSettings,
-  TeamMember as SanityTeamMember,
-  TermsAndConditions as SanityTermsAndConditions,
-  Testimonial as SanityTestimonial,
-  Training as SanityTraining,
-  ProcessedBlogPost as BlogPost,
-  ProcessedServiceItem as ServiceItem,
-  ProcessedServiceList as ServiceList,
-  ProcessedTeam as Team,
-  ProcessedTeamMember as TeamMember,
-  ProcessedTestimonial as Testimonial,
-  ProcessedTraining as Training,
+  SanityFAQ,
+  BlogPost,
+  BlogPostContentModel,
+  ServiceItem,
+  ServiceList,
+  ServiceContentModel,
+  ShowcaseContentModel,
+  Team,
+  TeamMember,
+  TeamMemberContentModel,
+  Testimonial,
+  TestimonialContentModel,
+  Training,
+  TrainingContentModel,
+  SiteSettingsContentModel,
+  HomepageContentModel,
+  SanityTermsAndConditions,
 } from '@/types';
-import { BlogPostSchema, FAQSchema, HomepageSchema, SiteSettingsSchema, TermsAndConditionsSchema } from '@/types';
+import {
+  FAQSchema,
+  TermsAndConditionsSchema,
+  BlogPostContentModelSchema,
+  SiteSettingsContentModelSchema,
+  HomepageContentModelSchema,
+} from '@/types';
 
 // ============================================================================
 // GROQ QUERIES
@@ -159,108 +165,42 @@ const termsAndConditionsQuery = `*[_type == "terms-and-conditions"]{
 }`;
 
 // ============================================================================
-// CONTENT MODELS (GROQ query results with resolved references)
-// ============================================================================
-
-type ShowcaseContentModel = Omit<SanityShowcase, 'photo'> & {
-  photo: {
-    asset: {
-      url: string;
-    };
-  };
-};
-
-type ServiceContentModel = Omit<SanityService, 'showcase'> & {
-  showcase?: ShowcaseContentModel[];
-};
-
-type TeamMemberContentModel = Omit<SanityTeamMember, 'avatar'> & {
-  avatar: {
-    asset: {
-      url: string;
-    };
-  };
-};
-
-type BlogPostContentModel = Omit<SanityBlogPost, 'photo'> & {
-  photo: {
-    asset: {
-      url: string;
-    };
-  };
-};
-
-type TrainingContentModel = SanityTraining;
-type TestimonialContentModel = SanityTestimonial;
-type FAQContentModel = SanityFAQ;
-type TermsAndConditionsContentModel = SanityTermsAndConditions;
-
-export type SiteSettingsContentModel = Omit<SanitySiteSettings, 'companyLogo'> & {
-  companyLogo: {
-    asset: {
-      url: string;
-    };
-  };
-};
-
-export type HomepageContentModel = Omit<
-  SanityHomepage,
-  'companyLogo' | 'services' | 'team' | 'training' | 'testimonials'
-> & {
-  companyLogo: {
-    asset: {
-      url: string;
-    };
-  };
-  services: {
-    blurbs?: string[];
-    items: ServiceContentModel[];
-  };
-  team: {
-    blurbs?: string[];
-    members: TeamMemberContentModel[];
-  };
-  training: TrainingContentModel[];
-  testimonials: TestimonialContentModel[];
-};
-
-// ============================================================================
 // QUERY FUNCTIONS
 // ============================================================================
 
 export const getSiteSettings = async (): Promise<SiteSettingsContentModel> => {
   const result = await sanityClient.fetch(siteSettingsQuery);
-  return result;
+  return SiteSettingsContentModelSchema.parse(result);
 };
 
 export const getHomepage = async (): Promise<HomepageContentModel> => {
   const result = await sanityClient.fetch(homepageQuery);
-  return result;
+  return HomepageContentModelSchema.parse(result);
 };
 
 export const getAllBlogPosts = async (): Promise<BlogPostContentModel[]> => {
   const result = await sanityClient.fetch(allBlogPostsQuery);
-  return result;
+  return result.map((post: unknown) => BlogPostContentModelSchema.parse(post));
 };
 
 export const getBlogPostBySlug = async (slug: string): Promise<BlogPostContentModel | null> => {
   const result = await sanityClient.fetch(blogPostBySlugQuery, { slug });
   if (!result) return null;
-  return result;
+  return BlogPostContentModelSchema.parse(result);
 };
 
-export const getAllFAQs = async (): Promise<FAQContentModel[]> => {
+export const getAllFAQs = async (): Promise<SanityFAQ[]> => {
   const result = await sanityClient.fetch(allFaqsQuery);
   return result.map((faq: unknown) => FAQSchema.parse(faq));
 };
 
-export const getAllTermsAndConditions = async (): Promise<TermsAndConditionsContentModel[]> => {
+export const getAllTermsAndConditions = async (): Promise<SanityTermsAndConditions[]> => {
   const result = await sanityClient.fetch(termsAndConditionsQuery);
   return result.map((terms: unknown) => TermsAndConditionsSchema.parse(terms));
 };
 
 // ============================================================================
-// MAPPER FUNCTIONS (Convert content models to app models)
+// MAPPER FUNCTIONS (Convert ContentModel types to mapped types)
 // ============================================================================
 
 export const mapBlogPost = (model: BlogPostContentModel): BlogPost => {

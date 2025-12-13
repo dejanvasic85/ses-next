@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next';
 import { getHomePageContent, getBlogPosts } from '@/lib/content/contentService';
 import type { HomePageContentResult } from '@/lib/content/contentService';
-import type { ProcessedBlogPost } from '@/types';
+import type { BlogPost } from '@/types';
 
 const createLocXmlForUrl = (url: string): string => `
     <url>
@@ -9,7 +9,7 @@ const createLocXmlForUrl = (url: string): string => `
     </url>
 `;
 
-const generateSitemap = (content: HomePageContentResult, blogPosts: ProcessedBlogPost[]): string => {
+const generateSitemap = (content: HomePageContentResult, blogPosts: BlogPost[]): string => {
   const {
     baseUrl,
     services: { items = [] },

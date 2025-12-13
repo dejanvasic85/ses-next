@@ -10,14 +10,14 @@ import { getBasePageProps } from '@/lib/basePageProps';
 import { getBlogPosts } from '@/lib/content/contentService';
 import { tagsWithCountFromBlogs, type TagWithCount } from '@/lib/blogUtils';
 import type { HomePageContentResult } from '@/lib/content/contentService';
-import type { ProcessedBlogPost } from '@/types';
+import type { BlogPost } from '@/types';
 
 interface BlogPostProps {
   content: HomePageContentResult;
   pageUrl: string;
   tagsWithCount: TagWithCount[];
   totalPosts: number;
-  post: ProcessedBlogPost;
+  post: BlogPost;
 }
 
 export default function BlogPost({ content, pageUrl, tagsWithCount, totalPosts, post }: BlogPostProps) {

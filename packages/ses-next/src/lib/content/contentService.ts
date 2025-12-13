@@ -1,12 +1,4 @@
-import type {
-  ProcessedBlogPost as BlogPost,
-  ProcessedServiceList as ServiceList,
-  ProcessedTeam as Team,
-  ProcessedTraining as Training,
-  ProcessedTestimonial as Testimonial,
-  Social,
-  SanityPortableText,
-} from '@/types';
+import type { BlogPost, ServiceList, Team, Training, Testimonial, Social, SanityPortableText } from '@/types';
 import {
   getSiteSettings,
   getHomepage,
