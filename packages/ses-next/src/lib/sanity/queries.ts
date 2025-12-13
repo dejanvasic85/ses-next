@@ -50,22 +50,10 @@ const siteSettingsQuery = `*[_type == "siteSettings"][0]{
 const homepageQuery = `*[_type == "homepage"][0]{
   _id,
   _type,
-  companyName,
-  companyLogo{
-    asset->{
-      _id,
-      url
-    }
-  },
   mainHeading,
   subHeading,
-  shortTitle,
-  baseUrl,
+  about,
   contact,
-  googleMapsLocation,
-  googleMapsLocationPlaceUrl,
-  meta,
-  socialMedia,
   services {
     blurbs,
     items[]->{
@@ -274,10 +262,6 @@ export const mapHomepageTeam = (model: HomepageContentModel): Team => {
 
 export const mapHomepageTraining = (model: HomepageContentModel): Training[] => {
   return model.training.map(mapTraining);
-};
-
-export const mapHomepageCompanyLogo = (model: HomepageContentModel): string => {
-  return model.companyLogo.asset.url;
 };
 
 export const mapSiteSettingsCompanyLogo = (model: SiteSettingsContentModel): string => {

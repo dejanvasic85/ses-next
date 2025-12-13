@@ -233,31 +233,14 @@ export const HomepageSchema = z.object({
   _rev: z.string().optional(),
   _createdAt: z.string().optional(),
   _updatedAt: z.string().optional(),
-  companyName: z.string(),
-  companyLogo: SanityImageSchema,
   mainHeading: z.string().optional(),
   subHeading: z.string().optional(),
-  shortTitle: z.string(),
   about: z.array(z.string()).optional(),
-  baseUrl: z.url(),
   contact: z.object({
     blurbs: z.array(z.string()).optional(),
     callBack: z.string().optional(),
     phone: z.string(),
   }),
-  googleMapsLocation: z.url().optional(),
-  googleMapsLocationPlaceUrl: z.url().optional(),
-  meta: z.object({
-    title: z.string(),
-    description: z.string(),
-  }),
-  socialMedia: z
-    .object({
-      facebook: z.url().optional(),
-      linkedIn: z.url().optional(),
-      instagram: z.url().optional(),
-    })
-    .optional(),
   services: z.object({
     blurbs: z.array(z.string()).optional(),
     items: z.array(SanityReferenceSchema),
@@ -267,7 +250,6 @@ export const HomepageSchema = z.object({
     members: z.array(SanityReferenceSchema),
   }),
   training: z.array(SanityReferenceSchema),
-  testimonials: z.array(SanityReferenceSchema),
 });
 
 export const SiteSettingsSchema = z.object({
@@ -434,32 +416,14 @@ export const HomepageContentModelSchema = z
   .object({
     _id: z.string(),
     _type: z.literal('homepage'),
-    companyName: z.string(),
-    companyLogo: z.object({
-      asset: SanityAssetSchema,
-    }),
     mainHeading: z.string().nullable(),
     subHeading: z.string().nullable(),
-    shortTitle: z.string(),
-    baseUrl: z.string().url(),
+    about: z.array(z.string()).nullable().optional(),
     contact: z.object({
       blurbs: z.array(z.string()).nullable(),
       callBack: z.string().nullable(),
       phone: z.string(),
     }),
-    googleMapsLocation: z.string().url().nullable(),
-    googleMapsLocationPlaceUrl: z.string().url().nullable(),
-    meta: z.object({
-      title: z.string(),
-      description: z.string(),
-    }),
-    socialMedia: z
-      .object({
-        facebook: z.string().url().nullable(),
-        linkedIn: z.string().url().nullable(),
-        instagram: z.string().url().nullable(),
-      })
-      .nullable(),
     services: z.object({
       blurbs: z.array(z.string()).nullable(),
       items: z.array(ServiceContentModelSchema),

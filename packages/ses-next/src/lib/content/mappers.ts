@@ -172,31 +172,3 @@ export const mapTraining = (data: SanityDocument[], homepageItem: SanityHomepage
     };
   });
 };
-
-export const mapTestimonials = (data: SanityDocument[], homepageItem: SanityHomepage): Testimonial[] => {
-  const { testimonials } = homepageItem;
-
-  return testimonials.map((testimonialRef) => {
-    const testimonial = findDocumentById<SanityTestimonial>(data, testimonialRef._ref, 'testimonial');
-
-    if (!testimonial) {
-      throw new Error(`Testimonial not found for reference: ${testimonialRef._ref}`);
-    }
-
-    return {
-      date: testimonial.date || '',
-      comment: testimonial.comment,
-      starRating: testimonial.rating,
-      reviewer: {
-        displayName: testimonial.fullName,
-        profilePhotoUrl: testimonial.profileImgUrl || null,
-        profileUrl: testimonial.reviewUrl || null,
-      },
-      url: testimonial.reviewUrl || null,
-    };
-  });
-};
-
-export const mapCompanyLogo = (data: SanityDocument[], homepageItem: SanityHomepage): string => {
-  return findAssetById(data, homepageItem.companyLogo.asset._ref);
-};
