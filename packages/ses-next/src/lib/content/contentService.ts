@@ -1,4 +1,13 @@
-import type { BlogPost, ServiceList, Team, Training, Social, SanityPortableText, SanitySiteSettings, SiteSettingsContentModel } from '@/types';
+import type {
+  BlogPost,
+  ServiceList,
+  Team,
+  Training,
+  Social,
+  SanityPortableText,
+  SanitySiteSettings,
+  SiteSettingsContentModel,
+} from '@/types';
 import {
   getSiteSettings,
   getHomepage,
