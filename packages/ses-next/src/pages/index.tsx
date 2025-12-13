@@ -5,29 +5,23 @@ import { googleReviews } from 'ses-reviews';
 import { About, Contact, Hero, Layout, Services } from '@/components';
 import { getBasePageProps } from '@/lib/basePageProps';
 import { getHomePageContent, type HomePageContentResult } from '@/lib/content/contentService';
-import type { GoogleReviews } from '@/types';
-import { getHomepage } from '@/lib/sanity/queries';
+import type { GoogleReviews, SiteSettings } from '@/types';
 
 interface HomeProps {
-  content: HomePageContentResult;
+  content: SiteSettings;
+  homepageContent: HomePageContentResult;
   googleReviews: GoogleReviews;
   pageUrl: string;
+  publicConfig: {
+    sanityProjectId: string;
+    sanityDataset: string;
+  };
 }
 
-export default function Home({ content, googleReviews, pageUrl }: HomeProps) {
-  const {
-    companyName,
-    companyLogo,
-    contact,
-    googleMapsLocation,
-    googleMapsLocationPlaceUrl,
-    mainHeading,
-    subHeading,
-    social,
-    services,
-    team,
-    training,
-  } = content;
+export default function Home({ content, homepageContent, googleReviews, pageUrl }: HomeProps) {
+  const { companyName, companyLogo, googleMapsLocation, googleMapsLocationPlaceUrl, meta, social, contact, services } =
+    content;
+  const { mainHeading, subHeading, team, training } = homepageContent;
 
   const ratingCount = Number(googleReviews.numberOfReviews.replace('reviews', '').trim());
   const ratingValue = Number(googleReviews.overallRatingValue.replace('.0', '').trim());
@@ -49,7 +43,7 @@ export default function Home({ content, googleReviews, pageUrl }: HomeProps) {
       <LocalBusinessJsonLd
         type="LocalBusiness"
         name={companyName}
-        description={content.meta.description}
+        description={meta.description}
         address={{
           streetAddress: '61B Hansen St',
           addressLocality: 'Altona North',
@@ -95,10 +89,12 @@ export default function Home({ content, googleReviews, pageUrl }: HomeProps) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const baseProps = await getBasePageProps({ pageUrl: '' });
+  const homepageContent = await getHomePageContent();
 
   return {
     props: {
       ...baseProps,
+      homepageContent,
       googleReviews,
     },
   };

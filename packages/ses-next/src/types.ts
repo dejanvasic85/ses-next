@@ -514,6 +514,18 @@ export type Training = {
   icon: Icon;
 };
 
+export type Testimonial = {
+  date: string;
+  comment: string;
+  starRating: number;
+  reviewer: {
+    profilePhotoUrl: string | null;
+    profileUrl: string | null;
+    displayName: string;
+  };
+  url: string | null;
+};
+
 export type ServiceItem = {
   id: string;
   name: string;
@@ -556,6 +568,23 @@ export type BlogPost = {
   body: SanityPortableText;
 };
 
+export type SiteSettings = {
+  companyName: string;
+  companyLogo: string;
+  shortTitle: string;
+  baseUrl: string;
+  googleMapsLocation: string | null;
+  googleMapsLocationPlaceUrl: string | null;
+  meta: Meta;
+  social: Social;
+  contact: {
+    phone: string;
+    blurbs: string[] | null;
+    callBack: string | null;
+  };
+  services: ServiceList;
+};
+
 export type LayoutContent = {
   companyName: string;
   companyLogo: string;
@@ -576,7 +605,7 @@ export type BasePageProps = {
     sanityProjectId: string;
     sanityDataset: string;
   };
-  content: unknown;
+  content: SiteSettings;
 };
 
 // ============================================================================
@@ -610,6 +639,7 @@ export type GoogleReviews = z.infer<typeof GoogleReviewsSchema>;
 export type SanityFAQ = z.infer<typeof FAQSchema>;
 export type SanityTeamMember = z.infer<typeof TeamMemberSchema>;
 export type SanityTraining = z.infer<typeof TrainingSchema>;
+export type SanityTestimonial = z.infer<typeof TestimonialSchema>;
 export type SanityShowcase = z.infer<typeof ShowcaseSchema>;
 export type SanityService = z.infer<typeof ServiceSchema>;
 export type SanityBlogPost = z.infer<typeof BlogPostSchema>;

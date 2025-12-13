@@ -13,6 +13,7 @@ import type {
   Training,
   TrainingContentModel,
   SiteSettingsContentModel,
+  Social,
   HomepageContentModel,
   SanityTermsAndConditions,
 } from '@/types';
@@ -281,4 +282,24 @@ export const mapHomepageCompanyLogo = (model: HomepageContentModel): string => {
 
 export const mapSiteSettingsCompanyLogo = (model: SiteSettingsContentModel): string => {
   return model.companyLogo.asset.url;
+};
+
+export const mapSiteSettings = (model: SiteSettingsContentModel) => {
+  const social: Social = {
+    facebook: model.socialMedia?.facebook || null,
+    instagram: model.socialMedia?.instagram || null,
+    linkedIn: model.socialMedia?.linkedIn || null,
+    twitter: null,
+  };
+
+  return {
+    companyName: model.companyName,
+    companyLogo: model.companyLogo.asset.url,
+    shortTitle: model.shortTitle,
+    baseUrl: model.baseUrl,
+    googleMapsLocation: model.googleMapsLocation,
+    googleMapsLocationPlaceUrl: model.googleMapsLocationPlaceUrl,
+    meta: model.meta,
+    social,
+  };
 };

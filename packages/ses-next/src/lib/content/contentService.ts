@@ -1,4 +1,4 @@
-import type { BlogPost, ServiceList, Team, Training, Testimonial, Social, SanityPortableText } from '@/types';
+import type { BlogPost, ServiceList, Team, Training, Social, SanityPortableText, SanitySiteSettings, SiteSettingsContentModel } from '@/types';
 import {
   getSiteSettings,
   getHomepage,
@@ -123,5 +123,42 @@ export const getTermsAndConditions = async (): Promise<ProcessedTermsAndConditio
   } catch (error) {
     console.error('Error in getTermsAndConditions:', error);
     throw new Error('Failed to fetch terms and conditions');
+  }
+};
+
+export const getSiteSettings = async (): Promise<SiteSettingsContentModel> => {
+  try {
+    const siteSettings = await getSiteSettings();
+    return {
+      companyName: siteSettings.companyName,
+      companyLogo: mapSiteSettingsCompanyLogo(siteSettings),
+      contact: {
+        phone: siteSettings.contact.phone,
+        email: siteSettings.contact.email,
+        blurbs: siteSettings.contact.blurbs,
+        callBack: siteSettings.contact.callBack,
+      },
+      faqItems: siteSettings.faqItems.map(({ question, answer }) => ({
+        question,
+        answer,
+      })),
+      googleMapsLocation: siteSettings.googleMapsLocation,
+      googleMapsLocationPlaceUrl: siteSettings.googleMapsLocationPlaceUrl,
+      meta: siteSettings.meta,
+      services: mapHomepageServices(siteSettings.services),
+      shortTitle: siteSettings.shortTitle,
+      social: {
+        facebook: siteSettings.social.facebook,
+        linkedIn: siteSettings.social.linkedIn,
+        twitter: null,
+      },
+      mainHeading: siteSettings.mainHeading,
+      subHeading: siteSettings.subHeading,
+      team: mapHomepageTeam(siteSettings.team),
+      training: mapHomepageTraining(siteSettings.training),
+    };
+  } catch (error) {
+    console.error('Error in getSiteSettings:', error);
+    throw new Error('Failed to fetch site settings');
   }
 };
