@@ -1,39 +1,48 @@
-import puppeteer from 'puppeteer';
+import { chromium } from 'playwright';
 import fs from 'fs';
+import path from 'path';
+import os from 'os';
 
 import { URL } from './constants.mjs';
+
+const getChromiumPath = () => {
+  const cacheDir = path.join(os.homedir(), '.cache', 'ms-playwright');
+  const dirs = fs.readdirSync(cacheDir).filter((d) => d.startsWith('chromium-'));
+  if (dirs.length === 0) return undefined;
+  const latestChromium = dirs.sort().pop();
+  const platform = process.platform === 'darwin' ? 'chrome-mac' : 'chrome-linux';
+  const executable = process.platform === 'darwin' ? 'Chromium.app/Contents/MacOS/Chromium' : 'chrome';
+  return path.join(cacheDir, latestChromium, platform, executable);
+};
 
 (async () => {
   console.log('Starting google reviews scrape');
   let browser;
   try {
-    browser = await puppeteer.launch({
-      headless: 'new',
-      timeout: 0,
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-blink-features=AutomationControlled',
-        '--disable-dev-shm-usage',
-      ],
+    const executablePath = getChromiumPath();
+    browser = await chromium.launch({
+      headless: true,
+      executablePath,
     });
-    const [page] = await browser.pages();
 
-    // Set user agent to avoid detection
-    await page.setUserAgent(
-      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-    );
+    const context = await browser.newContext({
+      userAgent:
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+      viewport: { width: 1280, height: 720 },
+    });
 
-    // Remove webdriver property
-    await page.evaluateOnNewDocument(() => {
+    const page = await context.newPage();
+
+    // Remove webdriver property to avoid detection
+    await page.addInitScript(() => {
       Object.defineProperty(navigator, 'webdriver', {
         get: () => false,
       });
     });
 
-    await page.goto(URL, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(URL, { waitUntil: 'networkidle', timeout: 30000 });
 
-    // Wait for reviews container to load with increased timeout
+    // Wait for reviews container to load
     await page.waitForSelector('div[data-review-id]', { timeout: 30000 });
 
     // Auto-scroll to load all reviews with multiple strategies
@@ -72,9 +81,9 @@ import { URL } from './constants.mjs';
       });
 
       // Wait for potential new reviews to load
-      await new Promise((resolve) => setTimeout(resolve, 3000));
+      await page.waitForTimeout(3000);
 
-      currentReviewCount = await page.$$eval('div[data-review-id][aria-label]', (reviews) => reviews.length);
+      currentReviewCount = await page.locator('div[data-review-id][aria-label]').count();
       console.log(`Found ${currentReviewCount} reviews`);
 
       // If count hasn't changed, increment stable counter
@@ -88,12 +97,14 @@ import { URL } from './constants.mjs';
     } while (currentReviewCount > previousReviewCount || stableCount < 2);
 
     // Expand all "See more" buttons
-    await page.$$eval('button[aria-label="See more"]', (buttons) => {
-      buttons.forEach((btn) => btn.click());
-    });
+    const seeMoreButtons = page.locator('button[aria-label="See more"]');
+    const buttonCount = await seeMoreButtons.count();
+    for (let i = 0; i < buttonCount; i++) {
+      await seeMoreButtons.nth(i).click();
+    }
 
     // Wait for expanded content to load
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await page.waitForTimeout(1000);
 
     const data = await page.evaluate(() => {
       const reviews = [];
@@ -138,7 +149,7 @@ import { URL } from './constants.mjs';
     console.error(err);
     process.exit(1);
   } finally {
-    browser?.close();
+    await browser?.close();
     process.exit(0);
   }
 })();
