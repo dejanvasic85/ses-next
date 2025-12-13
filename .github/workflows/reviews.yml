@@ -3,6 +3,8 @@ on:
   schedule:
     - cron: 0 18 * * *
   workflow_dispatch:
+env:
+  GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
 
 jobs:
   update-reviews:

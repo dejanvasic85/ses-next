@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "update:rating": "node ./scrapeRating.mjs",
-    "update:reviews": "node ./scrapeReviews.mjs"
+    "update:rating": "node updateRating.mjs",
+    "update:reviews": "node ./updateReviews.mjs"
   },
   "keywords": [],
   "author": "",

@@ -270,6 +270,31 @@ export const HomepageSchema = z.object({
   testimonials: z.array(SanityReferenceSchema),
 });
 
+export const SiteSettingsSchema = z.object({
+  _type: z.literal('siteSettings'),
+  _id: z.string(),
+  _rev: z.string().optional(),
+  _createdAt: z.string().optional(),
+  _updatedAt: z.string().optional(),
+  companyName: z.string(),
+  companyLogo: SanityImageSchema,
+  shortTitle: z.string().optional(),
+  baseUrl: z.url(),
+  googleMapsLocation: z.url().optional(),
+  googleMapsLocationPlaceUrl: z.url().optional(),
+  meta: z.object({
+    title: z.string(),
+    description: z.string(),
+  }),
+  socialMedia: z
+    .object({
+      facebook: z.url().optional(),
+      linkedIn: z.url().optional(),
+      instagram: z.url().optional(),
+    })
+    .optional(),
+});
+
 // ============================================================================
 // SANITY ASSET SCHEMAS
 // ============================================================================
@@ -309,6 +334,7 @@ export const SanityDocumentSchema = z.union([
   BlogPostSchema,
   TermsAndConditionsSchema,
   HomepageSchema,
+  SiteSettingsSchema,
   SanityImageAssetDocumentSchema,
 ]);
 
@@ -464,6 +490,7 @@ export type Service = z.infer<typeof ServiceSchema>;
 export type BlogPost = z.infer<typeof BlogPostSchema>;
 export type TermsAndConditions = z.infer<typeof TermsAndConditionsSchema>;
 export type Homepage = z.infer<typeof HomepageSchema>;
+export type SiteSettings = z.infer<typeof SiteSettingsSchema>;
 export type SanityImageAssetDocument = z.infer<typeof SanityImageAssetDocumentSchema>;
 export type SanityDocument = z.infer<typeof SanityDocumentSchema>;
 
