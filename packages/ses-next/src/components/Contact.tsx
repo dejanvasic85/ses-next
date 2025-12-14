@@ -6,16 +6,11 @@ import { LinkButton } from '@/components/LinkButton';
 import { ContactForm } from '@/components/ContactForm';
 import { PopSuccess } from '@/components/PopSuccess';
 import { Icon } from '@/components/Icon/Icon';
-
-interface ContactData {
-  blurbs: string[] | null;
-  phone: string | null;
-  callBack: string | null;
-}
+import { ContactContentModel } from '@/types';
 
 interface ContactProps {
   className?: string;
-  contact: ContactData;
+  contact: ContactContentModel;
   location: string | null;
 }
 

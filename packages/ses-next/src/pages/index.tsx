@@ -5,22 +5,17 @@ import { googleReviews } from 'ses-reviews';
 import { About, Contact, Hero, Layout, Services } from '@/components';
 import { getBasePageProps } from '@/lib/basePageProps';
 import { getHomePageContent, type HomePageContentResult } from '@/lib/content/contentService';
-import type { GoogleReviews, SiteSettings } from '@/types';
+import type { BasePageProps, GoogleReviews, SiteSettings } from '@/types';
 
-interface HomeProps {
-  content: SiteSettings;
+interface HomeProps extends BasePageProps {
   homepageContent: HomePageContentResult;
   googleReviews: GoogleReviews;
   pageUrl: string;
-  publicConfig: {
-    sanityProjectId: string;
-    sanityDataset: string;
-  };
 }
 
-export default function Home({ content, homepageContent, googleReviews, pageUrl }: HomeProps) {
-  const { companyName, companyLogo, googleMapsLocation, googleMapsLocationPlaceUrl, meta, social, contact, services } =
-    content;
+export default function Home({ homepageContent, googleReviews, pageUrl, services, siteSettings }: HomeProps) {
+  const { companyName, companyLogo, googleMapsLocation, googleMapsLocationPlaceUrl, meta, social, phone } =
+    siteSettings;
   const { mainHeading, subHeading, team, training } = homepageContent;
 
   const ratingCount = Number(googleReviews.numberOfReviews.replace('reviews', '').trim());
@@ -51,7 +46,7 @@ export default function Home({ content, homepageContent, googleReviews, pageUrl 
           postalCode: '3025',
           addressCountry: 'AU',
         }}
-        telephone={contact.phone}
+        telephone={phone}
         image={companyLogo}
         url={pageUrl}
         aggregateRating={{
@@ -62,7 +57,7 @@ export default function Home({ content, homepageContent, googleReviews, pageUrl 
         }}
         review={reviewsJson}
       />
-      <Layout content={content} pageUrl={pageUrl}>
+      <Layout services={services} siteSettings={siteSettings} pageUrl={pageUrl}>
         <Hero
           companyName={companyName}
           companyLogo={companyLogo}
@@ -74,13 +69,13 @@ export default function Home({ content, homepageContent, googleReviews, pageUrl 
           subHeading={subHeading}
         />
         <section id="services" className="mt-32 pt-24">
-          <Services services={services} className="mt-12" />
+          <Services services={homepageContent.services} className="mt-12" />
         </section>
         <section id="about" className="mt-16 pt-24">
           <About team={team} testimonials={reviews} googleReviewsUrl={googleMapsLocationPlaceUrl} training={training} />
         </section>
         <section id="contact" className="mt-16 pt-24">
-          <Contact contact={contact} location={googleMapsLocation} />
+          <Contact contact={homepageContent.contact} location={googleMapsLocation} />
         </section>
       </Layout>
     </>
@@ -89,7 +84,7 @@ export default function Home({ content, homepageContent, googleReviews, pageUrl 
 
 export const getStaticProps: GetStaticProps = async () => {
   const baseProps = await getBasePageProps({ pageUrl: '' });
-  const homepageContent = await getHomePageContent();
+  const homepageContent = await getHomePageContent(baseProps.siteSettings);
 
   return {
     props: {

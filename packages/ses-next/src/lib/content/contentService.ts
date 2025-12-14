@@ -1,16 +1,29 @@
-import type { BlogPost, ServiceList, Team, Training, Social, SanityPortableText } from '@/types';
+import type {
+  BlogPost,
+  ServiceList,
+  Team,
+  Training,
+  ServiceItem,
+  Social,
+  SanityPortableText,
+  SiteSettings,
+  ContactContentModel,
+} from '@/types';
 import {
-  getSiteSettings,
   getHomepage,
   getAllBlogPosts,
   getAllFAQs,
   getAllTermsAndConditions,
+  getAllServicesContent,
+  getSiteSettingsContent,
   mapBlogPost,
   mapHomepageServices,
   mapHomepageTeam,
   mapHomepageTraining,
-  mapSiteSettingsCompanyLogo,
+  mapService,
   mapSocialMedia,
+  mapHomepageContact,
+  mapSiteSettings,
 } from '@/lib/sanity/queries';
 
 // ============================================================================
@@ -21,12 +34,7 @@ export interface HomePageContentResult {
   baseUrl: string;
   companyName: string;
   companyLogo: string;
-  contact: {
-    phone: string;
-    blurbs: string[] | null;
-    callBack: string | null;
-  };
-  faqItems: Array<{ question: string; answer: string }>;
+  contact: ContactContentModel;
   googleMapsLocation: string | null;
   googleMapsLocationPlaceUrl: string | null;
   meta: {
@@ -51,37 +59,34 @@ export interface ProcessedTermsAndConditions {
 // EXPORTED FUNCTIONS
 // ============================================================================
 
-export const getHomePageContent = async (): Promise<HomePageContentResult> => {
+export const getHomePageContent = async (siteSettings: SiteSettings): Promise<HomePageContentResult> => {
   try {
-    const [siteSettings, homepage, faqs] = await Promise.all([getSiteSettings(), getHomepage(), getAllFAQs()]);
+    const homepage = await getHomepage();
 
-    const { baseUrl, companyName, googleMapsLocation, googleMapsLocationPlaceUrl, meta, shortTitle, socialMedia } =
-      siteSettings;
+    const {
+      baseUrl,
+      companyName,
+      googleMapsLocation,
+      googleMapsLocationPlaceUrl,
+      meta,
+      shortTitle,
+      social: socialMedia,
+    } = siteSettings;
 
-    const { contact, mainHeading, subHeading } = homepage;
+    const { mainHeading, subHeading } = homepage;
 
     const social = mapSocialMedia(socialMedia);
-
     const services = mapHomepageServices(homepage);
     const team = mapHomepageTeam(homepage);
     const training = mapHomepageTraining(homepage);
-    const companyLogo = mapSiteSettingsCompanyLogo(siteSettings);
-
-    const faqItems = faqs.map(({ question, answer }) => ({
-      question,
-      answer,
-    }));
+    const contact = mapHomepageContact(homepage);
+    const companyLogo = siteSettings.companyLogo;
 
     return {
       baseUrl,
       companyName,
       companyLogo,
-      contact: {
-        phone: contact.phone,
-        blurbs: contact.blurbs,
-        callBack: contact.callBack,
-      },
-      faqItems,
+      contact,
       googleMapsLocation,
       googleMapsLocationPlaceUrl,
       meta,
@@ -132,5 +137,25 @@ export const getFAQs = async (): Promise<Array<{ question: string; answer: strin
   } catch (error) {
     console.error('Error in getFAQs:', error);
     throw new Error('Failed to fetch FAQs');
+  }
+};
+
+export const getSiteSettings = async (): Promise<SiteSettings> => {
+  try {
+    const siteSettings = await getSiteSettingsContent();
+    return mapSiteSettings(siteSettings);
+  } catch (error) {
+    console.error('Error in getSiteSettings:', error);
+    throw new Error('Failed to fetch site settings');
+  }
+};
+
+export const getServices = async (): Promise<ServiceItem[]> => {
+  try {
+    const services = await getAllServicesContent();
+    return services.map(mapService);
+  } catch (error) {
+    console.error('Error in getServices:', error);
+    throw new Error('Failed to fetch services');
   }
 };

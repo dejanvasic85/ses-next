@@ -1,12 +1,11 @@
 import { sanityClient } from '@/lib/sanity/client';
 import type {
-  SanityFAQ,
+  FAQ,
   BlogPost,
   BlogPostContentModel,
   ServiceItem,
   ServiceList,
   ServiceContentModel,
-  ShowcaseContentModel,
   Team,
   TeamMember,
   TeamMemberContentModel,
@@ -17,6 +16,7 @@ import type {
   Social,
   HomepageContentModel,
   SanityTermsAndConditions,
+  ContactContentModel,
 } from '@/types';
 import {
   FAQSchema,
@@ -24,6 +24,7 @@ import {
   BlogPostContentModelSchema,
   SiteSettingsContentModelSchema,
   HomepageContentModelSchema,
+  ServiceSchema,
 } from '@/types';
 
 // ============================================================================
@@ -42,6 +43,7 @@ const siteSettingsQuery = `*[_type == "siteSettings"][0]{
   },
   shortTitle,
   baseUrl,
+  phone,
   googleMapsLocation,
   googleMapsLocationPlaceUrl,
   meta,
@@ -102,6 +104,17 @@ const homepageQuery = `*[_type == "homepage"][0]{
   },
 }`;
 
+const servicesQuery = `*[_type == "service"]{
+  _id,
+  _type,
+  name,
+  description,
+  blurb,
+  slug,
+  linkToReadMore,
+  icon
+}`;
+
 const allBlogPostsQuery = `*[_type == "blog-post"] | order(publishedAt desc){
   _id,
   _type,
@@ -151,7 +164,7 @@ const termsAndConditionsQuery = `*[_type == "terms-and-conditions"]{
 // QUERY FUNCTIONS
 // ============================================================================
 
-export const getSiteSettings = async (): Promise<SiteSettingsContentModel> => {
+export const getSiteSettingsContent = async (): Promise<SiteSettingsContentModel> => {
   const result = await sanityClient.fetch(siteSettingsQuery);
   return SiteSettingsContentModelSchema.parse(result);
 };
@@ -159,6 +172,11 @@ export const getSiteSettings = async (): Promise<SiteSettingsContentModel> => {
 export const getHomepage = async (): Promise<HomepageContentModel> => {
   const result = await sanityClient.fetch(homepageQuery);
   return HomepageContentModelSchema.parse(result);
+};
+
+export const getAllServicesContent = async (): Promise<ServiceContentModel[]> => {
+  const result = await sanityClient.fetch(servicesQuery);
+  return result.map((item: unknown) => ServiceSchema.parse(item));
 };
 
 export const getAllBlogPosts = async (): Promise<BlogPostContentModel[]> => {
@@ -172,7 +190,7 @@ export const getBlogPostBySlug = async (slug: string): Promise<BlogPostContentMo
   return BlogPostContentModelSchema.parse(result);
 };
 
-export const getAllFAQs = async (): Promise<SanityFAQ[]> => {
+export const getAllFAQs = async (): Promise<FAQ[]> => {
   const result = await sanityClient.fetch(allFaqsQuery);
   return result.map((faq: unknown) => FAQSchema.parse(faq));
 };
@@ -265,6 +283,14 @@ export const mapHomepageTraining = (model: HomepageContentModel): Training[] => 
   return model.training.map(mapTraining);
 };
 
+export const mapHomepageContact = (model: HomepageContentModel): ContactContentModel => {
+  return {
+    phone: model.contact.phone,
+    blurbs: model.contact.blurbs,
+    callBack: model.contact.callBack,
+  };
+};
+
 export const mapSiteSettingsCompanyLogo = (model: SiteSettingsContentModel): string => {
   return model.companyLogo.asset.url;
 };
@@ -280,9 +306,7 @@ export const mapSocialMedia = (
   };
 };
 
-export const mapSiteSettings = (
-  model: SiteSettingsContentModel,
-): Omit<SiteSettings, 'contact' | 'services'> => {
+export const mapSiteSettings = (model: SiteSettingsContentModel): SiteSettings => {
   const social = mapSocialMedia(model.socialMedia);
 
   return {
@@ -294,5 +318,6 @@ export const mapSiteSettings = (
     googleMapsLocationPlaceUrl: model.googleMapsLocationPlaceUrl,
     meta: model.meta,
     social,
+    phone: model.phone,
   };
 };

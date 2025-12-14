@@ -1,23 +1,17 @@
 import {
   SanityDocument,
   SanityHomepage,
-  SanityService,
   SanityTeamMember,
   SanityTraining,
-  SanityTestimonial,
-  SanityShowcase,
   ServiceList,
   Team,
   Training,
-  Testimonial,
   ServiceItem,
   TeamMember,
   Icon,
+  ServiceContentModel,
+  ShowcaseContentModel,
 } from '@/types';
-
-// ============================================================================
-// HELPER FUNCTIONS
-// ============================================================================
 
 interface ImageGalleryItem {
   alt: string;
@@ -54,24 +48,24 @@ const findAssetById = (data: SanityDocument[], id: string): string => {
 // SHOWCASE/GALLERY MAPPERS
 // ============================================================================
 
-export const mapServiceShowcaseGallery = (data: SanityDocument[], service: SanityService): ImageGalleryItem[] => {
+export const mapServiceShowcaseGallery = (data: SanityDocument[], service: ServiceContentModel): ImageGalleryItem[] => {
   const { showcase = [] } = service;
 
   return showcase
-    .map((item) => findDocumentById<SanityShowcase>(data, item._ref, 'showcase'))
-    .filter((showcase): showcase is SanityShowcase => showcase !== undefined)
+    .map((item) => findDocumentById<ShowcaseContentModel>(data, item._ref, 'showcase'))
+    .filter((showcase): showcase is ShowcaseContentModel => showcase !== undefined)
     .map((showcase) => ({
       alt: showcase.title,
       src: findAssetById(data, showcase.photo.asset._ref),
     }));
 };
 
-export const mapFeaturedImage = (data: SanityDocument[], service: SanityService): FeaturedImage | null => {
+export const mapFeaturedImage = (data: SanityDocument[], service: ServiceContentModel): FeaturedImage | null => {
   const { showcase = [] } = service;
 
   const featuredShowcase = showcase
-    .map((item) => findDocumentById<SanityShowcase>(data, item._ref, 'showcase'))
-    .filter((showcase): showcase is SanityShowcase => showcase !== undefined)
+    .map((item) => findDocumentById<ShowcaseContentModel>(data, item._ref, 'showcase'))
+    .filter((showcase): showcase is ShowcaseContentModel => showcase !== undefined)
     .find((showcase) => showcase.featured === true);
 
   if (!featuredShowcase) {
@@ -94,7 +88,7 @@ export const mapServices = (data: SanityDocument[], homepageItem: SanityHomepage
   } = homepageItem;
 
   const processedItems: ServiceItem[] = items.map((serviceRef) => {
-    const service = findDocumentById<SanityService>(data, serviceRef._ref, 'service');
+    const service = findDocumentById<ServiceContentModel>(data, serviceRef._ref, 'service');
 
     if (!service) {
       throw new Error(`Service not found for reference: ${serviceRef._ref}`);

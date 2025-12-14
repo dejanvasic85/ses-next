@@ -2,23 +2,17 @@ import { GetStaticProps } from 'next';
 import { PortableText } from '@portabletext/react';
 import { Layout, CustomImage } from '@/components';
 import { getBasePageProps } from '@/lib/basePageProps';
-import {
-  getTermsAndConditions,
-  ProcessedTermsAndConditions,
-  HomePageContentResult,
-} from '@/lib/content/contentService';
-import type { GoogleReviews } from '@/types';
+import { getTermsAndConditions, ProcessedTermsAndConditions } from '@/lib/content/contentService';
+import { BasePageProps } from '@/types';
 
-interface TermsProps {
-  content: HomePageContentResult;
-  googleReviews: GoogleReviews;
+interface TermsProps extends BasePageProps {
   pageUrl: string;
   termsContent: ProcessedTermsAndConditions;
 }
 
-export default function Terms({ content, googleReviews, pageUrl, termsContent }: TermsProps) {
+export default function Terms({ pageUrl, termsContent, services, siteSettings }: TermsProps) {
   return (
-    <Layout content={content} pageUrl={pageUrl}>
+    <Layout services={services} siteSettings={siteSettings} pageUrl={pageUrl}>
       <div className="bg-white py-6 sm:py-8 lg:py-12">
         <div className="container mx-auto max-w-screen-xl px-4 md:px-8">
           <div className="mb-10 md:mb-16">

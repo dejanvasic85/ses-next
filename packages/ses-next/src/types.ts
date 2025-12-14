@@ -63,11 +63,6 @@ export const SanitySlugSchema = z.object({
   _type: z.literal('slug'),
 });
 
-export const SanityReferenceSchema = z.object({
-  _ref: z.string(),
-  _type: z.literal('reference'),
-});
-
 export const SanityMarkDefSchema = z
   .object({
     _key: z.string(),
@@ -199,7 +194,7 @@ export const ServiceSchema = z.object({
   slug: SanitySlugSchema,
   linkToReadMore: z.boolean().optional(),
   icon: IconSchema,
-  showcase: z.array(SanityReferenceSchema).optional(),
+  showcase: z.array(ShowcaseSchema).optional(),
   content: SanityPortableTextSchema.optional(),
 });
 
@@ -225,6 +220,12 @@ export const TermsAndConditionsSchema = z.object({
   _createdAt: z.string().optional(),
   _updatedAt: z.string().optional(),
   terms: SanityPortableTextSchema,
+});
+
+export const ContactSchema = z.object({
+  phone: z.string(),
+  blurbs: z.array(z.string()).nullable(),
+  callBack: z.string().nullable(),
 });
 
 export const HomepageSchema = z.object({
@@ -262,6 +263,7 @@ export const SiteSettingsSchema = z.object({
   companyLogo: SanityImageSchema,
   shortTitle: z.string(),
   baseUrl: z.url(),
+  phone: z.url(),
   googleMapsLocation: z.url().optional(),
   googleMapsLocationPlaceUrl: z.url().optional(),
   meta: z.object({
@@ -328,33 +330,6 @@ const SanityAssetSchema = z.object({
   url: z.string().url(),
 });
 
-export const ShowcaseContentModelSchema = z
-  .object({
-    _id: z.string(),
-    _type: z.literal('showcase'),
-    title: z.string(),
-    featured: z.boolean().nullable(),
-    photo: z.object({
-      asset: SanityAssetSchema,
-    }),
-  })
-  .passthrough();
-
-export const ServiceContentModelSchema = z
-  .object({
-    _id: z.string(),
-    _type: z.literal('service'),
-    name: z.string(),
-    description: z.string(),
-    blurb: z.string(),
-    slug: SanitySlugSchema,
-    linkToReadMore: z.boolean().nullable(),
-    icon: IconSchema,
-    content: SanityPortableTextSchema.nullable(),
-    showcase: z.array(ShowcaseContentModelSchema).nullable(),
-  })
-  .passthrough();
-
 export const TeamMemberContentModelSchema = z
   .object({
     _id: z.string(),
@@ -396,6 +371,7 @@ export const SiteSettingsContentModelSchema = z
     }),
     shortTitle: z.string(),
     baseUrl: z.string().url(),
+    phone: z.string(),
     googleMapsLocation: z.string().url().nullable(),
     googleMapsLocationPlaceUrl: z.string().url().nullable(),
     meta: z.object({
@@ -419,14 +395,10 @@ export const HomepageContentModelSchema = z
     mainHeading: z.string().nullable(),
     subHeading: z.string().nullable(),
     about: z.array(z.string()).nullable().optional(),
-    contact: z.object({
-      blurbs: z.array(z.string()).nullable(),
-      callBack: z.string().nullable(),
-      phone: z.string(),
-    }),
+    contact: ContactSchema,
     services: z.object({
       blurbs: z.array(z.string()).nullable(),
-      items: z.array(ServiceContentModelSchema),
+      items: z.array(ServiceSchema),
     }),
     team: z.object({
       blurbs: z.array(z.string()).nullable(),
@@ -457,13 +429,6 @@ export const SocialSchema = z.object({
 export const MetaSchema = z.object({
   title: z.string(),
   description: z.string(),
-});
-
-export const ContactSchema = z.object({
-  phone: z.string(),
-  email: z.email().nullable(),
-  blurbs: z.array(z.string()).nullable(),
-  callBack: z.string().nullable(),
 });
 
 // Mapped types as plain TypeScript types (no zod schemas needed)
@@ -541,26 +506,7 @@ export type SiteSettings = {
   googleMapsLocationPlaceUrl: string | null;
   meta: Meta;
   social: Social;
-  contact: {
-    phone: string;
-    blurbs: string[] | null;
-    callBack: string | null;
-  };
-  services: ServiceList;
-};
-
-export type LayoutContent = {
-  companyName: string;
-  companyLogo: string;
-  contact: {
-    phone: string;
-    blurbs: string[] | null;
-    callBack: string | null;
-  };
-  meta: Meta;
-  services: ServiceList;
-  shortTitle: string;
-  social: Social;
+  phone: string;
 };
 
 export type BasePageProps = {
@@ -569,7 +515,8 @@ export type BasePageProps = {
     sanityProjectId: string;
     sanityDataset: string;
   };
-  content: SiteSettings;
+  siteSettings: SiteSettings;
+  services: ServiceItem[];
 };
 
 // ============================================================================
@@ -584,38 +531,30 @@ export type EmailTemplateData = ContactEmailData | FeedbackEmailData;
 // TYPE EXPORTS
 // ============================================================================
 
-// Common types
 export type Icon = z.infer<typeof IconSchema>;
 export type SanityImage = z.infer<typeof SanityImageSchema>;
 export type SanitySlug = z.infer<typeof SanitySlugSchema>;
-export type SanityReference = z.infer<typeof SanityReferenceSchema>;
 export type SanityBlock = z.infer<typeof SanityBlockSchema>;
 export type SanityPortableText = z.infer<typeof SanityPortableTextSchema>;
 export type SanityMarkDef = z.infer<typeof SanityMarkDefSchema>;
 export type SanityApiResponse = z.infer<typeof SanityApiResponseSchema>;
 
-// Google Reviews types
 export type GoogleReviewer = z.infer<typeof GoogleReviewerSchema>;
 export type GoogleReview = z.infer<typeof GoogleReviewSchema>;
 export type GoogleReviews = z.infer<typeof GoogleReviewsSchema>;
 
-// Raw Sanity document types (with Sanity prefix to avoid conflicts)
-export type SanityFAQ = z.infer<typeof FAQSchema>;
+export type FAQ = z.infer<typeof FAQSchema>;
 export type SanityTeamMember = z.infer<typeof TeamMemberSchema>;
 export type SanityTraining = z.infer<typeof TrainingSchema>;
 export type SanityTestimonial = z.infer<typeof TestimonialSchema>;
-export type SanityShowcase = z.infer<typeof ShowcaseSchema>;
-export type SanityService = z.infer<typeof ServiceSchema>;
-export type SanityBlogPost = z.infer<typeof BlogPostSchema>;
 export type SanityTermsAndConditions = z.infer<typeof TermsAndConditionsSchema>;
 export type SanityHomepage = z.infer<typeof HomepageSchema>;
 export type SanitySiteSettings = z.infer<typeof SiteSettingsSchema>;
 export type SanityImageAssetDocument = z.infer<typeof SanityImageAssetDocumentSchema>;
 export type SanityDocument = z.infer<typeof SanityDocumentSchema>;
 
-// ContentModel types (GROQ query results with resolved references)
-export type ShowcaseContentModel = z.infer<typeof ShowcaseContentModelSchema>;
-export type ServiceContentModel = z.infer<typeof ServiceContentModelSchema>;
+export type ShowcaseContentModel = z.infer<typeof ShowcaseSchema>;
+export type ServiceContentModel = z.infer<typeof ServiceSchema>;
 export type TeamMemberContentModel = z.infer<typeof TeamMemberContentModelSchema>;
 export type BlogPostContentModel = z.infer<typeof BlogPostContentModelSchema>;
 export type TrainingContentModel = z.infer<typeof TrainingContentModelSchema>;
@@ -626,7 +565,4 @@ export type HomepageContentModel = z.infer<typeof HomepageContentModelSchema>;
 export type Image = z.infer<typeof ImageSchema>;
 export type Social = z.infer<typeof SocialSchema>;
 export type Meta = z.infer<typeof MetaSchema>;
-export type Contact = z.infer<typeof ContactSchema>;
-
-// Mapped types (BlogPost, ServiceItem, ServiceList, Team, TeamMember, Training)
-// and LayoutContent, BasePageProps are defined above as plain TypeScript types (no schemas)
+export type ContactContentModel = z.infer<typeof ContactSchema>;

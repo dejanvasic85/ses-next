@@ -74,7 +74,7 @@ export function Testimonial(testimonial: TestimonialProps) {
           <Rating starRating={starRating} name={displayName} />
           <div>
             <div ref={textRef} className={classNames('pr-4 text-white', { 'line-clamp-4': !showMore })}>
-              {comment}
+              &ldquo;{comment}&rdquo;
             </div>
             {(isClamped || showMore) && (
               <button className="text-white border-b-2" onClick={() => setShowMore(!showMore)}>

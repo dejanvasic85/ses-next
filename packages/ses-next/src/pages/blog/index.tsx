@@ -6,19 +6,17 @@ import { BlogLayout, Layout } from '@/components';
 import { getBasePageProps } from '@/lib/basePageProps';
 import { getBlogPosts } from '@/lib/content/contentService';
 import { tagsWithCountFromBlogs, type TagWithCount } from '@/lib/blogUtils';
-import type { HomePageContentResult } from '@/lib/content/contentService';
-import type { BlogPost } from '@/types';
+import type { BasePageProps, BlogPost } from '@/types';
 
-interface BlogProps {
-  content: HomePageContentResult;
+interface BlogProps extends BasePageProps {
   pageUrl: string;
   tagsWithCount: TagWithCount[];
   blogPosts: BlogPost[];
 }
 
-export default function Blog({ content, pageUrl, tagsWithCount, blogPosts }: BlogProps) {
+export default function Blog({ siteSettings, services, pageUrl, tagsWithCount, blogPosts }: BlogProps) {
   return (
-    <Layout content={content} pageUrl={pageUrl}>
+    <Layout services={services} siteSettings={siteSettings} pageUrl={pageUrl}>
       <BlogLayout tagsWithCount={tagsWithCount} totalPosts={blogPosts.length}>
         <div className="grid gap-6">
           {blogPosts.map(({ id, description, title, tags, photo, slug, publishedAt }) => (

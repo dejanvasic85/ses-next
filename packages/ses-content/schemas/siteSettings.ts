@@ -4,9 +4,6 @@ export default defineType({
   title: 'Site Settings',
   name: 'siteSettings',
   type: 'document',
-  options: {
-    singleton: true,
-  },
   fields: [
     defineField({
       name: 'companyName',
@@ -32,6 +29,13 @@ export default defineType({
       name: 'baseUrl',
       type: 'url',
       description: 'Your domain name',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      title: 'Phone',
+      name: 'phone',
+      type: 'string',
+      description: 'Hint: clickable number to call in the navbar',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
