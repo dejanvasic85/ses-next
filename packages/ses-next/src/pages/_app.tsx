@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import type { AppProps } from 'next/app';
+import { Inter } from 'next/font/google';
 
 import TagManager from 'react-gtm-module';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
@@ -8,6 +9,11 @@ import '../../styles/globals.css';
 import { BasePageProps } from '@/types';
 import { ConfigProvider } from '@/providers/ConfigProvider';
 import { clientConfig } from '@/clientConfig';
+
+const dmSans = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+});
 
 function MyApp({ Component, pageProps }: AppProps<BasePageProps>) {
   useEffect(() => {
@@ -24,20 +30,22 @@ function MyApp({ Component, pageProps }: AppProps<BasePageProps>) {
   }, []);
 
   return (
-    <ConfigProvider
-      sanityProjectId={pageProps.publicConfig.sanityProjectId}
-      sanityDataset={pageProps.publicConfig.sanityDataset}
-    >
-      <GoogleReCaptchaProvider
-        reCaptchaKey={clientConfig.googleRecaptchaSiteKey}
-        scriptProps={{
-          async: true,
-          defer: true,
-        }}
+    <div className={dmSans.className} style={{ minHeight: '100vh' }}>
+      <ConfigProvider
+        sanityProjectId={pageProps.publicConfig.sanityProjectId}
+        sanityDataset={pageProps.publicConfig.sanityDataset}
       >
-        <Component {...pageProps} />
-      </GoogleReCaptchaProvider>
-    </ConfigProvider>
+        <GoogleReCaptchaProvider
+          reCaptchaKey={clientConfig.googleRecaptchaSiteKey}
+          scriptProps={{
+            async: true,
+            defer: true,
+          }}
+        >
+          <Component {...pageProps} />
+        </GoogleReCaptchaProvider>
+      </ConfigProvider>
+    </div>
   );
 }
 

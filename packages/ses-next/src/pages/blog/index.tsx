@@ -7,13 +7,13 @@ import { getBasePageProps } from '@/lib/basePageProps';
 import { getBlogPosts } from '@/lib/content/contentService';
 import { tagsWithCountFromBlogs, type TagWithCount } from '@/lib/blogUtils';
 import type { HomePageContentResult } from '@/lib/content/contentService';
-import type { ProcessedBlogPost } from '@/types';
+import type { BlogPost } from '@/types';
 
 interface BlogProps {
   content: HomePageContentResult;
   pageUrl: string;
   tagsWithCount: TagWithCount[];
-  blogPosts: ProcessedBlogPost[];
+  blogPosts: BlogPost[];
 }
 
 export default function Blog({ content, pageUrl, tagsWithCount, blogPosts }: BlogProps) {

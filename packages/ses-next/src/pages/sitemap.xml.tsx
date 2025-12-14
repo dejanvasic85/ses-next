@@ -1,8 +1,7 @@
 import { GetServerSideProps } from 'next';
 import { getHomePageContent, getBlogPosts } from '@/lib/content/contentService';
-import { buildFetchFromApi } from '@/lib/content/contentApi';
 import type { HomePageContentResult } from '@/lib/content/contentService';
-import type { ProcessedBlogPost } from '@/types';
+import type { BlogPost } from '@/types';
 
 const createLocXmlForUrl = (url: string): string => `
     <url>
@@ -10,7 +9,7 @@ const createLocXmlForUrl = (url: string): string => `
     </url>
 `;
 
-const generateSitemap = (content: HomePageContentResult, blogPosts: ProcessedBlogPost[]): string => {
+const generateSitemap = (content: HomePageContentResult, blogPosts: BlogPost[]): string => {
   const {
     baseUrl,
     services: { items = [] },
@@ -37,9 +36,9 @@ const generateSitemap = (content: HomePageContentResult, blogPosts: ProcessedBlo
 const Sitemap = () => {};
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
-  console.log('Page: sitemap getStaticProps');
-  const content = await getHomePageContent(buildFetchFromApi);
-  const blogPosts = await getBlogPosts(buildFetchFromApi);
+  console.log('Page: sitemap getServerSideProps');
+  const content = await getHomePageContent();
+  const blogPosts = await getBlogPosts();
 
   const sitemap = generateSitemap(content, blogPosts);
 

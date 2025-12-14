@@ -42,7 +42,7 @@ export function Footer({
     blog: '/blog',
     terms: '/terms',
   },
-  services = { items: [] },
+  services,
 }: FooterProps) {
   const today = new Date();
   const year = today.getFullYear();

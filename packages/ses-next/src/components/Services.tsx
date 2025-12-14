@@ -6,6 +6,7 @@ import { Container } from '@/components/Container';
 import { Heading } from '@/components/Heading';
 import { Icon } from '@/components/Icon/Icon';
 import type { IconMap } from '@/components/Icon/IconMap';
+import { ServiceList } from '@/types';
 
 const ConditionalWrap = ({
   children,
@@ -38,7 +39,7 @@ interface ServicesData {
 
 interface ServicesProps {
   className?: string;
-  services: ServicesData;
+  services: ServiceList;
 }
 
 export const Services = ({ className, services }: ServicesProps) => {

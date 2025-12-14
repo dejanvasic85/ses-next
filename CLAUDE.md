@@ -25,6 +25,7 @@ Here are some commands you can use:
 
 # Code style
 
+- Avoid using Screaming SNAKE_CASE even for constants because it is ugly
 - Use ES modules (import/export) syntax, not CommonJS (require)
 - Destructure imports when possible (eg. import { foo } from 'bar')
 - React components should be functional components

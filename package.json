@@ -1,11 +1,11 @@
 {
   "scripts": {
-    "dev:sanity": "npm run dev -w ses-content",
-    "dev": "npm run dev -w ses-next",
+    "dev": "turbo dev",
+    "dev:content": "npm run dev -w ses-content",
     "format": "prettier --write .",
     "type:check": "turbo type:check",
     "build": "turbo build",
-    "clear-cache": "rm -rf ./ses-next/cache",
+    "lint": "turbo lint",
     "deploy:content": "npm run build -w ses-content && npm run deploy -w ses-content",
     "update:rating": "npm run update:rating -w ses-reviews",
     "update:reviews": "npm run update:reviews -w ses-reviews"

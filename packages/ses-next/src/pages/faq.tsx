@@ -1,16 +1,20 @@
 import { GetStaticProps } from 'next';
 import { getBasePageProps } from '@/lib/basePageProps';
+import { getFAQs } from '@/lib/content/contentService';
 import { Layout } from '@/components';
-import type { HomePageContentResult } from '@/lib/content/contentService';
-import type { GoogleReviews } from '@/types';
+import type { SiteSettings } from '@/types';
 
 interface FaqProps {
-  content: HomePageContentResult;
-  googleReviews: GoogleReviews;
+  content: SiteSettings;
+  faqItems: Array<{ question: string; answer: string }>;
   pageUrl: string;
+  publicConfig: {
+    sanityProjectId: string;
+    sanityDataset: string;
+  };
 }
 
-export default function Faq({ content, googleReviews, pageUrl }: FaqProps) {
+export default function Faq({ content, faqItems, pageUrl }: FaqProps) {
   return (
     <Layout content={content} pageUrl={pageUrl}>
       <div className="bg-white py-6 sm:py-8 lg:py-12">
@@ -25,10 +29,10 @@ export default function Faq({ content, googleReviews, pageUrl }: FaqProps) {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2 md:gap-8">
-            {content.faqItems.map(({ question, answer }, idx: number) => (
+            {faqItems.map(({ question, answer }, idx: number) => (
               <div className="rounded-lg bg-gray-100 p-5" key={idx}>
                 <div className="mb-4 flex items-center justify-between gap-4 border-b pb-4">
-                  <h3 className="font-semibold text-indigo-500 sm:text-lg md:text-xl">{question}</h3>
+                  <h3 className="font-semibold text-primary sm:text-lg md:text-xl">{question}</h3>
                 </div>
                 <p className="text-gray-500">{answer}</p>
               </div>
@@ -41,11 +45,13 @@ export default function Faq({ content, googleReviews, pageUrl }: FaqProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const props = await getBasePageProps({
-    pageUrl: 'faq',
-  });
+  const baseProps = await getBasePageProps({ pageUrl: 'faq' });
+  const faqItems = await getFAQs();
 
   return {
-    props,
+    props: {
+      ...baseProps,
+      faqItems,
+    },
   };
 };

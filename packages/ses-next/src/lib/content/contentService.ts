@@ -1,54 +1,45 @@
+import type { BlogPost, ServiceList, Team, Training, Social, SanityPortableText } from '@/types';
 import {
-  SanityDocumentSchema,
-  SanityDocument,
-  Homepage,
-  HomepageSchema,
-  BlogPost,
-  BlogPostSchema,
-  TermsAndConditions,
-  TermsAndConditionsSchema,
-  FAQ,
-  FAQSchema,
-  ProcessedBlogPost,
-  ProcessedServiceList,
-  ProcessedTeam,
-  ProcessedTraining,
-  ProcessedTestimonial,
-  Social,
-  SanityPortableText,
-} from '@/types';
-import { jsonFileCacher } from '@/lib/content/cache';
-import { buildFetchFromApi, CacheApiResponse } from '@/lib/content/contentApi';
-import { mapCompanyLogo, mapServices, mapTeam, mapTestimonials, mapTraining } from '@/lib/content/mappers';
+  getSiteSettings,
+  getHomepage,
+  getAllBlogPosts,
+  getAllFAQs,
+  getAllTermsAndConditions,
+  mapBlogPost,
+  mapHomepageServices,
+  mapHomepageTeam,
+  mapHomepageTraining,
+  mapSiteSettingsCompanyLogo,
+  mapSocialMedia,
+} from '@/lib/sanity/queries';
 
 // ============================================================================
 // TYPE DEFINITIONS
 // ============================================================================
 
-interface HomePageContentResult {
+export interface HomePageContentResult {
   baseUrl: string;
   companyName: string;
   companyLogo: string;
   contact: {
     phone: string;
-    blurbs?: string[];
-    callBack?: string;
+    blurbs: string[] | null;
+    callBack: string | null;
   };
   faqItems: Array<{ question: string; answer: string }>;
-  googleMapsLocation?: string;
-  googleMapsLocationPlaceUrl?: string;
+  googleMapsLocation: string | null;
+  googleMapsLocationPlaceUrl: string | null;
   meta: {
     title: string;
     description: string;
   };
-  services: ProcessedServiceList;
+  services: ServiceList;
   shortTitle: string;
   social: Social;
-  mainHeading?: string;
-  subHeading?: string;
-  team: ProcessedTeam;
-  training: ProcessedTraining[];
-  testimonials: ProcessedTestimonial[];
+  mainHeading: string | null;
+  subHeading: string | null;
+  team: Team;
+  training: Training[];
 }
 
 export interface ProcessedTermsAndConditions {
@@ -56,107 +47,27 @@ export interface ProcessedTermsAndConditions {
   terms: SanityPortableText;
 }
 
-type MapperFunction = (
-  fullContent: SanityDocument[],
-  item: Homepage,
-) => ProcessedServiceList | ProcessedTeam | ProcessedTraining[] | ProcessedTestimonial[] | string;
-
-// ============================================================================
-// HELPER FUNCTIONS
-// ============================================================================
-
-const getHomePage = (data: SanityDocument[]): Homepage => {
-  const homepage = data.find((doc): doc is Homepage => doc._type === 'homepage');
-  if (!homepage) {
-    throw new Error('Homepage document not found');
-  }
-  return HomepageSchema.parse(homepage);
-};
-
-const getFaqItems = (data: SanityDocument[]): FAQ[] => {
-  const faqItems = data.filter((doc): doc is FAQ => doc._type === 'faq');
-  return faqItems.map((faq) => FAQSchema.parse(faq));
-};
-
-const getBlogPostDocuments = (data: SanityDocument[]): BlogPost[] => {
-  const blogPosts = data.filter((doc): doc is BlogPost => doc._type === 'blog-post');
-  return blogPosts.map((post) => BlogPostSchema.parse(post));
-};
-
-const getTermsDocuments = (data: SanityDocument[]): TermsAndConditions[] => {
-  const termsDocuments = data.filter((doc): doc is TermsAndConditions => doc._type === 'terms-and-conditions');
-  return termsDocuments.map((terms) => TermsAndConditionsSchema.parse(terms));
-};
-
-const composeContent = (fullContent: SanityDocument[], item: Homepage) => {
-  return (...mappers: MapperFunction[]) => mappers.map((mapper) => mapper(fullContent, item));
-};
-
-const validateSanityData = (data: unknown[]): SanityDocument[] => {
-  return data.map((item, index) => {
-    try {
-      return SanityDocumentSchema.parse(item);
-    } catch (error) {
-      console.warn(`Invalid document at index ${index}:`, error);
-      throw new Error(`Failed to validate Sanity document at index ${index}`);
-    }
-  });
-};
-
-const fetchFromCacheOrApi = async (): Promise<CacheApiResponse> => {
-  const date = new Date();
-  const cacheKey = `content-data-${date.getMonth() + 1}-${date.getFullYear()}`;
-  const response = await jsonFileCacher(cacheKey, buildFetchFromApi);
-
-  // Validate the response structure
-  if (!response || !Array.isArray(response.result)) {
-    throw new Error('Invalid response structure from cache/API');
-  }
-
-  return {
-    result: validateSanityData(response.result),
-  };
-};
-
 // ============================================================================
 // EXPORTED FUNCTIONS
 // ============================================================================
 
-export const getHomePageContent = async (
-  contentFetch?: () => Promise<CacheApiResponse>,
-): Promise<HomePageContentResult> => {
+export const getHomePageContent = async (): Promise<HomePageContentResult> => {
   try {
-    const { result: fullContent } = contentFetch ? await contentFetch() : await fetchFromCacheOrApi();
-    const homepageItem = getHomePage(fullContent);
+    const [siteSettings, homepage, faqs] = await Promise.all([getSiteSettings(), getHomepage(), getAllFAQs()]);
 
-    const {
-      baseUrl,
-      companyName,
-      contact,
-      googleMapsLocation,
-      googleMapsLocationPlaceUrl,
-      meta,
-      shortTitle,
-      socialMedia: social = {},
-      mainHeading,
-      subHeading,
-    } = homepageItem;
+    const { baseUrl, companyName, googleMapsLocation, googleMapsLocationPlaceUrl, meta, shortTitle, socialMedia } =
+      siteSettings;
 
-    const contentResults = composeContent(fullContent, homepageItem)(
-      mapServices,
-      mapTeam,
-      mapTraining,
-      mapTestimonials,
-      mapCompanyLogo,
-    );
+    const { contact, mainHeading, subHeading } = homepage;
 
-    const services = contentResults[0] as ProcessedServiceList;
-    const team = contentResults[1] as ProcessedTeam;
-    const training = contentResults[2] as ProcessedTraining[];
-    const testimonials = contentResults[3] as ProcessedTestimonial[];
-    const companyLogo = contentResults[4] as string;
+    const social = mapSocialMedia(socialMedia);
 
-    const faqItems = getFaqItems(fullContent).map(({ question, answer }) => ({
+    const services = mapHomepageServices(homepage);
+    const team = mapHomepageTeam(homepage);
+    const training = mapHomepageTraining(homepage);
+    const companyLogo = mapSiteSettingsCompanyLogo(siteSettings);
+
+    const faqItems = faqs.map(({ question, answer }) => ({
       question,
       answer,
     }));
@@ -165,7 +76,11 @@ export const getHomePageContent = async (
       baseUrl,
       companyName,
       companyLogo,
-      contact,
+      contact: {
+        phone: contact.phone,
+        blurbs: contact.blurbs,
+        callBack: contact.callBack,
+      },
       faqItems,
       googleMapsLocation,
       googleMapsLocationPlaceUrl,
@@ -177,7 +92,6 @@ export const getHomePageContent = async (
       subHeading,
       team,
       training,
-      testimonials,
     };
   } catch (error) {
     console.error('Error in getHomePageContent:', error);
@@ -185,44 +99,19 @@ export const getHomePageContent = async (
   }
 };
 
-export const getBlogPosts = async (contentFetch?: () => Promise<CacheApiResponse>): Promise<ProcessedBlogPost[]> => {
+export const getBlogPosts = async (): Promise<BlogPost[]> => {
   try {
-    const { result: fullContent } = contentFetch ? await contentFetch() : await fetchFromCacheOrApi();
-    const blogPosts = getBlogPostDocuments(fullContent);
-
-    return blogPosts.map((post) => {
-      const { _id, description, body, title, tags, slug, publishedAt, photo } = post;
-
-      // Find the photo asset in the fullContent
-      const photoAsset = fullContent.find((doc) => doc._id === photo.asset._ref);
-      if (!photoAsset || !('url' in photoAsset)) {
-        throw new Error(`Photo asset not found for blog post: ${title}`);
-      }
-
-      return {
-        id: _id,
-        description,
-        body,
-        title,
-        tags,
-        slug: slug.current,
-        publishedAt,
-        photo: photoAsset.url as string,
-      };
-    });
+    const blogPosts = await getAllBlogPosts();
+    return blogPosts.map(mapBlogPost);
   } catch (error) {
     console.error('Error in getBlogPosts:', error);
     throw new Error('Failed to fetch blog posts');
   }
 };
 
-export const getTermsAndConditions = async (
-  contentFetch?: () => Promise<CacheApiResponse>,
-): Promise<ProcessedTermsAndConditions[]> => {
+export const getTermsAndConditions = async (): Promise<ProcessedTermsAndConditions[]> => {
   try {
-    const { result: fullContent } = contentFetch ? await contentFetch() : await fetchFromCacheOrApi();
-    const termsDocuments = getTermsDocuments(fullContent);
-
+    const termsDocuments = await getAllTermsAndConditions();
     return termsDocuments.map(({ _id, terms }) => ({
       id: _id,
       terms,
@@ -233,8 +122,15 @@ export const getTermsAndConditions = async (
   }
 };
 
-// ============================================================================
-// TYPE EXPORTS FOR CONSUMERS
-// ============================================================================
-
-export type { HomePageContentResult, CacheApiResponse };
+export const getFAQs = async (): Promise<Array<{ question: string; answer: string }>> => {
+  try {
+    const faqs = await getAllFAQs();
+    return faqs.map(({ question, answer }) => ({
+      question,
+      answer,
+    }));
+  } catch (error) {
+    console.error('Error in getFAQs:', error);
+    throw new Error('Failed to fetch FAQs');
+  }
+};
