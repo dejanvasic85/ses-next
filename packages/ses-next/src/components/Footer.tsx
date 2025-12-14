@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import Link from 'next/link';
 
 import { Icon } from '@/components/Icon/Icon';
-import { Social, ServiceList } from '@/types';
+import { Social, ServiceItem } from '@/types';
 
 interface ConditionalWrapProps {
   children: ReactNode;
@@ -28,7 +28,7 @@ interface Links {
 interface FooterProps {
   social: Social;
   links?: Links;
-  services: ServiceList;
+  services: ServiceItem[];
 }
 
 export function Footer({
@@ -85,7 +85,7 @@ export function Footer({
       </div>
       <div>
         <span className="footer-title">Services</span>
-        {services.items.map(({ name, linkToReadMore, slug }) => (
+        {services.map(({ name, linkToReadMore, slug }) => (
           <ConditionalWrap
             key={name}
             condition={!!linkToReadMore && !!slug}

@@ -2,17 +2,18 @@ import React, { ReactNode } from 'react';
 import { PageHead } from '@/components/PageHead';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
-import { LayoutContent } from '@/types';
+import { ServiceItem, SiteSettings } from '@/types';
 
 interface LayoutProps {
   children: ReactNode;
-  content: LayoutContent;
+  siteSettings: SiteSettings;
+  services: ServiceItem[];
   pageUrl: string;
   title?: string;
 }
 
-export function Layout({ children, content, pageUrl, title }: LayoutProps) {
-  const { companyName, companyLogo, contact, meta, services, shortTitle, social } = content;
+export function Layout({ children, siteSettings, services, pageUrl, title }: LayoutProps) {
+  const { companyName, companyLogo, phone, meta, shortTitle, social } = siteSettings;
   return (
     <>
       <PageHead
@@ -20,11 +21,11 @@ export function Layout({ children, content, pageUrl, title }: LayoutProps) {
         companyLogo={companyLogo}
         companyName={companyName}
         description={meta.description}
-        phone={contact.phone}
+        phone={phone}
         socialTitle={companyName}
         title={title || meta.title}
       />
-      <Navbar contactPhone={contact.phone} title={shortTitle} />
+      <Navbar contactPhone={phone} title={shortTitle} />
       <main>{children}</main>
       <Footer social={social} services={services} />
     </>

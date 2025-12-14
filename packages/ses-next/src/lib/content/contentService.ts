@@ -1,95 +1,69 @@
-import type { BlogPost, ServiceList, Team, Training, Social, SanityPortableText } from '@/types';
+import { createClient } from 'next-sanity';
+import { config } from '@/lib/config';
 import {
-  getSiteSettings,
-  getHomepage,
-  getAllBlogPosts,
-  getAllFAQs,
-  getAllTermsAndConditions,
+  type BlogPost,
+  type SiteSettings,
+  type ServiceItem,
+  type HomePageContent,
+  type TermsAndConditionsContent,
+  type FAQ,
+  type BlogPostContentModel,
+  type SanityTermsAndConditions,
+  SiteSettingsSchema,
+  HomepageSchema,
+  ServiceSchema,
+  BlogPostSchema,
+  FAQSchema,
+  TermsAndConditionsSchema,
+} from '@/types';
+import {
   mapBlogPost,
-  mapHomepageServices,
   mapHomepageTeam,
   mapHomepageTraining,
-  mapSiteSettingsCompanyLogo,
-  mapSocialMedia,
-} from '@/lib/sanity/queries';
+  mapService,
+  mapHomepageContact,
+  mapSiteSettings,
+} from '@/lib/content/mappers';
+import {
+  allBlogPostsQuery,
+  allFaqsQuery,
+  homepageQuery,
+  servicesQuery,
+  siteSettingsQuery,
+  blogPostBySlugQuery,
+  termsAndConditionsQuery,
+} from './queries';
 
 // ============================================================================
-// TYPE DEFINITIONS
+// INTERNAL SANITY CLIENT (NOT EXPORTED)
 // ============================================================================
 
-export interface HomePageContentResult {
-  baseUrl: string;
-  companyName: string;
-  companyLogo: string;
-  contact: {
-    phone: string;
-    blurbs: string[] | null;
-    callBack: string | null;
-  };
-  faqItems: Array<{ question: string; answer: string }>;
-  googleMapsLocation: string | null;
-  googleMapsLocationPlaceUrl: string | null;
-  meta: {
-    title: string;
-    description: string;
-  };
-  services: ServiceList;
-  shortTitle: string;
-  social: Social;
-  mainHeading: string | null;
-  subHeading: string | null;
-  team: Team;
-  training: Training[];
-}
-
-export interface ProcessedTermsAndConditions {
-  id: string;
-  terms: SanityPortableText;
-}
+const sanityClient = createClient({
+  projectId: config.sanityProjectId,
+  dataset: config.sanityDataset,
+  apiVersion: '2021-06-07',
+  useCdn: true,
+  perspective: 'published',
+});
 
 // ============================================================================
 // EXPORTED FUNCTIONS
 // ============================================================================
 
-export const getHomePageContent = async (): Promise<HomePageContentResult> => {
+export const getHomePageContent = async (): Promise<HomePageContent> => {
   try {
-    const [siteSettings, homepage, faqs] = await Promise.all([getSiteSettings(), getHomepage(), getAllFAQs()]);
+    const result = await sanityClient.fetch(homepageQuery);
+    const homepage = HomepageSchema.parse(result);
 
-    const { baseUrl, companyName, googleMapsLocation, googleMapsLocationPlaceUrl, meta, shortTitle, socialMedia } =
-      siteSettings;
-
-    const { contact, mainHeading, subHeading } = homepage;
-
-    const social = mapSocialMedia(socialMedia);
-
-    const services = mapHomepageServices(homepage);
     const team = mapHomepageTeam(homepage);
     const training = mapHomepageTraining(homepage);
-    const companyLogo = mapSiteSettingsCompanyLogo(siteSettings);
-
-    const faqItems = faqs.map(({ question, answer }) => ({
-      question,
-      answer,
-    }));
+    const contact = mapHomepageContact(homepage);
 
     return {
-      baseUrl,
-      companyName,
-      companyLogo,
-      contact: {
-        phone: contact.phone,
-        blurbs: contact.blurbs,
-        callBack: contact.callBack,
-      },
-      faqItems,
-      googleMapsLocation,
-      googleMapsLocationPlaceUrl,
-      meta,
-      services,
-      shortTitle,
-      social,
-      mainHeading,
-      subHeading,
+      contact,
+      services: homepage.services,
+      mainHeading: homepage.mainHeading,
+      subHeading: homepage.subHeading,
       team,
       training,
     };
@@ -101,20 +75,21 @@ export const getHomePageContent = async (): Promise<HomePageContentResult> => {
 
 export const getBlogPosts = async (): Promise<BlogPost[]> => {
   try {
-    const blogPosts = await getAllBlogPosts();
-    return blogPosts.map(mapBlogPost);
+    const result = await sanityClient.fetch(allBlogPostsQuery);
+    return result.map((post: unknown) => BlogPostSchema.parse(post)).map(mapBlogPost);
   } catch (error) {
     console.error('Error in getBlogPosts:', error);
     throw new Error('Failed to fetch blog posts');
   }
 };
 
-export const getTermsAndConditions = async (): Promise<ProcessedTermsAndConditions[]> => {
+export const getTermsAndConditions = async (): Promise<TermsAndConditionsContent[]> => {
   try {
-    const termsDocuments = await getAllTermsAndConditions();
-    return termsDocuments.map(({ _id, terms }) => ({
-      id: _id,
-      terms,
+    const result = await sanityClient.fetch(termsAndConditionsQuery);
+    const termsDocuments = result.map((terms: unknown) => TermsAndConditionsSchema.parse(terms));
+    return termsDocuments.map((doc: SanityTermsAndConditions) => ({
+      id: doc._id,
+      terms: doc.terms,
     }));
   } catch (error) {
     console.error('Error in getTermsAndConditions:', error);
@@ -124,13 +99,46 @@ export const getTermsAndConditions = async (): Promise<ProcessedTermsAndConditio
 
 export const getFAQs = async (): Promise<Array<{ question: string; answer: string }>> => {
   try {
-    const faqs = await getAllFAQs();
-    return faqs.map(({ question, answer }) => ({
-      question,
-      answer,
+    const result = await sanityClient.fetch(allFaqsQuery);
+    const faqs = result.map((faq: unknown) => FAQSchema.parse(faq));
+    return faqs.map((faq: FAQ) => ({
+      question: faq.question,
+      answer: faq.answer,
     }));
   } catch (error) {
     console.error('Error in getFAQs:', error);
     throw new Error('Failed to fetch FAQs');
+  }
+};
+
+export const getSiteSettings = async (): Promise<SiteSettings> => {
+  try {
+    const result = await sanityClient.fetch(siteSettingsQuery);
+    const siteSettings = SiteSettingsSchema.parse(result);
+    return mapSiteSettings(siteSettings);
+  } catch (error) {
+    console.error('Error in getSiteSettings:', error);
+    throw new Error('Failed to fetch site settings');
+  }
+};
+
+export const getServices = async (): Promise<ServiceItem[]> => {
+  try {
+    const result = await sanityClient.fetch(servicesQuery);
+    return result.map((item: unknown) => ServiceSchema.parse(item)).map(mapService);
+  } catch (error) {
+    console.error('Error in getServices:', error);
+    throw new Error('Failed to fetch services');
+  }
+};
+
+export const getBlogPostBySlug = async (slug: string): Promise<BlogPostContentModel | null> => {
+  try {
+    const result = await sanityClient.fetch(blogPostBySlugQuery, { slug });
+    if (!result) return null;
+    return BlogPostSchema.parse(result);
+  } catch (error) {
+    console.error('Error in getBlogPostBySlug:', error);
+    throw new Error('Failed to fetch blog post');
   }
 };

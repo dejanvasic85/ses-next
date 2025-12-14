@@ -1,30 +1,19 @@
-import { getSiteSettings, getHomepage, mapSiteSettings, mapHomepageServices } from '@/lib/sanity/queries';
 import { config } from '@/lib/config';
 import { BasePageProps } from '@/types';
+import { getSiteSettings, getServices } from '@/lib/content/contentService';
 
 interface GetBasePagePropsParams {
   pageUrl: string;
 }
 
 export async function getBasePageProps({ pageUrl }: GetBasePagePropsParams): Promise<BasePageProps> {
-  const [siteSettingsModel, homepageModel] = await Promise.all([getSiteSettings(), getHomepage()]);
-
-  const siteSettings = mapSiteSettings(siteSettingsModel);
-  const services = mapHomepageServices(homepageModel);
-
-  const content = {
-    ...siteSettings,
-    contact: {
-      phone: homepageModel.contact.phone,
-      blurbs: homepageModel.contact.blurbs,
-      callBack: homepageModel.contact.callBack,
-    },
-    services,
-  };
+  const [siteSettings, services] = await Promise.all([getSiteSettings(), getServices()]);
+  const canonicalUrl = new URL(pageUrl, siteSettings.baseUrl);
 
   return {
-    content,
-    pageUrl: `${content.baseUrl}${pageUrl}`,
+    siteSettings,
+    services,
+    pageUrl: canonicalUrl.toString(),
     publicConfig: {
       sanityProjectId: config.sanityProjectId,
       sanityDataset: config.sanityDataset,

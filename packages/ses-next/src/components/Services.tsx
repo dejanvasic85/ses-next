@@ -6,7 +6,7 @@ import { Container } from '@/components/Container';
 import { Heading } from '@/components/Heading';
 import { Icon } from '@/components/Icon/Icon';
 import type { IconMap } from '@/components/Icon/IconMap';
-import { ServiceList } from '@/types';
+import { type ServiceItem } from '@/types';
 
 const ConditionalWrap = ({
   children,
@@ -20,31 +20,13 @@ const ConditionalWrap = ({
   return condition ? wrapper(children) : children;
 };
 
-interface ServiceItem {
-  name: string;
-  blurb: string;
-  linkToReadMore?: boolean;
-  slug: string;
-  icon: string;
-  featuredImage?: {
-    src: string;
-    alt: string;
-  };
-}
-
-interface ServicesData {
-  blurbs?: string[];
-  items: ServiceItem[];
-}
-
 interface ServicesProps {
   className?: string;
-  services: ServiceList;
+  blurbs: string[];
+  services: ServiceItem[];
 }
 
-export const Services = ({ className, services }: ServicesProps) => {
-  const { blurbs, items } = services;
-
+export const Services = ({ className, blurbs, services }: ServicesProps) => {
   return (
     <div className={className}>
       <Container>
@@ -56,7 +38,7 @@ export const Services = ({ className, services }: ServicesProps) => {
         ))}
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center">
-          {items.map(({ name, blurb, linkToReadMore, slug, icon = 'bolt', featuredImage }, idx) => (
+          {services.map(({ name, blurb, linkToReadMore, slug, icon = 'bolt', featuredImage }, idx) => (
             <div className="group relative overflow-hidden rounded-lg " key={idx}>
               <Link href={`/services/${slug}`} className="absolute inset-0 z-10" prefetch={false}>
                 <span className="sr-only">View {name}</span>

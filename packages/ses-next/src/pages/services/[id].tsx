@@ -6,22 +6,28 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { googleReviews } from 'ses-reviews';
 
-import { getBlogPosts, getHomePageContent } from '@/lib/content/contentService';
+import { getBlogPosts, getServices } from '@/lib/content/contentService';
 import { getBasePageProps } from '@/lib/basePageProps';
 import { Layout, CustomImage, ImageCarousel } from '@/components';
-import type { HomePageContentResult } from '@/lib/content/contentService';
-import type { BlogPost, ServiceItem, GoogleReviews } from '@/types';
+import type { BlogPost, ServiceItem, GoogleReviews, BasePageProps } from '@/types';
 
-interface ServiceProps {
+interface ServiceProps extends BasePageProps {
   blogPosts: BlogPost[];
-  content: HomePageContentResult;
   googleReviews: GoogleReviews;
   service: ServiceItem;
   pageUrl: string;
   title: string;
 }
 
-export default function Service({ blogPosts, content, googleReviews: reviews, service, pageUrl, title }: ServiceProps) {
+export default function Service({
+  blogPosts,
+  googleReviews: reviews,
+  pageUrl,
+  service,
+  title,
+  services,
+  siteSettings,
+}: ServiceProps) {
   const { name, content: serviceContent } = service;
 
   const ratingCount = Number(reviews.numberOfReviews.replace('reviews', '').trim());
@@ -41,7 +47,7 @@ export default function Service({ blogPosts, content, googleReviews: reviews, se
     <>
       <LocalBusinessJsonLd
         type="LocalBusiness"
-        name={content.companyName}
+        name={siteSettings.companyName}
         description={service.description}
         address={{
           streetAddress: '61B Hansen St',
@@ -50,8 +56,8 @@ export default function Service({ blogPosts, content, googleReviews: reviews, se
           postalCode: '3025',
           addressCountry: 'AU',
         }}
-        telephone={content.contact.phone}
-        image={content.companyLogo}
+        telephone={siteSettings.phone}
+        image={siteSettings.companyLogo}
         url={pageUrl}
         aggregateRating={{
           ratingValue: ratingValue,
@@ -61,7 +67,7 @@ export default function Service({ blogPosts, content, googleReviews: reviews, se
         }}
         review={reviewsJson}
       />
-      <Layout content={content} pageUrl={pageUrl} title={title}>
+      <Layout services={services} siteSettings={siteSettings} pageUrl={pageUrl} title={title}>
         <div className="bg-white py-6 sm:py-8 lg:py-12">
           <article className="mx-auto px-4 md:px-8 max-w-screen-lg prose lg:prose-lg">
             <h1 className="text-center">{name}</h1>
@@ -127,9 +133,8 @@ export default function Service({ blogPosts, content, googleReviews: reviews, se
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const props = await getBasePageProps({ pageUrl: `services/${params?.id}` });
-  const content = props.content as HomePageContentResult;
-  const service = content.services.items.find(({ slug }) => slug === params?.id);
-  const [titlePrefix = ''] = content.meta.title.split('|');
+  const service = props.services.find(({ slug }) => slug === params?.id);
+  const [titlePrefix = ''] = props.siteSettings.meta.title.split('|');
   const posts = await getBlogPosts();
   const blogPosts = posts.filter(({ tags }) => tags.includes(params?.id as string));
 
@@ -145,8 +150,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const content = await getHomePageContent();
-  const paths = content.services.items
+  const services = await getServices();
+  const paths = services
     .filter(({ slug }) => slug)
     .map(({ slug }) => ({
       params: { id: slug },

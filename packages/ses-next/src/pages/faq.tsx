@@ -2,9 +2,9 @@ import { GetStaticProps } from 'next';
 import { getBasePageProps } from '@/lib/basePageProps';
 import { getFAQs } from '@/lib/content/contentService';
 import { Layout } from '@/components';
-import type { SiteSettings } from '@/types';
+import type { BasePageProps, SiteSettings } from '@/types';
 
-interface FaqProps {
+interface FaqProps extends BasePageProps {
   content: SiteSettings;
   faqItems: Array<{ question: string; answer: string }>;
   pageUrl: string;
@@ -14,9 +14,9 @@ interface FaqProps {
   };
 }
 
-export default function Faq({ content, faqItems, pageUrl }: FaqProps) {
+export default function Faq({ faqItems, pageUrl, services, siteSettings }: FaqProps) {
   return (
-    <Layout content={content} pageUrl={pageUrl}>
+    <Layout services={services} siteSettings={siteSettings} pageUrl={pageUrl}>
       <div className="bg-white py-6 sm:py-8 lg:py-12">
         <div className="container mx-auto max-w-screen-xl px-4 md:px-8">
           <div className="mb-10 md:mb-16">

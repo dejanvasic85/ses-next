@@ -1,7 +1,6 @@
 import { GetServerSideProps } from 'next';
-import { getHomePageContent, getBlogPosts } from '@/lib/content/contentService';
-import type { HomePageContentResult } from '@/lib/content/contentService';
-import type { BlogPost } from '@/types';
+import { getBlogPosts, getSiteSettings, getServices } from '@/lib/content/contentService';
+import type { BlogPost, ServiceItem, SiteSettings } from '@/types';
 
 const createLocXmlForUrl = (url: string): string => `
     <url>
@@ -9,14 +8,16 @@ const createLocXmlForUrl = (url: string): string => `
     </url>
 `;
 
-const generateSitemap = (content: HomePageContentResult, blogPosts: BlogPost[]): string => {
-  const {
-    baseUrl,
-    services: { items = [] },
-  } = content;
+type SitemapGenerateProps = {
+  blogPosts: BlogPost[];
+  services: ServiceItem[];
+  siteSettings: SiteSettings;
+};
 
+const generateSitemap = ({ blogPosts, services, siteSettings }: SitemapGenerateProps): string => {
+  const { baseUrl } = siteSettings;
   const knownPages = ['', 'faq', 'blog'].map((page) => createLocXmlForUrl(`${baseUrl}${page}`)).join(' ');
-  const servicePages = items.map(({ slug }) => createLocXmlForUrl(`${baseUrl}services/${slug}`)).join(' ');
+  const servicePages = services.map(({ slug }) => createLocXmlForUrl(`${baseUrl}services/${slug}`)).join(' ');
   const blogPostUrls = blogPosts.map(({ slug }) => createLocXmlForUrl(`${baseUrl}blog/${slug}`)).join(' ');
   const blogPostTagUrls = blogPosts
     .flatMap(({ tags }) => tags)
@@ -37,10 +38,15 @@ const Sitemap = () => {};
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   console.log('Page: sitemap getServerSideProps');
-  const content = await getHomePageContent();
+  const services = await getServices();
+  const siteSettings = await getSiteSettings();
   const blogPosts = await getBlogPosts();
 
-  const sitemap = generateSitemap(content, blogPosts);
+  const sitemap = generateSitemap({
+    blogPosts,
+    services,
+    siteSettings,
+  });
 
   res.setHeader('Content-Type', 'text/xml');
   // we send the XML to the browser

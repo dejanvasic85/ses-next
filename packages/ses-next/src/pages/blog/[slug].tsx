@@ -9,18 +9,16 @@ import { Layout, BlogLayout, CustomImage } from '@/components';
 import { getBasePageProps } from '@/lib/basePageProps';
 import { getBlogPosts } from '@/lib/content/contentService';
 import { tagsWithCountFromBlogs, type TagWithCount } from '@/lib/blogUtils';
-import type { HomePageContentResult } from '@/lib/content/contentService';
-import type { BlogPost } from '@/types';
+import type { BasePageProps, BlogPost } from '@/types';
 
-interface BlogPostProps {
-  content: HomePageContentResult;
+interface BlogPostProps extends BasePageProps {
   pageUrl: string;
   tagsWithCount: TagWithCount[];
   totalPosts: number;
   post: BlogPost;
 }
 
-export default function BlogPost({ content, pageUrl, tagsWithCount, totalPosts, post }: BlogPostProps) {
+export default function BlogPost({ pageUrl, tagsWithCount, totalPosts, post, services, siteSettings }: BlogPostProps) {
   return (
     <>
       <ArticleJsonLd
@@ -32,7 +30,7 @@ export default function BlogPost({ content, pageUrl, tagsWithCount, totalPosts, 
         datePublished={post.publishedAt}
         image={post.photo}
       />
-      <Layout content={content} pageUrl={pageUrl}>
+      <Layout services={services} siteSettings={siteSettings} pageUrl={pageUrl}>
         <BlogLayout tagsWithCount={tagsWithCount} totalPosts={totalPosts}>
           <article className="mx-auto w-full px-8 lg:px-0 prose lg:prose-lg">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-tight md:leading-none mb-12 md:text-left">
