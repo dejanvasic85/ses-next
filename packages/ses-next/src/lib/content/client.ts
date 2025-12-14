@@ -12,9 +12,9 @@ import type {
 import {
   FAQSchema,
   TermsAndConditionsSchema,
-  BlogPostContentModelSchema,
-  SiteSettingsContentModelSchema,
-  HomepageContentModelSchema,
+  BlogPostSchema,
+  SiteSettingsSchema,
+  HomepageSchema,
   ServiceSchema,
 } from '@/types';
 import {
@@ -45,12 +45,12 @@ const sanityClient = createClient({
 
 export const getSiteSettingsContent = async (): Promise<SiteSettingsContentModel> => {
   const result = await sanityClient.fetch(siteSettingsQuery);
-  return SiteSettingsContentModelSchema.parse(result);
+  return SiteSettingsSchema.parse(result);
 };
 
 export const getHomepage = async (): Promise<HomepageContentModel> => {
   const result = await sanityClient.fetch(homepageQuery);
-  return HomepageContentModelSchema.parse(result);
+  return HomepageSchema.parse(result);
 };
 
 export const getAllServicesContent = async (): Promise<ServiceContentModel[]> => {
@@ -60,13 +60,13 @@ export const getAllServicesContent = async (): Promise<ServiceContentModel[]> =>
 
 export const getAllBlogPosts = async (): Promise<BlogPostContentModel[]> => {
   const result = await sanityClient.fetch(allBlogPostsQuery);
-  return result.map((post: unknown) => BlogPostContentModelSchema.parse(post));
+  return result.map((post: unknown) => BlogPostSchema.parse(post));
 };
 
 export const getBlogPostBySlug = async (slug: string): Promise<BlogPostContentModel | null> => {
   const result = await sanityClient.fetch(blogPostBySlugQuery, { slug });
   if (!result) return null;
-  return BlogPostContentModelSchema.parse(result);
+  return BlogPostSchema.parse(result);
 };
 
 export const getAllFAQs = async (): Promise<FAQ[]> => {

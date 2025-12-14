@@ -132,17 +132,6 @@ export const FAQSchema = z.object({
   answer: z.string(),
 });
 
-export const TeamMemberSchema = z.object({
-  _type: z.literal('teamMember'),
-  _id: z.string(),
-  _rev: z.string().optional(),
-  _createdAt: z.string().optional(),
-  _updatedAt: z.string().optional(),
-  name: z.string(),
-  role: z.string(),
-  avatar: SanityImageSchema,
-});
-
 export const TrainingSchema = z.object({
   _type: z.literal('training'),
   _id: z.string(),
@@ -151,20 +140,6 @@ export const TrainingSchema = z.object({
   _updatedAt: z.string().optional(),
   trainingTitle: z.string(),
   icon: IconSchema,
-});
-
-export const TestimonialSchema = z.object({
-  _type: z.literal('testimonial'),
-  _id: z.string(),
-  _rev: z.string().optional(),
-  _createdAt: z.string().optional(),
-  _updatedAt: z.string().optional(),
-  fullName: z.string(),
-  comment: z.string(),
-  rating: z.number().min(1).max(5),
-  profileImgUrl: z.string().optional(),
-  date: z.string().optional(),
-  reviewUrl: z.string().optional(),
 });
 
 export const ShowcaseSchema = z.object({
@@ -194,21 +169,6 @@ export const ServiceSchema = z.object({
   content: SanityPortableTextSchema.nullable(),
 });
 
-export const BlogPostSchema = z.object({
-  _type: z.literal('blog-post'),
-  _id: z.string(),
-  _rev: z.string().optional(),
-  _createdAt: z.string().optional(),
-  _updatedAt: z.string().optional(),
-  title: z.string(),
-  description: z.string(),
-  slug: SanitySlugSchema,
-  photo: SanityImageSchema,
-  publishedAt: z.string(),
-  tags: z.array(z.string()),
-  body: SanityPortableTextSchema,
-});
-
 export const TermsAndConditionsSchema = z.object({
   _type: z.literal('terms-and-conditions'),
   _id: z.string(),
@@ -224,73 +184,6 @@ export const ContactSchema = z.object({
   callBack: z.string().nullable(),
 });
 
-export const HomepageSchema = z.object({
-  _type: z.literal('homepage'),
-  _id: z.string(),
-  _rev: z.string().optional(),
-  _createdAt: z.string().optional(),
-  _updatedAt: z.string().optional(),
-  mainHeading: z.string().optional(),
-  subHeading: z.string().optional(),
-  about: z.array(z.string()).optional(),
-  contact: z.object({
-    blurbs: z.array(z.string()).optional(),
-    callBack: z.string().optional(),
-    phone: z.string(),
-  }),
-  services: z.object({
-    blurbs: z.array(z.string()),
-  }),
-  team: z.object({
-    blurbs: z.array(z.string()).optional(),
-    members: z.array(TeamMemberSchema),
-  }),
-  training: z.array(TrainingSchema),
-});
-
-export const SiteSettingsSchema = z.object({
-  _type: z.literal('siteSettings'),
-  _id: z.string(),
-  _rev: z.string().optional(),
-  _createdAt: z.string().optional(),
-  _updatedAt: z.string().optional(),
-  companyName: z.string(),
-  companyLogo: SanityImageSchema,
-  shortTitle: z.string(),
-  baseUrl: z.url(),
-  phone: z.url(),
-  googleMapsLocation: z.url().optional(),
-  googleMapsLocationPlaceUrl: z.url().optional(),
-  meta: z.object({
-    title: z.string(),
-    description: z.string(),
-  }),
-  socialMedia: z
-    .object({
-      facebook: z.url().optional(),
-      linkedIn: z.url().optional(),
-      instagram: z.url().optional(),
-    })
-    .optional(),
-});
-
-// ============================================================================
-// UNION SCHEMA FOR ALL DOCUMENTS
-// ============================================================================
-
-export const SanityDocumentSchema = z.union([
-  FAQSchema,
-  TeamMemberSchema,
-  TrainingSchema,
-  TestimonialSchema,
-  ShowcaseSchema,
-  ServiceSchema,
-  BlogPostSchema,
-  TermsAndConditionsSchema,
-  HomepageSchema,
-  SiteSettingsSchema,
-]);
-
 // ============================================================================
 // CONTENT MODEL SCHEMAS (GROQ query results with resolved references)
 // ============================================================================
@@ -299,7 +192,7 @@ const SanityAssetSchema = z.object({
   url: z.url(),
 });
 
-export const TeamMemberContentModelSchema = z.object({
+export const TeamMemberSchema = z.object({
   _id: z.string(),
   _type: z.literal('teamMember'),
   name: z.string(),
@@ -309,7 +202,7 @@ export const TeamMemberContentModelSchema = z.object({
   }),
 });
 
-export const BlogPostContentModelSchema = z.object({
+export const BlogPostSchema = z.object({
   _id: z.string(),
   _type: z.literal('blog-post'),
   title: z.string(),
@@ -323,10 +216,7 @@ export const BlogPostContentModelSchema = z.object({
   body: SanityPortableTextSchema,
 });
 
-export const TrainingContentModelSchema = TrainingSchema;
-export const TestimonialContentModelSchema = TestimonialSchema;
-
-export const SiteSettingsContentModelSchema = z.object({
+export const SiteSettingsSchema = z.object({
   _id: z.string(),
   _type: z.literal('siteSettings'),
   companyName: z.string(),
@@ -351,7 +241,7 @@ export const SiteSettingsContentModelSchema = z.object({
     .nullable(),
 });
 
-export const HomepageContentModelSchema = z.object({
+export const HomepageSchema = z.object({
   _id: z.string(),
   _type: z.literal('homepage'),
   mainHeading: z.string().nullable(),
@@ -363,9 +253,9 @@ export const HomepageContentModelSchema = z.object({
   }),
   team: z.object({
     blurbs: z.array(z.string()).nullable(),
-    members: z.array(TeamMemberContentModelSchema),
+    members: z.array(TeamMemberSchema),
   }),
-  training: z.array(TrainingContentModelSchema),
+  training: z.array(TrainingSchema),
 });
 
 // ============================================================================
@@ -499,20 +389,15 @@ export type GoogleReview = z.infer<typeof GoogleReviewSchema>;
 export type GoogleReviews = z.infer<typeof GoogleReviewsSchema>;
 
 export type FAQ = z.infer<typeof FAQSchema>;
-export type SanityTeamMember = z.infer<typeof TeamMemberSchema>;
-export type SanityTraining = z.infer<typeof TrainingSchema>;
-export type SanityTestimonial = z.infer<typeof TestimonialSchema>;
 export type SanityTermsAndConditions = z.infer<typeof TermsAndConditionsSchema>;
-export type SanitySiteSettings = z.infer<typeof SiteSettingsSchema>;
-export type SanityDocument = z.infer<typeof SanityDocumentSchema>;
 
 export type ShowcaseContentModel = z.infer<typeof ShowcaseSchema>;
 export type ServiceContentModel = z.infer<typeof ServiceSchema>;
-export type TeamMemberContentModel = z.infer<typeof TeamMemberContentModelSchema>;
-export type BlogPostContentModel = z.infer<typeof BlogPostContentModelSchema>;
-export type TrainingContentModel = z.infer<typeof TrainingContentModelSchema>;
-export type SiteSettingsContentModel = z.infer<typeof SiteSettingsContentModelSchema>;
-export type HomepageContentModel = z.infer<typeof HomepageContentModelSchema>;
+export type TeamMemberContentModel = z.infer<typeof TeamMemberSchema>;
+export type BlogPostContentModel = z.infer<typeof BlogPostSchema>;
+export type TrainingContentModel = z.infer<typeof TrainingSchema>;
+export type SiteSettingsContentModel = z.infer<typeof SiteSettingsSchema>;
+export type HomepageContentModel = z.infer<typeof HomepageSchema>;
 
 // Other helper types
 export type Image = z.infer<typeof ImageSchema>;
