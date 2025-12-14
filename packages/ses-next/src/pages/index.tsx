@@ -4,8 +4,8 @@ import { googleReviews } from 'ses-reviews';
 
 import { About, Contact, Hero, Layout, Services } from '@/components';
 import { getBasePageProps } from '@/lib/basePageProps';
-import { getHomePageContent, type HomePageContentResult } from '@/lib/content/contentService';
-import type { BasePageProps, GoogleReviews, SiteSettings } from '@/types';
+import { getHomePageContent } from '@/lib/content/contentService';
+import type { BasePageProps, GoogleReviews, SiteSettings, HomePageContentResult } from '@/types';
 
 interface HomeProps extends BasePageProps {
   homepageContent: HomePageContentResult;

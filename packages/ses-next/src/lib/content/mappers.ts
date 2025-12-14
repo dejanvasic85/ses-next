@@ -1,69 +1,127 @@
-import { Team, Training, TeamMember, ServiceContentModel, HomepageContentModel, TeamMemberContentModel } from '@/types';
+import type {
+  BlogPost,
+  BlogPostContentModel,
+  ServiceItem,
+  ServiceContentModel,
+  Team,
+  TeamMember,
+  TeamMemberContentModel,
+  Training,
+  TrainingContentModel,
+  SiteSettingsContentModel,
+  SiteSettings,
+  Social,
+  HomepageContentModel,
+  ContactContentModel,
+} from '@/types';
 
-interface ImageGalleryItem {
-  alt: string;
-  src: string;
-}
+// ============================================================================
+// MAPPER FUNCTIONS (Convert ContentModel types to internal types)
+// ============================================================================
 
-interface FeaturedImage {
-  alt: string;
-  src: string;
-}
-
-export const mapServiceShowcaseGallery = (service: ServiceContentModel): ImageGalleryItem[] => {
-  const { showcase = [] } = service;
-
-  return (
-    showcase?.map((showcase) => ({
-      alt: showcase.title,
-      src: showcase.photo.asset.url,
-    })) ?? []
-  );
-};
-
-export const mapFeaturedImage = (service: ServiceContentModel): FeaturedImage | null => {
-  const { showcase = [] } = service;
-
-  const featuredShowcase = showcase?.find((showcase) => showcase.featured === true);
-
-  if (!featuredShowcase) {
-    return null;
-  }
+export const mapBlogPost = (model: BlogPostContentModel): BlogPost => {
+  const photoUrl = model.photo.asset.url;
 
   return {
-    alt: featuredShowcase.title,
-    src: featuredShowcase.photo.asset.url,
+    id: model._id,
+    title: model.title,
+    description: model.description,
+    slug: model.slug.current,
+    photo: photoUrl,
+    publishedAt: model.publishedAt,
+    tags: model.tags,
+    body: model.body,
   };
 };
 
-export const mapTeamMember = (teamMemberItem: TeamMemberContentModel): TeamMember => {
-  const { avatar, name, role } = teamMemberItem;
+export const mapService = (model: ServiceContentModel): ServiceItem => {
+  const imageGallery =
+    model.showcase?.map((item) => ({
+      alt: item.title,
+      src: item.photo.asset.url,
+    })) || null;
+
+  const featuredShowcase = model.showcase?.find((item) => item.featured === true);
+  const featuredImage = featuredShowcase
+    ? {
+        alt: featuredShowcase.title,
+        src: featuredShowcase.photo.asset.url,
+      }
+    : null;
 
   return {
-    avatar: avatar.asset.url,
-    fullName: name,
-    role: role,
+    id: model._id,
+    name: model.name,
+    blurb: model.blurb,
+    description: model.description,
+    linkToReadMore: model.linkToReadMore,
+    icon: model.icon,
+    slug: model.slug.current,
+    content: model.content,
+    imageGallery,
+    featuredImage,
   };
 };
 
-export const mapTeam = (homepageItem: HomepageContentModel): Team => {
-  const {
-    team: { blurbs, members },
-  } = homepageItem;
+export const mapTeamMember = (model: TeamMemberContentModel): TeamMember => {
+  const avatarUrl = model.avatar.asset.url;
 
   return {
-    blurbs: blurbs || [],
-    members: members.map(mapTeamMember),
+    avatar: avatarUrl,
+    fullName: model.name,
+    role: model.role,
   };
 };
 
-export const mapTraining = (homepageItem: HomepageContentModel): Training[] => {
-  const { training } = homepageItem;
+export const mapTraining = (model: TrainingContentModel): Training => {
+  return {
+    trainingTitle: model.trainingTitle,
+    icon: model.icon,
+  };
+};
 
-  return training.map((t) => {
-    return {
-      trainingTitle: t.trainingTitle,
-      icon: t.icon,
-    };
-  });
+export const mapHomepageTeam = (model: HomepageContentModel): Team => {
+  return {
+    blurbs: model.team.blurbs ?? [],
+    members: model.team.members.map(mapTeamMember),
+  };
+};
+
+export const mapHomepageTraining = (model: HomepageContentModel): Training[] => {
+  return model.training.map(mapTraining);
+};
+
+export const mapHomepageContact = (model: HomepageContentModel): ContactContentModel => {
+  return {
+    phone: model.contact.phone,
+    blurbs: model.contact.blurbs,
+    callBack: model.contact.callBack,
+  };
+};
+
+export const mapSocialMedia = (
+  socialMedia?: { facebook?: string | null; instagram?: string | null; linkedIn?: string | null } | null,
+): Social => {
+  return {
+    facebook: socialMedia?.facebook || null,
+    instagram: socialMedia?.instagram || null,
+    linkedIn: socialMedia?.linkedIn || null,
+    twitter: null,
+  };
+};
+
+export const mapSiteSettings = (model: SiteSettingsContentModel): SiteSettings => {
+  const social = mapSocialMedia(model.socialMedia);
+
+  return {
+    companyName: model.companyName,
+    companyLogo: model.companyLogo.asset.url,
+    shortTitle: model.shortTitle,
+    baseUrl: model.baseUrl,
+    googleMapsLocation: model.googleMapsLocation,
+    googleMapsLocationPlaceUrl: model.googleMapsLocationPlaceUrl,
+    meta: model.meta,
+    social,
+    phone: model.phone,
+  };
 };

@@ -2,8 +2,8 @@ import { GetStaticProps } from 'next';
 import { PortableText } from '@portabletext/react';
 import { Layout, CustomImage } from '@/components';
 import { getBasePageProps } from '@/lib/basePageProps';
-import { getTermsAndConditions, ProcessedTermsAndConditions } from '@/lib/content/contentService';
-import { BasePageProps } from '@/types';
+import { getTermsAndConditions } from '@/lib/content/contentService';
+import type { BasePageProps, ProcessedTermsAndConditions } from '@/types';
 
 interface TermsProps extends BasePageProps {
   pageUrl: string;

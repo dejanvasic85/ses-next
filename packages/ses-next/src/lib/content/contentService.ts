@@ -1,12 +1,9 @@
 import type {
   BlogPost,
-  Team,
-  Training,
-  ServiceItem,
-  Social,
-  SanityPortableText,
   SiteSettings,
-  ContactContentModel,
+  ServiceItem,
+  HomePageContentResult,
+  ProcessedTermsAndConditions,
 } from '@/types';
 import {
   getHomepage,
@@ -15,6 +12,8 @@ import {
   getAllTermsAndConditions,
   getAllServicesContent,
   getSiteSettingsContent,
+} from '@/lib/content/client';
+import {
   mapBlogPost,
   mapHomepageTeam,
   mapHomepageTraining,
@@ -22,38 +21,7 @@ import {
   mapSocialMedia,
   mapHomepageContact,
   mapSiteSettings,
-} from '@/lib/content/queries';
-
-// ============================================================================
-// TYPE DEFINITIONS
-// ============================================================================
-
-export interface HomePageContentResult {
-  baseUrl: string;
-  companyName: string;
-  companyLogo: string;
-  contact: ContactContentModel;
-  googleMapsLocation: string | null;
-  googleMapsLocationPlaceUrl: string | null;
-  meta: {
-    title: string;
-    description: string;
-  };
-  services: {
-    blurbs: string[] | null;
-  };
-  shortTitle: string;
-  social: Social;
-  mainHeading: string | null;
-  subHeading: string | null;
-  team: Team;
-  training: Training[];
-}
-
-export interface ProcessedTermsAndConditions {
-  id: string;
-  terms: SanityPortableText;
-}
+} from '@/lib/content/mappers';
 
 // ============================================================================
 // EXPORTED FUNCTIONS

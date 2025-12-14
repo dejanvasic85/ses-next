@@ -6,11 +6,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { googleReviews } from 'ses-reviews';
 
-import { getBlogPosts, getHomePageContent } from '@/lib/content/contentService';
+import { getBlogPosts, getHomePageContent, getServices } from '@/lib/content/contentService';
 import { getBasePageProps } from '@/lib/basePageProps';
 import { Layout, CustomImage, ImageCarousel } from '@/components';
-import { type HomePageContentResult, getServices } from '@/lib/content/contentService';
-import type { BlogPost, ServiceItem, GoogleReviews, BasePageProps } from '@/types';
+import type { BlogPost, ServiceItem, GoogleReviews, BasePageProps, HomePageContentResult } from '@/types';
 
 interface ServiceProps extends BasePageProps {
   blogPosts: BlogPost[];

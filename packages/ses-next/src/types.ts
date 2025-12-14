@@ -61,12 +61,10 @@ export const SanitySlugSchema = z.object({
   _type: z.literal('slug'),
 });
 
-export const SanityMarkDefSchema = z
-  .object({
-    _key: z.string(),
-    _type: z.string(),
-  })
-  .passthrough();
+export const SanityMarkDefSchema = z.object({
+  _key: z.string(),
+  _type: z.string(),
+});
 
 export const SanityBlockSchema = z.object({
   _type: z.literal('block'),
@@ -298,66 +296,60 @@ export const SanityDocumentSchema = z.union([
 // ============================================================================
 
 const SanityAssetSchema = z.object({
-  url: z.string().url(),
+  url: z.url(),
 });
 
-export const TeamMemberContentModelSchema = z
-  .object({
-    _id: z.string(),
-    _type: z.literal('teamMember'),
-    name: z.string(),
-    role: z.string(),
-    avatar: z.object({
-      asset: SanityAssetSchema,
-    }),
-  })
-  .passthrough();
+export const TeamMemberContentModelSchema = z.object({
+  _id: z.string(),
+  _type: z.literal('teamMember'),
+  name: z.string(),
+  role: z.string(),
+  avatar: z.object({
+    asset: SanityAssetSchema,
+  }),
+});
 
-export const BlogPostContentModelSchema = z
-  .object({
-    _id: z.string(),
-    _type: z.literal('blog-post'),
-    title: z.string(),
-    description: z.string(),
-    slug: SanitySlugSchema,
-    photo: z.object({
-      asset: SanityAssetSchema,
-    }),
-    publishedAt: z.string(),
-    tags: z.array(z.string()),
-    body: SanityPortableTextSchema,
-  })
-  .passthrough();
+export const BlogPostContentModelSchema = z.object({
+  _id: z.string(),
+  _type: z.literal('blog-post'),
+  title: z.string(),
+  description: z.string(),
+  slug: SanitySlugSchema,
+  photo: z.object({
+    asset: SanityAssetSchema,
+  }),
+  publishedAt: z.string(),
+  tags: z.array(z.string()),
+  body: SanityPortableTextSchema,
+});
 
 export const TrainingContentModelSchema = TrainingSchema;
 export const TestimonialContentModelSchema = TestimonialSchema;
 
-export const SiteSettingsContentModelSchema = z
-  .object({
-    _id: z.string(),
-    _type: z.literal('siteSettings'),
-    companyName: z.string(),
-    companyLogo: z.object({
-      asset: SanityAssetSchema,
-    }),
-    shortTitle: z.string(),
-    baseUrl: z.string().url(),
-    phone: z.string(),
-    googleMapsLocation: z.string().url().nullable(),
-    googleMapsLocationPlaceUrl: z.string().url().nullable(),
-    meta: z.object({
-      title: z.string(),
-      description: z.string(),
-    }),
-    socialMedia: z
-      .object({
-        facebook: z.string().url().nullable(),
-        linkedIn: z.string().url().nullable(),
-        instagram: z.string().url().nullable(),
-      })
-      .nullable(),
-  })
-  .passthrough();
+export const SiteSettingsContentModelSchema = z.object({
+  _id: z.string(),
+  _type: z.literal('siteSettings'),
+  companyName: z.string(),
+  companyLogo: z.object({
+    asset: SanityAssetSchema,
+  }),
+  shortTitle: z.string(),
+  baseUrl: z.url(),
+  phone: z.string(),
+  googleMapsLocation: z.url().nullable(),
+  googleMapsLocationPlaceUrl: z.url().nullable(),
+  meta: z.object({
+    title: z.string(),
+    description: z.string(),
+  }),
+  socialMedia: z
+    .object({
+      facebook: z.url().nullable(),
+      linkedIn: z.url().nullable(),
+      instagram: z.url().nullable(),
+    })
+    .nullable(),
+});
 
 export const HomepageContentModelSchema = z.object({
   _id: z.string(),
@@ -527,3 +519,34 @@ export type Image = z.infer<typeof ImageSchema>;
 export type Social = z.infer<typeof SocialSchema>;
 export type Meta = z.infer<typeof MetaSchema>;
 export type ContactContentModel = z.infer<typeof ContactSchema>;
+
+// ============================================================================
+// SERVICE LAYER TYPES
+// ============================================================================
+
+export type HomePageContentResult = {
+  baseUrl: string;
+  companyName: string;
+  companyLogo: string;
+  contact: ContactContentModel;
+  googleMapsLocation: string | null;
+  googleMapsLocationPlaceUrl: string | null;
+  meta: {
+    title: string;
+    description: string;
+  };
+  services: {
+    blurbs: string[] | null;
+  };
+  shortTitle: string;
+  social: Social;
+  mainHeading: string | null;
+  subHeading: string | null;
+  team: Team;
+  training: Training[];
+};
+
+export type ProcessedTermsAndConditions = {
+  id: string;
+  terms: SanityPortableText;
+};
