@@ -111,14 +111,6 @@ export const GoogleReviewsSchema = z.object({
 });
 
 // ============================================================================
-// SANITY API RESPONSE SCHEMAS
-// ============================================================================
-
-export const SanityApiResponseSchema = z.object({
-  result: z.array(z.unknown()),
-});
-
-// ============================================================================
 // DOCUMENT SCHEMAS (Based on Sanity schemas)
 // ============================================================================
 
@@ -364,6 +356,22 @@ export type BasePageProps = {
   services: ServiceItem[];
 };
 
+export type HomePageContent = {
+  contact: ContactContentModel;
+  services: {
+    blurbs: string[] | null;
+  };
+  mainHeading: string | null;
+  subHeading: string | null;
+  team: Team;
+  training: Training[];
+};
+
+export type TermsAndConditionsContent = {
+  id: string;
+  terms: SanityPortableText;
+};
+
 // ============================================================================
 // EMAIL TEMPLATE TYPES
 // ============================================================================
@@ -382,7 +390,6 @@ export type SanitySlug = z.infer<typeof SanitySlugSchema>;
 export type SanityBlock = z.infer<typeof SanityBlockSchema>;
 export type SanityPortableText = z.infer<typeof SanityPortableTextSchema>;
 export type SanityMarkDef = z.infer<typeof SanityMarkDefSchema>;
-export type SanityApiResponse = z.infer<typeof SanityApiResponseSchema>;
 
 export type GoogleReviewer = z.infer<typeof GoogleReviewerSchema>;
 export type GoogleReview = z.infer<typeof GoogleReviewSchema>;
@@ -398,29 +405,7 @@ export type BlogPostContentModel = z.infer<typeof BlogPostSchema>;
 export type TrainingContentModel = z.infer<typeof TrainingSchema>;
 export type SiteSettingsContentModel = z.infer<typeof SiteSettingsSchema>;
 export type HomepageContentModel = z.infer<typeof HomepageSchema>;
-
-// Other helper types
 export type Image = z.infer<typeof ImageSchema>;
 export type Social = z.infer<typeof SocialSchema>;
 export type Meta = z.infer<typeof MetaSchema>;
 export type ContactContentModel = z.infer<typeof ContactSchema>;
-
-// ============================================================================
-// SERVICE LAYER TYPES
-// ============================================================================
-
-export type HomePageContent = {
-  contact: ContactContentModel;
-  services: {
-    blurbs: string[] | null;
-  };
-  mainHeading: string | null;
-  subHeading: string | null;
-  team: Team;
-  training: Training[];
-};
-
-export type ProcessedTermsAndConditions = {
-  id: string;
-  terms: SanityPortableText;
-};

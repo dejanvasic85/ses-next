@@ -3,11 +3,11 @@ import { PortableText } from '@portabletext/react';
 import { Layout, CustomImage } from '@/components';
 import { getBasePageProps } from '@/lib/basePageProps';
 import { getTermsAndConditions } from '@/lib/content/contentService';
-import type { BasePageProps, ProcessedTermsAndConditions } from '@/types';
+import type { BasePageProps, TermsAndConditionsContent } from '@/types';
 
 interface TermsProps extends BasePageProps {
   pageUrl: string;
-  termsContent: ProcessedTermsAndConditions;
+  termsContent: TermsAndConditionsContent;
 }
 
 export default function Terms({ pageUrl, termsContent, services, siteSettings }: TermsProps) {
