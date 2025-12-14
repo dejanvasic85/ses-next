@@ -1,10 +1,9 @@
-import { sanityClient } from '@/lib/sanity/client';
+import { sanityClient } from '@/lib/content/client';
 import type {
   FAQ,
   BlogPost,
   BlogPostContentModel,
   ServiceItem,
-  ServiceList,
   ServiceContentModel,
   Team,
   TeamMember,
@@ -35,8 +34,10 @@ const siteSettingsQuery = `*[_type == "siteSettings"][0]{
   _id,
   _type,
   companyName,
-  companyLogo{
-    asset->{
+  companyLogo {
+    _type,
+    asset -> {
+      _type,
       _id,
       url
     }
@@ -59,38 +60,18 @@ const homepageQuery = `*[_type == "homepage"][0]{
   contact,
   services {
     blurbs,
-    items[]->{
-      _id,
-      _type,
-      name,
-      description,
-      blurb,
-      slug,
-      linkToReadMore,
-      icon,
-      content,
-      showcase[]->{
-        _id,
-        _type,
-        title,
-        featured,
-        photo{
-          asset->{
-            url
-          }
-        }
-      }
-    }
   },
-  team{
+  team {
     blurbs,
-    members[]->{
+    members[] -> {
       _id,
       _type,
       name,
       role,
       avatar{
         asset->{
+          _type,
+          _id,
           url
         }
       }
@@ -112,7 +93,32 @@ const servicesQuery = `*[_type == "service"]{
   blurb,
   slug,
   linkToReadMore,
-  icon
+  icon,
+  showcase[] -> {
+    _id,
+    _type,
+    title,
+    photo {
+      _type,
+      asset->{
+        _id,
+        _type,
+        url
+      }
+    },
+    featured
+  },
+  content[]{
+    ...,
+    _type == "image" => {
+      ...,
+      asset->{
+        _type,
+        _id,
+        url
+      }
+    }
+  }
 }`;
 
 const allBlogPostsQuery = `*[_type == "blog-post"] | order(publishedAt desc){
@@ -121,14 +127,27 @@ const allBlogPostsQuery = `*[_type == "blog-post"] | order(publishedAt desc){
   title,
   description,
   slug,
-  photo{
-    asset->{
+  photo {
+    _type,
+    asset -> {
+      _type,
+      _id,
       url
     }
   },
   publishedAt,
   tags,
-  body
+  body[]{
+    ...,
+    _type == "image" => {
+      ...,
+      asset->{
+        _type,
+        _id,
+        url
+      }
+    }
+  }
 }`;
 
 const blogPostBySlugQuery = `*[_type == "blog-post" && slug.current == $slug][0]{
@@ -137,14 +156,27 @@ const blogPostBySlugQuery = `*[_type == "blog-post" && slug.current == $slug][0]
   title,
   description,
   slug,
-  photo{
+  photo {
+    _type,
     asset->{
+      _type,
+      _id,
       url
     }
   },
   publishedAt,
   tags,
-  body
+  body[]{
+    ...,
+    _type == "image" => {
+      ...,
+      asset->{
+        _type,
+        _id,
+        url
+      }
+    }
+  }
 }`;
 
 const allFaqsQuery = `*[_type == "faq"]{
@@ -157,7 +189,17 @@ const allFaqsQuery = `*[_type == "faq"]{
 const termsAndConditionsQuery = `*[_type == "terms-and-conditions"]{
   _id,
   _type,
-  terms
+  terms[]{
+    ...,
+    _type == "image" => {
+      ...,
+      asset->{
+        _type,
+        _id,
+        url
+      }
+    }
+  }
 }`;
 
 // ============================================================================
@@ -265,16 +307,9 @@ export const mapTraining = (model: TrainingContentModel): Training => {
   };
 };
 
-export const mapHomepageServices = (model: HomepageContentModel): ServiceList => {
-  return {
-    blurbs: model.services.blurbs,
-    items: model.services.items.map(mapService),
-  };
-};
-
 export const mapHomepageTeam = (model: HomepageContentModel): Team => {
   return {
-    blurbs: model.team.blurbs,
+    blurbs: model.team.blurbs ?? [],
     members: model.team.members.map(mapTeamMember),
   };
 };

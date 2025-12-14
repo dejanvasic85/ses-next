@@ -23,7 +23,6 @@ interface ServiceProps extends BasePageProps {
 
 export default function Service({
   blogPosts,
-  content,
   googleReviews: reviews,
   pageUrl,
   service,
@@ -50,7 +49,7 @@ export default function Service({
     <>
       <LocalBusinessJsonLd
         type="LocalBusiness"
-        name={content.companyName}
+        name={siteSettings.companyName}
         description={service.description}
         address={{
           streetAddress: '61B Hansen St',
@@ -59,8 +58,8 @@ export default function Service({
           postalCode: '3025',
           addressCountry: 'AU',
         }}
-        telephone={content.contact.phone}
-        image={content.companyLogo}
+        telephone={siteSettings.phone}
+        image={siteSettings.companyLogo}
         url={pageUrl}
         aggregateRating={{
           ratingValue: ratingValue,

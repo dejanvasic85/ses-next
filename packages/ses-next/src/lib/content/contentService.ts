@@ -1,6 +1,5 @@
 import type {
   BlogPost,
-  ServiceList,
   Team,
   Training,
   ServiceItem,
@@ -17,14 +16,13 @@ import {
   getAllServicesContent,
   getSiteSettingsContent,
   mapBlogPost,
-  mapHomepageServices,
   mapHomepageTeam,
   mapHomepageTraining,
   mapService,
   mapSocialMedia,
   mapHomepageContact,
   mapSiteSettings,
-} from '@/lib/sanity/queries';
+} from '@/lib/content/queries';
 
 // ============================================================================
 // TYPE DEFINITIONS
@@ -41,7 +39,9 @@ export interface HomePageContentResult {
     title: string;
     description: string;
   };
-  services: ServiceList;
+  services: {
+    blurbs: string[] | null;
+  };
   shortTitle: string;
   social: Social;
   mainHeading: string | null;
@@ -76,7 +76,6 @@ export const getHomePageContent = async (siteSettings: SiteSettings): Promise<Ho
     const { mainHeading, subHeading } = homepage;
 
     const social = mapSocialMedia(socialMedia);
-    const services = mapHomepageServices(homepage);
     const team = mapHomepageTeam(homepage);
     const training = mapHomepageTraining(homepage);
     const contact = mapHomepageContact(homepage);
@@ -90,7 +89,7 @@ export const getHomePageContent = async (siteSettings: SiteSettings): Promise<Ho
       googleMapsLocation,
       googleMapsLocationPlaceUrl,
       meta,
-      services,
+      services: homepage.services,
       shortTitle,
       social,
       mainHeading,

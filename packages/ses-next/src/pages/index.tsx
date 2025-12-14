@@ -69,7 +69,7 @@ export default function Home({ homepageContent, googleReviews, pageUrl, services
           subHeading={subHeading}
         />
         <section id="services" className="mt-32 pt-24">
-          <Services services={homepageContent.services} className="mt-12" />
+          <Services services={services} blurbs={homepageContent.services.blurbs ?? []} className="mt-12" />
         </section>
         <section id="about" className="mt-16 pt-24">
           <About team={team} testimonials={reviews} googleReviewsUrl={googleMapsLocationPlaceUrl} training={training} />

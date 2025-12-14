@@ -48,14 +48,12 @@ export const IconSchema = z.enum([
   'x',
 ]);
 
-export const SanityImageAssetSchema = z.object({
-  _ref: z.string(),
-  _type: z.literal('reference'),
-});
-
 export const SanityImageSchema = z.object({
-  asset: SanityImageAssetSchema,
   _type: z.literal('image'),
+  asset: z.object({
+    _id: z.string().optional(),
+    url: z.url(),
+  }),
 });
 
 export const SanitySlugSchema = z.object({
@@ -179,7 +177,7 @@ export const ShowcaseSchema = z.object({
   _updatedAt: z.string().optional(),
   title: z.string(),
   photo: SanityImageSchema,
-  featured: z.boolean().optional(),
+  featured: z.boolean().nullable(),
 });
 
 export const ServiceSchema = z.object({
@@ -192,10 +190,10 @@ export const ServiceSchema = z.object({
   description: z.string(),
   blurb: z.string(),
   slug: SanitySlugSchema,
-  linkToReadMore: z.boolean().optional(),
+  linkToReadMore: z.boolean().nullable(),
   icon: IconSchema,
-  showcase: z.array(ShowcaseSchema).optional(),
-  content: SanityPortableTextSchema.optional(),
+  showcase: z.array(ShowcaseSchema).nullable(),
+  content: SanityPortableTextSchema.nullable(),
 });
 
 export const BlogPostSchema = z.object({
@@ -243,14 +241,13 @@ export const HomepageSchema = z.object({
     phone: z.string(),
   }),
   services: z.object({
-    blurbs: z.array(z.string()).optional(),
-    items: z.array(SanityReferenceSchema),
+    blurbs: z.array(z.string()),
   }),
   team: z.object({
     blurbs: z.array(z.string()).optional(),
-    members: z.array(SanityReferenceSchema),
+    members: z.array(TeamMemberSchema),
   }),
-  training: z.array(SanityReferenceSchema),
+  training: z.array(TrainingSchema),
 });
 
 export const SiteSettingsSchema = z.object({
@@ -280,31 +277,6 @@ export const SiteSettingsSchema = z.object({
 });
 
 // ============================================================================
-// SANITY ASSET SCHEMAS
-// ============================================================================
-
-export const SanityImageAssetDocumentSchema = z.object({
-  _type: z.literal('sanity.imageAsset'),
-  _id: z.string(),
-  _rev: z.string().optional(),
-  _createdAt: z.string().optional(),
-  _updatedAt: z.string().optional(),
-  url: z.url(),
-  originalFilename: z.string().optional(),
-  size: z.number().optional(),
-  metadata: z
-    .object({
-      dimensions: z
-        .object({
-          width: z.number(),
-          height: z.number(),
-        })
-        .optional(),
-    })
-    .optional(),
-});
-
-// ============================================================================
 // UNION SCHEMA FOR ALL DOCUMENTS
 // ============================================================================
 
@@ -319,7 +291,6 @@ export const SanityDocumentSchema = z.union([
   TermsAndConditionsSchema,
   HomepageSchema,
   SiteSettingsSchema,
-  SanityImageAssetDocumentSchema,
 ]);
 
 // ============================================================================
@@ -388,25 +359,22 @@ export const SiteSettingsContentModelSchema = z
   })
   .passthrough();
 
-export const HomepageContentModelSchema = z
-  .object({
-    _id: z.string(),
-    _type: z.literal('homepage'),
-    mainHeading: z.string().nullable(),
-    subHeading: z.string().nullable(),
-    about: z.array(z.string()).nullable().optional(),
-    contact: ContactSchema,
-    services: z.object({
-      blurbs: z.array(z.string()).nullable(),
-      items: z.array(ServiceSchema),
-    }),
-    team: z.object({
-      blurbs: z.array(z.string()).nullable(),
-      members: z.array(TeamMemberContentModelSchema),
-    }),
-    training: z.array(TrainingContentModelSchema),
-  })
-  .passthrough();
+export const HomepageContentModelSchema = z.object({
+  _id: z.string(),
+  _type: z.literal('homepage'),
+  mainHeading: z.string().nullable(),
+  subHeading: z.string().nullable(),
+  about: z.array(z.string()).nullable().optional(),
+  contact: ContactSchema,
+  services: z.object({
+    blurbs: z.array(z.string()).nullable(),
+  }),
+  team: z.object({
+    blurbs: z.array(z.string()).nullable(),
+    members: z.array(TeamMemberContentModelSchema),
+  }),
+  training: z.array(TrainingContentModelSchema),
+});
 
 // ============================================================================
 // MAPPED TYPES (for frontend use - no schemas needed, manually constructed)
@@ -476,13 +444,8 @@ export type ServiceItem = {
   content: SanityPortableText | null;
 };
 
-export type ServiceList = {
-  blurbs: string[] | null;
-  items: ServiceItem[];
-};
-
 export type Team = {
-  blurbs: string[] | null;
+  blurbs: string[];
   members: TeamMember[];
 };
 
@@ -548,9 +511,7 @@ export type SanityTeamMember = z.infer<typeof TeamMemberSchema>;
 export type SanityTraining = z.infer<typeof TrainingSchema>;
 export type SanityTestimonial = z.infer<typeof TestimonialSchema>;
 export type SanityTermsAndConditions = z.infer<typeof TermsAndConditionsSchema>;
-export type SanityHomepage = z.infer<typeof HomepageSchema>;
 export type SanitySiteSettings = z.infer<typeof SiteSettingsSchema>;
-export type SanityImageAssetDocument = z.infer<typeof SanityImageAssetDocumentSchema>;
 export type SanityDocument = z.infer<typeof SanityDocumentSchema>;
 
 export type ShowcaseContentModel = z.infer<typeof ShowcaseSchema>;
