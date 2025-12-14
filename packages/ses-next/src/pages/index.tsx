@@ -5,10 +5,10 @@ import { googleReviews } from 'ses-reviews';
 import { About, Contact, Hero, Layout, Services } from '@/components';
 import { getBasePageProps } from '@/lib/basePageProps';
 import { getHomePageContent } from '@/lib/content/contentService';
-import type { BasePageProps, GoogleReviews, SiteSettings, HomePageContentResult } from '@/types';
+import type { BasePageProps, GoogleReviews, SiteSettings, HomePageContent } from '@/types';
 
 interface HomeProps extends BasePageProps {
-  homepageContent: HomePageContentResult;
+  homepageContent: HomePageContent;
   googleReviews: GoogleReviews;
   pageUrl: string;
 }
@@ -84,7 +84,7 @@ export default function Home({ homepageContent, googleReviews, pageUrl, services
 
 export const getStaticProps: GetStaticProps = async () => {
   const baseProps = await getBasePageProps({ pageUrl: '' });
-  const homepageContent = await getHomePageContent(baseProps.siteSettings);
+  const homepageContent = await getHomePageContent();
 
   return {
     props: {

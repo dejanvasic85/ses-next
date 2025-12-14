@@ -1,10 +1,4 @@
-import type {
-  BlogPost,
-  SiteSettings,
-  ServiceItem,
-  HomePageContentResult,
-  ProcessedTermsAndConditions,
-} from '@/types';
+import type { BlogPost, SiteSettings, ServiceItem, HomePageContent, ProcessedTermsAndConditions } from '@/types';
 import {
   getHomepage,
   getAllBlogPosts,
@@ -27,41 +21,19 @@ import {
 // EXPORTED FUNCTIONS
 // ============================================================================
 
-export const getHomePageContent = async (siteSettings: SiteSettings): Promise<HomePageContentResult> => {
+export const getHomePageContent = async (): Promise<HomePageContent> => {
   try {
     const homepage = await getHomepage();
 
-    const {
-      baseUrl,
-      companyName,
-      googleMapsLocation,
-      googleMapsLocationPlaceUrl,
-      meta,
-      shortTitle,
-      social: socialMedia,
-    } = siteSettings;
-
-    const { mainHeading, subHeading } = homepage;
-
-    const social = mapSocialMedia(socialMedia);
     const team = mapHomepageTeam(homepage);
     const training = mapHomepageTraining(homepage);
     const contact = mapHomepageContact(homepage);
-    const companyLogo = siteSettings.companyLogo;
 
     return {
-      baseUrl,
-      companyName,
-      companyLogo,
       contact,
-      googleMapsLocation,
-      googleMapsLocationPlaceUrl,
-      meta,
       services: homepage.services,
-      shortTitle,
-      social,
-      mainHeading,
-      subHeading,
+      mainHeading: homepage.mainHeading,
+      subHeading: homepage.subHeading,
       team,
       training,
     };

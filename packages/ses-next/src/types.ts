@@ -409,22 +409,11 @@ export type ContactContentModel = z.infer<typeof ContactSchema>;
 // SERVICE LAYER TYPES
 // ============================================================================
 
-export type HomePageContentResult = {
-  baseUrl: string;
-  companyName: string;
-  companyLogo: string;
+export type HomePageContent = {
   contact: ContactContentModel;
-  googleMapsLocation: string | null;
-  googleMapsLocationPlaceUrl: string | null;
-  meta: {
-    title: string;
-    description: string;
-  };
   services: {
     blurbs: string[] | null;
   };
-  shortTitle: string;
-  social: Social;
   mainHeading: string | null;
   subHeading: string | null;
   team: Team;
