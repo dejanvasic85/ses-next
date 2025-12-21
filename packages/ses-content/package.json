@@ -16,17 +16,17 @@
     "sanity"
   ],
   "dependencies": {
-    "@sanity/client": "7.13.1",
-    "@sanity/import": "4.0.0",
-    "@sanity/vision": "4.19.0",
-    "react": "19.2.0",
-    "react-dom": "19.2.0",
-    "react-is": "19.2.0",
-    "sanity": "4.19.0",
+    "@sanity/client": "7.13.2",
+    "@sanity/import": "4.0.1",
+    "@sanity/vision": "4.22.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-is": "19.2.3",
+    "sanity": "4.22.0",
     "styled-components": "6.1.19"
   },
   "devDependencies": {
-    "prettier": "3.7.3",
+    "prettier": "3.7.4",
     "typescript": "5.9.3"
   },
   "prettier": {
