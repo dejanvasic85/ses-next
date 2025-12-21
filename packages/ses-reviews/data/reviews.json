@@ -64,6 +64,19 @@
       "starRating": 5,
       "date": "a year ago",
       "publishTime": "2024-11-03T05:19:47.759883Z"
+    },
+    {
+      "id": "places/ChIJaaS9pMFn1moR6nbln1twd9A/reviews/ChZDSUhNMG9nS0VJQ0FnSUQ3bjRXNFdBEAE",
+      "url": "https://www.google.com/maps/contrib/108533178559639804258/reviews",
+      "reviewer": {
+        "profileUrl": "https://www.google.com/maps/contrib/108533178559639804258/reviews",
+        "profilePhotoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJmexM-FNk2WDEHpMlcZa7kY1uWTgpZz5pHyhX5cAoAuI_K8g=s128-c0x00000000-cc-rp-mo",
+        "displayName": "Anna Douvlos"
+      },
+      "comment": "Karl Rainbow was exceptional. For the last 6 months, he has endlessly come to try to fix my air conditioning system, trying all avenues and options. Karl, is so approachable, so considerate, and so kind. While here, I asked him to help me out with something minor, and he automatically offered his assistance. Karl, always kept me posted with outcomes, and with processes. As he left today, he said to me...any issues with anything, don't hesitate to ask...this is service that adds value to someone's life.\nI have shared with family and friends, the amazing service from Storm Electrical Solutions.",
+      "starRating": 5,
+      "date": "a year ago",
+      "publishTime": "2024-08-30T08:18:26.256530Z"
     }
   ]
 }
