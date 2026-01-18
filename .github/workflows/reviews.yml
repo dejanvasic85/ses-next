@@ -24,7 +24,7 @@ jobs:
           npm run update:reviews
       - name: Create Pull Request
         id: cpr
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           branch: feat/update-google-reviews
           title: 'feat: Google ratings updates'
