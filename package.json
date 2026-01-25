@@ -18,10 +18,10 @@
   },
   "devDependencies": {
     "lint-staged": "16.2.7",
-    "turbo": "2.7.5"
+    "turbo": "2.7.6"
   },
   "lint-staged": {
     "*": "prettier --write"
   },
-  "packageManager": "npm@11.7.0"
+  "packageManager": "npm@11.8.0"
 }
