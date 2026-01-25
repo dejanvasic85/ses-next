@@ -13,7 +13,7 @@ jobs:
   test-preview:
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.57.0-jammy
+      image: mcr.microsoft.com/playwright:v1.58.0-jammy
     timeout-minutes: 10
 
     steps:
@@ -33,7 +33,7 @@ jobs:
 
       - name: Wait for Vercel deployment
         id: vercel-deployment
-        uses: patrickedqvist/wait-for-vercel-preview@v1.3.2
+        uses: patrickedqvist/wait-for-vercel-preview@v1.3.3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           max_timeout: 300
