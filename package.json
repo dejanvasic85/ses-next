@@ -14,14 +14,14 @@
     "./packages/*"
   ],
   "volta": {
-    "node": "24.13.0"
+    "node": "24.13.1"
   },
   "devDependencies": {
     "lint-staged": "16.2.7",
-    "turbo": "2.8.3"
+    "turbo": "2.8.9"
   },
   "lint-staged": {
     "*": "prettier --write"
   },
-  "packageManager": "npm@11.9.0"
+  "packageManager": "npm@11.10.0"
 }
