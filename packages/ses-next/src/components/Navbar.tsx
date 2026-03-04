@@ -214,14 +214,14 @@ function MenuItems({ links, contactPhone, onClick }: MenuItemsProps) {
         <Icon name="home" className="lg:hidden" />
         <span className="hidden lg:block">Home</span>
       </MenuLinkItem>
+      <MenuLinkItem href={links.contact} onClick={onClick}>
+        Contact
+      </MenuLinkItem>
       <MenuLinkItem href={links.services} onClick={onClick}>
         Services
       </MenuLinkItem>
       <MenuLinkItem href={links.about} onClick={onClick}>
         About
-      </MenuLinkItem>
-      <MenuLinkItem href={links.contact} onClick={onClick}>
-        Contact
       </MenuLinkItem>
       <MenuLinkItem href={links.faq} onClick={onClick}>
         FAQ
