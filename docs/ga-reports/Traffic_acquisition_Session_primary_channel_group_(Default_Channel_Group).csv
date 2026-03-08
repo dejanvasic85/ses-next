@@ -1,0 +1,17 @@
+# ----------------------------------------
+# Traffic acquisition: Session primary channel group (Default Channel Group)
+# Account: ses-melbourne
+# Property: ses-melbourne-gtm
+# ----------------------------------------
+# 
+# All Users
+# Start date: 20250101
+# End date: 20251231
+Session primary channel group (Default Channel Group),Sessions,Engaged sessions,Engagement rate,Average engagement time per session,Events per session,Event count,Key events,Session key event rate,Total revenue
+Direct,1730,317,0.18323699421965317,8.246820809248556,4.4369942196531795,7676,0,0,0
+Organic Search,1096,702,0.6405109489051095,43.51642335766423,5.1760948905109485,5673,0,0,0
+Paid Search,257,106,0.41245136186770426,18.82101167315175,4.214007782101167,1083,0,0,0
+Referral,115,74,0.6434782608695652,24.973913043478262,6.895652173913043,793,0,0,0
+Organic Social,98,41,0.41836734693877553,25.5,4.551020408163265,446,0,0,0
+Unassigned,97,40,0.41237113402061853,244.50515463917526,7.443298969072165,722,0,0,0
+Cross-network,2,2,1,23,6,12,0,0,0
