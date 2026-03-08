@@ -115,3 +115,5 @@ packages/ses-next/playwright-report/
 # turbo
 .turbo
 .DS_Store
+
+next-env.d.ts

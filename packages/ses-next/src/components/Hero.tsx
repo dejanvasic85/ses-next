@@ -86,7 +86,7 @@ export function Hero({
               </Heading>
               <h2 className="mt-6 text-base md:text-lg leading-8 text-gray-600">{subHeading}</h2>
               <div className="mt-8 flex gap-x-4 justify-center">
-                <LinkButton href="#contact">Get a free quote</LinkButton>
+                <LinkButton href="#contact">Contact us</LinkButton>
               </div>
               <div className="mt-8 flex gap-x-4 justify-center">
                 {social.facebook && (
