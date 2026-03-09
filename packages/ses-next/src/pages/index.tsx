@@ -14,7 +14,7 @@ interface HomeProps extends BasePageProps {
 }
 
 export default function Home({ homepageContent, googleReviews, pageUrl, services, siteSettings }: HomeProps) {
-  const { companyName, companyLogo, googleMapsLocation, googleMapsLocationPlaceUrl, meta, social, phone } =
+  const { companyName, alternateName, companyLogo, googleMapsLocation, googleMapsLocationPlaceUrl, meta, social, phone, baseUrl } =
     siteSettings;
   const { mainHeading, subHeading, team, training } = homepageContent;
 
@@ -33,10 +33,16 @@ export default function Home({ homepageContent, googleReviews, pageUrl, services
     },
   }));
 
+  const sameAs = [social.facebook, social.instagram, social.linkedIn].filter(
+    (url): url is string => url !== null,
+  );
+
   const credentialsJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Electrician',
     name: companyName,
+    ...(alternateName ? { alternateName } : {}),
+    url: baseUrl,
     hasCredential: [
       { '@type': 'EducationalOccupationalCredential', name: 'CEC Accredited Installer' },
       { '@type': 'EducationalOccupationalCredential', name: 'NETA Accredited' },
@@ -61,11 +67,7 @@ export default function Home({ homepageContent, googleReviews, pageUrl, services
         telephone={phone}
         image={companyLogo}
         url={pageUrl}
-        sameAs={[
-          'https://www.facebook.com/stormelectricalsolutions',
-          'https://www.instagram.com/stormelectricalsolutions/',
-          'https://www.linkedin.com/company/storm-electrical-solutions',
-        ]}
+        sameAs={sameAs}
         areaServed={[
           'Melbourne',
           'Altona',

@@ -6,8 +6,6 @@ import { getFAQs } from '@/lib/content/contentService';
 import { Layout } from '@/components';
 import type { BasePageProps, SiteSettings } from '@/types';
 
-const siteUrl = 'https://www.sesmelbourne.com.au';
-
 interface FaqProps extends BasePageProps {
   content: SiteSettings;
   faqItems: Array<{ question: string; answer: string }>;
@@ -19,6 +17,8 @@ interface FaqProps extends BasePageProps {
 }
 
 export default function Faq({ faqItems, pageUrl, services, siteSettings }: FaqProps) {
+  const { baseUrl } = siteSettings;
+
   return (
     <>
       <FAQJsonLd
@@ -29,7 +29,7 @@ export default function Faq({ faqItems, pageUrl, services, siteSettings }: FaqPr
       />
       <BreadcrumbJsonLd
         items={[
-          { name: 'Home', item: siteUrl },
+          { name: 'Home', item: baseUrl },
           { name: 'FAQ' },
         ]}
       />

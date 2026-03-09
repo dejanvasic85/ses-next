@@ -30,8 +30,6 @@ export default function Service({
 }: ServiceProps) {
   const { name, content: serviceContent } = service;
 
-  const siteUrl = 'https://www.sesmelbourne.com.au';
-
   const serviceJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -40,7 +38,7 @@ export default function Service({
     provider: {
       '@type': 'Electrician',
       name: siteSettings.companyName,
-      url: siteUrl,
+      url: siteSettings.baseUrl,
     },
     areaServed: { '@type': 'City', name: 'Melbourne' },
     serviceType: service.name,
@@ -89,8 +87,8 @@ export default function Service({
       />
       <BreadcrumbJsonLd
         items={[
-          { name: 'Home', item: siteUrl },
-          { name: 'Services', item: `${siteUrl}/#services` },
+          { name: 'Home', item: siteSettings.baseUrl },
+          { name: 'Services', item: `${siteSettings.baseUrl}/#services` },
           { name: service.name },
         ]}
       />

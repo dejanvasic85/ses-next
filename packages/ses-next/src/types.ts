@@ -224,6 +224,7 @@ export const SiteSettingsSchema = z.object({
     title: z.string(),
     description: z.string(),
   }),
+  alternateName: z.string().optional(),
   socialMedia: z
     .object({
       facebook: z.url().nullable(),
@@ -336,6 +337,7 @@ export type BlogPost = {
 
 export type SiteSettings = {
   companyName: string;
+  alternateName?: string;
   companyLogo: string;
   shortTitle: string;
   baseUrl: string;

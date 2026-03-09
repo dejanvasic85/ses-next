@@ -12,6 +12,12 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'alternateName',
+      type: 'string',
+      title: 'Alternate Name',
+      description: 'Optional alternate business name (e.g. "SES Melbourne") used for SEO schema',
+    }),
+    defineField({
       name: 'companyLogo',
       type: 'image',
       title: 'Company Logo',

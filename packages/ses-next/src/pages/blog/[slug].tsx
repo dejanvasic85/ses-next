@@ -11,8 +11,6 @@ import { getBlogPosts } from '@/lib/content/contentService';
 import { tagsWithCountFromBlogs, type TagWithCount } from '@/lib/blogUtils';
 import type { BasePageProps, BlogPost } from '@/types';
 
-const siteUrl = 'https://www.sesmelbourne.com.au';
-
 interface BlogPostProps extends BasePageProps {
   pageUrl: string;
   tagsWithCount: TagWithCount[];
@@ -21,21 +19,23 @@ interface BlogPostProps extends BasePageProps {
 }
 
 export default function BlogPost({ pageUrl, tagsWithCount, totalPosts, post, services, siteSettings }: BlogPostProps) {
+  const { baseUrl, companyName } = siteSettings;
+
   return (
     <>
       <ArticleJsonLd
         type="BlogPosting"
         headline={post.title}
         description={post.title}
-        author="SES Melbourne"
+        author={companyName}
         url={pageUrl}
         datePublished={post.publishedAt}
         image={post.photo}
       />
       <BreadcrumbJsonLd
         items={[
-          { name: 'Home', item: siteUrl },
-          { name: 'Blog', item: `${siteUrl}/blog` },
+          { name: 'Home', item: baseUrl },
+          { name: 'Blog', item: `${baseUrl}/blog` },
           { name: post.title },
         ]}
       />

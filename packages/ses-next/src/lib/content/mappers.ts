@@ -115,6 +115,7 @@ export const mapSiteSettings = (model: SiteSettingsContentModel): SiteSettings =
 
   return {
     companyName: model.companyName,
+    alternateName: model.alternateName,
     companyLogo: model.companyLogo.asset.url,
     shortTitle: model.shortTitle,
     baseUrl: model.baseUrl,
