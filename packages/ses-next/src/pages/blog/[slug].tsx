@@ -1,6 +1,6 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import NextImage from 'next/image';
-import { ArticleJsonLd } from 'next-seo';
+import { ArticleJsonLd, BreadcrumbJsonLd } from 'next-seo';
 
 import { PortableText } from '@portabletext/react';
 import { formatDistanceToNow } from 'date-fns';
@@ -10,6 +10,8 @@ import { getBasePageProps } from '@/lib/basePageProps';
 import { getBlogPosts } from '@/lib/content/contentService';
 import { tagsWithCountFromBlogs, type TagWithCount } from '@/lib/blogUtils';
 import type { BasePageProps, BlogPost } from '@/types';
+
+const siteUrl = 'https://www.sesmelbourne.com.au';
 
 interface BlogPostProps extends BasePageProps {
   pageUrl: string;
@@ -29,6 +31,13 @@ export default function BlogPost({ pageUrl, tagsWithCount, totalPosts, post, ser
         url={pageUrl}
         datePublished={post.publishedAt}
         image={post.photo}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', item: siteUrl },
+          { name: 'Blog', item: `${siteUrl}/blog` },
+          { name: post.title },
+        ]}
       />
       <Layout services={services} siteSettings={siteSettings} pageUrl={pageUrl}>
         <BlogLayout tagsWithCount={tagsWithCount} totalPosts={totalPosts}>

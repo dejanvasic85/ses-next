@@ -1,8 +1,12 @@
 import { GetStaticProps } from 'next';
+import { FAQJsonLd, BreadcrumbJsonLd } from 'next-seo';
+
 import { getBasePageProps } from '@/lib/basePageProps';
 import { getFAQs } from '@/lib/content/contentService';
 import { Layout } from '@/components';
 import type { BasePageProps, SiteSettings } from '@/types';
+
+const siteUrl = 'https://www.sesmelbourne.com.au';
 
 interface FaqProps extends BasePageProps {
   content: SiteSettings;
@@ -16,7 +20,20 @@ interface FaqProps extends BasePageProps {
 
 export default function Faq({ faqItems, pageUrl, services, siteSettings }: FaqProps) {
   return (
-    <Layout services={services} siteSettings={siteSettings} pageUrl={pageUrl}>
+    <>
+      <FAQJsonLd
+        questions={faqItems.map(({ question, answer }) => ({
+          question,
+          answer,
+        }))}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', item: siteUrl },
+          { name: 'FAQ' },
+        ]}
+      />
+      <Layout services={services} siteSettings={siteSettings} pageUrl={pageUrl}>
       <div className="bg-white py-6 sm:py-8 lg:py-12">
         <div className="container mx-auto max-w-screen-xl px-4 md:px-8">
           <div className="mb-10 md:mb-16">
@@ -41,6 +58,7 @@ export default function Faq({ faqItems, pageUrl, services, siteSettings }: FaqPr
         </div>
       </div>
     </Layout>
+    </>
   );
 }
 

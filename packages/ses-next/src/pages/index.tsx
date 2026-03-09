@@ -33,10 +33,20 @@ export default function Home({ homepageContent, googleReviews, pageUrl, services
     },
   }));
 
+  const credentialsJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Electrician',
+    name: companyName,
+    hasCredential: [
+      { '@type': 'EducationalOccupationalCredential', name: 'CEC Accredited Installer' },
+      { '@type': 'EducationalOccupationalCredential', name: 'NETA Accredited' },
+    ],
+  };
+
   return (
     <>
       <LocalBusinessJsonLd
-        type="LocalBusiness"
+        type="Electrician"
         name={companyName}
         description={meta.description}
         address={{
@@ -46,9 +56,27 @@ export default function Home({ homepageContent, googleReviews, pageUrl, services
           postalCode: '3025',
           addressCountry: 'AU',
         }}
+        geo={{ latitude: -37.8354339, longitude: 144.8650809 }}
+        priceRange="$$"
         telephone={phone}
         image={companyLogo}
         url={pageUrl}
+        sameAs={[
+          'https://www.facebook.com/stormelectricalsolutions',
+          'https://www.instagram.com/stormelectricalsolutions/',
+          'https://www.linkedin.com/company/storm-electrical-solutions',
+        ]}
+        areaServed={[
+          'Melbourne',
+          'Altona',
+          'Altona North',
+          'Newport',
+          'Yarraville',
+          'Footscray',
+          'Williamstown',
+          'Moonee Ponds',
+          'Ascot Vale',
+        ]}
         aggregateRating={{
           ratingValue: ratingValue,
           ratingCount: ratingCount,
@@ -56,6 +84,10 @@ export default function Home({ homepageContent, googleReviews, pageUrl, services
           worstRating: 0,
         }}
         review={reviewsJson}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(credentialsJsonLd) }}
       />
       <Layout services={services} siteSettings={siteSettings} pageUrl={pageUrl}>
         <Hero

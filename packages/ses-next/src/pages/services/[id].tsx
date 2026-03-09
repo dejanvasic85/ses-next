@@ -1,7 +1,7 @@
 import { Activity } from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { PortableText } from '@portabletext/react';
-import { LocalBusinessJsonLd } from 'next-seo';
+import { LocalBusinessJsonLd, BreadcrumbJsonLd } from 'next-seo';
 import Link from 'next/link';
 import Image from 'next/image';
 import { googleReviews } from 'ses-reviews';
@@ -29,6 +29,22 @@ export default function Service({
   siteSettings,
 }: ServiceProps) {
   const { name, content: serviceContent } = service;
+
+  const siteUrl = 'https://www.sesmelbourne.com.au';
+
+  const serviceJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: service.name,
+    description: service.description,
+    provider: {
+      '@type': 'Electrician',
+      name: siteSettings.companyName,
+      url: siteUrl,
+    },
+    areaServed: { '@type': 'City', name: 'Melbourne' },
+    serviceType: service.name,
+  };
 
   const ratingCount = Number(reviews.numberOfReviews.replace('reviews', '').trim());
   const ratingValue = Number(reviews.overallRatingValue.replace('.0', '').trim());
@@ -66,6 +82,17 @@ export default function Service({
           worstRating: 0,
         }}
         review={reviewsJson}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', item: siteUrl },
+          { name: 'Services', item: `${siteUrl}/#services` },
+          { name: service.name },
+        ]}
       />
       <Layout services={services} siteSettings={siteSettings} pageUrl={pageUrl} title={title}>
         <div className="bg-white py-6 sm:py-8 lg:py-12">
