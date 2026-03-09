@@ -6,6 +6,7 @@ export const siteSettingsQuery = `*[_type == "siteSettings"][0]{
   _id,
   _type,
   companyName,
+  alternateName,
   companyLogo {
     _type,
     asset -> {

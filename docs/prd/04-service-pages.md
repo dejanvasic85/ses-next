@@ -26,18 +26,17 @@ Current service pages (7 total) are too broad and don't target specific high-vol
 
 ### 1. `/services/emergency-electrician` — CRITICAL
 
-**Target keywords:** emergency electrician melbourne, 24 hour electrician, after hours electrician
+**Target keywords:** emergency electrician melbourne, same day electrician, urgent electrician
 
 **Content structure:**
-- H1: Emergency Electrician Melbourne — 24/7 Rapid Response
+- H1: Emergency Electrician Melbourne — Fast Same-Day Response
 - What constitutes an electrical emergency
-- Response time and availability (emphasise 24/7 if applicable, or state actual hours)
+- Response time and availability — **business hours only (Mon–Fri 7am–6pm), no after-hours callouts** (confirmed by Karl)
+- Frame as "fast same-day response" and "priority booking for urgent issues"
 - Common emergency scenarios (power outage, sparking outlets, safety switch tripping, storm damage)
 - Service area map or list
-- CTA: Emergency phone number prominent
+- CTA: Phone number prominent
 - FAQ section with schema
-
-**Note:** Confirm with Karl whether they actually offer 24/7 emergency callouts. If not, frame as "fast response during business hours" to avoid misleading.
 
 ### 2. `/services/commercial-electrician` — CRITICAL
 

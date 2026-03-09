@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next';
-import { LocalBusinessJsonLd } from 'next-seo';
+import { LocalBusinessJsonLd, JsonLdScript } from 'next-seo';
 import { googleReviews } from 'ses-reviews';
 
 import { About, Contact, Hero, Layout, Services } from '@/components';
@@ -14,7 +14,7 @@ interface HomeProps extends BasePageProps {
 }
 
 export default function Home({ homepageContent, googleReviews, pageUrl, services, siteSettings }: HomeProps) {
-  const { companyName, companyLogo, googleMapsLocation, googleMapsLocationPlaceUrl, meta, social, phone } =
+  const { companyName, alternateName, companyLogo, googleMapsLocation, googleMapsLocationPlaceUrl, meta, social, phone, baseUrl } =
     siteSettings;
   const { mainHeading, subHeading, team, training } = homepageContent;
 
@@ -33,10 +33,26 @@ export default function Home({ homepageContent, googleReviews, pageUrl, services
     },
   }));
 
+  const sameAs = [social.facebook, social.instagram, social.linkedIn].filter(
+    (url): url is string => url !== null,
+  );
+
+  const credentialsJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Electrician',
+    name: companyName,
+    ...(alternateName ? { alternateName } : {}),
+    url: baseUrl,
+    hasCredential: [
+      { '@type': 'EducationalOccupationalCredential', name: 'CEC Accredited Installer' },
+      { '@type': 'EducationalOccupationalCredential', name: 'NETA Accredited' },
+    ],
+  };
+
   return (
     <>
       <LocalBusinessJsonLd
-        type="LocalBusiness"
+        type="Electrician"
         name={companyName}
         description={meta.description}
         address={{
@@ -46,9 +62,23 @@ export default function Home({ homepageContent, googleReviews, pageUrl, services
           postalCode: '3025',
           addressCountry: 'AU',
         }}
+        geo={{ latitude: -37.8354339, longitude: 144.8650809 }}
+        priceRange="$$"
         telephone={phone}
         image={companyLogo}
         url={pageUrl}
+        sameAs={sameAs}
+        areaServed={[
+          'Melbourne',
+          'Altona',
+          'Altona North',
+          'Newport',
+          'Yarraville',
+          'Footscray',
+          'Williamstown',
+          'Moonee Ponds',
+          'Ascot Vale',
+        ]}
         aggregateRating={{
           ratingValue: ratingValue,
           ratingCount: ratingCount,
@@ -57,6 +87,7 @@ export default function Home({ homepageContent, googleReviews, pageUrl, services
         }}
         review={reviewsJson}
       />
+      <JsonLdScript data={credentialsJsonLd} scriptKey="credentials" />
       <Layout services={services} siteSettings={siteSettings} pageUrl={pageUrl}>
         <Hero
           companyName={companyName}

@@ -46,7 +46,7 @@ Karl Rainbow — Licensed Electrician, Clean Energy Council Accredited Designer 
 - Commercial electrical maintenance
 
 ## Service Area
-Melbourne metropolitan area, specialising in western suburbs: Altona, Altona North, Williamstown, Yarraville, Footscray, Newport, Seddon, Spotswood.
+Melbourne metropolitan area, specialising in western suburbs: Altona, Altona North, Newport, Yarraville, Footscray, Williamstown, Moonee Ponds, Ascot Vale, Seddon, Spotswood.
 
 ## Contact
 - Phone: (03) 4050 7937
@@ -63,7 +63,7 @@ Melbourne metropolitan area, specialising in western suburbs: Altona, Altona Nor
 
 ## Hours
 Monday-Friday: 7:00 AM - 6:00 PM
-Emergency callouts: [confirm with Karl]
+No after-hours emergency callouts — same-day priority response during business hours.
 ```
 
 ### 2. Author/Expert Attribution

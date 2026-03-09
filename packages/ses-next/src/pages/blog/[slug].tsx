@@ -1,6 +1,6 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import NextImage from 'next/image';
-import { ArticleJsonLd } from 'next-seo';
+import { ArticleJsonLd, BreadcrumbJsonLd } from 'next-seo';
 
 import { PortableText } from '@portabletext/react';
 import { formatDistanceToNow } from 'date-fns';
@@ -19,16 +19,26 @@ interface BlogPostProps extends BasePageProps {
 }
 
 export default function BlogPost({ pageUrl, tagsWithCount, totalPosts, post, services, siteSettings }: BlogPostProps) {
+  const { baseUrl, companyName } = siteSettings;
+  const blogIndexUrl = new URL('/blog', baseUrl).toString();
+
   return (
     <>
       <ArticleJsonLd
         type="BlogPosting"
         headline={post.title}
         description={post.title}
-        author="SES Melbourne"
+        author={companyName}
         url={pageUrl}
         datePublished={post.publishedAt}
         image={post.photo}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', item: baseUrl },
+          { name: 'Blog', item: blogIndexUrl },
+          { name: post.title },
+        ]}
       />
       <Layout services={services} siteSettings={siteSettings} pageUrl={pageUrl}>
         <BlogLayout tagsWithCount={tagsWithCount} totalPosts={totalPosts}>

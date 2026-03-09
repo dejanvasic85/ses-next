@@ -32,17 +32,19 @@ SES already ranks well for Altona terms (positions 2-5) **without a dedicated pa
 
 ## New Pages Required
 
-### Priority 1 — Immediate (already have keyword traction)
+### Priority 1 — Immediate (confirmed high-activity areas + keyword traction)
 
 1. **`/electrician-altona/`** — consolidate the strong Altona signal
 2. **`/electrician-altona-north/`** — SES is physically located here
-3. **`/electrician-footscray/`** — high impression volume (791+ for AC alone)
+3. **`/electrician-newport/`** — Karl confirmed lots of work here
+4. **`/electrician-yarraville/`** — Karl confirmed lots of work here
+5. **`/electrician-footscray/`** — high impression volume (791+ for AC alone)
 
-### Priority 2 — Near-term (some keyword signals)
+### Priority 2 — Near-term (serviceable, team members live nearby)
 
-4. **`/electrician-williamstown/`**
-5. **`/electrician-yarraville/`**
-6. **`/electrician-newport/`**
+6. **`/electrician-moonee-ponds/`** — Karl's guys live in the area
+7. **`/electrician-ascot-vale/`** — Karl's guys live in the area
+8. **`/electrician-williamstown/`** — nearby, some keyword signals
 
 ### Priority 3 — Future expansion
 
