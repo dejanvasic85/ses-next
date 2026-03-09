@@ -20,6 +20,7 @@ interface BlogPostProps extends BasePageProps {
 
 export default function BlogPost({ pageUrl, tagsWithCount, totalPosts, post, services, siteSettings }: BlogPostProps) {
   const { baseUrl, companyName } = siteSettings;
+  const blogIndexUrl = new URL('/blog', baseUrl).toString();
 
   return (
     <>
@@ -35,7 +36,7 @@ export default function BlogPost({ pageUrl, tagsWithCount, totalPosts, post, ser
       <BreadcrumbJsonLd
         items={[
           { name: 'Home', item: baseUrl },
-          { name: 'Blog', item: `${baseUrl}/blog` },
+          { name: 'Blog', item: blogIndexUrl },
           { name: post.title },
         ]}
       />

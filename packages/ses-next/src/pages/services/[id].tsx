@@ -88,7 +88,7 @@ export default function Service({
       <BreadcrumbJsonLd
         items={[
           { name: 'Home', item: siteSettings.baseUrl },
-          { name: 'Services', item: `${siteSettings.baseUrl}/#services` },
+          { name: 'Services', item: new URL('/#services', siteSettings.baseUrl).toString() },
           { name: service.name },
         ]}
       />

@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next';
-import { LocalBusinessJsonLd } from 'next-seo';
+import { LocalBusinessJsonLd, JsonLdScript } from 'next-seo';
 import { googleReviews } from 'ses-reviews';
 
 import { About, Contact, Hero, Layout, Services } from '@/components';
@@ -87,10 +87,7 @@ export default function Home({ homepageContent, googleReviews, pageUrl, services
         }}
         review={reviewsJson}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(credentialsJsonLd) }}
-      />
+      <JsonLdScript data={credentialsJsonLd} scriptKey="credentials" />
       <Layout services={services} siteSettings={siteSettings} pageUrl={pageUrl}>
         <Hero
           companyName={companyName}
