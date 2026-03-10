@@ -159,6 +159,8 @@ export const ServiceSchema = z.object({
   icon: IconSchema,
   showcase: z.array(ShowcaseSchema).nullable(),
   content: SanityPortableTextSchema.nullable(),
+  seoTitle: z.string().optional(),
+  seoDescription: z.string().optional(),
 });
 
 export const TermsAndConditionsSchema = z.object({
@@ -317,6 +319,8 @@ export type ServiceItem = {
       }[]
     | null;
   content: SanityPortableText | null;
+  seoTitle?: string;
+  seoDescription?: string;
 };
 
 export type Team = {

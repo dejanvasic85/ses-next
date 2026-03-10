@@ -10,21 +10,21 @@ The site has zero location-specific pages. Competitor Briggs Electrical has 15+ 
 
 ## Keyword Evidence
 
-| Query | Impressions | Clicks | Position |
-|-------|----------:|------:|:--------:|
-| electrician altona | 3,618 | 17 | 4.1 |
-| electricians altona | 2,090 | 7 | 2.9 |
-| altona electrician | 1,384 | 7 | 3.4 |
-| electricians in altona | 1,083 | 0 | 4.9 |
-| electrician company altona | 1,032 | 0 | 3.3 |
-| electrician altona north | 547 | 6 | 4.5 |
-| air conditioning installation footscray | 791 | 0 | 81.5 |
-| air conditioner footscray | 498 | 0 | 75.7 |
-| emergency electrician altona | 421 | 0 | 9.9 |
-| split system installations altona | 213 | 0 | 16.0 |
-| electrician newport | 67 | 1 | 2.7 |
-| electrician yarraville | 43 | 1 | 6.4 |
-| williamstown electrician | 16 | 1 | 7.6 |
+| Query                                   | Impressions | Clicks | Position |
+| --------------------------------------- | ----------: | -----: | :------: |
+| electrician altona                      |       3,618 |     17 |   4.1    |
+| electricians altona                     |       2,090 |      7 |   2.9    |
+| altona electrician                      |       1,384 |      7 |   3.4    |
+| electricians in altona                  |       1,083 |      0 |   4.9    |
+| electrician company altona              |       1,032 |      0 |   3.3    |
+| electrician altona north                |         547 |      6 |   4.5    |
+| air conditioning installation footscray |         791 |      0 |   81.5   |
+| air conditioner footscray               |         498 |      0 |   75.7   |
+| emergency electrician altona            |         421 |      0 |   9.9    |
+| split system installations altona       |         213 |      0 |   16.0   |
+| electrician newport                     |          67 |      1 |   2.7    |
+| electrician yarraville                  |          43 |      1 |   6.4    |
+| williamstown electrician                |          16 |      1 |   7.6    |
 
 ## Key Insight
 
@@ -92,19 +92,24 @@ CTA: Contact form or phone number
 ## Implementation Notes
 
 ### URL Structure
+
 Use `/electrician-[suburb]/` at the root level (not nested under /services/ or /locations/). This matches competitor patterns and keeps URLs short.
 
 ### Routing in Next.js
+
 Create a dynamic route: `pages/electrician-[suburb].tsx` or individual static pages. If using Sanity, create a "Location Page" document type.
 
 ### Internal Linking
+
 - Homepage services section should link to the hub page
 - Each service page should mention service areas and link to relevant location pages
 - Blog posts mentioning suburbs should link to location pages
 - Location pages cross-link to each other ("Also serving nearby: [suburb links]")
 
 ### Content Sourcing
+
 Ask Karl for:
+
 - Specific jobs done in each suburb (anonymised is fine)
 - Any suburb-specific knowledge (common house types, electrical issues)
 - Photos from jobs in those areas

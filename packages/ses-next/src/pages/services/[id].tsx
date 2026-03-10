@@ -7,6 +7,33 @@ import Image from 'next/image';
 import { googleReviews } from 'ses-reviews';
 
 import { getBlogPosts, getServices } from '@/lib/content/contentService';
+
+const serviceSeoTitles: Record<string, string> = {
+  'air-conditioning': 'Air Conditioning Installation & Service Melbourne | SES',
+  lighting: 'Lighting Installation & Repairs Melbourne | SES',
+  'electrical-testing': 'Electrical Testing & Safety Inspections Melbourne | SES',
+  'data-and-tv': 'Data & TV Point Installation Melbourne | SES',
+  telecommunications: 'Data Cabling & Telecommunications Electrician Melbourne | SES',
+  'renewable-energy': 'Solar Panel & Battery Installation Melbourne | SES',
+  'catering-maintenance': 'Commercial Electrical Maintenance Melbourne | SES',
+};
+
+const serviceSeoDescriptions: Record<string, string> = {
+  'air-conditioning':
+    'Expert air conditioning installation & repair in Melbourne. Licensed electricians, 19+ years experience. 5-star rated. Free quotes. Call (03) 4050 7937.',
+  lighting:
+    'Professional lighting installation & repairs across Melbourne. Licensed electricians. Downlights, LED upgrades & more. 5-star rated. Call (03) 4050 7937.',
+  'electrical-testing':
+    'Electrical testing & safety inspections in Melbourne. Licensed SES electricians. Compliance testing, fault finding. Free quotes. Call (03) 4050 7937.',
+  'data-and-tv':
+    'Data & TV point installation across Melbourne. Licensed electricians, 19+ years experience. TV antennas, NBN, HDMI. Call (03) 4050 7937.',
+  telecommunications:
+    'Data cabling & telecommunications solutions in Melbourne. Licensed electricians. NBN, fibre, office cabling. Free quotes. Call (03) 4050 7937.',
+  'renewable-energy':
+    'Solar panel & battery installation in Melbourne. CEC accredited installer. 19+ years experience. Free quotes. Call (03) 4050 7937.',
+  'catering-maintenance':
+    'Commercial electrical maintenance for Melbourne restaurants. Licensed electricians. Emergency repairs & preventive maintenance. Call (03) 4050 7937.',
+};
 import { getBasePageProps } from '@/lib/basePageProps';
 import { Layout, CustomImage, ImageCarousel } from '@/components';
 import type { BlogPost, ServiceItem, GoogleReviews, BasePageProps } from '@/types';
@@ -17,6 +44,7 @@ interface ServiceProps extends BasePageProps {
   service: ServiceItem;
   pageUrl: string;
   title: string;
+  description?: string;
 }
 
 export default function Service({
@@ -25,6 +53,7 @@ export default function Service({
   pageUrl,
   service,
   title,
+  description,
   services,
   siteSettings,
 }: ServiceProps) {
@@ -81,10 +110,7 @@ export default function Service({
         }}
         review={reviewsJson}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
       <BreadcrumbJsonLd
         items={[
           { name: 'Home', item: siteSettings.baseUrl },
@@ -92,7 +118,7 @@ export default function Service({
           { name: service.name },
         ]}
       />
-      <Layout services={services} siteSettings={siteSettings} pageUrl={pageUrl} title={title}>
+      <Layout services={services} siteSettings={siteSettings} pageUrl={pageUrl} title={title} description={description}>
         <div className="bg-white py-6 sm:py-8 lg:py-12">
           <article className="mx-auto px-4 md:px-8 max-w-screen-lg prose lg:prose-lg">
             <h1 className="text-center">{name}</h1>
@@ -157,18 +183,22 @@ export default function Service({
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const props = await getBasePageProps({ pageUrl: `services/${params?.id}` });
-  const service = props.services.find(({ slug }) => slug === params?.id);
-  const [titlePrefix = ''] = props.siteSettings.meta.title.split('|');
+  const slug = params?.id as string;
+  const props = await getBasePageProps({ pageUrl: `services/${slug}` });
+  const service = props.services.find(({ slug: s }) => s === slug);
   const posts = await getBlogPosts();
-  const blogPosts = posts.filter(({ tags }) => tags.includes(params?.id as string));
+  const blogPosts = posts.filter(({ tags }) => tags.includes(slug));
+
+  const title = service!.seoTitle || serviceSeoTitles[slug] || service!.name;
+  const description = service!.seoDescription || serviceSeoDescriptions[slug];
 
   return {
     props: {
       ...props,
       googleReviews,
       service: service!,
-      title: `${titlePrefix.trim()} | ${service!.name}`,
+      title,
+      description,
       blogPosts,
     },
   };

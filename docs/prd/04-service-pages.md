@@ -10,17 +10,17 @@ Current service pages (7 total) are too broad and don't target specific high-vol
 
 ## Keyword Evidence
 
-| Missing Service Page | Related Query | Monthly Impressions | Current Position |
-|---------------------|---------------|--------------------:|:----------------:|
-| Emergency Electrician | emergency electrician melbourne | 641 | 54.0 |
-| Emergency Electrician | melbourne emergency electricians | 681 | 50.7 |
-| Emergency Electrician | emergency electrical services melbourne | 750 | 59.1 |
-| Emergency Electrician | 24 hour electrician altona | 460 | 5.8 |
-| Commercial Electrician | commercial electrician altona | 1,689 | 28.6 |
-| Commercial Electrician | commercial electricians altona | 979 | 18.5 |
-| Switchboard Upgrades | (new keyword target) | — | — |
-| Smoke Alarms | (new keyword target) | — | — |
-| EV Charger Installation | (growing demand) | — | — |
+| Missing Service Page    | Related Query                           | Monthly Impressions | Current Position |
+| ----------------------- | --------------------------------------- | ------------------: | :--------------: |
+| Emergency Electrician   | emergency electrician melbourne         |                 641 |       54.0       |
+| Emergency Electrician   | melbourne emergency electricians        |                 681 |       50.7       |
+| Emergency Electrician   | emergency electrical services melbourne |                 750 |       59.1       |
+| Emergency Electrician   | 24 hour electrician altona              |                 460 |       5.8        |
+| Commercial Electrician  | commercial electrician altona           |               1,689 |       28.6       |
+| Commercial Electrician  | commercial electricians altona          |                 979 |       18.5       |
+| Switchboard Upgrades    | (new keyword target)                    |                   — |        —         |
+| Smoke Alarms            | (new keyword target)                    |                   — |        —         |
+| EV Charger Installation | (growing demand)                        |                   — |        —         |
 
 ## New Pages Required
 
@@ -29,6 +29,7 @@ Current service pages (7 total) are too broad and don't target specific high-vol
 **Target keywords:** emergency electrician melbourne, same day electrician, urgent electrician
 
 **Content structure:**
+
 - H1: Emergency Electrician Melbourne — Fast Same-Day Response
 - What constitutes an electrical emergency
 - Response time and availability — **business hours only (Mon–Fri 7am–6pm), no after-hours callouts** (confirmed by Karl)
@@ -43,6 +44,7 @@ Current service pages (7 total) are too broad and don't target specific high-vol
 **Target keywords:** commercial electrician altona, commercial electrical services melbourne
 
 **Content structure:**
+
 - H1: Commercial Electrician Melbourne — Reliable Electrical Services for Business
 - Types of commercial work (fit-outs, maintenance contracts, compliance testing)
 - Industries served
@@ -54,6 +56,7 @@ Current service pages (7 total) are too broad and don't target specific high-vol
 **Target keywords:** switchboard upgrade melbourne, electrical switchboard replacement
 
 **Content structure:**
+
 - H1: Switchboard Upgrades Melbourne
 - Signs you need a switchboard upgrade
 - Old ceramic fuse vs modern safety switch
@@ -66,6 +69,7 @@ Current service pages (7 total) are too broad and don't target specific high-vol
 **Target keywords:** smoke alarm installation melbourne, smoke alarm compliance victoria
 
 **Content structure:**
+
 - H1: Smoke Alarm Installation & Compliance Melbourne
 - Victorian legislation requirements
 - Types of smoke alarms (photoelectric, interconnected)
@@ -77,6 +81,7 @@ Current service pages (7 total) are too broad and don't target specific high-vol
 **Target keywords:** ev charger installation melbourne, home ev charging electrician
 
 **Content structure:**
+
 - H1: EV Charger Installation Melbourne
 - Types of chargers (Level 1, 2, 3)
 - Home vs commercial installation
@@ -94,6 +99,7 @@ Current service pages (7 total) are too broad and don't target specific high-vol
 ## Content Review
 
 Karl should review each page for technical accuracy before publish. Set up a simple review flow:
+
 1. Dean drafts in Sanity (preview mode)
 2. Karl reviews via preview link
 3. Dean publishes

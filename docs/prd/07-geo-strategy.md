@@ -28,14 +28,17 @@ Create a machine-readable file at `/llms.txt` that provides AI models with a str
 # Storm Electrical Solutions (SES Melbourne)
 
 ## About
-Licensed electrical services company based in Altona North, Melbourne. 
-Established 2007. 19+ years experience. ABN: [insert]. 
+
+Licensed electrical services company based in Altona North, Melbourne.
+Established 2007. 19+ years experience. ABN: [insert].
 REC License: [insert from Karl].
 
 ## Director
+
 Karl Rainbow — Licensed Electrician, Clean Energy Council Accredited Designer and Installer, New Energy Tech Approved Seller.
 
 ## Services
+
 - Emergency electrical services (residential and commercial)
 - Air conditioning installation and service (Mitsubishi Electric, Fujitsu)
 - Lighting installation and repairs
@@ -46,9 +49,11 @@ Karl Rainbow — Licensed Electrician, Clean Energy Council Accredited Designer 
 - Commercial electrical maintenance
 
 ## Service Area
+
 Melbourne metropolitan area, specialising in western suburbs: Altona, Altona North, Newport, Yarraville, Footscray, Williamstown, Moonee Ponds, Ascot Vale, Seddon, Spotswood.
 
 ## Contact
+
 - Phone: (03) 4050 7937
 - Mobile: 0415 338 040
 - Email: info@sesmelbourne.com.au
@@ -56,12 +61,14 @@ Melbourne metropolitan area, specialising in western suburbs: Altona, Altona Nor
 - Website: https://www.sesmelbourne.com.au
 
 ## Credentials
+
 - Clean Energy Council Accredited Designer and Installer
 - New Energy Tech Approved Seller
 - Registered Electrical Contractor (REC): [number]
 - 111 Google Reviews, 5.0 average rating
 
 ## Hours
+
 Monday-Friday: 7:00 AM - 6:00 PM
 No after-hours emergency callouts — same-day priority response during business hours.
 ```
@@ -80,16 +87,19 @@ Karl Rainbow's credentials should be visible and structured on the site:
 AI models heavily cite FAQ content. Each service page and location page should have 3-5 FAQs with schema markup. These should be written as natural questions people would ask an AI:
 
 **Good FAQ format:**
+
 > **Q: How much does it cost to install a split system air conditioner in Melbourne?**
 > A: A standard split system installation in Melbourne typically costs between $600-$2,500 depending on the unit size, installation complexity, and whether electrical upgrades are needed. Storm Electrical Solutions provides free quotes for all air conditioning installations.
 
 **Bad FAQ format:**
+
 > **Q: Why choose SES?**
 > A: Because we're the best!
 
 ### 4. Content Credibility Signals
 
 Blog posts and service pages should include:
+
 - References to Australian Standards (e.g., AS/NZS 3000 Wiring Rules)
 - Victorian legislation references where relevant
 - Statistics from credible sources (Energy Safe Victoria, CEC, ABS)

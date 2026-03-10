@@ -24,15 +24,15 @@ Additionally, UTM-tagged URLs are being indexed as separate pages, creating dupl
 
 ### 2. Service Page Titles
 
-| Page | Current Title (likely) | Proposed Title |
-|------|----------------------|----------------|
-| /services/air-conditioning | Air Conditioning | Air Conditioning Installation & Service Melbourne \| SES |
-| /services/lighting | Lighting | Lighting Installation & Repairs Melbourne \| SES |
-| /services/electrical-testing | Electrical Testing | Electrical Testing & Safety Inspections Melbourne \| SES |
-| /services/data-and-tv | Data and TV | Data & TV Point Installation Melbourne \| SES |
-| /services/telecommunications | Telecommunications | Data Cabling & Telecommunications Electrician Melbourne \| SES |
-| /services/renewable-energy | Renewable Energy | Solar Panel & Battery Installation Melbourne \| SES |
-| /services/catering-maintenance | Catering Maintenance | Commercial Electrical Maintenance Melbourne \| SES |
+| Page                           | Current Title (likely) | Proposed Title                                                 |
+| ------------------------------ | ---------------------- | -------------------------------------------------------------- |
+| /services/air-conditioning     | Air Conditioning       | Air Conditioning Installation & Service Melbourne \| SES       |
+| /services/lighting             | Lighting               | Lighting Installation & Repairs Melbourne \| SES               |
+| /services/electrical-testing   | Electrical Testing     | Electrical Testing & Safety Inspections Melbourne \| SES       |
+| /services/data-and-tv          | Data and TV            | Data & TV Point Installation Melbourne \| SES                  |
+| /services/telecommunications   | Telecommunications     | Data Cabling & Telecommunications Electrician Melbourne \| SES |
+| /services/renewable-energy     | Renewable Energy       | Solar Panel & Battery Installation Melbourne \| SES            |
+| /services/catering-maintenance | Catering Maintenance   | Commercial Electrical Maintenance Melbourne \| SES             |
 
 **Pattern:** `[Primary Service Keyword] Melbourne | SES`
 

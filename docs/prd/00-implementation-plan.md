@@ -6,19 +6,19 @@ This plan covers the phased SEO and GEO (Generative Engine Optimisation) improve
 
 ## Monthly Budget Context
 
-| Item | Cost |
-|------|------|
-| Hosting + framework updates (Next.js, Sanity) | $40/month |
-| Blog posts, content uplift, general SEO | $100/month |
-| Additional work (redesign, restructure) | Quoted separately |
+| Item                                          | Cost              |
+| --------------------------------------------- | ----------------- |
+| Hosting + framework updates (Next.js, Sanity) | $40/month         |
+| Blog posts, content uplift, general SEO       | $100/month        |
+| Additional work (redesign, restructure)       | Quoted separately |
 
 ## Phase Overview
 
-| Phase | Focus | Timeline |
-|-------|-------|----------|
+| Phase       | Focus                                               | Timeline             |
+| ----------- | --------------------------------------------------- | -------------------- |
 | **Phase 1** | Technical SEO fixes (schema, meta tags, canonicals) | Month 1 (March 2026) |
-| **Phase 2** | Content expansion (service pages, location pages) | Month 2-3 |
-| **Phase 3** | Ongoing content + paid ads relaunch | Month 3+ |
+| **Phase 2** | Content expansion (service pages, location pages)   | Month 2-3            |
+| **Phase 3** | Ongoing content + paid ads relaunch                 | Month 3+             |
 
 ## Implementation Documents
 
@@ -36,10 +36,12 @@ Each task group has a dedicated PRD:
 ## Month 1 Scope (March 2026)
 
 **Included in subscription ($140):**
+
 - Audit and reporting of current state ✅ (complete)
 - Setting targets and building plan ✅ (this document)
 
 **Additional work ($300 quoted):**
+
 - Implement JSON-LD structured data (LocalBusiness, Service, FAQ, AggregateRating)
 - Optimise all page title tags and meta descriptions
 - Fix canonical/indexing issues (UTM params, hash anchors, tag pages)
@@ -51,10 +53,10 @@ Each task group has a dedicated PRD:
 
 Tracked monthly via Google Search Console + GA4:
 
-| Metric | Current (March 2026) | 3-Month Target | 6-Month Target |
-|--------|---------------------|----------------|----------------|
-| Monthly organic clicks | ~58 | 100+ | 170+ |
-| Non-brand click share | 35% | 50% | 60%+ |
-| Keywords in top 10 | ~8 | 20+ | 30+ |
-| Pages indexed | 31 | 50+ | 70+ |
-| Rich results appearing | 0 | FAQ + Review stars | Full coverage |
+| Metric                 | Current (March 2026) | 3-Month Target     | 6-Month Target |
+| ---------------------- | -------------------- | ------------------ | -------------- |
+| Monthly organic clicks | ~58                  | 100+               | 170+           |
+| Non-brand click share  | 35%                  | 50%                | 60%+           |
+| Keywords in top 10     | ~8                   | 20+                | 30+            |
+| Pages indexed          | 31                   | 50+                | 70+            |
+| Rich results appearing | 0                    | FAQ + Review stars | Full coverage  |
