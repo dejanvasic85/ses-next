@@ -2,7 +2,7 @@
 
 **Priority:** Critical
 **Phase:** 1 (Month 1)
-**Status:** To Do
+**Status:** Complete
 
 ## Problem
 
@@ -79,9 +79,30 @@ Ensure each page has proper OG tags for social sharing and AI model context:
 
 ## Acceptance Criteria
 
-- [ ] Homepage title and meta description updated
-- [ ] All 7 service page titles and meta descriptions updated
-- [ ] Self-referencing canonical tags on all pages
-- [ ] UTM parameters stripped from canonical URLs
-- [ ] OG tags present on all pages
+- [x] Homepage title and meta description updated
+- [x] All 7 service page titles and meta descriptions updated
+- [x] Self-referencing canonical tags on all pages
+- [x] UTM parameters stripped from canonical URLs
+- [x] OG tags present on all pages (title, description, url, siteName, locale, image)
 - [ ] Verify in Google Search Console that /?utm_campaign=gmb stops appearing as separate page (may take 2-4 weeks)
+
+## Implementation Summary
+
+Completed in commit `36fb732` on branch `claude/implement-next-prd-bEbrf`.
+
+### What was changed
+
+- **`PageHead.tsx`** — Replaced `generateNextSeo` (App Router API, was silently not rendering) with `<NextSeo>` component (Pages Router API). This was the root cause of canonical and OG tags not being output. Added `og:locale: en_AU`. OG title now uses the page title instead of the company name.
+- **`Layout.tsx`** — Added optional `description` prop for per-page meta description override, falling back to the global `siteSettings.meta.description`.
+- **`pages/index.tsx`** — Homepage title and meta description defined as module-level constants and passed to `Layout`.
+- **`ses-content/schemas/service.ts`** — Added optional `seoTitle` and `seoDescription` fields to the Sanity service schema so Karl/Dean can manage SEO copy from Sanity Studio without code changes.
+- **`types.ts`** — Added `seoTitle?` and `seoDescription?` to `ServiceSchema` (zod) and `ServiceItem` type.
+- **`queries.ts`** — Added `seoTitle`, `seoDescription` to `servicesQuery` GROQ projection.
+- **`mappers.ts`** — `mapService` passes through `seoTitle` and `seoDescription`.
+- **`pages/services/[id].tsx`** — Added `serviceSeoTitles` and `serviceSeoDescriptions` constant maps for all 7 services as immediate fallbacks. `getStaticProps` uses `service.seoTitle || constant` so CMS values take precedence once set. Description passed to `Layout`.
+
+### Notes
+
+- No static `og-image.jpg` exists in `/public`; OG image uses `companyLogo` from Sanity (Cloudinary CDN URL).
+- Service SEO descriptions were written per-page, all ≤155 characters with a call to action.
+- The GSC UTM indexing fix will take 2-4 weeks to reflect after deployment.
