@@ -16,6 +16,17 @@
   "automerge": true,
   "commitMessageAction": "",
   "labels": ["dependencies"],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "recreateWhen": "always",
+    "rebaseStalePrs": true,
+    "branchTopic": "lock-file-maintenance",
+    "commitMessageAction": "Lock file maintenance",
+    "schedule": ["before 4am on monday"],
+    "prBodyDefinitions": {
+      "Change": "All locks refreshed"
+    }
+  },
   "prConcurrentLimit": 3,
   "prNotPendingHours": 1,
   "semanticCommitScope": "",
@@ -25,18 +36,6 @@
       "extends": "monorepo:nextjs",
       "groupName": "nextjs monorepo",
       "matchUpdateTypes": ["digest", "patch", "minor", "major"]
-    },
-    {
-      "matchPackageNames": ["eslint"],
-      "allowedVersions": "< 9"
-    },
-    {
-      "matchPackageNames": ["tailwindcss"],
-      "allowedVersions": "< 4"
-    },
-    {
-      "matchPackageNames": ["daisyui"],
-      "allowedVersions": "< 5"
     }
   ]
 }
