@@ -11,33 +11,6 @@ import { getBasePageProps } from '@/lib/basePageProps';
 import { Layout, CustomImage, ImageCarousel } from '@/components';
 import type { BlogPost, ServiceItem, GoogleReviews, BasePageProps } from '@/types';
 
-const serviceSeoTitles: Record<string, string> = {
-  'air-conditioning': 'Air Conditioning Installation & Service Melbourne | SES',
-  lighting: 'Lighting Installation & Repairs Melbourne | SES',
-  'electrical-testing': 'Electrical Testing & Safety Inspections Melbourne | SES',
-  'data-and-tv': 'Data & TV Point Installation Melbourne | SES',
-  telecommunications: 'Data Cabling & Telecommunications Electrician Melbourne | SES',
-  'renewable-energy': 'Solar Panel & Battery Installation Melbourne | SES',
-  'catering-maintenance': 'Commercial Electrical Maintenance Melbourne | SES',
-};
-
-const serviceSeoDescriptions: Record<string, string> = {
-  'air-conditioning':
-    'Expert air conditioning installation & repair in Melbourne. Licensed electricians, 19+ years experience. 5-star rated. Free quotes. Call (03) 4050 7937.',
-  lighting:
-    'Professional lighting installation & repairs across Melbourne. Licensed electricians. Downlights, LED upgrades & more. 5-star rated. Call (03) 4050 7937.',
-  'electrical-testing':
-    'Electrical testing & safety inspections in Melbourne. Licensed SES electricians. Compliance testing, fault finding. Free quotes. Call (03) 4050 7937.',
-  'data-and-tv':
-    'Data & TV point installation across Melbourne. Licensed electricians, 19+ years experience. TV antennas, NBN, HDMI. Call (03) 4050 7937.',
-  telecommunications:
-    'Data cabling & telecommunications solutions in Melbourne. Licensed electricians. NBN, fibre, office cabling. Free quotes. Call (03) 4050 7937.',
-  'renewable-energy':
-    'Solar panel & battery installation in Melbourne. CEC accredited installer. 19+ years experience. Free quotes. Call (03) 4050 7937.',
-  'catering-maintenance':
-    'Commercial electrical maintenance for Melbourne restaurants. Licensed electricians. Emergency repairs & preventive maintenance. Call (03) 4050 7937.',
-};
-
 interface ServiceProps extends BasePageProps {
   blogPosts: BlogPost[];
   googleReviews: GoogleReviews;
@@ -189,8 +162,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const posts = await getBlogPosts();
   const blogPosts = posts.filter(({ tags }) => tags.includes(slug));
 
-  const title = service!.seoTitle || serviceSeoTitles[slug] || service!.name;
-  const description = service!.seoDescription || serviceSeoDescriptions[slug];
+  const title = service!.seoTitle || service!.name;
+  const description = service!.seoDescription;
 
   return {
     props: {
