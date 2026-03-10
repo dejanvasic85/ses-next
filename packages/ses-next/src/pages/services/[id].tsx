@@ -1,7 +1,7 @@
 import { Activity } from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { PortableText } from '@portabletext/react';
-import { LocalBusinessJsonLd, BreadcrumbJsonLd } from 'next-seo';
+import { LocalBusinessJsonLd, BreadcrumbJsonLd, JsonLdScript } from 'next-seo';
 import Link from 'next/link';
 import Image from 'next/image';
 import { googleReviews } from 'ses-reviews';
@@ -83,7 +83,7 @@ export default function Service({
         }}
         review={reviewsJson}
       />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
+      <JsonLdScript data={serviceJsonLd} scriptKey="service" />
       <BreadcrumbJsonLd
         items={[
           { name: 'Home', item: siteSettings.baseUrl },

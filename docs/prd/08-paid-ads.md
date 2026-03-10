@@ -45,7 +45,7 @@ Before spending on ads, implement:
 - Keywords: "emergency electrician melbourne", "24 hour electrician near me"
 - Landing page: `/services/emergency-electrician`
 - Budget: $15-25/day
-- Schedule: 24/7 (emergencies happen anytime)
+- Schedule: Mon-Fri 7am-6pm (business hours only, urgent issues prioritised)
 
 **Campaign 2: Core Services (medium intent)**
 
