@@ -7,6 +7,7 @@
 ## Current State
 
 The site already has some structured data via `next-seo` (v7.2.0):
+
 - **LocalBusinessJsonLd** on homepage and service pages
 - **ArticleJsonLd** on blog posts
 
@@ -61,15 +62,15 @@ Add a second JSON-LD block alongside the existing LocalBusinessJsonLd. Use next-
 
 The `serviceType` can use `service.name` directly since it's already descriptive. Keep the existing LocalBusinessJsonLd in place.
 
-| Page | serviceType |
-|------|-------------|
-| /services/air-conditioning | Air Conditioning Installation and Service |
-| /services/lighting | Lighting Installation and Repair |
-| /services/electrical-testing | Electrical Testing and Inspection |
-| /services/data-and-tv | Data and TV Point Installation |
-| /services/telecommunications | Telecommunications and Data Cabling |
-| /services/renewable-energy | Solar Panel and Battery Installation |
-| /services/catering-maintenance | Commercial Electrical Maintenance |
+| Page                           | serviceType                               |
+| ------------------------------ | ----------------------------------------- |
+| /services/air-conditioning     | Air Conditioning Installation and Service |
+| /services/lighting             | Lighting Installation and Repair          |
+| /services/electrical-testing   | Electrical Testing and Inspection         |
+| /services/data-and-tv          | Data and TV Point Installation            |
+| /services/telecommunications   | Telecommunications and Data Cabling       |
+| /services/renewable-energy     | Solar Panel and Battery Installation      |
+| /services/catering-maintenance | Commercial Electrical Maintenance         |
 
 ### 3. Add FAQPageJsonLd to FAQ Page
 
@@ -85,7 +86,7 @@ import { FAQPageJsonLd } from 'next-seo';
     questionName: question,
     acceptedAnswerText: answer,
   }))}
-/>
+/>;
 ```
 
 > **Note:** Review current FAQ content. If questions are too generic, rewrite to target actual search queries from Search Console data (e.g., "How often should electrical testing be done?", "Do I need a licensed electrician to install a split system?").

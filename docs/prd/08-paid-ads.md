@@ -19,14 +19,14 @@ Restarting paid ads before fixing the fundamentals would waste budget:
 
 ## Prerequisites (Complete Before Relaunch)
 
-| Prerequisite | PRD Reference | Status |
-|-------------|:------------:|:------:|
-| Structured data on all pages | PRD-01 | To Do |
-| Optimised title tags and meta descriptions | PRD-02 | To Do |
-| Emergency Electrician service page live | PRD-04 | Planned |
-| At least 3 location pages live | PRD-05 | Planned |
-| GA4 conversion tracking for contact form | — | To Do |
-| Call tracking setup (optional but recommended) | — | To Do |
+| Prerequisite                                   | PRD Reference | Status  |
+| ---------------------------------------------- | :-----------: | :-----: |
+| Structured data on all pages                   |    PRD-01     |  To Do  |
+| Optimised title tags and meta descriptions     |    PRD-02     |  To Do  |
+| Emergency Electrician service page live        |    PRD-04     | Planned |
+| At least 3 location pages live                 |    PRD-05     | Planned |
+| GA4 conversion tracking for contact form       |       —       |  To Do  |
+| Call tracking setup (optional but recommended) |       —       |  To Do  |
 
 ## Recommended Setup
 
@@ -41,18 +41,21 @@ Before spending on ads, implement:
 ### Campaign Structure
 
 **Campaign 1: Emergency (high intent, high CPC)**
+
 - Keywords: "emergency electrician melbourne", "24 hour electrician near me"
 - Landing page: `/services/emergency-electrician`
 - Budget: $15-25/day
-- Schedule: 24/7 (emergencies happen anytime)
+- Schedule: Mon-Fri 7am-6pm (business hours only, urgent issues prioritised)
 
 **Campaign 2: Core Services (medium intent)**
+
 - Keywords: "electrician altona", "electrician [suburb]", "air conditioning installation melbourne"
 - Landing pages: Relevant service or location pages
 - Budget: $10-20/day
 - Schedule: Business hours + evenings
 
 **Campaign 3: Specialist Services (lower volume, lower CPC)**
+
 - Keywords: "solar panel installation melbourne", "data cabling electrician", "ev charger installation"
 - Landing pages: Specific service pages
 - Budget: $5-10/day
@@ -61,6 +64,7 @@ Before spending on ads, implement:
 ### Budget Recommendation
 
 Start small and scale based on results:
+
 - Month 1: $500-750 total (testing phase)
 - Month 2: Optimise based on conversion data
 - Month 3+: Scale what works, cut what doesn't
@@ -74,17 +78,18 @@ Start small and scale based on results:
 
 ## Timeline
 
-| Month | Action |
-|-------|--------|
+| Month     | Action                               |
+| --------- | ------------------------------------ |
 | Month 1-2 | Complete SEO foundation (PRDs 01-03) |
-| Month 2 | Set up conversion tracking in GA4 |
-| Month 2-3 | Create landing pages (PRDs 04-05) |
-| Month 3 | Soft launch with $500 test budget |
-| Month 4+ | Optimise and scale |
+| Month 2   | Set up conversion tracking in GA4    |
+| Month 2-3 | Create landing pages (PRDs 04-05)    |
+| Month 3   | Soft launch with $500 test budget    |
+| Month 4+  | Optimise and scale                   |
 
 ## Budget Communication
 
 Paid ads budget is separate from the $140/month subscription. Recommend discussing with Karl:
+
 - Google Ads spend: $500-750/month to start
 - Management fee: Discuss whether this falls under the $100/month SEO allocation or is billed separately
 - Reporting: Monthly ad spend report with conversions and cost-per-lead

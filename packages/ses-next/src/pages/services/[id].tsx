@@ -1,7 +1,7 @@
 import { Activity } from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { PortableText } from '@portabletext/react';
-import { LocalBusinessJsonLd, BreadcrumbJsonLd } from 'next-seo';
+import { LocalBusinessJsonLd, BreadcrumbJsonLd, JsonLdScript } from 'next-seo';
 import Link from 'next/link';
 import Image from 'next/image';
 import { googleReviews } from 'ses-reviews';
@@ -17,6 +17,7 @@ interface ServiceProps extends BasePageProps {
   service: ServiceItem;
   pageUrl: string;
   title: string;
+  description?: string;
 }
 
 export default function Service({
@@ -25,6 +26,7 @@ export default function Service({
   pageUrl,
   service,
   title,
+  description,
   services,
   siteSettings,
 }: ServiceProps) {
@@ -81,10 +83,7 @@ export default function Service({
         }}
         review={reviewsJson}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
-      />
+      <JsonLdScript data={serviceJsonLd} scriptKey="service" />
       <BreadcrumbJsonLd
         items={[
           { name: 'Home', item: siteSettings.baseUrl },
@@ -92,7 +91,7 @@ export default function Service({
           { name: service.name },
         ]}
       />
-      <Layout services={services} siteSettings={siteSettings} pageUrl={pageUrl} title={title}>
+      <Layout services={services} siteSettings={siteSettings} pageUrl={pageUrl} title={title} description={description}>
         <div className="bg-white py-6 sm:py-8 lg:py-12">
           <article className="mx-auto px-4 md:px-8 max-w-screen-lg prose lg:prose-lg">
             <h1 className="text-center">{name}</h1>
@@ -157,18 +156,22 @@ export default function Service({
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const props = await getBasePageProps({ pageUrl: `services/${params?.id}` });
-  const service = props.services.find(({ slug }) => slug === params?.id);
-  const [titlePrefix = ''] = props.siteSettings.meta.title.split('|');
+  const slug = params?.id as string;
+  const props = await getBasePageProps({ pageUrl: `services/${slug}` });
+  const service = props.services.find(({ slug: s }) => s === slug);
   const posts = await getBlogPosts();
-  const blogPosts = posts.filter(({ tags }) => tags.includes(params?.id as string));
+  const blogPosts = posts.filter(({ tags }) => tags.includes(slug));
+
+  const title = service!.seoTitle || service!.name;
+  const description = service!.seoDescription;
 
   return {
     props: {
       ...props,
       googleReviews,
       service: service!,
-      title: `${titlePrefix.trim()} | ${service!.name}`,
+      title,
+      description,
       blogPosts,
     },
   };

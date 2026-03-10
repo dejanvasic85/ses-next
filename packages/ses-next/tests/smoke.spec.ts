@@ -4,7 +4,7 @@ test.describe('SES Next Website Smoke Tests', () => {
   test('homepage loads successfully', async ({ page }) => {
     await page.goto('/');
 
-    await expect(page).toHaveTitle(/SES Melbourne Electricians/);
+    await expect(page).toHaveTitle(/Melbourne Electricians/);
     await expect(page.locator('body')).toBeVisible();
     await expect(page.locator('nav')).toBeVisible();
   });

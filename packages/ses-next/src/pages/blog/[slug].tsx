@@ -34,11 +34,7 @@ export default function BlogPost({ pageUrl, tagsWithCount, totalPosts, post, ser
         image={post.photo}
       />
       <BreadcrumbJsonLd
-        items={[
-          { name: 'Home', item: baseUrl },
-          { name: 'Blog', item: blogIndexUrl },
-          { name: post.title },
-        ]}
+        items={[{ name: 'Home', item: baseUrl }, { name: 'Blog', item: blogIndexUrl }, { name: post.title }]}
       />
       <Layout services={services} siteSettings={siteSettings} pageUrl={pageUrl}>
         <BlogLayout tagsWithCount={tagsWithCount} totalPosts={totalPosts}>

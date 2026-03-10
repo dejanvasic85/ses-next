@@ -7,6 +7,10 @@ import { getBasePageProps } from '@/lib/basePageProps';
 import { getHomePageContent } from '@/lib/content/contentService';
 import type { BasePageProps, GoogleReviews, SiteSettings, HomePageContent } from '@/types';
 
+const homepageTitle = 'Melbourne Electricians | 24/7 Emergency Electrical Services | Storm Electrical Solutions';
+const homepageDescription =
+  'Licensed Melbourne electricians with 19+ years experience. Emergency electrical services, air conditioning, solar, lighting & data cabling. 5-star rated. Free quotes. Call (03) 4050 7937.';
+
 interface HomeProps extends BasePageProps {
   homepageContent: HomePageContent;
   googleReviews: GoogleReviews;
@@ -14,8 +18,17 @@ interface HomeProps extends BasePageProps {
 }
 
 export default function Home({ homepageContent, googleReviews, pageUrl, services, siteSettings }: HomeProps) {
-  const { companyName, alternateName, companyLogo, googleMapsLocation, googleMapsLocationPlaceUrl, meta, social, phone, baseUrl } =
-    siteSettings;
+  const {
+    companyName,
+    alternateName,
+    companyLogo,
+    googleMapsLocation,
+    googleMapsLocationPlaceUrl,
+    meta,
+    social,
+    phone,
+    baseUrl,
+  } = siteSettings;
   const { mainHeading, subHeading, team, training } = homepageContent;
 
   const ratingCount = Number(googleReviews.numberOfReviews.replace('reviews', '').trim());
@@ -33,9 +46,7 @@ export default function Home({ homepageContent, googleReviews, pageUrl, services
     },
   }));
 
-  const sameAs = [social.facebook, social.instagram, social.linkedIn].filter(
-    (url): url is string => url !== null,
-  );
+  const sameAs = [social.facebook, social.instagram, social.linkedIn].filter((url): url is string => url !== null);
 
   const credentialsJsonLd = {
     '@context': 'https://schema.org',
@@ -88,7 +99,13 @@ export default function Home({ homepageContent, googleReviews, pageUrl, services
         review={reviewsJson}
       />
       <JsonLdScript data={credentialsJsonLd} scriptKey="credentials" />
-      <Layout services={services} siteSettings={siteSettings} pageUrl={pageUrl}>
+      <Layout
+        services={services}
+        siteSettings={siteSettings}
+        pageUrl={pageUrl}
+        title={homepageTitle}
+        description={homepageDescription}
+      >
         <Hero
           companyName={companyName}
           companyLogo={companyLogo}

@@ -7,11 +7,9 @@ interface PageHeadProps {
   companyLogo: string;
   description: string;
   title: string;
-  socialTitle: string;
-  phone?: string;
 }
 
-export function PageHead({ canonicalUrl, companyName, companyLogo, description, title, socialTitle }: PageHeadProps) {
+export function PageHead({ canonicalUrl, companyName, companyLogo, description, title }: PageHeadProps) {
   return (
     <Head>
       {generateNextSeo({
@@ -20,15 +18,11 @@ export function PageHead({ canonicalUrl, companyName, companyLogo, description, 
         canonical: canonicalUrl,
         openGraph: {
           url: canonicalUrl,
-          title: socialTitle,
+          title,
           description,
           images: [{ url: companyLogo, alt: companyName }],
           siteName: companyName,
-        },
-        twitter: {
-          cardType: 'summary',
-          site: companyName,
-          handle: '@' + companyName,
+          locale: 'en_AU',
         },
       })}
     </Head>

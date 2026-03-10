@@ -10,6 +10,21 @@ export default defineType({
     {name: 'name', type: 'string', title: 'Name'},
     {name: 'description', type: 'string', title: 'Description'},
     {
+      name: 'seoTitle',
+      type: 'string',
+      title: 'SEO Title',
+      description: 'Override page title tag (~60 chars max). Defaults to service name if empty.',
+      validation: (Rule) => Rule.max(60).warning('Keep SEO titles under 60 characters'),
+    },
+    {
+      name: 'seoDescription',
+      type: 'text',
+      rows: 3,
+      title: 'SEO Description',
+      description: 'Meta description (~155 chars max). Include a call to action.',
+      validation: (Rule) => Rule.max(155).warning('Keep SEO descriptions under 155 characters'),
+    },
+    {
       name: 'blurb',
       type: 'text',
       rows: 3,
