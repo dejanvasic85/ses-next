@@ -1,4 +1,5 @@
-import { NextSeo } from 'next-seo';
+import Head from 'next/head';
+import { generateNextSeo } from 'next-seo/pages';
 
 interface PageHeadProps {
   canonicalUrl: string;
@@ -10,18 +11,20 @@ interface PageHeadProps {
 
 export function PageHead({ canonicalUrl, companyName, companyLogo, description, title }: PageHeadProps) {
   return (
-    <NextSeo
-      title={title}
-      description={description}
-      canonical={canonicalUrl}
-      openGraph={{
-        url: canonicalUrl,
+    <Head>
+      {generateNextSeo({
         title,
         description,
-        images: [{ url: companyLogo, alt: companyName }],
-        siteName: companyName,
-        locale: 'en_AU',
-      }}
-    />
+        canonical: canonicalUrl,
+        openGraph: {
+          url: canonicalUrl,
+          title,
+          description,
+          images: [{ url: companyLogo, alt: companyName }],
+          siteName: companyName,
+          locale: 'en_AU',
+        },
+      })}
+    </Head>
   );
 }
