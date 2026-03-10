@@ -7,6 +7,9 @@ import Image from 'next/image';
 import { googleReviews } from 'ses-reviews';
 
 import { getBlogPosts, getServices } from '@/lib/content/contentService';
+import { getBasePageProps } from '@/lib/basePageProps';
+import { Layout, CustomImage, ImageCarousel } from '@/components';
+import type { BlogPost, ServiceItem, GoogleReviews, BasePageProps } from '@/types';
 
 const serviceSeoTitles: Record<string, string> = {
   'air-conditioning': 'Air Conditioning Installation & Service Melbourne | SES',
@@ -34,9 +37,6 @@ const serviceSeoDescriptions: Record<string, string> = {
   'catering-maintenance':
     'Commercial electrical maintenance for Melbourne restaurants. Licensed electricians. Emergency repairs & preventive maintenance. Call (03) 4050 7937.',
 };
-import { getBasePageProps } from '@/lib/basePageProps';
-import { Layout, CustomImage, ImageCarousel } from '@/components';
-import type { BlogPost, ServiceItem, GoogleReviews, BasePageProps } from '@/types';
 
 interface ServiceProps extends BasePageProps {
   blogPosts: BlogPost[];
