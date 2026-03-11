@@ -11,9 +11,10 @@ interface LayoutProps {
   pageUrl: string;
   title?: string;
   description?: string;
+  noIndex?: boolean;
 }
 
-export function Layout({ children, siteSettings, services, pageUrl, title, description }: LayoutProps) {
+export function Layout({ children, siteSettings, services, pageUrl, title, description, noIndex }: LayoutProps) {
   const { companyName, companyLogo, phone, meta, shortTitle, social } = siteSettings;
   return (
     <>
@@ -23,6 +24,7 @@ export function Layout({ children, siteSettings, services, pageUrl, title, descr
         companyName={companyName}
         description={description || meta.description}
         title={title || meta.title}
+        noIndex={noIndex}
       />
       <Navbar contactPhone={phone} title={shortTitle} />
       <main>{children}</main>
