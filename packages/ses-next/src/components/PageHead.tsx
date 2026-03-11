@@ -7,11 +7,13 @@ interface PageHeadProps {
   companyLogo: string;
   description: string;
   title: string;
+  noIndex?: boolean;
 }
 
-export function PageHead({ canonicalUrl, companyName, companyLogo, description, title }: PageHeadProps) {
+export function PageHead({ canonicalUrl, companyName, companyLogo, description, title, noIndex }: PageHeadProps) {
   return (
     <Head>
+      {noIndex && <meta name="robots" content="noindex, follow" />}
       {generateNextSeo({
         title,
         description,

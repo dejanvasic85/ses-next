@@ -17,7 +17,7 @@ interface TagsProps extends BasePageProps {
 
 export default function Tags({ services, siteSettings, pageUrl, tagsWithCount, blogPosts, totalPosts }: TagsProps) {
   return (
-    <Layout services={services} siteSettings={siteSettings} pageUrl={pageUrl}>
+    <Layout services={services} siteSettings={siteSettings} pageUrl={pageUrl} noIndex>
       <BlogLayout tagsWithCount={tagsWithCount} totalPosts={totalPosts}>
         <div className="grid gap-6">
           {blogPosts.map(({ id, description, title, tags, photo, slug, publishedAt }) => (
