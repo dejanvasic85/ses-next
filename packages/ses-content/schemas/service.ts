@@ -1,4 +1,4 @@
-import {defineType} from 'sanity'
+import {defineField, defineType} from 'sanity'
 
 import iconField from './iconField'
 
@@ -48,5 +48,21 @@ export default defineType({
       type: 'array',
       of: [{type: 'block'}, {type: 'image'}],
     },
+    defineField({
+      name: 'faqs',
+      title: 'FAQs',
+      description:
+        'Frequently asked questions displayed below the main content with FAQ schema markup',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            defineField({name: 'question', title: 'Question', type: 'string'}),
+            defineField({name: 'answer', title: 'Answer', type: 'text', rows: 3}),
+          ],
+        },
+      ],
+    }),
   ],
 })
