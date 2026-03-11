@@ -26,7 +26,7 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json}": [
       "prettier . --write",
-      "turbo lint"
+      "npm run lint -w ses-next"
     ]
   },
   "packageManager": "npm@11.11.0"
