@@ -9,7 +9,7 @@ import { googleReviews } from 'ses-reviews';
 import { getBlogPosts, getServices } from '@/lib/content/contentService';
 import { getBasePageProps } from '@/lib/basePageProps';
 import { Layout, CustomImage, ImageCarousel } from '@/components';
-import type { BlogPost, ServiceItem, GoogleReviews, BasePageProps } from '@/types';
+import type { BlogPost, ServiceFaq, ServiceItem, GoogleReviews, BasePageProps } from '@/types';
 
 interface ServiceProps extends BasePageProps {
   blogPosts: BlogPost[];
@@ -19,6 +19,19 @@ interface ServiceProps extends BasePageProps {
   title: string;
   description?: string;
 }
+
+const faqJsonLd = (faqs: ServiceFaq[]) => ({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(({ question, answer }) => ({
+    '@type': 'Question',
+    name: question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: answer,
+    },
+  })),
+});
 
 export default function Service({
   blogPosts,
@@ -30,7 +43,7 @@ export default function Service({
   services,
   siteSettings,
 }: ServiceProps) {
-  const { name, content: serviceContent } = service;
+  const { name, content: serviceContent, faqs } = service;
 
   const serviceJsonLd = {
     '@context': 'https://schema.org',
@@ -84,6 +97,7 @@ export default function Service({
         review={reviewsJson}
       />
       <JsonLdScript data={serviceJsonLd} scriptKey="service" />
+      {faqs && faqs.length > 0 && <JsonLdScript data={faqJsonLd(faqs)} scriptKey="faq" />}
       <BreadcrumbJsonLd
         items={[
           { name: 'Home', item: siteSettings.baseUrl },
@@ -107,6 +121,22 @@ export default function Service({
             )}
           </article>
           {service.imageGallery && <ImageCarousel images={service.imageGallery} serviceName={service.name} />}
+
+          {faqs && faqs.length > 0 && (
+            <section aria-labelledby="faq-heading" className="mx-auto px-4 md:px-8 max-w-screen-lg mt-12 mb-8">
+              <h2 id="faq-heading" className="text-3xl font-bold text-gray-900 mb-6">
+                Frequently Asked Questions
+              </h2>
+              <dl className="divide-y divide-gray-200">
+                {faqs.map(({ question, answer }) => (
+                  <div key={question} className="py-6">
+                    <dt className="text-lg font-semibold text-gray-900">{question}</dt>
+                    <dd className="mt-2 text-gray-600">{answer}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+          )}
 
           <Activity mode={blogPosts.length > 0 ? 'visible' : 'hidden'}>
             <div className="mx-auto px-4 md:px-8 max-w-screen-lg mt-12 mb-8">

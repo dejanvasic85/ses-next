@@ -93,7 +93,8 @@ export const servicesQuery = `*[_type == "service"]{
         url
       }
     }
-  }
+  },
+  "faqs": coalesce(faqs[]{ question, answer }, null)
 }`;
 
 export const allBlogPostsQuery = `*[_type == "blog-post"] | order(publishedAt desc){

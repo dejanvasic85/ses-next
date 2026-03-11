@@ -145,6 +145,11 @@ export const ShowcaseSchema = z.object({
   featured: z.boolean().nullable(),
 });
 
+export const ServiceFaqSchema = z.object({
+  question: z.string(),
+  answer: z.string(),
+});
+
 export const ServiceSchema = z.object({
   _type: z.literal('service'),
   _id: z.string(),
@@ -161,6 +166,7 @@ export const ServiceSchema = z.object({
   content: SanityPortableTextSchema.nullable(),
   seoTitle: z.string().nullable(),
   seoDescription: z.string().nullable(),
+  faqs: z.array(ServiceFaqSchema).nullable(),
 });
 
 export const TermsAndConditionsSchema = z.object({
@@ -300,6 +306,8 @@ export type Testimonial = {
   url: string | null;
 };
 
+export type ServiceFaq = z.infer<typeof ServiceFaqSchema>;
+
 export type ServiceItem = {
   id: string;
   name: string;
@@ -321,6 +329,7 @@ export type ServiceItem = {
   content: SanityPortableText | null;
   seoTitle: string | null;
   seoDescription: string | null;
+  faqs: ServiceFaq[] | null;
 };
 
 export type Team = {
