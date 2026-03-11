@@ -8,7 +8,9 @@
     "lint": "turbo lint",
     "deploy:content": "npm run build -w ses-content && npm run deploy -w ses-content",
     "update:rating": "npm run update:rating -w ses-reviews",
-    "update:reviews": "npm run update:reviews -w ses-reviews"
+    "update:reviews": "npm run update:reviews -w ses-reviews",
+    "prepare": "husky",
+    "lint-staged": "lint-staged"
   },
   "workspaces": [
     "./packages/*"
@@ -17,11 +19,15 @@
     "node": "24.14.0"
   },
   "devDependencies": {
+    "husky": "9.1.7",
     "lint-staged": "16.3.2",
     "turbo": "2.8.14"
   },
   "lint-staged": {
-    "*": "prettier --write"
+    "*.{js,jsx,ts,tsx,json}": [
+      "prettier . --write",
+      "turbo lint"
+    ]
   },
   "packageManager": "npm@11.11.0"
 }
