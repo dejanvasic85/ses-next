@@ -6,11 +6,11 @@
     "type:check": "turbo type:check",
     "build": "turbo build",
     "lint": "turbo lint",
+    "lint-staged": "lint-staged",
     "deploy:content": "npm run build -w ses-content && npm run deploy -w ses-content",
     "update:rating": "npm run update:rating -w ses-reviews",
     "update:reviews": "npm run update:reviews -w ses-reviews",
-    "prepare": "husky",
-    "lint-staged": "lint-staged"
+    "prepare": "husky"
   },
   "workspaces": [
     "./packages/*"
