@@ -8,6 +8,8 @@ import { Icon } from '@/components/Icon/Icon';
 import type { IconMap } from '@/components/Icon/IconMap';
 import { type ServiceItem } from '@/types';
 
+const servicesHubPath = '/services/';
+
 const ConditionalWrap = ({
   children,
   condition,
@@ -74,6 +76,19 @@ export const Services = ({ className, blurbs, services }: ServicesProps) => {
               </div>
             </div>
           ))}
+          <div className="group relative overflow-hidden rounded-lg border-2 border-dashed border-primary w-full">
+            <Link href={servicesHubPath} className="absolute inset-0 z-10" prefetch={false}>
+              <span className="sr-only">See all our electrical services</span>
+            </Link>
+            <div className="flex h-full flex-col items-center justify-center p-6 text-center gap-3 min-h-[160px]">
+              <div className="rounded-full bg-primary/10 p-3">
+                <Icon name="bolt" size="xl" className="text-primary" />
+              </div>
+              <p className="text-lg font-semibold text-primary group-hover:underline">
+                See all our electrical services →
+              </p>
+            </div>
+          </div>
         </div>
       </Container>
     </div>

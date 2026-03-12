@@ -33,7 +33,7 @@ export function Navbar({
   title,
   links = {
     home: '/',
-    services: '/#services',
+    services: '/services/',
     about: '/#about',
     contact: '/#contact',
     faq: '/faq',

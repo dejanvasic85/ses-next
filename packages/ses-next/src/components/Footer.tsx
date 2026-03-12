@@ -35,7 +35,7 @@ export function Footer({
   social = {} as Social,
   links = {
     home: '/',
-    services: '/#services',
+    services: '/services/',
     about: '/#about',
     contact: '/#contact',
     faq: '/faq',
@@ -98,6 +98,9 @@ export function Footer({
             {name}
           </ConditionalWrap>
         ))}
+        <Link className="link link-hover font-medium mt-2" href={links.services}>
+          See all services →
+        </Link>
       </div>
       <div>
         <span className="footer-title">Follow us</span>

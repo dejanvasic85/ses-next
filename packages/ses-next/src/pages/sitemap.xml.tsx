@@ -17,12 +17,20 @@ type SitemapGenerateProps = {
 const generateSitemap = ({ blogPosts, services, siteSettings }: SitemapGenerateProps): string => {
   const { baseUrl } = siteSettings;
   const knownPages = ['', 'faq', 'blog'].map((page) => createLocXmlForUrl(`${baseUrl}${page}`)).join(' ');
+  const servicesHub = `
+    <url>
+      <loc>${baseUrl}services/</loc>
+      <priority>0.9</priority>
+      <changefreq>weekly</changefreq>
+    </url>
+  `;
   const servicePages = services.map(({ slug }) => createLocXmlForUrl(`${baseUrl}services/${slug}`)).join(' ');
   const blogPostUrls = blogPosts.map(({ slug }) => createLocXmlForUrl(`${baseUrl}blog/${slug}`)).join(' ');
 
   return `<?xml version="1.0" encoding="UTF-8"?>
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     ${knownPages}
+    ${servicesHub}
     ${servicePages}
     ${blogPostUrls}
    </urlset>
