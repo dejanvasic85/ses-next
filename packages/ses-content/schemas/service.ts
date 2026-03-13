@@ -33,6 +33,13 @@ export default defineType({
     },
     {name: 'slug', type: 'slug', title: 'URL slug e.g. air-conditioning'},
     {name: 'linkToReadMore', type: 'boolean', title: 'Show link to read more on homepage'},
+    {
+      name: 'showOnHomepage',
+      title: 'Show on homepage',
+      type: 'boolean',
+      description: 'Display this service in the homepage services grid',
+      initialValue: false,
+    },
     iconField,
     {
       name: 'showcase',

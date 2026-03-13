@@ -55,6 +55,7 @@ export const mapService = (model: ServiceContentModel): ServiceItem => {
     blurb: model.blurb,
     description: model.description,
     linkToReadMore: model.linkToReadMore,
+    showOnHomepage: model.showOnHomepage ?? null,
     icon: model.icon,
     slug: model.slug.current,
     content: model.content,

@@ -161,6 +161,7 @@ export const ServiceSchema = z.object({
   blurb: z.string(),
   slug: SanitySlugSchema,
   linkToReadMore: z.boolean().nullable(),
+  showOnHomepage: z.boolean().nullable(),
   icon: IconSchema,
   showcase: z.array(ShowcaseSchema).nullable(),
   content: SanityPortableTextSchema.nullable(),
@@ -242,6 +243,16 @@ export const SiteSettingsSchema = z.object({
     .nullable(),
 });
 
+export const ServicesHubSchema = z.object({
+  _id: z.string(),
+  _type: z.literal('servicesHub'),
+  pageTitle: z.string().nullable(),
+  pageDescription: z.string().nullable(),
+  heading: z.string().nullable(),
+  intro: z.array(z.string()).nullable(),
+  serviceAreas: z.array(z.string()).nullable(),
+});
+
 export const HomepageSchema = z.object({
   _id: z.string(),
   _type: z.literal('homepage'),
@@ -315,6 +326,7 @@ export type ServiceItem = {
   description: string;
   slug: string;
   linkToReadMore: boolean | null;
+  showOnHomepage: boolean | null;
   icon: Icon;
   featuredImage: {
     src: string;
@@ -369,6 +381,14 @@ export type BasePageProps = {
   };
   siteSettings: SiteSettings;
   services: ServiceItem[];
+};
+
+export type ServicesHubContent = {
+  pageTitle: string | null;
+  pageDescription: string | null;
+  heading: string | null;
+  intro: string[] | null;
+  serviceAreas: string[] | null;
 };
 
 export type HomePageContent = {
