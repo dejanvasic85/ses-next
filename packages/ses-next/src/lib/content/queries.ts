@@ -66,6 +66,7 @@ export const servicesQuery = `*[_type == "service"]{
   blurb,
   slug,
   linkToReadMore,
+  showOnHomepage,
   icon,
   seoTitle,
   seoDescription,
@@ -160,6 +161,16 @@ export const allFaqsQuery = `*[_type == "faq"]{
   _type,
   question,
   answer
+}`;
+
+export const servicesHubQuery = `*[_type == "servicesHub"][0]{
+  _id,
+  _type,
+  pageTitle,
+  pageDescription,
+  heading,
+  intro,
+  serviceAreas
 }`;
 
 export const termsAndConditionsQuery = `*[_type == "terms-and-conditions"]{

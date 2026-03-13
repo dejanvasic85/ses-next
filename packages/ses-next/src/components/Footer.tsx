@@ -25,25 +25,23 @@ interface Links {
   terms: string;
 }
 
+const defaultFooterLinks: Links = {
+  home: '/',
+  services: '/services/',
+  about: '/#about',
+  contact: '/#contact',
+  faq: '/faq',
+  blog: '/blog',
+  terms: '/terms',
+};
+
 interface FooterProps {
   social: Social;
   links?: Links;
   services: ServiceItem[];
 }
 
-export function Footer({
-  social = {} as Social,
-  links = {
-    home: '/',
-    services: '/#services',
-    about: '/#about',
-    contact: '/#contact',
-    faq: '/faq',
-    blog: '/blog',
-    terms: '/terms',
-  },
-  services,
-}: FooterProps) {
+export function Footer({ social = {} as Social, links = defaultFooterLinks, services }: FooterProps) {
   const today = new Date();
   const year = today.getFullYear();
 
@@ -98,6 +96,9 @@ export function Footer({
             {name}
           </ConditionalWrap>
         ))}
+        <Link className="link link-hover font-medium mt-2" href={links.services}>
+          See all services →
+        </Link>
       </div>
       <div>
         <span className="footer-title">Follow us</span>
