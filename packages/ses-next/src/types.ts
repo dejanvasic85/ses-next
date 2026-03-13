@@ -150,6 +150,11 @@ export const ServiceFaqSchema = z.object({
   answer: z.string(),
 });
 
+export const ServiceParentSchema = z.object({
+  name: z.string(),
+  slug: SanitySlugSchema,
+});
+
 export const ServiceSchema = z.object({
   _type: z.literal('service'),
   _id: z.string(),
@@ -168,6 +173,7 @@ export const ServiceSchema = z.object({
   seoTitle: z.string().nullable(),
   seoDescription: z.string().nullable(),
   faqs: z.array(ServiceFaqSchema).nullable(),
+  parentService: ServiceParentSchema.nullish(),
 });
 
 export const TermsAndConditionsSchema = z.object({
@@ -328,6 +334,7 @@ export type ServiceItem = {
   linkToReadMore: boolean | null;
   showOnHomepage: boolean | null;
   icon: Icon;
+  parentService: { name: string; slug: string } | null;
   featuredImage: {
     src: string;
     alt: string;

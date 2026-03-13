@@ -55,6 +55,14 @@ export default defineType({
       type: 'array',
       of: [{type: 'block'}, {type: 'image'}],
     },
+    {
+      name: 'parentService',
+      title: 'Parent service',
+      type: 'reference',
+      to: [{type: 'service'}],
+      description:
+        'If set, this service appears as a sub-service under the parent. Leave empty for top-level services.',
+    },
     defineField({
       name: 'faqs',
       title: 'FAQs',
