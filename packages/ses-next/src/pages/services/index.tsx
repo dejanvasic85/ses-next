@@ -7,7 +7,6 @@ import { Layout } from '@/components/Layout';
 import { Container } from '@/components/Container';
 import { Heading } from '@/components/Heading';
 import { Icon } from '@/components/Icon/Icon';
-import type { IconMap } from '@/components/Icon/IconMap';
 import { getBasePageProps } from '@/lib/basePageProps';
 import type { BasePageProps, ServiceItem } from '@/types';
 
@@ -28,9 +27,7 @@ const serviceAreas = [
   'Sunshine',
 ];
 
-interface ServicesHubProps extends BasePageProps {
-  pageUrl: string;
-}
+type ServicesHubProps = BasePageProps;
 
 interface ServiceCardProps {
   service: ServiceItem;
@@ -48,7 +45,7 @@ function ServiceCard({ service }: ServiceCardProps) {
         <div className="space-y-2">
           <div className="flex items-center gap-3">
             <div className="rounded-full bg-primary p-2">
-              <Icon name={icon as keyof typeof IconMap} size="xl" className="text-white" />
+              <Icon name={icon} size="xl" className="text-white" />
             </div>
             <h3 className="text-lg font-semibold border-b-2 border-primary">{name}</h3>
           </div>
@@ -80,14 +77,12 @@ export default function ServicesHub({ services, siteSettings, pageUrl }: Service
     url: pageUrl,
     mainEntity: {
       '@type': 'ItemList',
-      itemListElement: services
-        .filter(({ slug }) => slug)
-        .map(({ slug, name }, position) => ({
-          '@type': 'ListItem',
-          position: position + 1,
-          name,
-          url: new URL(`services/${slug}`, siteSettings.baseUrl).toString(),
-        })),
+      itemListElement: services.map(({ slug, name }, position) => ({
+        '@type': 'ListItem',
+        position: position + 1,
+        name,
+        url: new URL(`services/${slug}`, siteSettings.baseUrl).toString(),
+      })),
     },
   };
 

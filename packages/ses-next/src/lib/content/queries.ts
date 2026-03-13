@@ -66,6 +66,7 @@ export const servicesQuery = `*[_type == "service"]{
   blurb,
   slug,
   linkToReadMore,
+  showOnHomepage,
   icon,
   seoTitle,
   seoDescription,

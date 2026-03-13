@@ -161,6 +161,7 @@ export const ServiceSchema = z.object({
   blurb: z.string(),
   slug: SanitySlugSchema,
   linkToReadMore: z.boolean().nullable(),
+  showOnHomepage: z.boolean().nullable(),
   icon: IconSchema,
   showcase: z.array(ShowcaseSchema).nullable(),
   content: SanityPortableTextSchema.nullable(),
@@ -315,6 +316,7 @@ export type ServiceItem = {
   description: string;
   slug: string;
   linkToReadMore: boolean | null;
+  showOnHomepage: boolean | null;
   icon: Icon;
   featuredImage: {
     src: string;

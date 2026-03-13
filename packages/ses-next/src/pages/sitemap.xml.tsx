@@ -2,6 +2,10 @@ import { GetServerSideProps } from 'next';
 import { getBlogPosts, getSiteSettings, getServices } from '@/lib/content/contentService';
 import type { BlogPost, ServiceItem, SiteSettings } from '@/types';
 
+const servicesHubPath = 'services/';
+const servicesHubPriority = 0.9;
+const servicesHubChangefreq = 'weekly';
+
 const createLocXmlForUrl = (url: string): string => `
     <url>
       <loc>${`${url}`}</loc>
@@ -19,9 +23,9 @@ const generateSitemap = ({ blogPosts, services, siteSettings }: SitemapGenerateP
   const knownPages = ['', 'faq', 'blog'].map((page) => createLocXmlForUrl(`${baseUrl}${page}`)).join(' ');
   const servicesHub = `
     <url>
-      <loc>${baseUrl}services/</loc>
-      <priority>0.9</priority>
-      <changefreq>weekly</changefreq>
+      <loc>${baseUrl}${servicesHubPath}</loc>
+      <priority>${servicesHubPriority}</priority>
+      <changefreq>${servicesHubChangefreq}</changefreq>
     </url>
   `;
   const servicePages = services.map(({ slug }) => createLocXmlForUrl(`${baseUrl}services/${slug}`)).join(' ');

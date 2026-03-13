@@ -22,24 +22,22 @@ interface NavLinks {
   blog: string;
 }
 
+const defaultNavLinks: NavLinks = {
+  home: '/',
+  services: '/services/',
+  about: '/#about',
+  contact: '/#contact',
+  faq: '/faq',
+  blog: '/blog',
+};
+
 interface NavbarProps {
   contactPhone: string;
   title: string;
   links?: NavLinks;
 }
 
-export function Navbar({
-  contactPhone,
-  title,
-  links = {
-    home: '/',
-    services: '/services/',
-    about: '/#about',
-    contact: '/#contact',
-    faq: '/faq',
-    blog: '/blog',
-  },
-}: NavbarProps) {
+export function Navbar({ contactPhone, title, links = defaultNavLinks }: NavbarProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
