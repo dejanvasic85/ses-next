@@ -163,6 +163,16 @@ export const allFaqsQuery = `*[_type == "faq"]{
   answer
 }`;
 
+export const servicesHubQuery = `*[_type == "servicesHub"][0]{
+  _id,
+  _type,
+  pageTitle,
+  pageDescription,
+  heading,
+  intro,
+  serviceAreas
+}`;
+
 export const termsAndConditionsQuery = `*[_type == "terms-and-conditions"]{
   _id,
   _type,

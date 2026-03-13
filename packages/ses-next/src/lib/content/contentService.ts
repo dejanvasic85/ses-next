@@ -5,12 +5,14 @@ import {
   type SiteSettings,
   type ServiceItem,
   type HomePageContent,
+  type ServicesHubContent,
   type TermsAndConditionsContent,
   type FAQ,
   type BlogPostContentModel,
   type SanityTermsAndConditions,
   SiteSettingsSchema,
   HomepageSchema,
+  ServicesHubSchema,
   ServiceSchema,
   BlogPostSchema,
   FAQSchema,
@@ -28,6 +30,7 @@ import {
   allBlogPostsQuery,
   allFaqsQuery,
   homepageQuery,
+  servicesHubQuery,
   servicesQuery,
   siteSettingsQuery,
   blogPostBySlugQuery,
@@ -70,6 +73,26 @@ export const getHomePageContent = async (): Promise<HomePageContent> => {
   } catch (error) {
     console.error('Error in getHomePageContent:', error);
     throw new Error('Failed to fetch homepage content');
+  }
+};
+
+export const getServicesHubContent = async (): Promise<ServicesHubContent> => {
+  try {
+    const result = await sanityClient.fetch(servicesHubQuery);
+    if (!result) {
+      return { pageTitle: null, pageDescription: null, heading: null, intro: null, serviceAreas: null };
+    }
+    const hub = ServicesHubSchema.parse(result);
+    return {
+      pageTitle: hub.pageTitle,
+      pageDescription: hub.pageDescription,
+      heading: hub.heading,
+      intro: hub.intro,
+      serviceAreas: hub.serviceAreas,
+    };
+  } catch (error) {
+    console.error('Error in getServicesHubContent:', error);
+    throw new Error('Failed to fetch services hub content');
   }
 };
 

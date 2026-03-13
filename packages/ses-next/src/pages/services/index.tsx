@@ -4,30 +4,15 @@ import Image from 'next/image';
 import { JsonLdScript, BreadcrumbJsonLd } from 'next-seo';
 
 import { Layout } from '@/components/Layout';
-import { Container } from '@/components/Container';
 import { Heading } from '@/components/Heading';
 import { Icon } from '@/components/Icon/Icon';
 import { getBasePageProps } from '@/lib/basePageProps';
-import type { BasePageProps, ServiceItem } from '@/types';
+import { getServicesHubContent } from '@/lib/content/contentService';
+import type { BasePageProps, ServiceItem, ServicesHubContent } from '@/types';
 
-const pageTitle = 'Electrical Services Melbourne | Storm Electrical Solutions';
-const pageDescription =
-  'Licensed Melbourne electricians offering air conditioning, lighting, electrical testing, solar, data cabling and more. 19+ years experience. Free quotes. Call (03) 4050 7937.';
-
-const serviceAreas = [
-  'Altona',
-  'Altona North',
-  'Newport',
-  'Yarraville',
-  'Footscray',
-  'Williamstown',
-  'Moonee Ponds',
-  'Ascot Vale',
-  'Seddon',
-  'Sunshine',
-];
-
-type ServicesHubProps = BasePageProps;
+type ServicesHubProps = BasePageProps & {
+  hubContent: ServicesHubContent;
+};
 
 interface ServiceCardProps {
   service: ServiceItem;
@@ -68,12 +53,18 @@ function ServiceCard({ service }: ServiceCardProps) {
   );
 }
 
-export default function ServicesHub({ services, siteSettings, pageUrl }: ServicesHubProps) {
+export default function ServicesHub({ services, siteSettings, pageUrl, hubContent }: ServicesHubProps) {
+  const title = `${hubContent.pageTitle} - ${siteSettings.companyName}`;
+  const description = hubContent.pageDescription;
+  const heading = hubContent.heading;
+  const introParagraphs = hubContent.intro;
+  const serviceAreas = hubContent.serviceAreas;
+
   const collectionPageJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'Electrical Services Melbourne',
-    description: pageDescription,
+    name: hubContent.pageTitle,
+    description,
     url: pageUrl,
     mainEntity: {
       '@type': 'ItemList',
@@ -99,51 +90,51 @@ export default function ServicesHub({ services, siteSettings, pageUrl }: Service
         services={services}
         siteSettings={siteSettings}
         pageUrl={pageUrl}
-        title={pageTitle}
-        description={pageDescription}
+        title={title}
+        description={description ?? ''}
       >
         <div className="bg-white py-6 sm:py-8 lg:py-12">
-          <Container>
-            <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl mb-6">Electrical Services Melbourne</h1>
-            <p className="text-lg text-gray-600 mb-3">
-              Storm Electrical Solutions provides a full range of residential and commercial electrical services across
-              Melbourne&apos;s western suburbs. Our licensed electricians are CEC accredited with 19+ years of
-              experience delivering safe, reliable, and code-compliant work — from emergency call-outs to planned
-              installations.
-            </p>
-            <p className="text-lg text-gray-600 mb-10">
-              We service Altona, Newport, Footscray, Williamstown, Yarraville and surrounding suburbs. Free quotes
-              available. Call{' '}
-              <a href={`tel:${siteSettings.phone}`} className="text-primary font-medium hover:underline">
-                {siteSettings.phone}
-              </a>
-              .
-            </p>
+          <div className="mx-auto  px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-screen-xl text-center mb-12">
+              <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl mb-6">{heading}</h1>
+              {introParagraphs &&
+                introParagraphs.map((paragraph, index) => (
+                  <p key={index} className="text-lg text-gray-600 mb-3">
+                    {paragraph}
+                  </p>
+                ))}
+            </div>
 
-            <Heading level={2}>Our Services</Heading>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-8">
-              {services.map((service) => (
-                <ServiceCard key={service.id} service={service} />
-              ))}
+            <div className="mt-12">
+              <Heading level={2}>Our Services</Heading>
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-8">
+                {services.map((service) => (
+                  <ServiceCard key={service.id} service={service} />
+                ))}
+              </div>
             </div>
 
             <section aria-labelledby="service-areas-heading" className="mt-16">
-              <h2
-                id="service-areas-heading"
-                className="text-gray-700 text-center mb-4 md:mb-6 text-2xl lg:text-3xl font-bold"
-              >
-                Service Areas
-              </h2>
-              <p className="text-gray-600 mb-4">
-                We provide electrical services across Melbourne&apos;s western and inner-western suburbs, including:
-              </p>
-              <ul className="flex flex-wrap gap-2" aria-label="Service areas">
-                {serviceAreas.map((area) => (
-                  <li key={area} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
-                    {area}
-                  </li>
-                ))}
-              </ul>
+              <div className="mx-auto max-w-screen-xl">
+                <h2
+                  id="service-areas-heading"
+                  className="text-gray-700 text-center mb-4 md:mb-6 text-2xl lg:text-3xl font-bold"
+                >
+                  Service Areas
+                </h2>
+                <p className="text-gray-600 mb-4 text-center">
+                  We provide electrical services across Melbourne&apos;s western and inner-western suburbs, including:
+                </p>
+                {serviceAreas && (
+                  <ul className="flex flex-wrap gap-2 items-center justify-center" aria-label="Service areas">
+                    {serviceAreas.map((area) => (
+                      <li key={area} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
+                        {area}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
             </section>
 
             <section aria-labelledby="cta-heading" className="mt-16 bg-primary/5 rounded-xl p-8 text-center">
@@ -167,7 +158,7 @@ export default function ServicesHub({ services, siteSettings, pageUrl }: Service
                 </Link>
               </div>
             </section>
-          </Container>
+          </div>
         </div>
       </Layout>
     </>
@@ -175,9 +166,12 @@ export default function ServicesHub({ services, siteSettings, pageUrl }: Service
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const props = await getBasePageProps({ pageUrl: 'services/' });
+  const [props, hubContent] = await Promise.all([getBasePageProps({ pageUrl: 'services/' }), getServicesHubContent()]);
 
   return {
-    props,
+    props: {
+      ...props,
+      hubContent,
+    },
   };
 };
