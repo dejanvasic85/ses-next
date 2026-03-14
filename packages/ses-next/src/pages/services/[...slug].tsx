@@ -8,9 +8,9 @@ import { googleReviews } from 'ses-reviews';
 
 import { getBlogPosts, getServices } from '@/lib/content/contentService';
 import { getBasePageProps } from '@/lib/basePageProps';
-import { Layout, CustomImage, ImageCarousel } from '@/components';
-import { Icon } from '@/components/Icon/Icon';
-import type { BlogPost, ServiceFaq, ServiceItem, GoogleReviews, BasePageProps } from '@/types';
+import { faqJsonLd } from '@/lib/structuredData';
+import { Layout, CustomImage, ImageCarousel, RelatedServices, ServiceBreadcrumb } from '@/components';
+import type { BlogPost, ServiceItem, GoogleReviews, BasePageProps } from '@/types';
 
 interface ServiceProps extends BasePageProps {
   blogPosts: BlogPost[];
@@ -22,96 +22,9 @@ interface ServiceProps extends BasePageProps {
   description?: string;
 }
 
-const faqJsonLd = (faqs: ServiceFaq[]) => ({
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqs.map(({ question, answer }) => ({
-    '@type': 'Question',
-    name: question,
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: answer,
-    },
-  })),
-});
-
-const getServicePath = (service: ServiceItem): string => {
-  return service.parentService
-    ? `/services/${service.parentService.slug}/${service.slug}`
-    : `/services/${service.slug}`;
-};
-
 interface BreadcrumbItem {
   name: string;
   item?: string;
-}
-
-interface ServiceBreadcrumbProps {
-  items: BreadcrumbItem[];
-}
-
-function ServiceBreadcrumb({ items }: ServiceBreadcrumbProps) {
-  return (
-    <nav aria-label="Breadcrumb" className="mx-auto px-4 md:px-8 max-w-screen-lg pt-4">
-      <ol className="flex flex-wrap items-center gap-1 text-sm text-gray-500">
-        {items.map((item, index) => {
-          const isLast = index === items.length - 1;
-          return (
-            <li key={item.name} className="flex items-center gap-1">
-              {index > 0 && <span aria-hidden="true">›</span>}
-              {isLast || !item.item ? (
-                <span className="text-gray-900 font-medium" aria-current={isLast ? 'page' : undefined}>
-                  {item.name}
-                </span>
-              ) : (
-                <Link href={item.item} className="hover:text-primary hover:underline transition-colors">
-                  {item.name}
-                </Link>
-              )}
-            </li>
-          );
-        })}
-      </ol>
-    </nav>
-  );
-}
-
-interface RelatedServicesProps {
-  services: ServiceItem[];
-}
-
-function RelatedServices({ services }: RelatedServicesProps) {
-  return (
-    <section aria-labelledby="related-services-heading" className="mx-auto px-4 md:px-8 max-w-screen-lg mt-12 mb-8">
-      <h2 id="related-services-heading" className="text-3xl font-bold text-gray-900 mb-6">
-        Specialist Services
-      </h2>
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {services.map((service) => (
-          <article
-            key={service.id}
-            className="group relative overflow-hidden rounded-lg border border-gray-200 hover:shadow-md transition-shadow duration-200"
-          >
-            <Link href={getServicePath(service)} className="absolute inset-0 z-10" prefetch={false}>
-              <span className="sr-only">View {service.name} service</span>
-            </Link>
-            <div className="flex h-full flex-col justify-between p-6">
-              <div className="space-y-2">
-                <div className="flex items-center gap-3">
-                  <div className="rounded-full bg-primary p-2">
-                    <Icon name={service.icon} size="xl" className="text-white" />
-                  </div>
-                  <h3 className="text-lg font-semibold border-b-2 border-primary">{service.name}</h3>
-                </div>
-                <p className="text-gray-500">{service.blurb}</p>
-              </div>
-              <span className="mt-4 inline-block text-primary font-medium group-hover:underline">Learn more →</span>
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
 }
 
 export default function Service({
@@ -149,7 +62,6 @@ export default function Service({
     reviewRating: {
       bestRating: '5',
       worstRating: '1',
-      reviewAspect: 'Ambiance',
       ratingValue: String(starRating),
     },
   }));
@@ -188,7 +100,7 @@ export default function Service({
           ratingValue: ratingValue,
           ratingCount: ratingCount,
           bestRating: 5,
-          worstRating: 0,
+          worstRating: 1,
         }}
         review={reviewsJson}
       />
@@ -281,7 +193,11 @@ export default function Service({
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const slugParam = params?.slug as string[];
+  const slugParam = Array.isArray(params?.slug) ? params.slug : [];
+  if (slugParam.length === 0) {
+    return { notFound: true };
+  }
+
   const allServices = (await getBasePageProps({ pageUrl: 'services/' })).services;
 
   let service: ServiceItem | undefined;
