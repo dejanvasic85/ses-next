@@ -18,5 +18,7 @@ export { Modal } from './Modal';
 export { Navbar } from './Navbar';
 export { PageHead } from './PageHead';
 export { PopSuccess } from './PopSuccess';
+export { RelatedServices } from './RelatedServices/RelatedServices';
+export { ServiceBreadcrumb } from './ServiceBreadcrumb/ServiceBreadcrumb';
 export { Services } from './Services';
 export { Team } from './Team';

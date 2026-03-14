@@ -49,6 +49,10 @@ export const mapService = (model: ServiceContentModel): ServiceItem => {
       }
     : null;
 
+  const parentService = model.parentService
+    ? { name: model.parentService.name, slug: model.parentService.slug.current }
+    : null;
+
   return {
     id: model._id,
     name: model.name,
@@ -58,6 +62,7 @@ export const mapService = (model: ServiceContentModel): ServiceItem => {
     showOnHomepage: model.showOnHomepage ?? null,
     icon: model.icon,
     slug: model.slug.current,
+    parentService,
     content: model.content,
     imageGallery,
     featuredImage,

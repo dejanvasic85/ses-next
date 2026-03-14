@@ -28,7 +28,12 @@ const generateSitemap = ({ blogPosts, services, siteSettings }: SitemapGenerateP
       <changefreq>${servicesHubChangefreq}</changefreq>
     </url>
   `;
-  const servicePages = services.map(({ slug }) => createLocXmlForUrl(`${baseUrl}services/${slug}`)).join(' ');
+  const servicePages = services
+    .map(({ slug, parentService }) => {
+      const path = parentService ? `services/${parentService.slug}/${slug}` : `services/${slug}`;
+      return createLocXmlForUrl(`${baseUrl}${path}`);
+    })
+    .join(' ');
   const blogPostUrls = blogPosts.map(({ slug }) => createLocXmlForUrl(`${baseUrl}blog/${slug}`)).join(' ');
 
   return `<?xml version="1.0" encoding="UTF-8"?>

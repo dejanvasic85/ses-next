@@ -55,6 +55,30 @@ export default defineType({
       type: 'array',
       of: [{type: 'block'}, {type: 'image'}],
     },
+    {
+      name: 'parentService',
+      title: 'Parent service',
+      type: 'reference',
+      to: [{type: 'service'}],
+      description:
+        'If set, this service appears as a sub-service under the parent. Leave empty for top-level services.',
+      validation: (Rule) =>
+        Rule.custom(async (value, context) => {
+          const ref = (value as {_ref?: string} | undefined)?._ref
+          if (!ref) return true
+          const docId = (context.document as {_id?: string})?._id
+          if (ref === docId) {
+            return 'A service cannot be its own parent'
+          }
+          const parentDoc = await context.getClient({apiVersion: '2024-01-01'}).fetch<{
+            parentService?: {_ref?: string}
+          } | null>(`*[_id == $id][0]{ parentService }`, {id: ref})
+          if (parentDoc?.parentService?._ref) {
+            return 'Parent must be a top-level service (cannot have its own parent)'
+          }
+          return true
+        }),
+    },
     defineField({
       name: 'faqs',
       title: 'FAQs',

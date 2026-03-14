@@ -95,7 +95,11 @@ export const servicesQuery = `*[_type == "service"]{
       }
     }
   },
-  "faqs": coalesce(faqs[]{ question, answer }, null)
+  "faqs": coalesce(faqs[]{ question, answer }, null),
+  parentService -> {
+    name,
+    slug
+  }
 }`;
 
 export const allBlogPostsQuery = `*[_type == "blog-post"] | order(publishedAt desc){

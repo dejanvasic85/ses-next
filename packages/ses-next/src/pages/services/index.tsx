@@ -60,6 +60,8 @@ export default function ServicesHub({ services, siteSettings, pageUrl, hubConten
   const introParagraphs = hubContent.intro;
   const serviceAreas = hubContent.serviceAreas;
 
+  const topLevelServices = services.filter((s) => !s.parentService);
+
   const collectionPageJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
@@ -68,7 +70,7 @@ export default function ServicesHub({ services, siteSettings, pageUrl, hubConten
     url: pageUrl,
     mainEntity: {
       '@type': 'ItemList',
-      itemListElement: services.map(({ slug, name }, position) => ({
+      itemListElement: topLevelServices.map(({ slug, name }, position) => ({
         '@type': 'ListItem',
         position: position + 1,
         name,
@@ -108,7 +110,7 @@ export default function ServicesHub({ services, siteSettings, pageUrl, hubConten
             <div className="mt-12">
               <Heading level={2}>Our Services</Heading>
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-8">
-                {services.map((service) => (
+                {topLevelServices.map((service) => (
                   <ServiceCard key={service.id} service={service} />
                 ))}
               </div>
