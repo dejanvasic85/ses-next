@@ -1,6 +1,19 @@
 {
   "reviews": [
     {
+      "id": "places/ChIJaaS9pMFn1moR6nbln1twd9A/reviews/Ci9DQUlRQUNvZENodHljRjlvT2tFeVRGZ3plV3BUYVV4U1ltODRTemxZVGxwU1FtYxAB",
+      "url": "https://www.google.com/maps/contrib/107986280757479345762/reviews",
+      "reviewer": {
+        "profileUrl": "https://www.google.com/maps/contrib/107986280757479345762/reviews",
+        "profilePhotoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJ-CoD82otR-nw9aO17EZhPOsOVKs9tKr-mirPVvQnA7lMumD0=s128-c0x00000000-cc-rp-mo-ba3",
+        "displayName": "Phillip Le"
+      },
+      "comment": "We recently used Karl and his team of electricians as part of our home renovation and they were fantastic. They helped wire our new kitchen, dining area and bathroom, and the whole process was smooth from start to finish. Their pricing was very reasonable, communication was excellent, and they had a real can-do attitude to every request. Highly recommend!",
+      "starRating": 5,
+      "date": "in the last week",
+      "publishTime": "2026-03-09T06:19:32.682760162Z"
+    },
+    {
       "id": "places/ChIJaaS9pMFn1moR6nbln1twd9A/reviews/Ci9DQUlRQUNvZENodHljRjlvT25Sd2VWUkdaRzVqT1dKTWNUWmtNVE5wUjNoa1IzYxAB",
       "url": "https://www.google.com/maps/contrib/115130259821219081824/reviews",
       "reviewer": {
