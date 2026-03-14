@@ -31,5 +31,5 @@ jobs:
         run: npm run deploy -w ses-content -- --yes
         env:
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
-          NEXT_PUBLIC_SANITY_PROJECT_ID: j7d3pd5g
+          NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ vars.SANITY_PROJECT_ID }}
           NEXT_PUBLIC_SANITY_DATASET: production
