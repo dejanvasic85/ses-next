@@ -20,8 +20,8 @@
   },
   "devDependencies": {
     "husky": "9.1.7",
-    "lint-staged": "16.3.2",
-    "turbo": "2.8.14"
+    "lint-staged": "16.4.0",
+    "turbo": "2.8.17"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json}": [
@@ -29,5 +29,5 @@
       "npm run lint -w ses-next"
     ]
   },
-  "packageManager": "npm@11.11.0"
+  "packageManager": "npm@11.11.1"
 }
