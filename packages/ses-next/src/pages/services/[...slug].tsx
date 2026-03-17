@@ -51,7 +51,7 @@ export default function Service({
       url: siteSettings.baseUrl,
     },
     areaServed: { '@type': 'City', name: 'Melbourne' },
-    serviceType: service.name,
+    serviceType: service.serviceType || service.name,
   };
 
   const ratingCount = Number(reviews.numberOfReviews.replace('reviews', '').trim());

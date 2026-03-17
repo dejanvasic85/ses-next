@@ -7,8 +7,13 @@ export default defineType({
   name: 'service',
   type: 'document',
   fields: [
-    {name: 'name', type: 'string', title: 'Name'},
-    {name: 'description', type: 'string', title: 'Description'},
+    {name: 'name', type: 'string', title: 'Name', validation: (Rule) => Rule.required()},
+    {
+      name: 'description',
+      type: 'string',
+      title: 'Description',
+      validation: (Rule) => Rule.required(),
+    },
     {
       name: 'seoTitle',
       type: 'string',
@@ -25,13 +30,26 @@ export default defineType({
       validation: (Rule) => Rule.max(155).warning('Keep SEO descriptions under 155 characters'),
     },
     {
+      name: 'serviceType',
+      type: 'string',
+      title: 'Service Type (JSON-LD)',
+      description:
+        'Used for the serviceType property in Service structured data (JSON-LD). Falls back to the service name if empty.',
+    },
+    {
       name: 'blurb',
       type: 'text',
       rows: 3,
       title: 'Blurb',
       description: 'Displays on the homepage and the product LD json for google',
+      validation: (Rule) => Rule.required(),
     },
-    {name: 'slug', type: 'slug', title: 'URL slug e.g. air-conditioning'},
+    {
+      name: 'slug',
+      type: 'slug',
+      title: 'URL slug e.g. air-conditioning',
+      validation: (Rule) => Rule.required(),
+    },
     {name: 'linkToReadMore', type: 'boolean', title: 'Show link to read more on homepage'},
     {
       name: 'showOnHomepage',

@@ -68,6 +68,7 @@ export const mapService = (model: ServiceContentModel): ServiceItem => {
     featuredImage,
     seoTitle: model.seoTitle,
     seoDescription: model.seoDescription,
+    serviceType: model.serviceType ?? null,
     faqs: model.faqs ?? null,
   };
 };

@@ -3,6 +3,7 @@ import {defineField} from 'sanity'
 export default defineField({
   name: 'icon',
   type: 'string',
+  validation: (Rule) => Rule.required(),
   options: {
     list: [
       {title: 'Air conditioner', value: 'air'},

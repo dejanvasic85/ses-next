@@ -70,6 +70,7 @@ export const servicesQuery = `*[_type == "service"]{
   icon,
   seoTitle,
   seoDescription,
+  serviceType,
   showcase[] -> {
     _id,
     _type,

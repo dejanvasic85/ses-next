@@ -172,6 +172,7 @@ export const ServiceSchema = z.object({
   content: SanityPortableTextSchema.nullable(),
   seoTitle: z.string().nullable(),
   seoDescription: z.string().nullable(),
+  serviceType: z.string().nullish(),
   faqs: z.array(ServiceFaqSchema).nullable(),
   parentService: ServiceParentSchema.nullish(),
 });
@@ -348,6 +349,7 @@ export type ServiceItem = {
   content: SanityPortableText | null;
   seoTitle: string | null;
   seoDescription: string | null;
+  serviceType: string | null;
   faqs: ServiceFaq[] | null;
 };
 

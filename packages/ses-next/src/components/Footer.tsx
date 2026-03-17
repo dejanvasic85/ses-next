@@ -83,19 +83,21 @@ export function Footer({ social = {} as Social, links = defaultFooterLinks, serv
       </div>
       <div>
         <span className="footer-title">Services</span>
-        {services.map(({ name, linkToReadMore, slug }) => (
-          <ConditionalWrap
-            key={name}
-            condition={!!linkToReadMore && !!slug}
-            wrapper={(children) => (
-              <Link href={`/services/${slug}`} className="link link-hover">
-                {children}
-              </Link>
-            )}
-          >
-            {name}
-          </ConditionalWrap>
-        ))}
+        {services
+          .filter((s) => !s.parentService)
+          .map(({ name, linkToReadMore, slug }) => (
+            <ConditionalWrap
+              key={name}
+              condition={!!linkToReadMore && !!slug}
+              wrapper={(children) => (
+                <Link href={`/services/${slug}`} className="link link-hover">
+                  {children}
+                </Link>
+              )}
+            >
+              {name}
+            </ConditionalWrap>
+          ))}
         <Link className="link link-hover font-medium mt-2" href={links.services}>
           See all services →
         </Link>
