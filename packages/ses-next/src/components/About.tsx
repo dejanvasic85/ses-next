@@ -2,6 +2,7 @@ import classNames from 'class-names';
 
 import { Container } from '@/components/Container';
 import { Heading } from '@/components/Heading';
+import { Icon } from '@/components/Icon/Icon';
 import { Team } from '@/components/Team';
 import { Testimonial } from '@/components/Testimonial';
 import { Team as TeamType } from '@/types';
@@ -42,14 +43,17 @@ export function About({ team, testimonials, training, googleReviewsUrl }: AboutP
           ))}
         </div>
         {googleReviewsUrl && (
-          <div className="mt-4">
+          <div className="mt-8 mb-12">
             <div className="mt-8 flex gap-4 justify-center items-center">
               <a
                 href={googleReviewsUrl}
                 target="_blank"
-                className={classNames('link link-primary link-hover underline')}
+                rel="noopener noreferrer"
+                aria-label="View more reviews on Google (opens in new tab)"
+                className="btn btn-lg btn-primary btn-outline inline-flex items-center gap-2"
               >
                 View more reviews on Google
+                <Icon name="external-link" size="sm" />
               </a>
             </div>
           </div>

@@ -3,6 +3,10 @@
     "Sanity": {
       "type": "http",
       "url": "https://mcp.sanity.io"
+    },
+    "better-icons": {
+      "command": "npx",
+      "args": ["-y", "better-icons"]
     }
   }
 }
