@@ -80,7 +80,7 @@ export const getServicesHubContent = async (): Promise<ServicesHubContent> => {
   try {
     const result = await sanityClient.fetch(servicesHubQuery);
     if (!result) {
-      return { pageTitle: null, pageDescription: null, heading: null, intro: null, serviceAreas: null };
+      return { pageTitle: null, pageDescription: null, heading: null, intro: null };
     }
     const hub = ServicesHubSchema.parse(result);
     return {
@@ -88,7 +88,6 @@ export const getServicesHubContent = async (): Promise<ServicesHubContent> => {
       pageDescription: hub.pageDescription,
       heading: hub.heading,
       intro: hub.intro,
-      serviceAreas: hub.serviceAreas,
     };
   } catch (error) {
     console.error('Error in getServicesHubContent:', error);

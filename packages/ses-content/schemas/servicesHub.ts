@@ -14,12 +14,5 @@ export default defineType({
       type: 'array',
       of: [{type: 'text', rows: 4}],
     }),
-    defineField({
-      name: 'serviceAreas',
-      title: 'Service Areas',
-      type: 'array',
-      of: [{type: 'string'}],
-      description: 'List of Melbourne suburbs served',
-    }),
   ],
 })

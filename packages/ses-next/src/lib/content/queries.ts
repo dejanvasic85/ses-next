@@ -21,7 +21,8 @@ export const siteSettingsQuery = `*[_type == "siteSettings"][0]{
   googleMapsLocation,
   googleMapsLocationPlaceUrl,
   meta,
-  socialMedia
+  socialMedia,
+  serviceAreas
 }`;
 
 export const homepageQuery = `*[_type == "homepage"][0]{
@@ -174,8 +175,7 @@ export const servicesHubQuery = `*[_type == "servicesHub"][0]{
   pageTitle,
   pageDescription,
   heading,
-  intro,
-  serviceAreas
+  intro
 }`;
 
 export const termsAndConditionsQuery = `*[_type == "terms-and-conditions"]{

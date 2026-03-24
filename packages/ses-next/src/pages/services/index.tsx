@@ -58,7 +58,7 @@ export default function ServicesHub({ services, siteSettings, pageUrl, hubConten
   const description = hubContent.pageDescription;
   const heading = hubContent.heading;
   const introParagraphs = hubContent.intro;
-  const serviceAreas = hubContent.serviceAreas;
+  const serviceAreas = siteSettings.serviceAreas;
 
   const topLevelServices = services.filter((s) => !s.parentService);
 

@@ -134,5 +134,6 @@ export const mapSiteSettings = (model: SiteSettingsContentModel): SiteSettings =
     meta: model.meta,
     social,
     phone: model.phone,
+    serviceAreas: model.serviceAreas ?? null,
   };
 };
