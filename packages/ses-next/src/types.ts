@@ -248,6 +248,7 @@ export const SiteSettingsSchema = z.object({
       instagram: z.url().nullable(),
     })
     .nullable(),
+  serviceAreas: z.array(z.string()).nullable().optional(),
 });
 
 export const ServicesHubSchema = z.object({
@@ -257,7 +258,6 @@ export const ServicesHubSchema = z.object({
   pageDescription: z.string().nullable(),
   heading: z.string().nullable(),
   intro: z.array(z.string()).nullable(),
-  serviceAreas: z.array(z.string()).nullable(),
 });
 
 export const HomepageSchema = z.object({
@@ -380,6 +380,7 @@ export type SiteSettings = {
   meta: Meta;
   social: Social;
   phone: string;
+  serviceAreas: string[] | null;
 };
 
 export type BasePageProps = {
@@ -397,7 +398,6 @@ export type ServicesHubContent = {
   pageDescription: string | null;
   heading: string | null;
   intro: string[] | null;
-  serviceAreas: string[] | null;
 };
 
 export type HomePageContent = {
