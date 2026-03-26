@@ -7,6 +7,7 @@ import { formatDistanceToNow } from 'date-fns';
 
 import { Layout, BlogLayout, CustomImage } from '@/components';
 import { getBasePageProps } from '@/lib/basePageProps';
+import { sanityImageLoader } from '@/lib/sanityImageLoader';
 import { getBlogPosts } from '@/lib/content/contentService';
 import { tagsWithCountFromBlogs, type TagWithCount } from '@/lib/blogUtils';
 import type { BasePageProps, BlogPost } from '@/types';
@@ -50,6 +51,7 @@ export default function BlogPost({ pageUrl, tagsWithCount, totalPosts, post, ser
                 src={post.photo}
                 className="bg-base-300 rounded-box border-opacity-5"
                 alt={post.title}
+                loader={sanityImageLoader}
               />
             </figure>
             <div className="mb-2 text-gray-700 italic">

@@ -5,6 +5,7 @@ import { JsonLdScript, BreadcrumbJsonLd } from 'next-seo';
 
 import { Layout } from '@/components/Layout';
 import { Heading } from '@/components/Heading';
+import { sanityImageLoader } from '@/lib/sanityImageLoader';
 import { Icon } from '@/components/Icon/Icon';
 import { getBasePageProps } from '@/lib/basePageProps';
 import { getServicesHubContent } from '@/lib/content/contentService';
@@ -44,6 +45,7 @@ function ServiceCard({ service }: ServiceCardProps) {
               fill
               className="object-cover object-center transition-all group-hover:scale-105"
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              loader={sanityImageLoader}
             />
           </div>
         )}

@@ -2,6 +2,8 @@ import React from 'react';
 
 import Image from 'next/image';
 
+import { sanityImageLoader } from '@/lib/sanityImageLoader';
+
 interface GalleryImage {
   serviceName: string;
   alt: string;
@@ -24,6 +26,7 @@ export function GalleryCarousel({ imageGallery }: GalleryCarouselProps) {
               src={src}
               width={320}
               height={240}
+              loader={sanityImageLoader}
             />
             <div className="w-full flex flex-col bg-white text-center rounded-lg relative p-2">
               <span className="text-gray-500 text-sm">{alt}</span>

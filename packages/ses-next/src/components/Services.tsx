@@ -2,6 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
+import { sanityImageLoader } from '@/lib/sanityImageLoader';
+
 import { Container } from '@/components/Container';
 import { Heading } from '@/components/Heading';
 import { Icon } from '@/components/Icon/Icon';
@@ -72,6 +74,7 @@ export const Services = ({ className, blurbs, services }: ServicesProps) => {
                         fill
                         className="object-cover object-center transition-all group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        loader={sanityImageLoader}
                       />
                     </div>
                   )}

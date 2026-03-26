@@ -1,6 +1,7 @@
 import Image from 'next/image';
 
 import { Heading } from '@/components/Heading';
+import { sanityImageLoader } from '@/lib/sanityImageLoader';
 import { Icon } from '@/components/Icon/Icon';
 import type { IconMap } from '@/components/Icon/IconMap';
 
@@ -42,6 +43,7 @@ export function Team({ blurbs, members, training }: TeamProps) {
                     fill
                     className="object-cover object-center"
                     sizes="(max-width: 768px) 96px, 128px"
+                    loader={sanityImageLoader}
                   />
                 </div>
                 <div>

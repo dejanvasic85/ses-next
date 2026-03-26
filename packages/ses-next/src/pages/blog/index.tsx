@@ -4,6 +4,7 @@ import NextImage from 'next/image';
 
 import { BlogLayout, Layout } from '@/components';
 import { getBasePageProps } from '@/lib/basePageProps';
+import { sanityImageLoader } from '@/lib/sanityImageLoader';
 import { getBlogPosts } from '@/lib/content/contentService';
 import { tagsWithCountFromBlogs, type TagWithCount } from '@/lib/blogUtils';
 import type { BasePageProps, BlogPost } from '@/types';
@@ -29,6 +30,7 @@ export default function Blog({ siteSettings, services, pageUrl, tagsWithCount, b
                   src={photo}
                   className="bg-base-300 rounded-lg w-full h-auto object-cover aspect-square"
                   alt={title}
+                  loader={sanityImageLoader}
                 />
               </figure>
               <div className="card-body">
