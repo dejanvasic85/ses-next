@@ -4,6 +4,8 @@ import { Activity } from 'react';
 import { useState, useCallback, useEffect } from 'react';
 import Image from 'next/image';
 
+import { sanityImageLoader } from '@/lib/sanityImageLoader';
+
 interface ImageCarouselProps {
   images: Array<{
     alt: string;
@@ -99,6 +101,7 @@ export function ImageCarousel({ images, serviceName }: ImageCarouselProps) {
                   className="object-contain p-4"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                   priority={index === 0}
+                  loader={sanityImageLoader}
                   {...(index !== 0 && { loading: 'lazy' })}
                 />
               </div>

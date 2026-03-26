@@ -6,6 +6,8 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 const nextConfig = {
   images: {
+    deviceSizes: [640, 828, 1200],
+    imageSizes: [48, 128, 256],
     remotePatterns: [
       {
         protocol: 'https',

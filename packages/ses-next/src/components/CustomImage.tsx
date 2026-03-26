@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 import { useConfig } from '@/hooks/useConfig';
 import { useMemo } from 'react';
+import { sanityImageLoader } from '@/lib/sanityImageLoader';
 
 interface CustomImageProps {
   value: string;
@@ -28,6 +29,7 @@ export const CustomImage = (props: CustomImageProps) => {
       height={600}
       className="w-full h-auto"
       sizes="(max-width: 768px) 100vw, 800px"
+      loader={sanityImageLoader}
     />
   );
 };

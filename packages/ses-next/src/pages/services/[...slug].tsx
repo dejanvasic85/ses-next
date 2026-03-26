@@ -8,6 +8,7 @@ import { googleReviews } from 'ses-reviews';
 
 import { getBlogPosts, getServices } from '@/lib/content/contentService';
 import { getBasePageProps } from '@/lib/basePageProps';
+import { sanityImageLoader } from '@/lib/sanityImageLoader';
 import { faqJsonLd } from '@/lib/structuredData';
 import { Layout, CustomImage, ImageCarousel, RelatedServices, ServiceBreadcrumb } from '@/components';
 import type { BlogPost, ServiceItem, GoogleReviews, BasePageProps } from '@/types';
@@ -162,6 +163,7 @@ export default function Service({
                           fill
                           className="object-cover group-hover:scale-105 transition-transform duration-300"
                           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          loader={sanityImageLoader}
                         />
                       </div>
                       <div className="p-5">

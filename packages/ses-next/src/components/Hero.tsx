@@ -1,6 +1,8 @@
 import { Activity } from 'react';
 import Image from 'next/image';
 
+import { sanityImageLoader } from '@/lib/sanityImageLoader';
+
 import { Heading } from '@/components/Heading';
 import { Icon } from '@/components/Icon/Icon';
 import { LinkButton } from '@/components/LinkButton';
@@ -70,6 +72,7 @@ export function Hero({
                 className="hidden lg:inline-block"
                 priority
                 loading="eager"
+                loader={sanityImageLoader}
               />
               <Image
                 src={companyLogo}
@@ -78,6 +81,7 @@ export function Hero({
                 width={500}
                 height={300}
                 loading="eager"
+                loader={sanityImageLoader}
               />
             </div>
             <div className="text-center">

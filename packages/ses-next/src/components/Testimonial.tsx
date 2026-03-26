@@ -53,7 +53,7 @@ export function Testimonial(testimonial: TestimonialProps) {
                 </Link>
               )}
             >
-              {profilePhotoUrl && <Image src={profilePhotoUrl} width={40} height={40} alt={displayName} />}
+              {profilePhotoUrl && <Image src={profilePhotoUrl} width={40} height={40} alt={displayName} unoptimized />}
             </ConditionalWrap>
           </div>
         </div>

@@ -1,5 +1,7 @@
 import Image from 'next/image';
 
+import { sanityImageLoader } from '@/lib/sanityImageLoader';
+
 interface GalleryImage {
   serviceName: string;
   alt: string;
@@ -28,6 +30,7 @@ export function Gallery({ imageGallery }: GalleryProps) {
                   fill
                   className="object-cover object-center group-hover:scale-110 transition duration-200"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                  loader={sanityImageLoader}
                 />
 
                 <div className="w-full flex flex-col bg-white text-center rounded-lg relative p-2 z-10">
