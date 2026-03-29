@@ -16,12 +16,12 @@
     "./packages/*"
   ],
   "volta": {
-    "node": "24.14.0"
+    "node": "24.14.1"
   },
   "devDependencies": {
     "husky": "9.1.7",
     "lint-staged": "16.4.0",
-    "turbo": "2.8.20"
+    "turbo": "2.8.21"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json}": [
@@ -29,5 +29,5 @@
       "npm run lint -w ses-next"
     ]
   },
-  "packageManager": "npm@11.12.0"
+  "packageManager": "npm@11.12.1"
 }
