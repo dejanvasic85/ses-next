@@ -17,11 +17,20 @@
         "RECAPTCHA_SECRET_KEY"
       ]
     },
+    "ci": {
+      "dependsOn": ["lint", "type:check", "format:check"],
+      "cache": false
+    },
     "lint": {
-      "dependsOn": ["^lint"]
+      "dependsOn": ["^lint"],
+      "cache": false
     },
     "type:check": {
       "dependsOn": ["^type:check"],
+      "cache": false
+    },
+    "format:check": {
+      "dependsOn": ["^format:check"],
       "cache": false
     },
     "dev": {
