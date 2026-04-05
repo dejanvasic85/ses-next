@@ -1,6 +1,6 @@
 # App Router Migration Plan
 
-Migration plan for `ses-next` (packages/ses-next) from Pages Router to App Router.
+Migration plan for the `ses-next` workspace (packages/ses-next) from Pages Router to App Router.
 
 ## Current State Summary
 
