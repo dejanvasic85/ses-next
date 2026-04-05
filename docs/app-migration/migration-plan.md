@@ -74,8 +74,9 @@ The config currently uses CommonJS (`require`/`module.exports`). Migrate to `nex
 
 ### 0.4 Audit `next-seo` compatibility
 
-`next-seo` v7 has a `next-seo/pages` export for Pages Router and `next-seo/app` for App Router,
-but the App Router approach is to use the built-in `metadata` API. Plan:
+`next-seo` v7 has a `next-seo/pages` export for Pages Router and the root `next-seo` package for
+App Router (JSON-LD components), but the App Router approach is to use the built-in `metadata`
+API. Plan:
 
 - [ ] Replace `next-seo` with Next.js built-in `metadata` export and `generateMetadata` during migration
 - [ ] Replace JSON-LD components from `next-seo` with `<script type="application/ld+json">` in Server Components
@@ -493,3 +494,4 @@ Complete mapping of Pages Router files to App Router equivalents:
 
 The migration can be done incrementally -- Next.js supports running Pages Router and App Router
 side by side. Each phase results in a deployable state.
+
