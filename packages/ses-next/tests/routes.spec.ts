@@ -37,7 +37,8 @@ test.describe('Service Routes', () => {
       return;
     }
 
-    await page.goto(subServiceUrls[0]);
+    const subServicePath = new URL(subServiceUrls[0]).pathname;
+    await page.goto(subServicePath);
     await expect(page.locator('h1')).toBeVisible();
     await expect(page.locator('nav')).toBeVisible();
   });
