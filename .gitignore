@@ -111,6 +111,7 @@ cache/
 .env.local
 
 packages/ses-next/playwright-report/
+packages/ses-next/test-results/
 
 # turbo
 .turbo

@@ -3,7 +3,15 @@ import nextVitals from 'eslint-config-next/core-web-vitals';
 
 const eslintConfig = defineConfig([
   ...nextVitals,
-  globalIgnores(['.next/**', 'out/**', 'build/**', 'next-env.d.ts', 'cache/**']),
+  globalIgnores([
+    '.next/**',
+    'out/**',
+    'build/**',
+    'next-env.d.ts',
+    'cache/**',
+    'test-results/**',
+    'playwright-report/**',
+  ]),
   {
     rules: {
       '@next/next/no-img-element': 'off',
