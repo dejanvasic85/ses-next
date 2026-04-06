@@ -3,7 +3,10 @@ import ReactModal from 'react-modal';
 
 import { Icon } from '@/components/Icon/Icon';
 
-ReactModal.setAppElement('#__next');
+if (typeof window !== 'undefined') {
+  const appElement = document.getElementById('__next') ?? document.body;
+  ReactModal.setAppElement(appElement);
+}
 
 interface ModalProps {
   children: React.ReactNode;

@@ -127,8 +127,8 @@ The current `Layout` component (`src/components/Layout.tsx`) wraps every page wi
 At this point, `src/app/layout.tsx` exists alongside `src/pages/`. Next.js supports this hybrid
 mode. All existing pages should continue to work.
 
-- [ ] Run dev server and verify all pages render
-- [ ] Run E2E tests
+- [x] Run dev server and verify all pages render
+- [x] Run E2E tests
 
 ---
 
