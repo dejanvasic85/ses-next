@@ -4,20 +4,20 @@ Migration plan for the `ses-next` workspace (packages/ses-next) from Pages Route
 
 ## Current State Summary
 
-| Aspect              | Current State                                                      |
-| ------------------- | ------------------------------------------------------------------ |
-| Next.js version     | 16.2.1 (App Router fully supported)                               |
-| React version       | 19.2.4 (Server Components supported)                              |
+| Aspect              | Current State                                                       |
+| ------------------- | ------------------------------------------------------------------- |
+| Next.js version     | 16.2.1 (App Router fully supported)                                 |
+| React version       | 19.2.4 (Server Components supported)                                |
 | Router              | Pages Router (`src/pages/`) with one App Router file (`sitemap.ts`) |
-| Data fetching       | `getStaticProps` + `getStaticPaths` (SSG only, no SSR)             |
-| Pages count         | 10 page files + 1 API route                                       |
-| Components          | 24 shared components                                              |
-| Auth                | None (public site)                                                 |
-| State management    | React Context (ConfigProvider) + local state                       |
-| Styling             | Tailwind CSS v4 + DaisyUI v5                                      |
-| SEO                 | `next-seo` + custom `PageHead` + JSON-LD structured data          |
-| CMS                 | Sanity via `next-sanity`                                           |
-| Client interactions | Contact form (reCAPTCHA + AWS SES), GTM, scroll tracking          |
+| Data fetching       | `getStaticProps` + `getStaticPaths` (SSG only, no SSR)              |
+| Pages count         | 10 page files + 1 API route                                         |
+| Components          | 24 shared components                                                |
+| Auth                | None (public site)                                                  |
+| State management    | React Context (ConfigProvider) + local state                        |
+| Styling             | Tailwind CSS v4 + DaisyUI v5                                        |
+| SEO                 | `next-seo` + custom `PageHead` + JSON-LD structured data            |
+| CMS                 | Sanity via `next-sanity`                                            |
+| Client interactions | Contact form (reCAPTCHA + AWS SES), GTM, scroll tracking            |
 
 ## Architecture Decisions
 
@@ -93,12 +93,12 @@ API. Plan:
 
 This replaces both `_app.tsx` and `_document.tsx`:
 
-- [ ] Set `<html lang="en">` (from `_document.tsx`)
-- [ ] Set favicon and apple-touch-icon `<link>` tags via `metadata` export (from `_document.tsx`)
-- [ ] Apply Inter font via `next/font/google` (replace manual font import from `_app.tsx`)
-- [ ] Set global `metadata` export: robots, openGraph locale/type, site name
-- [ ] Import `globals.css`
-- [ ] Render `{children}` in `<body>`
+- [x] Set `<html lang="en">` (from `_document.tsx`)
+- [x] Set favicon and apple-touch-icon `<link>` tags via `metadata` export (from `_document.tsx`)
+- [x] Apply Inter font via `next/font/google` (replace manual font import from `_app.tsx`)
+- [x] Set global `metadata` export: robots, openGraph locale/type, site name
+- [x] Import `globals.css`
+- [x] Render `{children}` in `<body>`
 
 ### 1.2 Migrate client-side providers
 
@@ -106,19 +106,19 @@ Create a client component wrapper for providers that require browser APIs:
 
 **File:** `src/app/providers.tsx` (`"use client"`)
 
-- [ ] Move `GoogleReCaptchaProvider` wrapping here
-- [ ] Move GTM initialisation here (currently in `_app.tsx` useEffect)
-- [ ] Move `ConfigProvider` here (provides Sanity config via context)
-- [ ] Import `Providers` into `layout.tsx` and wrap `{children}`
+- [x] Move `GoogleReCaptchaProvider` wrapping here
+- [x] Move GTM initialisation here (currently in `_app.tsx` useEffect)
+- [x] Move `ConfigProvider` here (provides Sanity config via context)
+- [x] Import `Providers` into `layout.tsx` and wrap `{children}`
 
 ### 1.3 Migrate Navbar and Footer into layout
 
 The current `Layout` component (`src/components/Layout.tsx`) wraps every page with
 `PageHead` + `Navbar` + `Footer`. In the App Router:
 
-- [ ] Add `Navbar` and `Footer` directly in `layout.tsx` (they are shared across all routes)
-- [ ] `Navbar` uses `useScrollPosition` and `useState` -- mark as `"use client"`
-- [ ] `Footer` is presentational only -- keep as Server Component if possible, or mark `"use client"` if it uses hooks
+- [x] Add `Navbar` and `Footer` directly in `layout.tsx` (they are shared across all routes)
+- [x] `Navbar` uses `useScrollPosition` and `useState` -- mark as `"use client"`
+- [x] `Footer` is presentational only -- keep as Server Component if possible, or mark `"use client"` if it uses hooks
 - [ ] The `Layout` component wrapper becomes unnecessary -- remove it after all pages are migrated
 - [ ] The `PageHead` component becomes unnecessary -- replaced by `metadata`/`generateMetadata`
 
@@ -264,11 +264,7 @@ mode. All existing pages should continue to work.
   ```ts
   export async function generateStaticParams() {
     const services = await getServices();
-    return services.map((s) =>
-      s.parentSlug
-        ? { slug: [s.parentSlug, s.slug] }
-        : { slug: [s.slug] }
-    );
+    return services.map((s) => (s.parentSlug ? { slug: [s.parentSlug, s.slug] } : { slug: [s.slug] }));
   }
   ```
 - [ ] Replace `getStaticProps` with direct data fetching using `params.slug` array
@@ -314,18 +310,18 @@ mode. All existing pages should continue to work.
 
 Add `"use client"` directive to components that use browser APIs or React hooks:
 
-| Component         | Reason for `"use client"`                                  |
-| ----------------- | ---------------------------------------------------------- |
-| `Navbar`          | `useState`, `useEffect`, `useScrollPosition`, event handlers |
-| `ContactForm`     | `useForm` (react-hook-form), `useGoogleReCaptcha`, event handlers |
-| `Contact`         | Contains `ContactForm` (client), `useContact` hook           |
-| `Testimonial`     | `useState`, `useEffect`, `useRef` (clamp detection)          |
-| `ImageCarousel`   | `useState`, `useEffect` (keyboard events)                    |
-| `GalleryCarousel` | `useState`, event handlers                                   |
-| `Modal`           | `react-modal` (DOM manipulation)                             |
-| `PopSuccess`      | `useState`, animation state                                  |
-| `BlogSidebar`     | `useParams`/`usePathname` (from `next/navigation`)           |
-| `BlogFilterMobile`| `useParams`/`usePathname` (from `next/navigation`)           |
+| Component          | Reason for `"use client"`                                         |
+| ------------------ | ----------------------------------------------------------------- |
+| `Navbar`           | `useState`, `useEffect`, `useScrollPosition`, event handlers      |
+| `ContactForm`      | `useForm` (react-hook-form), `useGoogleReCaptcha`, event handlers |
+| `Contact`          | Contains `ContactForm` (client), `useContact` hook                |
+| `Testimonial`      | `useState`, `useEffect`, `useRef` (clamp detection)               |
+| `ImageCarousel`    | `useState`, `useEffect` (keyboard events)                         |
+| `GalleryCarousel`  | `useState`, event handlers                                        |
+| `Modal`            | `react-modal` (DOM manipulation)                                  |
+| `PopSuccess`       | `useState`, animation state                                       |
+| `BlogSidebar`      | `useParams`/`usePathname` (from `next/navigation`)                |
+| `BlogFilterMobile` | `useParams`/`usePathname` (from `next/navigation`)                |
 
 All other components (Heading, Container, Footer, Hero, Services, Team, Rating, Gallery,
 LinkButton, About, RelatedServices, ServiceBreadcrumb, BlogLayout, BlogMenu, Icon, CustomImage)
@@ -335,12 +331,12 @@ can remain as Server Components.
 
 Two components currently import from `next/router`:
 
-| Component          | Current                           | Replace with                        |
-| ------------------ | --------------------------------- | ----------------------------------- |
-| `BlogSidebar`      | `useRouter().query.tag`           | `useParams()` from `next/navigation` |
-| `BlogSidebar`      | `useRouter().pathname`            | `usePathname()` from `next/navigation` |
-| `BlogFilterMobile` | `useRouter().query.tag`           | `useParams()` from `next/navigation` |
-| `BlogFilterMobile` | `useRouter().pathname`            | `usePathname()` from `next/navigation` |
+| Component          | Current                 | Replace with                           |
+| ------------------ | ----------------------- | -------------------------------------- |
+| `BlogSidebar`      | `useRouter().query.tag` | `useParams()` from `next/navigation`   |
+| `BlogSidebar`      | `useRouter().pathname`  | `usePathname()` from `next/navigation` |
+| `BlogFilterMobile` | `useRouter().query.tag` | `useParams()` from `next/navigation`   |
+| `BlogFilterMobile` | `useRouter().pathname`  | `usePathname()` from `next/navigation` |
 
 ### 6.3 Replace `next/head` with metadata API
 
@@ -417,81 +413,80 @@ These are not required for migration but unlock App Router capabilities:
 
 Complete mapping of Pages Router files to App Router equivalents:
 
-| Pages Router File                   | App Router File                        | Type              |
-| ----------------------------------- | -------------------------------------- | ----------------- |
-| `pages/_app.tsx`                    | `app/layout.tsx` + `app/providers.tsx` | Root layout       |
-| `pages/_document.tsx`               | `app/layout.tsx` (metadata export)     | Root layout       |
-| `pages/index.tsx`                   | `app/page.tsx`                         | Server Component  |
-| `pages/faq.tsx`                     | `app/faq/page.tsx`                     | Server Component  |
-| `pages/terms/index.tsx`             | `app/terms/page.tsx`                   | Server Component  |
-| `pages/404.tsx`                     | `app/not-found.tsx`                    | Server Component  |
-| `pages/500.tsx`                     | `app/error.tsx`                        | Client Component  |
-| `pages/blog/index.tsx`              | `app/blog/page.tsx`                    | Server Component  |
-| `pages/blog/[slug].tsx`             | `app/blog/[slug]/page.tsx`             | Server Component  |
-| `pages/blog/tag/[tag].tsx`          | `app/blog/tag/[tag]/page.tsx`          | Server Component  |
-| `pages/services/index.tsx`          | `app/services/page.tsx`               | Server Component  |
-| `pages/services/[...slug].tsx`      | `app/services/[...slug]/page.tsx`      | Server Component  |
-| `pages/api/contact.ts`             | `app/api/contact/route.ts`            | Route Handler     |
-| `app/sitemap.ts`                    | `app/sitemap.ts` (already exists)      | No change         |
-| `components/Layout.tsx`             | Deleted (absorbed into `app/layout.tsx`) | --              |
-| `components/PageHead.tsx`           | Deleted (replaced by metadata API)     | --                |
+| Pages Router File              | App Router File                          | Type             |
+| ------------------------------ | ---------------------------------------- | ---------------- |
+| `pages/_app.tsx`               | `app/layout.tsx` + `app/providers.tsx`   | Root layout      |
+| `pages/_document.tsx`          | `app/layout.tsx` (metadata export)       | Root layout      |
+| `pages/index.tsx`              | `app/page.tsx`                           | Server Component |
+| `pages/faq.tsx`                | `app/faq/page.tsx`                       | Server Component |
+| `pages/terms/index.tsx`        | `app/terms/page.tsx`                     | Server Component |
+| `pages/404.tsx`                | `app/not-found.tsx`                      | Server Component |
+| `pages/500.tsx`                | `app/error.tsx`                          | Client Component |
+| `pages/blog/index.tsx`         | `app/blog/page.tsx`                      | Server Component |
+| `pages/blog/[slug].tsx`        | `app/blog/[slug]/page.tsx`               | Server Component |
+| `pages/blog/tag/[tag].tsx`     | `app/blog/tag/[tag]/page.tsx`            | Server Component |
+| `pages/services/index.tsx`     | `app/services/page.tsx`                  | Server Component |
+| `pages/services/[...slug].tsx` | `app/services/[...slug]/page.tsx`        | Server Component |
+| `pages/api/contact.ts`         | `app/api/contact/route.ts`               | Route Handler    |
+| `app/sitemap.ts`               | `app/sitemap.ts` (already exists)        | No change        |
+| `components/Layout.tsx`        | Deleted (absorbed into `app/layout.tsx`) | --               |
+| `components/PageHead.tsx`      | Deleted (replaced by metadata API)       | --               |
 
 ---
 
 ## Dependencies to Remove After Migration
 
-| Package              | Reason                                              |
-| -------------------- | --------------------------------------------------- |
-| `next-seo`           | Replaced by built-in `metadata` API and `generateMetadata` |
-| `react-gtm-module`   | Replaced by `next/script` GTM pattern (optional)    |
+| Package            | Reason                                                     |
+| ------------------ | ---------------------------------------------------------- |
+| `next-seo`         | Replaced by built-in `metadata` API and `generateMetadata` |
+| `react-gtm-module` | Replaced by `next/script` GTM pattern (optional)           |
 
 ## Dependencies to Keep
 
-| Package                        | Reason                                      |
-| ------------------------------ | ------------------------------------------- |
-| `next-sanity`                  | CMS client (fully compatible with App Router) |
-| `@sanity/image-url`            | Image URL builder                            |
-| `@portabletext/react`          | Rich text rendering (works in both RSC and client) |
-| `react-google-recaptcha-v3`    | Contact form anti-spam (client component)    |
-| `react-hook-form`              | Contact form (client component)              |
-| `react-modal`                  | Modal dialog (client component)              |
-| `zod`                          | Schema validation (works everywhere)         |
-| `aws-sdk`                      | Email service (server-only, route handler)   |
-| `date-fns`                     | Date formatting (works everywhere)           |
-| `class-names`                  | Conditional CSS classes (works everywhere)   |
-| `daisyui` / `tailwindcss`      | Styling (no change)                          |
+| Package                     | Reason                                             |
+| --------------------------- | -------------------------------------------------- |
+| `next-sanity`               | CMS client (fully compatible with App Router)      |
+| `@sanity/image-url`         | Image URL builder                                  |
+| `@portabletext/react`       | Rich text rendering (works in both RSC and client) |
+| `react-google-recaptcha-v3` | Contact form anti-spam (client component)          |
+| `react-hook-form`           | Contact form (client component)                    |
+| `react-modal`               | Modal dialog (client component)                    |
+| `zod`                       | Schema validation (works everywhere)               |
+| `aws-sdk`                   | Email service (server-only, route handler)         |
+| `date-fns`                  | Date formatting (works everywhere)                 |
+| `class-names`               | Conditional CSS classes (works everywhere)         |
+| `daisyui` / `tailwindcss`   | Styling (no change)                                |
 
 ---
 
 ## Risk Assessment
 
-| Risk                                       | Likelihood | Impact | Mitigation                                  |
-| ------------------------------------------ | ---------- | ------ | ------------------------------------------- |
-| SEO regression (metadata/OG tags missing)  | Medium     | High   | Compare rendered HTML before/after per page  |
-| JSON-LD structured data broken             | Medium     | High   | Validate with Google Rich Results Test tool  |
-| Client component boundary misplacement     | Medium     | Medium | Console errors will surface; test thoroughly |
-| `next-seo` removal breaks something        | Low        | Medium | Migrate page-by-page, verify metadata each time |
-| Redirects stop working                     | Low        | Medium | Redirects in `next.config` work for both routers |
-| Contact form breaks                        | Low        | High   | Dedicated E2E test for form submission       |
-| Build time regression                      | Low        | Low    | Monitor build times during migration         |
-| Sanity preview/draft mode incompatibility  | Low        | Low    | Not currently using preview mode             |
+| Risk                                      | Likelihood | Impact | Mitigation                                       |
+| ----------------------------------------- | ---------- | ------ | ------------------------------------------------ |
+| SEO regression (metadata/OG tags missing) | Medium     | High   | Compare rendered HTML before/after per page      |
+| JSON-LD structured data broken            | Medium     | High   | Validate with Google Rich Results Test tool      |
+| Client component boundary misplacement    | Medium     | Medium | Console errors will surface; test thoroughly     |
+| `next-seo` removal breaks something       | Low        | Medium | Migrate page-by-page, verify metadata each time  |
+| Redirects stop working                    | Low        | Medium | Redirects in `next.config` work for both routers |
+| Contact form breaks                       | Low        | High   | Dedicated E2E test for form submission           |
+| Build time regression                     | Low        | Low    | Monitor build times during migration             |
+| Sanity preview/draft mode incompatibility | Low        | Low    | Not currently using preview mode                 |
 
 ---
 
 ## Estimated Effort
 
-| Phase | Description                       | Estimate     |
-| ----- | --------------------------------- | ------------ |
-| 0     | Preparation                       | 1-2 hours    |
-| 1     | Root layout and providers         | 1-2 hours    |
-| 2     | Static pages                      | 2-3 hours    |
-| 3     | Blog routes                       | 2-3 hours    |
-| 4     | Service routes                    | 2-3 hours    |
-| 5     | API route                         | 30 minutes   |
-| 6     | Component updates and cleanup     | 2-3 hours    |
-| 7     | Verification and optimisation     | 1-2 hours    |
+| Phase     | Description                   | Estimate         |
+| --------- | ----------------------------- | ---------------- |
+| 0         | Preparation                   | 1-2 hours        |
+| 1         | Root layout and providers     | 1-2 hours        |
+| 2         | Static pages                  | 2-3 hours        |
+| 3         | Blog routes                   | 2-3 hours        |
+| 4         | Service routes                | 2-3 hours        |
+| 5         | API route                     | 30 minutes       |
+| 6         | Component updates and cleanup | 2-3 hours        |
+| 7         | Verification and optimisation | 1-2 hours        |
 | **Total** |                               | **~12-18 hours** |
 
 The migration can be done incrementally -- Next.js supports running Pages Router and App Router
 side by side. Each phase results in a deployable state.
-
