@@ -54,22 +54,22 @@ requirements change.
 
 Before migrating, add smoke tests for routes not currently covered:
 
-- [ ] `/faq` -- page loads, FAQ items render
-- [ ] `/terms` -- page loads, content renders
-- [ ] `/services/:slug` -- a specific service page renders correctly
-- [ ] `/services/:parent/:child` -- a sub-service page renders correctly
-- [ ] `/blog/tag/:tag` -- a tag filter page renders
-- [ ] `/api/contact` -- returns 405 for GET, accepts POST with validation errors
-- [ ] `/404` -- custom 404 page renders
+- [x] `/faq` -- page loads, FAQ items render
+- [x] `/terms` -- page loads, content renders
+- [x] `/services/:slug` -- a specific service page renders correctly
+- [x] `/services/:parent/:child` -- a sub-service page renders correctly
+- [x] `/blog/tag/:tag` -- a tag filter page renders
+- [x] `/api/contact` -- returns 405 for GET, accepts POST with validation errors
+- [x] `/404` -- custom 404 page renders
 
 ### 0.3 Migrate `next.config.js` to ESM
 
 The config currently uses CommonJS (`require`/`module.exports`). Migrate to `next.config.ts`:
 
-- [ ] Rename `next.config.js` to `next.config.ts`
-- [ ] Convert `require()` to `import`
-- [ ] Convert `module.exports` to `export default`
-- [ ] Use the `NextConfig` type from `next`
+- [x] Rename `next.config.js` to `next.config.ts`
+- [x] Convert `require()` to `import`
+- [x] Convert `module.exports` to `export default`
+- [x] Use the `NextConfig` type from `next`
 - [ ] Verify build still passes
 
 ### 0.4 Audit `next-seo` compatibility

@@ -1,10 +1,11 @@
-/** @type {import('next').NextConfig} */
+import type { NextConfig } from 'next';
+import bundleAnalyzer from '@next/bundle-analyzer';
 
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
+const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 });
 
-const nextConfig = {
+const nextConfig: NextConfig = {
   images: {
     deviceSizes: [640, 828, 1200],
     imageSizes: [48, 128, 256],
@@ -36,4 +37,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withBundleAnalyzer(nextConfig);
+export default withBundleAnalyzer(nextConfig);
