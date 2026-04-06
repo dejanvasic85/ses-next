@@ -1,3 +1,5 @@
+'use client';
+
 import { Activity } from 'react';
 import { useState, useEffect, type PropsWithChildren } from 'react';
 import classNames from 'class-names';
