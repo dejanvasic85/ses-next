@@ -29,16 +29,12 @@ function MyApp({ Component, pageProps }: AppProps<BasePageProps>) {
     TagManager.initialize(tagManagerArgs);
   }, []);
 
-  const sanityProjectId = pageProps.publicConfig?.sanityProjectId;
-  const sanityDataset = pageProps.publicConfig?.sanityDataset;
-
-  if (!sanityProjectId || !sanityDataset) {
-    throw new Error('Missing Sanity public config in pageProps.publicConfig');
-  }
-
   return (
     <div className={dmSans.className} style={{ minHeight: '100vh' }}>
-      <ConfigProvider sanityProjectId={sanityProjectId} sanityDataset={sanityDataset}>
+      <ConfigProvider
+        sanityProjectId={pageProps.publicConfig?.sanityProjectId ?? ''}
+        sanityDataset={pageProps.publicConfig?.sanityDataset ?? ''}
+      >
         <GoogleReCaptchaProvider
           reCaptchaKey={clientConfig.googleRecaptchaSiteKey}
           scriptProps={{

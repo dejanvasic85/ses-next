@@ -11,7 +11,7 @@ interface BlogSidebarProps {
 }
 
 export const BlogSidebar = ({ tagsWithCount, totalPosts }: BlogSidebarProps) => {
-  const params = useParams<{ tag?: string | string[] }>();
+  const params = useParams();
   const pathname = usePathname();
   const rawTag = params?.tag;
   const currentTag = typeof rawTag === 'string' ? rawTag : undefined;
