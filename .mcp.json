@@ -7,6 +7,10 @@
     "better-icons": {
       "command": "npx",
       "args": ["-y", "better-icons"]
+    },
+    "next-devtools": {
+      "command": "npx",
+      "args": ["-y", "next-devtools-mcp@latest"]
     }
   }
 }
