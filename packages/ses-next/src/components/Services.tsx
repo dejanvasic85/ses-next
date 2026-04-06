@@ -1,10 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-
-import { sanityImageLoader } from '@/lib/sanityImageLoader';
 
 import { Container } from '@/components/Container';
+import { SanityImage } from '@/components/SanityImage';
 import { Heading } from '@/components/Heading';
 import { Icon } from '@/components/Icon/Icon';
 import type { IconMap } from '@/components/Icon/IconMap';
@@ -68,13 +66,12 @@ export const Services = ({ className, blurbs, services }: ServicesProps) => {
                   </div>
                   {featuredImage && (
                     <div className="mt-4 aspect-video w-full rounded-lg overflow-hidden relative">
-                      <Image
+                      <SanityImage
                         src={featuredImage.src}
                         alt={featuredImage.alt}
                         fill
                         className="object-cover object-center transition-all group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        loader={sanityImageLoader}
                       />
                     </div>
                   )}

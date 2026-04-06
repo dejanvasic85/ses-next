@@ -2,6 +2,8 @@
 
 Migration plan for the `ses-next` workspace (packages/ses-next) from Pages Router to App Router.
 
+MUST: use the nextjs dev tools MCP for documentation before taking tasks on.
+
 ## Current State Summary
 
 | Aspect              | Current State                                                       |
@@ -141,47 +143,47 @@ mode. All existing pages should continue to work.
 **From:** `src/pages/index.tsx`
 **To:** `src/app/page.tsx`
 
-- [ ] Create `src/app/page.tsx` as a Server Component
-- [ ] Move `getStaticProps` logic inline -- call `getBasePageProps()`, `getHomePageContent()`, and import `googleReviews` directly at the top level of the async component
-- [ ] Export `metadata` (or `generateMetadata`) with title, description, canonical URL, OpenGraph
-- [ ] Move JSON-LD structured data (LocalBusiness, credentials) to inline `<script>` tags
-- [ ] Render Hero, Contact, Services, About, Team, Testimonials sections
-- [ ] Delete `src/pages/index.tsx`
-- [ ] Run E2E tests for homepage
+- [x] Create `src/app/page.tsx` as a Server Component
+- [x] Move `getStaticProps` logic inline -- call `getBasePageProps()`, `getHomePageContent()`, and import `googleReviews` directly at the top level of the async component
+- [x] Export `metadata` (or `generateMetadata`) with title, description, canonical URL, OpenGraph
+- [x] Move JSON-LD structured data (LocalBusiness, credentials) to inline `<script>` tags
+- [x] Render Hero, Contact, Services, About, Team, Testimonials sections
+- [x] Delete `src/pages/index.tsx`
+- [x] Run E2E tests for homepage
 
 ### 2.2 FAQ page (`/faq`)
 
 **From:** `src/pages/faq.tsx`
 **To:** `src/app/faq/page.tsx`
 
-- [ ] Create `src/app/faq/page.tsx` as a Server Component
-- [ ] Inline data fetching (FAQ items + base props)
-- [ ] Export `metadata` with FAQ page title/description
-- [ ] Move FAQ and Breadcrumb JSON-LD to inline `<script>` tags
-- [ ] Delete `src/pages/faq.tsx`
+- [x] Create `src/app/faq/page.tsx` as a Server Component
+- [x] Inline data fetching (FAQ items + base props)
+- [x] Export `metadata` with FAQ page title/description
+- [x] Move FAQ and Breadcrumb JSON-LD to inline `<script>` tags
+- [x] Delete `src/pages/faq.tsx`
 
 ### 2.3 Terms page (`/terms`)
 
 **From:** `src/pages/terms/index.tsx`
 **To:** `src/app/terms/page.tsx`
 
-- [ ] Create `src/app/terms/page.tsx` as a Server Component
-- [ ] Inline data fetching (terms content + base props)
-- [ ] Export `metadata`
-- [ ] Delete `src/pages/terms/index.tsx`
+- [x] Create `src/app/terms/page.tsx` as a Server Component
+- [x] Inline data fetching (terms content + base props)
+- [x] Export `metadata`
+- [x] Delete `src/pages/terms/index.tsx`
 
 ### 2.4 Error pages
 
 **From:** `src/pages/404.tsx` and `src/pages/500.tsx`
 **To:** `src/app/not-found.tsx` and `src/app/error.tsx`
 
-- [ ] Create `src/app/not-found.tsx` -- replaces the custom 404 page. This is a Server Component.
-- [ ] Create `src/app/error.tsx` -- replaces the custom 500 page. This must be a Client Component (`"use client"`).
-- [ ] Delete `src/pages/404.tsx` and `src/pages/500.tsx`
+- [x] Create `src/app/not-found.tsx` -- replaces the custom 404 page. This is a Server Component.
+- [x] Create `src/app/error.tsx` -- replaces the custom 500 page. This must be a Client Component (`"use client"`).
+- [x] Delete `src/pages/404.tsx` and `src/pages/500.tsx`
 
 ### 2.5 Verify
 
-- [ ] Run full E2E suite
+- [x] Run full E2E suite
 - [ ] Compare Lighthouse scores against Phase 0 baseline
 
 ---

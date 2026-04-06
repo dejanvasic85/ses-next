@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { useParams, usePathname } from 'next/navigation';
 import type { TagWithCount } from '@/lib/blogUtils';
 
 interface BlogFilterMobileProps {
@@ -12,9 +12,10 @@ interface BlogFilterMobileProps {
 
 export const BlogFilterMobile = ({ tagsWithCount, totalPosts }: BlogFilterMobileProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const router = useRouter();
-  const currentTag = router.query.tag as string | undefined;
-  const isAllPosts = router.pathname === '/blog' && !currentTag;
+  const params = useParams();
+  const pathname = usePathname();
+  const currentTag = params?.tag as string | undefined;
+  const isAllPosts = pathname === '/blog' && !currentTag;
 
   const getCurrentLabel = () => {
     if (isAllPosts) return 'All Posts';

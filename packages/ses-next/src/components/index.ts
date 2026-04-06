@@ -20,5 +20,6 @@ export { PageHead } from './PageHead';
 export { PopSuccess } from './PopSuccess';
 export { RelatedServices } from './RelatedServices/RelatedServices';
 export { ServiceBreadcrumb } from './ServiceBreadcrumb/ServiceBreadcrumb';
+export { SanityImage } from './SanityImage';
 export { Services } from './Services';
 export { Team } from './Team';

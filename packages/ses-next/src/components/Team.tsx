@@ -1,7 +1,5 @@
-import Image from 'next/image';
-
 import { Heading } from '@/components/Heading';
-import { sanityImageLoader } from '@/lib/sanityImageLoader';
+import { SanityImage } from '@/components/SanityImage';
 import { Icon } from '@/components/Icon/Icon';
 import type { IconMap } from '@/components/Icon/IconMap';
 
@@ -37,13 +35,12 @@ export function Team({ blurbs, members, training }: TeamProps) {
             {members.map(({ avatar, fullName, role }) => (
               <div key={fullName} className="flex flex-col items-center w-full md:w-1/4 rounded-lg p-4 lg:p-8">
                 <div className="w-24 md:w-32 h-24 md:h-32 bg-slate-200 rounded-full overflow-hidden shadow-lg mb-2 md:mb-4 relative">
-                  <Image
+                  <SanityImage
                     src={avatar}
                     alt={fullName}
                     fill
                     className="object-cover object-center"
                     sizes="(max-width: 768px) 96px, 128px"
-                    loader={sanityImageLoader}
                   />
                 </div>
                 <div>
