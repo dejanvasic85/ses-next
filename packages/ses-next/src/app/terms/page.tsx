@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { PortableText } from '@portabletext/react';
 
 import { CustomImage } from '@/components';
@@ -14,6 +15,10 @@ export const metadata: Metadata = {
 
 export default async function TermsPage() {
   const [termsContent] = await getTermsAndConditions();
+
+  if (!termsContent) {
+    notFound();
+  }
 
   return (
     <div className="bg-white py-6 sm:py-8 lg:py-12">

@@ -2,6 +2,12 @@ import type { Metadata } from 'next';
 import { googleReviews } from 'ses-reviews';
 
 import { About, Contact, Hero, Services } from '@/components';
+
+const safeJsonLd = (data: unknown) =>
+  JSON.stringify(data)
+    .replace(/</g, '\\u003c')
+    .replace(/\u2028/g, '\\u2028')
+    .replace(/\u2029/g, '\\u2029');
 import { getHomePageContent, getSiteSettings, getServices } from '@/lib/content/contentService';
 import type { GoogleReview } from '@/types';
 
@@ -116,8 +122,8 @@ export default async function Home() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(credentialsJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(localBusinessJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(credentialsJsonLd) }} />
       <Hero
         companyName={companyName}
         companyLogo={companyLogo}

@@ -2,6 +2,12 @@ import type { Metadata } from 'next';
 
 import { getFAQs, getSiteSettings } from '@/lib/content/contentService';
 
+const safeJsonLd = (data: unknown) =>
+  JSON.stringify(data)
+    .replace(/</g, '\\u003c')
+    .replace(/\u2028/g, '\\u2028')
+    .replace(/\u2029/g, '\\u2029');
+
 export const metadata: Metadata = {
   title: 'FAQ | Storm Electrical Solutions',
   description: 'Check out our frequently asked questions to learn more about our electrical services in Melbourne.',
@@ -39,8 +45,8 @@ export default async function FaqPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }} />
       <div className="bg-white py-6 sm:py-8 lg:py-12">
         <div className="container mx-auto max-w-screen-xl px-4 md:px-8">
           <div className="mb-10 md:mb-16">

@@ -12,9 +12,10 @@ interface BlogFilterMobileProps {
 
 export const BlogFilterMobile = ({ tagsWithCount, totalPosts }: BlogFilterMobileProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const params = useParams();
+  const params = useParams<{ tag?: string | string[] }>();
   const pathname = usePathname();
-  const currentTag = params?.tag as string | undefined;
+  const rawTag = params?.tag;
+  const currentTag = typeof rawTag === 'string' ? rawTag : undefined;
   const isAllPosts = pathname === '/blog' && !currentTag;
 
   const getCurrentLabel = () => {
