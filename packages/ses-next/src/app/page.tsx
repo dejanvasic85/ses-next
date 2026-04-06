@@ -2,14 +2,14 @@ import type { Metadata } from 'next';
 import { googleReviews } from 'ses-reviews';
 
 import { About, Contact, Hero, Services } from '@/components';
+import { getHomePageContent, getSiteSettings, getServices } from '@/lib/content/contentService';
+import type { GoogleReview } from '@/types';
 
 const safeJsonLd = (data: unknown) =>
   JSON.stringify(data)
     .replace(/</g, '\\u003c')
     .replace(/\u2028/g, '\\u2028')
     .replace(/\u2029/g, '\\u2029');
-import { getHomePageContent, getSiteSettings, getServices } from '@/lib/content/contentService';
-import type { GoogleReview } from '@/types';
 
 const title = 'Melbourne Electricians | 24/7 Emergency Electrical Services | Storm Electrical Solutions';
 const description =
