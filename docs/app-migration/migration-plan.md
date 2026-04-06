@@ -70,7 +70,7 @@ The config currently uses CommonJS (`require`/`module.exports`). Migrate to `nex
 - [x] Convert `require()` to `import`
 - [x] Convert `module.exports` to `export default`
 - [x] Use the `NextConfig` type from `next`
-- [ ] Verify build still passes
+- [x] Verify build still passes
 
 ### 0.4 Audit `next-seo` compatibility
 
@@ -78,8 +78,8 @@ The config currently uses CommonJS (`require`/`module.exports`). Migrate to `nex
 App Router (JSON-LD components), but the App Router approach is to use the built-in `metadata`
 API. Plan:
 
-- [ ] Replace `next-seo` with Next.js built-in `metadata` export and `generateMetadata` during migration
-- [ ] Replace JSON-LD components from `next-seo` with `<script type="application/ld+json">` in Server Components
+- [x] Replace `next-seo` with Next.js built-in `metadata` export and `generateMetadata` during migration
+- [x] Replace JSON-LD components from `next-seo` with `<script type="application/ld+json">` in Server Components
 
 ---
 
@@ -127,8 +127,8 @@ The current `Layout` component (`src/components/Layout.tsx`) wraps every page wi
 At this point, `src/app/layout.tsx` exists alongside `src/pages/`. Next.js supports this hybrid
 mode. All existing pages should continue to work.
 
-- [ ] Run dev server and verify all pages render
-- [ ] Run E2E tests
+- [x] Run dev server and verify all pages render
+- [x] Run E2E tests
 
 ---
 

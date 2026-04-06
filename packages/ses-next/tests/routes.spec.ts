@@ -20,7 +20,7 @@ test.describe('Page Routes', () => {
 
     expect(response?.status()).toBe(404);
     await expect(page.locator('h1')).toContainText(/not found/i);
-    await expect(page.locator('a[href="/"]')).toBeVisible();
+    await expect(page.getByRole('link', { name: 'homepage.' })).toBeVisible();
   });
 });
 
