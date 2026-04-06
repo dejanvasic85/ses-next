@@ -58,8 +58,12 @@ test.describe('Blog Routes', () => {
     const tagHref = await tagLink.getAttribute('href');
     await page.goto(tagHref!);
 
-    await expect(page.locator('body')).toBeVisible();
-    await expect(page.locator('article, [data-testid="blog-post"]').first().or(page.locator('h1'))).toBeVisible();
+    await expect(page.locator('h1')).toBeVisible();
+    const blogPost = page.locator('article, [data-testid="blog-post"]').first();
+    const postCount = await blogPost.count();
+    if (postCount > 0) {
+      await expect(blogPost).toBeVisible();
+    }
   });
 });
 
@@ -71,14 +75,13 @@ test.describe('API Routes', () => {
 
   test('contact API returns 400 when reCAPTCHA token is missing', async ({ request }) => {
     const response = await request.post('/api/contact', {
-      headers: { 'Content-Type': 'application/json' },
-      data: JSON.stringify({
+      data: {
         fullName: 'Test User',
         email: 'test@example.com',
         phone: '0400000000',
         message: 'Test message',
         address: '123 Test St',
-      }),
+      },
     });
     expect(response.status()).toBe(400);
     const body = await response.json();
