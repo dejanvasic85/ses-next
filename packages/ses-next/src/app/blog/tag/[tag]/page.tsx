@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: BlogTagPageProps): Promise<Me
       follow: true,
     },
     alternates: {
-      canonical: `/blog/tag/${tag}`,
+      canonical: `/blog/tag/${encodeURIComponent(tag)}`,
     },
   };
 }
