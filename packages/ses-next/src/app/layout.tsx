@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import localFont from 'next/font/local';
 
 import { getSiteSettings, getServices } from '@/lib/content/contentService';
 import { Navbar } from '@/components/Navbar';
@@ -8,9 +8,13 @@ import { Providers } from '@/app/providers';
 import { config } from '@/lib/config';
 import '../../styles/globals.css';
 
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['400', '500', '700'],
+const inter = localFont({
+  src: [
+    { path: '../../public/fonts/inter-latin-400-normal.woff2', weight: '400', style: 'normal' },
+    { path: '../../public/fonts/inter-latin-500-normal.woff2', weight: '500', style: 'normal' },
+    { path: '../../public/fonts/inter-latin-700-normal.woff2', weight: '700', style: 'normal' },
+  ],
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
