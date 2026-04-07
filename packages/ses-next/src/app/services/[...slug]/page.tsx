@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { Activity } from 'react';
 import { PortableText } from '@portabletext/react';
 import Link from 'next/link';
 import { googleReviews } from 'ses-reviews';
@@ -24,6 +23,10 @@ type BreadcrumbItem = {
   item?: string;
 };
 
+type PortableTextImageProps = {
+  value: string;
+};
+
 const servicesPathValue = 'services/';
 const serviceAddressValue = {
   '@type': 'PostalAddress',
@@ -41,6 +44,10 @@ const dateFormatValue = {
 
 async function getServiceBySlugParts(slugParts: string[]): Promise<ServiceItem | null> {
   if (slugParts.length === 0) {
+    return null;
+  }
+
+  if (slugParts.length > 2) {
     return null;
   }
 
@@ -86,7 +93,7 @@ function buildBreadcrumbItems(service: ServiceItem, baseUrl: string): Breadcrumb
 export async function generateStaticParams() {
   const services = await getServices();
   return services
-    .filter(({ slug }) => slug)
+    .filter(({ slug }) => typeof slug === 'string' && slug.length > 0)
     .map(({ slug, parentService }) => ({
       slug: parentService ? [parentService.slug, slug] : [slug],
     }));
@@ -138,8 +145,9 @@ export default async function ServicePage({ params }: ServicePageProps) {
   const blogPosts = posts.filter(({ tags }) => tags.includes(service.slug));
   const childServices = allServices.filter(({ parentService }) => parentService?.slug === service.slug);
 
-  const ratingCount = Number(googleReviews.numberOfReviews.replace('reviews', '').trim());
-  const ratingValue = Number(googleReviews.overallRatingValue.replace('.0', '').trim());
+  const ratingCount = Number.parseInt(googleReviews.numberOfReviews, 10);
+  const ratingValue = Number.parseFloat(googleReviews.overallRatingValue);
+  const hasValidRatings = Number.isFinite(ratingCount) && Number.isFinite(ratingValue);
   const reviewsJson = googleReviews.reviews.slice(0, 9).map(({ comment, reviewer, starRating }: GoogleReview) => ({
     author: reviewer.displayName,
     reviewBody: comment,
@@ -173,13 +181,17 @@ export default async function ServicePage({ params }: ServicePageProps) {
     telephone: siteSettings.phone,
     image: siteSettings.companyLogo,
     url: pageUrl,
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue,
-      ratingCount,
-      bestRating: 5,
-      worstRating: 1,
-    },
+    ...(hasValidRatings
+      ? {
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue,
+            ratingCount,
+            bestRating: 5,
+            worstRating: 1,
+          },
+        }
+      : {}),
     review: reviewsJson,
   };
   const breadcrumbJsonLd = {
@@ -210,7 +222,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
               value={service.content}
               components={{
                 types: {
-                  image: ({ value }: { value: string }) => <CustomImage value={value} />,
+                  image: ({ value }: PortableTextImageProps) => <CustomImage value={value} />,
                 },
               }}
             />
@@ -236,7 +248,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
           </section>
         )}
 
-        <Activity mode={blogPosts.length > 0 ? 'visible' : 'hidden'}>
+        {blogPosts.length > 0 && (
           <div className="mx-auto mt-12 mb-8 max-w-screen-lg px-4 md:px-8">
             <h2 className="mb-2 text-3xl font-bold text-gray-900">Related Blog Posts</h2>
             <p className="mb-6 text-gray-600">Explore our {service.name.toLowerCase()} articles and insights</p>
@@ -272,7 +284,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
               ))}
             </div>
           </div>
-        </Activity>
+        )}
       </div>
     </>
   );

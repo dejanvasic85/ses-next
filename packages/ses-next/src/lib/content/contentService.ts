@@ -1,4 +1,5 @@
 import { createClient } from 'next-sanity';
+import { cache } from 'react';
 import { config } from '@/lib/config';
 import {
   type BlogPost,
@@ -76,7 +77,7 @@ export const getHomePageContent = async (): Promise<HomePageContent> => {
   }
 };
 
-export const getServicesHubContent = async (): Promise<ServicesHubContent> => {
+export const getServicesHubContent = cache(async (): Promise<ServicesHubContent> => {
   try {
     const result = await sanityClient.fetch(servicesHubQuery);
     if (!result) {
@@ -93,9 +94,9 @@ export const getServicesHubContent = async (): Promise<ServicesHubContent> => {
     console.error('Error in getServicesHubContent:', error);
     throw new Error('Failed to fetch services hub content');
   }
-};
+});
 
-export const getBlogPosts = async (): Promise<BlogPost[]> => {
+export const getBlogPosts = cache(async (): Promise<BlogPost[]> => {
   try {
     const result = await sanityClient.fetch(allBlogPostsQuery);
     return result.map((post: unknown) => BlogPostSchema.parse(post)).map(mapBlogPost);
@@ -103,7 +104,7 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
     console.error('Error in getBlogPosts:', error);
     throw new Error('Failed to fetch blog posts');
   }
-};
+});
 
 export const getTermsAndConditions = async (): Promise<TermsAndConditionsContent[]> => {
   try {
@@ -133,7 +134,7 @@ export const getFAQs = async (): Promise<Array<{ question: string; answer: strin
   }
 };
 
-export const getSiteSettings = async (): Promise<SiteSettings> => {
+export const getSiteSettings = cache(async (): Promise<SiteSettings> => {
   try {
     const result = await sanityClient.fetch(siteSettingsQuery);
     const siteSettings = SiteSettingsSchema.parse(result);
@@ -142,9 +143,9 @@ export const getSiteSettings = async (): Promise<SiteSettings> => {
     console.error('Error in getSiteSettings:', error);
     throw new Error('Failed to fetch site settings');
   }
-};
+});
 
-export const getServices = async (): Promise<ServiceItem[]> => {
+export const getServices = cache(async (): Promise<ServiceItem[]> => {
   try {
     const result = await sanityClient.fetch(servicesQuery);
     return result.map((item: unknown) => ServiceSchema.parse(item)).map(mapService);
@@ -152,7 +153,7 @@ export const getServices = async (): Promise<ServiceItem[]> => {
     console.error('Error in getServices:', error);
     throw new Error('Failed to fetch services');
   }
-};
+});
 
 export const getBlogPostBySlug = async (slug: string): Promise<BlogPostContentModel | null> => {
   try {

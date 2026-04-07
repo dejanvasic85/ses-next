@@ -300,6 +300,8 @@ mode. All existing pages should continue to work.
   ```
 - [x] Optionally add a `GET` handler returning 405 or remove it (App Router only matches exported methods)
 - [x] Delete `src/pages/api/contact.ts`
+- [x] Harden route handler with runtime payload validation (`safeParse`) and sanitize API responses (no echoed payload/raw errors)
+- [x] Make customer thank-you email best-effort (avoid duplicate admin notifications on retries)
 - [ ] Test contact form submission end-to-end
 
 ---

@@ -20,32 +20,36 @@ function ServiceCard({ service }: ServiceCardProps) {
 
   return (
     <article className="group relative overflow-hidden rounded-lg border border-gray-200 transition-shadow duration-200 hover:shadow-md">
-      <Link href={`/services/${slug}`} className="absolute inset-0 z-10" prefetch={false}>
-        <span className="sr-only">View {name} service</span>
-      </Link>
-      <div className="flex h-full flex-col justify-between p-6">
-        <div className="space-y-2">
-          <div className="flex items-center gap-3">
-            <div className="rounded-full bg-primary p-2">
-              <Icon name={icon} size="xl" className="text-white" />
+      <Link
+        href={`/services/${slug}`}
+        className="block h-full p-6"
+        prefetch={false}
+        aria-label={`View ${name} service`}
+      >
+        <div className="flex h-full flex-col justify-between">
+          <div className="space-y-2">
+            <div className="flex items-center gap-3">
+              <div className="rounded-full bg-primary p-2">
+                <Icon name={icon} size="xl" className="text-white" />
+              </div>
+              <h2 className="border-b-2 border-primary text-lg font-semibold">{name}</h2>
             </div>
-            <h2 className="border-b-2 border-primary text-lg font-semibold">{name}</h2>
+            <p className="text-gray-500">{blurb}</p>
           </div>
-          <p className="text-gray-500">{blurb}</p>
+          {featuredImage && (
+            <div className="relative mt-4 aspect-video w-full overflow-hidden rounded-lg">
+              <SanityImage
+                src={featuredImage.src}
+                alt={featuredImage.alt}
+                fill
+                className="object-cover object-center transition-all group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              />
+            </div>
+          )}
+          <span className="mt-4 inline-block font-medium text-primary group-hover:underline">Learn more -&gt;</span>
         </div>
-        {featuredImage && (
-          <div className="relative mt-4 aspect-video w-full overflow-hidden rounded-lg">
-            <SanityImage
-              src={featuredImage.src}
-              alt={featuredImage.alt}
-              fill
-              className="object-cover object-center transition-all group-hover:scale-105"
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            />
-          </div>
-        )}
-        <span className="mt-4 inline-block font-medium text-primary group-hover:underline">Learn more -&gt;</span>
-      </div>
+      </Link>
     </article>
   );
 }
