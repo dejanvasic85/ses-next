@@ -1,12 +1,7 @@
 import type { Metadata } from 'next';
 
 import { getFAQs, getSiteSettings } from '@/lib/content/contentService';
-
-const safeJsonLd = (data: unknown) =>
-  JSON.stringify(data)
-    .replace(/</g, '\\u003c')
-    .replace(/\u2028/g, '\\u2028')
-    .replace(/\u2029/g, '\\u2029');
+import { safeJsonLd } from '@/lib/structuredData';
 
 export const metadata: Metadata = {
   title: 'FAQ | Storm Electrical Solutions',

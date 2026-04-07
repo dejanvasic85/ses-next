@@ -197,47 +197,47 @@ mode. All existing pages should continue to work.
 **From:** `src/pages/blog/index.tsx`
 **To:** `src/app/blog/page.tsx`
 
-- [ ] Create `src/app/blog/page.tsx` as a Server Component
-- [ ] Inline data fetching: call `getBlogPosts()` + `getBasePageProps()`
-- [ ] Compute `tagsWithCount` server-side
-- [ ] Export `metadata`
+- [x] Create `src/app/blog/page.tsx` as a Server Component
+- [x] Inline data fetching: call `getBlogPosts()` + `getSiteSettings()`
+- [x] Compute `tagsWithCount` server-side
+- [x] Export `metadata`
 
 ### 3.2 Blog post page (`/blog/[slug]`)
 
 **From:** `src/pages/blog/[slug].tsx`
 **To:** `src/app/blog/[slug]/page.tsx`
 
-- [ ] Create `src/app/blog/[slug]/page.tsx` as a Server Component
-- [ ] Replace `getStaticPaths` with `generateStaticParams`:
+- [x] Create `src/app/blog/[slug]/page.tsx` as a Server Component
+- [x] Replace `getStaticPaths` with `generateStaticParams`:
   ```ts
   export async function generateStaticParams() {
     const posts = await getBlogPosts();
     return posts.map((post) => ({ slug: post.slug }));
   }
   ```
-- [ ] Replace `getStaticProps` with direct data fetching in the component using the `params` prop
-- [ ] Export `generateMetadata` for dynamic title/description/canonical/OpenGraph
-- [ ] Move Article and Breadcrumb JSON-LD to inline `<script>` tags
+- [x] Replace `getStaticProps` with direct data fetching in the component using the `params` prop
+- [x] Export `generateMetadata` for dynamic title/description/canonical/OpenGraph
+- [x] Move Article and Breadcrumb JSON-LD to inline `<script>` tags
 
 ### 3.3 Blog tag page (`/blog/tag/[tag]`)
 
 **From:** `src/pages/blog/tag/[tag].tsx`
 **To:** `src/app/blog/tag/[tag]/page.tsx`
 
-- [ ] Create page as a Server Component
-- [ ] Replace `getStaticPaths` with `generateStaticParams`
-- [ ] Replace `getStaticProps` with direct data fetching
-- [ ] Export `generateMetadata` with `noIndex` (robots: { index: false })
+- [x] Create page as a Server Component
+- [x] Replace `getStaticPaths` with `generateStaticParams`
+- [x] Replace `getStaticProps` with direct data fetching
+- [x] Export `generateMetadata` with `noIndex` (robots: { index: false })
 
 ### 3.4 Shared blog layout (optional improvement)
 
 - [ ] Consider creating `src/app/blog/layout.tsx` to share the `BlogLayout` wrapper (sidebar + mobile filter) across blog routes
-- [ ] The blog sidebar and mobile filter use `useRouter` to read `query.tag` and `pathname` -- these must switch to `useParams` and `usePathname` from `next/navigation`
+- [x] The blog sidebar and mobile filter use `useParams` and `usePathname` from `next/navigation` (already done)
 
 ### 3.5 Clean up and verify
 
-- [ ] Delete `src/pages/blog/` directory
-- [ ] Update `BlogSidebar` and `BlogFilterMobile` to use `next/navigation` hooks
+- [x] Delete `src/pages/blog/` directory
+- [x] Update `BlogSidebar` and `BlogFilterMobile` to use `next/navigation` hooks (already done)
 - [ ] Run E2E tests for all blog routes
 
 ---
@@ -388,7 +388,7 @@ Components, these can be imported directly from environment/config where needed:
 
 - [ ] Run `npm run type:check -w ses-next` -- zero TypeScript errors
 - [ ] Run `npm run lint -w ses-next` -- zero lint errors
-- [ ] Run `npm run build -w ses-next` -- successful build
+- [x] Run `npm run build -w ses-next` -- successful build
 - [ ] Run `npm run test:e2e -w ses-next` -- all tests pass
 - [ ] Manual smoke test of every route in dev mode
 
