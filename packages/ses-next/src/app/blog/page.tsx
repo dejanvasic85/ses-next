@@ -5,6 +5,7 @@ import { BlogLayout } from '@/components/BlogLayout';
 import { SanityImage } from '@/components/SanityImage';
 import { getBlogPosts, getSiteSettings } from '@/lib/content/contentService';
 import { tagsWithCountFromBlogs } from '@/lib/blogUtils';
+import { safeJsonLd } from '@/lib/structuredData';
 
 export const metadata: Metadata = {
   title: 'Blog | Storm Electrical Solutions',
@@ -38,10 +39,7 @@ export default async function BlogPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbJsonLd)
-            .replace(/</g, '\\u003c')
-            .replace(/\u2028/g, '\\u2028')
-            .replace(/\u2029/g, '\\u2029'),
+          __html: safeJsonLd(breadcrumbJsonLd),
         }}
       />
       <BlogLayout tagsWithCount={tagsWithCount} totalPosts={sorted.length}>
