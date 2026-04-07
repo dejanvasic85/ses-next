@@ -7,16 +7,11 @@ import { CustomImage } from '@/components/CustomImage';
 import { SanityImage } from '@/components/SanityImage';
 import { getBlogPosts, getSiteSettings } from '@/lib/content/contentService';
 import { tagsWithCountFromBlogs } from '@/lib/blogUtils';
+import { safeJsonLd } from '@/lib/structuredData';
 
 type BlogPostPageProps = {
   params: Promise<{ slug: string }>;
 };
-
-const safeJsonLd = (data: unknown) =>
-  JSON.stringify(data)
-    .replace(/</g, '\\u003c')
-    .replace(/\u2028/g, '\\u2028')
-    .replace(/\u2029/g, '\\u2029');
 
 const publishedDateFormatValue = {
   day: 'numeric',
