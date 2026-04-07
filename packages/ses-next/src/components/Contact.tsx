@@ -1,3 +1,5 @@
+'use client';
+
 import { Activity } from 'react';
 
 import { useContact } from '@/hooks/useContact';

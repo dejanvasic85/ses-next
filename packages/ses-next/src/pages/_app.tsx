@@ -32,8 +32,8 @@ function MyApp({ Component, pageProps }: AppProps<BasePageProps>) {
   return (
     <div className={dmSans.className} style={{ minHeight: '100vh' }}>
       <ConfigProvider
-        sanityProjectId={pageProps.publicConfig.sanityProjectId}
-        sanityDataset={pageProps.publicConfig.sanityDataset}
+        sanityProjectId={pageProps.publicConfig?.sanityProjectId ?? ''}
+        sanityDataset={pageProps.publicConfig?.sanityDataset ?? ''}
       >
         <GoogleReCaptchaProvider
           reCaptchaKey={clientConfig.googleRecaptchaSiteKey}

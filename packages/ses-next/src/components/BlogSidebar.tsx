@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { useParams, usePathname } from 'next/navigation';
 import type { TagWithCount } from '@/lib/blogUtils';
 
 interface BlogSidebarProps {
@@ -9,9 +11,11 @@ interface BlogSidebarProps {
 }
 
 export const BlogSidebar = ({ tagsWithCount, totalPosts }: BlogSidebarProps) => {
-  const router = useRouter();
-  const currentTag = router.query.tag as string | undefined;
-  const isAllPosts = router.pathname === '/blog' && !currentTag;
+  const params = useParams();
+  const pathname = usePathname();
+  const rawTag = params?.tag;
+  const currentTag = typeof rawTag === 'string' ? rawTag : undefined;
+  const isAllPosts = pathname === '/blog' && !currentTag;
 
   return (
     <aside className="hidden lg:block w-64 shrink-0">

@@ -1,9 +1,8 @@
 import { Activity } from 'react';
 import Image from 'next/image';
 
-import { sanityImageLoader } from '@/lib/sanityImageLoader';
-
 import { Heading } from '@/components/Heading';
+import { SanityImage } from '@/components/SanityImage';
 import { Icon } from '@/components/Icon/Icon';
 import { LinkButton } from '@/components/LinkButton';
 import { Rating } from '@/components/Rating';
@@ -64,7 +63,7 @@ export function Hero({
         <div className="mx-auto max-w-3xl pt-10 pb-16 sm:pt-24 sm:pb-20 md:p-0">
           <div className="flex-col md:flex-row justify-center">
             <div className="rounded-3xl flex justify-center">
-              <Image
+              <SanityImage
                 src={companyLogo}
                 alt={companyName}
                 width={500}
@@ -72,16 +71,14 @@ export function Hero({
                 className="hidden lg:inline-block"
                 priority
                 loading="eager"
-                loader={sanityImageLoader}
               />
-              <Image
+              <SanityImage
                 src={companyLogo}
                 alt={companyName}
                 className="object-scale-down lg:hidden"
                 width={500}
                 height={300}
                 loading="eager"
-                loader={sanityImageLoader}
               />
             </div>
             <div className="text-center">
