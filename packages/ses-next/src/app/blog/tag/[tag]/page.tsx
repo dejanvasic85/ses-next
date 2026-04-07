@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 
 import { BlogLayout } from '@/components/BlogLayout';
 import { SanityImage } from '@/components/SanityImage';
@@ -36,12 +37,19 @@ export async function generateMetadata({ params }: BlogTagPageProps): Promise<Me
 export default async function BlogTagPage({ params }: BlogTagPageProps) {
   const { tag } = await params;
   const blogPosts = await getBlogPosts();
+  const sortedBlogPosts = [...blogPosts].sort(
+    (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+  );
 
-  const tagsWithCount = tagsWithCountFromBlogs(blogPosts);
-  const filteredPosts = blogPosts.filter(({ tags }) => tags.includes(tag));
+  const tagsWithCount = tagsWithCountFromBlogs(sortedBlogPosts);
+  const filteredPosts = sortedBlogPosts.filter(({ tags }) => tags.includes(tag));
+
+  if (filteredPosts.length === 0) {
+    notFound();
+  }
 
   return (
-    <BlogLayout tagsWithCount={tagsWithCount} totalPosts={blogPosts.length}>
+    <BlogLayout tagsWithCount={tagsWithCount} totalPosts={sortedBlogPosts.length}>
       <div className="grid gap-6">
         {filteredPosts.map(({ id, description, title, tags, photo, slug, publishedAt }) => (
           <article key={id} className="card sm:card-side hover:bg-base-200 transition-colors">

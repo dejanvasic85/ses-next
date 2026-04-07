@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { PortableText } from '@portabletext/react';
-import { formatDistanceToNow } from 'date-fns';
 
 import { BlogLayout } from '@/components/BlogLayout';
 import { CustomImage } from '@/components/CustomImage';
@@ -18,6 +17,18 @@ const safeJsonLd = (data: unknown) =>
     .replace(/</g, '\\u003c')
     .replace(/\u2028/g, '\\u2028')
     .replace(/\u2029/g, '\\u2029');
+
+const publishedDateFormatValue = {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+} as const;
+
+const portableTextComponents = {
+  types: {
+    image: ({ value }: { value: string }) => <CustomImage value={value} />,
+  },
+};
 
 export async function generateStaticParams() {
   const posts = await getBlogPosts();
@@ -103,22 +114,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               width={800}
               height={400}
               src={post.photo}
-              className="bg-base-300 rounded-box border-opacity-5"
+              className="bg-base-300 rounded-box border border-base-300/5"
               alt={post.title}
             />
           </figure>
           <div className="mb-2 text-gray-700 italic">
             Published{` `}
-            <time title={post.publishedAt}>{formatDistanceToNow(new Date(post.publishedAt), { addSuffix: true })}</time>
+            <time dateTime={post.publishedAt}>
+              {new Date(post.publishedAt).toLocaleDateString('en-AU', publishedDateFormatValue)}
+            </time>
           </div>
-          <PortableText
-            value={post.body}
-            components={{
-              types: {
-                image: ({ value }) => <CustomImage value={value} />,
-              },
-            }}
-          />
+          <PortableText value={post.body} components={portableTextComponents} />
         </article>
       </BlogLayout>
     </>
