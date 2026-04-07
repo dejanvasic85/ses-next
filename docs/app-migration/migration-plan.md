@@ -388,7 +388,7 @@ Components, these can be imported directly from environment/config where needed:
 
 - [ ] Run `npm run type:check -w ses-next` -- zero TypeScript errors
 - [ ] Run `npm run lint -w ses-next` -- zero lint errors
-- [ ] Run `npm run build -w ses-next` -- successful build
+- [x] Run `npm run build -w ses-next` -- successful build
 - [ ] Run `npm run test:e2e -w ses-next` -- all tests pass
 - [ ] Manual smoke test of every route in dev mode
 

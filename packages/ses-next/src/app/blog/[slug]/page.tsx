@@ -1,13 +1,12 @@
 import type { Metadata } from 'next';
-import NextImage from 'next/image';
 import { notFound } from 'next/navigation';
 import { PortableText } from '@portabletext/react';
 import { formatDistanceToNow } from 'date-fns';
 
 import { BlogLayout } from '@/components/BlogLayout';
 import { CustomImage } from '@/components/CustomImage';
+import { SanityImage } from '@/components/SanityImage';
 import { getBlogPosts, getSiteSettings } from '@/lib/content/contentService';
-import { sanityImageLoader } from '@/lib/sanityImageLoader';
 import { tagsWithCountFromBlogs } from '@/lib/blogUtils';
 
 type BlogPostPageProps = {
@@ -99,14 +98,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             {post.title}
           </h1>
           <figure className="w-full">
-            <NextImage
+            <SanityImage
               loading="lazy"
               width={800}
               height={400}
               src={post.photo}
               className="bg-base-300 rounded-box border-opacity-5"
               alt={post.title}
-              loader={sanityImageLoader}
             />
           </figure>
           <div className="mb-2 text-gray-700 italic">

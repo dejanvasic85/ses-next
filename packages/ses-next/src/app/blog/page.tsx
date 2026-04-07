@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import NextImage from 'next/image';
 
 import { BlogLayout } from '@/components/BlogLayout';
+import { SanityImage } from '@/components/SanityImage';
 import { getBlogPosts, getSiteSettings } from '@/lib/content/contentService';
-import { sanityImageLoader } from '@/lib/sanityImageLoader';
 import { tagsWithCountFromBlogs } from '@/lib/blogUtils';
 
 export const metadata: Metadata = {
@@ -50,14 +49,13 @@ export default async function BlogPage() {
           {sorted.map(({ id, description, title, tags, photo, slug, publishedAt }) => (
             <article key={id} className="card sm:card-side hover:bg-base-200 transition-colors">
               <figure className="w-full p-4 max-sm:pb-0 sm:w-48 sm:shrink-0 sm:pe-0">
-                <NextImage
+                <SanityImage
                   width={300}
                   height={300}
                   loading="lazy"
                   src={photo}
                   className="bg-base-300 rounded-lg w-full h-auto object-cover aspect-square"
                   alt={title}
-                  loader={sanityImageLoader}
                 />
               </figure>
               <div className="card-body">
