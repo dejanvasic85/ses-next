@@ -75,11 +75,8 @@ test.describe('API Routes', () => {
   });
 
   test('contact API returns 400 when reCAPTCHA token is missing', async ({ request }) => {
-    // The handler uses JSON.parse(req.body), so we must send a raw JSON string
-    // without Content-Type: application/json to avoid Next.js auto-parsing the body.
-    // This mirrors how useContact sends requests via fetch with no Content-Type.
     const response = await request.post('/api/contact', {
-      headers: { 'Content-Type': 'text/plain' },
+      headers: { 'Content-Type': 'application/json' },
       data: JSON.stringify({
         fullName: 'Test User',
         email: 'test@example.com',
@@ -91,5 +88,23 @@ test.describe('API Routes', () => {
     expect(response.status()).toBe(400);
     const body = await response.json();
     expect(body.message).toMatch(/recaptcha/i);
+  });
+
+  test('contact API returns 200 for valid submission', async ({ request }) => {
+    const response = await request.post('/api/contact', {
+      headers: { 'Content-Type': 'application/json' },
+      data: JSON.stringify({
+        fullName: 'Test User',
+        email: 'test@example.com',
+        phone: '0400000000',
+        message: 'Test message',
+        address: '123 Test St',
+        recaptchaToken: 'dev-bypass-token',
+      }),
+    });
+    expect(response.status()).toBe(200);
+    const body = await response.json();
+    expect(body.message).toBe('Message received');
+    expect(body.contact.email).toBe('test@example.com');
   });
 });
