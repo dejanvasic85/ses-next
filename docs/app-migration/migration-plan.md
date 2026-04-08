@@ -251,32 +251,32 @@ mode. All existing pages should continue to work.
 **From:** `src/pages/services/index.tsx`
 **To:** `src/app/services/page.tsx`
 
-- [ ] Create `src/app/services/page.tsx` as a Server Component
-- [ ] Inline data fetching: `getBasePageProps()` + `getServicesHubContent()`
-- [ ] Export `metadata`
-- [ ] Move CollectionPage and Breadcrumb JSON-LD to inline `<script>` tags
+- [x] Create `src/app/services/page.tsx` as a Server Component
+- [x] Inline data fetching: `getBasePageProps()` + `getServicesHubContent()`
+- [x] Export `metadata`
+- [x] Move CollectionPage and Breadcrumb JSON-LD to inline `<script>` tags
 
 ### 4.2 Service detail pages (`/services/[...slug]`)
 
 **From:** `src/pages/services/[...slug].tsx`
 **To:** `src/app/services/[...slug]/page.tsx`
 
-- [ ] Create `src/app/services/[...slug]/page.tsx` as a Server Component
-- [ ] Replace `getStaticPaths` with `generateStaticParams`:
+- [x] Create `src/app/services/[...slug]/page.tsx` as a Server Component
+- [x] Replace `getStaticPaths` with `generateStaticParams`:
   ```ts
   export async function generateStaticParams() {
     const services = await getServices();
     return services.map((s) => (s.parentSlug ? { slug: [s.parentSlug, s.slug] } : { slug: [s.slug] }));
   }
   ```
-- [ ] Replace `getStaticProps` with direct data fetching using `params.slug` array
-- [ ] Export `generateMetadata` for dynamic SEO
-- [ ] Move Service, LocalBusiness, FAQ, and Breadcrumb JSON-LD to inline `<script>` tags
+- [x] Replace `getStaticProps` with direct data fetching using `params.slug` array
+- [x] Export `generateMetadata` for dynamic SEO
+- [x] Move Service, LocalBusiness, FAQ, and Breadcrumb JSON-LD to inline `<script>` tags
 
 ### 4.3 Clean up and verify
 
-- [ ] Delete `src/pages/services/` directory
-- [ ] Run E2E tests for all service routes
+- [x] Delete `src/pages/services/` directory
+- [x] Run E2E tests for all service routes
 
 ---
 
@@ -289,8 +289,8 @@ mode. All existing pages should continue to work.
 **From:** `src/pages/api/contact.ts`
 **To:** `src/app/api/contact/route.ts`
 
-- [ ] Create `src/app/api/contact/route.ts`
-- [ ] Export `POST` handler function (replacing the default handler pattern):
+- [x] Create `src/app/api/contact/route.ts`
+- [x] Export `POST` handler function (replacing the default handler pattern):
   ```ts
   export async function POST(request: Request) {
     const body = await request.json();
@@ -298,8 +298,10 @@ mode. All existing pages should continue to work.
     return Response.json({ success: true });
   }
   ```
-- [ ] Optionally add a `GET` handler returning 405 or remove it (App Router only matches exported methods)
-- [ ] Delete `src/pages/api/contact.ts`
+- [x] Optionally add a `GET` handler returning 405 or remove it (App Router only matches exported methods)
+- [x] Delete `src/pages/api/contact.ts`
+- [x] Harden route handler with runtime payload validation (`safeParse`) and sanitize API responses (no echoed payload/raw errors)
+- [x] Make customer thank-you email best-effort (avoid duplicate admin notifications on retries)
 - [ ] Test contact form submission end-to-end
 
 ---
