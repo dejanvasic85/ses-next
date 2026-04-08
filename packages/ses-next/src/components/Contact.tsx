@@ -70,7 +70,9 @@ export function Contact({ className, contact, location }: ContactProps) {
             <Activity mode={!messageSent ? 'visible' : 'hidden'}>
               <ContactForm loading={loading} onSubmit={sendMessage} />
               <Activity mode={error ? 'visible' : 'hidden'}>
-                <p className="text-error text-sm mt-3">Something went wrong. Please try again.</p>
+                <p role="alert" aria-live="assertive" className="text-error text-sm mt-3">
+                  Something went wrong. Please try again.
+                </p>
               </Activity>
             </Activity>
             <Activity mode={messageSent ? 'visible' : 'hidden'}>

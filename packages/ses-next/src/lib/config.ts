@@ -18,6 +18,9 @@ const AppConfigSchema = z.object({
 // Type derived from the schema
 type AppConfig = z.infer<typeof AppConfigSchema>;
 
+const isProduction = process.env.NODE_ENV === 'production';
+const recaptchaBypassEnabled = process.env.RECAPTCHA_BYPASS === 'true';
+
 // Raw configuration object
 const rawConfig = {
   awsAccessKeyId: process.env.SES_AWS_ACCESS_KEY_ID,
@@ -28,7 +31,7 @@ const rawConfig = {
   googleTagManagerId: process.env.NEXT_PUBLIC_GTM_ID,
   googleRecaptchaSiteKey: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
   googleRecaptchaSecretKey: process.env.RECAPTCHA_SECRET_KEY,
-  recaptchaBypass: process.env.RECAPTCHA_BYPASS === 'true',
+  recaptchaBypass: !isProduction && recaptchaBypassEnabled,
   sanityProjectId: 'j7d3pd5g',
   sanityDataset: 'production',
 };

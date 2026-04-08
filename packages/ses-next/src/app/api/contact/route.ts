@@ -2,18 +2,18 @@ import { send } from '@/lib/mailService';
 import { ContactFormDataSchema } from '@/types';
 import { config } from '@/lib/config';
 
-async function verifyRecaptcha(token: string): Promise<boolean> {
-  if (config.recaptchaBypass) {
-    console.log('reCAPTCHA bypass enabled — skipping verification');
-    return true;
-  }
+const recaptchaTimeoutMs = 5000;
 
+async function verifyRecaptcha(token: string): Promise<boolean> {
   const secretKey = config.googleRecaptchaSecretKey;
 
   if (!secretKey) {
     console.error('RECAPTCHA_SECRET_KEY is not configured');
     return false;
   }
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), recaptchaTimeoutMs);
 
   try {
     const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
@@ -22,11 +22,14 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: new URLSearchParams({ secret: secretKey, response: token }).toString(),
+      signal: controller.signal,
     });
+    clearTimeout(timeoutId);
 
     const data = await response.json();
     return data.success && data.score >= 0.5;
   } catch (error) {
+    clearTimeout(timeoutId);
     console.error('reCAPTCHA verification failed:', error);
     return false;
   }
@@ -47,14 +50,16 @@ export async function POST(request: Request) {
 
   const contact = parseResult.data;
 
-  if (!contact.recaptchaToken) {
-    return Response.json({ message: 'reCAPTCHA token is required' }, { status: 400 });
-  }
+  if (!config.recaptchaBypass) {
+    if (!contact.recaptchaToken) {
+      return Response.json({ message: 'reCAPTCHA token is required' }, { status: 400 });
+    }
 
-  const isValidRecaptcha = await verifyRecaptcha(contact.recaptchaToken);
+    const isValidRecaptcha = await verifyRecaptcha(contact.recaptchaToken);
 
-  if (!isValidRecaptcha) {
-    return Response.json({ message: 'reCAPTCHA verification failed' }, { status: 400 });
+    if (!isValidRecaptcha) {
+      return Response.json({ message: 'reCAPTCHA verification failed' }, { status: 400 });
+    }
   }
 
   try {
