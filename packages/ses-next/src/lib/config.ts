@@ -10,6 +10,7 @@ const AppConfigSchema = z.object({
   googleTagManagerId: z.string().optional(),
   googleRecaptchaSiteKey: z.string().optional(),
   googleRecaptchaSecretKey: z.string().optional(),
+  recaptchaBypass: z.boolean().default(false),
   sanityProjectId: z.string(),
   sanityDataset: z.string(),
 });
@@ -27,6 +28,7 @@ const rawConfig = {
   googleTagManagerId: process.env.NEXT_PUBLIC_GTM_ID,
   googleRecaptchaSiteKey: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
   googleRecaptchaSecretKey: process.env.RECAPTCHA_SECRET_KEY,
+  recaptchaBypass: process.env.RECAPTCHA_BYPASS === 'true',
   sanityProjectId: 'j7d3pd5g',
   sanityDataset: 'production',
 };

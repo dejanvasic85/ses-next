@@ -1,12 +1,10 @@
 import { send } from '@/lib/mailService';
-import { ContactFormData } from '@/types';
+import { ContactFormDataSchema } from '@/types';
 import { config } from '@/lib/config';
 
-const isDevelopment = process.env.NODE_ENV === 'development';
-
 async function verifyRecaptcha(token: string): Promise<boolean> {
-  if (isDevelopment) {
-    console.log('Skipping reCAPTCHA verification in development');
+  if (config.recaptchaBypass) {
+    console.log('reCAPTCHA bypass enabled — skipping verification');
     return true;
   }
 
@@ -23,7 +21,7 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: `secret=${secretKey}&response=${token}`,
+      body: new URLSearchParams({ secret: secretKey, response: token }).toString(),
     });
 
     const data = await response.json();
@@ -35,8 +33,19 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
 }
 
 export async function POST(request: Request) {
-  const body = await request.text();
-  const contact = JSON.parse(body) as ContactFormData;
+  let rawBody: unknown;
+  try {
+    rawBody = JSON.parse(await request.text());
+  } catch {
+    return Response.json({ message: 'Invalid request body' }, { status: 400 });
+  }
+
+  const parseResult = ContactFormDataSchema.safeParse(rawBody);
+  if (!parseResult.success) {
+    return Response.json({ message: 'Invalid request data' }, { status: 400 });
+  }
+
+  const contact = parseResult.data;
 
   if (!contact.recaptchaToken) {
     return Response.json({ message: 'reCAPTCHA token is required' }, { status: 400 });
@@ -61,7 +70,7 @@ export async function POST(request: Request) {
       }),
     ]);
 
-    return Response.json({ message: 'Message received', contact });
+    return Response.json({ message: 'Message received' });
   } catch (err) {
     console.error('Failed to send contact email:', err);
     return Response.json({ message: 'Something went wrong' }, { status: 500 });

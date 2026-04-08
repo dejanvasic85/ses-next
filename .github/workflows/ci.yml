@@ -43,6 +43,8 @@ jobs:
       - name: Run Playwright tests
         run: npm run test:e2e -w ses-next
         env:
+          EMAIL_ENABLED: 'false'
+          RECAPTCHA_BYPASS: 'true'
           PLAYWRIGHT_TEST_BASE_URL: ${{ steps.vercel-deployment.outputs.url }}
           HOME: /root
 

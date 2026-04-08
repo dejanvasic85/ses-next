@@ -74,6 +74,16 @@ test.describe('API Routes', () => {
     expect(response.status()).toBe(405);
   });
 
+  test('contact API returns 400 for malformed JSON body', async ({ request }) => {
+    const response = await request.post('/api/contact', {
+      headers: { 'Content-Type': 'application/json' },
+      data: Buffer.from('{invalid json'),
+    });
+    expect(response.status()).toBe(400);
+    const body = await response.json();
+    expect(body.message).toMatch(/invalid request body/i);
+  });
+
   test('contact API returns 400 when reCAPTCHA token is missing', async ({ request }) => {
     const response = await request.post('/api/contact', {
       headers: { 'Content-Type': 'application/json' },
@@ -99,12 +109,11 @@ test.describe('API Routes', () => {
         phone: '0400000000',
         message: 'Test message',
         address: '123 Test St',
-        recaptchaToken: 'dev-bypass-token',
+        recaptchaToken: 'bypass-token',
       }),
     });
     expect(response.status()).toBe(200);
     const body = await response.json();
     expect(body.message).toBe('Message received');
-    expect(body.contact.email).toBe('test@example.com');
   });
 });
