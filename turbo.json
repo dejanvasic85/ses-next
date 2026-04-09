@@ -14,7 +14,8 @@
         "NEXT_PUBLIC_GTM_ID",
         "RECAPTCHA_SITE_KEY",
         "NEXT_PUBLIC_RECAPTCHA_SITE_KEY",
-        "RECAPTCHA_SECRET_KEY"
+        "RECAPTCHA_SECRET_KEY",
+        "RECAPTCHA_BYPASS"
       ]
     },
     "ci": {

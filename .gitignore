@@ -121,3 +121,4 @@ next-env.d.ts
 
 .vercel/project.json
 
+.vercel
