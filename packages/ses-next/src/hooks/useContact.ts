@@ -14,19 +14,14 @@ export function useContact() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     })
-      .then(async (res) => {
-        const body = await res.json();
-        if (!res.ok) {
-          console.error(`[useContact] Request failed ${res.status}:`, body);
-          throw new Error(`Request failed: ${res.status}`);
-        }
-        return body;
+      .then((res) => {
+        if (!res.ok) throw new Error(`Request failed: ${res.status}`);
+        return res.json();
       })
       .then(() => {
         setMessageSent(true);
       })
-      .catch((err) => {
-        console.error('[useContact] sendMessage error:', err);
+      .catch(() => {
         setError(true);
       })
       .finally(() => {

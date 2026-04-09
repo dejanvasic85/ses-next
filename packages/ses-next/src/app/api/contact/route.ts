@@ -27,11 +27,6 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
     clearTimeout(timeoutId);
 
     const data = await response.json();
-    console.log('[contact] reCAPTCHA response:', {
-      success: data.success,
-      score: data.score,
-      errorCodes: data['error-codes'],
-    });
     return data.success && data.score >= 0.5;
   } catch (error) {
     clearTimeout(timeoutId);
@@ -44,14 +39,12 @@ export async function POST(request: Request) {
   let rawBody: unknown;
   try {
     rawBody = JSON.parse(await request.text());
-  } catch (err) {
-    console.error('[contact] Failed to parse request body:', err);
+  } catch {
     return Response.json({ message: 'Invalid request body' }, { status: 400 });
   }
 
   const parseResult = ContactFormDataSchema.safeParse(rawBody);
   if (!parseResult.success) {
-    console.error('[contact] Schema validation failed:', parseResult.error.flatten());
     return Response.json({ message: 'Invalid request data' }, { status: 400 });
   }
 
@@ -59,14 +52,12 @@ export async function POST(request: Request) {
 
   if (!config.recaptchaBypass) {
     if (!contact.recaptchaToken) {
-      console.error('[contact] Missing reCAPTCHA token');
       return Response.json({ message: 'reCAPTCHA token is required' }, { status: 400 });
     }
 
     const isValidRecaptcha = await verifyRecaptcha(contact.recaptchaToken);
 
     if (!isValidRecaptcha) {
-      console.error('[contact] reCAPTCHA verification failed for token:', contact.recaptchaToken?.slice(0, 20));
       return Response.json({ message: 'reCAPTCHA verification failed' }, { status: 400 });
     }
   }
