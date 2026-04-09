@@ -238,7 +238,7 @@ mode. All existing pages should continue to work.
 
 - [x] Delete `src/pages/blog/` directory
 - [x] Update `BlogSidebar` and `BlogFilterMobile` to use `next/navigation` hooks (already done)
-- [ ] Run E2E tests for all blog routes
+- [x] Run E2E tests for all blog routes
 
 ---
 
@@ -289,18 +289,19 @@ mode. All existing pages should continue to work.
 **From:** `src/pages/api/contact.ts`
 **To:** `src/app/api/contact/route.ts`
 
-- [ ] Create `src/app/api/contact/route.ts`
-- [ ] Export `POST` handler function (replacing the default handler pattern):
+- [x] Create `src/app/api/contact/route.ts`
+- [x] Export `POST` handler function (replacing the default handler pattern):
   ```ts
   export async function POST(request: Request) {
-    const body = await request.json();
+    const body = await request.text();
+    const contact = JSON.parse(body) as ContactFormData;
     // ... reCAPTCHA verification, email sending
     return Response.json({ success: true });
   }
   ```
-- [ ] Optionally add a `GET` handler returning 405 or remove it (App Router only matches exported methods)
-- [ ] Delete `src/pages/api/contact.ts`
-- [ ] Test contact form submission end-to-end
+- [x] Optionally add a `GET` handler returning 405 or remove it (App Router only matches exported methods)
+- [x] Delete `src/pages/api/contact.ts`
+- [x] Test contact form submission end-to-end
 
 ---
 

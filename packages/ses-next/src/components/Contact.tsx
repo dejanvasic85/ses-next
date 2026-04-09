@@ -17,7 +17,7 @@ interface ContactProps {
 }
 
 export function Contact({ className, contact, location }: ContactProps) {
-  const { loading, messageSent, sendMessage } = useContact();
+  const { error, loading, messageSent, sendMessage } = useContact();
   const [firstBlurb = '', secondBlurb = ''] = contact.blurbs ?? [];
 
   return (
@@ -69,6 +69,11 @@ export function Contact({ className, contact, location }: ContactProps) {
 
             <Activity mode={!messageSent ? 'visible' : 'hidden'}>
               <ContactForm loading={loading} onSubmit={sendMessage} />
+              <Activity mode={error ? 'visible' : 'hidden'}>
+                <p role="alert" aria-live="assertive" className="text-error text-sm mt-3">
+                  Something went wrong. Please try again.
+                </p>
+              </Activity>
             </Activity>
             <Activity mode={messageSent ? 'visible' : 'hidden'}>
               <PopSuccess>Thank you! Your message has been received and our team will get back to you.</PopSuccess>

@@ -118,3 +118,7 @@ packages/ses-next/test-results/
 .DS_Store
 
 next-env.d.ts
+
+.vercel/project.json
+
+.vercel
