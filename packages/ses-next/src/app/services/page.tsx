@@ -106,7 +106,9 @@ export default async function ServicesHubPage() {
       <div className="bg-white py-6 sm:py-8 lg:py-12">
         <div className="mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-screen-xl text-center mb-12">
-            <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl mb-6">{hubContent.heading}</h1>
+            <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl mb-6">
+              {hubContent.heading ?? 'Our Services'}
+            </h1>
             {hubContent.intro &&
               hubContent.intro.map((paragraph, index) => (
                 <p key={index} className="text-lg text-gray-600 mb-3">

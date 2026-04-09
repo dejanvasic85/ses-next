@@ -1,4 +1,3 @@
-import { Activity } from 'react';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { PortableText } from '@portabletext/react';
@@ -218,7 +217,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
           </section>
         )}
 
-        <Activity mode={filteredBlogPosts.length > 0 ? 'visible' : 'hidden'}>
+        {filteredBlogPosts.length > 0 && (
           <div className="mx-auto px-4 md:px-8 max-w-screen-lg mt-12 mb-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-2">Related Blog Posts</h2>
             <p className="text-gray-600 mb-6">Explore our {service.name.toLowerCase()} articles and insights</p>
@@ -258,7 +257,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
               ))}
             </div>
           </div>
-        </Activity>
+        )}
       </div>
     </>
   );
