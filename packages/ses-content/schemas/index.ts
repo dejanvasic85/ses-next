@@ -1,6 +1,7 @@
 import blogPost from './blogPost'
 import faq from './faq'
 import homepage from './homepage'
+import locationPage from './locationPage'
 import service from './service'
 import servicesHub from './servicesHub'
 import showcase from './showcase'
@@ -13,6 +14,7 @@ export const schemaTypes = [
   blogPost,
   faq,
   homepage,
+  locationPage,
   showcase,
   service,
   servicesHub,
