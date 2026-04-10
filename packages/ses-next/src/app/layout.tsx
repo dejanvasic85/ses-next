@@ -2,10 +2,12 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 
 import { getSiteSettings, getServices } from '@/lib/content/contentService';
+import { GoogleTagManager } from '@/components/GoogleTagManager';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { Providers } from '@/app/providers';
 import { config } from '@/lib/config';
+import { clientConfig } from '@/clientConfig';
 import '../../styles/globals.css';
 
 const inter = localFont({
@@ -45,10 +47,12 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const [siteSettings, services] = await Promise.all([getSiteSettings(), getServices()]);
+  const gtmId = clientConfig.googleTagManagerId;
 
   return (
     <html lang="en">
       <body className={`${inter.className} min-h-screen`}>
+        {gtmId && <GoogleTagManager gtmId={gtmId} />}
         <Providers sanityProjectId={config.sanityProjectId} sanityDataset={config.sanityDataset}>
           <Navbar contactPhone={siteSettings.phone} title={siteSettings.shortTitle} />
           <main>{children}</main>

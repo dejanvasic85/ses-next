@@ -1,7 +1,6 @@
 'use client';
 
-import { useEffect, type ReactNode } from 'react';
-import TagManager from 'react-gtm-module';
+import type { ReactNode } from 'react';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 
 import { ConfigProvider } from '@/providers/ConfigProvider';
@@ -14,15 +13,6 @@ interface ProvidersProps {
 }
 
 export function Providers({ children, sanityProjectId, sanityDataset }: ProvidersProps) {
-  useEffect(() => {
-    if (!clientConfig.googleTagManagerId) {
-      console.log('Google Tag Manager ID not set, not initializing GTM');
-      return;
-    }
-
-    TagManager.initialize({ gtmId: clientConfig.googleTagManagerId });
-  }, []);
-
   return (
     <ConfigProvider sanityProjectId={sanityProjectId} sanityDataset={sanityDataset}>
       <GoogleReCaptchaProvider

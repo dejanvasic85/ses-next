@@ -358,8 +358,8 @@ After all pages are migrated:
 Consider replacing with the Next.js `<Script>` component pattern for GTM, which is the
 recommended approach:
 
-- [ ] Add GTM script via `next/script` in the root layout (or keep in providers if preferred)
-- [ ] Remove `react-gtm-module` dependency
+- [x] Add GTM script via `next/script` in the root layout (or keep in providers if preferred)
+- [x] Remove `react-gtm-module` dependency
 
 ### 6.6 Remove `ConfigProvider` (optional simplification)
 
@@ -383,23 +383,7 @@ Components, these can be imported directly from environment/config where needed:
 
 ## Phase 7 -- Verification and Optimisation
 
-**Goal:** Ensure everything works and take advantage of App Router features.
-
-### 7.1 Full test pass
-
-- [ ] Run `npm run type:check -w ses-next` -- zero TypeScript errors
-- [ ] Run `npm run lint -w ses-next` -- zero lint errors
-- [x] Run `npm run build -w ses-next` -- successful build
-- [ ] Run `npm run test:e2e -w ses-next` -- all tests pass
-- [ ] Manual smoke test of every route in dev mode
-
-### 7.2 Lighthouse comparison
-
-- [ ] Run Lighthouse on the same pages as Phase 0
-- [ ] Compare Performance, Accessibility, SEO, Best Practices scores
-- [ ] Address any regressions
-
-### 7.3 Optional App Router enhancements
+### 7.1 Optional App Router enhancements
 
 These are not required for migration but unlock App Router capabilities:
 
@@ -459,37 +443,3 @@ Complete mapping of Pages Router files to App Router equivalents:
 | `date-fns`                  | Date formatting (works everywhere)                 |
 | `class-names`               | Conditional CSS classes (works everywhere)         |
 | `daisyui` / `tailwindcss`   | Styling (no change)                                |
-
----
-
-## Risk Assessment
-
-| Risk                                      | Likelihood | Impact | Mitigation                                       |
-| ----------------------------------------- | ---------- | ------ | ------------------------------------------------ |
-| SEO regression (metadata/OG tags missing) | Medium     | High   | Compare rendered HTML before/after per page      |
-| JSON-LD structured data broken            | Medium     | High   | Validate with Google Rich Results Test tool      |
-| Client component boundary misplacement    | Medium     | Medium | Console errors will surface; test thoroughly     |
-| `next-seo` removal breaks something       | Low        | Medium | Migrate page-by-page, verify metadata each time  |
-| Redirects stop working                    | Low        | Medium | Redirects in `next.config` work for both routers |
-| Contact form breaks                       | Low        | High   | Dedicated E2E test for form submission           |
-| Build time regression                     | Low        | Low    | Monitor build times during migration             |
-| Sanity preview/draft mode incompatibility | Low        | Low    | Not currently using preview mode                 |
-
----
-
-## Estimated Effort
-
-| Phase     | Description                   | Estimate         |
-| --------- | ----------------------------- | ---------------- |
-| 0         | Preparation                   | 1-2 hours        |
-| 1         | Root layout and providers     | 1-2 hours        |
-| 2         | Static pages                  | 2-3 hours        |
-| 3         | Blog routes                   | 2-3 hours        |
-| 4         | Service routes                | 2-3 hours        |
-| 5         | API route                     | 30 minutes       |
-| 6         | Component updates and cleanup | 2-3 hours        |
-| 7         | Verification and optimisation | 1-2 hours        |
-| **Total** |                               | **~12-18 hours** |
-
-The migration can be done incrementally -- Next.js supports running Pages Router and App Router
-side by side. Each phase results in a deployable state.
