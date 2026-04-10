@@ -121,8 +121,8 @@ The current `Layout` component (`src/components/Layout.tsx`) wraps every page wi
 - [x] Add `Navbar` and `Footer` directly in `layout.tsx` (they are shared across all routes)
 - [x] `Navbar` uses `useScrollPosition` and `useState` -- mark as `"use client"`
 - [x] `Footer` is presentational only -- keep as Server Component if possible, or mark `"use client"` if it uses hooks
-- [ ] The `Layout` component wrapper becomes unnecessary -- remove it after all pages are migrated
-- [ ] The `PageHead` component becomes unnecessary -- replaced by `metadata`/`generateMetadata`
+- [x] The `Layout` component wrapper becomes unnecessary -- remove it after all pages are migrated
+- [x] The `PageHead` component becomes unnecessary -- replaced by `metadata`/`generateMetadata`
 
 ### 1.4 Verify hybrid mode works
 
@@ -343,15 +343,15 @@ Two components currently import from `next/router`:
 
 ### 6.3 Replace `next/head` with metadata API
 
-- [ ] Delete `src/components/PageHead.tsx` (no longer needed)
-- [ ] All SEO is now handled by `metadata` exports and `generateMetadata` in page/layout files
+- [x] Delete `src/components/PageHead.tsx` (no longer needed)
+- [x] All SEO is now handled by `metadata` exports and `generateMetadata` in page/layout files
 
 ### 6.4 Remove `next-seo` dependency
 
 After all pages are migrated:
 
-- [ ] Verify no imports from `next-seo` remain
-- [ ] Run `npm uninstall next-seo -w ses-next`
+- [x] Verify no imports from `next-seo` remain
+- [x] Run `npm uninstall next-seo -w ses-next`
 
 ### 6.5 Remove `react-gtm-module`
 
@@ -372,12 +372,12 @@ Components, these can be imported directly from environment/config where needed:
 
 ### 6.7 Delete Pages Router files
 
-- [ ] Delete `src/pages/_app.tsx`
-- [ ] Delete `src/pages/_document.tsx`
-- [ ] Delete `src/pages/` directory entirely (should be empty by now)
-- [ ] Delete `src/components/Layout.tsx` (replaced by `app/layout.tsx`)
-- [ ] Delete `src/components/PageHead.tsx` (replaced by metadata API)
-- [ ] Update `src/components/index.ts` barrel exports to remove deleted components
+- [x] Delete `src/pages/_app.tsx`
+- [x] Delete `src/pages/_document.tsx`
+- [x] Delete `src/pages/` directory entirely (should be empty by now)
+- [x] Delete `src/components/Layout.tsx` (replaced by `app/layout.tsx`)
+- [x] Delete `src/components/PageHead.tsx` (replaced by metadata API)
+- [x] Update `src/components/index.ts` barrel exports to remove deleted components
 
 ---
 

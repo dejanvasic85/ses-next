@@ -6,8 +6,7 @@ import ReactModal from 'react-modal';
 import { Icon } from '@/components/Icon/Icon';
 
 if (typeof window !== 'undefined') {
-  const appElement = document.getElementById('__next') ?? document.body;
-  ReactModal.setAppElement(appElement);
+  ReactModal.setAppElement(document.querySelector('main') ?? document.body);
 }
 
 interface ModalProps {
