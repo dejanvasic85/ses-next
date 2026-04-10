@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
-import Script from 'next/script';
 
 import { getSiteSettings, getServices } from '@/lib/content/contentService';
+import { GoogleTagManager } from '@/components/GoogleTagManager';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { Providers } from '@/app/providers';
@@ -52,29 +52,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en">
       <body className={`${inter.className} min-h-screen`}>
-        {gtmId && (
-          <>
-            <Script
-              id="gtm-script"
-              strategy="afterInteractive"
-              dangerouslySetInnerHTML={{
-                __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','${gtmId}');`,
-              }}
-            />
-            <noscript>
-              <iframe
-                src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
-                height="0"
-                width="0"
-                style={{ display: 'none', visibility: 'hidden' }}
-              />
-            </noscript>
-          </>
-        )}
+        {gtmId && <GoogleTagManager gtmId={gtmId} />}
         <Providers sanityProjectId={config.sanityProjectId} sanityDataset={config.sanityDataset}>
           <Navbar contactPhone={siteSettings.phone} title={siteSettings.shortTitle} />
           <main>{children}</main>
