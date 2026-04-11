@@ -22,6 +22,11 @@ Here are some commands you can use:
 - npm run lint: Runs ESLint check
 - npm run dev: Starts the development server for the main website but you will need to run it in the background otherwise it will block the terminal
 
+## Nextjs structure
+
+- The app folder should only contain routing components (page.tsx and route.ts)
+- Components that are relevant to a page, should still go in to the components folder
+
 ## Code style
 
 - Ensure the use of typescript alias @/ for imports
