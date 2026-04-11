@@ -178,6 +178,57 @@ export const servicesHubQuery = `*[_type == "servicesHub"][0]{
   intro
 }`;
 
+export const allLocationPagesQuery = `*[_type == "locationPage"]{
+  _id,
+  _type,
+  suburb,
+  slug,
+  isHub
+}`;
+
+export const locationPageBySlugQuery = `*[_type == "locationPage" && slug.current == $slug][0]{
+  _id,
+  _type,
+  suburb,
+  slug,
+  isHub,
+  heroImage {
+    _type,
+    asset->{
+      _type,
+      _id,
+      url
+    }
+  },
+  intro[]{
+    ...,
+    _type == "image" => {
+      ...,
+      asset->{
+        _type,
+        _id,
+        url
+      }
+    }
+  },
+  distanceFromBase,
+  services[]->{
+    _id,
+    _type,
+    name,
+    blurb,
+    slug,
+    icon,
+    parentService->{
+      name,
+      slug
+    }
+  },
+  "faqs": coalesce(faqs[]{ _key, question, answer }, []),
+  seoTitle,
+  seoDescription
+}`;
+
 export const termsAndConditionsQuery = `*[_type == "terms-and-conditions"]{
   _id,
   _type,

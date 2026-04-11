@@ -177,6 +177,40 @@ export const ServiceSchema = z.object({
   parentService: ServiceParentSchema.nullish(),
 });
 
+// ============================================================================
+// LOCATION PAGE SCHEMAS
+// ============================================================================
+
+export const LocationPageFaqSchema = z.object({
+  _key: z.string().optional(),
+  question: z.string(),
+  answer: z.string(),
+});
+
+export const LocationPageServiceRefSchema = z.object({
+  _id: z.string(),
+  name: z.string(),
+  blurb: z.string(),
+  slug: SanitySlugSchema,
+  icon: IconSchema,
+  parentService: ServiceParentSchema.nullish(),
+});
+
+export const LocationPageSchema = z.object({
+  _id: z.string(),
+  _type: z.literal('locationPage'),
+  suburb: z.string(),
+  slug: SanitySlugSchema,
+  isHub: z.boolean().nullable().optional(),
+  heroImage: SanityImageSchema.nullable().optional(),
+  intro: SanityPortableTextSchema.nullable().optional(),
+  distanceFromBase: z.string().nullable().optional(),
+  services: z.array(LocationPageServiceRefSchema).nullable().optional(),
+  faqs: z.array(LocationPageFaqSchema).nullable().optional(),
+  seoTitle: z.string().nullable().optional(),
+  seoDescription: z.string().nullable().optional(),
+});
+
 export const TermsAndConditionsSchema = z.object({
   _type: z.literal('terms-and-conditions'),
   _id: z.string(),
@@ -383,6 +417,34 @@ export type SiteSettings = {
   serviceAreas: string[] | null;
 };
 
+export type LocationPageFaq = {
+  question: string;
+  answer: string;
+};
+
+export type LocationPageServiceRef = {
+  id: string;
+  name: string;
+  blurb: string;
+  slug: string;
+  icon: Icon;
+  parentService: { name: string; slug: string } | null;
+};
+
+export type LocationPage = {
+  id: string;
+  suburb: string;
+  slug: string;
+  isHub: boolean;
+  heroImage: string | null;
+  intro: SanityPortableText | null;
+  distanceFromBase: string | null;
+  services: LocationPageServiceRef[];
+  faqs: LocationPageFaq[];
+  seoTitle: string | null;
+  seoDescription: string | null;
+};
+
 export type BasePageProps = {
   pageUrl: string;
   publicConfig: {
@@ -442,6 +504,7 @@ export type GoogleReviews = z.infer<typeof GoogleReviewsSchema>;
 export type FAQ = z.infer<typeof FAQSchema>;
 export type SanityTermsAndConditions = z.infer<typeof TermsAndConditionsSchema>;
 
+export type LocationPageContentModel = z.infer<typeof LocationPageSchema>;
 export type ShowcaseContentModel = z.infer<typeof ShowcaseSchema>;
 export type ServiceContentModel = z.infer<typeof ServiceSchema>;
 export type TeamMemberContentModel = z.infer<typeof TeamMemberSchema>;

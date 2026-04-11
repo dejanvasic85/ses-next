@@ -2,6 +2,7 @@ import { createClient } from 'next-sanity';
 import { config } from '@/lib/config';
 import {
   type BlogPost,
+  type LocationPage,
   type SiteSettings,
   type ServiceItem,
   type HomePageContent,
@@ -10,6 +11,7 @@ import {
   type FAQ,
   type BlogPostContentModel,
   type SanityTermsAndConditions,
+  LocationPageSchema,
   SiteSettingsSchema,
   HomepageSchema,
   ServicesHubSchema,
@@ -22,6 +24,7 @@ import {
   mapBlogPost,
   mapHomepageTeam,
   mapHomepageTraining,
+  mapLocationPage,
   mapService,
   mapHomepageContact,
   mapSiteSettings,
@@ -29,7 +32,9 @@ import {
 import {
   allBlogPostsQuery,
   allFaqsQuery,
+  allLocationPagesQuery,
   homepageQuery,
+  locationPageBySlugQuery,
   servicesHubQuery,
   servicesQuery,
   siteSettingsQuery,
@@ -162,5 +167,26 @@ export const getBlogPostBySlug = async (slug: string): Promise<BlogPostContentMo
   } catch (error) {
     console.error('Error in getBlogPostBySlug:', error);
     throw new Error('Failed to fetch blog post');
+  }
+};
+
+export const getAllLocationPages = async (): Promise<LocationPage[]> => {
+  try {
+    const result = await sanityClient.fetch(allLocationPagesQuery);
+    return result.map((item: unknown) => LocationPageSchema.parse(item)).map(mapLocationPage);
+  } catch (error) {
+    console.error('Error in getAllLocationPages:', error);
+    throw new Error('Failed to fetch location pages');
+  }
+};
+
+export const getLocationPageBySlug = async (slug: string): Promise<LocationPage | null> => {
+  try {
+    const result = await sanityClient.fetch(locationPageBySlugQuery, { slug });
+    if (!result) return null;
+    return mapLocationPage(LocationPageSchema.parse(result));
+  } catch (error) {
+    console.error('Error in getLocationPageBySlug:', error);
+    throw new Error('Failed to fetch location page');
   }
 };

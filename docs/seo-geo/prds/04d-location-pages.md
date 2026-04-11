@@ -1,8 +1,8 @@
-# 04d — Location Hub & Suburb Pages
+# 04d — Location Pages
 
 **Priority:** Critical
 **Phase:** 2 (Month 2-3)
-**Status:** Planned
+**Status:** In Progress
 **Depends on:** PRD-04a (services hub — for internal linking pattern), PRD-01 (structured data)
 
 ## Problem
@@ -34,22 +34,16 @@ SES already ranks positions 2-5 for Altona terms **without a dedicated page**. A
 This PRD covers:
 
 - New "Location Page" document type in Sanity
-- Location hub page at `/electrician-melbourne/`
-- First 3 suburb pages (Altona, Altona North, Footscray)
 - Internal linking from services and homepage
 - Sitemap and structured data
 
-Future suburb pages (Newport, Yarraville, Williamstown, Moonee Ponds, Ascot Vale, etc.) follow the same template and are added incrementally under ongoing content work.
-
 ## URL Structure
 
-Root-level URLs matching competitor patterns:
-
 ```
-/electrician-melbourne/          ← hub page
-/electrician-altona/             ← suburb page
-/electrician-altona-north/       ← suburb page
-/electrician-footscray/          ← suburb page
+/electrician-melbourne/
+/electrician-altona/
+/electrician-altona-north/
+/electrician-footscray/
 ```
 
 Not nested under `/services/` or `/locations/`. This keeps URLs short and matches how competitors and users search.
@@ -58,23 +52,21 @@ Not nested under `/services/` or `/locations/`. This keeps URLs short and matche
 
 ### New document type: `locationPage`
 
-| Field              | Type                | Description                                                 |
-| ------------------ | ------------------- | ----------------------------------------------------------- |
-| `title`            | string              | Display name (e.g., "Electrician Altona")                   |
-| `slug`             | slug                | URL slug (e.g., "electrician-altona")                       |
-| `suburb`           | string              | Suburb name (e.g., "Altona")                                |
-| `isHub`            | boolean             | `true` for the Melbourne hub page, `false` for suburb pages |
-| `heroImage`        | image               | Hero/banner image                                           |
-| `intro`            | blockContent        | Unique intro paragraph for this suburb                      |
-| `distanceFromBase` | string              | e.g., "5 minutes from our Altona North base"                |
-| `propertyTypes`    | string              | Common property types in the area                           |
-| `commonIssues`     | blockContent        | Suburb-specific electrical issues                           |
-| `services`         | array of references | Links to service pages relevant to this suburb              |
-| `nearbySuburbs`    | array of references | Links to other locationPage documents for cross-linking     |
-| `faqs`             | array of objects    | FAQ items (question + answer) for FAQ schema                |
-| `seoTitle`         | string              | Custom title tag                                            |
-| `seoDescription`   | string              | Custom meta description                                     |
-| `gallery`          | array of images     | Job photos from the suburb                                  |
+| Field            | Type                | Description                                             |
+| ---------------- | ------------------- | ------------------------------------------------------- |
+| `title`          | string              | Display name (e.g., "Electrician Altona")               |
+| `slug`           | slug                | URL slug (e.g., "electrician-altona")                   |
+| `suburb`         | string              | Suburb name (e.g., "Altona")                            |
+| `heroImage`      | image               | Hero/banner image                                       |
+| `intro`          | blockContent        | Unique intro paragraph for this suburb                  |
+| `propertyTypes`  | string              | Common property types in the area                       |
+| `commonIssues`   | blockContent        | Suburb-specific electrical issues                       |
+| `services`       | array of references | Links to service pages relevant to this suburb          |
+| `nearbySuburbs`  | array of references | Links to other locationPage documents for cross-linking |
+| `faqs`           | array of objects    | FAQ items (question + answer) for FAQ schema            |
+| `seoTitle`       | string              | Custom title tag                                        |
+| `seoDescription` | string              | Custom meta description                                 |
+| `gallery`        | array of images     | Job photos from the suburb                              |
 
 ### Why a separate document type (not reusing `service`)?
 
@@ -82,20 +74,19 @@ Location pages have different fields (suburb, distance, property types, nearby s
 
 ## Routing in Next.js
 
-Create `pages/electrician-[suburb].tsx` or use a catch-all pattern. Since these are root-level URLs, the file sits directly in `pages/`:
+Since these are root-level URLs, the route file lives at:
 
 ```
-pages/
-  electrician-[suburb].tsx    ← dynamic route for all location pages
+app/
+  [locationSlug]/
+    page.tsx    ← dynamic route for all location pages
 ```
 
-`getStaticPaths` queries all `locationPage` documents from Sanity. `getStaticProps` fetches the specific page by slug.
-
-The hub page (`/electrician-melbourne/`) uses the same route — it's just a `locationPage` document with `isHub: true` that renders a different template (list of all suburb pages instead of suburb-specific content).
+`generateStaticParams` queries all `locationPage` documents from Sanity and returns each slug. The page component fetches the specific page by slug and calls `notFound()` if no matching document exists — this prevents the dynamic segment from accidentally swallowing unrelated root-level paths.
 
 ## Pages
 
-### Hub: `/electrician-melbourne/`
+### `/electrician-melbourne/`
 
 **Title tag:** `Electrician Melbourne — Licensed Local Electricians | SES`
 
@@ -117,7 +108,7 @@ H2: Areas We Serve
 - Dynamically populated from Sanity locationPage documents
 
 H2: Our Electrical Services
-- Brief service list linking to service pages and hub
+- Brief service list linking to service pages
 - Connects location intent with service intent
 
 H2: Why Melbourne Chooses SES
@@ -212,8 +203,7 @@ From the FAQ section on each page.
 
 ## Internal Linking
 
-- **Homepage** → hub page (`/electrician-melbourne/`). Add to the "Service Areas" or a new "Areas We Serve" section.
-- **Hub page** → all suburb pages
+- **Homepage** → Add all suburb links to the "Service Areas" or a new "Areas We Serve" section.
 - **Suburb pages** → cross-link to nearby suburbs ("Also serving nearby: [links]")
 - **Service pages** → mention service areas with links to relevant location pages (e.g., air conditioning page mentions "We install split systems across Altona, Footscray, and Newport" with links)
 - **Location pages** → link to relevant service pages
@@ -256,18 +246,33 @@ These follow the same template and are added incrementally. Not in scope for thi
 - `/electrician-laverton/`
 - `/electrician-point-cook/`
 
+## E2E Testing
+
+Location pages are CMS-driven, so the test must gracefully handle environments where no pages have been published yet.
+
+The strategy mirrors the existing `Service Routes` describe block in `packages/ses-next/tests/routes.spec.ts`: use the sitemap as the source of truth rather than hard-coding paths.
+
+1. Fetch `/sitemap.xml` and assert a 200 response.
+2. Parse `<loc>` entries for URLs matching the `/electrician-[slug]` pattern using a regex such as:
+   `/<loc>([^<]+\/electrician-[^/<]+)<\/loc>/g`
+3. If no matching URLs are found, call `test.skip()` — the test is not applicable until at least one page is published in the CMS.
+4. Navigate to the first matching pathname and assert:
+   - The page returns a 200 status code
+   - `h1` is visible
+   - `nav` is visible
+5. Add this as a `Location Routes` describe block in `packages/ses-next/tests/routes.spec.ts`.
+
 ## Acceptance Criteria
 
-- [ ] `locationPage` document type created in Sanity
-- [ ] Hub page `/electrician-melbourne/` live and linking to all suburb pages
+- [x] `locationPage` document type created in Sanity
 - [ ] `/electrician-altona/` live with 600+ words of unique content
 - [ ] `/electrician-altona-north/` live with 600+ words of unique content
 - [ ] `/electrician-footscray/` live with 600+ words of unique content
 - [ ] Each page has LocalBusiness schema with suburb-specific `areaServed`
 - [ ] Each page has BreadcrumbJsonLd and FAQPageJsonLd
 - [ ] Each page has unique title tag and meta description
-- [ ] Hub page linked from homepage (service areas section or similar)
 - [ ] Cross-links between suburb pages ("Also serving nearby")
 - [ ] Service pages updated with links to relevant location pages
 - [ ] All new pages appear in sitemap
 - [ ] No duplicate/thin content — each page is substantively unique
+- [ ] E2E test added to `routes.spec.ts` as a `Location Routes` describe block (skips gracefully when no pages are published)

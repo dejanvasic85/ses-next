@@ -5,6 +5,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "type:check": "turbo type:check",
+    "test:e2e": "turbo test:e2e",
     "build": "turbo build",
     "lint": "turbo lint",
     "lint-staged": "lint-staged",

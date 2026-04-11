@@ -2,7 +2,7 @@
 
 **Priority:** Critical
 **Phase:** 2 (Month 2)
-**Status:** Planned
+**Status:** Completed
 **Depends on:** PRD-04a (services hub), PRD-04b (content model with `parentService` and `showOnHomepage`)
 
 ## Problem

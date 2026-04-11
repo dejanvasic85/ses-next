@@ -1,6 +1,8 @@
 import type {
   BlogPost,
   BlogPostContentModel,
+  LocationPage,
+  LocationPageContentModel,
   ServiceItem,
   ServiceContentModel,
   Team,
@@ -108,6 +110,27 @@ export const mapHomepageContact = (model: HomepageContentModel): ContactContentM
     callBack: model.contact.callBack,
   };
 };
+
+export const mapLocationPage = (model: LocationPageContentModel): LocationPage => ({
+  id: model._id,
+  suburb: model.suburb,
+  slug: model.slug.current,
+  isHub: model.isHub ?? false,
+  heroImage: model.heroImage?.asset?.url ?? null,
+  intro: model.intro ?? null,
+  distanceFromBase: model.distanceFromBase ?? null,
+  services: (model.services ?? []).map((s) => ({
+    id: s._id,
+    name: s.name,
+    blurb: s.blurb,
+    slug: s.slug.current,
+    icon: s.icon,
+    parentService: s.parentService ? { name: s.parentService.name, slug: s.parentService.slug.current } : null,
+  })),
+  faqs: (model.faqs ?? []).map(({ question, answer }) => ({ question, answer })),
+  seoTitle: model.seoTitle ?? null,
+  seoDescription: model.seoDescription ?? null,
+});
 
 export const mapSocialMedia = (
   socialMedia?: { facebook?: string | null; instagram?: string | null; linkedIn?: string | null } | null,

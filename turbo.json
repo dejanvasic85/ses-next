@@ -34,6 +34,10 @@
       "dependsOn": ["^format:check"],
       "cache": false
     },
+    "test:e2e": {
+      "dependsOn": ["^test:e2e"],
+      "cache": false
+    },
     "dev": {
       "dependsOn": ["^dev"],
       "cache": false,

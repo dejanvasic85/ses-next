@@ -22,6 +22,11 @@ Here are some commands you can use:
 - npm run lint: Runs ESLint check
 - npm run dev: Starts the development server for the main website but you will need to run it in the background otherwise it will block the terminal
 
+## Nextjs structure
+
+- The app folder should only contain routing components (page.tsx and route.ts)
+- Components that are relevant to a page, should still go in to the components folder
+
 ## Code style
 
 - Ensure the use of typescript alias @/ for imports
@@ -57,20 +62,17 @@ Here are some commands you can use:
 
 ## Workflow
 
-- **MUST**: After finishing code changes and **before every push**, run all three checks in order:
-  1. `npm run lint`
-  2. `npm run format`
+All changes MUST follow the following workflow
+
+- After finishing code changes and **before every push**, run all three checks in order:
+  1. `npm run format`
+  2. `npm run lint`
   3. `npm run type:check`
+  4. `npm run build`
+  5. `npm run test:e2e`
 - Never push without running these checks — commit any formatting changes before pushing
-- For larger change sets also ensure Next.js can build: `npm run build`
-- E2E testing: `npm run test:e2e`
 - Pre-commit hooks auto-run: Husky runs lint-staged (prettier + eslint)
-- **MUST**: At the end of every completed change, push commits to the remote branch and ensure there is an open pull request for that branch
-- If no pull request exists yet, create one immediately after pushing
-- **MUST**: Do not merge any pull request until explicit user approval is given
-- **MUST**: Wait for pull request review suggestions/comments, apply requested fixes, push updates, and repeat until all review comments are addressed
-- Resolve addressed review comments in the GitHub pull request conversation
-- **MUST**: Update any plan files with progress to help with issue tracking. Use check `[x]` markdown format
+- Update any plan files with progress to help with issue tracking
 
 ## Dependency management
 
