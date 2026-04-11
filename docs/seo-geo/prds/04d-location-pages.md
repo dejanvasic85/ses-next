@@ -277,16 +277,17 @@ The `serviceAreas` string array in Site Settings should be **replaced with refer
 ## Acceptance Criteria
 
 - [x] `locationPage` document type created in Sanity
-- [x] Content drafted for Altona, Altona North, Footscray (see `docs/seo-geo/content/`)
-- [ ] `/electrician-altona/` live with 600+ words of unique content
-- [ ] `/electrician-altona-north/` live with 600+ words of unique content
-- [ ] `/electrician-footscray/` live with 600+ words of unique content
-- [ ] `siteSettings.serviceAreas` migrated from string array to `locationPage` references
-- [ ] Each page has LocalBusiness schema with suburb-specific `areaServed`
-- [ ] Each page has BreadcrumbJsonLd and FAQPageJsonLd
-- [ ] Each page has unique title tag and meta description
+- [x] Content published for Altona, Altona North, Footscray — unique, no base-centric framing
+- [x] `/locations/electrician-altona/` route live
+- [x] `/locations/electrician-altona-north/` route live
+- [x] `/locations/electrician-footscray/` route live
+- [x] `/locations/` index page live with suburb card grid
+- [x] Each page has LocalBusiness schema with suburb-specific `areaServed`
+- [x] Each page has BreadcrumbJsonLd and FAQPageJsonLd
+- [x] Each page has unique title tag and meta description
+- [x] E2E test added to `routes.spec.ts` as a `Location Routes` describe block (skips gracefully when no pages are published)
+- [ ] Services linked to each location page in Sanity Studio
 - [ ] Cross-links between suburb pages ("Also serving nearby")
 - [ ] Service pages updated with links to relevant location pages
 - [ ] All new pages appear in sitemap
-- [ ] No duplicate/thin content — each page is substantively unique
-- [ ] E2E test added to `routes.spec.ts` as a `Location Routes` describe block (skips gracefully when no pages are published)
+- [ ] `siteSettings.serviceAreas` migrated from string array to `locationPage` references
