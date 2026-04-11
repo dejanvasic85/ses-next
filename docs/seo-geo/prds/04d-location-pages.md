@@ -74,14 +74,15 @@ Location pages have different fields (suburb, distance, property types, nearby s
 
 ## Routing in Next.js
 
-Create `pages/electrician-[suburb].tsx` or use a catch-all pattern. Since these are root-level URLs, the file sits directly in `pages/`:
+Since these are root-level URLs, the route file lives at:
 
 ```
-pages/
-  electrician-[suburb].tsx    ← dynamic route for all location pages
+app/
+  [locationSlug]/
+    page.tsx    ← dynamic route for all location pages
 ```
 
-`getStaticPaths` queries all `locationPage` documents from Sanity. `getStaticProps` fetches the specific page by slug.
+`generateStaticParams` queries all `locationPage` documents from Sanity and returns each slug. The page component fetches the specific page by slug and calls `notFound()` if no matching document exists — this prevents the dynamic segment from accidentally swallowing unrelated root-level paths.
 
 ## Pages
 
@@ -245,9 +246,25 @@ These follow the same template and are added incrementally. Not in scope for thi
 - `/electrician-laverton/`
 - `/electrician-point-cook/`
 
+## E2E Testing
+
+Location pages are CMS-driven, so the test must gracefully handle environments where no pages have been published yet.
+
+The strategy mirrors the existing `Service Routes` describe block in `packages/ses-next/tests/routes.spec.ts`: use the sitemap as the source of truth rather than hard-coding paths.
+
+1. Fetch `/sitemap.xml` and assert a 200 response.
+2. Parse `<loc>` entries for URLs matching the `/electrician-[slug]` pattern using a regex such as:
+   `/<loc>([^<]+\/electrician-[^/<]+)<\/loc>/g`
+3. If no matching URLs are found, call `test.skip()` — the test is not applicable until at least one page is published in the CMS.
+4. Navigate to the first matching pathname and assert:
+   - The page returns a 200 status code
+   - `h1` is visible
+   - `nav` is visible
+5. Add this as a `Location Routes` describe block in `packages/ses-next/tests/routes.spec.ts`.
+
 ## Acceptance Criteria
 
-- [ ] `locationPage` document type created in Sanity
+- [x] `locationPage` document type created in Sanity
 - [ ] `/electrician-altona/` live with 600+ words of unique content
 - [ ] `/electrician-altona-north/` live with 600+ words of unique content
 - [ ] `/electrician-footscray/` live with 600+ words of unique content
@@ -258,3 +275,4 @@ These follow the same template and are added incrementally. Not in scope for thi
 - [ ] Service pages updated with links to relevant location pages
 - [ ] All new pages appear in sitemap
 - [ ] No duplicate/thin content — each page is substantively unique
+- [ ] E2E test added to `routes.spec.ts` as a `Location Routes` describe block (skips gracefully when no pages are published)
