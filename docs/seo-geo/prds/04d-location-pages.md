@@ -52,21 +52,21 @@ Not nested under `/services/` or `/locations/`. This keeps URLs short and matche
 
 ### New document type: `locationPage`
 
-| Field              | Type                | Description                                                 |
-| ------------------ | ------------------- | ----------------------------------------------------------- |
-| `title`            | string              | Display name (e.g., "Electrician Altona")                   |
-| `slug`             | slug                | URL slug (e.g., "electrician-altona")                       |
-| `suburb`           | string              | Suburb name (e.g., "Altona")                                |
-| `heroImage`        | image               | Hero/banner image                                           |
-| `intro`            | blockContent        | Unique intro paragraph for this suburb                      |
-| `propertyTypes`    | string              | Common property types in the area                           |
-| `commonIssues`     | blockContent        | Suburb-specific electrical issues                           |
-| `services`         | array of references | Links to service pages relevant to this suburb              |
-| `nearbySuburbs`    | array of references | Links to other locationPage documents for cross-linking     |
-| `faqs`             | array of objects    | FAQ items (question + answer) for FAQ schema                |
-| `seoTitle`         | string              | Custom title tag                                            |
-| `seoDescription`   | string              | Custom meta description                                     |
-| `gallery`          | array of images     | Job photos from the suburb                                  |
+| Field            | Type                | Description                                             |
+| ---------------- | ------------------- | ------------------------------------------------------- |
+| `title`          | string              | Display name (e.g., "Electrician Altona")               |
+| `slug`           | slug                | URL slug (e.g., "electrician-altona")                   |
+| `suburb`         | string              | Suburb name (e.g., "Altona")                            |
+| `heroImage`      | image               | Hero/banner image                                       |
+| `intro`          | blockContent        | Unique intro paragraph for this suburb                  |
+| `propertyTypes`  | string              | Common property types in the area                       |
+| `commonIssues`   | blockContent        | Suburb-specific electrical issues                       |
+| `services`       | array of references | Links to service pages relevant to this suburb          |
+| `nearbySuburbs`  | array of references | Links to other locationPage documents for cross-linking |
+| `faqs`           | array of objects    | FAQ items (question + answer) for FAQ schema            |
+| `seoTitle`       | string              | Custom title tag                                        |
+| `seoDescription` | string              | Custom meta description                                 |
+| `gallery`        | array of images     | Job photos from the suburb                              |
 
 ### Why a separate document type (not reusing `service`)?
 
