@@ -1,9 +1,7 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { googleReviews } from 'ses-reviews';
 
 import { About, Contact, Hero, Services } from '@/components';
-import { Heading } from '@/components/Heading';
 import { getHomePageContent, getSiteSettings, getServices } from '@/lib/content/contentService';
 import { safeJsonLd } from '@/lib/structuredData';
 import type { GoogleReview } from '@/types';
@@ -136,17 +134,6 @@ export default async function Home() {
       </section>
       <section id="services" className="mt-16 pt-24">
         <Services services={services} blurbs={homepageContent.services.blurbs ?? []} className="mt-12" />
-      </section>
-      <section id="areas" className="mt-16 pt-24">
-        <div className="mx-auto px-4 md:px-8 max-w-screen-lg text-center">
-          <Heading level={2}>Areas We Serve</Heading>
-          <p className="max-w-screen-md mb-8 text-center mx-auto text-gray-500 md:text-lg">
-            Based in Altona North, we serve Melbourne&apos;s western suburbs and surrounding areas.
-          </p>
-          <Link href="/electrician-melbourne/" className="btn btn-primary text-white">
-            View all service areas
-          </Link>
-        </div>
       </section>
       <section id="about" className="mt-16 pt-24">
         <About team={team} testimonials={reviews} googleReviewsUrl={googleMapsLocationPlaceUrl} training={training} />

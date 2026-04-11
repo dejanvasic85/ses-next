@@ -21,14 +21,6 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'isHub',
-      type: 'boolean',
-      title: 'Is Hub Page?',
-      description:
-        'Set to true for the Melbourne hub page. Hub pages show a grid of all suburb pages.',
-      initialValue: false,
-    }),
-    defineField({
       name: 'heroImage',
       type: 'image',
       title: 'Hero Image',
@@ -40,12 +32,6 @@ export default defineType({
       description:
         'Unique content about this suburb — property types, local context, distance from base, common electrical issues, etc.',
       of: [{type: 'block'}, {type: 'image'}],
-    }),
-    defineField({
-      name: 'distanceFromBase',
-      type: 'string',
-      title: 'Distance from Base',
-      description: 'e.g. "5 minutes from our Altona North base"',
     }),
     defineField({
       name: 'services',

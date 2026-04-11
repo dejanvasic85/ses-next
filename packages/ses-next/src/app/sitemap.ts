@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { getAllLocationPages, getBlogPosts, getServices, getSiteSettings } from '@/lib/content/contentService';
+import { getBlogPosts, getServices, getSiteSettings } from '@/lib/content/contentService';
 
 const changeFrequencyValue = {
   home: 'weekly',
@@ -8,7 +8,6 @@ const changeFrequencyValue = {
   servicesHub: 'weekly',
   service: 'monthly',
   blogPost: 'yearly',
-  locationPage: 'monthly',
 } as const;
 
 const staticPageConfig = [
@@ -18,12 +17,7 @@ const staticPageConfig = [
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [services, siteSettings, blogPosts, locationPages] = await Promise.all([
-    getServices(),
-    getSiteSettings(),
-    getBlogPosts(),
-    getAllLocationPages(),
-  ]);
+  const [services, siteSettings, blogPosts] = await Promise.all([getServices(), getSiteSettings(), getBlogPosts()]);
 
   const { baseUrl } = siteSettings;
 
@@ -53,11 +47,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: changeFrequencyValue.blogPost,
   }));
 
-  const locationPageEntries: MetadataRoute.Sitemap = locationPages.map(({ slug }) => ({
-    url: new URL(`electrician-${slug}/`, baseUrl).toString(),
-    changeFrequency: changeFrequencyValue.locationPage,
-    priority: 0.8,
-  }));
-
-  return [...staticPages, ...servicesHub, ...servicePages, ...blogPostPages, ...locationPageEntries];
+  return [...staticPages, ...servicesHub, ...servicePages, ...blogPostPages];
 }
