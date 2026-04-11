@@ -59,8 +59,6 @@ Nested under `/locations/` for cleaner site structure. The keyword `electrician`
 | `suburb`         | string              | Suburb name (e.g., "Altona")                            |
 | `heroImage`      | image               | Hero/banner image                                       |
 | `intro`          | blockContent        | Unique intro paragraph for this suburb                  |
-| `propertyTypes`  | string              | Common property types in the area                       |
-| `commonIssues`   | blockContent        | Suburb-specific electrical issues                       |
 | `services`       | array of references | Links to service pages relevant to this suburb          |
 | `nearbySuburbs`  | array of references | Links to other locationPage documents for cross-linking |
 | `faqs`           | array of objects    | FAQ items (question + answer) for FAQ schema            |
@@ -105,7 +103,7 @@ Intro:
 
 H2: Areas We Serve
 - Card grid or list linking to each suburb page
-- Each card: suburb name, brief description, distance from base
+- Each card: suburb name, brief description
 - Dynamically populated from Sanity locationPage documents
 
 H2: Our Electrical Services
@@ -128,7 +126,7 @@ CTA: Phone + contact form
 
 **Title tag:** `Electrician Altona — Licensed Local Electricians | SES`
 
-**Meta description:** `Local electrician in Altona. Residential and commercial electrical services, air conditioning, solar. 5 minutes from our base. 5-star rated. Call (03) 4050 7937.`
+**Meta description:** `Local electrician in Altona. Residential and commercial electrical, solar, and air conditioning. Licensed, 5-star rated. Call (03) 4050 7937.`
 
 **Content must be unique.** Not a template with suburb name swapped. Include:
 
@@ -144,8 +142,7 @@ CTA: Phone + contact form
 
 This is where SES is physically based. The page should emphasise:
 
-- "We're based right here in Altona North at 61B Hansen St"
-- Zero travel time, fastest response in the area
+- Team works here regularly — knows local housing stock and industrial properties
 - Mix of residential and industrial/commercial properties
 - Brooklyn/Altona North industrial precinct for commercial work
 
@@ -158,7 +155,7 @@ Footscray has the highest untapped impression volume (791+ for AC alone, positio
 - Growing suburb with mix of heritage Victorian homes and new apartment developments
 - Common issues: old wiring in heritage properties, new builds needing full electrical fit-outs
 - Commercial strip along Nicholson Street
-- Distance from Altona North base (~10 minutes)
+- Team members service Footscray regularly
 
 ## Structured Data
 
@@ -272,6 +269,7 @@ The `serviceAreas` string array in Site Settings should be **replaced with refer
 - No suburb listed as a service area without a corresponding page
 
 **Migration steps:**
+
 1. Publish all location pages in Sanity
 2. Update `siteSettings` schema to use `array of references` to `locationPage` instead of `array of string`
 3. Update any component consuming `serviceAreas` to use the location page slug for linking

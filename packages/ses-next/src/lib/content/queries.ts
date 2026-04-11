@@ -211,7 +211,6 @@ export const locationPageBySlugQuery = `*[_type == "locationPage" && slug.curren
       }
     }
   },
-  distanceFromBase,
   services[]->{
     _id,
     _type,
