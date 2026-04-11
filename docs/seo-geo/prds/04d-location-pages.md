@@ -1,8 +1,8 @@
-# 04d — Location Hub & Suburb Pages
+# 04d — Location Pages
 
 **Priority:** Critical
 **Phase:** 2 (Month 2-3)
-**Status:** Planned
+**Status:** In Progress
 **Depends on:** PRD-04a (services hub — for internal linking pattern), PRD-01 (structured data)
 
 ## Problem
@@ -34,22 +34,16 @@ SES already ranks positions 2-5 for Altona terms **without a dedicated page**. A
 This PRD covers:
 
 - New "Location Page" document type in Sanity
-- Location hub page at `/electrician-melbourne/`
-- First 3 suburb pages (Altona, Altona North, Footscray)
 - Internal linking from services and homepage
 - Sitemap and structured data
 
-Future suburb pages (Newport, Yarraville, Williamstown, Moonee Ponds, Ascot Vale, etc.) follow the same template and are added incrementally under ongoing content work.
-
 ## URL Structure
 
-Root-level URLs matching competitor patterns:
-
 ```
-/electrician-melbourne/          ← hub page
-/electrician-altona/             ← suburb page
-/electrician-altona-north/       ← suburb page
-/electrician-footscray/          ← suburb page
+/electrician-melbourne/
+/electrician-altona/
+/electrician-altona-north/
+/electrician-footscray/
 ```
 
 Not nested under `/services/` or `/locations/`. This keeps URLs short and matches how competitors and users search.
@@ -63,10 +57,8 @@ Not nested under `/services/` or `/locations/`. This keeps URLs short and matche
 | `title`            | string              | Display name (e.g., "Electrician Altona")                   |
 | `slug`             | slug                | URL slug (e.g., "electrician-altona")                       |
 | `suburb`           | string              | Suburb name (e.g., "Altona")                                |
-| `isHub`            | boolean             | `true` for the Melbourne hub page, `false` for suburb pages |
 | `heroImage`        | image               | Hero/banner image                                           |
 | `intro`            | blockContent        | Unique intro paragraph for this suburb                      |
-| `distanceFromBase` | string              | e.g., "5 minutes from our Altona North base"                |
 | `propertyTypes`    | string              | Common property types in the area                           |
 | `commonIssues`     | blockContent        | Suburb-specific electrical issues                           |
 | `services`         | array of references | Links to service pages relevant to this suburb              |
@@ -91,11 +83,9 @@ pages/
 
 `getStaticPaths` queries all `locationPage` documents from Sanity. `getStaticProps` fetches the specific page by slug.
 
-The hub page (`/electrician-melbourne/`) uses the same route — it's just a `locationPage` document with `isHub: true` that renders a different template (list of all suburb pages instead of suburb-specific content).
-
 ## Pages
 
-### Hub: `/electrician-melbourne/`
+### `/electrician-melbourne/`
 
 **Title tag:** `Electrician Melbourne — Licensed Local Electricians | SES`
 
@@ -117,7 +107,7 @@ H2: Areas We Serve
 - Dynamically populated from Sanity locationPage documents
 
 H2: Our Electrical Services
-- Brief service list linking to service pages and hub
+- Brief service list linking to service pages
 - Connects location intent with service intent
 
 H2: Why Melbourne Chooses SES
@@ -212,8 +202,7 @@ From the FAQ section on each page.
 
 ## Internal Linking
 
-- **Homepage** → hub page (`/electrician-melbourne/`). Add to the "Service Areas" or a new "Areas We Serve" section.
-- **Hub page** → all suburb pages
+- **Homepage** → Add all suburb links to the "Service Areas" or a new "Areas We Serve" section.
 - **Suburb pages** → cross-link to nearby suburbs ("Also serving nearby: [links]")
 - **Service pages** → mention service areas with links to relevant location pages (e.g., air conditioning page mentions "We install split systems across Altona, Footscray, and Newport" with links)
 - **Location pages** → link to relevant service pages
@@ -259,14 +248,12 @@ These follow the same template and are added incrementally. Not in scope for thi
 ## Acceptance Criteria
 
 - [ ] `locationPage` document type created in Sanity
-- [ ] Hub page `/electrician-melbourne/` live and linking to all suburb pages
 - [ ] `/electrician-altona/` live with 600+ words of unique content
 - [ ] `/electrician-altona-north/` live with 600+ words of unique content
 - [ ] `/electrician-footscray/` live with 600+ words of unique content
 - [ ] Each page has LocalBusiness schema with suburb-specific `areaServed`
 - [ ] Each page has BreadcrumbJsonLd and FAQPageJsonLd
 - [ ] Each page has unique title tag and meta description
-- [ ] Hub page linked from homepage (service areas section or similar)
 - [ ] Cross-links between suburb pages ("Also serving nearby")
 - [ ] Service pages updated with links to relevant location pages
 - [ ] All new pages appear in sitemap
