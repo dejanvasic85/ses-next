@@ -40,6 +40,10 @@ jobs:
           max_timeout: 300
           check_interval: 10
 
+      - name: Install Playwright browsers
+        run: npx playwright install chromium --with-deps
+        working-directory: packages/ses-next
+
       - name: Run Playwright tests
         run: npm run test:e2e
         env:
