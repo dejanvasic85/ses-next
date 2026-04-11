@@ -5,20 +5,21 @@ import { googleReviews } from 'ses-reviews';
 import { getAllLocationPages, getLocationPageBySlug, getSiteSettings } from '@/lib/content/contentService';
 import { faqJsonLd, safeJsonLd } from '@/lib/structuredData';
 import { ServiceBreadcrumb } from '@/components/ServiceBreadcrumb/ServiceBreadcrumb';
-import { LocationSuburbContent } from './LocationSuburbContent';
+import { LocationHubContent } from '@/components/LocationHubContent';
+import { LocationSuburbContent } from '@/components/LocationSuburbContent';
 
 export const dynamicParams = false;
 
-type LocationSuburbPageProps = {
+type LocationPageProps = {
   params: Promise<{ suburb: string }>;
 };
 
 export async function generateStaticParams() {
   const pages = await getAllLocationPages();
-  return pages.filter(({ slug }) => slug && slug !== 'melbourne').map(({ slug }) => ({ suburb: slug }));
+  return pages.filter(({ slug }) => Boolean(slug)).map(({ slug }) => ({ suburb: slug }));
 }
 
-export async function generateMetadata({ params }: LocationSuburbPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: LocationPageProps): Promise<Metadata> {
   const { suburb } = await params;
   const page = await getLocationPageBySlug(suburb);
 
@@ -42,7 +43,7 @@ export async function generateMetadata({ params }: LocationSuburbPageProps): Pro
   };
 }
 
-export default async function LocationSuburbPage({ params }: LocationSuburbPageProps) {
+export default async function LocationPage({ params }: LocationPageProps) {
   const { suburb } = await params;
 
   const [page, siteSettings, allPages] = await Promise.all([
@@ -56,9 +57,6 @@ export default async function LocationSuburbPage({ params }: LocationSuburbPageP
   }
 
   const { baseUrl, companyName, phone } = siteSettings;
-  const otherSuburbs = allPages.filter((p) => p.slug !== suburb && p.slug !== 'melbourne');
-
-  const hubUrl = new URL('electrician-melbourne/', baseUrl).toString();
   const pageUrl = new URL(`electrician-${suburb}/`, baseUrl).toString();
 
   const ratingCount = Number(googleReviews.numberOfReviews.replace('reviews', '').trim());
@@ -88,19 +86,52 @@ export default async function LocationSuburbPage({ params }: LocationSuburbPageP
     },
   };
 
+  if (page.isHub) {
+    const allSuburbs = allPages.filter((p) => !p.isHub);
+
+    const breadcrumbJsonLd = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
+        { '@type': 'ListItem', position: 2, name: `Electrician ${page.suburb}` },
+      ],
+    };
+
+    const breadcrumbItems = [{ name: 'Home', item: baseUrl }, { name: `Electrician ${page.suburb}` }];
+
+    return (
+      <>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(localBusinessJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }} />
+        {page.faqs.length > 0 && (
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd(page.faqs)) }} />
+        )}
+        <ServiceBreadcrumb items={breadcrumbItems} />
+        <LocationHubContent page={page} allSuburbs={allSuburbs} phone={phone} />
+      </>
+    );
+  }
+
+  const hubPage = allPages.find((p) => p.isHub);
+  const hubUrl = hubPage ? new URL(`electrician-${hubPage.slug}/`, baseUrl).toString() : undefined;
+  const otherSuburbs = allPages.filter((p) => !p.isHub && p.slug !== suburb);
+
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
-      { '@type': 'ListItem', position: 2, name: 'Electrician Melbourne', item: hubUrl },
-      { '@type': 'ListItem', position: 3, name: `Electrician ${page.suburb}` },
+      ...(hubPage && hubUrl
+        ? [{ '@type': 'ListItem', position: 2, name: `Electrician ${hubPage.suburb}`, item: hubUrl }]
+        : []),
+      { '@type': 'ListItem', position: hubPage ? 3 : 2, name: `Electrician ${page.suburb}` },
     ],
   };
 
   const breadcrumbItems = [
     { name: 'Home', item: baseUrl },
-    { name: 'Electrician Melbourne', item: hubUrl },
+    ...(hubPage && hubUrl ? [{ name: `Electrician ${hubPage.suburb}`, item: hubUrl }] : []),
     { name: `Electrician ${page.suburb}` },
   ];
 

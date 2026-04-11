@@ -115,6 +115,7 @@ export const mapLocationPage = (model: LocationPageContentModel): LocationPage =
   id: model._id,
   suburb: model.suburb,
   slug: model.slug.current,
+  isHub: model.isHub ?? false,
   heroImage: model.heroImage?.asset?.url ?? null,
   intro: model.intro ?? null,
   distanceFromBase: model.distanceFromBase ?? null,

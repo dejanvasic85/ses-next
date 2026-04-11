@@ -201,6 +201,7 @@ export const LocationPageSchema = z.object({
   _type: z.literal('locationPage'),
   suburb: z.string(),
   slug: SanitySlugSchema,
+  isHub: z.boolean().nullable().optional(),
   heroImage: SanityImageSchema.nullable().optional(),
   intro: SanityPortableTextSchema.nullable().optional(),
   distanceFromBase: z.string().nullable().optional(),
@@ -434,6 +435,7 @@ export type LocationPage = {
   id: string;
   suburb: string;
   slug: string;
+  isHub: boolean;
   heroImage: string | null;
   intro: SanityPortableText | null;
   distanceFromBase: string | null;

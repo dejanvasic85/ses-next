@@ -182,7 +182,8 @@ export const allLocationPagesQuery = `*[_type == "locationPage"]{
   _id,
   _type,
   suburb,
-  slug
+  slug,
+  isHub
 }`;
 
 export const locationPageBySlugQuery = `*[_type == "locationPage" && slug.current == $slug][0]{
@@ -190,6 +191,7 @@ export const locationPageBySlugQuery = `*[_type == "locationPage" && slug.curren
   _type,
   suburb,
   slug,
+  isHub,
   heroImage {
     _type,
     asset->{

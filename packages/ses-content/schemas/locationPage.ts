@@ -21,6 +21,14 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'isHub',
+      type: 'boolean',
+      title: 'Is Hub Page?',
+      description:
+        'Set to true for the Melbourne hub page. Hub pages show a grid of all suburb pages.',
+      initialValue: false,
+    }),
+    defineField({
       name: 'heroImage',
       type: 'image',
       title: 'Hero Image',
