@@ -11,7 +11,7 @@ import { LocationSuburbContent } from '@/components/LocationSuburbContent';
 export const dynamicParams = false;
 
 type LocationPageProps = {
-  params: Promise<{ suburb: string }>;
+  params: Promise<{ suburb?: string }>;
 };
 
 export async function generateStaticParams() {
@@ -21,6 +21,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: LocationPageProps): Promise<Metadata> {
   const { suburb } = await params;
+  if (!suburb) return {};
   const page = await getLocationPageBySlug(suburb);
 
   if (!page) {
@@ -45,6 +46,10 @@ export async function generateMetadata({ params }: LocationPageProps): Promise<M
 
 export default async function LocationPage({ params }: LocationPageProps) {
   const { suburb } = await params;
+
+  if (!suburb) {
+    notFound();
+  }
 
   const [page, siteSettings, allPages] = await Promise.all([
     getLocationPageBySlug(suburb),
