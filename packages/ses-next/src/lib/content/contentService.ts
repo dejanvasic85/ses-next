@@ -3,6 +3,7 @@ import { config } from '@/lib/config';
 import {
   type BlogPost,
   type LocationPage,
+  type LocationPageNearbySuburbRef,
   type SiteSettings,
   type ServiceItem,
   type HomePageContent,
@@ -18,6 +19,7 @@ import {
   ServiceSchema,
   BlogPostSchema,
   FAQSchema,
+  LocationPageNearbySuburbRefSchema,
   TermsAndConditionsSchema,
 } from '@/types';
 import {
@@ -35,6 +37,7 @@ import {
   allLocationPagesQuery,
   homepageQuery,
   locationPageBySlugQuery,
+  locationPagesByServiceSlugsQuery,
   servicesHubQuery,
   servicesQuery,
   siteSettingsQuery,
@@ -188,5 +191,28 @@ export const getLocationPageBySlug = async (slug: string): Promise<LocationPage 
   } catch (error) {
     console.error('Error in getLocationPageBySlug:', error);
     throw new Error('Failed to fetch location page');
+  }
+};
+
+export const getLocationPagesByServiceSlugs = async (
+  serviceSlugs: string[],
+): Promise<LocationPageNearbySuburbRef[]> => {
+  try {
+    if (serviceSlugs.length === 0) {
+      return [];
+    }
+
+    const result = await sanityClient.fetch(locationPagesByServiceSlugsQuery, { serviceSlugs });
+
+    const parsedLocations = (result as unknown[]).map((item) => LocationPageNearbySuburbRefSchema.parse(item));
+
+    return parsedLocations.map((location) => ({
+      id: location._id,
+      suburb: location.suburb,
+      slug: location.slug.current,
+    }));
+  } catch (error) {
+    console.error('Error in getLocationPagesByServiceSlugs:', error);
+    throw new Error('Failed to fetch location pages by service slugs');
   }
 };

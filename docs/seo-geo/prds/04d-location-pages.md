@@ -288,6 +288,6 @@ The `serviceAreas` string array in Site Settings should be **replaced with refer
 - [x] E2E test added to `routes.spec.ts` as a `Location Routes` describe block (skips gracefully when no pages are published)
 - [x] Services linked to each location page in Sanity Studio
 - [x] Cross-links between suburb pages ("Also serving nearby")
-- [ ] Service pages updated with links to relevant location pages
+- [x] Service pages updated with links to relevant location pages
 - [ ] All new pages appear in sitemap
 - [ ] `siteSettings.serviceAreas` migrated from string array to `locationPage` references
