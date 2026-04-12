@@ -196,6 +196,12 @@ export const LocationPageServiceRefSchema = z.object({
   parentService: ServiceParentSchema.nullish(),
 });
 
+export const LocationPageNearbySuburbRefSchema = z.object({
+  _id: z.string(),
+  suburb: z.string(),
+  slug: SanitySlugSchema,
+});
+
 export const LocationPageSchema = z.object({
   _id: z.string(),
   _type: z.literal('locationPage'),
@@ -205,6 +211,7 @@ export const LocationPageSchema = z.object({
   heroImage: SanityImageSchema.nullable().optional(),
   intro: SanityPortableTextSchema.nullable().optional(),
   services: z.array(LocationPageServiceRefSchema).nullable().optional(),
+  nearbySuburbs: z.array(LocationPageNearbySuburbRefSchema).nullable().optional(),
   faqs: z.array(LocationPageFaqSchema).nullable().optional(),
   seoTitle: z.string().nullable().optional(),
   seoDescription: z.string().nullable().optional(),
@@ -430,6 +437,12 @@ export type LocationPageServiceRef = {
   parentService: { name: string; slug: string } | null;
 };
 
+export type LocationPageNearbySuburbRef = {
+  id: string;
+  suburb: string;
+  slug: string;
+};
+
 export type LocationPage = {
   id: string;
   suburb: string;
@@ -438,6 +451,7 @@ export type LocationPage = {
   heroImage: string | null;
   intro: SanityPortableText | null;
   services: LocationPageServiceRef[];
+  nearbySuburbs: LocationPageNearbySuburbRef[];
   faqs: LocationPageFaq[];
   seoTitle: string | null;
   seoDescription: string | null;

@@ -7,6 +7,7 @@ import { getAllLocationPages, getLocationPageBySlug, getSiteSettings } from '@/l
 import { faqJsonLd, safeJsonLd } from '@/lib/structuredData';
 import { CustomImage } from '@/components/CustomImage';
 import { ServiceBreadcrumb } from '@/components/ServiceBreadcrumb/ServiceBreadcrumb';
+import { LocationNearbySuburbs } from '@/components/LocationNearbySuburbs/LocationNearbySuburbs';
 import { LocationServices } from '@/components/LocationServices/LocationServices';
 import { LocationFaqs } from '@/components/LocationFaqs/LocationFaqs';
 import type { GoogleReview } from '@/types';
@@ -134,6 +135,8 @@ export default async function LocationPage({ params }: LocationPageProps) {
         </article>
 
         {page.services.length > 0 && <LocationServices services={page.services} />}
+
+        {page.nearbySuburbs.length > 0 && <LocationNearbySuburbs nearbySuburbs={page.nearbySuburbs} />}
 
         {page.faqs.length > 0 && <LocationFaqs faqs={page.faqs} suburb={page.suburb} />}
       </div>
