@@ -25,6 +25,7 @@ const eslintConfig = defineConfig([
     },
     rules: {
       '@next/next/no-img-element': 'off',
+      'tailwindcss/classnames-order': 'off',
       'tailwindcss/no-custom-classname': 'off',
     },
   },
