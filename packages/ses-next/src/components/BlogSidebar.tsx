@@ -18,15 +18,15 @@ export const BlogSidebar = ({ tagsWithCount, totalPosts }: BlogSidebarProps) => 
   const isAllPosts = pathname === '/blog' && !currentTag;
 
   return (
-    <aside className="hidden lg:block w-64 shrink-0">
+    <aside className="hidden w-64 shrink-0 lg:block">
       <div className="sticky top-24">
         <nav aria-label="Blog categories">
-          <h2 className="font-semibold text-base-content mb-4">Categories</h2>
-          <ul className="menu menu-sm bg-base-100 rounded-box p-0 gap-1">
+          <h2 className="text-base-content mb-4 font-semibold">Categories</h2>
+          <ul className="menu menu-sm rounded-box bg-base-100 gap-1 p-0">
             <li>
               <Link href="/blog" className={`flex justify-between ${isAllPosts ? 'active' : ''}`}>
                 <span>All Posts</span>
-                <span className="badge badge-sm badge-ghost">{totalPosts}</span>
+                <span className="badge badge-ghost badge-sm">{totalPosts}</span>
               </Link>
             </li>
             {tagsWithCount.map(({ name, count }) => (
@@ -36,7 +36,7 @@ export const BlogSidebar = ({ tagsWithCount, totalPosts }: BlogSidebarProps) => 
                   className={`flex justify-between ${currentTag === name ? 'active' : ''}`}
                 >
                   <span className="capitalize">{name.replace(/-/g, ' ')}</span>
-                  <span className="badge badge-sm badge-ghost">{count}</span>
+                  <span className="badge badge-ghost badge-sm">{count}</span>
                 </Link>
               </li>
             ))}

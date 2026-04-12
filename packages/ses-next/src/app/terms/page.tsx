@@ -25,7 +25,7 @@ export default async function TermsPage() {
       <div className="container mx-auto max-w-screen-xl px-4 md:px-8">
         <div className="mb-10 md:mb-16">
           <h1 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Terms of Service</h1>
-          <div className="mx-auto prose text-gray-500 md:text-lg">
+          <div className="prose mx-auto text-gray-500 md:text-lg">
             <PortableText
               value={termsContent.terms}
               components={{

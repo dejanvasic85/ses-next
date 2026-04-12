@@ -26,15 +26,15 @@ export function Team({ blurbs, members, training }: TeamProps) {
   return (
     <>
       <div className="bg-slate-50 py-6 sm:py-8 lg:py-12">
-        <div className="max-w-screen-xl px-4 md:px-8 mx-auto">
+        <div className="mx-auto max-w-screen-xl px-4 md:px-8">
           <div className="mb-10 md:mb-16">
             <Heading level={2}>Meet our Team</Heading>
-            <p className="max-w-screen-md text-gray-500 md:text-lg text-center mx-auto">{firstBlurb}</p>
+            <p className="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">{firstBlurb}</p>
           </div>
-          <div className="flex flex-wrap justify-center items-stretch lg:flex-row gap-4 lg:gap-8">
+          <div className="flex flex-wrap items-stretch justify-center gap-4 lg:flex-row lg:gap-8">
             {members.map(({ avatar, fullName, role }) => (
-              <div key={fullName} className="flex flex-col items-center w-full md:w-1/4 rounded-lg p-4 lg:p-8">
-                <div className="w-24 md:w-32 h-24 md:h-32 bg-slate-200 rounded-full overflow-hidden shadow-lg mb-2 md:mb-4 relative">
+              <div key={fullName} className="flex w-full flex-col items-center rounded-lg p-4 md:w-1/4 lg:p-8">
+                <div className="relative mb-2 h-24 w-24 overflow-hidden rounded-full bg-slate-200 shadow-lg md:mb-4 md:h-32 md:w-32">
                   <SanityImage
                     src={avatar}
                     alt={fullName}
@@ -44,8 +44,8 @@ export function Team({ blurbs, members, training }: TeamProps) {
                   />
                 </div>
                 <div>
-                  <div className="md:text-lg font-bold text-center">{fullName}</div>
-                  <p className="text-gray-500 text-sm md:text-base text-center mb-3 md:mb-4">{role}</p>
+                  <div className="text-center font-bold md:text-lg">{fullName}</div>
+                  <p className="mb-3 text-center text-sm text-gray-500 md:mb-4 md:text-base">{role}</p>
                 </div>
               </div>
             ))}
@@ -53,9 +53,9 @@ export function Team({ blurbs, members, training }: TeamProps) {
         </div>
 
         <div className="mt-12 p-12">
-          <p className="max-w-screen-md text-gray-500 md:text-lg text-center mx-auto">{secondBlurb}</p>
+          <p className="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">{secondBlurb}</p>
         </div>
-        <div className="sm:h-40 grid grid-cols-2 xl:grid-cols-4 sm:content-evenly rounded-lg gap-6 p-6">
+        <div className="grid grid-cols-2 gap-6 rounded-lg p-6 sm:h-40 sm:content-evenly xl:grid-cols-4">
           {training.map(({ trainingTitle, icon }, idx) => (
             <div key={idx} className="flex items-center justify-center gap-1 text-gray-500">
               <Icon name={icon as keyof typeof IconMap} size="xxxl" />

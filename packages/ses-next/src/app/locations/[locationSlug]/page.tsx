@@ -129,7 +129,7 @@ export default async function LocationPage({ params }: LocationPageProps) {
       )}
       <ServiceBreadcrumb items={breadcrumbItems} />
       <div className="bg-white py-6 sm:py-8 lg:py-12">
-        <article className="mx-auto px-4 md:px-8 max-w-screen-lg prose lg:prose-lg">
+        <article className="prose lg:prose-lg mx-auto max-w-screen-lg px-4 md:px-8">
           <h1 className="text-center">Electrician {page.suburb}</h1>
           {page.intro && <PortableText value={page.intro} components={portableTextComponents} />}
         </article>

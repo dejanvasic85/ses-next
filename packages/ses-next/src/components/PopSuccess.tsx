@@ -11,7 +11,7 @@ export function PopSuccess({ children }: PopSuccessProps) {
   return (
     <div
       className={classNames(
-        'motion-safe:animate-popin flex items-start md:items-center text-white text-sm md:text-base rounded-lg mx-auto gap-1 p-4 bg-success justify-center',
+        'motion-safe:animate-popin bg-success mx-auto flex items-start justify-center gap-1 rounded-lg p-4 text-sm text-white md:items-center md:text-base',
       )}
     >
       <Icon size="xl" name="tick-circle" />

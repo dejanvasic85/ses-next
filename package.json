@@ -8,6 +8,7 @@
     "test:e2e": "turbo test:e2e",
     "build": "turbo build",
     "lint": "turbo lint",
+    "lint:fix": "turbo lint:fix",
     "lint-staged": "lint-staged",
     "ci": "turbo ci",
     "deploy:content": "npm run build -w ses-content && npm run deploy -w ses-content",
@@ -24,6 +25,7 @@
   "devDependencies": {
     "husky": "9.1.7",
     "lint-staged": "16.4.0",
+    "prettier-plugin-tailwindcss": "0.7.2",
     "turbo": "2.8.21"
   },
   "lint-staged": {

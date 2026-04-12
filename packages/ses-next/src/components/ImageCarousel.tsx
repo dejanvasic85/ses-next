@@ -72,7 +72,7 @@ export function ImageCarousel({ images, serviceName }: ImageCarouselProps) {
   const currentImage = images[currentIndex];
 
   return (
-    <div className="container mx-auto px-5 py-2 lg:px-32 lg:pt-12 pb-20">
+    <div className="container mx-auto px-5 py-2 pb-20 lg:px-32 lg:pt-12">
       <div className="relative w-full">
         <div className="mb-4 flex items-center justify-between">
           <Activity mode={serviceName ? 'visible' : 'hidden'}>
@@ -91,7 +91,7 @@ export function ImageCarousel({ images, serviceName }: ImageCarouselProps) {
             {images.map((image, index) => (
               <div
                 key={index}
-                className="w-full flex-shrink-0 relative"
+                className="relative w-full flex-shrink-0"
                 style={{ height: '70vh', maxHeight: '800px', minHeight: '400px' }}
               >
                 <Image
@@ -110,19 +110,19 @@ export function ImageCarousel({ images, serviceName }: ImageCarouselProps) {
         </div>
 
         <Activity mode={currentImage.alt ? 'visible' : 'hidden'}>
-          <div className="mt-4 bg-gray-900 text-white p-4 text-center rounded-lg">{currentImage.alt}</div>
+          <div className="mt-4 rounded-lg bg-gray-900 p-4 text-center text-white">{currentImage.alt}</div>
         </Activity>
 
         <Activity mode={images.length > 1 ? 'visible' : 'hidden'}>
-          <div className="flex justify-center mt-4 gap-2">
+          <div className="mt-4 flex justify-center gap-2">
             {images.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
                 disabled={isTransitioning}
                 aria-label={`Go to slide ${index + 1}`}
-                className={`w-3 h-3 rounded-full transition-all ${
-                  index === currentIndex ? 'bg-blue-600 w-8' : 'bg-gray-300 hover:bg-gray-400'
+                className={`h-3 w-3 rounded-full transition-all ${
+                  index === currentIndex ? 'w-8 bg-blue-600' : 'bg-gray-300 hover:bg-gray-400'
                 } ${isTransitioning ? 'cursor-not-allowed' : 'cursor-pointer'}`}
               />
             ))}
@@ -134,9 +134,9 @@ export function ImageCarousel({ images, serviceName }: ImageCarouselProps) {
             onClick={goToPrevious}
             disabled={isTransitioning}
             aria-label="Previous image"
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-opacity-80 hover:bg-opacity-100 absolute top-1/2 left-4 -translate-y-1/2 rounded-full bg-white p-2 shadow-lg transition-all disabled:cursor-not-allowed disabled:opacity-50"
           >
-            <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="h-6 w-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
             <span className="sr-only">Previous</span>
@@ -148,9 +148,9 @@ export function ImageCarousel({ images, serviceName }: ImageCarouselProps) {
             onClick={goToNext}
             disabled={isTransitioning}
             aria-label="Next image"
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-opacity-80 hover:bg-opacity-100 absolute top-1/2 right-4 -translate-y-1/2 rounded-full bg-white p-2 shadow-lg transition-all disabled:cursor-not-allowed disabled:opacity-50"
           >
-            <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="h-6 w-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
             <span className="sr-only">Next</span>

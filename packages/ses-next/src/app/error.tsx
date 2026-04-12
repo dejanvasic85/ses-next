@@ -14,7 +14,7 @@ export default function ErrorPage({
       <div className="container mx-auto max-w-screen-xl px-4 md:px-8">
         <div className="mb-10 md:mb-16">
           <h1 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Server Error</h1>
-          <p className="text-center text-gray-800 text-lg">
+          <p className="text-center text-lg text-gray-800">
             We experienced something unexpected. Please try again later or{' '}
             <Link href="/" className="link">
               contact support

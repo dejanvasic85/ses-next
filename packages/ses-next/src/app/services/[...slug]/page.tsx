@@ -193,7 +193,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }} />
       <ServiceBreadcrumb items={breadcrumbItems} />
       <div className="bg-white py-6 sm:py-8 lg:py-12">
-        <article className="mx-auto px-4 md:px-8 max-w-screen-lg prose lg:prose-lg">
+        <article className="prose lg:prose-lg mx-auto max-w-screen-lg px-4 md:px-8">
           <h1 className="text-center">{service.name}</h1>
           {service.content && <PortableText value={service.content} components={portableTextComponents} />}
         </article>
@@ -202,8 +202,8 @@ export default async function ServicePage({ params }: ServicePageProps) {
         {childServices.length > 0 && <RelatedServices services={childServices} />}
 
         {service.faqs && service.faqs.length > 0 && (
-          <section aria-labelledby="faq-heading" className="mx-auto px-4 md:px-8 max-w-screen-lg mt-12 mb-8">
-            <h2 id="faq-heading" className="text-3xl font-bold text-gray-900 mb-6">
+          <section aria-labelledby="faq-heading" className="mx-auto mt-12 mb-8 max-w-screen-lg px-4 md:px-8">
+            <h2 id="faq-heading" className="mb-6 text-3xl font-bold text-gray-900">
               Frequently Asked Questions
             </h2>
             <dl className="divide-y divide-gray-200">
@@ -218,30 +218,30 @@ export default async function ServicePage({ params }: ServicePageProps) {
         )}
 
         {filteredBlogPosts.length > 0 && (
-          <div className="mx-auto px-4 md:px-8 max-w-screen-lg mt-12 mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">Related Blog Posts</h2>
-            <p className="text-gray-600 mb-6">Explore our {service.name.toLowerCase()} articles and insights</p>
+          <div className="mx-auto mt-12 mb-8 max-w-screen-lg px-4 md:px-8">
+            <h2 className="mb-2 text-3xl font-bold text-gray-900">Related Blog Posts</h2>
+            <p className="mb-6 text-gray-600">Explore our {service.name.toLowerCase()} articles and insights</p>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {filteredBlogPosts.map(({ id, title, slug: postSlug, description, photo, publishedAt }) => (
                 <Link
                   key={id}
                   href={`/blog/${postSlug}`}
-                  className="group block bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden"
+                  className="group block overflow-hidden rounded-lg bg-white shadow-md transition-shadow duration-300 hover:shadow-xl"
                 >
-                  <div className="aspect-video relative overflow-hidden bg-gray-200">
+                  <div className="relative aspect-video overflow-hidden bg-gray-200">
                     <SanityImage
                       src={photo}
                       alt={title}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                   </div>
                   <div className="p-5">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
+                    <h3 className="mb-2 line-clamp-2 text-xl font-semibold text-gray-900 transition-colors group-hover:text-blue-600">
                       {title}
                     </h3>
-                    <p className="text-gray-600 text-sm mb-3 line-clamp-3">{description}</p>
+                    <p className="mb-3 line-clamp-3 text-sm text-gray-600">{description}</p>
                     <div className="flex items-center justify-between">
                       <span className="text-xs text-gray-500">
                         {new Date(publishedAt).toLocaleDateString('en-AU', {
@@ -250,7 +250,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
                           day: 'numeric',
                         })}
                       </span>
-                      <span className="text-blue-600 text-sm font-medium group-hover:underline">Read more →</span>
+                      <span className="text-sm font-medium text-blue-600 group-hover:underline">Read more →</span>
                     </div>
                   </div>
                 </Link>

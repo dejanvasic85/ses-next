@@ -43,10 +43,10 @@ export function Testimonial(testimonial: TestimonialProps) {
   }, [comment]);
 
   return (
-    <div className="p-4 rounded-3xl flex flex-col bg-slate-500 text-left">
+    <div className="flex flex-col rounded-3xl bg-slate-500 p-4 text-left">
       <div className="flex gap-2">
         <div className="flex">
-          <div className="h-12 w-12 flex items-center justify-center">
+          <div className="flex h-12 w-12 items-center justify-center">
             <ConditionalWrap
               condition={!!profileUrl}
               wrapper={(children) => (
@@ -60,7 +60,7 @@ export function Testimonial(testimonial: TestimonialProps) {
           </div>
         </div>
         <div className="flex flex-col gap-4">
-          <div className="flex flex-col mt-2">
+          <div className="mt-2 flex flex-col">
             <ConditionalWrap
               condition={!!profileUrl}
               wrapper={(children) => (
@@ -69,9 +69,9 @@ export function Testimonial(testimonial: TestimonialProps) {
                 </Link>
               )}
             >
-              <div className="inline text-sm text-white md:text-base font-bold border-b-2">{displayName}</div>
+              <div className="inline border-b-2 text-sm font-bold text-white md:text-base">{displayName}</div>
             </ConditionalWrap>
-            <em className="text-white text-sm">{date}</em>
+            <em className="text-sm text-white">{date}</em>
           </div>
           <Rating starRating={starRating} name={displayName} />
           <div>
@@ -79,7 +79,7 @@ export function Testimonial(testimonial: TestimonialProps) {
               &ldquo;{comment}&rdquo;
             </div>
             {(isClamped || showMore) && (
-              <button className="text-white border-b-2" onClick={() => setShowMore(!showMore)}>
+              <button className="border-b-2 text-white" onClick={() => setShowMore(!showMore)}>
                 {showMore ? 'Show less' : 'Show more'}
               </button>
             )}
