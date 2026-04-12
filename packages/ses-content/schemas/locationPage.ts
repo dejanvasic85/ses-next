@@ -41,6 +41,14 @@ export default defineType({
       of: [{type: 'reference', to: [{type: 'service'}]}],
     }),
     defineField({
+      name: 'nearbySuburbs',
+      type: 'array',
+      title: 'Nearby Suburbs',
+      description: 'Nearby location pages to cross-link with an "Also serving nearby" section',
+      of: [{type: 'reference', to: [{type: 'locationPage'}]}],
+      validation: (Rule) => Rule.unique(),
+    }),
+    defineField({
       name: 'faqs',
       type: 'array',
       title: 'FAQs',

@@ -126,6 +126,11 @@ export const mapLocationPage = (model: LocationPageContentModel): LocationPage =
     icon: s.icon,
     parentService: s.parentService ? { name: s.parentService.name, slug: s.parentService.slug.current } : null,
   })),
+  nearbySuburbs: (model.nearbySuburbs ?? []).map((location) => ({
+    id: location._id,
+    suburb: location.suburb,
+    slug: location.slug.current,
+  })),
   faqs: (model.faqs ?? []).map(({ question, answer }) => ({ question, answer })),
   seoTitle: model.seoTitle ?? null,
   seoDescription: model.seoDescription ?? null,

@@ -223,6 +223,12 @@ export const locationPageBySlugQuery = `*[_type == "locationPage" && slug.curren
       slug
     }
   },
+  nearbySuburbs[]->{
+    _id,
+    _type,
+    suburb,
+    slug
+  },
   "faqs": coalesce(faqs[]{ _key, question, answer }, []),
   seoTitle,
   seoDescription
