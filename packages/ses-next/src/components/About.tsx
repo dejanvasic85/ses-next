@@ -1,5 +1,3 @@
-import classNames from 'class-names';
-
 import { Container } from '@/components/Container';
 import { Heading } from '@/components/Heading';
 import { Icon } from '@/components/Icon/Icon';
