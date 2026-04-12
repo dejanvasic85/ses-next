@@ -40,13 +40,13 @@ This PRD covers:
 ## URL Structure
 
 ```
-/electrician-melbourne/
-/electrician-altona/
-/electrician-altona-north/
-/electrician-footscray/
+/locations/electrician-melbourne/
+/locations/electrician-altona/
+/locations/electrician-altona-north/
+/locations/electrician-footscray/
 ```
 
-Not nested under `/services/` or `/locations/`. This keeps URLs short and matches how competitors and users search.
+Nested under `/locations/` for cleaner site structure. The keyword `electrician` is kept in the slug for SEO signal and CTR — it matches how users search and is visible in the SERP URL.
 
 ## Sanity Content Model
 
@@ -59,8 +59,6 @@ Not nested under `/services/` or `/locations/`. This keeps URLs short and matche
 | `suburb`         | string              | Suburb name (e.g., "Altona")                            |
 | `heroImage`      | image               | Hero/banner image                                       |
 | `intro`          | blockContent        | Unique intro paragraph for this suburb                  |
-| `propertyTypes`  | string              | Common property types in the area                       |
-| `commonIssues`   | blockContent        | Suburb-specific electrical issues                       |
 | `services`       | array of references | Links to service pages relevant to this suburb          |
 | `nearbySuburbs`  | array of references | Links to other locationPage documents for cross-linking |
 | `faqs`           | array of objects    | FAQ items (question + answer) for FAQ schema            |
@@ -74,19 +72,20 @@ Location pages have different fields (suburb, distance, property types, nearby s
 
 ## Routing in Next.js
 
-Since these are root-level URLs, the route file lives at:
+The route file lives at:
 
 ```
 app/
-  [locationSlug]/
-    page.tsx    ← dynamic route for all location pages
+  locations/
+    [locationSlug]/
+      page.tsx    ← dynamic route for all location pages
 ```
 
-`generateStaticParams` queries all `locationPage` documents from Sanity and returns each slug. The page component fetches the specific page by slug and calls `notFound()` if no matching document exists — this prevents the dynamic segment from accidentally swallowing unrelated root-level paths.
+`generateStaticParams` queries all `locationPage` documents from Sanity and returns each slug. The page component fetches the specific page by slug and calls `notFound()` if no matching document exists.
 
 ## Pages
 
-### `/electrician-melbourne/`
+### `/locations/electrician-melbourne/`
 
 **Title tag:** `Electrician Melbourne — Licensed Local Electricians | SES`
 
@@ -104,7 +103,7 @@ Intro:
 
 H2: Areas We Serve
 - Card grid or list linking to each suburb page
-- Each card: suburb name, brief description, distance from base
+- Each card: suburb name, brief description
 - Dynamically populated from Sanity locationPage documents
 
 H2: Our Electrical Services
@@ -123,11 +122,11 @@ H2: Frequently Asked Questions
 CTA: Phone + contact form
 ```
 
-### Suburb: `/electrician-altona/`
+### Suburb: `/locations/electrician-altona/`
 
 **Title tag:** `Electrician Altona — Licensed Local Electricians | SES`
 
-**Meta description:** `Local electrician in Altona. Residential and commercial electrical services, air conditioning, solar. 5 minutes from our base. 5-star rated. Call (03) 4050 7937.`
+**Meta description:** `Local electrician in Altona. Residential and commercial electrical, solar, and air conditioning. Licensed, 5-star rated. Call (03) 4050 7937.`
 
 **Content must be unique.** Not a template with suburb name swapped. Include:
 
@@ -137,18 +136,17 @@ CTA: Phone + contact form
 - Any specific jobs Karl can reference
 - Local landmarks/context that demonstrate genuine knowledge of the area
 
-### Suburb: `/electrician-altona-north/`
+### Suburb: `/locations/electrician-altona-north/`
 
 **Title tag:** `Electrician Altona North — Your Local Electricians | SES`
 
 This is where SES is physically based. The page should emphasise:
 
-- "We're based right here in Altona North at 61B Hansen St"
-- Zero travel time, fastest response in the area
+- Team works here regularly — knows local housing stock and industrial properties
 - Mix of residential and industrial/commercial properties
 - Brooklyn/Altona North industrial precinct for commercial work
 
-### Suburb: `/electrician-footscray/`
+### Suburb: `/locations/electrician-footscray/`
 
 **Title tag:** `Electrician Footscray — Licensed Local Electricians | SES`
 
@@ -157,7 +155,7 @@ Footscray has the highest untapped impression volume (791+ for AC alone, positio
 - Growing suburb with mix of heritage Victorian homes and new apartment developments
 - Common issues: old wiring in heritage properties, new builds needing full electrical fit-outs
 - Commercial strip along Nicholson Street
-- Distance from Altona North base (~10 minutes)
+- Team members service Footscray regularly
 
 ## Structured Data
 
@@ -170,7 +168,7 @@ Each location page gets:
   "@context": "https://schema.org",
   "@type": "Electrician",
   "name": "Storm Electrical Solutions — Electrician Altona",
-  "url": "https://www.sesmelbourne.com.au/electrician-altona/",
+  "url": "https://www.sesmelbourne.com.au/locations/electrician-altona/",
   "telephone": "(03) 4050 7937",
   "address": {
     "@type": "PostalAddress",
@@ -194,7 +192,7 @@ Each location page gets:
 ### BreadcrumbJsonLd
 
 ```
-Home → Electrician Melbourne → Electrician Altona
+Home → Locations → Electrician Altona
 ```
 
 ### FAQPageJsonLd
@@ -233,18 +231,18 @@ These follow the same template and are added incrementally. Not in scope for thi
 
 **Priority 2 — Near-term:**
 
-- `/electrician-newport/` — Karl confirmed regular work here
-- `/electrician-yarraville/` — Karl confirmed regular work here
-- `/electrician-williamstown/` — nearby, some keyword signals
-- `/electrician-moonee-ponds/` — team members in the area
-- `/electrician-ascot-vale/` — team members in the area
+- `/locations/electrician-newport/` — Karl confirmed regular work here
+- `/locations/electrician-yarraville/` — Karl confirmed regular work here
+- `/locations/electrician-williamstown/` — nearby, some keyword signals
+- `/locations/electrician-moonee-ponds/` — team members in the area
+- `/locations/electrician-ascot-vale/` — team members in the area
 
 **Priority 3 — Future:**
 
-- `/electrician-seddon/`
-- `/electrician-spotswood/`
-- `/electrician-laverton/`
-- `/electrician-point-cook/`
+- `/locations/electrician-seddon/`
+- `/locations/electrician-spotswood/`
+- `/locations/electrician-laverton/`
+- `/locations/electrician-point-cook/`
 
 ## E2E Testing
 
@@ -253,8 +251,8 @@ Location pages are CMS-driven, so the test must gracefully handle environments w
 The strategy mirrors the existing `Service Routes` describe block in `packages/ses-next/tests/routes.spec.ts`: use the sitemap as the source of truth rather than hard-coding paths.
 
 1. Fetch `/sitemap.xml` and assert a 200 response.
-2. Parse `<loc>` entries for URLs matching the `/electrician-[slug]` pattern using a regex such as:
-   `/<loc>([^<]+\/electrician-[^/<]+)<\/loc>/g`
+2. Parse `<loc>` entries for URLs matching the `/locations/electrician-[slug]` pattern using a regex such as:
+   `/<loc>([^<]+\/locations\/electrician-[^/<]+)<\/loc>/g`
 3. If no matching URLs are found, call `test.skip()` — the test is not applicable until at least one page is published in the CMS.
 4. Navigate to the first matching pathname and assert:
    - The page returns a 200 status code
@@ -262,17 +260,34 @@ The strategy mirrors the existing `Service Routes` describe block in `packages/s
    - `nav` is visible
 5. Add this as a `Location Routes` describe block in `packages/ses-next/tests/routes.spec.ts`.
 
+## siteSettings Service Areas Migration
+
+The `serviceAreas` string array in Site Settings should be **replaced with references to `locationPage` documents** once all location pages are published. This ensures:
+
+- Single source of truth — suburbs defined once in `locationPage`
+- Automatic internal linking from any component reading service areas
+- No suburb listed as a service area without a corresponding page
+
+**Migration steps:**
+
+1. Publish all location pages in Sanity
+2. Update `siteSettings` schema to use `array of references` to `locationPage` instead of `array of string`
+3. Update any component consuming `serviceAreas` to use the location page slug for linking
+
 ## Acceptance Criteria
 
 - [x] `locationPage` document type created in Sanity
-- [ ] `/electrician-altona/` live with 600+ words of unique content
-- [ ] `/electrician-altona-north/` live with 600+ words of unique content
-- [ ] `/electrician-footscray/` live with 600+ words of unique content
-- [ ] Each page has LocalBusiness schema with suburb-specific `areaServed`
-- [ ] Each page has BreadcrumbJsonLd and FAQPageJsonLd
-- [ ] Each page has unique title tag and meta description
+- [x] Content published for Altona, Altona North, Footscray — unique, no base-centric framing
+- [x] `/locations/electrician-altona/` route live
+- [x] `/locations/electrician-altona-north/` route live
+- [x] `/locations/electrician-footscray/` route live
+- [x] `/locations/` index page live with suburb card grid
+- [x] Each page has LocalBusiness schema with suburb-specific `areaServed`
+- [x] Each page has BreadcrumbJsonLd and FAQPageJsonLd
+- [x] Each page has unique title tag and meta description
+- [x] E2E test added to `routes.spec.ts` as a `Location Routes` describe block (skips gracefully when no pages are published)
+- [ ] Services linked to each location page in Sanity Studio
 - [ ] Cross-links between suburb pages ("Also serving nearby")
 - [ ] Service pages updated with links to relevant location pages
 - [ ] All new pages appear in sitemap
-- [ ] No duplicate/thin content — each page is substantively unique
-- [ ] E2E test added to `routes.spec.ts` as a `Location Routes` describe block (skips gracefully when no pages are published)
+- [ ] `siteSettings.serviceAreas` migrated from string array to `locationPage` references

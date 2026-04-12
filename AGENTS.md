@@ -1,26 +1,18 @@
 # Instructions
 
-# Technical Requirements
+# Tech Specs
 
 - Next.js v16
 - Tailwind CSS V4
 - Sanity CMS (schema located under apps/content-studio) v4
 - Accessibility (a11y) AAA compliant
-- Responsive design (mobile-first)
-- Clean and maintainable code with re-usable React components
+- Responsive design
 
 ## Commands
 
 This is a monorepo with multiple apps so each command should target specific workspace
 having to navigate to each app.
 E.g. `npm run build -w <workspace>`
-
-Here are some commands you can use:
-
-- npm run type:check: Runs TypeScript type checking without building
-- npm run format: Uses Prettier to format the code
-- npm run lint: Runs ESLint check
-- npm run dev: Starts the development server for the main website but you will need to run it in the background otherwise it will block the terminal
 
 ## Nextjs structure
 
@@ -51,14 +43,18 @@ Here are some commands you can use:
 - React components should be PascalCase e.g. MyComponent.tsx
 - Npm workspaces should be kebab-case
 
-## React
+## React guidelines
 
 - Each Component should declare its own prop types using TypeScript within the same file
-- **NEVER** use inline TypeScript types in function parameters - always declare a separate type or interface (e.g., `type MyProps = {...}` not `function MyComponent({ prop }: { prop: string })`)
 - Component files should have constants declared outside the component function
 - Avoid use of inline styles, prefer Tailwind CSS classes
 - Event handlers should be named with the `handle` prefix (e.g. `handleClick`)
 - Try to limit components and modules up to 200 lines and split into different components to manage complexity
+
+## Typescript guidelines
+
+- Never use "as" casting
+- **NEVER** use inline TypeScript types in function parameters - always declare a separate type or interface (e.g., `type MyProps = {...}` not `function MyComponent({ prop }: { prop: string })`)
 
 ## Workflow
 

@@ -1,4 +1,7 @@
-import type { ServiceFaq } from '@/types';
+type FaqItem = {
+  question: string;
+  answer: string;
+};
 
 export const safeJsonLd = (data: unknown): string =>
   JSON.stringify(data)
@@ -6,7 +9,7 @@ export const safeJsonLd = (data: unknown): string =>
     .replace(/\u2028/g, '\\u2028')
     .replace(/\u2029/g, '\\u2029');
 
-export const faqJsonLd = (faqs: ServiceFaq[]) => ({
+export const faqJsonLd = (faqs: FaqItem[]) => ({
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
   mainEntity: faqs.map(({ question, answer }) => ({

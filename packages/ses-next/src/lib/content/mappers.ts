@@ -118,7 +118,6 @@ export const mapLocationPage = (model: LocationPageContentModel): LocationPage =
   isHub: model.isHub ?? false,
   heroImage: model.heroImage?.asset?.url ?? null,
   intro: model.intro ?? null,
-  distanceFromBase: model.distanceFromBase ?? null,
   services: (model.services ?? []).map((s) => ({
     id: s._id,
     name: s.name,

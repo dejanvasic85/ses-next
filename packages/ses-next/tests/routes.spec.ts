@@ -44,6 +44,33 @@ test.describe('Service Routes', () => {
   });
 });
 
+test.describe('Location Routes', () => {
+  test('location page loads correctly', async ({ page }) => {
+    const sitemapResponse = await page.goto('/sitemap.xml');
+    expect(sitemapResponse?.status()).toBe(200);
+
+    const content = await page.content();
+    const locationUrls = [...content.matchAll(/<loc>([^<]+\/locations\/electrician-[^/<]+)<\/loc>/g)].map((m) => m[1]);
+
+    if (locationUrls.length === 0) {
+      test.skip();
+      return;
+    }
+
+    const locationPath = new URL(locationUrls[0]).pathname;
+    await page.goto(locationPath);
+    await expect(page.locator('h1')).toBeVisible();
+    await expect(page.locator('nav').first()).toBeVisible();
+  });
+
+  test('locations index page loads correctly', async ({ page }) => {
+    const response = await page.goto('/locations');
+    expect(response?.status()).toBe(200);
+    await expect(page.locator('h1')).toBeVisible();
+    await expect(page.locator('nav').first()).toBeVisible();
+  });
+});
+
 test.describe('Blog Routes', () => {
   test('blog tag page renders filtered posts', async ({ page }) => {
     await page.goto('/blog');
