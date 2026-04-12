@@ -29,7 +29,7 @@ export const BlogFilterMobile = ({ tagsWithCount, totalPosts }: BlogFilterMobile
   };
 
   return (
-    <div className="lg:hidden mb-4">
+    <div className="mb-4 lg:hidden">
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
@@ -44,7 +44,7 @@ export const BlogFilterMobile = ({ tagsWithCount, totalPosts }: BlogFilterMobile
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-4 h-4"
+            className="h-4 w-4"
           >
             <path
               strokeLinecap="round"
@@ -60,15 +60,15 @@ export const BlogFilterMobile = ({ tagsWithCount, totalPosts }: BlogFilterMobile
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+          className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
         >
           <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
         </svg>
       </button>
 
       {isOpen && (
-        <nav id="mobile-filter-menu" className="mt-2 bg-base-200 rounded-box p-2" aria-label="Blog categories">
-          <ul className="menu menu-sm p-0 gap-1">
+        <nav id="mobile-filter-menu" className="rounded-box bg-base-200 mt-2 p-2" aria-label="Blog categories">
+          <ul className="menu menu-sm gap-1 p-0">
             <li>
               <Link
                 href="/blog"
@@ -76,7 +76,7 @@ export const BlogFilterMobile = ({ tagsWithCount, totalPosts }: BlogFilterMobile
                 className={`flex justify-between ${isAllPosts ? 'active' : ''}`}
               >
                 <span>All Posts</span>
-                <span className="badge badge-sm badge-ghost">{totalPosts}</span>
+                <span className="badge badge-ghost badge-sm">{totalPosts}</span>
               </Link>
             </li>
             {tagsWithCount.map(({ name, count }) => (
@@ -87,7 +87,7 @@ export const BlogFilterMobile = ({ tagsWithCount, totalPosts }: BlogFilterMobile
                   className={`flex justify-between ${currentTag === name ? 'active' : ''}`}
                 >
                   <span className="capitalize">{name.replace(/-/g, ' ')}</span>
-                  <span className="badge badge-sm badge-ghost">{count}</span>
+                  <span className="badge badge-ghost badge-sm">{count}</span>
                 </Link>
               </li>
             ))}

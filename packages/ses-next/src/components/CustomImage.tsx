@@ -29,7 +29,7 @@ export const CustomImage = (props: CustomImageProps) => {
       alt="inline image"
       width={800}
       height={600}
-      className="w-full h-auto"
+      className="h-auto w-full"
       sizes="(max-width: 768px) 100vw, 800px"
       loader={sanityImageLoader}
     />

@@ -39,21 +39,21 @@ export const Services = ({ className, blurbs, services }: ServicesProps) => {
           </p>
         ))}
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center">
+        <div className="grid grid-cols-1 justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {services
             .filter(({ showOnHomepage }) => showOnHomepage)
             .map(({ name, blurb, linkToReadMore, slug, icon = 'bolt', featuredImage }, idx) => (
-              <div className="group relative overflow-hidden rounded-lg " key={idx}>
+              <div className="group relative overflow-hidden rounded-lg" key={idx}>
                 <Link href={`/services/${slug}`} className="absolute inset-0 z-10" prefetch={false}>
                   <span className="sr-only">View {name}</span>
                 </Link>
                 <div className="flex h-full flex-col justify-between p-6">
                   <div className="space-y-2">
                     <div className="flex items-center gap-3">
-                      <div className="rounded-full bg-primary p-2 text-primary-foreground">
+                      <div className="text-primary-foreground bg-primary rounded-full p-2">
                         <Icon name={icon as keyof typeof IconMap} size="xl" className="text-white" />
                       </div>
-                      <h3 className="text-lg font-semibold border-b-2 border-primary">
+                      <h3 className="border-primary border-b-2 text-lg font-semibold">
                         <ConditionalWrap
                           condition={Boolean(linkToReadMore && slug)}
                           wrapper={(children) => <Link href={`/services/${slug}`}>{children}</Link>}
@@ -65,7 +65,7 @@ export const Services = ({ className, blurbs, services }: ServicesProps) => {
                     <p className="text-gray-500">{blurb}</p>
                   </div>
                   {featuredImage && (
-                    <div className="mt-4 aspect-video w-full rounded-lg overflow-hidden relative">
+                    <div className="relative mt-4 aspect-video w-full overflow-hidden rounded-lg">
                       <SanityImage
                         src={featuredImage.src}
                         alt={featuredImage.alt}
@@ -78,15 +78,15 @@ export const Services = ({ className, blurbs, services }: ServicesProps) => {
                 </div>
               </div>
             ))}
-          <div className="group relative overflow-hidden rounded-lg border-2 border-dashed border-primary w-full">
+          <div className="group border-primary relative w-full overflow-hidden rounded-lg border-2 border-dashed">
             <Link href={servicesHubPath} className="absolute inset-0 z-10" prefetch={false}>
               <span className="sr-only">See all our electrical services</span>
             </Link>
-            <div className="flex h-full flex-col items-center justify-center p-6 text-center gap-3 min-h-[160px]">
-              <div className="rounded-full bg-primary/10 p-3">
+            <div className="flex h-full min-h-[160px] flex-col items-center justify-center gap-3 p-6 text-center">
+              <div className="bg-primary/10 rounded-full p-3">
                 <Icon name="bolt" size="xl" className="text-primary" />
               </div>
-              <p className="text-lg font-semibold text-primary group-hover:underline">
+              <p className="text-primary text-lg font-semibold group-hover:underline">
                 See all our electrical services →
               </p>
             </div>

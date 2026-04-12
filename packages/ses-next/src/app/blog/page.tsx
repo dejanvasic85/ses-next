@@ -45,14 +45,14 @@ export default async function BlogPage() {
       <BlogLayout tagsWithCount={tagsWithCount} totalPosts={sorted.length}>
         <div className="grid gap-6">
           {sorted.map(({ id, description, title, tags, photo, slug, publishedAt }) => (
-            <article key={id} className="card sm:card-side hover:bg-base-200 transition-colors">
+            <article key={id} className="card hover:bg-base-200 sm:card-side transition-colors">
               <figure className="w-full p-4 max-sm:pb-0 sm:w-48 sm:shrink-0 sm:pe-0">
                 <SanityImage
                   width={300}
                   height={300}
                   loading="lazy"
                   src={photo}
-                  className="bg-base-300 rounded-lg w-full h-auto object-cover aspect-square"
+                  className="bg-base-300 aspect-square h-auto w-full rounded-lg object-cover"
                   alt={title}
                 />
               </figure>
@@ -63,8 +63,8 @@ export default async function BlogPage() {
                   </Link>
                 </h2>
                 <p className="text-xs opacity-60">{new Date(publishedAt).toLocaleDateString()}</p>
-                <p className="text-sm opacity-60 line-clamp-2">{description}</p>
-                <div className="flex flex-wrap gap-1 mt-2">
+                <p className="line-clamp-2 text-sm opacity-60">{description}</p>
+                <div className="mt-2 flex flex-wrap gap-1">
                   {tags.map((tag) => (
                     <Link
                       key={tag}

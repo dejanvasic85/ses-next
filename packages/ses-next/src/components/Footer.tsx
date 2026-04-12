@@ -46,7 +46,7 @@ export function Footer({ social = {} as Social, links = defaultFooterLinks, serv
   const year = today.getFullYear();
 
   return (
-    <footer className="footer p-10 bg-slate-700 text-white grid grid-cols-1 lg:grid-cols-4">
+    <footer className="footer grid grid-cols-1 bg-slate-700 p-10 text-white lg:grid-cols-4">
       <div className="flex flex-col gap-2">
         <Icon name="bolt" size="xxxl" />
         <div>
@@ -98,7 +98,7 @@ export function Footer({ social = {} as Social, links = defaultFooterLinks, serv
               {name}
             </ConditionalWrap>
           ))}
-        <Link className="link link-hover font-medium mt-2" href={links.services}>
+        <Link className="link link-hover mt-2 font-medium" href={links.services}>
           See all services →
         </Link>
       </div>

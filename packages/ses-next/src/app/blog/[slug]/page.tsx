@@ -99,8 +99,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(articleJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }} />
       <BlogLayout tagsWithCount={tagsWithCount} totalPosts={blogPosts.length}>
-        <article className="mx-auto w-full px-8 lg:px-0 prose lg:prose-lg">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-tight md:leading-none mb-12 md:text-left">
+        <article className="prose lg:prose-lg mx-auto w-full px-8 lg:px-0">
+          <h1 className="mb-12 text-4xl leading-tight font-bold tracking-tighter md:text-left md:text-5xl md:leading-none lg:text-6xl">
             {post.title}
           </h1>
           <figure className="w-full">
@@ -109,7 +109,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               width={800}
               height={400}
               src={post.photo}
-              className="bg-base-300 rounded-box border border-base-300/5"
+              className="rounded-box border-base-300/5 bg-base-300 border"
               alt={post.title}
             />
           </figure>

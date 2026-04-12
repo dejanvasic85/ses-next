@@ -61,8 +61,8 @@ export function Hero({
 
       <div className="relative px-6 lg:px-8">
         <div className="mx-auto max-w-3xl pt-10 pb-16 sm:pt-24 sm:pb-20 md:p-0">
-          <div className="flex-col md:flex-row justify-center">
-            <div className="rounded-3xl flex justify-center">
+          <div className="flex-col justify-center md:flex-row">
+            <div className="flex justify-center rounded-3xl">
               <SanityImage
                 src={companyLogo}
                 alt={companyName}
@@ -85,11 +85,11 @@ export function Hero({
               <Heading level={1}>
                 <strong>{mainHeading}</strong>
               </Heading>
-              <h2 className="mt-6 text-base md:text-lg leading-8 text-gray-600">{subHeading}</h2>
-              <div className="mt-8 flex gap-x-4 justify-center">
+              <h2 className="mt-6 text-base leading-8 text-gray-600 md:text-lg">{subHeading}</h2>
+              <div className="mt-8 flex justify-center gap-x-4">
                 <LinkButton href="#contact">Contact us</LinkButton>
               </div>
-              <div className="mt-8 flex gap-x-4 justify-center">
+              <div className="mt-8 flex justify-center gap-x-4">
                 {social.facebook && (
                   <LinkButton href={social.facebook} target="_blank" aria-label="Facebook page">
                     <Icon name="facebook" size="lg" />
@@ -108,9 +108,9 @@ export function Hero({
                   </LinkButton>
                 )}
               </div>
-              <div className="mt-6 flex flex-col justify-center items-center gap-4 bg-white border-gray-200 border md:w-1/2 m-auto p-4 rounded-3xl">
+              <div className="m-auto mt-6 flex flex-col items-center justify-center gap-4 rounded-3xl border border-gray-200 bg-white p-4 md:w-1/2">
                 {googleReviewsUrl && (
-                  <a className="text-sm link" href={googleReviewsUrl} target="_blank">
+                  <a className="link text-sm" href={googleReviewsUrl} target="_blank">
                     Average rating of {overallRatingValue} with {numberOfReviews}
                   </a>
                 )}

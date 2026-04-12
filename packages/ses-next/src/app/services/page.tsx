@@ -30,22 +30,22 @@ function ServiceCard({ service }: ServiceCardProps) {
   const { name, blurb, slug, icon = 'bolt', featuredImage } = service;
 
   return (
-    <article className="group relative overflow-hidden rounded-lg border border-gray-200 hover:shadow-md transition-shadow duration-200">
+    <article className="group relative overflow-hidden rounded-lg border border-gray-200 transition-shadow duration-200 hover:shadow-md">
       <Link href={`/services/${slug}`} className="absolute inset-0 z-10" prefetch={false}>
         <span className="sr-only">View {name} service</span>
       </Link>
       <div className="flex h-full flex-col justify-between p-6">
         <div className="space-y-2">
           <div className="flex items-center gap-3">
-            <div className="rounded-full bg-primary p-2">
+            <div className="bg-primary rounded-full p-2">
               <Icon name={icon} size="xl" className="text-white" />
             </div>
-            <h3 className="text-lg font-semibold border-b-2 border-primary">{name}</h3>
+            <h3 className="border-primary border-b-2 text-lg font-semibold">{name}</h3>
           </div>
           <p className="text-gray-500">{blurb}</p>
         </div>
         {featuredImage && (
-          <div className="mt-4 aspect-video w-full rounded-lg overflow-hidden relative">
+          <div className="relative mt-4 aspect-video w-full overflow-hidden rounded-lg">
             <SanityImage
               src={featuredImage.src}
               alt={featuredImage.alt}
@@ -55,7 +55,7 @@ function ServiceCard({ service }: ServiceCardProps) {
             />
           </div>
         )}
-        <span className="mt-4 inline-block text-primary font-medium group-hover:underline">Learn more →</span>
+        <span className="text-primary mt-4 inline-block font-medium group-hover:underline">Learn more →</span>
       </div>
     </article>
   );
@@ -105,13 +105,13 @@ export default async function ServicesHubPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }} />
       <div className="bg-white py-6 sm:py-8 lg:py-12">
         <div className="mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-screen-xl text-center mb-12">
-            <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl mb-6">
+          <div className="mx-auto mb-12 max-w-screen-xl text-center">
+            <h1 className="mb-6 text-3xl font-bold text-gray-900 sm:text-4xl">
               {hubContent.heading ?? 'Our Services'}
             </h1>
             {hubContent.intro &&
               hubContent.intro.map((paragraph, index) => (
-                <p key={index} className="text-lg text-gray-600 mb-3">
+                <p key={index} className="mb-3 text-lg text-gray-600">
                   {paragraph}
                 </p>
               ))}
@@ -119,7 +119,7 @@ export default async function ServicesHubPage() {
 
           <div className="mt-12">
             <Heading level={2}>Our Services</Heading>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-8">
+            <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {topLevelServices.map((service) => (
                 <ServiceCard key={service.id} service={service} />
               ))}
@@ -130,17 +130,17 @@ export default async function ServicesHubPage() {
             <div className="mx-auto max-w-screen-xl">
               <h2
                 id="service-areas-heading"
-                className="text-gray-700 text-center mb-4 md:mb-6 text-2xl lg:text-3xl font-bold"
+                className="mb-4 text-center text-2xl font-bold text-gray-700 md:mb-6 lg:text-3xl"
               >
                 Service Areas
               </h2>
-              <p className="text-gray-600 mb-4 text-center">
+              <p className="mb-4 text-center text-gray-600">
                 We provide electrical services across Melbourne&apos;s western and inner-western suburbs, including:
               </p>
               {serviceAreas && (
-                <ul className="flex flex-wrap gap-2 items-center justify-center" aria-label="Service areas">
+                <ul className="flex flex-wrap items-center justify-center gap-2" aria-label="Service areas">
                   {serviceAreas.map((area) => (
-                    <li key={area} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
+                    <li key={area} className="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700">
                       {area}
                     </li>
                   ))}
@@ -149,14 +149,14 @@ export default async function ServicesHubPage() {
             </div>
           </section>
 
-          <section aria-labelledby="cta-heading" className="mt-16 bg-primary/5 rounded-xl p-8 text-center">
-            <h2 id="cta-heading" className="text-gray-700 text-center mb-4 md:mb-6 text-2xl lg:text-3xl font-bold">
+          <section aria-labelledby="cta-heading" className="bg-primary/5 mt-16 rounded-xl p-8 text-center">
+            <h2 id="cta-heading" className="mb-4 text-center text-2xl font-bold text-gray-700 md:mb-6 lg:text-3xl">
               Get a Free Quote
             </h2>
-            <p className="text-gray-600 mb-6">
+            <p className="mb-6 text-gray-600">
               Ready to get started? Contact our team for a free, no-obligation quote.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <a href={`tel:${phone}`} className="btn btn-primary" aria-label={`Call us on ${phone}`}>
                 <Icon name="phone" size="md" className="mr-2" />
                 {phone}

@@ -26,16 +26,16 @@ type LocationCardProps = {
 
 function LocationCard({ page }: LocationCardProps) {
   return (
-    <article className="group relative flex flex-col rounded-xl border border-gray-200 bg-white overflow-hidden transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5">
+    <article className="group relative flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg">
       <Link href={`/locations/${page.slug}`} className="absolute inset-0 z-10" prefetch={false}>
         <span className="sr-only">View electrician services in {page.suburb}</span>
       </Link>
       <div className="flex flex-col gap-3 p-6">
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="flex-shrink-0 rounded-full bg-primary/10 p-2.5">
+            <div className="bg-primary/10 flex-shrink-0 rounded-full p-2.5">
               <svg
-                className="h-5 w-5 text-primary"
+                className="text-primary h-5 w-5"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
@@ -48,16 +48,16 @@ function LocationCard({ page }: LocationCardProps) {
                 />
               </svg>
             </div>
-            <h2 className="text-lg font-semibold text-gray-900 group-hover:text-primary transition-colors">
+            <h2 className="group-hover:text-primary text-lg font-semibold text-gray-900 transition-colors">
               {page.suburb}
             </h2>
           </div>
-          <span className="flex-shrink-0 text-primary font-medium text-sm group-hover:translate-x-1 transition-transform duration-200">
+          <span className="text-primary flex-shrink-0 text-sm font-medium transition-transform duration-200 group-hover:translate-x-1">
             →
           </span>
         </div>
       </div>
-      <div className="h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" aria-hidden="true" />
+      <div className="bg-primary h-0.5 w-0 transition-all duration-300 group-hover:w-full" aria-hidden="true" />
     </article>
   );
 }
@@ -112,9 +112,9 @@ export default async function LocationsIndexPage() {
           }}
           aria-hidden="true"
         />
-        <div className="mx-auto max-w-screen-lg px-4 md:px-8 py-12 md:py-16 text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">Melbourne&apos;s West</p>
-          <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl mb-4">Areas We Serve</h1>
+        <div className="mx-auto max-w-screen-lg px-4 py-12 text-center md:px-8 md:py-16">
+          <p className="text-primary mb-3 text-sm font-semibold tracking-widest uppercase">Melbourne&apos;s West</p>
+          <h1 className="mb-4 text-4xl font-extrabold text-gray-900 sm:text-5xl">Areas We Serve</h1>
           <p className="mx-auto max-w-xl text-lg text-gray-600">
             Based in Altona North, we service Melbourne&apos;s western suburbs. Select your suburb below for local
             electricians, solar, and air conditioning.
@@ -123,7 +123,7 @@ export default async function LocationsIndexPage() {
       </div>
 
       {/* Suburb grid */}
-      <div className="mx-auto max-w-screen-lg px-4 md:px-8 pb-16">
+      <div className="mx-auto max-w-screen-lg px-4 pb-16 md:px-8">
         {pages.length > 0 ? (
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {pages.map((page) => (
@@ -131,18 +131,18 @@ export default async function LocationsIndexPage() {
             ))}
           </div>
         ) : (
-          <p className="text-center text-gray-500 py-12">Location pages coming soon.</p>
+          <p className="py-12 text-center text-gray-500">Location pages coming soon.</p>
         )}
       </div>
 
       {/* CTA strip */}
-      <section aria-labelledby="locations-cta-heading" className="bg-primary/5 border-t border-primary/10">
-        <div className="mx-auto max-w-screen-lg px-4 md:px-8 py-12 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <section aria-labelledby="locations-cta-heading" className="border-primary/10 bg-primary/5 border-t">
+        <div className="mx-auto flex max-w-screen-lg flex-col items-center justify-between gap-6 px-4 py-12 sm:flex-row md:px-8">
           <div>
             <h2 id="locations-cta-heading" className="text-xl font-bold text-gray-900">
               Don&apos;t see your suburb?
             </h2>
-            <p className="text-gray-600 mt-1">
+            <p className="mt-1 text-gray-600">
               We cover more of Melbourne&apos;s west — call us and we&apos;ll let you know.
             </p>
           </div>

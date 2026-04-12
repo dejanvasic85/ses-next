@@ -24,9 +24,9 @@ export function Contact({ className, contact, location }: ContactProps) {
     <div className={className}>
       <Heading level={2}>Contact us</Heading>
       <Activity mode={firstBlurb ? 'visible' : 'hidden'}>
-        <p className="max-w-screen-md mb-12 text-center mx-auto px-4 text-gray-500 md:text-lg">{firstBlurb}</p>
+        <p className="mx-auto mb-12 max-w-screen-md px-4 text-center text-gray-500 md:text-lg">{firstBlurb}</p>
       </Activity>
-      <div className="flex flex-col items-center justify-center ">
+      <div className="flex flex-col items-center justify-center">
         <div className="bg-white p-8 text-center">
           <div className="text-lg" itemProp="address" itemScope itemType="http://schema.org/PostalAddress">
             <p className="mb-2">
@@ -38,13 +38,13 @@ export function Contact({ className, contact, location }: ContactProps) {
         </div>
       </div>
       <Activity mode={contact.phone ? 'visible' : 'hidden'}>
-        <p className="max-w-screen-md mb-12 text-center mx-auto px-4">
+        <p className="mx-auto mb-12 max-w-screen-md px-4 text-center">
           <LinkButton href={`tel:${contact.phone}`}>
             <Icon name="phone" size="lg" /> {contact.phone}
           </LinkButton>
         </p>
       </Activity>
-      <div className="text-gray-600 body-font relative">
+      <div className="body-font relative text-gray-600">
         {location && (
           <div className="absolute inset-0 bg-gray-300">
             <iframe
@@ -60,17 +60,17 @@ export function Contact({ className, contact, location }: ContactProps) {
             ></iframe>
           </div>
         )}
-        <div className="container px-5 py-24 mx-auto flex">
-          <div className="lg:w-1/3 md:w-1/2 bg-white rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10 shadow-md">
-            <h3 className="text-gray-900 text-lg mb-1 font-medium title-font">Message us for a quote or callback</h3>
+        <div className="container mx-auto flex px-5 py-24">
+          <div className="relative z-10 mt-10 flex w-full flex-col rounded-lg bg-white p-8 shadow-md md:mt-0 md:ml-auto md:w-1/2 lg:w-1/3">
+            <h3 className="title-font mb-1 text-lg font-medium text-gray-900">Message us for a quote or callback</h3>
             <Activity mode={secondBlurb ? 'visible' : 'hidden'}>
-              <p className="leading-relaxed mb-5 text-gray-600">{secondBlurb}</p>
+              <p className="mb-5 leading-relaxed text-gray-600">{secondBlurb}</p>
             </Activity>
 
             <Activity mode={!messageSent ? 'visible' : 'hidden'}>
               <ContactForm loading={loading} onSubmit={sendMessage} />
               <Activity mode={error ? 'visible' : 'hidden'}>
-                <p role="alert" aria-live="assertive" className="text-error text-sm mt-3">
+                <p role="alert" aria-live="assertive" className="text-error mt-3 text-sm">
                   Something went wrong. Please try again.
                 </p>
               </Activity>
@@ -80,7 +80,7 @@ export function Contact({ className, contact, location }: ContactProps) {
             </Activity>
 
             <Activity mode={contact.callBack ? 'visible' : 'hidden'}>
-              <p className="text-xs text-gray-500 mt-3">{contact.callBack}</p>
+              <p className="mt-3 text-xs text-gray-500">{contact.callBack}</p>
             </Activity>
           </div>
         </div>

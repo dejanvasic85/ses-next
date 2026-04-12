@@ -12,10 +12,10 @@ interface BlogLayoutProps {
 
 export const BlogLayout = ({ tagsWithCount, totalPosts, children }: BlogLayoutProps) => {
   return (
-    <div className="container mx-auto px-4 mt-6 mb-12">
+    <div className="container mx-auto mt-6 mb-12 px-4">
       <BlogMenu />
-      <div className="flex gap-8 mt-6">
-        <main className="flex-1 min-w-0">
+      <div className="mt-6 flex gap-8">
+        <main className="min-w-0 flex-1">
           <BlogFilterMobile tagsWithCount={tagsWithCount} totalPosts={totalPosts} />
           {children}
         </main>
