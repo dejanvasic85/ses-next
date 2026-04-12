@@ -136,7 +136,9 @@ export default async function LocationPage({ params }: LocationPageProps) {
 
         {page.services.length > 0 && <LocationServices services={page.services} />}
 
-        {page.nearbySuburbs.length > 0 && <LocationNearbySuburbs nearbySuburbs={page.nearbySuburbs} />}
+        {page.nearbySuburbs.length > 0 && (
+          <LocationNearbySuburbs suburb={page.suburb} nearbySuburbs={page.nearbySuburbs} />
+        )}
 
         {page.faqs.length > 0 && <LocationFaqs faqs={page.faqs} suburb={page.suburb} />}
       </div>
