@@ -9,6 +9,7 @@ import type { IconMap } from '@/components/Icon/IconMap';
 import { type ServiceItem } from '@/types';
 
 const servicesHubPath = '/services/';
+const locationsPath = '/locations/';
 
 const ConditionalWrap = ({
   children,
@@ -89,6 +90,17 @@ export const Services = ({ className, blurbs, services }: ServicesProps) => {
               <p className="text-primary text-lg font-semibold group-hover:underline">
                 See all our electrical services →
               </p>
+            </div>
+          </div>
+          <div className="group border-primary relative w-full overflow-hidden rounded-lg border-2 border-dashed">
+            <Link href={locationsPath} className="absolute inset-0 z-10" prefetch={false}>
+              <span className="sr-only">View our service areas and locations</span>
+            </Link>
+            <div className="flex h-full min-h-[160px] flex-col items-center justify-center gap-3 p-6 text-center">
+              <div className="bg-primary/10 rounded-full p-3">
+                <Icon name="home" size="xl" className="text-primary" />
+              </div>
+              <p className="text-primary text-lg font-semibold group-hover:underline">View our service areas →</p>
             </div>
           </div>
         </div>
