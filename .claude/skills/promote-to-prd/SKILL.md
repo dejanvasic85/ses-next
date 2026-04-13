@@ -85,7 +85,7 @@ Only after completing all three rounds, generate the PRD:
 **Body structure** (follow `docs/planning/templates/prd.md`):
 
 - **Problem** — from Round 1 answers
-- **Current State** — cross-reference the codebase for actual file paths. Use `packages/ses-next/src/` paths where relevant.
+- **Current State** — cross-reference the codebase for actual file paths. Search the project to find real paths rather than guessing.
 - **Requirements** — expand Round 2 answers into numbered H3 subsections. Include code snippets, Sanity schema additions, or content examples.
 - **Implementation Notes** — constraints, gotchas, architectural decisions
 - **Acceptance Criteria** — checkboxes from Round 3. Each item independently verifiable.
@@ -129,5 +129,4 @@ Valid status values: `draft | review | approved | in-progress | completed | canc
 - PRDs directory: `docs/planning/prds/`
 - Template: `docs/planning/templates/prd.md`
 - Existing PRDs use numbers 00–08. Next available is 09.
-- Reference `ses-content-writer` skill conventions for any Sanity CMS schema or content requirements
 - Never write the PRD before completing all three interview rounds

@@ -75,7 +75,7 @@ tags: [from PRD]
   - Specific file paths (verified against codebase)
   - Numbered steps describing exactly what to change
   - Verification statement
-- **Sanity CMS Steps** — if the PRD involves CMS schema or content, list them separately. Note where `/ses-content-writer` skill should be used for actual content.
+- **Sanity CMS Steps** — if the PRD involves CMS schema or content, list them separately.
 - **Verification Checklist** — always include in this order:
   1. `npm run format`
   2. `npm run lint`
@@ -100,12 +100,12 @@ Report the files created/updated. Ask if the user wants to start working on the 
 
 For SEO/content PRDs:
 
-1. Sanity schema changes first
-2. TypeScript types and Zod schemas
-3. GROQ queries
+1. Schema/CMS changes first
+2. TypeScript types and validation schemas
+3. Data queries
 4. Data mappers
-5. React components/pages
-6. Content creation (use `ses-content-writer` skill)
+5. Components/pages
+6. Content creation
 7. E2E tests
 
 For engineering PRDs:
@@ -121,6 +121,4 @@ For engineering PRDs:
 - Plans directory: `docs/planning/plans/`
 - Template: `docs/planning/templates/plan.md`
 - Always verify file paths exist in the codebase before referencing them
-- Reference `ses-content-writer` skill for any content creation steps
-- Use `packages/ses-next/` prefix for Next.js app files
-- Use `apps/content-studio/` prefix for Sanity Studio files
+- Search the project structure to discover the correct path prefixes — do not assume a specific project layout
