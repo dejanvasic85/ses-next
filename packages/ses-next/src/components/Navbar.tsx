@@ -18,6 +18,7 @@ const styles = {
 interface NavLinks {
   home: string;
   services: string;
+  locations: string;
   about: string;
   contact: string;
   faq: string;
@@ -27,6 +28,7 @@ interface NavLinks {
 const defaultNavLinks: NavLinks = {
   home: '/',
   services: '/services/',
+  locations: '/locations/',
   about: '/#about',
   contact: '/#contact',
   faq: '/faq',
@@ -219,6 +221,9 @@ function MenuItems({ links, contactPhone, onClick }: MenuItemsProps) {
       </MenuLinkItem>
       <MenuLinkItem href={links.services} onClick={onClick}>
         Services
+      </MenuLinkItem>
+      <MenuLinkItem href={links.locations} onClick={onClick}>
+        Locations
       </MenuLinkItem>
       <MenuLinkItem href={links.about} onClick={onClick}>
         About
