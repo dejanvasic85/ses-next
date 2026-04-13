@@ -288,7 +288,6 @@ export const SiteSettingsSchema = z.object({
       instagram: z.url().nullable(),
     })
     .nullable(),
-  serviceAreas: z.array(z.string()).nullable().optional(),
 });
 
 export const ServicesHubSchema = z.object({
@@ -420,7 +419,6 @@ export type SiteSettings = {
   meta: Meta;
   social: Social;
   phone: string;
-  serviceAreas: string[] | null;
 };
 
 export type LocationPageFaq = {

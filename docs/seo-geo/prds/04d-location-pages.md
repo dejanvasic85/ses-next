@@ -291,8 +291,8 @@ Service area lists must no longer come from `siteSettings.serviceAreas`. They sh
 - [x] Services linked to each location page in Sanity Studio
 - [x] Cross-links between suburb pages ("Also serving nearby")
 - [x] Service pages updated with links to relevant location pages
-- [ ] Homepage shows location links under Services section
-- [ ] Main menu includes link to Locations
-- [ ] All new pages appear in sitemap
-- [ ] Service area UI sections read from `locationPage` data (not `siteSettings`)
-- [ ] `siteSettings.serviceAreas` removed from schema and frontend data model
+- [x] Homepage shows location links under Services section
+- [x] Main menu includes link to Locations
+- [x] All new pages appear in sitemap
+- [x] Service area UI sections read from `locationPage` data (not `siteSettings`)
+- [x] `siteSettings.serviceAreas` removed from schema and frontend data model
