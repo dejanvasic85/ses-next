@@ -19,17 +19,23 @@ Creates: `docs/planning/ideas/YYYY-MM-slug.md`
 
 ## Workflow
 
-### Step 1 — Gather the idea
+### Step 1 — Take the idea as-is
 
-Ask the user to describe their idea in 1-3 sentences if they haven't already. Capture:
+Accept whatever the user provides — a single sentence is enough. Do not ask clarifying questions upfront.
 
-- What is the idea? (title, one-liner)
-- What problem or opportunity does it address?
-- Any context (what prompted this — a conversation, data, observation)?
+### Step 2 — Query the codebase
 
-### Step 2 — Infer metadata
+Before writing the file, search the codebase to understand what the idea refers to:
 
-From the description, determine:
+- Use Glob/Grep to find relevant files, components, schemas, or routes mentioned or implied by the idea
+- Read any key files needed to understand current state
+- Use this context to fill in the sections below with real, grounded content
+
+Only ask the user a question if the idea is so ambiguous that you cannot make a reasonable inference about what it refers to in this codebase (e.g., a single word with no context). One targeted question maximum.
+
+### Step 3 — Infer metadata
+
+From the description and codebase context, determine:
 
 - **slug**: kebab-case from the title (e.g., "Add llms.txt file" → `add-llms-txt-file`)
 - **domain**: one of `seo | engineering | content | design | infrastructure`
@@ -37,13 +43,13 @@ From the description, determine:
 - **priority**: default `unset` unless the user signals urgency
 - **status**: always `captured` on creation
 
-### Step 3 — Create the file
+### Step 4 — Create the file
 
 Filename format: `YYYY-MM-slug.md` using today's date for YYYY-MM.
 
-Use the template at `docs/planning/templates/idea.md`. Populate all frontmatter fields. Write short placeholder content under each section heading — enough to capture the idea clearly. Leave `prd: ""` blank (filled when promoted).
+Use the template at `docs/planning/templates/idea.md`. Populate all frontmatter fields. Write concise content under each section heading based on what you found in the codebase — do not leave sections as empty placeholders. Leave `prd: ""` blank (filled when promoted).
 
-### Step 4 — Confirm
+### Step 5 — Confirm
 
 Tell the user the file was created at `docs/planning/ideas/YYYY-MM-slug.md` and ask if they want to immediately evaluate it (status: evaluating) or leave it as captured for later triage.
 
