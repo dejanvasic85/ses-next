@@ -201,7 +201,8 @@ From the FAQ section on each page.
 
 ## Internal Linking
 
-- **Homepage** → Add all suburb links to the "Service Areas" or a new "Areas We Serve" section.
+- **Homepage** → Add location links under the Services section (as an "Areas We Serve" group beneath services content).
+- **Main menu/navigation** → Add a Locations entry so suburb pages are discoverable from primary navigation.
 - **Suburb pages** → cross-link to nearby suburbs ("Also serving nearby: [links]")
 - **Service pages** → mention service areas with links to relevant location pages (e.g., air conditioning page mentions "We install split systems across Altona, Footscray, and Newport" with links)
 - **Location pages** → link to relevant service pages
@@ -260,19 +261,20 @@ The strategy mirrors the existing `Service Routes` describe block in `packages/s
    - `nav` is visible
 5. Add this as a `Location Routes` describe block in `packages/ses-next/tests/routes.spec.ts`.
 
-## siteSettings Service Areas Migration
+## Service Areas Data Source Migration
 
-The `serviceAreas` string array in Site Settings should be **replaced with references to `locationPage` documents** once all location pages are published. This ensures:
+Service area lists must no longer come from `siteSettings.serviceAreas`. They should come directly from published `locationPage` documents. This ensures:
 
 - Single source of truth — suburbs defined once in `locationPage`
-- Automatic internal linking from any component reading service areas
-- No suburb listed as a service area without a corresponding page
+- No stale suburb strings in Site Settings
+- Automatic linking because each area includes a real location page slug
 
 **Migration steps:**
 
-1. Publish all location pages in Sanity
-2. Update `siteSettings` schema to use `array of references` to `locationPage` instead of `array of string`
-3. Update any component consuming `serviceAreas` to use the location page slug for linking
+1. Publish all required location pages in Sanity
+2. Update frontend sections that currently render service areas (for example services hub and homepage) to query `locationPage` documents instead of reading `siteSettings.serviceAreas`
+3. Remove `serviceAreas` from the `siteSettings` schema
+4. Remove `serviceAreas` from queries, mappings, and types so the field is fully deprecated
 
 ## Acceptance Criteria
 
@@ -288,6 +290,9 @@ The `serviceAreas` string array in Site Settings should be **replaced with refer
 - [x] E2E test added to `routes.spec.ts` as a `Location Routes` describe block (skips gracefully when no pages are published)
 - [x] Services linked to each location page in Sanity Studio
 - [x] Cross-links between suburb pages ("Also serving nearby")
-- [ ] Service pages updated with links to relevant location pages
+- [x] Service pages updated with links to relevant location pages
+- [ ] Homepage shows location links under Services section
+- [ ] Main menu includes link to Locations
 - [ ] All new pages appear in sitemap
-- [ ] `siteSettings.serviceAreas` migrated from string array to `locationPage` references
+- [ ] Service area UI sections read from `locationPage` data (not `siteSettings`)
+- [ ] `siteSettings.serviceAreas` removed from schema and frontend data model

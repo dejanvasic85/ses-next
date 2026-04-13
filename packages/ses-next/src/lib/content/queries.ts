@@ -234,6 +234,13 @@ export const locationPageBySlugQuery = `*[_type == "locationPage" && slug.curren
   seoDescription
 }`;
 
+export const locationPagesByServiceSlugsQuery = `*[_type == "locationPage" && count(services[@->slug.current in $serviceSlugs]) > 0] | order(suburb asc){
+  _id,
+  _type,
+  suburb,
+  slug
+}`;
+
 export const termsAndConditionsQuery = `*[_type == "terms-and-conditions"]{
   _id,
   _type,
