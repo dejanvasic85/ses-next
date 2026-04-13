@@ -204,7 +204,7 @@ export const getLocationPagesByServiceSlugs = async (
 
     const result = await sanityClient.fetch(locationPagesByServiceSlugsQuery, { serviceSlugs });
 
-    const parsedLocations = (result as unknown[]).map((item) => LocationPageNearbySuburbRefSchema.parse(item));
+    const parsedLocations = LocationPageNearbySuburbRefSchema.array().parse(result);
 
     return parsedLocations.map((location) => ({
       id: location._id,

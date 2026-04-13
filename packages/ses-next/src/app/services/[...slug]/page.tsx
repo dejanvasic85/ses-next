@@ -17,7 +17,7 @@ import { RelatedServices } from '@/components/RelatedServices/RelatedServices';
 import { ServiceLocations } from '@/components/ServiceLocations/ServiceLocations';
 import { SanityImage } from '@/components/SanityImage';
 import { ServiceBreadcrumb } from '@/components/ServiceBreadcrumb/ServiceBreadcrumb';
-import type { GoogleReview, ServiceItem } from '@/types';
+import type { GoogleReview, LocationPageNearbySuburbRef, ServiceItem } from '@/types';
 
 type ServicePageProps = {
   params: Promise<{ slug: string[] }>;
@@ -107,7 +107,13 @@ export default async function ServicePage({ params }: ServicePageProps) {
   const childServices = services.filter((s) => s.parentService?.slug === service!.slug);
   const filteredBlogPosts = blogPosts.filter(({ tags }) => tags.includes(service!.slug));
   const serviceSlugs = service.parentService ? [service.slug, service.parentService.slug] : [service.slug];
-  const locationPages = await getLocationPagesByServiceSlugs(serviceSlugs);
+  let locationPages: LocationPageNearbySuburbRef[] = [];
+
+  try {
+    locationPages = await getLocationPagesByServiceSlugs(serviceSlugs);
+  } catch (error) {
+    console.error('Failed to fetch location pages for service page:', error);
+  }
 
   const { baseUrl, companyName, phone, companyLogo } = siteSettings;
   const servicesUrl = new URL('services/', baseUrl).toString();
