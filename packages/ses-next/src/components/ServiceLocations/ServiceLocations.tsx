@@ -60,9 +60,7 @@ export function ServiceLocations({ serviceName, locations }: ServiceLocationsPro
                     <p className="text-xs font-semibold tracking-[0.14em] text-cyan-100 uppercase">
                       Local service page
                     </p>
-                    <h3 className="mt-3 text-2xl leading-tight font-semibold text-white">
-                      Electrician {location.suburb}
-                    </h3>
+                    <h3 className="mt-3 text-2xl leading-tight font-semibold text-white">{location.suburb}</h3>
                   </div>
                   <p className="mt-7 text-sm font-medium text-slate-200 transition-colors group-hover:text-white">
                     Explore local details and availability
