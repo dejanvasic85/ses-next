@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Heading } from '@/components/Heading';
 import { Icon } from '@/components/Icon/Icon';
 import { SanityImage } from '@/components/SanityImage';
-import { getServicesHubContent, getSiteSettings, getServices } from '@/lib/content/contentService';
+import { getAllLocationPages, getServicesHubContent, getSiteSettings, getServices } from '@/lib/content/contentService';
 import { safeJsonLd } from '@/lib/structuredData';
 import type { ServiceItem } from '@/types';
 
@@ -62,13 +62,14 @@ function ServiceCard({ service }: ServiceCardProps) {
 }
 
 export default async function ServicesHubPage() {
-  const [siteSettings, hubContent, services] = await Promise.all([
+  const [siteSettings, hubContent, services, locationPages] = await Promise.all([
     getSiteSettings(),
     getServicesHubContent(),
     getServices(),
+    getAllLocationPages(),
   ]);
 
-  const { baseUrl, phone, serviceAreas } = siteSettings;
+  const { baseUrl, phone } = siteSettings;
 
   const pageUrl = new URL('services/', baseUrl).toString();
   const topLevelServices = services.filter((s) => !s.parentService);
@@ -137,11 +138,16 @@ export default async function ServicesHubPage() {
               <p className="mb-4 text-center text-gray-600">
                 We provide electrical services across Melbourne&apos;s western and inner-western suburbs, including:
               </p>
-              {serviceAreas && (
+              {locationPages.length > 0 && (
                 <ul className="flex flex-wrap items-center justify-center gap-2" aria-label="Service areas">
-                  {serviceAreas.map((area) => (
-                    <li key={area} className="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700">
-                      {area}
+                  {locationPages.map(({ id, suburb, slug }) => (
+                    <li key={id}>
+                      <Link
+                        href={`/locations/${slug}`}
+                        className="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700 transition-colors hover:bg-gray-200 hover:text-gray-900"
+                      >
+                        {suburb}
+                      </Link>
                     </li>
                   ))}
                 </ul>

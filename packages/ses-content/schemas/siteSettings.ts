@@ -89,12 +89,5 @@ export default defineType({
         {name: 'instagram', type: 'url', title: 'Instagram'},
       ],
     }),
-    defineField({
-      name: 'serviceAreas',
-      title: 'Service Areas',
-      type: 'array',
-      of: [{type: 'string'}],
-      description: 'List of suburbs served',
-    }),
   ],
 })
