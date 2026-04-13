@@ -28,7 +28,7 @@ jobs:
         run: npm run build -w ses-content
 
       - name: Deploy Sanity Studio
-        run: npm run deploy -w ses-content -- --yes --studio-hostname ses
+        run: npm run deploy -w ses-content -- --yes
         env:
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
           NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ vars.SANITY_PROJECT_ID }}
