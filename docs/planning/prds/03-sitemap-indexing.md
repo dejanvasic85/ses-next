@@ -1,8 +1,21 @@
-# 03 — Sitemap & Indexing Cleanup
+---
+title: 'Sitemap & Indexing Cleanup'
+number: '03'
+status: completed
+priority: high
+phase: '1'
+created: '2026-03-01'
+updated: '2026-03-01'
+owner: ''
+idea: ''
+plan: ''
+depends-on: []
+domain: seo
+budget: ''
+tags: ['sitemap', 'indexing', 'robots', 'seo']
+---
 
-**Priority:** High
-**Phase:** 1 (Month 1)
-**Status:** Completed
+# 03 — Sitemap & Indexing Cleanup
 
 ## Problem
 

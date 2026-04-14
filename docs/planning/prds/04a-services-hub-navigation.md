@@ -1,9 +1,21 @@
-# 04a — Services Hub Page & Navigation
+---
+title: 'Services Hub Page & Navigation'
+number: '04a'
+status: completed
+priority: critical
+phase: '2'
+created: '2026-03-01'
+updated: '2026-03-01'
+owner: ''
+idea: ''
+plan: ''
+depends-on: ['01', '02', '03']
+domain: seo
+budget: ''
+tags: ['services-hub', 'navigation', 'sanity', 'seo']
+---
 
-**Priority:** Critical
-**Phase:** 2 (Month 2)
-**Status:** Completed
-**Depends on:** PRD-01 (structured data), PRD-02 (meta tags), PRD-03 (sitemap)
+# 04a — Services Hub Page & Navigation
 
 ## Problem
 

@@ -1,9 +1,21 @@
-# 04c — New Top-Level Service Pages
+---
+title: 'New Top-Level Service Pages'
+number: '04c'
+status: completed
+priority: critical
+phase: '2'
+created: '2026-03-01'
+updated: '2026-03-01'
+owner: ''
+idea: ''
+plan: ''
+depends-on: ['04a', '04b']
+domain: seo
+budget: ''
+tags: ['service-pages', 'emergency', 'commercial', 'seo']
+---
 
-**Priority:** Critical
-**Phase:** 2 (Month 2)
-**Status:** Completed
-**Depends on:** PRD-04a (services hub), PRD-04b (content model with `parentService` and `showOnHomepage`)
+# 04c — New Top-Level Service Pages
 
 ## Problem
 

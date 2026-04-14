@@ -1,8 +1,21 @@
-# 07 — GEO (Generative Engine Optimisation)
+---
+title: 'GEO (Generative Engine Optimisation)'
+number: '07'
+status: approved
+priority: medium
+phase: '1-2'
+created: '2026-03-01'
+updated: '2026-03-01'
+owner: ''
+idea: ''
+plan: ''
+depends-on: []
+domain: seo
+budget: ''
+tags: ['geo', 'ai-optimisation', 'llms', 'structured-data', 'faq']
+---
 
-**Priority:** Medium
-**Phase:** 1-2 (layered across other work)
-**Status:** Planned
+# 07 — GEO (Generative Engine Optimisation)
 
 ## Problem
 

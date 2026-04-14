@@ -1,8 +1,21 @@
-# 02 — Meta Tags & Canonicals
+---
+title: 'Meta Tags & Canonicals'
+number: '02'
+status: completed
+priority: critical
+phase: '1'
+created: '2026-03-01'
+updated: '2026-03-01'
+owner: ''
+idea: ''
+plan: ''
+depends-on: []
+domain: seo
+budget: ''
+tags: ['meta-tags', 'canonicals', 'open-graph', 'seo']
+---
 
-**Priority:** Critical
-**Phase:** 1 (Month 1)
-**Status:** Complete
+# 02 — Meta Tags & Canonicals
 
 ## Problem
 

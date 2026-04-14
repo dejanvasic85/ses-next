@@ -1,3 +1,20 @@
+---
+title: 'SEO & GEO Implementation Plan'
+number: '00'
+status: in-progress
+priority: high
+phase: '1-3'
+created: '2026-03-01'
+updated: '2026-04-13'
+owner: ''
+idea: ''
+plan: ''
+depends-on: []
+domain: seo
+budget: '$140/month + quoted work'
+tags: ['seo', 'geo', 'implementation-plan', 'orchestrator']
+---
+
 # SES Melbourne — SEO & GEO Implementation Plan
 
 ## Overview
@@ -27,8 +44,10 @@ Each task group has a dedicated PRD:
 - [01 - Structured Data (JSON-LD Schema)](./01-structured-data.md)
 - [02 - Meta Tags & Canonicals](./02-meta-tags-canonicals.md)
 - [03 - Sitemap & Indexing Cleanup](./03-sitemap-indexing.md)
-- [04 - Service Page Expansion](./04-service-pages.md)
-- [05 - Location Pages](./05-location-pages.md)
+- [04a - Services Hub & Navigation](./04a-services-hub-navigation.md)
+- [04b - Sub-Service Pages](./04b-sub-service-pages.md)
+- [04c - New Top-Level Service Pages](./04c-new-parent-services.md)
+- [04d - Location Pages](./04d-location-pages.md)
 - [06 - Blog Content Strategy](./06-blog-strategy.md)
 - [07 - GEO (AI Optimisation)](./07-geo-strategy.md)
 - [08 - Paid Ads Relaunch](./08-paid-ads.md)

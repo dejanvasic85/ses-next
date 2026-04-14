@@ -1,9 +1,21 @@
-# 04d — Location Pages
+---
+title: 'Location Pages'
+number: '04d'
+status: completed
+priority: critical
+phase: '2-3'
+created: '2026-03-01'
+updated: '2026-03-01'
+owner: ''
+idea: ''
+plan: ''
+depends-on: ['04a', '01']
+domain: seo
+budget: ''
+tags: ['location-pages', 'sanity', 'geo', 'seo']
+---
 
-**Priority:** Critical
-**Phase:** 2 (Month 2-3)
-**Status:** Completed
-**Depends on:** PRD-04a (services hub — for internal linking pattern), PRD-01 (structured data)
+# 04d — Location Pages
 
 ## Problem
 

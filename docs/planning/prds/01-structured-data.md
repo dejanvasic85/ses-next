@@ -1,8 +1,21 @@
-# 01 — Structured Data (JSON-LD Schema)
+---
+title: 'Structured Data (JSON-LD Schema)'
+number: '01'
+status: approved
+priority: critical
+phase: '1'
+created: '2026-03-01'
+updated: '2026-03-01'
+owner: ''
+idea: ''
+plan: ''
+depends-on: []
+domain: seo
+budget: ''
+tags: ['structured-data', 'json-ld', 'schema', 'rich-results']
+---
 
-**Priority:** Critical
-**Phase:** 1 (Month 1)
-**Status:** To Do
+# 01 — Structured Data (JSON-LD Schema)
 
 ## Current State
 

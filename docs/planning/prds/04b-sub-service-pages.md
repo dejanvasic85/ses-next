@@ -1,9 +1,21 @@
-# 04b — Sub-Service Pages & Content Model
+---
+title: 'Sub-Service Pages & Content Model'
+number: '04b'
+status: completed
+priority: high
+phase: '2'
+created: '2026-03-01'
+updated: '2026-03-01'
+owner: ''
+idea: ''
+plan: ''
+depends-on: ['04a']
+domain: seo
+budget: ''
+tags: ['sub-services', 'sanity', 'routing', 'seo']
+---
 
-**Priority:** High
-**Phase:** 2 (Month 2)
-**Status:** Completed
-**Depends on:** PRD-04a (services hub page must exist first)
+# 04b — Sub-Service Pages & Content Model
 
 ## Problem
 

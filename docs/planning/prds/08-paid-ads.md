@@ -1,8 +1,21 @@
-# 08 — Paid Ads Relaunch
+---
+title: 'Paid Ads Relaunch'
+number: '08'
+status: draft
+priority: medium
+phase: '3'
+created: '2026-03-01'
+updated: '2026-03-01'
+owner: ''
+idea: ''
+plan: ''
+depends-on: ['01', '02', '04c', '04d']
+domain: seo
+budget: '$500-750/month ads spend (separate from subscription)'
+tags: ['paid-ads', 'google-ads', 'conversion-tracking', 'ga4']
+---
 
-**Priority:** Medium
-**Phase:** 3 (Month 3+, after SEO foundation is solid)
-**Status:** Paused
+# 08 — Paid Ads Relaunch
 
 ## Context
 

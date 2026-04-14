@@ -1,8 +1,21 @@
-# 06 — Blog Content Strategy
+---
+title: 'Blog Content Strategy'
+number: '06'
+status: approved
+priority: high
+phase: '2-3'
+created: '2026-03-01'
+updated: '2026-03-01'
+owner: ''
+idea: ''
+plan: ''
+depends-on: []
+domain: seo
+budget: ''
+tags: ['blog', 'content', 'seo', 'internal-linking']
+---
 
-**Priority:** High
-**Phase:** 2-3 (Ongoing)
-**Status:** Planned
+# 06 — Blog Content Strategy
 
 ## Problem
 
