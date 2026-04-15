@@ -8,7 +8,7 @@ created: '2026-03-01'
 updated: '2026-03-01'
 owner: ''
 idea: ''
-plan: ''
+plan: '06-blog-strategy/plan.md'
 depends-on: []
 domain: seo
 budget: ''

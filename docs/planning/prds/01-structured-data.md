@@ -129,4 +129,4 @@ Each page constructs breadcrumb items based on its route depth.
 - [x] BreadcrumbJsonLd added to service pages, FAQ, and blog posts
 - [ ] All schema passes Google Rich Results Test with no errors
 - [x] Existing ArticleJsonLd on blog posts left intact
-- [ ] `npm run type:check` and `npm run lint` pass
+- [x] `npm run type:check` and `npm run lint` pass
