@@ -197,13 +197,13 @@ Each page gets:
 
 ## Acceptance Criteria
 
-- [ ] `/services/emergency-electrician` live with 800+ words of unique content
-- [ ] `/services/commercial-electrician` live with 800+ words of unique content
+- [x] `/services/emergency-electrician` live with 800+ words of unique content
+- [x] `/services/commercial-electrician` live with 800+ words of unique content
 - [ ] Both pages have `showOnHomepage: false` and `parentService: null`
-- [ ] Both pages appear on `/services/` hub page
-- [ ] Both pages have Service schema, BreadcrumbJsonLd, and FAQPageJsonLd
-- [ ] Both pages have optimised title tags and meta descriptions
-- [ ] Emergency page clearly states business hours only — no 24/7 or after-hours language
+- [x] Both pages appear on `/services/` hub page (automatic — hub queries all top-level Sanity services)
+- [x] Both pages have Service schema, BreadcrumbJsonLd, and FAQPageJsonLd
+- [x] Both pages have optimised title tags and meta descriptions
+- [x] Emergency page clearly states business hours only — no 24/7 or after-hours language
 - [ ] Internal links added to/from related service pages and blog posts
-- [ ] Both pages appear in sitemap
+- [x] Both pages appear in sitemap
 - [ ] PRD-02 homepage title tag flagged for review (remove "24/7" if misleading)

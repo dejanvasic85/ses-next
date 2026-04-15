@@ -197,13 +197,13 @@ The hub page itself does NOT need a new Sanity document type. It queries all `se
 
 ## Acceptance Criteria
 
-- [ ] `/services/` page live and rendering all current service pages as cards
-- [ ] Main nav "Services" link points to `/services/` (not `/#services`)
-- [ ] Homepage 8th grid slot renders "View all services →" card linking to `/services/`
-- [ ] `showOnHomepage` field added to Sanity service schema; all 7 existing services set to `true`
-- [ ] Footer services list unchanged + "See all services →" link added below
-- [ ] `/services/` has title tag, meta description, and CollectionPage schema
-- [ ] `/services/` appears in sitemap
-- [ ] BreadcrumbJsonLd on service pages includes `/services/` as parent
-- [ ] `/#services` anchor still works on homepage for external links (backward compatibility)
-- [ ] `/#contact` and `/#about` hash anchors left untouched
+- [x] `/services/` page live and rendering all current service pages as cards
+- [x] Main nav "Services" link points to `/services/` (not `/#services`)
+- [x] Homepage 8th grid slot renders "View all services →" card linking to `/services/`
+- [x] `showOnHomepage` field added to Sanity service schema; all 7 existing services set to `true`
+- [x] Footer services list unchanged + "See all services →" link added below
+- [x] `/services/` has title tag, meta description, and CollectionPage schema
+- [x] `/services/` appears in sitemap
+- [x] BreadcrumbJsonLd on service pages includes `/services/` as parent
+- [x] `/#services` anchor still works on homepage for external links (backward compatibility)
+- [x] `/#contact` and `/#about` hash anchors left untouched

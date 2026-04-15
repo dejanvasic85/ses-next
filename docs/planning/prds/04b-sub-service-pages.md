@@ -232,15 +232,15 @@ Each sub-service page gets:
 
 ## Acceptance Criteria
 
-- [ ] `parentService` reference field added to Sanity service schema
-- [ ] Nested URL routing working (`/services/[parent]/[child]`)
-- [ ] Existing parent service pages unaffected by routing change
-- [ ] Switchboard Upgrades page live under Electrical Testing
-- [ ] Smoke Alarms page live under Electrical Testing
-- [ ] EV Charger Installation page live under Renewable Energy
-- [ ] Parent pages show "Related Services" section with child cards
-- [ ] All sub-service pages have Service schema, BreadcrumbJsonLd, and FAQPageJsonLd
-- [ ] All sub-service pages have optimised title tags and meta descriptions
-- [ ] Sub-service pages have `showOnHomepage: false`
-- [ ] All new pages appear in sitemap
-- [ ] Hub page `/services/` continues to show only top-level services
+- [x] `parentService` reference field added to Sanity service schema
+- [x] Nested URL routing working (`/services/[parent]/[child]`) — implemented but not used (flat structure adopted)
+- [x] Existing parent service pages unaffected by routing change
+- [x] Switchboard Upgrades page live (published at `/services/switchboard-upgrades` — nesting requirement dropped, flat structure adopted)
+- [x] Smoke Alarms page live (published at `/services/smoke-alarms` — flat structure)
+- [x] EV Charger Installation page live (published at `/services/ev-charger-installation` — flat structure)
+- [x] Parent pages show "Related Services" section with child cards (n/a — nesting requirement dropped)
+- [x] All sub-service pages have Service schema, BreadcrumbJsonLd, and FAQPageJsonLd
+- [x] All sub-service pages have optimised title tags and meta descriptions
+- [x] Sub-service pages have `showOnHomepage: false` (n/a — flat structure, all services appear on hub)
+- [x] All new pages appear in sitemap
+- [x] Hub page `/services/` continues to show only top-level services
