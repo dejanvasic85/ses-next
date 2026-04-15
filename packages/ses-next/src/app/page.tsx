@@ -93,6 +93,14 @@ export default async function Home() {
       'Moonee Ponds',
       'Ascot Vale',
     ],
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens: '07:00',
+        closes: '18:00',
+      },
+    ],
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue,

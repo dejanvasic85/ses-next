@@ -113,8 +113,8 @@ Next.js image optimisation URLs should not be indexed.
 
 ## Acceptance Criteria
 
-- [ ] Sitemap contains only valid, indexable pages (no hashes, no tags, no \_next)
-- [ ] Robots.txt blocks `/_next/` and `/api/` paths
-- [ ] Blog tag pages have `noindex, follow` meta tag
-- [ ] All blog posts confirmed present in sitemap
-- [ ] Sitemap resubmitted in Google Search Console after changes
+- [x] Sitemap contains only valid, indexable pages (no hashes, no tags, no \_next)
+- [x] Robots.txt blocks `/_next/` and `/api/` paths
+- [x] Blog tag pages have `noindex, follow` meta tag
+- [x] All blog posts confirmed present in sitemap
+- [x] Sitemap resubmitted in Google Search Console after changes

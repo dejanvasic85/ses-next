@@ -1,7 +1,7 @@
 ---
 title: 'Structured Data (JSON-LD Schema)'
 number: '01'
-status: approved
+status: completed
 priority: critical
 phase: '1'
 created: '2026-03-01'
@@ -123,10 +123,10 @@ Each page constructs breadcrumb items based on its route depth.
 
 ## Acceptance Criteria
 
-- [ ] Homepage LocalBusinessJsonLd enhanced with Electrician type, geo, hours, sameAs, areaServed
-- [ ] Service JSON-LD added to each of the 7 service pages
-- [ ] FAQPageJsonLd added to /faq page
-- [ ] BreadcrumbJsonLd added to service pages, FAQ, and blog posts
+- [x] Homepage LocalBusinessJsonLd enhanced with Electrician type, geo, hours, sameAs, areaServed
+- [x] Service JSON-LD added to each of the 7 service pages
+- [x] FAQPageJsonLd added to /faq page
+- [x] BreadcrumbJsonLd added to service pages, FAQ, and blog posts
 - [ ] All schema passes Google Rich Results Test with no errors
-- [ ] Existing ArticleJsonLd on blog posts left intact
-- [ ] `npm run type:check` and `npm run lint` pass
+- [x] Existing ArticleJsonLd on blog posts left intact
+- [x] `npm run type:check` and `npm run lint` pass
