@@ -1,0 +1,286 @@
+# ----------------------------------------
+# Acquisition overview
+# Account: ses-melbourne
+# Property: ses-melbourne-gtm
+# ----------------------------------------
+#  
+# Start date: 20260321
+# End date: 20260417
+Nth day,Active users
+0000,7
+0001,5
+0002,21
+0003,18
+0004,14
+0005,14
+0006,14
+0007,4
+0008,8
+0009,22
+0010,15
+0011,11
+0012,16
+0013,18
+0014,20
+0015,19
+0016,90
+0017,76
+0018,85
+0019,45
+0020,47
+0021,33
+0022,40
+0023,128
+0024,35
+0025,40
+0026,20
+0027,25
+
+# Start date: 20260321
+# End date: 20260417
+Nth day,New users
+0000,7
+0001,5
+0002,21
+0003,19
+0004,14
+0005,15
+0006,13
+0007,3
+0008,9
+0009,20
+0010,14
+0011,10
+0012,16
+0013,18
+0014,20
+0015,20
+0016,90
+0017,76
+0018,83
+0019,44
+0020,46
+0021,32
+0022,40
+0023,128
+0024,36
+0025,37
+0026,20
+0027,26
+
+#  
+# Start date: 20260321
+# End date: 20260417
+First user primary channel group (Default Channel Group),New users
+Direct,811
+Organic Search,39
+Referral,15
+Unassigned,14
+Organic Social,3
+
+#  
+# Start date: 20260321
+# End date: 20260417
+Session primary channel group (Default Channel Group),Sessions
+Direct,781
+Organic Search,64
+Referral,27
+Unassigned,16
+Organic Social,3
+
+#  
+# Start date: 20260321
+# End date: 20260417
+Session Google Ads campaign,Sessions
+
+
+#  
+# Start date: 20251219
+# End date: 20260417
+Cohort,Average 120d value
+0000,0
+0001,0
+0002,0
+0003,0
+0004,0
+0005,0
+0006,0
+0007,0
+0008,0
+0009,0
+0010,0
+0011,0
+0012,0
+0013,0
+0014,0
+0015,0
+0016,0
+0017,0
+0018,0
+0019,0
+0020,0
+0021,0
+0022,0
+0023,0
+0024,0
+0025,0
+0026,0
+0027,0
+0028,0
+0029,0
+0030,0
+0031,0
+0032,0
+0033,0
+0034,0
+0035,0
+0036,0
+0037,0
+0038,0
+0039,0
+0040,0
+0041,0
+0042,0
+0043,0
+0044,0
+0045,0
+0046,0
+0047,0
+0048,0
+0049,0
+0050,0
+0051,0
+0052,0
+0053,0
+0054,0
+0055,0
+0056,0
+0057,0
+0058,0
+0059,0
+0060,0
+0061,0
+0062,0
+0063,0
+0064,0
+0065,0
+0066,0
+0067,0
+0068,0
+0069,0
+0070,0
+0071,0
+0072,0
+0073,0
+0074,0
+0075,0
+0076,0
+0077,0
+0078,0
+0079,0
+0080,0
+0081,0
+0082,0
+0083,0
+0084,0
+0085,0
+0086,0
+0087,0
+0088,0
+0089,0
+0090,0
+0091,0
+0092,0
+0093,0
+0094,0
+0095,0
+0096,0
+0097,0
+0098,0
+0099,0
+0100,0
+0101,0
+0102,0
+0103,0
+0104,0
+0105,0
+0106,0
+0107,0
+0108,0
+0109,0
+0110,0
+0111,0
+0112,0
+0113,0
+0114,0
+0115,0
+0116,0
+0117,0
+0118,0
+0119,0
+
+#  
+# Start date: 20260321
+# End date: 20260417
+Landing page + query string,Organic Google Search impressions
+/,2058
+/blog/comprehensive-guide-to-electrical-testing,1532
+/services/electrical-testing,985
+/services/commercial-electrician,831
+/?utm_campaign=gmb,600
+/blog/importance-of-electrical-testing,596
+/services/renewable-energy,491
+/services/electrical-testing/switchboard-upgrades,471
+/services/air-conditioning,254
+/services/lighting,220
+/services/telecommunications,183
+/services,121
+/services/data-and-tv,113
+/faq,49
+/blog,39
+/terms,27
+/blog/unleash-the-power-of-your-entertainment,12
+/services/catering-maintenance,12
+/locations/electrician-moonee-ponds,7
+/blog/VEEC-guide-air-conditioning,5
+/blog/harnessing-the-power-of-renewables,5
+/blog/ultimate-guide-to-catering-maintenance,5
+/sitemap.xml,5
+/blog/ensuring-safety-and-efficiency,2
+/blog/get-the-most-from-your-nbn,1
+
+#  
+# Start date: 20260321
+# End date: 20260417
+Organic Google Search query,Organic Google Search clicks
+storm electrical solutions,7
+storm electrical,5
+air conditioner service melbourne,1
+electrical near me,1
+electrician altona north,1
+electrician near me,1
+ses electrical solutions,1
+
+#  
+# Start date: 20260321
+# End date: 20260417
+Session manual source,Sessions
+google,60
+localhost:3000,7
+github.com,4
+vercel.com,4
+localhost:4004,3
+chatgpt.com,2
+duckduckgo,2
+enfsolar.com,2
+l.facebook.com,2
+bing,1
+colorof.com,1
+duckduckgo_organic,1
+enf.com.cn,1
+icons-search.com,1
+localsearch_online,1
+m.facebook.com,1
+peekyou.com,1
+pepesearch.com,1
+tinker.com,1
