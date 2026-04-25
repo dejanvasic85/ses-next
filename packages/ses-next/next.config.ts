@@ -33,6 +33,11 @@ const nextConfig: NextConfig = {
         destination: '/services/data-and-tv',
         permanent: true,
       },
+      {
+        source: '/blog/importance-of-electrical-testing',
+        destination: '/blog/comprehensive-guide-to-electrical-testing',
+        permanent: true,
+      },
     ];
   },
 };

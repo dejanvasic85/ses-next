@@ -1,7 +1,7 @@
 ---
 title: 'Blog Content Strategy: Execution Plan'
 number: '06'
-status: planning
+status: in-progress
 priority: high
 created: '2026-04-15'
 updated: '2026-04-15'
@@ -133,9 +133,9 @@ See Sanity CMS Steps below.
 
 ### Post consolidation
 
-- [ ] Open `importance-of-electrical-testing` post in Sanity Studio
-- [ ] Copy any unique content sections into `comprehensive-guide-to-electrical-testing`
-- [ ] Unpublish (do NOT delete) `importance-of-electrical-testing` — the redirect in `next.config.ts` handles the URL
+- [x] Open `importance-of-electrical-testing` post in Sanity Studio
+- [x] Copy any unique content sections into `comprehensive-guide-to-electrical-testing`
+- [x] Unpublish (do NOT delete) `importance-of-electrical-testing` — the redirect in `next.config.ts` handles the URL
 
 ### Existing post title and meta description updates
 
