@@ -1,5 +1,5 @@
 ---
-updated: '2026-04-15'
+updated: '2026-04-25'
 ---
 
 # Execution Plans
@@ -8,18 +8,18 @@ updated: '2026-04-15'
 
 | Status      | Count |
 | ----------- | ----- |
-| Planning    | 1     |
+| Planning    | 0     |
 | Ready       | 0     |
-| In Progress | 0     |
+| In Progress | 1     |
 | Blocked     | 0     |
 | Completed   | 0     |
 | **Total**   | **1** |
 
 ## Plans
 
-| #                                | Title                 | Status   | Priority | PRD                               | Started | Completed |
-| -------------------------------- | --------------------- | -------- | -------- | --------------------------------- | ------- | --------- |
-| [06](./06-blog-strategy/plan.md) | Blog Content Strategy | planning | high     | [06](../prds/06-blog-strategy.md) | —       | —         |
+| #                                | Title                 | Status      | Priority | PRD                               | Started    | Completed |
+| -------------------------------- | --------------------- | ----------- | -------- | --------------------------------- | ---------- | --------- |
+| [06](./06-blog-strategy/plan.md) | Blog Content Strategy | in-progress | high     | [06](../prds/06-blog-strategy.md) | 2026-04-25 | —         |
 
 ## Blockers
 

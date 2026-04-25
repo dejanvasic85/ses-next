@@ -2,6 +2,7 @@
 title: 'Blog Content Strategy: Execution Plan'
 number: '06'
 status: in-progress
+started: '2026-04-25'
 priority: high
 created: '2026-04-15'
 updated: '2026-04-15'
@@ -126,7 +127,7 @@ See Sanity CMS Steps below.
 | July 2026 | How to Choose a Solar Battery in 2026    | solar battery melbourne             | /services/renewable-energy        |
 | July 2026 | EV Charger Home Installation Guide       | ev charger installation melbourne   | /services/ev-charger-installation |
 
-**Verification:** File exists at `docs/planning/plans/06-blog-strategy/assets/content-calendar.md`.
+**Verification:** File exists at `docs/planning/plans/06-blog-strategy/assets/content-calendar.md`. ✓
 
 ---
 
@@ -142,49 +143,49 @@ See Sanity CMS Steps below.
 
 Update `title` and `description` fields for each post in Sanity Studio:
 
-- [ ] `illuminate-your-space` → Title: "LED Lighting Installation Guide: What Melbourne Homeowners Need to Know"
-- [ ] `duel-power-of-efficient-lighting` → Title: "Energy-Efficient Lighting: How to Reduce Your Melbourne Electricity Bill"
-- [ ] `unleash-the-power-of-your-entertainment` → Title: "Home Theatre & Entertainment System Wiring Guide"
-- [ ] `harnessing-the-power-of-renewables` → Title: "Solar Panel Installation in Melbourne: Your Complete Guide"
-- [ ] `benefits-of-structured-cabling` → Title: "Structured Cabling for Melbourne Homes and Offices"
-- [ ] `maximising-efficiency-of-your-air-conditioner` → Title: "Air Conditioner Maintenance Tips: Keep Your Split System Running Efficiently"
-- [ ] `stay-connected-and-protected-role-of-ups-systems` → Title: "UPS Systems for Home: Protect Your Network During Power Outages"
-- [ ] `VEEC-guide-air-conditioning` → Title: "Victorian Energy Efficiency Certificates (VEECs): Air Conditioning Rebate Guide"
-- [ ] Update `description` (meta description) on all posts above to be 130–160 chars, keyword-targeted, and include a CTA
-- [ ] Update `description` on `comprehensive-guide-to-electrical-testing` to reflect merged content
+- [x] `illuminate-your-space` → Title: "LED Lighting Installation Guide: What Melbourne Homeowners Need to Know"
+- [x] `duel-power-of-efficient-lighting` → Title: "Energy-Efficient Lighting: How to Reduce Your Melbourne Electricity Bill"
+- [x] `unleash-the-power-of-your-entertainment` → Title: "Home Theatre & Entertainment System Wiring Guide"
+- [x] `harnessing-the-power-of-renewables` → Title: "Solar Panel Installation in Melbourne: Your Complete Guide"
+- [x] `benefits-of-structured-cabling` → Title: "Structured Cabling for Melbourne Homes and Offices"
+- [x] `maximising-efficiency-of-your-air-conditioner` → Title: "Air Conditioner Maintenance Tips: Keep Your Split System Running Efficiently"
+- [x] `stay-connected-and-protected-role-of-ups-systems` → Title: "UPS Systems for Home: Protect Your Network During Power Outages"
+- [x] `VEEC-guide-air-conditioning` → Title: "Victorian Energy Efficiency Certificates (VEECs): Air Conditioning Rebate Guide"
+- [x] Update `description` (meta description) on all posts above to be 130–160 chars, keyword-targeted, and include a CTA
+- [x] Update `description` on `comprehensive-guide-to-electrical-testing` to reflect merged content
 
 ### Internal linking via tags
 
 Add service slugs to each post's `tags` array so the service page "Related Blog Posts" section picks them up:
 
-- [ ] `comprehensive-guide-to-electrical-testing` → add tag `electrical-testing`
-- [ ] `illuminate-your-space` → add tag `lighting`
-- [ ] `duel-power-of-efficient-lighting` → add tag `lighting`
-- [ ] `harnessing-the-power-of-renewables` → add tag `renewable-energy`
-- [ ] `benefits-of-structured-cabling` → add tag `data-and-tv`
-- [ ] `maximising-efficiency-of-your-air-conditioner` → add tag `air-conditioning`
-- [ ] `unleash-the-power-of-your-entertainment` → add tag `data-and-tv`
-- [ ] `VEEC-guide-air-conditioning` → add tag `air-conditioning`
+- [x] `comprehensive-guide-to-electrical-testing` → add tag `electrical-testing`
+- [x] `illuminate-your-space` → add tag `lighting`
+- [x] `duel-power-of-efficient-lighting` → add tag `lighting`
+- [x] `harnessing-the-power-of-renewables` → add tag `renewable-energy`
+- [x] `benefits-of-structured-cabling` → add tag `data-and-tv`
+- [x] `maximising-efficiency-of-your-air-conditioner` → add tag `air-conditioning`
+- [x] `unleash-the-power-of-your-entertainment` → add tag `data-and-tv`
+- [x] `VEEC-guide-air-conditioning` → add tag `air-conditioning`
 
 ### Internal links within post bodies
 
 Add a contextual paragraph or CTA with a link to the relevant service page in each post body (Portable Text):
 
-- [ ] `comprehensive-guide-to-electrical-testing` → link to `/services/electrical-testing`
-- [ ] `illuminate-your-space` → link to `/services/lighting`
-- [ ] `duel-power-of-efficient-lighting` → link to `/services/lighting`
-- [ ] `harnessing-the-power-of-renewables` → link to `/services/renewable-energy`
-- [ ] `benefits-of-structured-cabling` → link to `/services/data-and-tv`
-- [ ] `maximising-efficiency-of-your-air-conditioner` → link to `/services/air-conditioning`
-- [ ] `unleash-the-power-of-your-entertainment` → link to `/services/data-and-tv`
-- [ ] `VEEC-guide-air-conditioning` → link to `/services/air-conditioning`
-- [ ] `stay-connected-and-protected-role-of-ups-systems` → link to `/services/data-and-tv`
+- [x] `comprehensive-guide-to-electrical-testing` → link to `/services/electrical-testing`
+- [x] `illuminate-your-space` → link to `/services/lighting`
+- [x] `duel-power-of-efficient-lighting` → link to `/services/lighting`
+- [x] `harnessing-the-power-of-renewables` → link to `/services/renewable-energy`
+- [x] `benefits-of-structured-cabling` → link to `/services/data-and-tv`
+- [x] `maximising-efficiency-of-your-air-conditioner` → link to `/services/air-conditioning`
+- [x] `unleash-the-power-of-your-entertainment` → link to `/services/data-and-tv`
+- [x] `VEEC-guide-air-conditioning` → link to `/services/air-conditioning`
+- [x] `stay-connected-and-protected-role-of-ups-systems` → link to `/services/data-and-tv`
 
 ### New posts
 
-- [ ] Draft and publish "Electrical Safety Testing Guide for Landlords" (use `/ses-content-writer`)
-- [ ] Draft and publish "Emergency Electrician Melbourne: When to Call One" (use `/ses-content-writer`)
-- [ ] Add `electrical-testing` tag to first new post; add `emergency-electrician` tag to second
+- [x] Draft and publish "Electrical Safety Testing Guide for Landlords" (use `/ses-content-writer`)
+- [x] Draft and publish "Emergency Electrician Melbourne: When to Call One" (use `/ses-content-writer`)
+- [x] Add `electrical-testing` tag to first new post; add `emergency-electrician` tag to second
 
 ---
 
