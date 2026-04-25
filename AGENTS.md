@@ -1,12 +1,4 @@
-# Instructions
-
-# Tech Specs
-
-- Next.js v16
-- Tailwind CSS V4
-- Sanity CMS (schema located under apps/content-studio) v4
-- Accessibility (a11y) AAA compliant
-- Responsive design
+# SES - Storm Electrical Solutions
 
 ## Commands
 

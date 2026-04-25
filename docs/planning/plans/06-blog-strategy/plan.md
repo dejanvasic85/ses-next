@@ -93,6 +93,7 @@ Use the `/ses-content-writer` skill to draft each post before publishing in Sani
 2. **"Emergency Electrician Melbourne: When to Call One"** — target keyword: `emergency electrician melbourne`, links to `/services/emergency-electrician`
 
 Each post must follow the format from PRD-06:
+
 - 800–1200 words
 - Question-format H2 headings
 - At least 1 statistic or external reference
@@ -116,14 +117,14 @@ See Sanity CMS Steps below.
 
 1. Create `docs/planning/plans/06-blog-strategy/assets/content-calendar.md` with a table covering the next 3 months (May–July 2026), scheduling 2 posts per month from the priority topics in PRD-06:
 
-| Month | Post Title | Target Keyword | Service Page |
-| ----- | ---------- | -------------- | ------------ |
-| May 2026 | Signs You Need a Switchboard Upgrade | switchboard upgrade melbourne | /services/switchboard-upgrades |
-| May 2026 | Smoke Alarm Legislation Victoria Guide | smoke alarm compliance victoria | /services/smoke-alarms |
-| June 2026 | Split System vs Ducted AC Comparison | split system installation melbourne | /services/air-conditioning |
-| June 2026 | NBN Troubleshooting and Data Point Guide | melbourne data electrician | /services/data-and-tv |
-| July 2026 | How to Choose a Solar Battery in 2026 | solar battery melbourne | /services/renewable-energy |
-| July 2026 | EV Charger Home Installation Guide | ev charger installation melbourne | /services/ev-charger-installation |
+| Month     | Post Title                               | Target Keyword                      | Service Page                      |
+| --------- | ---------------------------------------- | ----------------------------------- | --------------------------------- |
+| May 2026  | Signs You Need a Switchboard Upgrade     | switchboard upgrade melbourne       | /services/switchboard-upgrades    |
+| May 2026  | Smoke Alarm Legislation Victoria Guide   | smoke alarm compliance victoria     | /services/smoke-alarms            |
+| June 2026 | Split System vs Ducted AC Comparison     | split system installation melbourne | /services/air-conditioning        |
+| June 2026 | NBN Troubleshooting and Data Point Guide | melbourne data electrician          | /services/data-and-tv             |
+| July 2026 | How to Choose a Solar Battery in 2026    | solar battery melbourne             | /services/renewable-energy        |
+| July 2026 | EV Charger Home Installation Guide       | ev charger installation melbourne   | /services/ev-charger-installation |
 
 **Verification:** File exists at `docs/planning/plans/06-blog-strategy/assets/content-calendar.md`.
 
