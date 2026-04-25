@@ -1,5 +1,5 @@
 ---
-updated: '2026-04-15'
+updated: '2026-04-25'
 ---
 
 # PRDs Pipeline
@@ -10,26 +10,26 @@ updated: '2026-04-15'
 | ----------- | ------ |
 | Draft       | 1      |
 | Review      | 0      |
-| Approved    | 2      |
-| In Progress | 0      |
+| Approved    | 1      |
+| In Progress | 1      |
 | Completed   | 7      |
 | Cancelled   | 0      |
 | **Total**   | **10** |
 
 ## PRDs
 
-| #                                       | Title                                | Status    | Priority | Phase | Completion | Plan                                      |
-| --------------------------------------- | ------------------------------------ | --------- | -------- | ----- | ---------- | ----------------------------------------- |
-| [01](./01-structured-data.md)           | Structured Data (JSON-LD Schema)     | completed | critical | 1     | 6/7        | —                                         |
-| [02](./02-meta-tags-canonicals.md)      | Meta Tags & Canonicals               | completed | critical | 1     | 5/6        | —                                         |
-| [03](./03-sitemap-indexing.md)          | Sitemap & Indexing Cleanup           | completed | high     | 1     | 5/5        | —                                         |
-| [04a](./04a-services-hub-navigation.md) | Services Hub Page & Navigation       | completed | critical | 2     | 10/10      | —                                         |
-| [04b](./04b-sub-service-pages.md)       | Sub-Service Pages & Content Model    | completed | high     | 2     | 12/12      | —                                         |
-| [04c](./04c-new-parent-services.md)     | New Top-Level Service Pages          | completed | critical | 2     | 7/10       | —                                         |
-| [04d](./04d-location-pages.md)          | Location Pages                       | completed | critical | 2-3   | 18/18      | —                                         |
-| [06](./06-blog-strategy.md)             | Blog Content Strategy                | approved  | high     | 2-3   | 0/5        | [plan](../plans/06-blog-strategy/plan.md) |
-| [07](./07-geo-strategy.md)              | GEO (Generative Engine Optimisation) | approved  | medium   | 1-2   | 0/5        | —                                         |
-| [08](./08-paid-ads.md)                  | Paid Ads Relaunch                    | draft     | medium   | 3     | 0/6        | —                                         |
+| #                                       | Title                                | Status      | Priority | Phase | Completion | Plan                                      |
+| --------------------------------------- | ------------------------------------ | ----------- | -------- | ----- | ---------- | ----------------------------------------- |
+| [01](./01-structured-data.md)           | Structured Data (JSON-LD Schema)     | completed   | critical | 1     | 6/7        | —                                         |
+| [02](./02-meta-tags-canonicals.md)      | Meta Tags & Canonicals               | completed   | critical | 1     | 5/6        | —                                         |
+| [03](./03-sitemap-indexing.md)          | Sitemap & Indexing Cleanup           | completed   | high     | 1     | 5/5        | —                                         |
+| [04a](./04a-services-hub-navigation.md) | Services Hub Page & Navigation       | completed   | critical | 2     | 10/10      | —                                         |
+| [04b](./04b-sub-service-pages.md)       | Sub-Service Pages & Content Model    | completed   | high     | 2     | 12/12      | —                                         |
+| [04c](./04c-new-parent-services.md)     | New Top-Level Service Pages          | completed   | critical | 2     | 7/10       | —                                         |
+| [04d](./04d-location-pages.md)          | Location Pages                       | completed   | critical | 2-3   | 18/18      | —                                         |
+| [06](./06-blog-strategy.md)             | Blog Content Strategy                | in-progress | high     | 2-3   | 33/37      | [plan](../plans/06-blog-strategy/plan.md) |
+| [07](./07-geo-strategy.md)              | GEO (Generative Engine Optimisation) | approved    | medium   | 1-2   | 0/5        | —                                         |
+| [08](./08-paid-ads.md)                  | Paid Ads Relaunch                    | draft       | medium   | 3     | 0/6        | —                                         |
 
 ## Pipeline Flow
 
