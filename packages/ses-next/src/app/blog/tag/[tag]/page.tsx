@@ -11,6 +11,9 @@ type BlogTagPageProps = {
   params: Promise<{ tag: string }>;
 };
 
+export const revalidate = 3600;
+export const dynamicParams = true;
+
 export async function generateStaticParams() {
   const posts = await getBlogPosts();
   const tagSet = new Set(posts.flatMap(({ tags }) => tags));

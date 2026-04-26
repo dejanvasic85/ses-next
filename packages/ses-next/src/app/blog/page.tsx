@@ -7,6 +7,8 @@ import { getBlogPosts, getSiteSettings } from '@/lib/content/contentService';
 import { tagsWithCountFromBlogs } from '@/lib/blogUtils';
 import { safeJsonLd } from '@/lib/structuredData';
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: 'Blog | Storm Electrical Solutions',
   description: 'Electrical tips, guides, and news from the Storm Electrical Solutions team in Melbourne.',
