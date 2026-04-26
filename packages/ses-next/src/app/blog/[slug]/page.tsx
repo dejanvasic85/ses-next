@@ -25,6 +25,9 @@ const portableTextComponents = {
   },
 };
 
+export const revalidate = 3600;
+export const dynamicParams = true;
+
 export async function generateStaticParams() {
   const posts = await getBlogPosts();
   return posts.filter(({ slug }) => slug).map(({ slug }) => ({ slug }));
