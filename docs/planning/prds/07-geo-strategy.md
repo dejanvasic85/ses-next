@@ -1,14 +1,14 @@
 ---
 title: 'GEO (Generative Engine Optimisation)'
 number: '07'
-status: approved
+status: in-progress
 priority: medium
 phase: '1-2'
 created: '2026-03-01'
 updated: '2026-03-01'
 owner: ''
 idea: ''
-plan: ''
+plan: '07-geo-strategy/plan.md'
 depends-on: []
 domain: seo
 budget: ''

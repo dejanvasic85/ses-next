@@ -1,5 +1,5 @@
 ---
-updated: '2026-04-25'
+updated: '2026-04-26'
 ---
 
 # Execution Plans
@@ -12,14 +12,15 @@ updated: '2026-04-25'
 | Ready       | 0     |
 | In Progress | 1     |
 | Blocked     | 0     |
-| Completed   | 0     |
-| **Total**   | **1** |
+| Completed   | 1     |
+| **Total**   | **2** |
 
 ## Plans
 
-| #                                | Title                 | Status      | Priority | PRD                               | Started    | Completed |
-| -------------------------------- | --------------------- | ----------- | -------- | --------------------------------- | ---------- | --------- |
-| [06](./06-blog-strategy/plan.md) | Blog Content Strategy | in-progress | high     | [06](../prds/06-blog-strategy.md) | 2026-04-25 | —         |
+| #                                | Title                                | Status    | Priority | PRD                               | Started    | Completed  |
+| -------------------------------- | ------------------------------------ | --------- | -------- | --------------------------------- | ---------- | ---------- |
+| [06](./06-blog-strategy/plan.md) | Blog Content Strategy                | completed | high     | [06](../prds/06-blog-strategy.md) | 2026-04-25 | 2026-04-26 |
+| [07](./07-geo-strategy/plan.md)  | GEO (Generative Engine Optimisation) | in-progress | medium   | [07](../prds/07-geo-strategy.md)  | 2026-04-26 | —          |
 
 ## Blockers
 
@@ -27,8 +28,4 @@ _Nothing blocked._
 
 ## Next Steps
 
-The following PRDs are approved and ready for execution planning:
-
-| PRD                              | Title                                | Priority |
-| -------------------------------- | ------------------------------------ | -------- |
-| [07](../prds/07-geo-strategy.md) | GEO (Generative Engine Optimisation) | medium   |
+- **Plan-07** Phase 1 complete. Phase 2 (Karl credentials) blocked pending REC licence number from Karl.

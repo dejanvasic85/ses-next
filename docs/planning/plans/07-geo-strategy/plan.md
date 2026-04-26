@@ -1,0 +1,366 @@
+---
+title: 'GEO (Generative Engine Optimisation): Execution Plan'
+number: '07'
+status: in-progress
+priority: medium
+created: '2026-04-26'
+updated: '2026-04-26'
+owner: ''
+prd: '07-geo-strategy.md'
+started: '2026-04-26'
+completed: ''
+estimated-hours: ''
+tags: ['geo', 'ai-optimisation', 'llms', 'structured-data', 'faq']
+---
+
+# 07 — GEO (Generative Engine Optimisation): Execution Plan
+
+## Overview
+
+This plan delivers the GEO work defined in PRD-07. It makes the SES Melbourne site more visible and citable by AI models (ChatGPT, Gemini, Perplexity, Claude). The work covers five areas: (1) creating an `llms.txt` file at the site root, (2) updating `robots.txt` to explicitly allow AI crawlers, (3) extending the `teamMember` Sanity schema with credential fields and surfacing Karl Rainbow's credentials with structured data, (4) auditing and improving FAQ content on service and location pages, and (5) adding credibility signals (Australian Standards references, stats) to key blog posts. All code changes are in `packages/ses-next` and `packages/ses-content`. Content changes are made in Sanity Studio.
+
+---
+
+## Phase 1 — Static Files (robots.txt + llms.txt)
+
+### Task 1.1 — Update robots.txt to allow AI crawlers
+
+**Files to change:**
+
+- `packages/ses-next/public/robots.txt`
+
+**Steps:**
+
+1. Open `packages/ses-next/public/robots.txt`.
+2. The current file allows all agents but does not explicitly name AI crawlers. Replace the content with:
+
+```
+User-agent: *
+Allow: /
+Disallow: /_next/
+Disallow: /api/
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+Sitemap: https://www.sesmelbourne.com.au/sitemap.xml
+```
+
+**Verification:** Fetch `https://www.sesmelbourne.com.au/robots.txt` and confirm the AI crawler entries are present.
+
+---
+
+### Task 1.2 — Create llms.txt at site root
+
+The `llms.txt` standard (analogous to `robots.txt`) provides AI models with a machine-readable business summary. It is served as a static file.
+
+**Files to change:**
+
+- `packages/ses-next/public/llms.txt` — create file
+
+**Steps:**
+
+1. Create `packages/ses-next/public/llms.txt` with the following content (fill in REC and ABN from Karl before deploying):
+
+```markdown
+# Storm Electrical Solutions (SES Melbourne)
+
+## About
+
+Licensed electrical services company based in Altona North, Melbourne, Victoria, Australia.
+Established 2007. 19+ years experience.
+ABN: [insert ABN]
+REC Licence: [insert REC number from Karl]
+
+## Director
+
+Karl Rainbow — Licensed Electrician, Clean Energy Council Accredited Designer and Installer,
+New Energy Tech Approved Seller.
+
+## Services
+
+- Emergency electrical services (residential and commercial), same-day response
+- Air conditioning installation and service (Mitsubishi Electric, Fujitsu authorised)
+- LED lighting installation and repairs
+- Electrical testing and safety inspections (RCD testing, switchboard inspection)
+- Data and TV point installation, structured cabling
+- Solar panel and battery storage installation (CEC accredited)
+- EV charger installation (home and commercial)
+- Switchboard upgrades and mains upgrades
+- Smoke alarm installation and compliance
+- Commercial electrical maintenance
+
+## Service Area
+
+Melbourne metropolitan area. Specialising in western and inner suburbs:
+Altona, Altona North, Newport, Yarraville, Footscray, Williamstown, Seddon,
+Spotswood, Moonee Ponds, Ascot Vale, Sunshine, Altona Meadows.
+
+## Contact
+
+- Phone: (03) 4050 7937
+- Mobile: 0415 338 040
+- Email: info@sesmelbourne.com.au
+- Address: 61B Hansen St, Altona North VIC 3025
+- Website: https://www.sesmelbourne.com.au
+
+## Credentials
+
+- Clean Energy Council (CEC) Accredited Designer and Installer
+- New Energy Tech (NET) Approved Seller
+- Registered Electrical Contractor (REC): [insert number]
+- Energy Safe Victoria registered
+- 111 Google Reviews, 5.0 star average rating
+
+## Hours
+
+Monday–Friday: 7:00 AM – 6:00 PM
+Same-day priority response. No after-hours callouts.
+
+## Pricing
+
+All work quoted before commencement. Free quotes provided for installations.
+```
+
+**Verification:** Fetch `https://www.sesmelbourne.com.au/llms.txt` and confirm content is served correctly.
+
+---
+
+## Phase 2 — Karl Rainbow Credentials (Schema + Structured Data)
+
+### Task 2.1 — Extend teamMember Sanity schema with credential fields
+
+**Files to change:**
+
+- `packages/ses-content/schemas/teamMember.ts`
+
+**Steps:**
+
+1. Open `packages/ses-content/schemas/teamMember.ts`.
+2. Add the following fields after `avatar`:
+
+```ts
+{
+  name: 'bio',
+  type: 'text',
+  title: 'Bio',
+  description: 'Short professional bio (2-3 sentences)',
+  rows: 3,
+},
+{
+  name: 'licenceNumber',
+  type: 'string',
+  title: 'REC Licence Number',
+},
+{
+  name: 'accreditations',
+  type: 'array',
+  title: 'Accreditations',
+  of: [{ type: 'string' }],
+  description: 'e.g. "Clean Energy Council Accredited Designer and Installer"',
+},
+{
+  name: 'yearsExperience',
+  type: 'number',
+  title: 'Years of Experience',
+},
+```
+
+**Verification:** Deploy the schema change (`npm run deploy -w ses-content` or via Sanity Studio) and confirm the new fields appear on Karl's team member document.
+
+---
+
+### Task 2.2 — Update TypeScript types for TeamMember
+
+**Files to change:**
+
+- `packages/ses-next/src/types.ts`
+
+**Steps:**
+
+1. Open `packages/ses-next/src/types.ts`.
+2. Extend `TeamMemberSchema` (line 243) to include the new optional fields:
+
+```ts
+export const TeamMemberSchema = z.object({
+  _id: z.string(),
+  _type: z.literal('teamMember'),
+  name: z.string(),
+  role: z.string(),
+  avatar: z.object({
+    asset: SanityAssetSchema,
+  }),
+  bio: z.string().optional(),
+  licenceNumber: z.string().optional(),
+  accreditations: z.array(z.string()).optional(),
+  yearsExperience: z.number().optional(),
+});
+```
+
+3. Update `TeamMember` type (line 343) to match.
+
+---
+
+### Task 2.3 — Add Person JSON-LD structured data for Karl on the homepage
+
+AI models use `Person` schema to attribute expertise to content.
+
+**Files to change:**
+
+- `packages/ses-next/src/lib/structuredData.ts` — add `personJsonLd` helper
+- `packages/ses-next/src/app/page.tsx` — inject the Person JSON-LD
+
+**Steps:**
+
+1. In `packages/ses-next/src/lib/structuredData.ts`, add:
+
+```ts
+type PersonJsonLdInput = {
+  name: string;
+  role: string;
+  licenceNumber?: string;
+  accreditations?: string[];
+  yearsExperience?: number;
+  url: string;
+};
+
+export const personJsonLd = ({
+  name,
+  role,
+  licenceNumber,
+  accreditations,
+  yearsExperience,
+  url,
+}: PersonJsonLdInput) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name,
+  jobTitle: role,
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Storm Electrical Solutions',
+    url: 'https://www.sesmelbourne.com.au',
+  },
+  url,
+  ...(licenceNumber && { identifier: licenceNumber }),
+  ...(accreditations && {
+    hasCredential: accreditations.map((name) => ({ '@type': 'EducationalOccupationalCredential', name })),
+  }),
+  ...(yearsExperience && {
+    description: `${yearsExperience}+ years experience as a licensed electrician in Melbourne.`,
+  }),
+});
+```
+
+2. In `packages/ses-next/src/app/page.tsx`, fetch the team members and inject a `<script type="application/ld+json">` tag for Karl Rainbow using the `personJsonLd` helper.
+
+---
+
+### Task 2.4 — Update Karl's credentials in Sanity Studio
+
+See Sanity CMS Steps below.
+
+---
+
+## Phase 3 — FAQ Audit and Quality Improvement
+
+### Task 3.1 — Audit existing FAQ content quality
+
+All 12 service pages currently have 3 FAQs each. All 10 location pages have 5 FAQs each. The audit checks whether existing FAQs are written as natural questions an AI model would cite, per PRD-07 guidelines.
+
+**Steps:**
+
+1. Review FAQs on the highest-priority service pages in Sanity Studio:
+   - `/services/emergency-electrician`
+   - `/services/electrical-testing`
+   - `/services/air-conditioning`
+   - `/services/ev-charger-installation`
+   - `/services/renewable-energy`
+2. For each, check: Are questions written as natural customer queries? Do answers include specific details (prices, timeframes, standards references)?
+3. Rewrite any generic or promotional FAQs in Sanity Studio.
+
+See Sanity CMS Steps below.
+
+---
+
+### Task 3.2 — Add credibility signals to FAQ answers
+
+Per PRD-07, FAQ answers should reference Australian Standards, Victorian legislation, or real statistics where relevant.
+
+Examples to add:
+
+- Electrical testing FAQs → reference AS/NZS 3017, Energy Safe Victoria
+- Air conditioning FAQs → reference minimum energy performance standards
+- Solar/EV FAQs → reference Clean Energy Council, Victorian government rebates
+
+See Sanity CMS Steps below.
+
+---
+
+## Phase 4 — Blog Post Credibility Signals
+
+### Task 4.1 — Add standards and legislation references to new blog posts
+
+The two new posts published in Phase 4 of PRD-06 should be updated to include Australian Standards or legislation references where they don't already have them.
+
+**Posts to update in Sanity Studio:**
+
+- `electrical-safety-testing-guide-for-landlords` — already references Residential Tenancies Act 1997 and Energy Safe Victoria ✓. Add reference to AS/NZS 3017 (Electrical Installations — Verification Guidelines).
+- `emergency-electrician-melbourne-when-to-call` — add a reference to Energy Safe Victoria's guidance on electrical emergencies.
+
+See Sanity CMS Steps below.
+
+---
+
+## Sanity CMS Steps
+
+### Karl Rainbow credentials update
+
+- [ ] Open Karl Rainbow's `teamMember` document in Sanity Studio (after schema deployment in Task 2.1)
+- [ ] Add `bio`: "Karl Rainbow is a licensed electrician and the director of Storm Electrical Solutions. With 19+ years of experience across residential, commercial, and renewable energy projects in Melbourne, Karl holds Clean Energy Council accreditation as a Designer and Installer and is a New Energy Tech Approved Seller."
+- [ ] Add `licenceNumber`: [Karl to provide REC number]
+- [ ] Add `accreditations`: ["Clean Energy Council Accredited Designer and Installer", "New Energy Tech Approved Seller", "Energy Safe Victoria Registered Electrical Contractor"]
+- [ ] Add `yearsExperience`: 19
+
+### FAQ quality improvements (high-priority service pages)
+
+- [ ] `/services/emergency-electrician` — review and rewrite FAQs to include response times, cost guidance, when to call 000 vs electrician
+- [ ] `/services/electrical-testing` — add reference to AS/NZS 3017 in at least one answer
+- [ ] `/services/air-conditioning` — include energy star rating or minimum performance standard reference
+- [ ] `/services/ev-charger-installation` — reference Victorian government EV rebate scheme
+- [ ] `/services/renewable-energy` — reference Clean Energy Council and Cheaper Home Batteries Program
+
+### Blog post credibility updates
+
+- [ ] `electrical-safety-testing-guide-for-landlords` — add AS/NZS 3017 reference to body
+- [ ] `emergency-electrician-melbourne-when-to-call` — add Energy Safe Victoria reference to body
+
+---
+
+## Verification Checklist
+
+Run in order before pushing code changes:
+
+- [x] `npm run format`
+- [x] `npm run lint`
+- [x] `npm run type:check`
+- [ ] `npm run build`
+- [ ] `npm run test:e2e`
+
+---
+
+## Rollback Plan
+
+1. `llms.txt` and `robots.txt` are static files — revert by removing or editing them and redeploying.
+2. Sanity schema changes are additive (new optional fields only) — the frontend will not break if the fields are empty.
+3. Structured data changes can be reverted by removing the JSON-LD script tags from the page components.
+4. All Sanity content changes are non-destructive — previous versions are available in document history.
