@@ -52,7 +52,7 @@ E.g. `pnpm --filter <workspace> build`
 
 All changes MUST follow the following workflow
 
-- After finishing code changes and **before every push**, run all three checks in order:
+- After finishing code changes and **before every push**, run all checks in order:
   1. `pnpm format`
   2. `pnpm lint`
   3. `pnpm type:check`
