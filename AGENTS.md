@@ -4,7 +4,7 @@
 
 This is a monorepo with multiple apps so each command should target specific workspace
 having to navigate to each app.
-E.g. `npm run build -w <workspace>`
+E.g. `pnpm --filter <workspace> build`
 
 ## Nextjs structure
 
@@ -53,18 +53,18 @@ E.g. `npm run build -w <workspace>`
 All changes MUST follow the following workflow
 
 - After finishing code changes and **before every push**, run all three checks in order:
-  1. `npm run format`
-  2. `npm run lint`
-  3. `npm run type:check`
-  4. `npm run build`
-  5. `npm run test:e2e`
+  1. `pnpm format`
+  2. `pnpm lint`
+  3. `pnpm type:check`
+  4. `pnpm build`
+  5. `pnpm test:e2e`
 - Never push without running these checks — commit any formatting changes before pushing
 - Pre-commit hooks auto-run: Husky runs lint-staged (prettier + eslint)
 - Update any plan files with progress to help with issue tracking
 
 ## Dependency management
 
-- Always pin dependencies to a specific version when installing. E.g. npm install --save-exact -w <workspace>
+- Always pin dependencies to a specific version when installing. E.g. `pnpm add --exact --filter <workspace> <package>`
 - Ensure to find the latest version of a package before adding it
 - Avoid using deprecated packages or APIs
-- Always install packages at the root of the monorepo targeting the correct workspace with -w <workspace>
+- Always install packages at the root of the monorepo targeting the correct workspace with `--filter <workspace>`
