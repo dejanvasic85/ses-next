@@ -22,6 +22,7 @@
   "devDependencies": {
     "husky": "9.1.7",
     "lint-staged": "16.4.0",
+    "next": "16.2.4",
     "prettier-plugin-tailwindcss": "0.7.3",
     "turbo": "2.9.6"
   },
