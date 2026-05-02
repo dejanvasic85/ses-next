@@ -9,10 +9,14 @@ node_modules
 
 # Ignore files for PNPM, NPM and YARN
 package-lock.json
+pnpm-lock.yaml
 
 # Nextjs
 .next
 next-end.d.ts
+
+# Sanity generated runtime
+.sanity
 
 # Playwright
 test-results

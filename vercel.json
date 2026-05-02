@@ -1,0 +1,5 @@
+{
+  "installCommand": "corepack enable && pnpm install --frozen-lockfile",
+  "buildCommand": "pnpm --filter ses-next build",
+  "outputDirectory": "packages/ses-next/.next"
+}
