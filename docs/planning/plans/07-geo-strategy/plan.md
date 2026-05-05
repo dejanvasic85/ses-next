@@ -4,7 +4,7 @@ number: '07'
 status: in-progress
 priority: medium
 created: '2026-04-26'
-updated: '2026-04-26'
+updated: '2026-05-05'
 owner: ''
 prd: '07-geo-strategy.md'
 started: '2026-04-26'
@@ -59,13 +59,19 @@ Sitemap: https://www.sesmelbourne.com.au/sitemap.xml
 
 ---
 
-### Task 1.2 — Create llms.txt at site root
+### Task 1.2 — Create llms.txt at site root ✅ COMPLETE
 
-The `llms.txt` standard (analogous to `robots.txt`) provides AI models with a machine-readable business summary. It is served as a static file.
+The `llms.txt` standard (analogous to `robots.txt`) provides AI models with a machine-readable business summary. Instead of a static file, this is served via a dynamic Next.js route handler that pulls content from Sanity at build time (ISR daily). Business details (ABN, REC, address, email, mobile, businessHours) were added to the `siteSettings` Sanity schema and populated in CMS.
 
-**Files to change:**
+**Files changed:**
 
-- `packages/ses-next/public/llms.txt` — create file
+- `packages/ses-content/schemas/siteSettings.ts` — added 6 new fields
+- `packages/ses-next/src/lib/content/queries.ts` — updated GROQ query
+- `packages/ses-next/src/types.ts` — updated Zod schema and `SiteSettings` type
+- `packages/ses-next/src/lib/content/mappers.ts` — pass-through for new fields
+- `packages/ses-next/src/app/llms/route.ts` — new dynamic route handler
+- `packages/ses-next/next.config.ts` — added `/llms.txt` → `/llms` redirect
+- `packages/ses-next/public/llms.txt` — deleted (was static, now dynamic)
 
 **Steps:**
 
@@ -353,7 +359,7 @@ Run in order before pushing code changes:
 - [x] `npm run format`
 - [x] `npm run lint`
 - [x] `npm run type:check`
-- [ ] `npm run build`
+- [x] `npm run build`
 - [ ] `npm run test:e2e`
 
 ---
