@@ -38,6 +38,11 @@ const nextConfig: NextConfig = {
         destination: '/blog/comprehensive-guide-to-electrical-testing',
         permanent: true,
       },
+      {
+        source: '/llms.txt',
+        destination: '/llms',
+        permanent: false,
+      },
     ];
   },
 };

@@ -3,4 +3,16 @@ Allow: /
 Disallow: /_next/
 Disallow: /api/
 
+User-agent: GPTBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
 Sitemap: https://www.sesmelbourne.com.au/sitemap.xml

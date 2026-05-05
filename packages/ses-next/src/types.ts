@@ -288,6 +288,12 @@ export const SiteSettingsSchema = z.object({
       instagram: z.url().nullable(),
     })
     .nullable(),
+  mobile: z.string().optional(),
+  email: z.string().optional(),
+  address: z.string().optional(),
+  abn: z.string().optional(),
+  recLicence: z.string().optional(),
+  businessHours: z.string().optional(),
 });
 
 export const ServicesHubSchema = z.object({
@@ -419,6 +425,12 @@ export type SiteSettings = {
   meta: Meta;
   social: Social;
   phone: string;
+  mobile?: string;
+  email?: string;
+  address?: string;
+  abn?: string;
+  recLicence?: string;
+  businessHours?: string;
 };
 
 export type LocationPageFaq = {
