@@ -147,8 +147,8 @@ Allow: /
 
 ## Acceptance Criteria
 
-- [ ] llms.txt file created and deployed at site root
+- [x] llms.txt file created and deployed at site root
 - [ ] Karl Rainbow's credentials page/section created with structured data
 - [ ] FAQ schema present on all service and location pages
-- [ ] Robots.txt explicitly allows AI crawlers
+- [x] Robots.txt explicitly allows AI crawlers
 - [ ] Blog posts include Australian Standards references where relevant
