@@ -17,9 +17,9 @@ updated: '2026-04-26'
 
 ## Plans
 
-| #                                | Title                                | Status    | Priority | PRD                               | Started    | Completed  |
-| -------------------------------- | ------------------------------------ | --------- | -------- | --------------------------------- | ---------- | ---------- |
-| [06](./06-blog-strategy/plan.md) | Blog Content Strategy                | completed | high     | [06](../prds/06-blog-strategy.md) | 2026-04-25 | 2026-04-26 |
+| #                                | Title                                | Status      | Priority | PRD                               | Started    | Completed  |
+| -------------------------------- | ------------------------------------ | ----------- | -------- | --------------------------------- | ---------- | ---------- |
+| [06](./06-blog-strategy/plan.md) | Blog Content Strategy                | completed   | high     | [06](../prds/06-blog-strategy.md) | 2026-04-25 | 2026-04-26 |
 | [07](./07-geo-strategy/plan.md)  | GEO (Generative Engine Optimisation) | in-progress | medium   | [07](../prds/07-geo-strategy.md)  | 2026-04-26 | —          |
 
 ## Blockers

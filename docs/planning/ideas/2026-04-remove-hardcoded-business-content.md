@@ -36,11 +36,20 @@ Examples include hardcoded brand and service-area strings in `packages/ses-next/
 - No user-facing business identity/address/phone copy remains hardcoded in route/page components.
 - Metadata and JSON-LD stay consistent with the configured business profile across pages.
 
+## Progress
+
+**2026-04-26** — First step taken as part of GEO (PRD-07) implementation:
+
+- Added `mobile`, `email`, `address`, `abn`, `recLicence`, `businessHours` fields to the `siteSettings` Sanity schema
+- These fields are now used by the dynamic `/llms` route handler instead of being hardcoded
+- This partially addresses the "business identity fields centralised into Sanity" goal
+
 ## Open Questions
 
 - Which fields belong in global site settings vs page-specific content models?
 - Should service-area/location marketing copy remain editable per page, or be generated from shared templates + location data?
 - Do we also include email template copy in scope, or keep this initiative website-only?
+- `Contact.tsx` and `Footer.tsx` still hardcode address and email — should these pull from siteSettings too?
 
 ## References
 
@@ -49,3 +58,4 @@ Examples include hardcoded brand and service-area strings in `packages/ses-next/
 - `packages/ses-next/src/app/locations/page.tsx`
 - `packages/ses-next/src/components/Contact.tsx`
 - `packages/ses-next/src/components/Footer.tsx`
+- `packages/ses-content/schemas/siteSettings.ts` — new fields added here

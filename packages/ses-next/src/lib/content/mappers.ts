@@ -161,5 +161,11 @@ export const mapSiteSettings = (model: SiteSettingsContentModel): SiteSettings =
     meta: model.meta,
     social,
     phone: model.phone,
+    mobile: model.mobile,
+    email: model.email,
+    address: model.address,
+    abn: model.abn,
+    recLicence: model.recLicence,
+    businessHours: model.businessHours,
   };
 };
