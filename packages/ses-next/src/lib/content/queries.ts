@@ -21,7 +21,13 @@ export const siteSettingsQuery = `*[_type == "siteSettings"][0]{
   googleMapsLocation,
   googleMapsLocationPlaceUrl,
   meta,
-  socialMedia
+  socialMedia,
+  mobile,
+  email,
+  address,
+  abn,
+  recLicence,
+  businessHours
 }`;
 
 export const homepageQuery = `*[_type == "homepage"][0]{

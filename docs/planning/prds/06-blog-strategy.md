@@ -119,7 +119,7 @@ For AI model discoverability, blog content should:
 ## Acceptance Criteria
 
 - [ ] All 11 existing blog posts have updated title tags and meta descriptions
-- [ ] Cannibalising posts identified and consolidated (with 301 redirects)
-- [ ] Internal links added between all blog posts and service pages
-- [ ] Content calendar created for next 3 months
-- [ ] First 2 new posts published following the optimised template
+- [x] Cannibalising posts identified and consolidated (with 301 redirects)
+- [x] Internal links added between all blog posts and service pages
+- [x] Content calendar created for next 3 months
+- [x] First 2 new posts published following the optimised template

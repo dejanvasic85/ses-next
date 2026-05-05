@@ -95,6 +95,23 @@ test.describe('Blog Routes', () => {
   });
 });
 
+test.describe('LLMs Route', () => {
+  test('/llms returns plain text with business content', async ({ request }) => {
+    const response = await request.get('/llms');
+    expect(response.status()).toBe(200);
+    expect(response.headers()['content-type']).toContain('text/plain');
+    const body = await response.text();
+    expect(body).toContain('## Services');
+    expect(body).toContain('## Contact');
+  });
+
+  test('/llms.txt redirects to /llms', async ({ page }) => {
+    const response = await page.goto('/llms.txt');
+    expect(response?.url()).toContain('/llms');
+    expect(response?.status()).toBe(200);
+  });
+});
+
 test.describe('API Routes', () => {
   test('contact API returns 405 for GET requests', async ({ request }) => {
     const response = await request.get('/api/contact');
