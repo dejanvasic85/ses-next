@@ -34,7 +34,7 @@ This plan delivers the GEO work defined in PRD-07. It makes the SES Melbourne si
 1. Open `packages/ses-next/public/robots.txt`.
 2. The current file allows all agents but does not explicitly name AI crawlers. Replace the content with:
 
-```
+```robotstxt
 User-agent: *
 Allow: /
 Disallow: /_next/
