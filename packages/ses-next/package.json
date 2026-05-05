@@ -19,7 +19,7 @@
     "@playwright/test": "1.59.1",
     "@portabletext/react": "6.0.3",
     "@sanity/image-url": "2.1.1",
-    "@tailwindcss/postcss": "4.2.2",
+    "@tailwindcss/postcss": "4.2.4",
     "@tailwindcss/typography": "0.5.19",
     "autoprefixer": "10.5.0",
     "aws-sdk": "2.1693.0",
@@ -28,16 +28,16 @@
     "date-fns": "4.1.0",
     "eslint": "9.39.4",
     "next": "16.2.4",
-    "next-sanity": "12.3.0",
-    "postcss": "8.5.10",
+    "next-sanity": "12.4.0",
+    "postcss": "8.5.13",
     "react": "19.2.5",
     "react-dom": "19.2.5",
     "react-google-recaptcha-v3": "1.11.0",
-    "react-hook-form": "7.72.1",
+    "react-hook-form": "7.75.0",
     "react-modal": "3.16.3",
-    "ses-reviews": "*",
-    "tailwindcss": "4.2.2",
-    "zod": "4.3.6"
+    "ses-reviews": "workspace:*",
+    "tailwindcss": "4.2.4",
+    "zod": "4.4.2"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "16.2.4",
@@ -48,7 +48,7 @@
     "dotenv": "17.4.2",
     "eslint-config-next": "16.2.4",
     "eslint-plugin-tailwindcss": "4.0.0-beta.0",
-    "lighthouse": "13.1.0",
+    "lighthouse": "13.2.0",
     "prettier": "3.8.3",
     "typescript": "6.0.3"
   }
