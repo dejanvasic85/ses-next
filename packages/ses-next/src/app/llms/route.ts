@@ -1,6 +1,7 @@
 import type { LocationPage, ServiceItem, SiteSettings } from '@/types';
 import { getAllLocationPages, getServices, getSiteSettings } from '@/lib/content/contentService';
 
+export const dynamic = 'force-static';
 export const revalidate = 86400;
 
 type LlmsData = {
