@@ -1,7 +1,7 @@
 ---
 title: 'GEO (Generative Engine Optimisation)'
 number: '07'
-status: in-progress
+status: completed
 priority: medium
 phase: '1-2'
 created: '2026-03-01'

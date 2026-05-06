@@ -1,7 +1,7 @@
 ---
 title: 'Blog Content Strategy'
 number: '06'
-status: approved
+status: completed
 priority: high
 phase: '2-3'
 created: '2026-03-01'

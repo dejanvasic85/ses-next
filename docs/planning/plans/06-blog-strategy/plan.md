@@ -1,15 +1,14 @@
 ---
 title: 'Blog Content Strategy: Execution Plan'
 number: '06'
-status: in-progress
+status: completed
 started: '2026-04-25'
 priority: high
 created: '2026-04-15'
-updated: '2026-04-15'
+updated: '2026-05-06'
 owner: ''
 prd: '06-blog-strategy.md'
-started: ''
-completed: ''
+completed: '2026-05-06'
 estimated-hours: ''
 tags: ['blog', 'content', 'seo', 'internal-linking']
 ---
@@ -193,11 +192,11 @@ Add a contextual paragraph or CTA with a link to the relevant service page in ea
 
 Run in order before pushing code changes:
 
-- [ ] `npm run format`
-- [ ] `npm run lint`
-- [ ] `npm run type:check`
-- [ ] `npm run build`
-- [ ] `npm run test:e2e`
+- [x] `npm run format`
+- [x] `npm run lint`
+- [x] `npm run type:check`
+- [x] `npm run build`
+- [x] `npm run test:e2e`
 
 ---
 

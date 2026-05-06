@@ -1,14 +1,14 @@
 ---
 title: 'GEO (Generative Engine Optimisation): Execution Plan'
 number: '07'
-status: in-progress
+status: completed
 priority: medium
 created: '2026-04-26'
-updated: '2026-05-05'
+updated: '2026-05-06'
 owner: ''
 prd: '07-geo-strategy.md'
 started: '2026-04-26'
-completed: ''
+completed: '2026-05-06'
 estimated-hours: ''
 tags: ['geo', 'ai-optimisation', 'llms', 'structured-data', 'faq']
 ---
@@ -277,9 +277,9 @@ See Sanity CMS Steps below.
 
 ---
 
-## Phase 3 — FAQ Audit and Quality Improvement
+## Phase 3 — FAQ Audit and Quality Improvement ✅ COMPLETE
 
-### Task 3.1 — Audit existing FAQ content quality
+### Task 3.1 — Audit existing FAQ content quality ✅ COMPLETE
 
 All 12 service pages currently have 3 FAQs each. All 10 location pages have 5 FAQs each. The audit checks whether existing FAQs are written as natural questions an AI model would cite, per PRD-07 guidelines.
 
@@ -298,30 +298,30 @@ See Sanity CMS Steps below.
 
 ---
 
-### Task 3.2 — Add credibility signals to FAQ answers
+### Task 3.2 — Add credibility signals to FAQ answers ✅ COMPLETE
 
 Per PRD-07, FAQ answers should reference Australian Standards, Victorian legislation, or real statistics where relevant.
 
-Examples to add:
+Changes applied via Sanity MCP on 2026-05-06:
 
-- Electrical testing FAQs → reference AS/NZS 3017, Energy Safe Victoria
-- Air conditioning FAQs → reference minimum energy performance standards
-- Solar/EV FAQs → reference Clean Energy Council, Victorian government rebates
+- `electrical-testing` — added AS/NZS 3017 reference to safety switch/circuit breaker answer
+- `ev-charger-installation` — added new FAQ: "Is there a Victorian government rebate for EV charger installation?" referencing ZEV Subsidy and Cheaper EVs initiative
+- `renewable-energy` — named "Cheaper Home Batteries Program" explicitly in rebates answer alongside Solar Homes Program
+- `emergency-electrician` — replaced duplicate 24/7 FAQ with cost FAQ: "How much does an emergency electrician call-out cost in Melbourne?"
+- `air-conditioning` — replaced generic brands FAQ with sizing/MEPS FAQ: "What size air conditioner do I need for my room?"
 
 See Sanity CMS Steps below.
 
 ---
 
-## Phase 4 — Blog Post Credibility Signals
+## Phase 4 — Blog Post Credibility Signals ✅ COMPLETE
 
-### Task 4.1 — Add standards and legislation references to new blog posts
+### Task 4.1 — Add standards and legislation references to new blog posts ✅ COMPLETE
 
-The two new posts published in Phase 4 of PRD-06 should be updated to include Australian Standards or legislation references where they don't already have them.
+Changes applied via Sanity MCP on 2026-05-06:
 
-**Posts to update in Sanity Studio:**
-
-- `electrical-safety-testing-guide-for-landlords` — already references Residential Tenancies Act 1997 and Energy Safe Victoria ✓. Add reference to AS/NZS 3017 (Electrical Installations — Verification Guidelines).
-- `emergency-electrician-melbourne-when-to-call` — add a reference to Energy Safe Victoria's guidance on electrical emergencies.
+- `electrical-safety-testing-guide-for-landlords` — added a new "The Australian Standard Governing Electrical Inspections" h3 section explaining AS/NZS 3017 scope, test report requirements, and its role in demonstrating compliance to Energy Safe Victoria, insurers, and Consumer Affairs Victoria.
+- `emergency-electrician-melbourne-when-to-call` — added a new "Energy Safe Victoria's Guidance on Electrical Emergencies" h2 section with 4 ESV-sourced safety principles (DIY prohibition, fire evacuation before isolation, post-flood power ban, Certificate of Electrical Safety requirement) plus confirmation of SES's ESV registration.
 
 See Sanity CMS Steps below.
 
@@ -331,24 +331,24 @@ See Sanity CMS Steps below.
 
 ### Karl Rainbow credentials update
 
-- [ ] Open Karl Rainbow's `teamMember` document in Sanity Studio (after schema deployment in Task 2.1)
-- [ ] Add `bio`: "Karl Rainbow is a licensed electrician and the director of Storm Electrical Solutions. With 19+ years of experience across residential, commercial, and renewable energy projects in Melbourne, Karl holds Clean Energy Council accreditation as a Designer and Installer and is a New Energy Tech Approved Seller."
-- [ ] Add `licenceNumber`: [Karl to provide REC number]
-- [ ] Add `accreditations`: ["Clean Energy Council Accredited Designer and Installer", "New Energy Tech Approved Seller", "Energy Safe Victoria Registered Electrical Contractor"]
-- [ ] Add `yearsExperience`: 19
+- [x] Open Karl Rainbow's `teamMember` document in Sanity Studio (after schema deployment in Task 2.1)
+- [x] Add `bio`: "Karl Rainbow is a licensed electrician and the director of Storm Electrical Solutions. With 19+ years of experience across residential, commercial, and renewable energy projects in Melbourne, Karl holds Clean Energy Council accreditation as a Designer and Installer and is a New Energy Tech Approved Seller."
+- [x] Add `licenceNumber`: REC number provided by Karl ✓
+- [x] Add `accreditations`: ["Clean Energy Council Accredited Designer and Installer", "New Energy Tech Approved Seller", "Energy Safe Victoria Registered Electrical Contractor"]
+- [x] Add `yearsExperience`: 19
 
 ### FAQ quality improvements (high-priority service pages)
 
-- [ ] `/services/emergency-electrician` — review and rewrite FAQs to include response times, cost guidance, when to call 000 vs electrician
-- [ ] `/services/electrical-testing` — add reference to AS/NZS 3017 in at least one answer
-- [ ] `/services/air-conditioning` — include energy star rating or minimum performance standard reference
-- [ ] `/services/ev-charger-installation` — reference Victorian government EV rebate scheme
-- [ ] `/services/renewable-energy` — reference Clean Energy Council and Cheaper Home Batteries Program
+- [x] `/services/emergency-electrician` — replaced duplicate 24/7 FAQ with cost FAQ (no call-out fee, quoted upfront)
+- [x] `/services/electrical-testing` — added AS/NZS 3017 reference to safety switch/circuit breaker answer
+- [x] `/services/air-conditioning` — replaced brands FAQ with sizing/MEPS FAQ referencing Energy Rating Label
+- [x] `/services/ev-charger-installation` — added new FAQ referencing ZEV Subsidy and Cheaper EVs initiative
+- [x] `/services/renewable-energy` — named Cheaper Home Batteries Program explicitly alongside Solar Homes Program
 
 ### Blog post credibility updates
 
-- [ ] `electrical-safety-testing-guide-for-landlords` — add AS/NZS 3017 reference to body
-- [ ] `emergency-electrician-melbourne-when-to-call` — add Energy Safe Victoria reference to body
+- [x] `electrical-safety-testing-guide-for-landlords` — added AS/NZS 3017 section explaining verification guidelines and test report obligations
+- [x] `emergency-electrician-melbourne-when-to-call` — added Energy Safe Victoria guidance section with 4 key safety principles
 
 ---
 
@@ -360,7 +360,7 @@ Run in order before pushing code changes:
 - [x] `npm run lint`
 - [x] `npm run type:check`
 - [x] `npm run build`
-- [ ] `npm run test:e2e`
+- [x] `npm run test:e2e`
 
 ---
 
