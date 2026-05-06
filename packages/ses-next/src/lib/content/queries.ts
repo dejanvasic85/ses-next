@@ -27,7 +27,8 @@ export const siteSettingsQuery = `*[_type == "siteSettings"][0]{
   address,
   abn,
   recLicence,
-  businessHours
+  businessHours,
+  owner
 }`;
 
 export const homepageQuery = `*[_type == "homepage"][0]{

@@ -141,139 +141,38 @@ All work quoted before commencement. Free quotes provided for installations.
 
 ---
 
-## Phase 2 — Karl Rainbow Credentials (Schema + Structured Data)
+## Phase 2 — Owner Credentials (Schema + Structured Data)
 
-### Task 2.1 — Extend teamMember Sanity schema with credential fields
+Original plan proposed extending `teamMember` schema with credential fields. This was dropped in favour of a simpler approach: an `owner` object field added to `siteSettings`, grouping the owner's name, role, and accreditations alongside the existing top-level `recLicence` field. This avoids duplicating data across models and keeps all site-level admin in one place.
 
-**Files to change:**
+### Task 2.1 — Add owner field to siteSettings Sanity schema ✅ COMPLETE
 
-- `packages/ses-content/schemas/teamMember.ts`
+**Files changed:**
 
-**Steps:**
+- `packages/ses-content/schemas/siteSettings.ts` — added `owner` object field with `name`, `role`, and `accreditations`
 
-1. Open `packages/ses-content/schemas/teamMember.ts`.
-2. Add the following fields after `avatar`:
+### Task 2.2 — Update TypeScript types and GROQ query ✅ COMPLETE
 
-```ts
-{
-  name: 'bio',
-  type: 'text',
-  title: 'Bio',
-  description: 'Short professional bio (2-3 sentences)',
-  rows: 3,
-},
-{
-  name: 'licenceNumber',
-  type: 'string',
-  title: 'REC Licence Number',
-},
-{
-  name: 'accreditations',
-  type: 'array',
-  title: 'Accreditations',
-  of: [{ type: 'string' }],
-  description: 'e.g. "Clean Energy Council Accredited Designer and Installer"',
-},
-{
-  name: 'yearsExperience',
-  type: 'number',
-  title: 'Years of Experience',
-},
-```
+**Files changed:**
 
-**Verification:** Deploy the schema change (`npm run deploy -w ses-content` or via Sanity Studio) and confirm the new fields appear on Karl's team member document.
+- `packages/ses-next/src/types.ts` — extended `SiteSettingsSchema` and `SiteSettings` type with optional `owner`
+- `packages/ses-next/src/lib/content/queries.ts` — added `owner` to `siteSettingsQuery`
+- `packages/ses-next/src/lib/content/mappers.ts` — passed `owner` through in `mapSiteSettings`
 
----
+### Task 2.3 — Add Person JSON-LD structured data for the owner on the homepage ✅ COMPLETE
 
-### Task 2.2 — Update TypeScript types for TeamMember
+**Files changed:**
 
-**Files to change:**
+- `packages/ses-next/src/lib/structuredData.ts` — added `personJsonLd` helper
+- `packages/ses-next/src/app/page.tsx` — injects Person JSON-LD when `owner` data is present in siteSettings; uses `recLicence` from top-level siteSettings as the licence identifier
 
-- `packages/ses-next/src/types.ts`
+### Sanity CMS Steps
 
-**Steps:**
-
-1. Open `packages/ses-next/src/types.ts`.
-2. Extend `TeamMemberSchema` (line 243) to include the new optional fields:
-
-```ts
-export const TeamMemberSchema = z.object({
-  _id: z.string(),
-  _type: z.literal('teamMember'),
-  name: z.string(),
-  role: z.string(),
-  avatar: z.object({
-    asset: SanityAssetSchema,
-  }),
-  bio: z.string().optional(),
-  licenceNumber: z.string().optional(),
-  accreditations: z.array(z.string()).optional(),
-  yearsExperience: z.number().optional(),
-});
-```
-
-3. Update `TeamMember` type (line 343) to match.
-
----
-
-### Task 2.3 — Add Person JSON-LD structured data for Karl on the homepage
-
-AI models use `Person` schema to attribute expertise to content.
-
-**Files to change:**
-
-- `packages/ses-next/src/lib/structuredData.ts` — add `personJsonLd` helper
-- `packages/ses-next/src/app/page.tsx` — inject the Person JSON-LD
-
-**Steps:**
-
-1. In `packages/ses-next/src/lib/structuredData.ts`, add:
-
-```ts
-type PersonJsonLdInput = {
-  name: string;
-  role: string;
-  licenceNumber?: string;
-  accreditations?: string[];
-  yearsExperience?: number;
-  url: string;
-};
-
-export const personJsonLd = ({
-  name,
-  role,
-  licenceNumber,
-  accreditations,
-  yearsExperience,
-  url,
-}: PersonJsonLdInput) => ({
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name,
-  jobTitle: role,
-  worksFor: {
-    '@type': 'Organization',
-    name: 'Storm Electrical Solutions',
-    url: 'https://www.sesmelbourne.com.au',
-  },
-  url,
-  ...(licenceNumber && { identifier: licenceNumber }),
-  ...(accreditations && {
-    hasCredential: accreditations.map((name) => ({ '@type': 'EducationalOccupationalCredential', name })),
-  }),
-  ...(yearsExperience && {
-    description: `${yearsExperience}+ years experience as a licensed electrician in Melbourne.`,
-  }),
-});
-```
-
-2. In `packages/ses-next/src/app/page.tsx`, fetch the team members and inject a `<script type="application/ld+json">` tag for Karl Rainbow using the `personJsonLd` helper.
-
----
-
-### Task 2.4 — Update Karl's credentials in Sanity Studio
-
-See Sanity CMS Steps below.
+- [ ] Open Site Settings in Sanity Studio and populate the `owner` fields:
+  - `name`: Karl Rainbow
+  - `role`: Director / Licensed Electrician
+  - `accreditations`: ["Clean Energy Council Accredited Designer and Installer", "New Energy Tech Approved Seller", "Energy Safe Victoria Registered Electrical Contractor"]
+- [ ] Confirm `recLicence` is populated (already in site settings)
 
 ---
 
@@ -328,14 +227,6 @@ See Sanity CMS Steps below.
 ---
 
 ## Sanity CMS Steps
-
-### Karl Rainbow credentials update
-
-- [ ] Open Karl Rainbow's `teamMember` document in Sanity Studio (after schema deployment in Task 2.1)
-- [ ] Add `bio`: "Karl Rainbow is a licensed electrician and the director of Storm Electrical Solutions. With 19+ years of experience across residential, commercial, and renewable energy projects in Melbourne, Karl holds Clean Energy Council accreditation as a Designer and Installer and is a New Energy Tech Approved Seller."
-- [ ] Add `licenceNumber`: [Karl to provide REC number]
-- [ ] Add `accreditations`: ["Clean Energy Council Accredited Designer and Installer", "New Energy Tech Approved Seller", "Energy Safe Victoria Registered Electrical Contractor"]
-- [ ] Add `yearsExperience`: 19
 
 ### FAQ quality improvements (high-priority service pages)
 

@@ -28,7 +28,7 @@ updated: '2026-05-05'
 | [04c](./04c-new-parent-services.md)     | New Top-Level Service Pages          | completed   | critical | 2     | 7/10       | —                                         |
 | [04d](./04d-location-pages.md)          | Location Pages                       | completed   | critical | 2-3   | 18/18      | —                                         |
 | [06](./06-blog-strategy.md)             | Blog Content Strategy                | approved    | high     | 2-3   | 4/5        | [plan](../plans/06-blog-strategy/plan.md) |
-| [07](./07-geo-strategy.md)             | GEO (Generative Engine Optimisation) | in-progress | medium   | 1-2   | 2/5        | [plan](../plans/07-geo-strategy/plan.md)  |
+| [07](./07-geo-strategy.md)              | GEO (Generative Engine Optimisation) | in-progress | medium   | 1-2   | 2/5        | [plan](../plans/07-geo-strategy/plan.md)  |
 | [08](./08-paid-ads.md)                  | Paid Ads Relaunch                    | draft       | medium   | 3     | 0/6        | —                                         |
 
 ## Pipeline Flow
