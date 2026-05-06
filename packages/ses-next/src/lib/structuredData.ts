@@ -18,27 +18,26 @@ export const safeJsonLd = (data: unknown): string =>
     .replace(/\u2028/g, '\\u2028')
     .replace(/\u2029/g, '\\u2029');
 
-export const personJsonLd = ({ name, role, licenceNumber, accreditations, companyName, url }: PersonJsonLdInput) => ({
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name,
-  jobTitle: role,
-  worksFor: {
-    '@type': 'Organization',
-    name: companyName,
+export const personJsonLd = ({ name, role, licenceNumber, accreditations, companyName, url }: PersonJsonLdInput) => {
+  const credentialItems = accreditations
+    ?.filter((credName) => credName.trim().length > 0)
+    .map((credName) => ({ '@type': 'EducationalOccupationalCredential', name: credName.trim() }));
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name,
+    jobTitle: role,
+    worksFor: {
+      '@type': 'Organization',
+      name: companyName,
+      url,
+    },
     url,
-  },
-  url,
-  ...(licenceNumber && { identifier: licenceNumber }),
-  ...(accreditations?.length && {
-    hasCredential: accreditations
-      .filter((credName) => credName.trim().length > 0)
-      .map((credName) => ({
-        '@type': 'EducationalOccupationalCredential',
-        name: credName.trim(),
-      })),
-  }),
-});
+    ...(licenceNumber && { identifier: licenceNumber }),
+    ...(credentialItems?.length && { hasCredential: credentialItems }),
+  };
+};
 
 export const faqJsonLd = (faqs: FaqItem[]) => ({
   '@context': 'https://schema.org',
