@@ -5,7 +5,7 @@ priority: medium
 source: internal
 captured: '2026-05-06'
 domain: engineering
-prd: ''
+prd: '09-hardcoded-business-content.md'
 tags:
   - cms
   - content-model

@@ -19,7 +19,7 @@ updated: '2026-05-06'
 
 | File                                                                                                                                   | Title                                                                       | Status   | Priority | Domain         | Captured   | PRD |
 | -------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | -------- | -------- | -------------- | ---------- | --- |
-| [2026-05-hardcoded-business-content-to-sanity.md](./2026-05-hardcoded-business-content-to-sanity.md)                                   | Move hardcoded business content into Sanity SiteSettings                    | accepted | medium   | engineering    | 2026-05-06 | —   |
+| [2026-05-hardcoded-business-content-to-sanity.md](./2026-05-hardcoded-business-content-to-sanity.md)                                   | Move hardcoded business content into Sanity SiteSettings                    | accepted | medium   | engineering    | 2026-05-06 | [09](../prds/09-hardcoded-business-content.md) |
 | [2026-04-enhance-ci-pipeline-format-and-lint-checks.md](./2026-04-enhance-ci-pipeline-format-and-lint-checks.md)                       | Enhance CI pipeline checks for formatting and linting                       | captured | unset    | infrastructure | 2026-04-14 | —   |
 | [2026-04-global-contact-modal-from-navigation.md](./2026-04-global-contact-modal-from-navigation.md)                                   | Create a global contact modal accessible from site navigation               | captured | unset    | design         | 2026-04-14 | —   |
 | [2026-04-implement-dark-theme.md](./2026-04-implement-dark-theme.md)                                                                   | Implement a dark theme across the website                                   | captured | unset    | design         | 2026-04-14 | —   |
@@ -32,4 +32,4 @@ updated: '2026-05-06'
 
 ## Action Required
 
-- **2026-05-hardcoded-business-content-to-sanity** is `accepted` — ready for `/promote-to-prd`.
+- No action required. All accepted ideas have been promoted to PRDs.

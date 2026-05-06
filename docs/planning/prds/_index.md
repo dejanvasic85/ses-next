@@ -8,13 +8,13 @@ updated: '2026-05-06'
 
 | Status      | Count  |
 | ----------- | ------ |
-| Draft       | 1      |
+| Draft       | 2      |
 | Review      | 0      |
 | Approved    | 0      |
 | In Progress | 0      |
 | Completed   | 9      |
 | Cancelled   | 0      |
-| **Total**   | **10** |
+| **Total**   | **11** |
 
 ## PRDs
 
@@ -30,12 +30,13 @@ updated: '2026-05-06'
 | [06](./06-blog-strategy.md)             | Blog Content Strategy                | completed | high     | 2-3   | [plan](../plans/06-blog-strategy/plan.md) |
 | [07](./07-geo-strategy.md)              | GEO (Generative Engine Optimisation) | completed | medium   | 1-2   | [plan](../plans/07-geo-strategy/plan.md)  |
 | [08](./08-paid-ads.md)                  | Paid Ads Relaunch                    | draft     | medium   | 3     | —                                         |
+| [09](./09-hardcoded-business-content.md) | Move Hardcoded Business Content into Sanity SiteSettings | draft | high | — | — |
 
 ## Pipeline Flow
 
 Ideas → PRDs → Plans
 
-[10 captured ideas] → [10 PRDs total] → [2 plans total]
+[10 captured ideas] → [11 PRDs total] → [2 plans total]
 
 ## Action Required
 
