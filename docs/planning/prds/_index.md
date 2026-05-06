@@ -28,7 +28,7 @@ updated: '2026-05-06'
 | [04c](./04c-new-parent-services.md)      | New Top-Level Service Pages                              | completed | critical | 2     | 7/10       | —                                         |
 | [04d](./04d-location-pages.md)           | Location Pages                                           | completed | critical | 2-3   | 18/18      | —                                         |
 | [06](./06-blog-strategy.md)              | Blog Content Strategy                                    | completed | high     | 2-3   | 4/5        | [plan](../plans/06-blog-strategy/plan.md) |
-| [07](./07-geo-strategy.md)              | GEO (Generative Engine Optimisation)                     | completed | medium   | 1-2   | 5/5        | [plan](../plans/07-geo-strategy/plan.md)  |
+| [07](./07-geo-strategy.md)               | GEO (Generative Engine Optimisation)                     | completed | medium   | 1-2   | 5/5        | [plan](../plans/07-geo-strategy/plan.md)  |
 | [08](./08-paid-ads.md)                   | Paid Ads Relaunch                                        | draft     | medium   | 3     | 0/6        | —                                         |
 | [09](./09-hardcoded-business-content.md) | Move Hardcoded Business Content into Sanity SiteSettings | draft     | high     | —     | —          | —                                         |
 
