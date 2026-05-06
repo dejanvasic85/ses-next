@@ -167,6 +167,6 @@ export const mapSiteSettings = (model: SiteSettingsContentModel): SiteSettings =
     abn: model.abn,
     recLicence: model.recLicence,
     businessHours: model.businessHours,
-    owner: model.owner,
+    owner: model.owner ?? undefined,
   };
 };

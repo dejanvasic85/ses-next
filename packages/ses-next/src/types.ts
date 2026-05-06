@@ -300,7 +300,7 @@ export const SiteSettingsSchema = z.object({
       role: z.string(),
       accreditations: z.array(z.string()).optional(),
     })
-    .optional(),
+    .nullish(),
 });
 
 export const ServicesHubSchema = z.object({

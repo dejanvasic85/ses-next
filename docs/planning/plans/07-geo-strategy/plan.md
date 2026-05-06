@@ -141,7 +141,7 @@ All work quoted before commencement. Free quotes provided for installations.
 
 ---
 
-## Phase 2 — Owner Credentials (Schema + Structured Data) ✅ COMPLETE
+## Phase 2 — Owner Credentials (Schema + Structured Data)
 
 Original plan proposed extending `teamMember` schema with credential fields. This was dropped in favour of a simpler approach: an `owner` object field added to `siteSettings`, grouping the owner's name, role, and accreditations alongside the existing top-level `recLicence` field. This avoids duplicating data across models and keeps all site-level admin in one place.
 

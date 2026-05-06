@@ -90,11 +90,13 @@ export default defineType({
           name: 'name',
           type: 'string',
           title: 'Full Name',
+          validation: (Rule) => Rule.required(),
         },
         {
           name: 'role',
           type: 'string',
           title: 'Role / Job Title',
+          validation: (Rule) => Rule.required(),
         },
         {
           name: 'accreditations',

@@ -31,10 +31,12 @@ export const personJsonLd = ({ name, role, licenceNumber, accreditations, compan
   url,
   ...(licenceNumber && { identifier: licenceNumber }),
   ...(accreditations?.length && {
-    hasCredential: accreditations.map((credName) => ({
-      '@type': 'EducationalOccupationalCredential',
-      name: credName,
-    })),
+    hasCredential: accreditations
+      .filter((credName) => credName.trim().length > 0)
+      .map((credName) => ({
+        '@type': 'EducationalOccupationalCredential',
+        name: credName.trim(),
+      })),
   }),
 });
 

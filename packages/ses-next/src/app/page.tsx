@@ -126,7 +126,8 @@ export default async function Home() {
   };
 
   const ownerJsonLd =
-    owner &&
+    owner?.name &&
+    owner?.role &&
     personJsonLd({
       name: owner.name,
       role: owner.role,
