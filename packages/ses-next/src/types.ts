@@ -294,6 +294,13 @@ export const SiteSettingsSchema = z.object({
   abn: z.string().optional(),
   recLicence: z.string().optional(),
   businessHours: z.string().optional(),
+  owner: z
+    .object({
+      name: z.string(),
+      role: z.string(),
+      accreditations: z.array(z.string()).optional(),
+    })
+    .nullish(),
 });
 
 export const ServicesHubSchema = z.object({
@@ -431,6 +438,11 @@ export type SiteSettings = {
   abn?: string;
   recLicence?: string;
   businessHours?: string;
+  owner?: {
+    name: string;
+    role: string;
+    accreditations?: string[];
+  };
 };
 
 export type LocationPageFaq = {
