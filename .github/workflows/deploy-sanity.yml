@@ -33,7 +33,7 @@ jobs:
         run: pnpm --filter ses-content build
 
       - name: Deploy Sanity Studio
-        run: pnpm --filter ses-content deploy -- --yes
+        run: pnpm --filter ses-content run deploy -- --yes
         env:
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
           NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ vars.SANITY_PROJECT_ID }}
