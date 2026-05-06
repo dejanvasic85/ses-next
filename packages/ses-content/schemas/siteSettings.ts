@@ -81,6 +81,31 @@ export default defineType({
       description: 'e.g. Monday–Friday: 7:00 AM – 6:00 PM',
     }),
     defineField({
+      title: 'Owner',
+      name: 'owner',
+      type: 'object',
+      description: 'Business owner details used for structured data and AI attribution',
+      fields: [
+        {
+          name: 'name',
+          type: 'string',
+          title: 'Full Name',
+        },
+        {
+          name: 'role',
+          type: 'string',
+          title: 'Role / Job Title',
+        },
+        {
+          name: 'accreditations',
+          type: 'array',
+          title: 'Accreditations',
+          of: [{type: 'string'}],
+          description: 'e.g. "Clean Energy Council Accredited Designer and Installer"',
+        },
+      ],
+    }),
+    defineField({
       title: 'Google Maps location embedded url',
       description:
         'You can get this by going to google maps doing a search and clicking share. Then click embed map and copy the url.',

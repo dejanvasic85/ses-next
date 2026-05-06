@@ -3,7 +3,7 @@ import { googleReviews } from 'ses-reviews';
 
 import { About, Contact, Hero, Services } from '@/components';
 import { getHomePageContent, getSiteSettings, getServices } from '@/lib/content/contentService';
-import { safeJsonLd } from '@/lib/structuredData';
+import { safeJsonLd, personJsonLd } from '@/lib/structuredData';
 import type { GoogleReview } from '@/types';
 
 const title = 'Melbourne Electricians | 24/7 Emergency Electrical Services | Storm Electrical Solutions';
@@ -39,6 +39,8 @@ export default async function Home() {
     phone,
     baseUrl,
     meta,
+    recLicence,
+    owner,
   } = siteSettings;
   const { mainHeading, subHeading, team, training } = homepageContent;
 
@@ -123,10 +125,24 @@ export default async function Home() {
     ],
   };
 
+  const ownerJsonLd =
+    owner &&
+    personJsonLd({
+      name: owner.name,
+      role: owner.role,
+      licenceNumber: recLicence,
+      accreditations: owner.accreditations,
+      companyName,
+      url: baseUrl,
+    });
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(localBusinessJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(credentialsJsonLd) }} />
+      {ownerJsonLd && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(ownerJsonLd) }} />
+      )}
       <Hero
         companyName={companyName}
         companyLogo={companyLogo}
