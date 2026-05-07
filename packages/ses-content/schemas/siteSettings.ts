@@ -81,6 +81,73 @@ export default defineType({
       description: 'e.g. Monday–Friday: 7:00 AM – 6:00 PM',
     }),
     defineField({
+      name: 'establishedYear',
+      type: 'number',
+      title: 'Year Established',
+      description: 'e.g. 2007 — used to derive years of experience dynamically',
+    }),
+    defineField({
+      name: 'directorName',
+      type: 'string',
+      title: 'Director Name',
+      description: 'e.g. Karl Rainbow',
+    }),
+    defineField({
+      name: 'latitude',
+      type: 'number',
+      title: 'Latitude',
+      description: 'Business location latitude for JSON-LD geo coordinates e.g. -37.8354339',
+    }),
+    defineField({
+      name: 'longitude',
+      type: 'number',
+      title: 'Longitude',
+      description: 'Business location longitude for JSON-LD geo coordinates e.g. 144.8650809',
+    }),
+    defineField({
+      name: 'streetAddress',
+      type: 'string',
+      title: 'Street Address',
+      description: 'e.g. 61B Hansen St — used in JSON-LD PostalAddress',
+    }),
+    defineField({
+      name: 'suburb',
+      type: 'string',
+      title: 'Suburb',
+      description: 'e.g. Altona North',
+    }),
+    defineField({
+      name: 'state',
+      type: 'string',
+      title: 'State',
+      description: 'e.g. VIC',
+    }),
+    defineField({
+      name: 'postcode',
+      type: 'string',
+      title: 'Postcode',
+      description: 'e.g. 3025',
+    }),
+    defineField({
+      name: 'openingHours',
+      type: 'object',
+      title: 'Opening Hours',
+      description: 'Structured opening hours for JSON-LD OpeningHoursSpecification',
+      fields: [
+        {
+          name: 'daysOfWeek',
+          type: 'array',
+          title: 'Days of Week',
+          of: [{type: 'string'}],
+          options: {
+            list: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+          },
+        },
+        {name: 'opensAt', type: 'string', title: 'Opens At', description: 'e.g. 07:00'},
+        {name: 'closesAt', type: 'string', title: 'Closes At', description: 'e.g. 18:00'},
+      ],
+    }),
+    defineField({
       title: 'Owner',
       name: 'owner',
       type: 'object',
