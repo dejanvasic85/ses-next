@@ -6,6 +6,10 @@ This is a monorepo with multiple apps so each command should target specific wor
 having to navigate to each app.
 E.g. `pnpm --filter <workspace> build`
 
+To deploy the Sanity Studio schema, navigate to `packages/ses-content` and run:
+`pnpm run deploy`
+(Must use `pnpm run` not `pnpm` directly, as `deploy` is a reserved pnpm command.)
+
 ## Nextjs structure
 
 - The app folder should only contain routing components (page.tsx and route.ts)

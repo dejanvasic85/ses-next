@@ -1,13 +1,13 @@
 ---
 title: 'Move Hardcoded Business Content into Sanity SiteSettings: Execution Plan'
 number: '09'
-status: planning
+status: in-progress
 priority: high
 created: '2026-05-06'
 updated: '2026-05-06'
 owner: ''
 prd: '09-hardcoded-business-content.md'
-started: ''
+started: '2026-05-07'
 completed: ''
 estimated-hours: ''
 tags: ['cms', 'content-model', 'maintainability', 'sanity', 'site-settings']
