@@ -25,22 +25,48 @@ function buildServiceAreaSection(locationPages: LocationPage[]): string {
 }
 
 function buildLlmsText({ siteSettings, services, locationPages }: LlmsData): string {
-  const { companyName, phone, mobile, email, address, baseUrl, abn, recLicence, businessHours } = siteSettings;
+  const {
+    companyName,
+    phone,
+    mobile,
+    email,
+    baseUrl,
+    abn,
+    recLicence,
+    streetAddress,
+    suburb,
+    state,
+    postcode,
+    establishedYear,
+    directorName,
+    owner,
+    openingHours,
+  } = siteSettings;
+
+  const yearsExperience = establishedYear ? new Date().getFullYear() - establishedYear : null;
+  const fullAddress =
+    streetAddress && suburb && state && postcode ? `${streetAddress}, ${suburb} ${state} ${postcode}` : null;
+  const hoursText = openingHours
+    ? `${openingHours.daysOfWeek.join('–')}: ${openingHours.opensAt} – ${openingHours.closesAt}`
+    : null;
 
   const lines = [
     `# ${companyName}`,
     '',
     '## About',
     '',
-    'Licensed electrical services company based in Altona North, Melbourne, Victoria, Australia.',
-    'Established 2007. 19+ years experience.',
+    `Licensed electrical services company based in ${suburb ?? 'Melbourne'}, Victoria, Australia.`,
+    ...(establishedYear
+      ? [`Established ${establishedYear}.${yearsExperience ? ` ${yearsExperience}+ years experience.` : ''}`]
+      : []),
     ...(abn ? [`ABN: ${abn}`] : []),
     ...(recLicence ? [`REC Licence: ${recLicence}`] : []),
     '',
     '## Director',
     '',
-    'Karl Rainbow — Licensed Electrician, Clean Energy Council Accredited Designer and Installer,',
-    'New Energy Tech Approved Seller.',
+    ...(directorName
+      ? [`${directorName}${owner?.accreditations?.length ? ` — ${owner.accreditations.join(', ')}` : ''}`]
+      : []),
     '',
     '## Services',
     '',
@@ -56,7 +82,7 @@ function buildLlmsText({ siteSettings, services, locationPages }: LlmsData): str
     ...(phone ? [`- Phone: ${phone}`] : []),
     ...(mobile ? [`- Mobile: ${mobile}`] : []),
     ...(email ? [`- Email: ${email}`] : []),
-    ...(address ? [`- Address: ${address}`] : []),
+    ...(fullAddress ? [`- Address: ${fullAddress}`] : []),
     `- Website: ${baseUrl}`,
     '',
     '## Credentials',
@@ -68,7 +94,7 @@ function buildLlmsText({ siteSettings, services, locationPages }: LlmsData): str
     '',
     '## Hours',
     '',
-    ...(businessHours ? [businessHours] : []),
+    ...(hoursText ? [hoursText] : []),
     'Same-day priority response. No after-hours callouts.',
     '',
     '## Pricing',

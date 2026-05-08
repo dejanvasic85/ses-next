@@ -342,11 +342,11 @@ openingHoursSpecification: siteSettings.openingHours
 
 ---
 
-## Phase 4 — Remove Flat Field Duplicates
+## Phase 4 — Remove Flat Field Duplicates ✅
 
 Once all frontend consumers have been migrated to the structured fields, remove the legacy flat fields (`address`, `businessHours`) that are now superseded by `streetAddress`/`suburb`/`state`/`postcode` and `openingHours`.
 
-### Task 4.1 — Remove flat fields from Sanity schema
+### Task 4.1 — Remove flat fields from Sanity schema ✅
 
 **File to change:**
 
@@ -362,7 +362,7 @@ Once all frontend consumers have been migrated to the structured fields, remove 
 
 ---
 
-### Task 4.2 — Remove flat fields from Zod schema and TypeScript type
+### Task 4.2 — Remove flat fields from Zod schema and TypeScript type ✅
 
 **File to change:**
 
@@ -377,7 +377,7 @@ Once all frontend consumers have been migrated to the structured fields, remove 
 
 ---
 
-### Task 4.3 — Remove flat fields from GROQ query and mapper
+### Task 4.3 — Remove flat fields from GROQ query and mapper ✅
 
 **Files to change:**
 

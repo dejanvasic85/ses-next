@@ -57,12 +57,6 @@ export default defineType({
       description: 'Business email address',
     }),
     defineField({
-      title: 'Address',
-      name: 'address',
-      type: 'string',
-      description: 'Full street address e.g. 61B Hansen St, Altona North VIC 3025',
-    }),
-    defineField({
       title: 'ABN',
       name: 'abn',
       type: 'string',
@@ -73,12 +67,6 @@ export default defineType({
       name: 'recLicence',
       type: 'string',
       description: 'Registered Electrical Contractor licence number',
-    }),
-    defineField({
-      title: 'Business Hours',
-      name: 'businessHours',
-      type: 'string',
-      description: 'e.g. Monday–Friday: 7:00 AM – 6:00 PM',
     }),
     defineField({
       name: 'establishedYear',

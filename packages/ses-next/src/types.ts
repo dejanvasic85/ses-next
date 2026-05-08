@@ -290,10 +290,8 @@ export const SiteSettingsSchema = z.object({
     .nullable(),
   mobile: z.string().optional(),
   email: z.string().optional(),
-  address: z.string().optional(),
   abn: z.string().optional(),
   recLicence: z.string().optional(),
-  businessHours: z.string().optional(),
   establishedYear: z.number().optional(),
   directorName: z.string().optional(),
   latitude: z.number().optional(),
@@ -449,10 +447,8 @@ export type SiteSettings = {
   phone: string;
   mobile?: string;
   email?: string;
-  address?: string;
   abn?: string;
   recLicence?: string;
-  businessHours?: string;
   establishedYear?: number;
   directorName?: string;
   latitude?: number;
