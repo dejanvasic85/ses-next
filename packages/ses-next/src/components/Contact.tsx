@@ -10,13 +10,15 @@ import { PopSuccess } from '@/components/PopSuccess';
 import { Icon } from '@/components/Icon/Icon';
 import { ContactContentModel } from '@/types';
 
-interface ContactProps {
+type ContactProps = {
   className?: string;
   contact: ContactContentModel;
   location: string | null;
-}
+  streetAddress?: string;
+  suburb?: string;
+};
 
-export function Contact({ className, contact, location }: ContactProps) {
+export function Contact({ className, contact, location, streetAddress, suburb }: ContactProps) {
   const { error, loading, messageSent, sendMessage } = useContact();
   const [firstBlurb = '', secondBlurb = ''] = contact.blurbs ?? [];
 
@@ -30,7 +32,7 @@ export function Contact({ className, contact, location }: ContactProps) {
         <div className="bg-white p-8 text-center">
           <div className="text-lg" itemProp="address" itemScope itemType="http://schema.org/PostalAddress">
             <p className="mb-2">
-              <span itemProp="streetAddress">61B Hansen St</span>,<span itemProp="addressLocality">Altona North</span>,
+              <span itemProp="streetAddress">{streetAddress}</span>,<span itemProp="addressLocality">{suburb}</span>,
               <span itemProp="addressRegion">VIC</span>,<span itemProp="postalCode">3025</span>,
               <span itemProp="addressCountry">Australia</span>
             </p>

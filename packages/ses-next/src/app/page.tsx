@@ -8,7 +8,7 @@ import type { GoogleReview } from '@/types';
 
 const title = 'Melbourne Electricians | 24/7 Emergency Electrical Services | Storm Electrical Solutions';
 const description =
-  'Licensed Melbourne electricians with 19+ years experience. Emergency electrical services, air conditioning, solar, lighting & data cabling. 5-star rated. Free quotes. Call (03) 4050 7937.';
+  'Licensed Melbourne electricians. Emergency electrical services, air conditioning, solar, lighting & data cabling. 5-star rated. Free quotes.';
 
 export const metadata: Metadata = {
   title,
@@ -29,6 +29,8 @@ export default async function Home() {
     getServices(),
   ]);
 
+  const yearsExperience = new Date().getFullYear() - (siteSettings.establishedYear ?? 2007);
+
   const {
     companyName,
     alternateName,
@@ -41,6 +43,14 @@ export default async function Home() {
     meta,
     recLicence,
     owner,
+    establishedYear,
+    streetAddress,
+    suburb,
+    state,
+    postcode,
+    latitude,
+    longitude,
+    openingHours,
   } = siteSettings;
   const { mainHeading, subHeading, team, training } = homepageContent;
 
@@ -68,16 +78,16 @@ export default async function Home() {
     description: meta.description,
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '61B Hansen St',
-      addressLocality: 'Altona North',
-      addressRegion: 'VIC',
-      postalCode: '3025',
+      streetAddress,
+      addressLocality: suburb,
+      addressRegion: state,
+      postalCode: postcode,
       addressCountry: 'AU',
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: -37.8354339,
-      longitude: 144.8650809,
+      latitude,
+      longitude,
     },
     priceRange: '$$',
     telephone: phone,
@@ -95,14 +105,16 @@ export default async function Home() {
       'Moonee Ponds',
       'Ascot Vale',
     ],
-    openingHoursSpecification: [
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-        opens: '07:00',
-        closes: '18:00',
-      },
-    ],
+    openingHoursSpecification: openingHours
+      ? [
+          {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: openingHours.daysOfWeek,
+            opens: openingHours.opensAt,
+            closes: openingHours.closesAt,
+          },
+        ]
+      : undefined,
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue,
@@ -155,7 +167,12 @@ export default async function Home() {
         subHeading={subHeading}
       />
       <section id="contact" className="mt-32 pt-24">
-        <Contact contact={homepageContent.contact} location={googleMapsLocation} />
+        <Contact
+          contact={homepageContent.contact}
+          location={googleMapsLocation}
+          streetAddress={streetAddress}
+          suburb={suburb}
+        />
       </section>
       <section id="services" className="mt-16 pt-24">
         <Services services={services} blurbs={homepageContent.services.blurbs ?? []} className="mt-12" />

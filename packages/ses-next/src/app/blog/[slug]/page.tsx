@@ -35,7 +35,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const posts = await getBlogPosts();
+  const [posts, siteSettings] = await Promise.all([getBlogPosts(), getSiteSettings()]);
   const post = posts.find((p) => p.slug === slug);
 
   if (!post) {
@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   }
 
   return {
-    title: `${post.title} | Storm Electrical Solutions`,
+    title: `${post.title} | ${siteSettings.companyName}`,
     description: post.description,
     alternates: {
       canonical: `/blog/${slug}`,

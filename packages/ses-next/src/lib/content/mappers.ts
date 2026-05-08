@@ -167,6 +167,15 @@ export const mapSiteSettings = (model: SiteSettingsContentModel): SiteSettings =
     abn: model.abn,
     recLicence: model.recLicence,
     businessHours: model.businessHours,
+    establishedYear: model.establishedYear,
+    directorName: model.directorName,
+    latitude: model.latitude,
+    longitude: model.longitude,
+    streetAddress: model.streetAddress,
+    suburb: model.suburb,
+    state: model.state,
+    postcode: model.postcode,
+    openingHours: model.openingHours,
     owner: model.owner ?? undefined,
   };
 };

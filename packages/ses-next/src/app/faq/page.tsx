@@ -3,13 +3,17 @@ import type { Metadata } from 'next';
 import { getFAQs, getSiteSettings } from '@/lib/content/contentService';
 import { safeJsonLd } from '@/lib/structuredData';
 
-export const metadata: Metadata = {
-  title: 'FAQ | Storm Electrical Solutions',
-  description: 'Check out our frequently asked questions to learn more about our electrical services in Melbourne.',
-  alternates: {
-    canonical: '/faq',
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const siteSettings = await getSiteSettings();
+  const { companyName } = siteSettings;
+  return {
+    title: `FAQ | ${companyName}`,
+    description: 'Check out our frequently asked questions to learn more about our electrical services in Melbourne.',
+    alternates: {
+      canonical: '/faq',
+    },
+  };
+}
 
 export default async function FaqPage() {
   const [faqItems, siteSettings] = await Promise.all([getFAQs(), getSiteSettings()]);

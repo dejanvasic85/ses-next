@@ -35,13 +35,14 @@ const defaultFooterLinks: Links = {
   terms: '/terms',
 };
 
-interface FooterProps {
+type FooterProps = {
   social: Social;
   links?: Links;
   services: ServiceItem[];
-}
+  companyName: string;
+};
 
-export function Footer({ social = {} as Social, links = defaultFooterLinks, services }: FooterProps) {
+export function Footer({ social = {} as Social, links = defaultFooterLinks, services, companyName }: FooterProps) {
   const today = new Date();
   const year = today.getFullYear();
 
@@ -50,7 +51,7 @@ export function Footer({ social = {} as Social, links = defaultFooterLinks, serv
       <div className="flex flex-col gap-2">
         <Icon name="bolt" size="xxxl" />
         <div>
-          <strong>Storm Electrical Solutions. Melbourne electricians.</strong>
+          <strong>{companyName}. Melbourne electricians.</strong>
         </div>
         <div>Copyright {year} All rights reserved</div>
         <div>

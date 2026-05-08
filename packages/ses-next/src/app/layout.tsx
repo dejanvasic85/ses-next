@@ -56,7 +56,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <Providers sanityProjectId={config.sanityProjectId} sanityDataset={config.sanityDataset}>
           <Navbar contactPhone={siteSettings.phone} title={siteSettings.shortTitle} />
           <main>{children}</main>
-          <Footer social={siteSettings.social} services={services} />
+          <Footer social={siteSettings.social} services={services} companyName={siteSettings.companyName} />
         </Providers>
       </body>
     </html>

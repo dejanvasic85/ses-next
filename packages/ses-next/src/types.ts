@@ -294,6 +294,21 @@ export const SiteSettingsSchema = z.object({
   abn: z.string().optional(),
   recLicence: z.string().optional(),
   businessHours: z.string().optional(),
+  establishedYear: z.number().optional(),
+  directorName: z.string().optional(),
+  latitude: z.number().optional(),
+  longitude: z.number().optional(),
+  streetAddress: z.string().optional(),
+  suburb: z.string().optional(),
+  state: z.string().optional(),
+  postcode: z.string().optional(),
+  openingHours: z
+    .object({
+      daysOfWeek: z.array(z.string()),
+      opensAt: z.string(),
+      closesAt: z.string(),
+    })
+    .optional(),
   owner: z
     .object({
       name: z.string(),
@@ -438,6 +453,19 @@ export type SiteSettings = {
   abn?: string;
   recLicence?: string;
   businessHours?: string;
+  establishedYear?: number;
+  directorName?: string;
+  latitude?: number;
+  longitude?: number;
+  streetAddress?: string;
+  suburb?: string;
+  state?: string;
+  postcode?: string;
+  openingHours?: {
+    daysOfWeek: string[];
+    opensAt: string;
+    closesAt: string;
+  };
   owner?: {
     name: string;
     role: string;

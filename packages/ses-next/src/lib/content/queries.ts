@@ -28,6 +28,15 @@ export const siteSettingsQuery = `*[_type == "siteSettings"][0]{
   abn,
   recLicence,
   businessHours,
+  establishedYear,
+  directorName,
+  latitude,
+  longitude,
+  streetAddress,
+  suburb,
+  state,
+  postcode,
+  openingHours,
   owner
 }`;
 
