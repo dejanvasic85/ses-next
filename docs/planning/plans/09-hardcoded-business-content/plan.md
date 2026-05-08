@@ -1,14 +1,14 @@
 ---
 title: 'Move Hardcoded Business Content into Sanity SiteSettings: Execution Plan'
 number: '09'
-status: in-progress
+status: completed
 priority: high
 created: '2026-05-06'
 updated: '2026-05-08'
 owner: ''
 prd: '09-hardcoded-business-content.md'
 started: '2026-05-07'
-completed: ''
+completed: '2026-05-08'
 estimated-hours: ''
 tags: ['cms', 'content-model', 'maintainability', 'sanity', 'site-settings']
 ---
@@ -393,9 +393,9 @@ Once all frontend consumers have been migrated to the structured fields, remove 
 
 ---
 
-## Phase 5 — Mail Service
+## Phase 5 — Mail Service ✅
 
-### Task 5.1 — Replace hardcoded company name in email templates
+### Task 5.1 — Replace hardcoded company name in email templates ✅
 
 **File to change:**
 
@@ -407,7 +407,7 @@ Once all frontend consumers have been migrated to the structured fields, remove 
 2. Update the `SendEmailParams` interface to accept an optional `companyName` field and pass it through `emailBody` interpolation alongside the existing form data fields.
 3. Update all callers of `send()` to pass `companyName: siteSettings.companyName`.
 
-### Task 5.2 — Move BCC email address to environment variable
+### Task 5.2 — Move BCC email address to environment variable ✅
 
 **Files to change:**
 

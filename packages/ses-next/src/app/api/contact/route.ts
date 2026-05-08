@@ -1,6 +1,7 @@
 import { send } from '@/lib/mailService';
 import { ContactFormDataSchema } from '@/types';
 import { config } from '@/lib/config';
+import { getSiteSettings } from '@/lib/content/contentService';
 
 const recaptchaTimeoutMs = 5000;
 
@@ -63,15 +64,19 @@ export async function POST(request: Request) {
   }
 
   try {
+    const { companyName } = await getSiteSettings();
+
     await Promise.all([
       send({
         data: contact,
         template: 'contactEmailTemplate',
+        companyName,
       }),
       send({
         data: contact,
         template: 'thankYouForContactingTemplate',
         to: contact.email,
+        companyName,
       }),
     ]);
 

@@ -11,22 +11,23 @@ const ses = new SES({
   },
 });
 
-interface TemplateData {
+type TemplateData = {
   bodyTemplate: string;
   subjectTemplate: string;
-}
+};
 
-interface EmailTemplates {
+type EmailTemplates = {
   [key: string]: TemplateData;
-}
+};
 
 type EmailData = ContactFormData | FeedbackFormData;
 
-interface SendEmailParams {
+type SendEmailParams = {
   data: EmailData;
   template: string;
   to?: string;
-}
+  companyName?: string;
+};
 
 const emailTemplates: EmailTemplates = {
   contactEmailTemplate: {
@@ -46,7 +47,7 @@ const emailTemplates: EmailTemplates = {
     <p>Dear {{fullName}},</p>
     <p>Thank you for getting in touch with us on our website.</p>
     <p>We want you to know that your message has been received and we'll get back to you as soon as possible. Our team is currently reviewing your inquiry and will respond within one business day.</p>
-    <p>Thank you again for considering <strong>Storm Electrical Solutions</strong>. We look forward to speaking with you soon.</p>
+    <p>Thank you again for considering <strong>{{companyName}}</strong>. We look forward to speaking with you soon.</p>
     `,
     subjectTemplate: `Thank you for contacting SES`,
   },
@@ -66,18 +67,20 @@ export function send({
   data,
   template,
   to = config.emailTo,
+  companyName,
 }: SendEmailParams): Promise<SES.Types.SendEmailResponse | void> {
   const { bodyTemplate, subjectTemplate } = emailTemplates[template];
 
-  const emailBody = Object.keys(data).reduce((prev, curr) => {
-    const value = data[curr as keyof EmailData];
-    return prev.replace(`{{${curr}}}`, String(value));
-  }, bodyTemplate);
+  const interpolate = (tmpl: string) => {
+    const withData = Object.keys(data).reduce((prev, curr) => {
+      const value = data[curr as keyof EmailData];
+      return prev.replace(`{{${curr}}}`, String(value));
+    }, tmpl);
+    return companyName ? withData.replace('{{companyName}}', companyName) : withData;
+  };
 
-  const subject = Object.keys(data).reduce((prev, curr) => {
-    const value = data[curr as keyof EmailData];
-    return prev.replace(`{{${curr}}}`, String(value));
-  }, subjectTemplate);
+  const emailBody = interpolate(bodyTemplate);
+  const subject = interpolate(subjectTemplate);
 
   if (!config.emailEnabled) {
     console.log('Email disabled, not sending email');
@@ -95,7 +98,7 @@ export function send({
     .sendEmail({
       Destination: {
         ToAddresses: [to],
-        BccAddresses: ['dejanvasic24@gmail.com'],
+        BccAddresses: config.emailBcc ? [config.emailBcc] : [],
       },
       Message: {
         Body: {
