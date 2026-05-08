@@ -9,17 +9,21 @@ import { safeJsonLd } from '@/lib/structuredData';
 
 export const revalidate = 3600;
 
-export const metadata: Metadata = {
-  title: 'Blog | Storm Electrical Solutions',
-  description: 'Electrical tips, guides, and news from the Storm Electrical Solutions team in Melbourne.',
-  alternates: {
-    canonical: '/blog',
-  },
-  openGraph: {
-    title: 'Blog | Storm Electrical Solutions',
-    description: 'Electrical tips, guides, and news from the Storm Electrical Solutions team in Melbourne.',
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const siteSettings = await getSiteSettings();
+  const { companyName } = siteSettings;
+  return {
+    title: `Blog | ${companyName}`,
+    description: `Electrical tips, guides, and news from the ${companyName} team in Melbourne.`,
+    alternates: {
+      canonical: '/blog',
+    },
+    openGraph: {
+      title: `Blog | ${companyName}`,
+      description: `Electrical tips, guides, and news from the ${companyName} team in Melbourne.`,
+    },
+  };
+}
 
 export default async function BlogPage() {
   const [blogPosts, siteSettings] = await Promise.all([getBlogPosts(), getSiteSettings()]);

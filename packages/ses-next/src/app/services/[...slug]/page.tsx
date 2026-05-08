@@ -45,7 +45,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
   const { slug: slugParam } = await params;
-  const services = await getServices();
+  const [services, siteSettings] = await Promise.all([getServices(), getSiteSettings()]);
 
   let service: ServiceItem | undefined;
 
@@ -69,7 +69,7 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   const description = service.seoDescription ?? undefined;
 
   return {
-    title: `${title} | Storm Electrical Solutions`,
+    title: `${title} | ${siteSettings.companyName}`,
     description,
     alternates: {
       canonical: canonicalPath,
@@ -115,7 +115,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
     console.error('Failed to fetch location pages for service page:', error);
   }
 
-  const { baseUrl, companyName, phone, companyLogo } = siteSettings;
+  const { baseUrl, companyName, phone, companyLogo, streetAddress, suburb, state, postcode } = siteSettings;
   const servicesUrl = new URL('services/', baseUrl).toString();
   const servicePath = service.parentService
     ? `services/${service.parentService.slug}/${service.slug}`
@@ -153,10 +153,10 @@ export default async function ServicePage({ params }: ServicePageProps) {
     description: service.description,
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '61B Hansen St',
-      addressLocality: 'Altona North',
-      addressRegion: 'VIC',
-      postalCode: '3025',
+      streetAddress,
+      addressLocality: suburb,
+      addressRegion: state,
+      postalCode: postcode,
       addressCountry: 'AU',
     },
     telephone: phone,

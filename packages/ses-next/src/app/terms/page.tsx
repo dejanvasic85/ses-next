@@ -3,15 +3,19 @@ import { notFound } from 'next/navigation';
 import { PortableText } from '@portabletext/react';
 
 import { CustomImage } from '@/components';
-import { getTermsAndConditions } from '@/lib/content/contentService';
+import { getTermsAndConditions, getSiteSettings } from '@/lib/content/contentService';
 
-export const metadata: Metadata = {
-  title: 'Terms of Service | Storm Electrical Solutions',
-  description: 'Terms of service for Storm Electrical Solutions.',
-  alternates: {
-    canonical: '/terms',
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const siteSettings = await getSiteSettings();
+  const { companyName } = siteSettings;
+  return {
+    title: `Terms of Service | ${companyName}`,
+    description: `Terms of service for ${companyName}.`,
+    alternates: {
+      canonical: '/terms',
+    },
+  };
+}
 
 export default async function TermsPage() {
   const [termsContent] = await getTermsAndConditions();

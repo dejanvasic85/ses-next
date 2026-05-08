@@ -59,7 +59,7 @@ export default async function LocationPage({ params }: LocationPageProps) {
     notFound();
   }
 
-  const { baseUrl, companyName, phone } = siteSettings;
+  const { baseUrl, companyName, phone, streetAddress, suburb: businessSuburb, state, postcode } = siteSettings;
   const locationsUrl = new URL('locations', baseUrl).toString();
   const pageUrl = new URL(`locations/${page.slug}`, baseUrl).toString();
 
@@ -84,10 +84,10 @@ export default async function LocationPage({ params }: LocationPageProps) {
     telephone: phone,
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '61B Hansen St',
-      addressLocality: 'Altona North',
-      addressRegion: 'VIC',
-      postalCode: '3025',
+      streetAddress,
+      addressLocality: businessSuburb,
+      addressRegion: state,
+      postalCode: postcode,
       addressCountry: 'AU',
     },
     areaServed: {

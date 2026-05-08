@@ -4,7 +4,7 @@ number: '09'
 status: in-progress
 priority: high
 created: '2026-05-06'
-updated: '2026-05-06'
+updated: '2026-05-08'
 owner: ''
 prd: '09-hardcoded-business-content.md'
 started: '2026-05-07'
@@ -21,9 +21,9 @@ This plan removes hardcoded business values from ~12 source files and replaces t
 
 ---
 
-## Phase 1 — Sanity Schema Extension
+## Phase 1 — Sanity Schema Extension ✅
 
-### Task 1.1 — Add new fields to siteSettings schema
+### Task 1.1 — Add new fields to siteSettings schema ✅
 
 **File to change:**
 
@@ -110,9 +110,9 @@ defineField({
 
 ---
 
-## Phase 2 — TypeScript Types and Data Pipeline
+## Phase 2 — TypeScript Types and Data Pipeline ✅
 
-### Task 2.1 — Extend SiteSettingsSchema (Zod) and SiteSettings type
+### Task 2.1 — Extend SiteSettingsSchema (Zod) and SiteSettings type ✅
 
 **File to change:**
 
@@ -163,7 +163,7 @@ openingHours?: {
 
 ---
 
-### Task 2.2 — Update GROQ query
+### Task 2.2 — Update GROQ query ✅
 
 **File to change:**
 
@@ -190,7 +190,7 @@ openingHours
 
 ---
 
-### Task 2.3 — Update mapper
+### Task 2.3 — Update mapper ✅
 
 **File to change:**
 
@@ -217,11 +217,11 @@ openingHours: model.openingHours,
 
 ---
 
-## Phase 3 — Frontend: Pages and Components
+## Phase 3 — Frontend: Pages and Components ✅
 
 All pages below already call `getSiteSettings()` via the existing content service pipeline. The `siteSettings` object is available — it just isn't being used in place of the hardcoded values.
 
-### Task 3.1 — Homepage (`page.tsx`)
+### Task 3.1 — Homepage (`page.tsx`) ✅
 
 **File to change:**
 
@@ -252,7 +252,7 @@ openingHoursSpecification: siteSettings.openingHours
 
 ---
 
-### Task 3.2 — Services page and service detail page
+### Task 3.2 — Services page and service detail page ✅
 
 **Files to change:**
 
@@ -268,7 +268,7 @@ openingHoursSpecification: siteSettings.openingHours
 
 ---
 
-### Task 3.3 — Location detail page
+### Task 3.3 — Location detail page ✅
 
 **File to change:**
 
@@ -283,7 +283,7 @@ openingHoursSpecification: siteSettings.openingHours
 
 ---
 
-### Task 3.4 — Blog pages
+### Task 3.4 — Blog pages ✅
 
 **Files to change:**
 
@@ -299,7 +299,7 @@ openingHoursSpecification: siteSettings.openingHours
 
 ---
 
-### Task 3.5 — Terms and FAQ pages
+### Task 3.5 — Terms and FAQ pages ✅
 
 **Files to change:**
 
@@ -314,7 +314,7 @@ openingHoursSpecification: siteSettings.openingHours
 
 ---
 
-### Task 3.6 — Footer component
+### Task 3.6 — Footer component ✅
 
 **File to change:**
 
@@ -328,7 +328,7 @@ openingHoursSpecification: siteSettings.openingHours
 
 ---
 
-### Task 3.7 — Contact component
+### Task 3.7 — Contact component ✅
 
 **File to change:**
 
