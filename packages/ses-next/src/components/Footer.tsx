@@ -25,6 +25,13 @@ interface Links {
   terms: string;
 }
 
+const emptySocialValue: Social = {
+  facebook: null,
+  instagram: null,
+  linkedIn: null,
+  twitter: null,
+};
+
 const defaultFooterLinks: Links = {
   home: '/',
   services: '/services/',
@@ -42,7 +49,7 @@ type FooterProps = {
   companyName: string;
 };
 
-export function Footer({ social = {} as Social, links = defaultFooterLinks, services, companyName }: FooterProps) {
+export function Footer({ social = emptySocialValue, links = defaultFooterLinks, services, companyName }: FooterProps) {
   const today = new Date();
   const year = today.getFullYear();
 
