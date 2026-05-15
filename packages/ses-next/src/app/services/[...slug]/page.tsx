@@ -4,6 +4,8 @@ import { PortableText } from '@portabletext/react';
 import Link from 'next/link';
 import { googleReviews } from 'ses-reviews';
 
+import type { PortableTextComponents } from '@portabletext/react';
+
 import {
   getBlogPosts,
   getLocationPagesByServiceSlugs,
@@ -28,9 +30,9 @@ type BreadcrumbItem = {
   item?: string;
 };
 
-const portableTextComponents = {
+const portableTextComponents: PortableTextComponents = {
   types: {
-    image: ({ value }: { value: string }) => <CustomImage value={value} />,
+    image: ({ value }) => <CustomImage value={value} />,
   },
 };
 
