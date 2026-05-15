@@ -1,6 +1,7 @@
 'use client';
 
 import { createImageUrlBuilder } from '@sanity/image-url';
+import type { SanityImageSource } from '@sanity/image-url';
 import Image from 'next/image';
 
 import { useConfig } from '@/hooks/useConfig';
@@ -8,7 +9,7 @@ import { useMemo } from 'react';
 import { sanityImageLoader } from '@/lib/sanityImageLoader';
 
 interface CustomImageProps {
-  value: string;
+  value: SanityImageSource;
 }
 
 export const CustomImage = (props: CustomImageProps) => {

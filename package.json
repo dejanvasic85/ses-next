@@ -24,7 +24,7 @@
     "next": "16.2.6",
     "prettier": "3.8.3",
     "prettier-plugin-tailwindcss": "0.8.0",
-    "turbo": "2.9.8"
+    "turbo": "2.9.14"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json}": [
@@ -32,7 +32,7 @@
       "pnpm --filter ses-next lint"
     ]
   },
-  "packageManager": "pnpm@10.33.2",
+  "packageManager": "pnpm@10.33.4",
   "pnpm": {
     "onlyBuiltDependencies": [
       "aws-sdk",

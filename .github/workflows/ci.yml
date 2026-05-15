@@ -14,7 +14,7 @@ jobs:
     name: Verify
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.59.1-jammy
+      image: mcr.microsoft.com/playwright:v1.60.0-jammy
     timeout-minutes: 10
 
     steps:
@@ -23,7 +23,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v6
         with:
-          version: 10.33.2
+          version: 10.33.4
 
       - name: Setup Node.js
         uses: actions/setup-node@v6

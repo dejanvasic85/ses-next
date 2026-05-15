@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation';
 import { PortableText } from '@portabletext/react';
 import { googleReviews } from 'ses-reviews';
 
+import type { PortableTextComponents } from '@portabletext/react';
+
 import { getAllLocationPages, getLocationPageBySlug, getSiteSettings } from '@/lib/content/contentService';
 import { faqJsonLd, safeJsonLd } from '@/lib/structuredData';
 import { CustomImage } from '@/components/CustomImage';
@@ -16,9 +18,9 @@ type LocationPageProps = {
   params: Promise<{ locationSlug: string }>;
 };
 
-const portableTextComponents = {
+const portableTextComponents: PortableTextComponents = {
   types: {
-    image: ({ value }: { value: string }) => <CustomImage value={value} />,
+    image: ({ value }) => <CustomImage value={value} />,
   },
 };
 

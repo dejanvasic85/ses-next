@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { PortableText } from '@portabletext/react';
 
+import type { PortableTextComponents } from '@portabletext/react';
+
 import { BlogLayout } from '@/components/BlogLayout';
 import { CustomImage } from '@/components/CustomImage';
 import { SanityImage } from '@/components/SanityImage';
@@ -19,9 +21,9 @@ const publishedDateFormatValue = {
   year: 'numeric',
 } as const;
 
-const portableTextComponents = {
+const portableTextComponents: PortableTextComponents = {
   types: {
-    image: ({ value }: { value: string }) => <CustomImage value={value} />,
+    image: ({ value }) => <CustomImage value={value} />,
   },
 };
 
