@@ -3,7 +3,7 @@ import { Heading } from '@/components/Heading';
 import { Icon } from '@/components/Icon/Icon';
 import { Team } from '@/components/Team';
 import { Testimonial } from '@/components/Testimonial';
-import { Team as TeamType } from '@/types';
+import { Team as TeamType, Training } from '@/types';
 
 interface TestimonialData {
   date: string;
@@ -17,15 +17,10 @@ interface TestimonialData {
   url: string;
 }
 
-interface TrainingData {
-  trainingTitle: string;
-  icon: string;
-}
-
 interface AboutProps {
   team: TeamType;
   testimonials: TestimonialData[];
-  training: TrainingData[];
+  training: Training[];
   googleReviewsUrl: string | null;
 }
 

@@ -1,7 +1,7 @@
 import { Heading } from '@/components/Heading';
 import { SanityImage } from '@/components/SanityImage';
 import { Icon } from '@/components/Icon/Icon';
-import type { IconMap } from '@/components/Icon/IconMap';
+import type { Training } from '@/types';
 
 interface TeamMember {
   avatar: string;
@@ -9,15 +9,10 @@ interface TeamMember {
   role: string;
 }
 
-interface TrainingItem {
-  trainingTitle: string;
-  icon: string;
-}
-
 interface TeamProps {
   blurbs: string[];
   members: TeamMember[];
-  training: TrainingItem[];
+  training: Training[];
 }
 
 export function Team({ blurbs, members, training }: TeamProps) {
@@ -58,7 +53,7 @@ export function Team({ blurbs, members, training }: TeamProps) {
         <div className="grid grid-cols-2 gap-6 rounded-lg p-6 sm:h-40 sm:content-evenly xl:grid-cols-4">
           {training.map(({ trainingTitle, icon }, idx) => (
             <div key={idx} className="flex items-center justify-center gap-1 text-gray-500">
-              <Icon name={icon as keyof typeof IconMap} size="xxxl" />
+              <Icon name={icon} size="xxxl" />
               <span className="text-sm md:text-2xl xl:text-3xl">{trainingTitle}</span>
             </div>
           ))}

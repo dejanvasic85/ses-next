@@ -3,6 +3,7 @@ import nextVitals from 'eslint-config-next/core-web-vitals';
 import tailwind from 'eslint-plugin-tailwindcss';
 
 const tailwindEntryFile = new URL('./styles/globals.css', import.meta.url).pathname;
+const typescriptPlugin = nextVitals.find((c) => c.plugins?.['@typescript-eslint'])?.plugins?.['@typescript-eslint'];
 
 const eslintConfig = defineConfig([
   ...nextVitals,
@@ -27,6 +28,17 @@ const eslintConfig = defineConfig([
       '@next/next/no-img-element': 'off',
       'tailwindcss/classnames-order': 'off',
       'tailwindcss/no-custom-classname': 'off',
+    },
+  },
+  {
+    plugins: {
+      '@typescript-eslint': typescriptPlugin,
+    },
+    rules: {
+      '@typescript-eslint/consistent-type-assertions': [
+        'error',
+        { assertionStyle: 'as', objectLiteralTypeAssertions: 'never' },
+      ],
     },
   },
 ]);

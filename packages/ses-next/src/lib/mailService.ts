@@ -72,8 +72,8 @@ export function send({
   const { bodyTemplate, subjectTemplate } = emailTemplates[template];
 
   const interpolate = (tmpl: string) => {
-    const withData = Object.keys(data).reduce((prev, curr) => {
-      const value = data[curr as keyof EmailData];
+    const withData = (Object.keys(data) as (keyof EmailData)[]).reduce((prev, curr) => {
+      const value = data[curr];
       return prev.replace(`{{${curr}}}`, String(value));
     }, tmpl);
     return companyName ? withData.replace('{{companyName}}', companyName) : withData;
@@ -113,6 +113,6 @@ export function send({
         },
       },
       Source: config.emailFrom,
-    } as SES.Types.SendEmailRequest)
+    })
     .promise();
 }
