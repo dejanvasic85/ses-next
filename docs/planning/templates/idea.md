@@ -1,11 +1,10 @@
 ---
 title: ''
 status: captured
-priority: unset
 source: internal
 captured: 'YYYY-MM-DD'
 domain: seo
-prd: ''
+plan: ''
 tags: []
 ---
 

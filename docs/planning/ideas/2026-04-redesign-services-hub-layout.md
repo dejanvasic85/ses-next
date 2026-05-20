@@ -1,11 +1,10 @@
 ---
 title: 'Redesign services hub layout to be narrower and visually distinct'
 status: captured
-priority: unset
 source: internal
 captured: '2026-04-14'
 domain: design
-prd: ''
+plan: ''
 tags:
   - services
   - ux
@@ -46,4 +45,3 @@ The homepage services section at `packages/ses-next/src/components/Services.tsx`
 - `packages/ses-next/src/app/services/page.tsx`
 - `packages/ses-next/src/components/Services.tsx`
 - `packages/ses-next/src/app/page.tsx`
-- `docs/seo-geo/prds/04a-services-hub-navigation.md`

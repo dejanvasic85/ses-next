@@ -1,11 +1,10 @@
 ---
 title: 'Create reusable page layouts for consistent implementation'
 status: captured
-priority: unset
 source: internal
 captured: '2026-04-14'
 domain: engineering
-prd: ''
+plan: ''
 tags:
   - architecture
   - frontend

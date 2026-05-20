@@ -1,11 +1,10 @@
 ---
 title: 'Migrate Sanity content layer to new patterns'
 status: captured
-priority: unset
 source: internal
 captured: '2026-05-06'
 domain: engineering
-prd: ''
+plan: ''
 tags:
   - sanity
   - refactor

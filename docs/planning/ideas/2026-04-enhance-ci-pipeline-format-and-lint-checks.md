@@ -1,11 +1,10 @@
 ---
 title: 'Enhance CI pipeline checks for formatting and linting'
 status: captured
-priority: unset
 source: internal
 captured: '2026-04-14'
 domain: infrastructure
-prd: ''
+plan: ''
 tags:
   - ci
   - lint

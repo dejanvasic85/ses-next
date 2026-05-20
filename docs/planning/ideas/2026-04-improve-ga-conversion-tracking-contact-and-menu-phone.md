@@ -1,11 +1,10 @@
 ---
 title: 'Improve GA conversion tracking for contact form and menu phone clicks'
 status: captured
-priority: unset
 source: internal
 captured: '2026-04-14'
 domain: seo
-prd: ''
+plan: ''
 tags:
   - analytics
   - ga4

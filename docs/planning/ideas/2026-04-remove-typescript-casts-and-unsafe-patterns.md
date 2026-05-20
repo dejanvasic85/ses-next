@@ -1,11 +1,10 @@
 ---
 title: 'Remove TypeScript casts and unsafe patterns across the codebase'
 status: captured
-priority: unset
 source: internal
 captured: '2026-04-14'
 domain: engineering
-prd: ''
+plan: ''
 tags:
   - typescript
   - type-safety

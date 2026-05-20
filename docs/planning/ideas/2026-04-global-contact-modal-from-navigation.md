@@ -1,11 +1,10 @@
 ---
 title: 'Create a global contact modal accessible from site navigation'
 status: captured
-priority: unset
 source: internal
 captured: '2026-04-14'
 domain: design
-prd: ''
+plan: ''
 tags:
   - contact
   - conversion

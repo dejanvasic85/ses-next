@@ -1,11 +1,10 @@
 ---
 title: 'Implement a dark theme across the website'
 status: captured
-priority: unset
 source: internal
 captured: '2026-04-14'
 domain: design
-prd: ''
+plan: ''
 tags:
   - dark-theme
   - ui

@@ -3,11 +3,10 @@ title: 'Blog Content Strategy: Execution Plan'
 number: '06'
 status: completed
 started: '2026-04-25'
-priority: high
 created: '2026-04-15'
 updated: '2026-05-06'
 owner: ''
-prd: '06-blog-strategy.md'
+idea: ''
 completed: '2026-05-06'
 estimated-hours: ''
 tags: ['blog', 'content', 'seo', 'internal-linking']
@@ -17,7 +16,7 @@ tags: ['blog', 'content', 'seo', 'internal-linking']
 
 ## Overview
 
-This plan delivers the blog optimisation work defined in PRD-06. It covers three areas: (1) updating title tags and meta descriptions on all 11 existing posts in Sanity, (2) consolidating the two cannibalising electrical-testing posts with a 301 redirect, (3) adding related blog post links to service pages, and (4) publishing the first two new keyword-targeted posts. All content changes are made in Sanity CMS. The 301 redirect and "Related Blog Posts" component already exist in the codebase — this plan wires them up correctly.
+This plan delivers the blog optimisation work defined in the original blog strategy brief. It covers three areas: (1) updating title tags and meta descriptions on all 11 existing posts in Sanity, (2) consolidating the two cannibalising electrical-testing posts with a 301 redirect, (3) adding related blog post links to service pages, and (4) publishing the first two new keyword-targeted posts. All content changes are made in Sanity CMS. The 301 redirect and "Related Blog Posts" component already exist in the codebase — this plan wires them up correctly.
 
 ---
 
@@ -92,7 +91,7 @@ Use the `/ses-content-writer` skill to draft each post before publishing in Sani
 1. **"Electrical Safety Testing Guide for Landlords"** — target keyword: `electrical safety testing`, links to `/services/electrical-testing`
 2. **"Emergency Electrician Melbourne: When to Call One"** — target keyword: `emergency electrician melbourne`, links to `/services/emergency-electrician`
 
-Each post must follow the format from PRD-06:
+Each post must follow the format from the original blog strategy brief:
 
 - 800–1200 words
 - Question-format H2 headings
@@ -115,7 +114,7 @@ See Sanity CMS Steps below.
 
 **Steps:**
 
-1. Create `docs/planning/plans/06-blog-strategy/assets/content-calendar.md` with a table covering the next 3 months (May–July 2026), scheduling 2 posts per month from the priority topics in PRD-06:
+1. Create `docs/planning/plans/06-blog-strategy/assets/content-calendar.md` with a table covering the next 3 months (May–July 2026), scheduling 2 posts per month from the priority topics in the original blog strategy brief:
 
 | Month     | Post Title                               | Target Keyword                      | Service Page                      |
 | --------- | ---------------------------------------- | ----------------------------------- | --------------------------------- |

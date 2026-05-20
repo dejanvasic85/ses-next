@@ -1,11 +1,10 @@
 ---
 title: 'Migrate icon system to Better Icons for consistency'
 status: captured
-priority: unset
 source: internal
 captured: '2026-04-14'
 domain: design
-prd: ''
+plan: ''
 tags:
   - icons
   - design-system
