@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { googleReviews } from 'ses-reviews';
 
-import { About, Contact, Hero, Services } from '@/components';
+import { About, Contact, Hero, Services, TrustSignals, ServiceAreas } from '@/components';
 import { getHomePageContent, getSiteSettings, getServices } from '@/lib/content/contentService';
 import { safeJsonLd, personJsonLd } from '@/lib/structuredData';
 import type { GoogleReview } from '@/types';
@@ -52,9 +52,13 @@ export default async function Home() {
     longitude,
     openingHours,
   } = siteSettings;
-  const { mainHeading, subHeading, team, training } = homepageContent;
+  const { mainHeading, subHeading, team, training, serviceAreas } = homepageContent;
 
   const ratingCount = Number(googleReviews.numberOfReviews.replace('reviews', '').trim());
+
+  const trustSignals = homepageContent.trustSignals.map((signal) =>
+    signal.icon === 'star' ? { ...signal, value: String(ratingCount) } : signal,
+  );
   const ratingValue = Number(googleReviews.overallRatingValue.replace('.0', '').trim());
   const reviews = googleReviews.reviews.slice(0, 9);
 
@@ -159,13 +163,15 @@ export default async function Home() {
       <Hero
         companyName={companyName}
         companyLogo={companyLogo}
-        googleReviewsUrl={googleMapsLocationPlaceUrl}
-        numberOfReviews={ratingCount}
-        overallRatingValue={ratingValue}
         social={social}
         mainHeading={mainHeading}
         subHeading={subHeading}
       />
+      {trustSignals.length > 0 && (
+        <section className="mt-4 sm:mt-12">
+          <TrustSignals signals={trustSignals} />
+        </section>
+      )}
       <section id="contact" className="mt-32 pt-24">
         <Contact
           contact={homepageContent.contact}
@@ -177,6 +183,11 @@ export default async function Home() {
       <section id="services" className="mt-16 pt-24">
         <Services services={services} blurbs={homepageContent.services.blurbs ?? []} className="mt-12" />
       </section>
+      {serviceAreas.length > 0 && (
+        <section className="mt-16 pt-8">
+          <ServiceAreas areas={serviceAreas} />
+        </section>
+      )}
       <section id="about" className="mt-16 pt-24">
         <About team={team} testimonials={reviews} googleReviewsUrl={googleMapsLocationPlaceUrl} training={training} />
       </section>

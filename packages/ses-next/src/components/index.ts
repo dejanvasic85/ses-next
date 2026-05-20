@@ -1,4 +1,6 @@
 export { About } from './About';
+export { ServiceAreas } from './ServiceAreas';
+export { TrustSignals } from './TrustSignals';
 export { BlogFilterMobile } from './BlogFilterMobile';
 export { BlogLayout } from './BlogLayout';
 export { BlogMenu } from './BlogMenu';

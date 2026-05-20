@@ -70,6 +70,18 @@ export const getHomePageContent = async (): Promise<HomePageContent> => {
     const training = mapHomepageTraining(homepage);
     const contact = mapHomepageContact(homepage);
 
+    const trustSignals = (homepage.trustSignals ?? []).map((s) => ({
+      value: s.value,
+      label: s.label,
+      icon: s.icon,
+    }));
+
+    const serviceAreas = (homepage.serviceAreas ?? []).map((a) => ({
+      id: a._id,
+      suburb: a.suburb,
+      slug: a.slug.current,
+    }));
+
     return {
       contact,
       services: homepage.services,
@@ -77,6 +89,8 @@ export const getHomePageContent = async (): Promise<HomePageContent> => {
       subHeading: homepage.subHeading,
       team,
       training,
+      trustSignals,
+      serviceAreas,
     };
   } catch (error) {
     console.error('Error in getHomePageContent:', error);

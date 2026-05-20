@@ -1,11 +1,7 @@
-import { Activity } from 'react';
-import Image from 'next/image';
-
 import { Heading } from '@/components/Heading';
 import { SanityImage } from '@/components/SanityImage';
 import { Icon } from '@/components/Icon/Icon';
 import { LinkButton } from '@/components/LinkButton';
-import { Rating } from '@/components/Rating';
 import { Social } from '@/types';
 
 interface HeroProps {
@@ -14,21 +10,9 @@ interface HeroProps {
   social: Social;
   mainHeading: string | null;
   subHeading: string | null;
-  googleReviewsUrl: string | null;
-  overallRatingValue: number;
-  numberOfReviews: number;
 }
 
-export function Hero({
-  companyName,
-  companyLogo,
-  social,
-  mainHeading,
-  subHeading,
-  googleReviewsUrl,
-  overallRatingValue,
-  numberOfReviews,
-}: HeroProps) {
+export function Hero({ companyName, companyLogo, social, mainHeading, subHeading }: HeroProps) {
   return (
     <div className="isolate bg-white">
       <div className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
@@ -60,7 +44,7 @@ export function Hero({
       </div>
 
       <div className="relative px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl pt-10 pb-16 sm:pt-24 sm:pb-20 md:p-0">
+        <div className="mx-auto max-w-3xl pt-4 pb-6 sm:pt-24 sm:pb-20 md:p-0">
           <div className="flex-col justify-center md:flex-row">
             <div className="flex justify-center rounded-3xl">
               <SanityImage
@@ -88,36 +72,21 @@ export function Hero({
               <h2 className="mt-6 text-base leading-8 text-gray-600 md:text-lg">{subHeading}</h2>
               <div className="mt-8 flex justify-center gap-x-4">
                 <LinkButton href="#contact">Contact us</LinkButton>
-              </div>
-              <div className="mt-8 flex justify-center gap-x-4">
                 {social.facebook && (
                   <LinkButton href={social.facebook} target="_blank" aria-label="Facebook page">
                     <Icon name="facebook" size="lg" />
                   </LinkButton>
                 )}
-
                 {social.instagram && (
                   <LinkButton href={social.instagram} target="_blank" aria-label="Instagram page">
                     <Icon name="instagram" size="lg" />
                   </LinkButton>
                 )}
-
                 {social.linkedIn && (
                   <LinkButton href={social.linkedIn} target="_blank" aria-label="LinkedIn page">
                     <Icon name="linked-in" size="lg" />
                   </LinkButton>
                 )}
-              </div>
-              <div className="m-auto mt-6 flex flex-col items-center justify-center gap-4 rounded-3xl border border-gray-200 bg-white p-4 md:w-1/2">
-                {googleReviewsUrl && (
-                  <a className="link text-sm" href={googleReviewsUrl} target="_blank">
-                    Average rating of {overallRatingValue} with {numberOfReviews}
-                  </a>
-                )}
-                <div className="flex items-center justify-center gap-2">
-                  <Rating name="overall" starRating={5} />{' '}
-                  <Image src="/google-logo.svg" alt="Google" width="80" height="15" />
-                </div>
               </div>
             </div>
             <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">

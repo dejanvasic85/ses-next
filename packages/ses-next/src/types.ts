@@ -29,8 +29,10 @@ export type FeedbackFormData = z.infer<typeof FeedbackFormDataSchema>;
 
 export const IconSchema = z.enum([
   'air',
+  'badge',
   'bars-staggered',
   'bolt',
+  'clock',
   'facebook',
   'height',
   'light',
@@ -40,7 +42,9 @@ export const IconSchema = z.enum([
   'plug',
   'power',
   'recycle',
+  'shield',
   'space',
+  'star',
   'tick-circle',
   'signal-tower',
   'wrench',
@@ -327,6 +331,18 @@ export const ServicesHubSchema = z.object({
   intro: z.array(z.string()).nullable(),
 });
 
+export const TrustSignalSchema = z.object({
+  value: z.string(),
+  label: z.string(),
+  icon: z.string(),
+});
+
+export const ServiceAreaRefSchema = z.object({
+  _id: z.string(),
+  suburb: z.string(),
+  slug: SanitySlugSchema,
+});
+
 export const HomepageSchema = z.object({
   _id: z.string(),
   _type: z.literal('homepage'),
@@ -342,6 +358,8 @@ export const HomepageSchema = z.object({
     members: z.array(TeamMemberSchema),
   }),
   training: z.array(TrainingSchema),
+  trustSignals: z.array(TrustSignalSchema).nullable().optional(),
+  serviceAreas: z.array(ServiceAreaRefSchema).nullable().optional(),
 });
 
 // ============================================================================
@@ -524,6 +542,18 @@ export type ServicesHubContent = {
   intro: string[] | null;
 };
 
+export type TrustSignal = {
+  value: string;
+  label: string;
+  icon: string;
+};
+
+export type ServiceAreaRef = {
+  id: string;
+  suburb: string;
+  slug: string;
+};
+
 export type HomePageContent = {
   contact: ContactContentModel;
   services: {
@@ -533,6 +563,8 @@ export type HomePageContent = {
   subHeading: string | null;
   team: Team;
   training: Training[];
+  trustSignals: TrustSignal[];
+  serviceAreas: ServiceAreaRef[];
 };
 
 export type TermsAndConditionsContent = {
@@ -574,6 +606,8 @@ export type BlogPostContentModel = z.infer<typeof BlogPostSchema>;
 export type TrainingContentModel = z.infer<typeof TrainingSchema>;
 export type SiteSettingsContentModel = z.infer<typeof SiteSettingsSchema>;
 export type HomepageContentModel = z.infer<typeof HomepageSchema>;
+export type TrustSignalContentModel = z.infer<typeof TrustSignalSchema>;
+export type ServiceAreaRefContentModel = z.infer<typeof ServiceAreaRefSchema>;
 export type Image = z.infer<typeof ImageSchema>;
 export type Social = z.infer<typeof SocialSchema>;
 export type Meta = z.infer<typeof MetaSchema>;

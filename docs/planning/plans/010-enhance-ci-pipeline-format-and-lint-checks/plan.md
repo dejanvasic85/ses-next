@@ -35,6 +35,7 @@ This plan splits the single generic `CI checks` step in `.github/workflows/ci.ym
 
 1. Removed the existing step: `- name: CI checks / run: pnpm run ci`
 2. Replaced with three sequential steps before the Vercel deployment wait:
+
    ```yaml
    - name: Format check
      run: pnpm format:check
