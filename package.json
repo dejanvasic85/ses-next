@@ -32,14 +32,5 @@
       "pnpm --filter ses-next lint"
     ]
   },
-  "packageManager": "pnpm@10.33.4",
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "aws-sdk",
-      "esbuild",
-      "puppeteer",
-      "sharp",
-      "unrs-resolver"
-    ]
-  }
+  "packageManager": "pnpm@11.1.3"
 }
