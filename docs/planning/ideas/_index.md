@@ -8,19 +8,18 @@ updated: '2026-05-20'
 
 | Status      | Count  |
 | ----------- | ------ |
-| Captured    | 14     |
+| Captured    | 12     |
 | In Progress | 0      |
-| Completed   | 1      |
+| Completed   | 2      |
 | Deferred    | 0      |
-| **Total**   | **15** |
+| **Total**   | **14** |
 
 ## Ideas
 
 | File                                                                                                                                         | Title                                                                       | Status    | Domain         | Captured   | Plan                                                 |
 | -------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------- | -------------- | ---------- | ---------------------------------------------------- |
 | [2026-05-hardcoded-business-content-to-sanity.md](./2026-05-hardcoded-business-content-to-sanity.md)                                         | Move hardcoded business content into Sanity SiteSettings                    | completed | engineering    | 2026-05-06 | [09](../plans/09-hardcoded-business-content/plan.md) |
-| [2026-04-enhance-ci-pipeline-format-and-lint-checks.md](./2026-04-enhance-ci-pipeline-format-and-lint-checks.md)                             | Enhance CI pipeline checks for formatting and linting                       | captured  | infrastructure | 2026-04-14 | —                                                    |
-| [2026-04-global-contact-modal-from-navigation.md](./2026-04-global-contact-modal-from-navigation.md)                                         | Create a global contact modal accessible from site navigation               | captured  | design         | 2026-04-14 | —                                                    |
+| [2026-04-enhance-ci-pipeline-format-and-lint-checks.md](./2026-04-enhance-ci-pipeline-format-and-lint-checks.md)                             | Enhance CI pipeline checks for formatting and linting                       | completed | infrastructure | 2026-04-14 | [010](../plans/010-enhance-ci-pipeline-format-and-lint-checks/plan.md) |
 | [2026-04-implement-dark-theme.md](./2026-04-implement-dark-theme.md)                                                                         | Implement a dark theme across the website                                   | captured  | design         | 2026-04-14 | —                                                    |
 | [2026-04-improve-ga-conversion-tracking-contact-and-menu-phone.md](./2026-04-improve-ga-conversion-tracking-contact-and-menu-phone.md)       | Improve GA conversion tracking for contact form and menu phone clicks       | captured  | seo            | 2026-04-14 | —                                                    |
 | [2026-04-improve-theme-system-usage-tailwind-daisyui.md](./2026-04-improve-theme-system-usage-tailwind-daisyui.md)                           | Improve website theming by properly using Tailwind and DaisyUI theme system | captured  | design         | 2026-04-14 | —                                                    |
