@@ -72,6 +72,16 @@ export const homepageQuery = `*[_type == "homepage"][0]{
     trainingTitle,
     icon
   },
+  trustSignals[] {
+    value,
+    label,
+    icon
+  },
+  serviceAreas[]->{
+    _id,
+    suburb,
+    slug
+  },
 }`;
 
 export const servicesQuery = `*[_type == "service"]{

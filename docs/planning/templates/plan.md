@@ -2,11 +2,10 @@
 title: ''
 number: ''
 status: planning
-priority: medium
 created: 'YYYY-MM-DD'
 updated: 'YYYY-MM-DD'
 owner: ''
-prd: ''
+idea: ''
 started: ''
 completed: ''
 estimated-hours: ''
@@ -17,7 +16,7 @@ tags: []
 
 ## Overview
 
-<!-- One paragraph summary: what this plan delivers, which PRD it implements, and the approach. -->
+<!-- One paragraph summary: what this plan delivers, which idea it implements, and the approach. -->
 
 ## Phase 1 — [Phase name]
 

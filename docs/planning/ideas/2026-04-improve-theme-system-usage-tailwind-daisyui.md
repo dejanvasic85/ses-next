@@ -1,11 +1,10 @@
 ---
 title: 'Improve website theming by properly using Tailwind and DaisyUI theme system'
 status: captured
-priority: unset
 source: internal
 captured: '2026-04-14'
 domain: design
-prd: ''
+plan: ''
 tags:
   - theming
   - tailwind

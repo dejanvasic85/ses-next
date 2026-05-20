@@ -1,11 +1,10 @@
 ---
 title: 'Move hardcoded business content into Sanity SiteSettings'
 status: accepted
-priority: medium
 source: internal
 captured: '2026-05-06'
 domain: engineering
-prd: '09-hardcoded-business-content.md'
+plan: '09-hardcoded-business-content/plan.md'
 tags:
   - cms
   - content-model

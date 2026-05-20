@@ -2,11 +2,10 @@
 title: 'GEO (Generative Engine Optimisation): Execution Plan'
 number: '07'
 status: completed
-priority: medium
 created: '2026-04-26'
 updated: '2026-05-06'
 owner: ''
-prd: '07-geo-strategy.md'
+idea: ''
 started: '2026-04-26'
 completed: '2026-05-06'
 estimated-hours: ''
@@ -17,7 +16,7 @@ tags: ['geo', 'ai-optimisation', 'llms', 'structured-data', 'faq']
 
 ## Overview
 
-This plan delivers the GEO work defined in PRD-07. It makes the SES Melbourne site more visible and citable by AI models (ChatGPT, Gemini, Perplexity, Claude). The work covers five areas: (1) creating an `llms.txt` file at the site root, (2) updating `robots.txt` to explicitly allow AI crawlers, (3) extending the `teamMember` Sanity schema with credential fields and surfacing Karl Rainbow's credentials with structured data, (4) auditing and improving FAQ content on service and location pages, and (5) adding credibility signals (Australian Standards references, stats) to key blog posts. All code changes are in `packages/ses-next` and `packages/ses-content`. Content changes are made in Sanity Studio.
+This plan delivers the GEO work defined in the original GEO brief. It makes the SES Melbourne site more visible and citable by AI models (ChatGPT, Gemini, Perplexity, Claude). The work covers five areas: (1) creating an `llms.txt` file at the site root, (2) updating `robots.txt` to explicitly allow AI crawlers, (3) extending the `teamMember` Sanity schema with credential fields and surfacing Karl Rainbow's credentials with structured data, (4) auditing and improving FAQ content on service and location pages, and (5) adding credibility signals (Australian Standards references, stats) to key blog posts. All code changes are in `packages/ses-next` and `packages/ses-content`. Content changes are made in Sanity Studio.
 
 ---
 
@@ -180,7 +179,7 @@ Original plan proposed extending `teamMember` schema with credential fields. Thi
 
 ### Task 3.1 — Audit existing FAQ content quality ✅ COMPLETE
 
-All 12 service pages currently have 3 FAQs each. All 10 location pages have 5 FAQs each. The audit checks whether existing FAQs are written as natural questions an AI model would cite, per PRD-07 guidelines.
+All 12 service pages currently have 3 FAQs each. All 10 location pages have 5 FAQs each. The audit checks whether existing FAQs are written as natural questions an AI model would cite, per the original GEO brief guidelines.
 
 **Steps:**
 
@@ -199,7 +198,7 @@ See Sanity CMS Steps below.
 
 ### Task 3.2 — Add credibility signals to FAQ answers ✅ COMPLETE
 
-Per PRD-07, FAQ answers should reference Australian Standards, Victorian legislation, or real statistics where relevant.
+Per the original GEO brief, FAQ answers should reference Australian Standards, Victorian legislation, or real statistics where relevant.
 
 Changes applied via Sanity MCP on 2026-05-06:
 

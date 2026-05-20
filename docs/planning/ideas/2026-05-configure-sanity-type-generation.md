@@ -1,11 +1,10 @@
 ---
 title: 'Configure Sanity type generation'
 status: captured
-priority: unset
 source: internal
 captured: '2026-05-06'
 domain: engineering
-prd: ''
+plan: ''
 tags:
   - sanity
   - typescript

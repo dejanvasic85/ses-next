@@ -1,11 +1,10 @@
 ---
 title: 'Split contentService into domain-specific Sanity services'
 status: captured
-priority: unset
 source: internal
 captured: '2026-05-06'
 domain: engineering
-prd: ''
+plan: ''
 tags:
   - sanity
   - architecture

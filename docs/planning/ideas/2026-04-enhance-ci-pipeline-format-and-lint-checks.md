@@ -1,11 +1,10 @@
 ---
 title: 'Enhance CI pipeline checks for formatting and linting'
-status: captured
-priority: unset
+status: completed
 source: internal
 captured: '2026-04-14'
 domain: infrastructure
-prd: ''
+plan: '010-enhance-ci-pipeline-format-and-lint-checks/plan.md'
 tags:
   - ci
   - lint

@@ -92,5 +92,46 @@ export default defineType({
       type: 'array',
       of: [{type: 'reference', to: [{type: 'training'}]}],
     }),
+    defineField({
+      title: 'Trust Signals',
+      name: 'trustSignals',
+      description: 'Displayed as a stat strip between hero and services. Aim for 4 items.',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'value',
+              type: 'string',
+              title: 'Value',
+              description: 'e.g. "19+" or "REC 24794"',
+            }),
+            defineField({
+              name: 'label',
+              type: 'string',
+              title: 'Label',
+              description: 'e.g. "Years Experience"',
+            }),
+            defineField({
+              name: 'icon',
+              type: 'string',
+              title: 'Icon key',
+              description: 'e.g. clock, star, shield, badge',
+            }),
+          ],
+          preview: {
+            select: {title: 'value', subtitle: 'label'},
+          },
+        },
+      ],
+    }),
+    defineField({
+      title: 'Service Areas',
+      name: 'serviceAreas',
+      description: 'Suburb pill links shown above the contact section.',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'locationPage'}]}],
+    }),
   ],
 })
