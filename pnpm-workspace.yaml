@@ -1,2 +1,8 @@
 packages:
   - './packages/*'
+allowBuilds:
+  aws-sdk: true
+  esbuild: true
+  puppeteer: true
+  sharp: true
+  unrs-resolver: true
