@@ -75,17 +75,32 @@ export function Hero({ companyName, companyLogo, social, mainHeading, subHeading
               <div className="mt-8 flex justify-center gap-x-4">
                 <LinkButton href="#contact">Contact us</LinkButton>
                 {social.facebook && (
-                  <LinkButton href={social.facebook} target="_blank" aria-label="Facebook page">
+                  <LinkButton
+                    href={social.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Facebook page"
+                  >
                     <Icon name="facebook" size="lg" />
                   </LinkButton>
                 )}
                 {social.instagram && (
-                  <LinkButton href={social.instagram} target="_blank" aria-label="Instagram page">
+                  <LinkButton
+                    href={social.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram page"
+                  >
                     <Icon name="instagram" size="lg" />
                   </LinkButton>
                 )}
                 {social.linkedIn && (
-                  <LinkButton href={social.linkedIn} target="_blank" aria-label="LinkedIn page">
+                  <LinkButton
+                    href={social.linkedIn}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn page"
+                  >
                     <Icon name="linked-in" size="lg" />
                   </LinkButton>
                 )}

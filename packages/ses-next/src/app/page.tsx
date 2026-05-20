@@ -54,7 +54,7 @@ export default async function Home() {
   } = siteSettings;
   const { mainHeading, subHeading, team, training, serviceAreas } = homepageContent;
 
-  const ratingCount = Number(googleReviews.numberOfReviews.replace('reviews', '').trim());
+  const ratingCount = Number(googleReviews.numberOfReviews.replace(/[^\d]/g, ''));
 
   const trustSignals = homepageContent.trustSignals.map((signal) =>
     signal.icon === 'star' ? { ...signal, value: String(ratingCount) } : signal,

@@ -334,7 +334,7 @@ export const ServicesHubSchema = z.object({
 export const TrustSignalSchema = z.object({
   value: z.string(),
   label: z.string(),
-  icon: z.string(),
+  icon: IconSchema,
 });
 
 export const ServiceAreaRefSchema = z.object({
@@ -545,7 +545,7 @@ export type ServicesHubContent = {
 export type TrustSignal = {
   value: string;
   label: string;
-  icon: string;
+  icon: Icon;
 };
 
 export type ServiceAreaRef = {
