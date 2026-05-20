@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { googleReviews } from 'ses-reviews';
 
-import { About, Contact, Hero, Services, TrustSignals, ServiceAreas } from '@/components';
+import { About, Contact, Hero, Services, ServiceAreas } from '@/components';
 import { getHomePageContent, getSiteSettings, getServices } from '@/lib/content/contentService';
 import { safeJsonLd, personJsonLd } from '@/lib/structuredData';
 import type { GoogleReview } from '@/types';
@@ -166,12 +166,8 @@ export default async function Home() {
         social={social}
         mainHeading={mainHeading}
         subHeading={subHeading}
+        trustSignals={trustSignals}
       />
-      {trustSignals.length > 0 && (
-        <section className="mt-4 sm:mt-12">
-          <TrustSignals signals={trustSignals} />
-        </section>
-      )}
       <section id="contact" className="mt-32 pt-24">
         <Contact
           contact={homepageContent.contact}

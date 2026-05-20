@@ -2,7 +2,8 @@ import { Heading } from '@/components/Heading';
 import { SanityImage } from '@/components/SanityImage';
 import { Icon } from '@/components/Icon/Icon';
 import { LinkButton } from '@/components/LinkButton';
-import { Social } from '@/types';
+import { TrustSignals } from '@/components/TrustSignals';
+import type { Social, TrustSignal } from '@/types';
 
 interface HeroProps {
   companyName: string;
@@ -10,11 +11,12 @@ interface HeroProps {
   social: Social;
   mainHeading: string | null;
   subHeading: string | null;
+  trustSignals: TrustSignal[];
 }
 
-export function Hero({ companyName, companyLogo, social, mainHeading, subHeading }: HeroProps) {
+export function Hero({ companyName, companyLogo, social, mainHeading, subHeading, trustSignals }: HeroProps) {
   return (
-    <div className="isolate bg-white">
+    <div className="isolate flex min-h-[calc(100vh-4rem)] flex-col bg-white">
       <div className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
         <svg
           className="relative left-[calc(50%-11rem)] -z-10 h-[21.1875rem] max-w-none -translate-x-1/2 rotate-[30deg] sm:left-[calc(50%-30rem)] sm:h-[42.375rem]"
@@ -119,6 +121,12 @@ export function Hero({ companyName, companyLogo, social, mainHeading, subHeading
           </div>
         </div>
       </div>
+
+      {trustSignals.length > 0 && (
+        <div className="mt-auto pb-8 sm:pb-12">
+          <TrustSignals signals={trustSignals} />
+        </div>
+      )}
     </div>
   );
 }
