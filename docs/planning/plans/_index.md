@@ -17,11 +17,11 @@ updated: '2026-05-20'
 
 ## Plans
 
-| #                                             | Title                                                                    | Status    | Idea                                                                                                       | Started    | Completed  |
-| --------------------------------------------- | ------------------------------------------------------------------------ | --------- | ---------------------------------------------------------------------------------------------------------- | ---------- | ---------- |
-| [06](./06-blog-strategy/plan.md)              | Blog Content Strategy: Execution Plan                                    | completed | —                                                                                                          | 2026-04-25 | 2026-05-06 |
-| [07](./07-geo-strategy/plan.md)               | GEO (Generative Engine Optimisation): Execution Plan                     | completed | —                                                                                                          | 2026-04-26 | 2026-05-06 |
-| [09](./09-hardcoded-business-content/plan.md) | Move Hardcoded Business Content into Sanity SiteSettings: Execution Plan | completed | [hardcoded-business-content-to-sanity](../ideas/2026-05-hardcoded-business-content-to-sanity.md)           | 2026-05-07 | 2026-05-08 |
+| #                                             | Title                                                                    | Status    | Idea                                                                                             | Started    | Completed  |
+| --------------------------------------------- | ------------------------------------------------------------------------ | --------- | ------------------------------------------------------------------------------------------------ | ---------- | ---------- |
+| [06](./06-blog-strategy/plan.md)              | Blog Content Strategy: Execution Plan                                    | completed | —                                                                                                | 2026-04-25 | 2026-05-06 |
+| [07](./07-geo-strategy/plan.md)               | GEO (Generative Engine Optimisation): Execution Plan                     | completed | —                                                                                                | 2026-04-26 | 2026-05-06 |
+| [09](./09-hardcoded-business-content/plan.md) | Move Hardcoded Business Content into Sanity SiteSettings: Execution Plan | completed | [hardcoded-business-content-to-sanity](../ideas/2026-05-hardcoded-business-content-to-sanity.md) | 2026-05-07 | 2026-05-08 |
 
 ## Blockers
 
