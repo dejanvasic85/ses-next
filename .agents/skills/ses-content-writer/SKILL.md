@@ -263,3 +263,4 @@ Always output content in a structured format ready for Sanity entry:
 - Avoid duplicate intro sentences across suburb pages
 - Each blog post should offer genuine value, not just keyword stuffing
 - Proofread for Australian English spelling (e.g. "colour", "organisation", "authorised")
+- Do not use em-dashes (—). Use a comma instead
