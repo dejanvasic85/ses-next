@@ -10,7 +10,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "puppeteer": "25.0.4"
-  }
+  "devDependencies": {}
 }
