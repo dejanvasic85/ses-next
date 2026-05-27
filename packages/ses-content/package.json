@@ -18,13 +18,13 @@
   ],
   "dependencies": {
     "@sanity/client": "7.22.0",
-    "@sanity/import": "6.0.1",
-    "@sanity/vision": "5.25.1",
+    "@sanity/import": "6.0.2",
+    "@sanity/vision": "5.27.0",
     "react": "19.2.6",
     "react-dom": "19.2.6",
     "react-is": "19.2.6",
-    "sanity": "5.25.1",
-    "styled-components": "6.4.1"
+    "sanity": "5.27.0",
+    "styled-components": "6.4.2"
   },
   "devDependencies": {
     "prettier": "3.8.3",
