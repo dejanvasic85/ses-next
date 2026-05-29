@@ -1,5 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "ignorePaths": ["**/node_modules/**", "**/.next/**"],
   "extends": [
     ":prHourlyLimit4",
     ":rebaseStalePrs",
@@ -27,6 +28,7 @@
       "Change": "All locks refreshed"
     }
   },
+  "dependencyDashboardOSVVulnerabilitySummary": "none",
   "prConcurrentLimit": 3,
   "prNotPendingHours": 1,
   "semanticCommitScope": "",
