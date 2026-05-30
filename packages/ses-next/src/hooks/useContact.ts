@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ContactFormData } from '@/types';
+import { pushEvent } from '@/lib/analytics';
 
 export function useContact() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -19,6 +20,7 @@ export function useContact() {
         return res.json();
       })
       .then(() => {
+        pushEvent({ event: 'generate_lead' });
         setMessageSent(true);
       })
       .catch(() => {
