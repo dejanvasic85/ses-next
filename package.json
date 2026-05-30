@@ -15,9 +15,6 @@
     "update:reviews": "pnpm --filter ses-reviews update:reviews",
     "prepare": "husky"
   },
-  "volta": {
-    "node": "24.16.0"
-  },
   "devDependencies": {
     "husky": "9.1.7",
     "lint-staged": "17.0.5",
