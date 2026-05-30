@@ -93,10 +93,10 @@ export function Footer({ social = emptySocialValue, links = defaultFooterLinks, 
         <span className="footer-title">Services</span>
         {services
           .filter((s) => !s.parentService)
-          .map(({ name, linkToReadMore, slug }) => (
+          .map(({ name, slug }) => (
             <ConditionalWrap
               key={name}
-              condition={!!linkToReadMore && !!slug}
+              condition={!!slug}
               wrapper={(children) => (
                 <Link href={`/services/${slug}`} className="link link-hover">
                   {children}
