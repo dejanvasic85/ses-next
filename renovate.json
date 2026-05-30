@@ -15,6 +15,7 @@
     "schedule:earlyMondays"
   ],
   "automerge": true,
+  "minimumReleaseAge": "1 day",
   "commitMessageAction": "",
   "labels": ["dependencies"],
   "lockFileMaintenance": {

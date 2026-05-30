@@ -6,13 +6,3 @@ allowBuilds:
   puppeteer: true
   sharp: true
   unrs-resolver: true
-minimumReleaseAgeExclude:
-  - '@sanity/diff@5.28.0'
-  - '@sanity/mutator@5.28.0'
-  - '@sanity/schema@5.28.0'
-  - '@sanity/types@5.28.0'
-  - '@sanity/util@5.28.0'
-  - '@sanity/vision@5.28.0'
-  - groq@5.28.0
-  - next-sanity@13.0.7
-  - sanity@5.28.0
