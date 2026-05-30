@@ -4,6 +4,7 @@ import { config } from '@/lib/config';
 import { getSiteSettings } from '@/lib/content/contentService';
 
 const recaptchaTimeoutMs = 5000;
+const testEmailAddresses = ['dejanvasic24@gmail.com'];
 
 async function verifyRecaptcha(token: string): Promise<boolean> {
   const secretKey = config.googleRecaptchaSecretKey;
@@ -61,6 +62,11 @@ export async function POST(request: Request) {
     if (!isValidRecaptcha) {
       return Response.json({ message: 'reCAPTCHA verification failed' }, { status: 400 });
     }
+  }
+
+  if (testEmailAddresses.includes(contact.email)) {
+    console.log('Test email address detected, skipping email send');
+    return Response.json({ message: 'Message received' });
   }
 
   try {
