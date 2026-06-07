@@ -6,7 +6,7 @@ import { getHomePageContent, getSiteSettings, getServices } from '@/lib/content/
 import { safeJsonLd, personJsonLd } from '@/lib/structuredData';
 import type { GoogleReview } from '@/types';
 
-const title = 'Melbourne Electricians | 24/7 Emergency Electrical Services | Storm Electrical Solutions';
+const title = 'Melbourne Electricians | Same-Day Priority Response | Storm Electrical Solutions';
 const description =
   'Licensed Melbourne electricians. Emergency electrical services, air conditioning, solar, lighting & data cabling. 5-star rated. Free quotes.';
 
