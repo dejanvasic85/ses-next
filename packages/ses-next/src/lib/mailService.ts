@@ -1,9 +1,9 @@
-import SES from 'aws-sdk/clients/ses';
+import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 
 import { config } from '@/lib/config';
 import type { ContactFormData, FeedbackFormData } from '@/types';
 
-const ses = new SES({
+const ses = new SESClient({
   region: 'ap-southeast-2',
   credentials: {
     accessKeyId: config.awsAccessKeyId || '',
@@ -63,12 +63,7 @@ const emailTemplates: EmailTemplates = {
   },
 };
 
-export function send({
-  data,
-  template,
-  to = config.emailTo,
-  companyName,
-}: SendEmailParams): Promise<SES.Types.SendEmailResponse | void> {
+export async function send({ data, template, to = config.emailTo, companyName }: SendEmailParams): Promise<void> {
   const { bodyTemplate, subjectTemplate } = emailTemplates[template];
 
   const interpolate = (tmpl: string) => {
@@ -84,18 +79,18 @@ export function send({
 
   if (!config.emailEnabled) {
     console.log('Email disabled, not sending email');
-    return Promise.resolve();
+    return;
   }
 
   if (!to || !config.emailFrom) {
     console.log('Missing email configuration, not sending email');
-    return Promise.resolve();
+    return;
   }
 
   console.log('Sending email', { to, subject });
 
-  return ses
-    .sendEmail({
+  await ses.send(
+    new SendEmailCommand({
       Destination: {
         ToAddresses: [to],
         BccAddresses: config.emailBcc ? [config.emailBcc] : [],
@@ -113,6 +108,6 @@ export function send({
         },
       },
       Source: config.emailFrom,
-    })
-    .promise();
+    }),
+  );
 }
