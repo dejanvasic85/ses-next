@@ -20,7 +20,7 @@
   "labels": ["dependencies"],
   "lockFileMaintenance": {
     "enabled": true,
-    "recreateWhen": "always",
+    "recreateWhen": "auto",
     "rebaseWhen": "behind-base-branch",
     "branchTopic": "lock-file-maintenance",
     "commitMessageAction": "Lock file maintenance",
