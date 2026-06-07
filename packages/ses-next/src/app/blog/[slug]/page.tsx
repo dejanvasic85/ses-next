@@ -81,8 +81,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     headline: post.title,
     description: post.description,
     author: {
-      '@type': 'Organization',
-      name: companyName,
+      '@type': 'Person',
+      name: 'Karl Rainbow',
     },
     url: pageUrl,
     datePublished: post.publishedAt,
