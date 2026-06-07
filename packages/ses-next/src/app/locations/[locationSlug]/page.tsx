@@ -69,7 +69,7 @@ export default async function LocationPage({ params }: LocationPageProps) {
   const ratingValue = Number(googleReviews.overallRatingValue.replace('.0', '').trim());
 
   const reviewsJson = googleReviews.reviews.slice(0, 9).map(({ comment, reviewer, starRating }: GoogleReview) => ({
-    author: reviewer.displayName,
+    author: { '@type': 'Person', name: reviewer.displayName },
     reviewBody: comment,
     reviewRating: {
       bestRating: '5',

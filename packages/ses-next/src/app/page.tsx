@@ -63,7 +63,7 @@ export default async function Home() {
   const reviews = googleReviews.reviews.slice(0, 9);
 
   const reviewsJson = reviews.map(({ comment, reviewer, starRating }: GoogleReview) => ({
-    author: reviewer.displayName,
+    author: { '@type': 'Person', name: reviewer.displayName },
     reviewBody: comment,
     reviewRating: {
       bestRating: '5',
