@@ -23,7 +23,7 @@
     "react": "19.2.7",
     "react-dom": "19.2.7",
     "react-is": "19.2.7",
-    "sanity": "5.31.1",
+    "sanity": "6.0.0",
     "styled-components": "6.4.2"
   },
   "devDependencies": {
