@@ -19,9 +19,9 @@
     "husky": "9.1.7",
     "lint-staged": "17.0.7",
     "next": "16.2.9",
-    "prettier": "3.8.3",
+    "prettier": "3.8.4",
     "prettier-plugin-tailwindcss": "0.8.0",
-    "turbo": "2.9.16"
+    "turbo": "2.9.18"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json}": [
@@ -29,5 +29,5 @@
       "pnpm --filter ses-next lint"
     ]
   },
-  "packageManager": "pnpm@11.5.2"
+  "packageManager": "pnpm@11.6.0"
 }
