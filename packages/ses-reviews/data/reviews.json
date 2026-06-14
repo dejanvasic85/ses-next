@@ -1,6 +1,19 @@
 {
   "reviews": [
     {
+      "id": "places/ChIJaaS9pMFn1moR6nbln1twd9A/reviews/Ci9DQUlRQUNvZENodHljRjlvT2tKSWN6Vk1PVjkxWlc1aU5UZFRia3QzZEZkdGRIYxAB",
+      "url": "https://www.google.com/maps/contrib/115449262973050675357/reviews",
+      "reviewer": {
+        "profileUrl": "https://www.google.com/maps/contrib/115449262973050675357/reviews",
+        "profilePhotoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJCtg1Bpi3toTO842sw1J4RuSKnPIAUgfW5R6UMipKzfhdBng=s128-c0x00000000-cc-rp-mo",
+        "displayName": "Denise McGuire"
+      },
+      "comment": "Karl & team came out to inspect and clean my solar panels they installed 6 years ago.  They were quite flexible with scheduling given Melbourne weather and finished the job in no time.  Karl advised panels should be cleaned regularly for optimum efficiency, so I'm now set up for annual reminders.",
+      "starRating": 5,
+      "date": "2 weeks ago",
+      "publishTime": "2026-05-29T03:56:31.629281452Z"
+    },
+    {
       "id": "places/ChIJaaS9pMFn1moR6nbln1twd9A/reviews/Ci9DQUlRQUNvZENodHljRjlvT2xkb1RsaExWVk5vUmxwMWIyRXdTRU5aY2pZeVpIYxAB",
       "url": "https://www.google.com/maps/contrib/115702581504254292521/reviews",
       "reviewer": {
