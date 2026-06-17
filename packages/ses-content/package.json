@@ -19,11 +19,11 @@
   "dependencies": {
     "@sanity/client": "7.22.1",
     "@sanity/import": "6.0.3",
-    "@sanity/vision": "6.0.0",
+    "@sanity/vision": "6.1.0",
     "react": "19.2.7",
     "react-dom": "19.2.7",
     "react-is": "19.2.7",
-    "sanity": "6.0.0",
+    "sanity": "6.1.0",
     "styled-components": "6.4.2"
   },
   "devDependencies": {
