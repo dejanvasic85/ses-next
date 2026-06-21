@@ -14,7 +14,7 @@
     "query": "npx tsx bin/query.ts"
   },
   "dependencies": {
-    "@aws-sdk/client-ses": "3.1071.0",
+    "@aws-sdk/client-ses": "3.1073.0",
     "@fontsource/inter": "5.2.8",
     "@playwright/test": "1.61.0",
     "@portabletext/react": "6.2.0",
@@ -27,12 +27,12 @@
     "date-fns": "4.4.0",
     "eslint": "9.39.4",
     "next": "16.2.9",
-    "next-sanity": "13.1.0",
+    "next-sanity": "13.1.1",
     "postcss": "8.5.15",
     "react": "19.2.7",
     "react-dom": "19.2.7",
     "react-google-recaptcha-v3": "1.11.0",
-    "react-hook-form": "7.79.0",
+    "react-hook-form": "7.80.0",
     "react-modal": "3.16.3",
     "ses-reviews": "workspace:*",
     "tailwindcss": "4.3.1",
@@ -46,7 +46,7 @@
     "@types/react-modal": "3.16.3",
     "dotenv": "17.4.2",
     "eslint-config-next": "16.2.9",
-    "eslint-plugin-tailwindcss": "4.0.0-beta.0",
+    "eslint-plugin-tailwindcss": "4.0.2",
     "prettier": "3.8.4",
     "typescript": "6.0.3"
   }

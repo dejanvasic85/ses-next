@@ -7,7 +7,7 @@ const typescriptPlugin = nextVitals.find((c) => c.plugins?.['@typescript-eslint'
 
 const eslintConfig = defineConfig([
   ...nextVitals,
-  ...tailwind.configs['flat/recommended'],
+  tailwind.configs.recommended,
   globalIgnores([
     '.next/**',
     'out/**',
@@ -20,8 +20,7 @@ const eslintConfig = defineConfig([
   {
     settings: {
       tailwindcss: {
-        config: tailwindEntryFile,
-        cssFiles: [tailwindEntryFile],
+        cssConfigPath: tailwindEntryFile,
       },
     },
     rules: {
