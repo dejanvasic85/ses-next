@@ -64,8 +64,8 @@ importers:
   packages/ses-next:
     dependencies:
       '@aws-sdk/client-ses':
-        specifier: 3.1074.0
-        version: 3.1074.0
+        specifier: 3.1075.0
+        version: 3.1075.0
       '@fontsource/inter':
         specifier: 5.2.8
         version: 5.2.8
@@ -85,8 +85,8 @@ importers:
         specifier: 0.5.20
         version: 0.5.20(tailwindcss@4.3.1)
       autoprefixer:
-        specifier: 10.5.0
-        version: 10.5.0(postcss@8.5.15)
+        specifier: 10.5.1
+        version: 10.5.1(postcss@8.5.15)
       class-names:
         specifier: 1.0.0
         version: 1.0.0
@@ -271,8 +271,8 @@ packages:
     resolution: {integrity: sha512-1B8mZ79ySqlTEfSQ87KZ0XkmTOKQFMO3lUYUGUtwNTUncJINr6nhRWEjk128oBWwEQnpJ7NfpDPjdfg1ICe3xw==}
     engines: {node: '>=16'}
 
-  '@aws-sdk/client-ses@3.1074.0':
-    resolution: {integrity: sha512-fUXq/4Ai4q/GfbthPmqJ50UEp4W3/t5kLkQsdjasn+QUyl7SBHqUhGZCBzZ8EWS3/I2oXdevzGhpKity4gNkqw==}
+  '@aws-sdk/client-ses@3.1075.0':
+    resolution: {integrity: sha512-uD57mGUDW1JkMYPwHLl23n6/CGemAMRQnk0oEI1SoQqF9VQzo4i0hGx/wfJG3dwmKUz3MupFmEpkFh0henu96Q==}
     engines: {node: '>=20.0.0'}
 
   '@aws-sdk/core@3.974.23':
@@ -3162,8 +3162,8 @@ packages:
   asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
 
-  autoprefixer@10.5.0:
-    resolution: {integrity: sha512-FMhOoZV4+qR6aTUALKX2rEqGG+oyATvwBt9IIzVR5rMa2HRWPkxf+P+PAJLD1I/H5/II+HuZcBJYEFBpq39ong==}
+  autoprefixer@10.5.1:
+    resolution: {integrity: sha512-jwM2pcTuCWUoN70FEvf5XrXyDbUgRURK4FnU8v0jWZZYU/KkVvN9T33mu1sVLFY9JW3kTWzKheEpn6xYLRc/VA==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
     peerDependencies:
@@ -3260,6 +3260,11 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
 
+  baseline-browser-mapping@2.10.38:
+    resolution: {integrity: sha512-31/02mVB4yuQU6adKk5SlY6m+mxDwUq5KZkyYgnLrrKl7TEm1+3PyDtDBz2kOv/wxZz41GHsvV1A/u6RmiyBvw==}
+    engines: {node: '>=6.0.0'}
+    hasBin: true
+
   before-after-hook@4.0.0:
     resolution: {integrity: sha512-q6tR3RPqIB1pMiTRMFcZwuG5T8vwp+vUvEG0vuI6B+Rikh5BfPp2fQ82c925FOs+b0lcFQ8CFrL+KbilfZFhOQ==}
 
@@ -3302,6 +3307,11 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
 
+  browserslist@4.28.4:
+    resolution: {integrity: sha512-MTc8i/x9jBQd1iMw2CFGS+rwMa07eYjLR0CCTLDACl9xhxy+nIs3KeML/biicXtk9JrZ6dnnTatmc7ErPXIxqw==}
+    engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
+    hasBin: true
+
   buffer-from@1.1.2:
     resolution: {integrity: sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==}
 
@@ -3335,6 +3345,9 @@ packages:
 
   caniuse-lite@1.0.30001797:
     resolution: {integrity: sha512-l8xKG+gwAIExZGl9FrF7KUwuOmk6wbEPC9Xoy/RtnWv1XG0Q4LFlagaLpUv3Kiza3W/wm27zy0yWJEieYKAP6w==}
+
+  caniuse-lite@1.0.30001799:
+    resolution: {integrity: sha512-hG1bReV+OUU+MOqK4t/ZWI0tZOyz3rqS9XuhOUz1cIcbwBKjOyJEJuw9ER5JuNyqxNk8u/JUVbGibBOL1yrjFw==}
 
   cardinal@2.1.1:
     resolution: {integrity: sha512-JSr5eOgoEymtYHBjNWyjrMqet9Am2miJhlfKNdqLp6zoeAh0KN5dRAcxlecj5mAJrmQomgiOBj35xHLrFjqBpw==}
@@ -3672,6 +3685,9 @@ packages:
 
   electron-to-chromium@1.5.368:
     resolution: {integrity: sha512-7RckJJK4uESJF9PxvfMWd3TGqIiieUTG4HxnKaKuIpGbcr+r2ZEB3g2gAhCP3Fqm42vJSzLfgab9eva/C4/XVw==}
+
+  electron-to-chromium@1.5.377:
+    resolution: {integrity: sha512-cH1jZgJHoezfTnKfKwnScpHywTFVnJUNITDPREFdhNjiuD502+QFpG0Qk7G8jhsV/f+CEAFlIrzP1fT+IMb92g==}
 
   emoji-regex@10.6.0:
     resolution: {integrity: sha512-toUI84YS5YmxW219erniWD0CIVOo46xGKColeNQRgOzDorgBi1v4D71/OFzgD9GO2UGKIv1C3Sp8DAn0+j5w7A==}
@@ -5025,6 +5041,10 @@ packages:
 
   node-releases@2.0.47:
     resolution: {integrity: sha512-Uzmd6LXpouKo8EUK68IjH4+E01w/hXyV3R3g/geCJo+rXLNfh1xucB+LOzYEOQPSiUK3h/xZf0cQGcSsmyL2Og==}
+    engines: {node: '>=18'}
+
+  node-releases@2.0.48:
+    resolution: {integrity: sha512-1uz8041X6LoI6ZSdZacM9lVY28vuzDlSKitnpbSNK0RfKoIJkX29NBPVEFXhnuSuEOA9Ww0xnPJ+ILWbGAv8DA==}
     engines: {node: '>=18'}
 
   normalize-package-data@8.0.0:
@@ -6669,7 +6689,7 @@ snapshots:
 
   '@aws-lite/ssm@0.2.5': {}
 
-  '@aws-sdk/client-ses@3.1074.0':
+  '@aws-sdk/client-ses@3.1075.0':
     dependencies:
       '@aws-crypto/sha256-browser': 5.2.0
       '@aws-crypto/sha256-js': 5.2.0
@@ -10035,10 +10055,10 @@ snapshots:
 
   asynckit@0.4.0: {}
 
-  autoprefixer@10.5.0(postcss@8.5.15):
+  autoprefixer@10.5.1(postcss@8.5.15):
     dependencies:
-      browserslist: 4.28.2
-      caniuse-lite: 1.0.30001797
+      browserslist: 4.28.4
+      caniuse-lite: 1.0.30001799
       fraction.js: 5.3.4
       picocolors: 1.1.1
       postcss: 8.5.15
@@ -10118,6 +10138,8 @@ snapshots:
 
   baseline-browser-mapping@2.10.34: {}
 
+  baseline-browser-mapping@2.10.38: {}
+
   before-after-hook@4.0.0: {}
 
   bidi-js@1.0.3:
@@ -10170,6 +10192,14 @@ snapshots:
       node-releases: 2.0.47
       update-browserslist-db: 1.2.3(browserslist@4.28.2)
 
+  browserslist@4.28.4:
+    dependencies:
+      baseline-browser-mapping: 2.10.38
+      caniuse-lite: 1.0.30001799
+      electron-to-chromium: 1.5.377
+      node-releases: 2.0.48
+      update-browserslist-db: 1.2.3(browserslist@4.28.4)
+
   buffer-from@1.1.2: {}
 
   bundle-name@4.1.0:
@@ -10200,6 +10230,8 @@ snapshots:
   camelcase@8.0.0: {}
 
   caniuse-lite@1.0.30001797: {}
+
+  caniuse-lite@1.0.30001799: {}
 
   cardinal@2.1.1:
     dependencies:
@@ -10527,6 +10559,8 @@ snapshots:
       jake: 10.9.4
 
   electron-to-chromium@1.5.368: {}
+
+  electron-to-chromium@1.5.377: {}
 
   emoji-regex@10.6.0: {}
 
@@ -12052,6 +12086,8 @@ snapshots:
 
   node-releases@2.0.47: {}
 
+  node-releases@2.0.48: {}
+
   normalize-package-data@8.0.0:
     dependencies:
       hosted-git-info: 9.0.3
@@ -13431,6 +13467,12 @@ snapshots:
   update-browserslist-db@1.2.3(browserslist@4.28.2):
     dependencies:
       browserslist: 4.28.2
+      escalade: 3.2.0
+      picocolors: 1.1.1
+
+  update-browserslist-db@1.2.3(browserslist@4.28.4):
+    dependencies:
+      browserslist: 4.28.4
       escalade: 3.2.0
       picocolors: 1.1.1
 
