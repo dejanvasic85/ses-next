@@ -27,7 +27,7 @@ the SERP listing is the leak.
 
 From the June 2026 scorecard. Sitewide CTR is 0.32% vs a healthy 2–4%. Part of that is low rank
 (addressed by the near-miss + electrical-testing-guide ideas), but part is poor SERP presentation on
-pages that *do* rank. Title tags and meta descriptions come from Sanity `seoTitle`/`seoDescription`
+pages that _do_ rank. Title tags and meta descriptions come from Sanity `seoTitle`/`seoDescription`
 (location/service pages) and `title`/`description` (blog posts), so this is mostly content tuning.
 
 ## Rough Scope

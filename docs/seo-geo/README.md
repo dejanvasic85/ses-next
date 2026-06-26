@@ -28,13 +28,13 @@ in a docs reorg. This structure fixes that: **scorecards persist; raw data is di
 
 ## What we track
 
-| Tier          | Metric                                       | Source            |
-| ------------- | -------------------------------------------- | ----------------- |
-| North star    | Form submits + phone-click events            | GA4               |
-| Demand        | Total impressions & clicks (28-day)          | GSC               |
-| Position      | Avg position for the tracked keyword set     | GSC Queries.csv   |
-| Content       | Clicks per blog post / landing page          | GSC Pages.csv     |
-| GEO           | Citations/mentions in AI answers (spot-check) | Manual            |
+| Tier       | Metric                                        | Source          |
+| ---------- | --------------------------------------------- | --------------- |
+| North star | Form submits + phone-click events             | GA4             |
+| Demand     | Total impressions & clicks (28-day)           | GSC             |
+| Position   | Avg position for the tracked keyword set      | GSC Queries.csv |
+| Content    | Clicks per blog post / landing page           | GSC Pages.csv   |
+| GEO        | Citations/mentions in AI answers (spot-check) | Manual          |
 
 Bing Webmaster Tools: quarterly glance only (<5% AU search share).
 

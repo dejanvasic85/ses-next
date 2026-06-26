@@ -28,13 +28,13 @@ fix it. The fastest-converting opportunity is a cluster of high-relevance keywor
 Triggered by the first SEO scorecard (`docs/seo-geo/scorecards/2026-06.md`). The near-miss keywords
 and their backing pages:
 
-| Keyword                             | Impr. | Pos   | Backing page                          |
-| ----------------------------------- | ----- | ----- | ------------------------------------- |
+| Keyword                             | Impr. | Pos   | Backing page                                                     |
+| ----------------------------------- | ----- | ----- | ---------------------------------------------------------------- |
 | commercial electrician altona       | 97    | 12.07 | /locations/electrician-altona + /services/commercial-electrician |
-| electrician altona north            | 89    | 12.98 | /locations/electrician-altona-north   |
-| commercial electrician altona north | 39    | 8.05  | /locations/electrician-altona-north   |
-| electrician seddon                  | 61    | 9.85  | /locations/electrician-seddon         |
-| mains power upgrade melbourne       | 52    | 13.71 | /services/mains-upgrades              |
+| electrician altona north            | 89    | 12.98 | /locations/electrician-altona-north                              |
+| commercial electrician altona north | 39    | 8.05  | /locations/electrician-altona-north                              |
+| electrician seddon                  | 61    | 9.85  | /locations/electrician-seddon                                    |
+| mains power upgrade melbourne       | 52    | 13.71 | /services/mains-upgrades                                         |
 
 Location pages render via `packages/ses-next/src/app/locations/[locationSlug]/page.tsx` and are
 content-driven: the `locationPage` Sanity schema already has `seoTitle`, `seoDescription`, `intro`,

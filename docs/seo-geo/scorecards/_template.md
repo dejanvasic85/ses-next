@@ -11,20 +11,20 @@ _Source range: last 28 days as of <report-date>. Compared against <prior month>.
 
 ## North star — leads
 
-| Metric                     | This month | Prior | Δ   |
-| -------------------------- | ---------- | ----- | --- |
-| Form submits (GA4)         |            |       |     |
-| Phone-click events (GA4)   |            |       |     |
-| **Total lead actions**     |            |       |     |
+| Metric                   | This month | Prior | Δ   |
+| ------------------------ | ---------- | ----- | --- |
+| Form submits (GA4)       |            |       |     |
+| Phone-click events (GA4) |            |       |     |
+| **Total lead actions**   |            |       |     |
 
 ## Demand — Google Search Console
 
-| Metric                  | This month | Prior | Δ   |
-| ----------------------- | ---------- | ----- | --- |
-| Total impressions       |            |       |     |
-| Total clicks            |            |       |     |
-| Avg CTR                 |            |       |     |
-| Avg position (overall)  |            |       |     |
+| Metric                 | This month | Prior | Δ   |
+| ---------------------- | ---------- | ----- | --- |
+| Total impressions      |            |       |     |
+| Total clicks           |            |       |     |
+| Avg CTR                |            |       |     |
+| Avg position (overall) |            |       |     |
 
 ## Tracked keyword positions
 
@@ -51,8 +51,8 @@ _Manual check: does ChatGPT / Perplexity / Google AI Overview cite or recommend 
 
 ## What moved & why
 
-- 
+-
 
 ## Focus for next month
 
-- 
+-
