@@ -53,7 +53,7 @@ const sanityClient = createClient({
   projectId: config.sanityProjectId,
   dataset: config.sanityDataset,
   apiVersion: '2021-06-07',
-  useCdn: true,
+  useCdn: false,
   perspective: 'published',
 });
 
@@ -63,7 +63,7 @@ const sanityClient = createClient({
 
 export const getHomePageContent = async (): Promise<HomePageContent> => {
   try {
-    const result = await sanityClient.fetch(homepageQuery);
+    const result = await sanityClient.fetch(homepageQuery, {}, { next: { tags: ['homepage'] } });
     const homepage = HomepageSchema.parse(result);
 
     const team = mapHomepageTeam(homepage);
@@ -100,7 +100,7 @@ export const getHomePageContent = async (): Promise<HomePageContent> => {
 
 export const getServicesHubContent = async (): Promise<ServicesHubContent> => {
   try {
-    const result = await sanityClient.fetch(servicesHubQuery);
+    const result = await sanityClient.fetch(servicesHubQuery, {}, { next: { tags: ['servicesHub'] } });
     if (!result) {
       return { pageTitle: null, pageDescription: null, heading: null, intro: null };
     }
@@ -119,7 +119,7 @@ export const getServicesHubContent = async (): Promise<ServicesHubContent> => {
 
 export const getBlogPosts = async (): Promise<BlogPost[]> => {
   try {
-    const result = await sanityClient.fetch(allBlogPostsQuery);
+    const result = await sanityClient.fetch(allBlogPostsQuery, {}, { next: { tags: ['blog-post'] } });
     return result.map((post: unknown) => BlogPostSchema.parse(post)).map(mapBlogPost);
   } catch (error) {
     console.error('Error in getBlogPosts:', error);
@@ -129,7 +129,7 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
 
 export const getTermsAndConditions = async (): Promise<TermsAndConditionsContent[]> => {
   try {
-    const result = await sanityClient.fetch(termsAndConditionsQuery);
+    const result = await sanityClient.fetch(termsAndConditionsQuery, {}, { next: { tags: ['terms-and-conditions'] } });
     const termsDocuments = result.map((terms: unknown) => TermsAndConditionsSchema.parse(terms));
     return termsDocuments.map((doc: SanityTermsAndConditions) => ({
       id: doc._id,
@@ -143,7 +143,7 @@ export const getTermsAndConditions = async (): Promise<TermsAndConditionsContent
 
 export const getFAQs = async (): Promise<Array<{ question: string; answer: string }>> => {
   try {
-    const result = await sanityClient.fetch(allFaqsQuery);
+    const result = await sanityClient.fetch(allFaqsQuery, {}, { next: { tags: ['faq'] } });
     const faqs = result.map((faq: unknown) => FAQSchema.parse(faq));
     return faqs.map((faq: FAQ) => ({
       question: faq.question,
@@ -157,7 +157,7 @@ export const getFAQs = async (): Promise<Array<{ question: string; answer: strin
 
 export const getSiteSettings = async (): Promise<SiteSettings> => {
   try {
-    const result = await sanityClient.fetch(siteSettingsQuery);
+    const result = await sanityClient.fetch(siteSettingsQuery, {}, { next: { tags: ['siteSettings'] } });
     const siteSettings = SiteSettingsSchema.parse(result);
     return mapSiteSettings(siteSettings);
   } catch (error) {
@@ -168,7 +168,7 @@ export const getSiteSettings = async (): Promise<SiteSettings> => {
 
 export const getServices = async (): Promise<ServiceItem[]> => {
   try {
-    const result = await sanityClient.fetch(servicesQuery);
+    const result = await sanityClient.fetch(servicesQuery, {}, { next: { tags: ['service'] } });
     return result.map((item: unknown) => ServiceSchema.parse(item)).map(mapService);
   } catch (error) {
     console.error('Error in getServices:', error);
@@ -178,7 +178,7 @@ export const getServices = async (): Promise<ServiceItem[]> => {
 
 export const getBlogPostBySlug = async (slug: string): Promise<BlogPostContentModel | null> => {
   try {
-    const result = await sanityClient.fetch(blogPostBySlugQuery, { slug });
+    const result = await sanityClient.fetch(blogPostBySlugQuery, { slug }, { next: { tags: ['blog-post'] } });
     if (!result) return null;
     return BlogPostSchema.parse(result);
   } catch (error) {
@@ -189,7 +189,7 @@ export const getBlogPostBySlug = async (slug: string): Promise<BlogPostContentMo
 
 export const getAllLocationPages = async (): Promise<LocationPage[]> => {
   try {
-    const result = await sanityClient.fetch(allLocationPagesQuery);
+    const result = await sanityClient.fetch(allLocationPagesQuery, {}, { next: { tags: ['locationPage'] } });
     return result.map((item: unknown) => LocationPageSchema.parse(item)).map(mapLocationPage);
   } catch (error) {
     console.error('Error in getAllLocationPages:', error);
@@ -199,7 +199,7 @@ export const getAllLocationPages = async (): Promise<LocationPage[]> => {
 
 export const getLocationPageBySlug = async (slug: string): Promise<LocationPage | null> => {
   try {
-    const result = await sanityClient.fetch(locationPageBySlugQuery, { slug });
+    const result = await sanityClient.fetch(locationPageBySlugQuery, { slug }, { next: { tags: ['locationPage'] } });
     if (!result) return null;
     return mapLocationPage(LocationPageSchema.parse(result));
   } catch (error) {
@@ -216,7 +216,11 @@ export const getLocationPagesByServiceSlugs = async (
       return [];
     }
 
-    const result = await sanityClient.fetch(locationPagesByServiceSlugsQuery, { serviceSlugs });
+    const result = await sanityClient.fetch(
+      locationPagesByServiceSlugsQuery,
+      { serviceSlugs },
+      { next: { tags: ['locationPage'] } },
+    );
 
     const parsedLocations = LocationPageNearbySuburbRefSchema.array().parse(result);
 

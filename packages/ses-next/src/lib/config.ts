@@ -12,6 +12,7 @@ const AppConfigSchema = z.object({
   googleRecaptchaSiteKey: z.string().optional(),
   googleRecaptchaSecretKey: z.string().optional(),
   recaptchaBypass: z.boolean().default(false),
+  revalidateSecret: z.string(),
   sanityProjectId: z.string(),
   sanityDataset: z.string(),
 });
@@ -31,6 +32,7 @@ const rawConfig = {
   googleRecaptchaSiteKey: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
   googleRecaptchaSecretKey: process.env.RECAPTCHA_SECRET_KEY,
   recaptchaBypass: process.env.RECAPTCHA_BYPASS === 'true',
+  revalidateSecret: process.env.REVALIDATE_SECRET,
   sanityProjectId: 'j7d3pd5g',
   sanityDataset: 'production',
 };

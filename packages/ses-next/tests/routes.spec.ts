@@ -112,6 +112,78 @@ test.describe('LLMs Route', () => {
   });
 });
 
+test.describe('Revalidate API Route', () => {
+  let revalidateSecret: string;
+
+  test.beforeAll(() => {
+    revalidateSecret = process.env.REVALIDATE_SECRET ?? '';
+    if (!revalidateSecret) {
+      throw new Error('REVALIDATE_SECRET env var is required for revalidate API tests');
+    }
+  });
+  test('returns 401 when no Authorization header', async ({ request }) => {
+    const response = await request.post('/api/revalidate', {
+      headers: { 'Content-Type': 'application/json' },
+      data: JSON.stringify({ _type: 'homepage' }),
+    });
+    expect(response.status()).toBe(401);
+  });
+
+  test('returns 401 when wrong secret', async ({ request }) => {
+    const response = await request.post('/api/revalidate', {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer wrong-secret',
+      },
+      data: JSON.stringify({ _type: 'homepage' }),
+    });
+    expect(response.status()).toBe(401);
+  });
+
+  test('returns 400 for malformed JSON', async ({ request }) => {
+    const response = await request.post('/api/revalidate', {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${revalidateSecret}`,
+      },
+      data: Buffer.from('{invalid json'),
+    });
+    expect(response.status()).toBe(400);
+  });
+
+  test('returns 400 for unknown _type', async ({ request }) => {
+    const response = await request.post('/api/revalidate', {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${revalidateSecret}`,
+      },
+      data: JSON.stringify({ _type: 'unknownType' }),
+    });
+    expect(response.status()).toBe(400);
+    const body = await response.json();
+    expect(body.message).toMatch(/unknown document type/i);
+  });
+
+  test('returns 200 and revalidates known _type', async ({ request }) => {
+    const response = await request.post('/api/revalidate', {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${revalidateSecret}`,
+      },
+      data: JSON.stringify({ _type: 'homepage' }),
+    });
+    expect(response.status()).toBe(200);
+    const body = await response.json();
+    expect(body.revalidated).toBe(true);
+    expect(body.tag).toBe('homepage');
+  });
+
+  test('returns 405 for GET requests', async ({ request }) => {
+    const response = await request.get('/api/revalidate');
+    expect(response.status()).toBe(405);
+  });
+});
+
 test.describe('API Routes', () => {
   test('contact API returns 405 for GET requests', async ({ request }) => {
     const response = await request.get('/api/contact');
