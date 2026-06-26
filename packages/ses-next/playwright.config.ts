@@ -1,4 +1,7 @@
+import { config } from 'dotenv';
 import { defineConfig, devices } from '@playwright/test';
+
+config({ path: '.env.local' });
 
 const baseURL =
   process.env.PLAYWRIGHT_TEST_BASE_URL ||

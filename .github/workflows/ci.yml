@@ -55,6 +55,7 @@ jobs:
         run: pnpm --filter ses-next test:e2e
         env:
           PLAYWRIGHT_TEST_BASE_URL: ${{ steps.vercel-deployment.outputs.url }}
+          REVALIDATE_SECRET: ${{ secrets.REVALIDATE_SECRET }}
           HOME: /root
 
       - name: Upload test results

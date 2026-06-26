@@ -1,10 +1,10 @@
 ---
 title: 'Add API endpoint for on-demand Next.js cache revalidation'
-status: captured
+status: in-progress
 source: internal
 captured: '2026-05-06'
 domain: engineering
-plan: ''
+plan: '012-api-endpoint-on-demand-cache-revalidation/plan.md'
 tags:
   - nextjs
   - cache
