@@ -1,8 +1,9 @@
 ---
 title: 'Improve GA conversion tracking for contact form and menu phone clicks'
-status: captured
+status: wont-do
 source: internal
 captured: '2026-04-14'
+closed: '2026-06-27'
 domain: seo
 plan: ''
 tags:
@@ -13,7 +14,26 @@ tags:
   - phone-clicks
 ---
 
-## Problem / Opportunity
+## ⛔ Won't Do — Superseded by data (2026-06-27)
+
+This idea's core premise — "we do not currently have clear GA conversion signals" — is
+**disproven by the June 2026 GSC/GA4 export.** GA4 already fires the exact events this idea proposed:
+
+- `generate_lead` — 8 events (form submissions)
+- `first_time_phone_call` — 26 events
+- `repeat_phone_call` — 7 events
+- `form_start` — 11 events (funnel start, 73% complete to submit)
+
+The idea's own Open Questions ask whether to use event names `generate_lead` / `phone_call` — and
+that implementation already exists in production. Conversion tracking is **done**, not missing.
+
+The real measurement gap that remains is **low CTR on already-ranking pages** (title/meta/snippet
+tuning), which is captured separately. See the June 2026 scorecard:
+`docs/seo-geo/scorecards/2026-06.md`.
+
+---
+
+## Problem / Opportunity (original, no longer valid)
 
 We do not currently have clear GA conversion signals for two high-intent actions: successful contact form submissions and phone icon/menu click-to-call interactions. This limits our ability to measure lead quality and optimize conversion paths.
 
