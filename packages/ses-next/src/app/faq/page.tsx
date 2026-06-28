@@ -7,8 +7,9 @@ export async function generateMetadata(): Promise<Metadata> {
   const siteSettings = await getSiteSettings();
   const { companyName } = siteSettings;
   return {
-    title: `FAQ | ${companyName}`,
-    description: 'Check out our frequently asked questions to learn more about our electrical services in Melbourne.',
+    title: `Electrician FAQs Melbourne | Common Questions Answered | ${companyName}`,
+    description:
+      'Answers to common questions about electrical work in Melbourne — costs, safety, switchboards, solar & more. Licensed electricians, 5.0★ rated. Call (03) 4050 7937.',
     alternates: {
       canonical: '/faq',
     },
