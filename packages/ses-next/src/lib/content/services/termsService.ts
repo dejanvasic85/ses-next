@@ -5,7 +5,7 @@ import { termsAndConditionsQuery } from '@/lib/content/queries';
 export const getTermsAndConditions = async (): Promise<TermsAndConditionsContent[]> => {
   try {
     const result = await sanityClient.fetch(termsAndConditionsQuery, {}, { next: { tags: ['terms-and-conditions'] } });
-    const termsDocuments = result.map((terms: unknown) => TermsAndConditionsSchema.parse(terms));
+    const termsDocuments = TermsAndConditionsSchema.array().parse(result);
     return termsDocuments.map((doc: SanityTermsAndConditions) => ({
       id: doc._id,
       terms: doc.terms,

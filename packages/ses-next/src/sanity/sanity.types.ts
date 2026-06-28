@@ -303,6 +303,7 @@ export type LocationPage = {
   _rev: string;
   suburb?: string;
   slug?: Slug;
+  isHub?: boolean;
   heroImage?: {
     asset?: SanityImageAssetReference;
     media?: unknown;

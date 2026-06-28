@@ -1729,6 +1729,13 @@
         },
         "optional": true
       },
+      "isHub": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "boolean"
+        },
+        "optional": true
+      },
       "heroImage": {
         "type": "objectAttribute",
         "value": {
