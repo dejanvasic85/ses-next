@@ -228,7 +228,7 @@ This plan is predominantly CMS content work. Per month:
 - [x] Phase 1: add internal links concentrating equity on the above. _(already live via CMS-driven homepage serviceAreas — confirmed 2026-06-28)_
 - [x] Phase 2: edit the `comprehensive-guide-to-electrical-testing` blog post + `electrical-testing`
       service; add bidirectional links. _(completed 2026-06-28)_
-- [x] Phase 3: rewrite titles/meta on low-CTR page-1 pages identified from GSC. *(completed 2026-06-28 — /faq and /services hardcoded metadata updated in code)*
+- [x] Phase 3: rewrite titles/meta on low-CTR page-1 pages identified from GSC. _(completed 2026-06-28 — /faq and /services hardcoded metadata updated in code)_
 
 All edits are non-destructive (Sanity document history retains prior versions) and take effect on the
 next ISR revalidation.
