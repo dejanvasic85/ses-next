@@ -8,17 +8,19 @@ import { getAllLocationPages, getServicesHubContent, getSiteSettings, getService
 import { safeJsonLd } from '@/lib/structuredData';
 import type { ServiceItem } from '@/types';
 
+const servicesTitle = 'Electrical Services Melbourne | Licensed Electricians | SES';
+const servicesDescription =
+  'Full-range electrical services in Melbourne — solar, air conditioning, switchboards, lighting & more. 5.0★ rated, REC 24794, 19 yrs experience. Call (03) 4050 7937.';
+
 export const metadata: Metadata = {
-  title: 'Electrical Services Melbourne | Storm Electrical Solutions',
-  description:
-    'Explore our full range of electrical services in Melbourne. Licensed electricians for residential, commercial and emergency electrical work.',
+  title: servicesTitle,
+  description: servicesDescription,
   alternates: {
     canonical: '/services',
   },
   openGraph: {
-    title: 'Electrical Services Melbourne | Storm Electrical Solutions',
-    description:
-      'Explore our full range of electrical services in Melbourne. Licensed electricians for residential, commercial and emergency electrical work.',
+    title: servicesTitle,
+    description: servicesDescription,
   },
 };
 

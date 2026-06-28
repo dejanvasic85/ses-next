@@ -1,12 +1,12 @@
 ---
 title: 'On-Page Ranking Uplift: Execution Plan'
 number: '011'
-status: planning
+status: in-progress
 created: '2026-06-27'
-updated: '2026-06-27'
+updated: '2026-06-28T12:00:00'
 owner: ''
 idea: '2026-06-on-page-ranking-uplift-near-miss-pages.md'
-started: ''
+started: '2026-06-28'
 completed: ''
 estimated-hours: '3-5 hrs/month, multi-month'
 tags: ['seo', 'on-page', 'location-pages', 'internal-linking', 'ctr']
@@ -223,12 +223,12 @@ problem.
 
 This plan is predominantly CMS content work. Per month:
 
-- [ ] Phase 1: edit `seoTitle`/`seoDescription`/`intro` on `electrician-altona-north`,
-      `electrician-altona`, `electrician-seddon` (locationPage) and `mains-upgrades` (service).
-- [ ] Phase 1: add internal links concentrating equity on the above.
-- [ ] Phase 2: edit the `comprehensive-guide-to-electrical-testing` blog post + `electrical-testing`
-      service; add bidirectional links.
-- [ ] Phase 3: rewrite titles/meta on low-CTR page-1 pages identified from GSC.
+- [x] Phase 1: edit `seoTitle`/`seoDescription`/`intro` on `electrician-altona-north`,
+      `electrician-altona`, `electrician-seddon` (locationPage) and `mains-upgrades` (service). _(completed 2026-06-28)_
+- [x] Phase 1: add internal links concentrating equity on the above. _(already live via CMS-driven homepage serviceAreas — confirmed 2026-06-28)_
+- [x] Phase 2: edit the `comprehensive-guide-to-electrical-testing` blog post + `electrical-testing`
+      service; add bidirectional links. _(completed 2026-06-28)_
+- [x] Phase 3: rewrite titles/meta on low-CTR page-1 pages identified from GSC. _(completed 2026-06-28 — /faq and /services hardcoded metadata updated in code)_
 
 All edits are non-destructive (Sanity document history retains prior versions) and take effect on the
 next ISR revalidation.
