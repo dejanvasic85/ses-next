@@ -21,6 +21,12 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'isHub',
+      type: 'boolean',
+      title: 'Is Hub Page',
+      description: 'Mark this as a hub page (e.g. a major suburb that links to surrounding areas).',
+    }),
+    defineField({
       name: 'heroImage',
       type: 'image',
       title: 'Hero Image',

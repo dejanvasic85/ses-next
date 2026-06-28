@@ -1,10 +1,10 @@
 ---
 title: 'Split contentService into domain-specific Sanity services'
-status: captured
+status: completed
 source: internal
 captured: '2026-05-06'
 domain: engineering
-plan: ''
+plan: '013-sanity-typegen-and-domain-services/plan.md'
 tags:
   - sanity
   - architecture
