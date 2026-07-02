@@ -14,7 +14,7 @@
     "query": "npx tsx bin/query.ts"
   },
   "dependencies": {
-    "@aws-sdk/client-ses": "3.1077.0",
+    "@aws-sdk/client-ses": "3.1078.0",
     "@fontsource/inter": "5.2.8",
     "@playwright/test": "1.61.1",
     "@portabletext/react": "6.2.0",
@@ -23,7 +23,7 @@
     "@tailwindcss/typography": "0.5.20",
     "autoprefixer": "10.5.2",
     "class-names": "1.0.0",
-    "daisyui": "5.6.6",
+    "daisyui": "5.6.7",
     "date-fns": "4.4.0",
     "eslint": "9.39.4",
     "next": "16.2.9",
