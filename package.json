@@ -19,7 +19,7 @@
     "husky": "9.1.7",
     "lint-staged": "17.0.8",
     "next": "16.2.10",
-    "prettier": "3.9.4",
+    "prettier": "3.9.5",
     "prettier-plugin-tailwindcss": "0.8.0",
     "turbo": "2.10.4"
   },
@@ -29,5 +29,5 @@
       "pnpm --filter ses-next lint"
     ]
   },
-  "packageManager": "pnpm@11.10.0"
+  "packageManager": "pnpm@11.11.0"
 }
