@@ -28,7 +28,7 @@
     "eslint": "9.39.5",
     "next": "16.2.10",
     "next-sanity": "13.1.1",
-    "postcss": "8.5.17",
+    "postcss": "8.5.18",
     "react": "19.2.7",
     "react-dom": "19.2.7",
     "react-google-recaptcha-v3": "1.11.0",
