@@ -14,14 +14,14 @@
     "query": "npx tsx bin/query.ts"
   },
   "dependencies": {
-    "@aws-sdk/client-ses": "3.1088.0",
+    "@aws-sdk/client-ses": "3.1089.0",
     "@fontsource/inter": "5.2.8",
     "@playwright/test": "1.61.1",
     "@portabletext/react": "6.2.0",
     "@sanity/image-url": "2.1.1",
-    "@tailwindcss/postcss": "4.3.2",
+    "@tailwindcss/postcss": "4.3.3",
     "@tailwindcss/typography": "0.5.20",
-    "autoprefixer": "10.5.3",
+    "autoprefixer": "10.5.4",
     "class-names": "1.0.0",
     "daisyui": "5.6.18",
     "date-fns": "4.4.0",
@@ -35,7 +35,7 @@
     "react-hook-form": "7.81.0",
     "react-modal": "3.16.3",
     "ses-reviews": "workspace:*",
-    "tailwindcss": "4.3.2",
+    "tailwindcss": "4.3.3",
     "zod": "4.4.3"
   },
   "devDependencies": {
