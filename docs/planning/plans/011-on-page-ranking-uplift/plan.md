@@ -3,7 +3,7 @@ title: 'On-Page Ranking Uplift: Execution Plan'
 number: '011'
 status: in-progress
 created: '2026-06-27'
-updated: '2026-06-28T12:00:00'
+updated: '2026-07-20T00:00:00'
 owner: ''
 idea: '2026-06-on-page-ranking-uplift-near-miss-pages.md'
 started: '2026-06-28'
@@ -219,6 +219,70 @@ problem.
 
 ---
 
+## Phase 4 — Fix & rescue the electrical-testing cluster (Month 3 / August 2026)
+
+**Driven by the July 2026 scorecard.** The testing cluster is the biggest untapped demand on the site
+and it _regressed_ this month, so it is now the top priority. Diagnosis from live Sanity audit
+(2026-07-20):
+
+- `/services/electrical-testing` (`_id` `44c760a2-8311-44af-b2c8-5a3ffa1e766f`): **2,156 impr, 0 clicks,
+  pos 49.** Root cause found — its `seoDescription` field is **empty**, so the meta description falls
+  back to the stale `description`: _"Residential Tenancy Act Reporting. Test and Tag. Emergency Light
+  Testing. "_ (fragment list, trailing space, no keyword sentence, no CTA). Phase 2 marked this done but
+  never populated `seoDescription`. This is the single clearest, cheapest fix on the site.
+- `/blog/comprehensive-guide-to-electrical-testing`: **2,993 impr, 7 clicks, pos 20.** Its title/meta
+  are already strong (verified live) — the guide's problem is **position/authority, not snippet**, so it
+  needs internal links + depth, not a rewrite.
+- Keywords: `electrical testing` 16.4 → 24.2 ▼, `electrical safety testing` 23.9 → 36.0 ▼.
+
+### Task 4.1 — Populate the service page `seoDescription` (the actual fix) ✅ DONE 2026-07-20
+
+**File changed:** Sanity `service` document `44c760a2-8311-44af-b2c8-5a3ffa1e766f`
+(`electrical-testing`) — `seoDescription` set and **published live** (verified 159 chars):
+
+> Licensed electrical testing & safety inspections across Melbourne — test & tag, RCD & switchboard
+> testing, tenancy compliance. 5.0★, REC 24794. Call SES today.
+
+`seoTitle` left as-is ("Electrical Testing & Safety Inspections Melbourne | SES" — already strong).
+The stale `description` fragment no longer drives the meta description.
+
+**Verification:** ✅ field live in Sanity `published` perspective. Pending: meta reflects it on the live
+site after next ISR revalidation (daily); `electrical testing` / `electrical safety testing` position
+recovery + first clicks to be confirmed in the **August 20 scorecard**.
+
+### Task 4.2 — Pass authority to the guide (position, not snippet) ✅ DONE 2026-07-20
+
+**Audit finding:** two of the three intended sub-steps were **already live** from earlier work —
+(a) the guide → service link (`link-electrical-testing-service` → `/services/electrical-testing`) was
+already present, and (b) the guide already contains depth sections for `electrical safety testing` and
+`switchboard testing` (the `new-safety-*` / `new-switchboard-*` blocks). The only missing half was the
+**reverse link**.
+
+**File changed & published:** `electrical-testing` service `content` — appended a paragraph linking to
+the guide (`/blog/comprehensive-guide-to-electrical-testing`). The link is now **bidirectional**.
+Verified live in Sanity `published`.
+
+**Verification:** ✅ link live. Guide position + sub-query coverage to confirm in the August scorecard.
+
+### Task 4.3 — Cross-link from the now-ranking commercial pages ✅ DONE 2026-07-20
+
+**File changed & published:** `/services/commercial-electrician` `content` — the existing "Compliance
+testing and tagging" paragraph (`ce-p-4`) now links its "electrical testing and safety inspection"
+phrase to `/services/electrical-testing`, passing authority from a page that reached page 1 this month.
+Verified live in Sanity `published`.
+
+> Note: the intended location-page cross-links (Altona commercial pages) were **not** added — the
+> commercial-electrician service page is the stronger, more topically-relevant source and was sufficient
+> for this month. Revisit location-page links next month if `/services/electrical-testing` hasn't moved.
+
+**Verification:** ✅ link live in Sanity. `/services/electrical-testing` position recovery to confirm in
+the August scorecard. (No code changed — content-only, so no build/e2e needed.)
+
+> **Scope guard:** this is a content-only month (Sanity edits, no code) and fits the 3–5 hr retainer.
+> Ship this week so it re-crawls in time for the **August 20** scorecard.
+
+---
+
 ## Sanity CMS Steps (summary)
 
 This plan is predominantly CMS content work. Per month:
@@ -226,8 +290,12 @@ This plan is predominantly CMS content work. Per month:
 - [x] Phase 1: edit `seoTitle`/`seoDescription`/`intro` on `electrician-altona-north`,
       `electrician-altona`, `electrician-seddon` (locationPage) and `mains-upgrades` (service). _(completed 2026-06-28)_
 - [x] Phase 1: add internal links concentrating equity on the above. _(already live via CMS-driven homepage serviceAreas — confirmed 2026-06-28)_
-- [x] Phase 2: edit the `comprehensive-guide-to-electrical-testing` blog post + `electrical-testing`
-      service; add bidirectional links. _(completed 2026-06-28)_
+- [~] Phase 2: edit the `comprehensive-guide-to-electrical-testing` blog post + `electrical-testing`
+  service; add bidirectional links. _(guide title/meta done 2026-06-28 and verified live; service
+  page `seoDescription` was missing — **now populated & published 2026-07-20, Task 4.1**.
+  Bidirectional internal links still outstanding — see Phase 4 Tasks 4.2/4.3.)_
+- [x] Phase 4 (August): Task 4.1 `seoDescription` ✅, Task 4.2 service→guide reverse link ✅ (guide→service + depth were already live), Task 4.3 commercial-electrician→testing cross-link ✅. All published
+      2026-07-20. Impact to be measured in the August scorecard.
 - [x] Phase 3: rewrite titles/meta on low-CTR page-1 pages identified from GSC. _(completed 2026-06-28 — /faq and /services hardcoded metadata updated in code)_
 
 All edits are non-destructive (Sanity document history retains prior versions) and take effect on the
