@@ -238,10 +238,10 @@ and it _regressed_ this month, so it is now the top priority. Diagnosis from liv
 ### Task 4.1 — Populate the service page `seoDescription` (the actual fix) ✅ DONE 2026-07-20
 
 **File changed:** Sanity `service` document `44c760a2-8311-44af-b2c8-5a3ffa1e766f`
-(`electrical-testing`) — `seoDescription` set and **published live** (verified 159 chars):
+(`electrical-testing`) — `seoDescription` set and **published live** (149 chars, within the ~155 limit):
 
-> Licensed electrical testing & safety inspections across Melbourne — test & tag, RCD & switchboard
-> testing, tenancy compliance. 5.0★, REC 24794. Call SES today.
+> Licensed electrical testing & safety inspections in Melbourne — test & tag, RCD & switchboard
+> testing, tenancy compliance. 5.0★, REC 24794. Call SES.
 
 `seoTitle` left as-is ("Electrical Testing & Safety Inspections Melbourne | SES" — already strong).
 The stale `description` fragment no longer drives the meta description.
@@ -290,10 +290,10 @@ This plan is predominantly CMS content work. Per month:
 - [x] Phase 1: edit `seoTitle`/`seoDescription`/`intro` on `electrician-altona-north`,
       `electrician-altona`, `electrician-seddon` (locationPage) and `mains-upgrades` (service). _(completed 2026-06-28)_
 - [x] Phase 1: add internal links concentrating equity on the above. _(already live via CMS-driven homepage serviceAreas — confirmed 2026-06-28)_
-- [~] Phase 2: edit the `comprehensive-guide-to-electrical-testing` blog post + `electrical-testing`
-  service; add bidirectional links. _(guide title/meta done 2026-06-28 and verified live; service
-  page `seoDescription` was missing — **now populated & published 2026-07-20, Task 4.1**.
-  Bidirectional internal links still outstanding — see Phase 4 Tasks 4.2/4.3.)_
+- [x] Phase 2: edit the `comprehensive-guide-to-electrical-testing` blog post + `electrical-testing`
+      service; add bidirectional links. _(guide title/meta + depth done 2026-06-28; the outstanding parts —
+      service `seoDescription` and the bidirectional links — were **superseded and completed by Phase 4**
+      (Tasks 4.1–4.3), all published 2026-07-20.)_
 - [x] Phase 4 (August): Task 4.1 `seoDescription` ✅, Task 4.2 service→guide reverse link ✅ (guide→service + depth were already live), Task 4.3 commercial-electrician→testing cross-link ✅. All published
       2026-07-20. Impact to be measured in the August scorecard.
 - [x] Phase 3: rewrite titles/meta on low-CTR page-1 pages identified from GSC. _(completed 2026-06-28 — /faq and /services hardcoded metadata updated in code)_
