@@ -25,7 +25,7 @@
     "react-dom": "19.2.7",
     "react-is": "19.2.7",
     "sanity": "6.5.0",
-    "styled-components": "6.4.3"
+    "styled-components": "6.4.4"
   },
   "devDependencies": {
     "prettier": "3.9.5",
