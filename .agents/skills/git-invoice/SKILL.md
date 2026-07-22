@@ -1,6 +1,6 @@
 ---
 name: git-invoice
-description: 'Scan git logs for a date range and produce a categorised invoice line-item list. Classifies commits as Maintenance (framework upgrades, bug fixes) or Feature work (new functionality, with size estimates). Use when the user says "generate invoice", "invoice from git", "what did I work on", or invokes /git-invoice.'
+description: 'Scan git logs for a date range and produce a categorised invoice line-item list. Classifies commits as Maintenance (framework upgrades, bug fixes) or Feature work (new functionality). Use when the user says "generate invoice", "invoice from git", "what did I work on", or invokes /git-invoice.'
 argument-hint: 'Date range and optional branch. Examples: "last month", "2026-04-01..2026-04-30", "since 2026-05-01 on branch main"'
 user-invocable: true
 ---
@@ -28,8 +28,6 @@ Produces a markdown invoice items block with two sections:
 
 1. **Maintenance** — framework upgrades, dependency bumps, bug fixes, CI/tooling changes, security patches
 2. **Feature Work** — new functionality, UI changes, content additions, integrations
-
-Each Feature Work item includes a **size** estimate (XS / S / M / L / XL) to support potential pricing.
 
 ## Workflow
 
@@ -97,19 +95,7 @@ Cluster related commits into coherent line items rather than listing every commi
 
 Each line item should read as a natural invoice description, not a raw commit message.
 
-### Step 5 — Estimate feature sizes
-
-For each Feature line item, assign a size based on the number and nature of commits involved:
-
-| Size | Signal                                                   |
-| ---- | -------------------------------------------------------- |
-| XS   | 1 commit, cosmetic or copy tweak                         |
-| S    | 1–2 commits, small isolated change                       |
-| M    | 3–5 commits, single coherent feature                     |
-| L    | 6–10 commits, multi-part feature or significant refactor |
-| XL   | 10+ commits, major feature or subsystem                  |
-
-### Step 6 — Output the invoice items
+### Step 5 — Output the invoice items
 
 Format the result as follows:
 
@@ -123,19 +109,17 @@ Format the result as follows:
 
 ### Feature Work
 
-| #   | Description           | Size |
-| --- | --------------------- | ---- |
-| 1   | [Feature description] | M    |
-| 2   | [Feature description] | S    |
+- [Feature description]
+- [Feature description]
 ```
 
 If there are no commits in a category, omit that section.
 
-### Step 7 — Ask follow-up
+### Step 6 — Ask follow-up
 
 After outputting, ask:
 
-> "Would you like me to add pricing estimates, group these under a client/project, or export this as a plan file?"
+> "Would you like me to group these under a client/project, or export this as a plan file?"
 
 On the SES repo, also prompt: "This covers maintenance + code only. The SEO retainer (Sanity edits, GSC/GA analysis, scorecard) isn't in git — run **/seo-invoice** to capture it from the monthly scorecard."
 
@@ -152,5 +136,4 @@ On the SES repo, also prompt: "This covers maintenance + code only. The SEO reta
 - Conventional-commit prefixes (`feat:`, `fix:`, `chore:`, etc.) take priority when present, but many repos don't use them — use `git show --stat` to inspect changed files when the message alone is unclear
 - If still uncertain after inspecting the commit, ask the user rather than guessing
 - The output is intentionally human-readable and editable — it is a starting point, not a final invoice
-- Sizes are estimates to support pricing conversations, not binding commitments
 - **SEO/CMS blind spot:** work published straight to a CMS (e.g. Sanity `seoDescription`, internal links) and analysis work (reading GSC/GA, writing a scorecard) leave little or no commit trail, so this skill under-counts them. On the SES repo, pair with **`/seo-invoice`**, which derives the retainer line-items from the monthly scorecard rather than git. Run both for a complete month-end picture.

@@ -62,33 +62,22 @@ Ignore infrastructure/deps — those belong to `/git-invoice`.
 
 Plan 011 checkboxes have been wrong before (marked done without the Sanity edit landing). Where practical, confirm a claimed CMS change is actually live before billing it (Sanity `get_document`/`query_documents`, `perspective: published`, using the project/dataset from `packages/ses-content/sanity.config.ts`). If you can't verify, mark the line-item "(unverified)" rather than dropping or asserting it.
 
-### Step 5 — Size each item
-
-| Size | Signal                                                                               |
-| ---- | ------------------------------------------------------------------------------------ |
-| XS   | tiny copy/meta tweak on one field                                                    |
-| S    | 1–2 CMS edits, or a focused fix (e.g. one page's seoDescription + a couple of links) |
-| M    | the monthly scorecard + analysis, or a multi-page on-page pass                       |
-| L    | a new long-form post + on-page work, or a multi-page cluster rescue                  |
-
-### Step 6 — Output (chat only, never a file)
+### Step 5 — Output (chat only, never a file)
 
 ```markdown
 ## SEO Retainer — Invoice Items — [Month YYYY]
 
 _Source: docs/seo-geo/scorecards/<YYYY-MM>.md (not git)_
 
-| #   | Description                                                                                                                                           | Size |
-| --- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ---- |
-| 1   | Monthly SEO scorecard + performance analysis — GSC/GA 28-day review, N tracked keywords diffed vs prior month, movement attribution, next-month focus | M    |
-| 2   | [CMS/on-page change shipped this month]                                                                                                               | S    |
+- Monthly SEO scorecard + performance analysis — GSC/GA 28-day review, N tracked keywords diffed vs prior month, movement attribution, next-month focus
+- [CMS/on-page change shipped this month]
 ```
 
-### Step 7 — Follow-up
+### Step 6 — Follow-up
 
 After output, ask:
 
-> "Want me to (a) map these to the retainer rate, (b) also run /git-invoice for maintenance + code, or (c) widen the window if ranking wins trace to work committed in a prior cycle?"
+> "Want me to (a) also run /git-invoice for maintenance + code, or (b) widen the window if ranking wins trace to work committed in a prior cycle?"
 
 Note the timing caveat when relevant: on-page work surfaces in rankings weeks later, so a given month's _wins_ may trace to a _prior_ month's _work_ — bill the work when done, not when the ranking moves.
 
