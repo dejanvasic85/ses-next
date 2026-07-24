@@ -73,8 +73,8 @@ importers:
         specifier: 1.61.1
         version: 1.61.1
       '@portabletext/react':
-        specifier: 6.2.0
-        version: 6.2.0(react@19.2.8)
+        specifier: 7.0.1
+        version: 7.0.1(react@19.2.8)
       '@sanity/image-url':
         specifier: 2.1.1
         version: 2.1.1
