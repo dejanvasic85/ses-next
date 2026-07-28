@@ -1,4 +1,7 @@
 {
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
     "dev": "turbo dev",
     "format": "prettier --write .",
