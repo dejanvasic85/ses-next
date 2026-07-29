@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { googleReviews } from 'ses-reviews';
 
-import { About, Contact, Hero, Services, ServiceAreas } from '@/components';
+import { About, Contact, Hero, Section, Services, ServiceAreas } from '@/components';
 import { getHomePageContent, getSiteSettings, getServices } from '@/lib/content/contentService';
 import { safeJsonLd, personJsonLd } from '@/lib/structuredData';
 import type { GoogleReview } from '@/types';
@@ -168,25 +168,25 @@ export default async function Home() {
         subHeading={subHeading}
         trustSignals={trustSignals}
       />
-      <section id="contact" className="mt-32 pt-24">
+      <Section id="contact">
         <Contact
           contact={homepageContent.contact}
           location={googleMapsLocation}
           streetAddress={streetAddress}
           suburb={suburb}
         />
-      </section>
-      <section id="services" className="mt-16 pt-24">
+      </Section>
+      <Section id="services" tone="quiet">
         <Services services={services} blurbs={homepageContent.services.blurbs ?? []} className="mt-12" />
-      </section>
+      </Section>
       {serviceAreas.length > 0 && (
-        <section className="mt-16 pt-8">
+        <Section>
           <ServiceAreas areas={serviceAreas} />
-        </section>
+        </Section>
       )}
-      <section id="about" className="mt-16 pt-24">
+      <Section id="about">
         <About team={team} testimonials={reviews} googleReviewsUrl={googleMapsLocationPlaceUrl} training={training} />
-      </section>
+      </Section>
     </>
   );
 }

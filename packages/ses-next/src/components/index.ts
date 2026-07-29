@@ -21,5 +21,6 @@ export { PopSuccess } from './PopSuccess';
 export { RelatedServices } from './RelatedServices/RelatedServices';
 export { ServiceBreadcrumb } from './ServiceBreadcrumb/ServiceBreadcrumb';
 export { SanityImage } from './SanityImage';
+export { Section } from './Section';
 export { Services } from './Services';
 export { Team } from './Team';
