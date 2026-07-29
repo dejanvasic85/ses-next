@@ -35,7 +35,7 @@ export const Services = ({ className, blurbs, services }: ServicesProps) => {
       <Container>
         <Heading level={2}>Our Services</Heading>
         {blurbs?.map((blurb, idx) => (
-          <p key={idx} className="mb-5 text-gray-500 sm:text-lg">
+          <p key={idx} className="text-base-content/70 mb-5 sm:text-lg">
             {blurb}
           </p>
         ))}
@@ -44,7 +44,7 @@ export const Services = ({ className, blurbs, services }: ServicesProps) => {
           {services
             .filter(({ showOnHomepage }) => showOnHomepage)
             .map(({ name, blurb, linkToReadMore, slug, icon = 'bolt', featuredImage }, idx) => (
-              <div className="group relative overflow-hidden rounded-lg" key={idx}>
+              <div className="group surface-glass relative overflow-hidden rounded-lg" key={idx}>
                 <Link href={`/services/${slug}`} className="absolute inset-0 z-10" prefetch={false}>
                   <span className="sr-only">View {name}</span>
                 </Link>
@@ -52,7 +52,7 @@ export const Services = ({ className, blurbs, services }: ServicesProps) => {
                   <div className="space-y-2">
                     <div className="flex items-center gap-3">
                       <div className="text-primary-foreground bg-primary rounded-full p-2">
-                        <Icon name={icon as keyof typeof IconMap} size="xl" className="text-white" />
+                        <Icon name={icon as keyof typeof IconMap} size="xl" className="text-primary-content" />
                       </div>
                       <h3 className="border-primary border-b-2 text-lg font-semibold">
                         <ConditionalWrap
@@ -63,7 +63,7 @@ export const Services = ({ className, blurbs, services }: ServicesProps) => {
                         </ConditionalWrap>
                       </h3>
                     </div>
-                    <p className="text-gray-500">{blurb}</p>
+                    <p className="text-base-content/70">{blurb}</p>
                   </div>
                   {featuredImage && (
                     <div className="relative mt-4 aspect-video w-full overflow-hidden rounded-lg">

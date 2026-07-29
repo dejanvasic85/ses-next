@@ -14,13 +14,15 @@ export function TrustSignals({ signals }: TrustSignalsProps) {
         {signals.map((signal) => (
           <li
             key={signal.label}
-            className="flex flex-col items-center gap-2 rounded-2xl border border-slate-100 bg-white px-4 py-6 text-center shadow-sm"
+            className="surface-glass flex flex-col items-center gap-2 rounded-2xl px-4 py-6 text-center"
           >
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-sky-50 text-sky-600">
+            <span className="bg-primary/10 text-primary flex h-10 w-10 items-center justify-center rounded-xl">
               <Icon name={signal.icon} size="md" />
             </span>
-            <span className="text-2xl font-bold tracking-tight text-slate-800 sm:text-3xl">{signal.value}</span>
-            <span className="text-xs font-semibold tracking-widest text-slate-400 uppercase">{signal.label}</span>
+            <span className="font-display text-base-content text-2xl font-bold tracking-tight tabular-nums sm:text-3xl">
+              {signal.value}
+            </span>
+            <span className="text-base-content/50 text-xs font-semibold tracking-widest uppercase">{signal.label}</span>
           </li>
         ))}
       </ul>

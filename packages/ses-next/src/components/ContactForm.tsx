@@ -159,7 +159,7 @@ export function ContactForm({ loading, onSubmit }: ContactFormProps) {
         </Activity>
       </fieldset>
 
-      <button className={classNames('btn btn-primary mt-8 text-white', { loading })} type="submit" id="submit">
+      <button className={classNames('btn btn-primary mt-8', { loading })} type="submit" id="submit">
         Submit
       </button>
     </form>

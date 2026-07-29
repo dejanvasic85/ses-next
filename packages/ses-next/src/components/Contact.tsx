@@ -26,10 +26,10 @@ export function Contact({ className, contact, location, streetAddress, suburb }:
     <div className={className}>
       <Heading level={2}>Contact us</Heading>
       <Activity mode={firstBlurb ? 'visible' : 'hidden'}>
-        <p className="mx-auto mb-12 max-w-screen-md px-4 text-center text-gray-500 md:text-lg">{firstBlurb}</p>
+        <p className="text-base-content/70 mx-auto mb-12 max-w-screen-md px-4 text-center md:text-lg">{firstBlurb}</p>
       </Activity>
       <div className="flex flex-col items-center justify-center">
-        <div className="bg-white p-8 text-center">
+        <div className="p-8 text-center">
           <div className="text-lg" itemProp="address" itemScope itemType="http://schema.org/PostalAddress">
             <p className="mb-2">
               <span itemProp="streetAddress">{streetAddress}</span>,<span itemProp="addressLocality">{suburb}</span>,
@@ -46,9 +46,9 @@ export function Contact({ className, contact, location, streetAddress, suburb }:
           </LinkButton>
         </p>
       </Activity>
-      <div className="body-font relative text-gray-600">
+      <div className="body-font text-base-content/70 relative">
         {location && (
-          <div className="absolute inset-0 bg-gray-300">
+          <div className="bg-base-300 absolute inset-0">
             <iframe
               width="100%"
               height="100%"
@@ -58,15 +58,17 @@ export function Contact({ className, contact, location, streetAddress, suburb }:
               title="map"
               scrolling="no"
               src={location}
-              style={{ filter: 'grayscale(0.7) contrast(1.2) opacity(0.8)' }}
+              className="map-embed"
             ></iframe>
           </div>
         )}
         <div className="container mx-auto flex px-5 py-24">
-          <div className="relative z-10 mt-10 flex w-full flex-col rounded-lg bg-white p-8 shadow-md md:mt-0 md:ml-auto md:w-1/2 lg:w-1/3">
-            <h3 className="title-font mb-1 text-lg font-medium text-gray-900">Message us for a quote or callback</h3>
+          <div className="surface-glass relative z-10 mt-10 flex w-full flex-col rounded-lg p-8 md:mt-0 md:ml-auto md:w-1/2 lg:w-1/3">
+            <h3 className="title-font font-display text-base-content mb-1 text-lg font-medium">
+              Message us for a quote or callback
+            </h3>
             <Activity mode={secondBlurb ? 'visible' : 'hidden'}>
-              <p className="mb-5 leading-relaxed text-gray-600">{secondBlurb}</p>
+              <p className="text-base-content/70 mb-5 leading-relaxed">{secondBlurb}</p>
             </Activity>
 
             <Activity mode={!messageSent ? 'visible' : 'hidden'}>
@@ -82,7 +84,7 @@ export function Contact({ className, contact, location, streetAddress, suburb }:
             </Activity>
 
             <Activity mode={contact.callBack ? 'visible' : 'hidden'}>
-              <p className="mt-3 text-xs text-gray-500">{contact.callBack}</p>
+              <p className="text-base-content/60 mt-3 text-xs">{contact.callBack}</p>
             </Activity>
           </div>
         </div>

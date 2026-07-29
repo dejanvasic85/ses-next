@@ -76,14 +76,14 @@ export function ImageCarousel({ images, serviceName }: ImageCarouselProps) {
       <div className="relative w-full">
         <div className="mb-4 flex items-center justify-between">
           <Activity mode={serviceName ? 'visible' : 'hidden'}>
-            <h2 className="text-2xl font-bold text-gray-900">{serviceName} Gallery</h2>
+            <h2 className="font-display text-base-content text-2xl font-bold">{serviceName} Gallery</h2>
           </Activity>
-          <span className="text-sm text-gray-600">
+          <span className="text-base-content/70 text-sm">
             {currentIndex + 1} / {images.length}
           </span>
         </div>
 
-        <div className="relative overflow-hidden rounded-lg bg-gray-100">
+        <div className="bg-base-200 relative overflow-hidden rounded-lg">
           <div
             className="flex transition-transform duration-500 ease-in-out"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -110,7 +110,7 @@ export function ImageCarousel({ images, serviceName }: ImageCarouselProps) {
         </div>
 
         <Activity mode={currentImage.alt ? 'visible' : 'hidden'}>
-          <div className="mt-4 rounded-lg bg-gray-900 p-4 text-center text-white">{currentImage.alt}</div>
+          <div className="bg-neutral text-neutral-content mt-4 rounded-lg p-4 text-center">{currentImage.alt}</div>
         </Activity>
 
         <Activity mode={images.length > 1 ? 'visible' : 'hidden'}>
@@ -122,7 +122,7 @@ export function ImageCarousel({ images, serviceName }: ImageCarouselProps) {
                 disabled={isTransitioning}
                 aria-label={`Go to slide ${index + 1}`}
                 className={`h-3 w-3 rounded-full transition-all ${
-                  index === currentIndex ? 'w-8 bg-blue-600' : 'bg-gray-300 hover:bg-gray-400'
+                  index === currentIndex ? 'bg-primary w-8' : 'bg-base-300 hover:bg-base-content/30'
                 } ${isTransitioning ? 'cursor-not-allowed' : 'cursor-pointer'}`}
               />
             ))}
@@ -134,9 +134,9 @@ export function ImageCarousel({ images, serviceName }: ImageCarouselProps) {
             onClick={goToPrevious}
             disabled={isTransitioning}
             aria-label="Previous image"
-            className="bg-opacity-80 hover:bg-opacity-100 absolute top-1/2 left-4 -translate-y-1/2 rounded-full bg-white p-2 shadow-lg transition-all disabled:cursor-not-allowed disabled:opacity-50"
+            className="surface-glass hover:bg-base-100 absolute top-1/2 left-4 -translate-y-1/2 rounded-full p-2 transition-all disabled:cursor-not-allowed disabled:opacity-50"
           >
-            <svg className="h-6 w-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="text-base-content h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
             <span className="sr-only">Previous</span>
@@ -148,9 +148,9 @@ export function ImageCarousel({ images, serviceName }: ImageCarouselProps) {
             onClick={goToNext}
             disabled={isTransitioning}
             aria-label="Next image"
-            className="bg-opacity-80 hover:bg-opacity-100 absolute top-1/2 right-4 -translate-y-1/2 rounded-full bg-white p-2 shadow-lg transition-all disabled:cursor-not-allowed disabled:opacity-50"
+            className="surface-glass hover:bg-base-100 absolute top-1/2 right-4 -translate-y-1/2 rounded-full p-2 transition-all disabled:cursor-not-allowed disabled:opacity-50"
           >
-            <svg className="h-6 w-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="text-base-content h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
             <span className="sr-only">Next</span>

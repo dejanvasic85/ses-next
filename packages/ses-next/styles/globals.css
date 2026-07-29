@@ -148,6 +148,21 @@
   }
 
   /*
+   * The Google Maps embed is a third-party iframe we cannot theme. It is
+   * desaturated so it reads as ground behind the contact panel, and inverted in
+   * dark mode so a bright white map does not punch a hole in the page.
+   */
+  .map-embed {
+    filter: grayscale(0.7) contrast(1.2) opacity(0.8);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .map-embed {
+      filter: grayscale(0.9) invert(0.92) hue-rotate(180deg) contrast(0.95) opacity(0.7);
+    }
+  }
+
+  /*
    * Typography plugin defaults are hardcoded greys, so prose would render
    * dark-on-dark. Pointing its variables at theme tokens makes it follow along.
    */
