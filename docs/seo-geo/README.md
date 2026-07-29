@@ -46,7 +46,7 @@ GSC data (queries we already rank near page 1 for) and reviewed each month — n
 ## How ranking actually improves (and why "more content" isn't the lever)
 
 A recurring confusion: if the fix is "rankings, not content," why is the active plan
-(`docs/planning/plans/011-on-page-ranking-uplift/`) almost entirely content work? Because there are
+([GitHub issue #642](https://github.com/dejanvasic85/ses-next/issues/642)) almost entirely content work? Because there are
 **three** different levers, and only one of them is wrong for this site:
 
 1. **Content volume** — how many pages/posts exist. _Adding more does not help pages already stuck._
