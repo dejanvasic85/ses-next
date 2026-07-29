@@ -10,12 +10,15 @@ import { config } from '@/lib/config';
 import { clientConfig } from '@/clientConfig';
 import '../../styles/globals.css';
 
-const inter = localFont({
-  src: [
-    { path: '../../public/fonts/inter-latin-400-normal.woff2', weight: '400', style: 'normal' },
-    { path: '../../public/fonts/inter-latin-500-normal.woff2', weight: '500', style: 'normal' },
-    { path: '../../public/fonts/inter-latin-700-normal.woff2', weight: '700', style: 'normal' },
-  ],
+const displayFont = localFont({
+  src: [{ path: '../../public/fonts/schibsted-grotesk-latin-wght-normal.woff2', weight: '100 900', style: 'normal' }],
+  variable: '--font-schibsted',
+  display: 'swap',
+});
+
+const bodyFont = localFont({
+  src: [{ path: '../../public/fonts/onest-latin-wght-normal.woff2', weight: '100 900', style: 'normal' }],
+  variable: '--font-onest',
   display: 'swap',
 });
 
@@ -51,8 +54,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const gtmId = clientConfig.googleTagManagerId;
 
   return (
-    <html lang="en">
-      <body className={`${inter.className} min-h-screen`}>
+    <html lang="en" className={`${displayFont.variable} ${bodyFont.variable}`}>
+      <body className="min-h-screen font-sans">
         {gtmId && <GoogleTagManager gtmId={gtmId} />}
         <Providers sanityProjectId={config.sanityProjectId} sanityDataset={config.sanityDataset}>
           <Navbar contactPhone={siteSettings.phone} title={siteSettings.shortTitle} />
