@@ -176,8 +176,7 @@ export const MobileMenu = ({ isOpen, onClose, children, contactPhone }: MobileMe
     <>
       <div
         className={classNames(
-          // A scrim is an overlay rather than a themed surface, so raw black is
-          // intentional here and stays legible against either theme.
+          // eslint-disable-next-line no-restricted-syntax -- a scrim is an overlay, not a themed surface; raw black stays legible under either theme
           `fixed inset-0 z-50 flex justify-end bg-black/40 backdrop-blur-sm transition-opacity duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]`,
           isOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0',
         )}
