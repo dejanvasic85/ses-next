@@ -54,7 +54,7 @@ export function Footer({ social = emptySocialValue, links = defaultFooterLinks, 
   const year = today.getFullYear();
 
   return (
-    <footer className="footer grid grid-cols-1 bg-slate-700 p-10 text-white lg:grid-cols-4">
+    <footer className="footer bg-neutral text-neutral-content grid grid-cols-1 p-10 lg:grid-cols-4">
       <div className="flex flex-col gap-2">
         <Icon name="bolt" size="xxxl" />
         <div>
@@ -69,7 +69,7 @@ export function Footer({ social = emptySocialValue, links = defaultFooterLinks, 
         </div>
       </div>
       <div>
-        <span className="footer-title">Company</span>
+        <span className="footer-title font-display">Company</span>
         <Link className="link link-hover" href={links.services}>
           Services
         </Link>
@@ -90,7 +90,7 @@ export function Footer({ social = emptySocialValue, links = defaultFooterLinks, 
         </Link>
       </div>
       <div>
-        <span className="footer-title">Services</span>
+        <span className="footer-title font-display">Services</span>
         {services
           .filter((s) => !s.parentService)
           .map(({ name, slug }) => (
@@ -111,7 +111,7 @@ export function Footer({ social = emptySocialValue, links = defaultFooterLinks, 
         </Link>
       </div>
       <div>
-        <span className="footer-title">Follow us</span>
+        <span className="footer-title font-display">Follow us</span>
         <Activity mode={social.facebook ? 'visible' : 'hidden'}>
           <Link className="link link-hover flex gap-1" href={social.facebook ?? ''} target="_blank">
             <Icon name="facebook" />
