@@ -3,26 +3,175 @@
 @plugin '@tailwindcss/typography';
 
 @plugin 'daisyui' {
-  themes: light --default;
+  themes:
+    light --default,
+    dark --prefersdark;
 }
 
+/*
+ * Storm palette. Primary and secondary are lifted from the SES logo bolt
+ * gradient (#45C1E3 into #007BC0); the greys are biased toward that same hue
+ * rather than neutral, so light surfaces read cool and dark reads like a storm
+ * sky instead of a black box.
+ */
 @plugin 'daisyui/theme' {
   name: 'light';
   default: true;
   color-scheme: light;
 
-  --color-primary: oklch(50% 0.15 240);
-  --color-secondary: oklch(70% 0.2 200);
-  --color-accent: oklch(70% 0.1 0);
-  --color-neutral: oklch(32% 0.1 250);
-  --color-base-100: oklch(100% 0 0);
-  --color-info: oklch(70% 0.2 200);
-  --color-success: oklch(72% 0.2 145);
-  --color-warning: oklch(80% 0.2 85);
-  --color-error: oklch(65% 0.2 25);
+  --color-base-100: #ffffff;
+  --color-base-200: #f3f7fb;
+  --color-base-300: #dbe5f0;
+  --color-base-content: #16212d;
+
+  --color-primary: #0b6fbe;
+  --color-primary-content: #ffffff;
+  --color-secondary: #45c1e3;
+  --color-secondary-content: #0a2230;
+  --color-accent: #1a8ad8;
+  --color-accent-content: #ffffff;
+  --color-neutral: #2b3b4d;
+  --color-neutral-content: #eef3f8;
+
+  --color-info: #1a8ad8;
+  --color-info-content: #ffffff;
+  --color-success: #157f4a;
+  --color-success-content: #ffffff;
+  --color-warning: #9a6206;
+  --color-warning-content: #ffffff;
+  --color-error: #b4342b;
+  --color-error-content: #ffffff;
+
+  --radius-selector: 0.5rem;
+  --radius-field: 0.6rem;
+  --radius-box: 1rem;
+}
+
+@plugin 'daisyui/theme' {
+  name: 'dark';
+  prefersdark: true;
+  color-scheme: dark;
+
+  --color-base-100: #101c27;
+  --color-base-200: #16242f;
+  --color-base-300: #24374a;
+  --color-base-content: #e2ecf5;
+
+  /* Primary lifts in dark so it still clears 4.5:1 against base-100. */
+  --color-primary: #3ba3e8;
+  --color-primary-content: #05151f;
+  --color-secondary: #6fd3f0;
+  --color-secondary-content: #05151f;
+  --color-accent: #5cb8f2;
+  --color-accent-content: #05151f;
+  --color-neutral: #1b2b39;
+  --color-neutral-content: #e2ecf5;
+
+  --color-info: #5cb8f2;
+  --color-info-content: #05151f;
+  --color-success: #4ec27f;
+  --color-success-content: #05151f;
+  --color-warning: #e0a534;
+  --color-warning-content: #05151f;
+  --color-error: #f0776a;
+  --color-error-content: #1d0705;
+
+  --radius-selector: 0.5rem;
+  --radius-field: 0.6rem;
+  --radius-box: 1rem;
 }
 
 @theme {
+  --font-sans: var(--font-onest), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-schibsted), ui-sans-serif, system-ui, sans-serif;
+
   --animate-popin: popin 0.5s ease-in-out;
   --keyframes-popin: 0%, 100% {transform: scale(0) ;} 50% {transform: scale(1.1) ;} 100% {transform: scale(1) ;};
+}
+
+/*
+ * Glass surface variables. These sit outside the DaisyUI theme blocks because
+ * they are composites (border, shadow, blur) rather than single colours. There
+ * is no theme toggle, so dark is reached through prefers-color-scheme only,
+ * matching how DaisyUI applies the `--prefersdark` theme above.
+ */
+:root {
+  --glass-tint: 70%;
+  --glass-line: oklch(24% 0.022 250 / 0.09);
+  --glass-edge: oklch(100% 0 0 / 0.85);
+  --glass-shadow: 0 1px 2px oklch(35% 0.05 250 / 0.05), 0 14px 34px -14px oklch(35% 0.05 250 / 0.22);
+  --ambient-wash-a: oklch(78% 0.105 218 / 0.28);
+  --ambient-wash-b: oklch(52% 0.145 250 / 0.16);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --glass-tint: 62%;
+    --glass-line: oklch(100% 0 0 / 0.09);
+    --glass-edge: oklch(100% 0 0 / 0.14);
+    --glass-shadow: 0 1px 2px oklch(0% 0 0 / 0.3), 0 18px 40px -16px oklch(0% 0 0 / 0.6);
+    --ambient-wash-a: oklch(78% 0.105 218 / 0.2);
+    --ambient-wash-b: oklch(52% 0.145 250 / 0.26);
+  }
+}
+
+@layer components {
+  /*
+   * Glass sits on the ambient gradient or on imagery, never on another glass
+   * panel, and never more than one blur deep. Anything holding dense text uses
+   * .surface-card instead, where legibility beats atmosphere.
+   */
+  .surface-glass {
+    background-color: color-mix(in oklab, var(--color-base-100) var(--glass-tint), transparent);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+    backdrop-filter: blur(18px) saturate(150%);
+    border: 1px solid var(--glass-line);
+    border-top-color: var(--glass-edge);
+    box-shadow: var(--glass-shadow);
+  }
+
+  .surface-card {
+    background-color: var(--color-base-100);
+    border: 1px solid var(--color-base-300);
+  }
+
+  .surface-quiet {
+    background-color: var(--color-base-200);
+    border: 1px solid var(--color-base-300);
+  }
+
+  /* Replaces the two hardcoded SVG blobs the hero used to carry. */
+  .bg-ambient {
+    background-image:
+      radial-gradient(70rem 46rem at 12% -8%, var(--ambient-wash-a), transparent 62%),
+      radial-gradient(58rem 42rem at 96% 24%, var(--ambient-wash-b), transparent 60%);
+  }
+
+  /*
+   * Typography plugin defaults are hardcoded greys, so prose would render
+   * dark-on-dark. Pointing its variables at theme tokens makes it follow along.
+   */
+  .prose {
+    --tw-prose-body: color-mix(in oklab, var(--color-base-content) 80%, transparent);
+    --tw-prose-headings: var(--color-base-content);
+    --tw-prose-lead: color-mix(in oklab, var(--color-base-content) 70%, transparent);
+    --tw-prose-links: var(--color-primary);
+    --tw-prose-bold: var(--color-base-content);
+    --tw-prose-counters: color-mix(in oklab, var(--color-base-content) 60%, transparent);
+    --tw-prose-bullets: var(--color-base-300);
+    --tw-prose-hr: var(--color-base-300);
+    --tw-prose-quotes: var(--color-base-content);
+    --tw-prose-quote-borders: var(--color-base-300);
+    --tw-prose-captions: color-mix(in oklab, var(--color-base-content) 60%, transparent);
+    --tw-prose-code: var(--color-base-content);
+    --tw-prose-pre-code: var(--color-base-content);
+    --tw-prose-pre-bg: var(--color-base-200);
+    --tw-prose-th-borders: var(--color-base-300);
+    --tw-prose-td-borders: var(--color-base-300);
+  }
+
+  .prose :where(h1, h2, h3, h4) {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
 }
