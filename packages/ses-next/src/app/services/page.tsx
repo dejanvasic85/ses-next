@@ -32,7 +32,7 @@ function ServiceCard({ service }: ServiceCardProps) {
   const { name, blurb, slug, icon = 'bolt', featuredImage } = service;
 
   return (
-    <article className="group relative overflow-hidden rounded-lg border border-gray-200 transition-shadow duration-200 hover:shadow-md">
+    <article className="group surface-glass relative overflow-hidden rounded-lg transition-transform duration-200 hover:-translate-y-0.5">
       <Link href={`/services/${slug}`} className="absolute inset-0 z-10" prefetch={false}>
         <span className="sr-only">View {name} service</span>
       </Link>
@@ -40,11 +40,11 @@ function ServiceCard({ service }: ServiceCardProps) {
         <div className="space-y-2">
           <div className="flex items-center gap-3">
             <div className="bg-primary rounded-full p-2">
-              <Icon name={icon} size="xl" className="text-white" />
+              <Icon name={icon} size="xl" className="text-primary-content" />
             </div>
             <h3 className="border-primary border-b-2 text-lg font-semibold">{name}</h3>
           </div>
-          <p className="text-gray-500">{blurb}</p>
+          <p className="text-base-content/70">{blurb}</p>
         </div>
         {featuredImage && (
           <div className="relative mt-4 aspect-video w-full overflow-hidden rounded-lg">
@@ -106,15 +106,15 @@ export default async function ServicesHubPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(collectionPageJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }} />
-      <div className="bg-white py-6 sm:py-8 lg:py-12">
+      <div className="bg-base-100 py-6 sm:py-8 lg:py-12">
         <div className="mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto mb-12 max-w-screen-xl text-center">
-            <h1 className="mb-6 text-3xl font-bold text-gray-900 sm:text-4xl">
+            <h1 className="text-base-content mb-6 text-3xl font-bold sm:text-4xl">
               {hubContent.heading ?? 'Our Services'}
             </h1>
             {hubContent.intro &&
               hubContent.intro.map((paragraph, index) => (
-                <p key={index} className="mb-3 text-lg text-gray-600">
+                <p key={index} className="text-base-content/70 mb-3 text-lg">
                   {paragraph}
                 </p>
               ))}
@@ -133,11 +133,11 @@ export default async function ServicesHubPage() {
             <div className="mx-auto max-w-screen-xl">
               <h2
                 id="service-areas-heading"
-                className="mb-4 text-center text-2xl font-bold text-gray-700 md:mb-6 lg:text-3xl"
+                className="text-base-content/80 mb-4 text-center text-2xl font-bold md:mb-6 lg:text-3xl"
               >
                 Service Areas
               </h2>
-              <p className="mb-4 text-center text-gray-600">
+              <p className="text-base-content/70 mb-4 text-center">
                 We provide electrical services across Melbourne&apos;s western and inner-western suburbs, including:
               </p>
               {locationPages.length > 0 && (
@@ -146,7 +146,7 @@ export default async function ServicesHubPage() {
                     <li key={id}>
                       <Link
                         href={`/locations/${slug}`}
-                        className="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700 transition-colors hover:bg-gray-200 hover:text-gray-900"
+                        className="bg-base-200 text-base-content/80 hover:bg-base-300 hover:text-base-content rounded-full px-3 py-1 text-sm transition-colors"
                       >
                         {suburb}
                       </Link>
@@ -158,10 +158,13 @@ export default async function ServicesHubPage() {
           </section>
 
           <section aria-labelledby="cta-heading" className="bg-primary/5 mt-16 rounded-xl p-8 text-center">
-            <h2 id="cta-heading" className="mb-4 text-center text-2xl font-bold text-gray-700 md:mb-6 lg:text-3xl">
+            <h2
+              id="cta-heading"
+              className="text-base-content/80 mb-4 text-center text-2xl font-bold md:mb-6 lg:text-3xl"
+            >
               Get a Free Quote
             </h2>
-            <p className="mb-6 text-gray-600">
+            <p className="text-base-content/70 mb-6">
               Ready to get started? Contact our team for a free, no-obligation quote.
             </p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">

@@ -25,11 +25,13 @@ export default async function TermsPage() {
   }
 
   return (
-    <div className="bg-white py-6 sm:py-8 lg:py-12">
+    <div className="bg-base-100 py-6 sm:py-8 lg:py-12">
       <div className="container mx-auto max-w-screen-xl px-4 md:px-8">
         <div className="mb-10 md:mb-16">
-          <h1 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Terms of Service</h1>
-          <div className="prose mx-auto text-gray-500 md:text-lg">
+          <h1 className="text-base-content mb-4 text-center text-2xl font-bold md:mb-6 lg:text-3xl">
+            Terms of Service
+          </h1>
+          <div className="prose text-base-content/70 mx-auto md:text-lg">
             <PortableText
               value={termsContent.terms}
               components={{

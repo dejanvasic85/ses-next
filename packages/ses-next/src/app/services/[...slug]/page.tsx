@@ -208,7 +208,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
       )}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }} />
       <ServiceBreadcrumb items={breadcrumbItems} />
-      <div className="bg-white py-6 sm:py-8 lg:py-12">
+      <div className="bg-base-100 py-6 sm:py-8 lg:py-12">
         <article className="prose lg:prose-lg mx-auto max-w-screen-lg px-4 md:px-8">
           <h1 className="text-center">{service.name}</h1>
           {service.content && <PortableText value={service.content} components={portableTextComponents} />}
@@ -221,14 +221,14 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
         {service.faqs && service.faqs.length > 0 && (
           <section aria-labelledby="faq-heading" className="mx-auto mt-12 mb-8 max-w-screen-lg px-4 md:px-8">
-            <h2 id="faq-heading" className="mb-6 text-3xl font-bold text-gray-900">
+            <h2 id="faq-heading" className="text-base-content mb-6 text-3xl font-bold">
               Frequently Asked Questions
             </h2>
-            <dl className="divide-y divide-gray-200">
+            <dl className="divide-base-300 divide-y">
               {service.faqs.map(({ question, answer }) => (
                 <div key={question} className="py-6">
-                  <dt className="text-lg font-semibold text-gray-900">{question}</dt>
-                  <dd className="mt-2 text-gray-600">{answer}</dd>
+                  <dt className="text-base-content text-lg font-semibold">{question}</dt>
+                  <dd className="text-base-content/70 mt-2">{answer}</dd>
                 </div>
               ))}
             </dl>
@@ -237,16 +237,16 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
         {filteredBlogPosts.length > 0 && (
           <div className="mx-auto mt-12 mb-8 max-w-screen-lg px-4 md:px-8">
-            <h2 className="mb-2 text-3xl font-bold text-gray-900">Related Blog Posts</h2>
-            <p className="mb-6 text-gray-600">Explore our {service.name.toLowerCase()} articles and insights</p>
+            <h2 className="text-base-content mb-2 text-3xl font-bold">Related Blog Posts</h2>
+            <p className="text-base-content/70 mb-6">Explore our {service.name.toLowerCase()} articles and insights</p>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {filteredBlogPosts.map(({ id, title, slug: postSlug, description, photo, publishedAt }) => (
                 <Link
                   key={id}
                   href={`/blog/${postSlug}`}
-                  className="group block overflow-hidden rounded-lg bg-white shadow-md transition-shadow duration-300 hover:shadow-xl"
+                  className="group surface-glass block overflow-hidden rounded-lg transition-transform duration-300 hover:-translate-y-0.5"
                 >
-                  <div className="relative aspect-video overflow-hidden bg-gray-200">
+                  <div className="bg-base-200 relative aspect-video overflow-hidden">
                     <SanityImage
                       src={photo}
                       alt={title}
@@ -256,19 +256,19 @@ export default async function ServicePage({ params }: ServicePageProps) {
                     />
                   </div>
                   <div className="p-5">
-                    <h3 className="mb-2 line-clamp-2 text-xl font-semibold text-gray-900 transition-colors group-hover:text-blue-600">
+                    <h3 className="text-base-content group-hover:text-primary mb-2 line-clamp-2 text-xl font-semibold transition-colors">
                       {title}
                     </h3>
-                    <p className="mb-3 line-clamp-3 text-sm text-gray-600">{description}</p>
+                    <p className="text-base-content/70 mb-3 line-clamp-3 text-sm">{description}</p>
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-gray-500">
+                      <span className="text-base-content/70 text-xs">
                         {new Date(publishedAt).toLocaleDateString('en-AU', {
                           year: 'numeric',
                           month: 'short',
                           day: 'numeric',
                         })}
                       </span>
-                      <span className="text-sm font-medium text-blue-600 group-hover:underline">Read more →</span>
+                      <span className="text-primary text-sm font-medium group-hover:underline">Read more →</span>
                     </div>
                   </div>
                 </Link>

@@ -8,14 +8,14 @@ type LocationFaqsProps = {
 export function LocationFaqs({ faqs, suburb }: LocationFaqsProps) {
   return (
     <section aria-labelledby="location-faq-heading" className="mx-auto mt-12 mb-8 max-w-screen-lg px-4 md:px-8">
-      <h2 id="location-faq-heading" className="mb-6 text-3xl font-bold text-gray-900">
+      <h2 id="location-faq-heading" className="text-base-content mb-6 text-3xl font-bold">
         Frequently Asked Questions — {suburb}
       </h2>
-      <dl className="divide-y divide-gray-200">
+      <dl className="divide-base-300 divide-y">
         {faqs.map(({ question, answer }) => (
           <div key={question} className="py-6">
-            <dt className="text-lg font-semibold text-gray-900">{question}</dt>
-            <dd className="mt-2 text-gray-600">{answer}</dd>
+            <dt className="text-base-content text-lg font-semibold">{question}</dt>
+            <dd className="text-base-content/70 mt-2">{answer}</dd>
           </div>
         ))}
       </dl>
