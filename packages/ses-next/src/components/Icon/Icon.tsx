@@ -14,7 +14,7 @@ const sizeClassMap = {
 } as const;
 
 type IconSize = keyof typeof sizeClassMap;
-type IconName = keyof typeof IconMap;
+export type IconName = keyof typeof IconMap;
 
 interface IconProps {
   className?: string;

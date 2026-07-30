@@ -17,7 +17,7 @@ export { Hero } from './Hero';
 export { ImageCarousel } from './ImageCarousel';
 export { LinkButton } from './LinkButton';
 export { Modal } from './Modal';
-export { Navbar } from './Navbar';
+export { Navbar } from './Navbar/Navbar';
 export { PopSuccess } from './PopSuccess';
 export { Rating } from './Rating';
 export { RelatedServices } from './RelatedServices/RelatedServices';
