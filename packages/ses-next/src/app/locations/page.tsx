@@ -26,7 +26,7 @@ type LocationCardProps = {
 
 function LocationCard({ page }: LocationCardProps) {
   return (
-    <article className="group relative flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg">
+    <article className="group surface-glass relative flex flex-col overflow-hidden rounded-xl transition-all duration-200 hover:-translate-y-0.5">
       <Link href={`/locations/${page.slug}`} className="absolute inset-0 z-10" prefetch={false}>
         <span className="sr-only">View electrician services in {page.suburb}</span>
       </Link>
@@ -48,7 +48,7 @@ function LocationCard({ page }: LocationCardProps) {
                 />
               </svg>
             </div>
-            <h2 className="group-hover:text-primary text-lg font-semibold text-gray-900 transition-colors">
+            <h2 className="group-hover:text-primary text-base-content text-lg font-semibold transition-colors">
               {page.suburb}
             </h2>
           </div>
@@ -104,7 +104,7 @@ export default async function LocationsIndexPage() {
       <ServiceBreadcrumb items={breadcrumbItems} />
 
       {/* Page header */}
-      <div className="relative overflow-hidden bg-white">
+      <div className="bg-base-100 relative overflow-hidden">
         <div
           className="absolute inset-x-0 -top-16 -z-10 h-64 opacity-40"
           style={{
@@ -114,8 +114,8 @@ export default async function LocationsIndexPage() {
         />
         <div className="mx-auto max-w-screen-lg px-4 py-12 text-center md:px-8 md:py-16">
           <p className="text-primary mb-3 text-sm font-semibold tracking-widest uppercase">Melbourne&apos;s West</p>
-          <h1 className="mb-4 text-4xl font-extrabold text-gray-900 sm:text-5xl">Areas We Serve</h1>
-          <p className="mx-auto max-w-xl text-lg text-gray-600">
+          <h1 className="text-base-content mb-4 text-4xl font-extrabold sm:text-5xl">Areas We Serve</h1>
+          <p className="text-base-content/70 mx-auto max-w-xl text-lg">
             Based in Altona North, we service Melbourne&apos;s western suburbs. Select your suburb below for local
             electricians, solar, and air conditioning.
           </p>
@@ -131,7 +131,7 @@ export default async function LocationsIndexPage() {
             ))}
           </div>
         ) : (
-          <p className="py-12 text-center text-gray-500">Location pages coming soon.</p>
+          <p className="text-base-content/70 py-12 text-center">Location pages coming soon.</p>
         )}
       </div>
 
@@ -139,10 +139,10 @@ export default async function LocationsIndexPage() {
       <section aria-labelledby="locations-cta-heading" className="border-primary/10 bg-primary/5 border-t">
         <div className="mx-auto flex max-w-screen-lg flex-col items-center justify-between gap-6 px-4 py-12 sm:flex-row md:px-8">
           <div>
-            <h2 id="locations-cta-heading" className="text-xl font-bold text-gray-900">
+            <h2 id="locations-cta-heading" className="text-base-content text-xl font-bold">
               Don&apos;t see your suburb?
             </h2>
-            <p className="mt-1 text-gray-600">
+            <p className="text-base-content/70 mt-1">
               We cover more of Melbourne&apos;s west — call us and we&apos;ll let you know.
             </p>
           </div>

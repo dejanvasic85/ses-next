@@ -15,7 +15,7 @@ export function Rating({ name, starRating }: RatingProps) {
           disabled
           aria-label={`${idx + 1} star`}
           name={`starRating-${name}`}
-          className="mask mask-star-2 bg-orange-400 hover:cursor-default"
+          className="mask mask-star-2 bg-warning hover:cursor-default"
           {...(starRating === idx + 1 ? { checked: true } : null)}
         />
       ))}

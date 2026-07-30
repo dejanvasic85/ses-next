@@ -20,14 +20,14 @@ export function GalleryCarousel({ imageGallery }: GalleryCarouselProps) {
           <div className="relative py-8">
             <SanityImage
               alt={alt}
-              className="h-60 w-80 shrink-0 rounded-lg bg-white object-cover shadow-xl lg:h-[300px] lg:w-[440px]"
+              className="bg-base-100 h-60 w-80 shrink-0 rounded-lg object-cover shadow-xl lg:h-[300px] lg:w-[440px]"
               src={src}
               width={320}
               height={240}
             />
-            <div className="relative flex w-full flex-col rounded-lg bg-white p-2 text-center">
-              <span className="text-sm text-gray-500">{alt}</span>
-              <span className="font-bold text-gray-800">{serviceName}</span>
+            <div className="surface-glass relative flex w-full flex-col rounded-lg p-2 text-center">
+              <span className="text-base-content/70 text-sm">{alt}</span>
+              <span className="text-base-content font-bold">{serviceName}</span>
             </div>
           </div>
         </div>

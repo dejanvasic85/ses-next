@@ -15,6 +15,31 @@ To deploy the Sanity Studio schema, navigate to `packages/ses-content` and run:
 - The app folder should only contain routing components (page.tsx and route.ts)
 - Components that are relevant to a page, should still go in to the components folder
 
+## Theming
+
+Semantic theme tokens are the styling contract. Raw Tailwind palette utilities
+(`bg-white`, `text-gray-500`, `border-slate-200`) do not respond to a theme
+change, and ESLint rejects them via `no-restricted-syntax`.
+
+- Backgrounds: `bg-base-100` (cards, panels), `bg-base-200` (recessed bands),
+  `bg-base-300` (borders, dividers)
+- Text: `text-base-content`, muted as `text-base-content/70`, subtle as
+  `text-base-content/50`
+- Brand: `primary`, `secondary`, `accent`, `neutral` — each with a matching
+  `-content` for text sitting on that fill
+- Surfaces: prefer `.surface-glass`, `.surface-card` or `.surface-quiet` over
+  hand-rolling a background plus border plus shadow. Glass sits on the ambient
+  gradient or on imagery, never on another glass panel and never more than one
+  blur deep; anything holding dense text uses `.surface-card`
+- Headings inherit the display face from `@layer base`, so `font-display` is
+  only needed on non-heading elements
+- Both themes are defined in `styles/globals.css`. Dark is reached through
+  `prefers-color-scheme` only — there is no toggle and no persisted preference
+- Genuine exceptions (overlay scrims, brand gradients, illustration fills) need
+  an `eslint-disable-next-line no-restricted-syntax` with a reason
+- `/design-system` renders every token and surface from the real components; it
+  is noindex and is the fastest way to review a theme change
+
 ## Code style
 
 - Ensure the use of typescript alias @/ for imports
@@ -64,6 +89,12 @@ All changes MUST follow the following workflow
   5. `pnpm test:e2e`
 - Never push without running these checks — commit any formatting changes before pushing
 - Pre-commit hooks auto-run: Husky runs lint-staged (prettier + eslint)
+- **After every push, always watch CI through to a terminal state** — do not hand
+  back a branch or PR while checks are still running. Use
+  `gh pr checks <number> --watch`. If anything fails, pull the failing job's logs,
+  fix it, and push again rather than reporting the failure and stopping. Passing
+  locally is not a substitute: local runs miss lockfile, environment and
+  build-cache differences that only surface in CI
 - Update any plan files with progress to help with issue tracking
 
 ## Dependency management

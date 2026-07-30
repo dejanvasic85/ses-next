@@ -43,7 +43,7 @@ export function Testimonial(testimonial: TestimonialProps) {
   }, [comment]);
 
   return (
-    <div className="flex flex-col rounded-3xl bg-slate-500 p-4 text-left">
+    <div className="surface-glass flex flex-col rounded-3xl p-4 text-left">
       <div className="flex gap-2">
         <div className="flex">
           <div className="flex h-12 w-12 items-center justify-center">
@@ -69,17 +69,19 @@ export function Testimonial(testimonial: TestimonialProps) {
                 </Link>
               )}
             >
-              <div className="inline border-b-2 text-sm font-bold text-white md:text-base">{displayName}</div>
+              <div className="font-display text-base-content inline border-b-2 text-sm font-bold md:text-base">
+                {displayName}
+              </div>
             </ConditionalWrap>
-            <em className="text-sm text-white">{date}</em>
+            <em className="text-base-content/60 text-sm">{date}</em>
           </div>
           <Rating starRating={starRating} name={displayName} />
           <div>
-            <div ref={textRef} className={classNames('pr-4 text-white', { 'line-clamp-4': !showMore })}>
+            <div ref={textRef} className={classNames('text-base-content/80 pr-4', { 'line-clamp-4': !showMore })}>
               &ldquo;{comment}&rdquo;
             </div>
             {(isClamped || showMore) && (
-              <button className="border-b-2 text-white" onClick={() => setShowMore(!showMore)}>
+              <button className="text-primary border-b-2" onClick={() => setShowMore(!showMore)}>
                 {showMore ? 'Show less' : 'Show more'}
               </button>
             )}
@@ -92,7 +94,7 @@ export function Testimonial(testimonial: TestimonialProps) {
               target="_blank"
               aria-label={`Read review from ${displayName} on Google Maps`}
             >
-              <Icon name="google-full" size="xl" className="w-14 text-white" />
+              <Icon name="google-full" size="xl" className="text-base-content/70 w-14" />
             </Link>
           </div>
         </div>

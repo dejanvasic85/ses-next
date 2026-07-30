@@ -118,7 +118,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               alt={post.title}
             />
           </figure>
-          <div className="mb-2 text-gray-700 italic">
+          <div className="text-base-content/80 mb-2 italic">
             Published{` `}
             <time dateTime={post.publishedAt}>
               {new Date(post.publishedAt).toLocaleDateString('en-AU', publishedDateFormatValue)}
