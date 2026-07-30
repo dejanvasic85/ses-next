@@ -1,10 +1,11 @@
 import { revalidateTag } from 'next/cache';
+import { z } from 'zod';
 
 import { config } from '@/lib/config';
 
-type RevalidateBody = {
-  _type: string;
-};
+const RevalidateBodySchema = z.object({
+  _type: z.string(),
+});
 
 const allowedTypes = new Set([
   'siteSettings',
@@ -33,11 +34,12 @@ export async function POST(request: Request) {
     return Response.json({ message: 'Invalid request body' }, { status: 400 });
   }
 
-  const body = rawBody as RevalidateBody;
-  if (!body._type) {
+  const parsedBody = RevalidateBodySchema.safeParse(rawBody);
+  if (!parsedBody.success) {
     return Response.json({ message: 'Missing _type field' }, { status: 400 });
   }
 
+  const body = parsedBody.data;
   if (!allowedTypes.has(body._type)) {
     return Response.json({ message: 'Unknown document type' }, { status: 400 });
   }

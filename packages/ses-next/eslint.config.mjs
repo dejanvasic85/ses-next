@@ -100,10 +100,8 @@ const eslintConfig = defineConfig([
       '@typescript-eslint': typescriptPlugin,
     },
     rules: {
-      '@typescript-eslint/consistent-type-assertions': [
-        'error',
-        { assertionStyle: 'as', objectLiteralTypeAssertions: 'never' },
-      ],
+      '@typescript-eslint/consistent-type-assertions': ['error', { assertionStyle: 'never' }],
+      '@typescript-eslint/no-non-null-assertion': 'error',
     },
   },
 ]);

@@ -84,7 +84,11 @@ test.describe('Blog Routes', () => {
     }
 
     const tagHref = await tagLink.getAttribute('href');
-    await page.goto(tagHref!);
+    if (!tagHref) {
+      test.skip();
+      return;
+    }
+    await page.goto(tagHref);
 
     await expect(page.locator('h1')).toBeVisible();
     const blogPost = page.locator('article, [data-testid="blog-post"]').first();

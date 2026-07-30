@@ -11,6 +11,8 @@
     "deploy": "sanity deploy",
     "deploy-graphql": "sanity graphql deploy",
     "deploy:schema": "sanity schema deploy",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "type:check": "tsc --noEmit",
     "typegen": "sanity schema extract --path ../../packages/ses-next/src/sanity/schema.json && sanity typegen generate"
   },
@@ -28,8 +30,11 @@
     "styled-components": "6.4.4"
   },
   "devDependencies": {
+    "@sanity/eslint-config-studio": "6.0.0",
+    "eslint": "9.39.5",
     "prettier": "3.9.6",
-    "typescript": "6.0.3"
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.65.0"
   },
   "prettier": {
     "semi": false,
