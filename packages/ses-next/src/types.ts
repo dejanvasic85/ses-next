@@ -1,4 +1,19 @@
 import { z } from 'zod';
+import type {
+  BlogPost as SanityBlogPostDoc,
+  Faq as SanityFaqDoc,
+  Homepage as SanityHomepageDoc,
+  LocationPage as SanityLocationPageDoc,
+  Service as SanityServiceDoc,
+  ServicesHub as SanityServicesHubDoc,
+  Showcase as SanityShowcaseDoc,
+  SiteSettings as SanitySiteSettingsDoc,
+  Slug as SanitySlugDoc,
+  TeamMember as SanityTeamMemberDoc,
+  TermsAndConditions as SanityTermsAndConditionsDoc,
+  Training as SanityTrainingDoc,
+  SanityImageAsset,
+} from '@/sanity/sanity.types';
 
 // ============================================================================
 // FORM SCHEMAS
@@ -25,6 +40,10 @@ export type FeedbackFormData = z.infer<typeof FeedbackFormDataSchema>;
 
 // ============================================================================
 // COMMON SCHEMAS
+//
+// Icon is a superset of the options Sanity's `icon` field allows (it also
+// covers UI-only icons like nav/trust badges that aren't stored in Sanity),
+// so it stays hand-maintained rather than importing the generated field type.
 // ============================================================================
 
 export const IconSchema = z.enum([
@@ -52,7 +71,27 @@ export const IconSchema = z.enum([
   'x',
 ]);
 
-export const SanityImageSchema = z.object({
+// Repeated identity fields shared by every Sanity document schema below.
+const sanityDocumentFieldsValue = {
+  _rev: z.string().optional(),
+  _createdAt: z.string().optional(),
+  _updatedAt: z.string().optional(),
+};
+
+type SanityDocumentIdentityFields = {
+  _rev?: string;
+  _createdAt?: string;
+  _updatedAt?: string;
+};
+
+type SanityImageAssetRef = Partial<Pick<SanityImageAsset, '_id'>> & Required<Pick<SanityImageAsset, 'url'>>;
+
+export type SanityImage = {
+  _type: 'image';
+  asset: SanityImageAssetRef;
+};
+
+export const SanityImageSchema: z.ZodType<SanityImage> = z.object({
   _type: z.literal('image'),
   asset: z.object({
     _id: z.string().optional(),
@@ -60,7 +99,9 @@ export const SanityImageSchema = z.object({
   }),
 });
 
-export const SanitySlugSchema = z.object({
+export type SanitySlug = Pick<SanitySlugDoc, '_type'> & Required<Pick<SanitySlugDoc, 'current'>>;
+
+export const SanitySlugSchema: z.ZodType<SanitySlug> = z.object({
   current: z.string(),
   _type: z.literal('slug'),
 });
@@ -115,56 +156,87 @@ export const GoogleReviewsSchema = z.object({
 });
 
 // ============================================================================
-// DOCUMENT SCHEMAS (Based on Sanity schemas)
+// DOCUMENT SCHEMAS (tied to generated Sanity schema types where practical)
 // ============================================================================
 
-export const FAQSchema = z.object({
+export type FAQ = Pick<SanityFaqDoc, '_id' | '_type'> &
+  Required<Pick<SanityFaqDoc, 'question' | 'answer'>> &
+  SanityDocumentIdentityFields;
+
+export const FAQSchema: z.ZodType<FAQ> = z.object({
   _type: z.literal('faq'),
   _id: z.string(),
-  _rev: z.string().optional(),
-  _createdAt: z.string().optional(),
-  _updatedAt: z.string().optional(),
+  ...sanityDocumentFieldsValue,
   question: z.string(),
   answer: z.string(),
 });
 
-export const TrainingSchema = z.object({
+export type TrainingContentModel = Pick<SanityTrainingDoc, '_id' | '_type'> &
+  Required<Pick<SanityTrainingDoc, 'trainingTitle'>> &
+  SanityDocumentIdentityFields & {
+    icon: Icon;
+  };
+
+export const TrainingSchema: z.ZodType<TrainingContentModel> = z.object({
   _type: z.literal('training'),
   _id: z.string(),
-  _rev: z.string().optional(),
-  _createdAt: z.string().optional(),
-  _updatedAt: z.string().optional(),
+  ...sanityDocumentFieldsValue,
   trainingTitle: z.string(),
   icon: IconSchema,
 });
 
-export const ShowcaseSchema = z.object({
+export type ShowcaseContentModel = Pick<SanityShowcaseDoc, '_id' | '_type'> &
+  Required<Pick<SanityShowcaseDoc, 'title'>> &
+  SanityDocumentIdentityFields & {
+    photo: SanityImage;
+    featured: boolean | null;
+  };
+
+export const ShowcaseSchema: z.ZodType<ShowcaseContentModel> = z.object({
   _type: z.literal('showcase'),
   _id: z.string(),
-  _rev: z.string().optional(),
-  _createdAt: z.string().optional(),
-  _updatedAt: z.string().optional(),
+  ...sanityDocumentFieldsValue,
   title: z.string(),
   photo: SanityImageSchema,
   featured: z.boolean().nullable(),
 });
 
-export const ServiceFaqSchema = z.object({
+type SanityServiceFaqItem = NonNullable<SanityServiceDoc['faqs']>[number];
+
+export type ServiceFaq = Required<Pick<SanityServiceFaqItem, 'question' | 'answer'>>;
+
+export const ServiceFaqSchema: z.ZodType<ServiceFaq> = z.object({
   question: z.string(),
   answer: z.string(),
 });
 
-export const ServiceParentSchema = z.object({
+export type ServiceParent = Required<Pick<SanityServiceDoc, 'name'>> & { slug: SanitySlug };
+
+export const ServiceParentSchema: z.ZodType<ServiceParent> = z.object({
   name: z.string(),
   slug: SanitySlugSchema,
 });
 
-export const ServiceSchema = z.object({
+export type ServiceContentModel = Pick<SanityServiceDoc, '_id' | '_type'> &
+  Required<Pick<SanityServiceDoc, 'name' | 'description' | 'blurb'>> &
+  SanityDocumentIdentityFields & {
+    slug: SanitySlug;
+    linkToReadMore: boolean | null;
+    showOnHomepage: boolean | null;
+    icon: Icon;
+    showcase: ShowcaseContentModel[] | null;
+    content: SanityPortableText | null;
+    seoTitle: string | null;
+    seoDescription: string | null;
+    serviceType?: string | null;
+    faqs: ServiceFaq[] | null;
+    parentService?: ServiceParent | null;
+  };
+
+export const ServiceSchema: z.ZodType<ServiceContentModel> = z.object({
   _type: z.literal('service'),
   _id: z.string(),
-  _rev: z.string().optional(),
-  _createdAt: z.string().optional(),
-  _updatedAt: z.string().optional(),
+  ...sanityDocumentFieldsValue,
   name: z.string(),
   description: z.string(),
   blurb: z.string(),
@@ -185,13 +257,26 @@ export const ServiceSchema = z.object({
 // LOCATION PAGE SCHEMAS
 // ============================================================================
 
-export const LocationPageFaqSchema = z.object({
+type SanityLocationPageFaqItem = NonNullable<SanityLocationPageDoc['faqs']>[number];
+
+export type LocationPageFaqContentModel = Required<Pick<SanityLocationPageFaqItem, 'question' | 'answer'>> & {
+  _key?: string;
+};
+
+export const LocationPageFaqSchema: z.ZodType<LocationPageFaqContentModel> = z.object({
   _key: z.string().optional(),
   question: z.string(),
   answer: z.string(),
 });
 
-export const LocationPageServiceRefSchema = z.object({
+export type LocationPageServiceRefContentModel = Pick<SanityServiceDoc, '_id'> &
+  Required<Pick<SanityServiceDoc, 'name' | 'blurb'>> & {
+    slug: SanitySlug;
+    icon: Icon;
+    parentService?: ServiceParent | null;
+  };
+
+export const LocationPageServiceRefSchema: z.ZodType<LocationPageServiceRefContentModel> = z.object({
   _id: z.string(),
   name: z.string(),
   blurb: z.string(),
@@ -200,13 +285,29 @@ export const LocationPageServiceRefSchema = z.object({
   parentService: ServiceParentSchema.nullish(),
 });
 
-export const LocationPageNearbySuburbRefSchema = z.object({
+export type SuburbRefContentModel = Pick<SanityLocationPageDoc, '_id'> &
+  Required<Pick<SanityLocationPageDoc, 'suburb'>> & { slug: SanitySlug };
+
+export const SuburbRefSchema: z.ZodType<SuburbRefContentModel> = z.object({
   _id: z.string(),
   suburb: z.string(),
   slug: SanitySlugSchema,
 });
 
-export const LocationPageSchema = z.object({
+export type LocationPageContentModel = Pick<SanityLocationPageDoc, '_id' | '_type'> &
+  Required<Pick<SanityLocationPageDoc, 'suburb'>> & {
+    slug: SanitySlug;
+    isHub?: boolean | null;
+    heroImage?: SanityImage | null;
+    intro?: SanityPortableText | null;
+    services?: LocationPageServiceRefContentModel[] | null;
+    nearbySuburbs?: SuburbRefContentModel[] | null;
+    faqs?: LocationPageFaqContentModel[] | null;
+    seoTitle?: string | null;
+    seoDescription?: string | null;
+  };
+
+export const LocationPageSchema: z.ZodType<LocationPageContentModel> = z.object({
   _id: z.string(),
   _type: z.literal('locationPage'),
   suburb: z.string(),
@@ -215,22 +316,32 @@ export const LocationPageSchema = z.object({
   heroImage: SanityImageSchema.nullable().optional(),
   intro: SanityPortableTextSchema.nullable().optional(),
   services: z.array(LocationPageServiceRefSchema).nullable().optional(),
-  nearbySuburbs: z.array(LocationPageNearbySuburbRefSchema).nullable().optional(),
+  nearbySuburbs: z.array(SuburbRefSchema).nullable().optional(),
   faqs: z.array(LocationPageFaqSchema).nullable().optional(),
   seoTitle: z.string().nullable().optional(),
   seoDescription: z.string().nullable().optional(),
 });
 
-export const TermsAndConditionsSchema = z.object({
+export type SanityTermsAndConditions = Pick<SanityTermsAndConditionsDoc, '_id' | '_type'> &
+  SanityDocumentIdentityFields & {
+    terms: SanityPortableText;
+  };
+
+export const TermsAndConditionsSchema: z.ZodType<SanityTermsAndConditions> = z.object({
   _type: z.literal('terms-and-conditions'),
   _id: z.string(),
-  _rev: z.string().optional(),
-  _createdAt: z.string().optional(),
-  _updatedAt: z.string().optional(),
+  ...sanityDocumentFieldsValue,
   terms: SanityPortableTextSchema,
 });
 
-export const ContactSchema = z.object({
+type SanityHomepageContact = NonNullable<SanityHomepageDoc['contact']>;
+
+export type ContactContentModel = Required<Pick<SanityHomepageContact, 'phone'>> & {
+  blurbs: string[] | null;
+  callBack: string | null;
+};
+
+export const ContactSchema: z.ZodType<ContactContentModel> = z.object({
   phone: z.string(),
   blurbs: z.array(z.string()).nullable(),
   callBack: z.string().nullable(),
@@ -240,11 +351,18 @@ export const ContactSchema = z.object({
 // CONTENT MODEL SCHEMAS (GROQ query results with resolved references)
 // ============================================================================
 
-const SanityAssetSchema = z.object({
+type SanityImageAssetSlim = Required<Pick<SanityImageAsset, 'url'>>;
+
+const SanityAssetSchema: z.ZodType<SanityImageAssetSlim> = z.object({
   url: z.url(),
 });
 
-export const TeamMemberSchema = z.object({
+export type TeamMemberContentModel = Pick<SanityTeamMemberDoc, '_id' | '_type'> &
+  Required<Pick<SanityTeamMemberDoc, 'name' | 'role'>> & {
+    avatar: { asset: SanityImageAssetSlim };
+  };
+
+export const TeamMemberSchema: z.ZodType<TeamMemberContentModel> = z.object({
   _id: z.string(),
   _type: z.literal('teamMember'),
   name: z.string(),
@@ -254,7 +372,14 @@ export const TeamMemberSchema = z.object({
   }),
 });
 
-export const BlogPostSchema = z.object({
+export type BlogPostContentModel = Pick<SanityBlogPostDoc, '_id' | '_type'> &
+  Required<Pick<SanityBlogPostDoc, 'title' | 'description' | 'publishedAt' | 'tags'>> & {
+    slug: SanitySlug;
+    photo: { asset: SanityImageAssetSlim };
+    body: SanityPortableText;
+  };
+
+export const BlogPostSchema: z.ZodType<BlogPostContentModel> = z.object({
   _id: z.string(),
   _type: z.literal('blog-post'),
   title: z.string(),
@@ -268,7 +393,45 @@ export const BlogPostSchema = z.object({
   body: SanityPortableTextSchema,
 });
 
-export const SiteSettingsSchema = z.object({
+type SiteSettingsMeta = Required<NonNullable<SanitySiteSettingsDoc['meta']>>;
+type SiteSettingsOpeningHours = Required<NonNullable<SanitySiteSettingsDoc['openingHours']>>;
+type SiteSettingsOwner = Required<Pick<NonNullable<SanitySiteSettingsDoc['owner']>, 'name' | 'role'>> &
+  Pick<NonNullable<SanitySiteSettingsDoc['owner']>, 'accreditations'>;
+
+export type SiteSettingsContentModel = Pick<SanitySiteSettingsDoc, '_id' | '_type'> &
+  Required<Pick<SanitySiteSettingsDoc, 'companyName' | 'shortTitle' | 'baseUrl' | 'phone'>> &
+  Pick<
+    SanitySiteSettingsDoc,
+    | 'alternateName'
+    | 'mobile'
+    | 'email'
+    | 'address'
+    | 'abn'
+    | 'recLicence'
+    | 'businessHours'
+    | 'establishedYear'
+    | 'directorName'
+    | 'latitude'
+    | 'longitude'
+    | 'streetAddress'
+    | 'suburb'
+    | 'state'
+    | 'postcode'
+  > & {
+    companyLogo: { asset: SanityImageAssetSlim };
+    googleMapsLocation: string | null;
+    googleMapsLocationPlaceUrl: string | null;
+    meta: SiteSettingsMeta;
+    socialMedia: {
+      facebook: string | null;
+      linkedIn: string | null;
+      instagram: string | null;
+    } | null;
+    openingHours?: SiteSettingsOpeningHours;
+    owner?: SiteSettingsOwner | null;
+  };
+
+export const SiteSettingsSchema: z.ZodType<SiteSettingsContentModel> = z.object({
   _id: z.string(),
   _type: z.literal('siteSettings'),
   companyName: z.string(),
@@ -322,7 +485,14 @@ export const SiteSettingsSchema = z.object({
     .nullish(),
 });
 
-export const ServicesHubSchema = z.object({
+export type ServicesHubContentModel = Pick<SanityServicesHubDoc, '_id' | '_type'> & {
+  pageTitle: string | null;
+  pageDescription: string | null;
+  heading: string | null;
+  intro: string[] | null;
+};
+
+export const ServicesHubSchema: z.ZodType<ServicesHubContentModel> = z.object({
   _id: z.string(),
   _type: z.literal('servicesHub'),
   pageTitle: z.string().nullable(),
@@ -331,19 +501,38 @@ export const ServicesHubSchema = z.object({
   intro: z.array(z.string()).nullable(),
 });
 
-export const TrustSignalSchema = z.object({
+type SanityTrustSignalItem = NonNullable<SanityHomepageDoc['trustSignals']>[number];
+
+export type TrustSignalContentModel = Required<Pick<SanityTrustSignalItem, 'value' | 'label'>> & { icon: Icon };
+
+export const TrustSignalSchema: z.ZodType<TrustSignalContentModel> = z.object({
   value: z.string(),
   label: z.string(),
   icon: IconSchema,
 });
 
-export const ServiceAreaRefSchema = z.object({
-  _id: z.string(),
-  suburb: z.string(),
-  slug: SanitySlugSchema,
-});
+export type ServiceAreaRefContentModel = SuburbRefContentModel;
 
-export const HomepageSchema = z.object({
+export const ServiceAreaRefSchema = SuburbRefSchema;
+
+export type HomepageContentModel = Pick<SanityHomepageDoc, '_id' | '_type'> & {
+  mainHeading: string | null;
+  subHeading: string | null;
+  about?: string[] | null;
+  contact: ContactContentModel;
+  services: {
+    blurbs: string[] | null;
+  };
+  team: {
+    blurbs: string[] | null;
+    members: TeamMemberContentModel[];
+  };
+  training: TrainingContentModel[];
+  trustSignals?: TrustSignalContentModel[] | null;
+  serviceAreas?: ServiceAreaRefContentModel[] | null;
+};
+
+export const HomepageSchema: z.ZodType<HomepageContentModel> = z.object({
   _id: z.string(),
   _type: z.literal('homepage'),
   mainHeading: z.string().nullable(),
@@ -363,7 +552,7 @@ export const HomepageSchema = z.object({
 });
 
 // ============================================================================
-// MAPPED TYPES (for frontend use - no schemas needed, manually constructed)
+// MAPPED TYPES (for frontend use - repo-owned, no Sanity generated equivalent)
 // ============================================================================
 
 export const ImageSchema = z.object({
@@ -408,8 +597,6 @@ export type Testimonial = {
   };
   url: string | null;
 };
-
-export type ServiceFaq = z.infer<typeof ServiceFaqSchema>;
 
 export type ServiceItem = {
   id: string;
@@ -585,8 +772,6 @@ export type EmailTemplateData = ContactEmailData | FeedbackEmailData;
 // ============================================================================
 
 export type Icon = z.infer<typeof IconSchema>;
-export type SanityImage = z.infer<typeof SanityImageSchema>;
-export type SanitySlug = z.infer<typeof SanitySlugSchema>;
 export type SanityBlock = z.infer<typeof SanityBlockSchema>;
 export type SanityPortableText = z.infer<typeof SanityPortableTextSchema>;
 export type SanityMarkDef = z.infer<typeof SanityMarkDefSchema>;
@@ -595,20 +780,6 @@ export type GoogleReviewer = z.infer<typeof GoogleReviewerSchema>;
 export type GoogleReview = z.infer<typeof GoogleReviewSchema>;
 export type GoogleReviews = z.infer<typeof GoogleReviewsSchema>;
 
-export type FAQ = z.infer<typeof FAQSchema>;
-export type SanityTermsAndConditions = z.infer<typeof TermsAndConditionsSchema>;
-
-export type LocationPageContentModel = z.infer<typeof LocationPageSchema>;
-export type ShowcaseContentModel = z.infer<typeof ShowcaseSchema>;
-export type ServiceContentModel = z.infer<typeof ServiceSchema>;
-export type TeamMemberContentModel = z.infer<typeof TeamMemberSchema>;
-export type BlogPostContentModel = z.infer<typeof BlogPostSchema>;
-export type TrainingContentModel = z.infer<typeof TrainingSchema>;
-export type SiteSettingsContentModel = z.infer<typeof SiteSettingsSchema>;
-export type HomepageContentModel = z.infer<typeof HomepageSchema>;
-export type TrustSignalContentModel = z.infer<typeof TrustSignalSchema>;
-export type ServiceAreaRefContentModel = z.infer<typeof ServiceAreaRefSchema>;
 export type Image = z.infer<typeof ImageSchema>;
 export type Social = z.infer<typeof SocialSchema>;
 export type Meta = z.infer<typeof MetaSchema>;
-export type ContactContentModel = z.infer<typeof ContactSchema>;
