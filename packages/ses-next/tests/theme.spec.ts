@@ -148,32 +148,41 @@ test.describe('Theme tokens', () => {
     });
   });
 
-  test('both self-hosted fonts are served', async ({ page }) => {
-    const fontResponses = new Map<string, number>();
-    page.on('response', (response) => {
-      const url = response.url();
-      if (url.endsWith('.woff2')) {
-        fontResponses.set(url.split('/').pop()!, response.status());
-      }
+  /*
+   * Reads the font face registry rather than counting .woff2 responses. Response
+   * counting was flaky: it depends on HTTP cache state, and the Google Maps
+   * iframe pulls its own Roboto, so a page could "see" a font load without
+   * either of ours arriving.
+   */
+  test('both self-hosted fonts load', async ({ page }) => {
+    await page.goto('/');
+
+    const fonts = await page.evaluate(async () => {
+      await document.fonts.ready;
+      const firstFamily = (stack: string) =>
+        stack
+          .split(',')[0]
+          .trim()
+          .replace(/^["']|["']$/g, '');
+
+      const headingStack = getComputedStyle(document.querySelector('h1')!).fontFamily;
+      const bodyStack = getComputedStyle(document.body).fontFamily;
+      const loaded = [...document.fonts].filter((face) => face.status === 'loaded').map((face) => face.family);
+
+      return {
+        headingStack,
+        bodyStack,
+        headingFamily: firstFamily(headingStack),
+        bodyFamily: firstFamily(bodyStack),
+        loaded,
+      };
     });
 
-    await page.goto('/');
-    await page.waitForLoadState('networkidle');
-
-    const families = await page.evaluate(() => ({
-      heading: getComputedStyle(document.querySelector('h1')!).fontFamily,
-      body: getComputedStyle(document.body).fontFamily,
-    }));
-
-    // next/font mangles family names per build, so assert the roles differ
-    // rather than matching a literal name.
-    expect(families.heading).not.toBe(families.body);
-
-    const served = [...fontResponses.entries()];
-    expect(served.length, `woff2 responses: ${JSON.stringify(served)}`).toBeGreaterThanOrEqual(2);
-    for (const [file, status] of served) {
-      expect(status, `${file} status`).toBeLessThan(400);
-    }
+    // next/font mangles family names per build, so assert the two roles resolve
+    // to different faces rather than matching a literal name.
+    expect(fonts.headingStack).not.toBe(fonts.bodyStack);
+    expect(fonts.loaded, `loaded faces: ${JSON.stringify(fonts.loaded)}`).toContain(fonts.headingFamily);
+    expect(fonts.loaded, `loaded faces: ${JSON.stringify(fonts.loaded)}`).toContain(fonts.bodyFamily);
   });
 });
 

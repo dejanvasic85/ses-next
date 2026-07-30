@@ -89,6 +89,12 @@ All changes MUST follow the following workflow
   5. `pnpm test:e2e`
 - Never push without running these checks — commit any formatting changes before pushing
 - Pre-commit hooks auto-run: Husky runs lint-staged (prettier + eslint)
+- **After every push, always watch CI through to a terminal state** — do not hand
+  back a branch or PR while checks are still running. Use
+  `gh pr checks <number> --watch`. If anything fails, pull the failing job's logs,
+  fix it, and push again rather than reporting the failure and stopping. Passing
+  locally is not a substitute: local runs miss lockfile, environment and
+  build-cache differences that only surface in CI
 - Update any plan files with progress to help with issue tracking
 
 ## Dependency management
