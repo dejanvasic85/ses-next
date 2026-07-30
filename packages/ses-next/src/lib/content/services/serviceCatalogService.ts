@@ -5,7 +5,7 @@ import {
   type LocationPageNearbySuburbRef,
   ServiceSchema,
   ServicesHubSchema,
-  LocationPageNearbySuburbRefSchema,
+  SuburbRefSchema,
 } from '@/types';
 import { mapService } from '@/lib/content/mappers';
 import { servicesQuery, servicesHubQuery, locationPagesByServiceSlugsQuery } from '@/lib/content/queries';
@@ -53,7 +53,7 @@ export const getLocationPagesByServiceSlugs = async (
       { next: { tags: ['locationPage'] } },
     );
 
-    const parsedLocations = LocationPageNearbySuburbRefSchema.array().parse(result);
+    const parsedLocations = SuburbRefSchema.array().parse(result);
 
     return parsedLocations.map((location) => ({
       id: location._id,

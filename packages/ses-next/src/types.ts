@@ -78,6 +78,12 @@ const sanityDocumentFieldsValue = {
   _updatedAt: z.string().optional(),
 };
 
+type SanityDocumentIdentityFields = {
+  _rev?: string;
+  _createdAt?: string;
+  _updatedAt?: string;
+};
+
 type SanityImageAssetRef = Partial<Pick<SanityImageAsset, '_id'>> & Required<Pick<SanityImageAsset, 'url'>>;
 
 export type SanityImage = {
@@ -153,7 +159,9 @@ export const GoogleReviewsSchema = z.object({
 // DOCUMENT SCHEMAS (tied to generated Sanity schema types where practical)
 // ============================================================================
 
-export type FAQ = Pick<SanityFaqDoc, '_id' | '_type'> & Required<Pick<SanityFaqDoc, 'question' | 'answer'>>;
+export type FAQ = Pick<SanityFaqDoc, '_id' | '_type'> &
+  Required<Pick<SanityFaqDoc, 'question' | 'answer'>> &
+  SanityDocumentIdentityFields;
 
 export const FAQSchema: z.ZodType<FAQ> = z.object({
   _type: z.literal('faq'),
@@ -164,7 +172,8 @@ export const FAQSchema: z.ZodType<FAQ> = z.object({
 });
 
 export type TrainingContentModel = Pick<SanityTrainingDoc, '_id' | '_type'> &
-  Required<Pick<SanityTrainingDoc, 'trainingTitle'>> & {
+  Required<Pick<SanityTrainingDoc, 'trainingTitle'>> &
+  SanityDocumentIdentityFields & {
     icon: Icon;
   };
 
@@ -177,7 +186,8 @@ export const TrainingSchema: z.ZodType<TrainingContentModel> = z.object({
 });
 
 export type ShowcaseContentModel = Pick<SanityShowcaseDoc, '_id' | '_type'> &
-  Required<Pick<SanityShowcaseDoc, 'title'>> & {
+  Required<Pick<SanityShowcaseDoc, 'title'>> &
+  SanityDocumentIdentityFields & {
     photo: SanityImage;
     featured: boolean | null;
   };
@@ -208,7 +218,8 @@ export const ServiceParentSchema: z.ZodType<ServiceParent> = z.object({
 });
 
 export type ServiceContentModel = Pick<SanityServiceDoc, '_id' | '_type'> &
-  Required<Pick<SanityServiceDoc, 'name' | 'description' | 'blurb'>> & {
+  Required<Pick<SanityServiceDoc, 'name' | 'description' | 'blurb'>> &
+  SanityDocumentIdentityFields & {
     slug: SanitySlug;
     linkToReadMore: boolean | null;
     showOnHomepage: boolean | null;
@@ -248,7 +259,9 @@ export const ServiceSchema: z.ZodType<ServiceContentModel> = z.object({
 
 type SanityLocationPageFaqItem = NonNullable<SanityLocationPageDoc['faqs']>[number];
 
-export type LocationPageFaqContentModel = Required<Pick<SanityLocationPageFaqItem, 'question' | 'answer'>>;
+export type LocationPageFaqContentModel = Required<Pick<SanityLocationPageFaqItem, 'question' | 'answer'>> & {
+  _key?: string;
+};
 
 export const LocationPageFaqSchema: z.ZodType<LocationPageFaqContentModel> = z.object({
   _key: z.string().optional(),
@@ -272,10 +285,10 @@ export const LocationPageServiceRefSchema: z.ZodType<LocationPageServiceRefConte
   parentService: ServiceParentSchema.nullish(),
 });
 
-export type LocationPageNearbySuburbRefContentModel = Pick<SanityLocationPageDoc, '_id'> &
+export type SuburbRefContentModel = Pick<SanityLocationPageDoc, '_id'> &
   Required<Pick<SanityLocationPageDoc, 'suburb'>> & { slug: SanitySlug };
 
-export const LocationPageNearbySuburbRefSchema: z.ZodType<LocationPageNearbySuburbRefContentModel> = z.object({
+export const SuburbRefSchema: z.ZodType<SuburbRefContentModel> = z.object({
   _id: z.string(),
   suburb: z.string(),
   slug: SanitySlugSchema,
@@ -288,7 +301,7 @@ export type LocationPageContentModel = Pick<SanityLocationPageDoc, '_id' | '_typ
     heroImage?: SanityImage | null;
     intro?: SanityPortableText | null;
     services?: LocationPageServiceRefContentModel[] | null;
-    nearbySuburbs?: LocationPageNearbySuburbRefContentModel[] | null;
+    nearbySuburbs?: SuburbRefContentModel[] | null;
     faqs?: LocationPageFaqContentModel[] | null;
     seoTitle?: string | null;
     seoDescription?: string | null;
@@ -303,15 +316,16 @@ export const LocationPageSchema: z.ZodType<LocationPageContentModel> = z.object(
   heroImage: SanityImageSchema.nullable().optional(),
   intro: SanityPortableTextSchema.nullable().optional(),
   services: z.array(LocationPageServiceRefSchema).nullable().optional(),
-  nearbySuburbs: z.array(LocationPageNearbySuburbRefSchema).nullable().optional(),
+  nearbySuburbs: z.array(SuburbRefSchema).nullable().optional(),
   faqs: z.array(LocationPageFaqSchema).nullable().optional(),
   seoTitle: z.string().nullable().optional(),
   seoDescription: z.string().nullable().optional(),
 });
 
-export type SanityTermsAndConditions = Pick<SanityTermsAndConditionsDoc, '_id' | '_type'> & {
-  terms: SanityPortableText;
-};
+export type SanityTermsAndConditions = Pick<SanityTermsAndConditionsDoc, '_id' | '_type'> &
+  SanityDocumentIdentityFields & {
+    terms: SanityPortableText;
+  };
 
 export const TermsAndConditionsSchema: z.ZodType<SanityTermsAndConditions> = z.object({
   _type: z.literal('terms-and-conditions'),
@@ -497,14 +511,9 @@ export const TrustSignalSchema: z.ZodType<TrustSignalContentModel> = z.object({
   icon: IconSchema,
 });
 
-export type ServiceAreaRefContentModel = Pick<SanityLocationPageDoc, '_id'> &
-  Required<Pick<SanityLocationPageDoc, 'suburb'>> & { slug: SanitySlug };
+export type ServiceAreaRefContentModel = SuburbRefContentModel;
 
-export const ServiceAreaRefSchema: z.ZodType<ServiceAreaRefContentModel> = z.object({
-  _id: z.string(),
-  suburb: z.string(),
-  slug: SanitySlugSchema,
-});
+export const ServiceAreaRefSchema = SuburbRefSchema;
 
 export type HomepageContentModel = Pick<SanityHomepageDoc, '_id' | '_type'> & {
   mainHeading: string | null;
