@@ -3,7 +3,7 @@ import localFont from 'next/font/local';
 
 import { getSiteSettings, getServices } from '@/lib/content/contentService';
 import { GoogleTagManager } from '@/components/GoogleTagManager';
-import { Navbar } from '@/components/Navbar';
+import { Navbar } from '@/components/Navbar/Navbar';
 import { Footer } from '@/components/Footer';
 import { Providers } from '@/app/providers';
 import { config } from '@/lib/config';
@@ -58,7 +58,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body className="min-h-screen font-sans">
         {gtmId && <GoogleTagManager gtmId={gtmId} />}
         <Providers sanityProjectId={config.sanityProjectId} sanityDataset={config.sanityDataset}>
-          <Navbar contactPhone={siteSettings.phone} title={siteSettings.shortTitle} />
+          <Navbar contactPhone={siteSettings.phone} title={siteSettings.shortTitle} licence={siteSettings.recLicence} />
           <main>{children}</main>
           <Footer social={siteSettings.social} services={services} companyName={siteSettings.companyName} />
         </Providers>

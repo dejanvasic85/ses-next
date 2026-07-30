@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 import { Container, Heading, LinkButton, Rating, Section, TrustSignals } from '@/components';
 import { Icon } from '@/components/Icon/Icon';
+import { NavDrawerRow } from '@/components/Navbar/NavDrawerRow';
 import { SwatchRow } from '@/components/DesignSystem/SwatchRow';
 import { SurfaceSpecimen } from '@/components/DesignSystem/SurfaceSpecimen';
 import type { TrustSignal } from '@/types';
@@ -164,6 +165,33 @@ export default function DesignSystemPage() {
                 <LinkButton href="#contact" variant="ghost">
                   See all services
                 </LinkButton>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-base-content/50 mb-4 text-xs font-semibold tracking-widest uppercase">Navigation</h3>
+              <p className="text-base-content/70 mb-4 max-w-2xl text-sm">
+                The header rides transparent over the top of a page and condenses into glass on scroll. Its bottom edge
+                is a bus bar — a hairline of current that lights up once you leave the top, and that the current page
+                taps into with a short bright segment. On mobile the same links become rows in a drawer.
+              </p>
+              <div className="surface-card overflow-hidden rounded-lg">
+                <div className="border-base-300 relative flex h-16 items-center gap-1 border-b px-4">
+                  <span className="text-base-content/70 rounded-full px-3 py-2 text-sm font-medium">Services</span>
+                  <span className="relative flex h-16 items-center">
+                    <span className="text-primary rounded-full px-3 py-2 text-sm font-medium">Locations</span>
+                    <span
+                      aria-hidden="true"
+                      className="bg-primary absolute inset-x-3 bottom-0 h-[2px] rounded-t-full"
+                    />
+                  </span>
+                  <span className="text-base-content/70 rounded-full px-3 py-2 text-sm font-medium">Blog</span>
+                  <span aria-hidden="true" className="nav-busbar absolute inset-x-0 bottom-0 h-px" />
+                </div>
+                <div className="flex max-w-sm flex-col gap-1 p-3">
+                  <NavDrawerRow item={{ label: 'Services', href: '#', icon: 'wrench' }} isCurrent={false} />
+                  <NavDrawerRow item={{ label: 'Locations', href: '#', icon: 'map-pin' }} isCurrent />
+                </div>
               </div>
             </div>
 
