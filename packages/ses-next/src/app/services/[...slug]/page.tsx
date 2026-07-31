@@ -106,9 +106,12 @@ export default async function ServicePage({ params }: ServicePageProps) {
     notFound();
   }
 
-  const childServices = services.filter((s) => s.parentService?.slug === service!.slug);
-  const filteredBlogPosts = blogPosts.filter(({ tags }) => tags.includes(service!.slug));
-  const serviceSlugs = service.parentService ? [service.slug, service.parentService.slug] : [service.slug];
+  const currentService = service;
+  const childServices = services.filter((s) => s.parentService?.slug === currentService.slug);
+  const filteredBlogPosts = blogPosts.filter(({ tags }) => tags.includes(currentService.slug));
+  const serviceSlugs = currentService.parentService
+    ? [currentService.slug, currentService.parentService.slug]
+    : [currentService.slug];
   let locationPages: LocationPageNearbySuburbRef[] = [];
 
   try {

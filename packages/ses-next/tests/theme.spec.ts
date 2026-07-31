@@ -32,10 +32,13 @@ function contrastRatio(foreground: Rgba, background: Rgba): number {
  * read back, which normalises all of them to sRGB.
  */
 async function readThemeSnapshot(page: Page, selectors: string[]): Promise<ThemeSnapshot> {
-  return page.evaluate((sels) => {
+  return page.evaluate<ThemeSnapshot, string[]>((sels) => {
     const canvas = document.createElement('canvas');
     canvas.width = canvas.height = 1;
-    const ctx = canvas.getContext('2d')!;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) {
+      throw new Error('2d canvas context unavailable');
+    }
 
     const resolveColor = (value: string): Rgba => {
       ctx.clearRect(0, 0, 1, 1);
@@ -77,7 +80,7 @@ async function readThemeSnapshot(page: Page, selectors: string[]): Promise<Theme
       baseContent: resolveColor(root.getPropertyValue('--color-base-content').trim()),
       measurements,
     };
-  }, selectors) as Promise<ThemeSnapshot>;
+  }, selectors);
 }
 
 /*
@@ -89,8 +92,10 @@ async function readThemeSnapshot(page: Page, selectors: string[]): Promise<Theme
  */
 function expectLegible(snapshot: ThemeSnapshot, selector: string) {
   const measured = snapshot.measurements[selector];
-  expect(measured, `no element matched ${selector}`).not.toBeNull();
-  const ratio = contrastRatio(measured!.color, measured!.background);
+  if (!measured) {
+    throw new Error(`no element matched ${selector}`);
+  }
+  const ratio = contrastRatio(measured.color, measured.background);
   expect(ratio, `${selector} contrast ratio`).toBeGreaterThanOrEqual(minimumBodyContrast);
 }
 
@@ -139,9 +144,11 @@ test.describe('Theme tokens', () => {
       // its wrapper, so prose's own body variable would never be exercised.
       await page.goto('/blog');
       const firstPost = await page.locator('a[href^="/blog/"]').first().getAttribute('href');
-      expect(firstPost, 'no blog posts to sample').toBeTruthy();
+      if (!firstPost) {
+        throw new Error('no blog posts to sample');
+      }
 
-      await page.goto(firstPost!);
+      await page.goto(firstPost);
       const snapshot = await readThemeSnapshot(page, ['.prose p']);
 
       expectLegible(snapshot, '.prose p');
@@ -165,7 +172,11 @@ test.describe('Theme tokens', () => {
           .trim()
           .replace(/^["']|["']$/g, '');
 
-      const headingStack = getComputedStyle(document.querySelector('h1')!).fontFamily;
+      const heading = document.querySelector('h1');
+      if (!heading) {
+        throw new Error('no h1 found');
+      }
+      const headingStack = getComputedStyle(heading).fontFamily;
       const bodyStack = getComputedStyle(document.body).fontFamily;
       const loaded = [...document.fonts].filter((face) => face.status === 'loaded').map((face) => face.family);
 

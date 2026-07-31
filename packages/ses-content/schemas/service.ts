@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import {defineField, defineType, type Reference} from 'sanity'
 
 import iconField from './iconField'
 
@@ -81,10 +81,10 @@ export default defineType({
       description:
         'If set, this service appears as a sub-service under the parent. Leave empty for top-level services.',
       validation: (Rule) =>
-        Rule.custom(async (value, context) => {
-          const ref = (value as {_ref?: string} | undefined)?._ref
+        Rule.custom<Reference>(async (value, context) => {
+          const ref = value?._ref
           if (!ref) return true
-          const docId = (context.document as {_id?: string})?._id
+          const docId = context.document?._id
           if (ref === docId) {
             return 'A service cannot be its own parent'
           }

@@ -5,7 +5,6 @@ import { Container } from '@/components/Container';
 import { SanityImage } from '@/components/SanityImage';
 import { Heading } from '@/components/Heading';
 import { Icon } from '@/components/Icon/Icon';
-import type { IconMap } from '@/components/Icon/IconMap';
 import { type ServiceItem } from '@/types';
 
 const servicesHubPath = '/services/';
@@ -52,7 +51,7 @@ export const Services = ({ className, blurbs, services }: ServicesProps) => {
                   <div className="space-y-2">
                     <div className="flex items-center gap-3">
                       <div className="text-primary-foreground bg-primary rounded-full p-2">
-                        <Icon name={icon as keyof typeof IconMap} size="xl" className="text-primary-content" />
+                        <Icon name={icon} size="xl" className="text-primary-content" />
                       </div>
                       <h3 className="border-primary border-b-2 text-lg font-semibold">
                         <ConditionalWrap

@@ -67,9 +67,8 @@ export async function send({ data, template, to = config.emailTo, companyName }:
   const { bodyTemplate, subjectTemplate } = emailTemplates[template];
 
   const interpolate = (tmpl: string) => {
-    const withData = (Object.keys(data) as (keyof EmailData)[]).reduce((prev, curr) => {
-      const value = data[curr];
-      return prev.replace(`{{${curr}}}`, String(value));
+    const withData = Object.entries(data).reduce((prev, [key, value]) => {
+      return prev.replace(`{{${key}}}`, String(value));
     }, tmpl);
     return companyName ? withData.replace('{{companyName}}', companyName) : withData;
   };
