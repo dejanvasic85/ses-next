@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'class-names';
+import { clsx } from 'clsx';
 
 type SectionTone = 'plain' | 'quiet';
 
@@ -22,7 +22,7 @@ const toneStyles: Record<SectionTone, string> = {
  */
 export function Section({ id, tone = 'plain', className, children }: SectionProps) {
   return (
-    <section id={id} className={classNames('py-16 md:py-24', id && 'scroll-mt-20', toneStyles[tone], className)}>
+    <section id={id} className={clsx('py-16 md:py-24', id && 'scroll-mt-20', toneStyles[tone], className)}>
       {children}
     </section>
   );

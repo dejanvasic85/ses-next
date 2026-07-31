@@ -3,7 +3,7 @@
 import { Activity } from 'react';
 import { useCallback } from 'react';
 
-import classNames from 'class-names';
+import { clsx } from 'clsx';
 import { useForm } from 'react-hook-form';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { ContactFormData } from '@/types';
@@ -58,7 +58,7 @@ export function ContactForm({ loading, onSubmit }: ContactFormProps) {
           id="email"
           aria-invalid={!!emailError?.message}
           aria-describedby={!!emailError?.message ? 'emailErrorMessage' : undefined}
-          className={classNames('input input-bordered w-full', { 'input-error': emailError?.message })}
+          className={clsx('input input-bordered w-full', { 'input-error': emailError?.message })}
           {...register('email', {
             required: { value: true, message: 'Email is required' },
             pattern: {
@@ -85,7 +85,7 @@ export function ContactForm({ loading, onSubmit }: ContactFormProps) {
           id="fullName"
           aria-invalid={!!fullNameError?.message}
           aria-describedby={!!fullNameError?.message ? 'fullNameErrorMessage' : undefined}
-          className={classNames('input input-bordered w-full', { 'input-error': fullNameError?.message })}
+          className={clsx('input input-bordered w-full', { 'input-error': fullNameError?.message })}
           {...register('fullName')}
         />
         <Activity mode={fullNameError ? 'visible' : 'hidden'}>
@@ -105,7 +105,7 @@ export function ContactForm({ loading, onSubmit }: ContactFormProps) {
           maxLength={100}
           aria-invalid={!!phoneError?.message}
           aria-describedby={!!phoneError?.message ? 'phoneErrorMessage' : undefined}
-          className={classNames('input input-bordered w-full', { 'input-error': phoneError?.message })}
+          className={clsx('input input-bordered w-full', { 'input-error': phoneError?.message })}
           {...register('phone')}
         />
         <Activity mode={phoneError ? 'visible' : 'hidden'}>
@@ -125,7 +125,7 @@ export function ContactForm({ loading, onSubmit }: ContactFormProps) {
           maxLength={100}
           aria-invalid={!!addressError?.message}
           aria-describedby={!!addressError?.message ? 'addressErrorMessage' : undefined}
-          className={classNames('input input-bordered w-full', { 'input-error': addressError?.message })}
+          className={clsx('input input-bordered w-full', { 'input-error': addressError?.message })}
           {...register('address')}
         />
         <Activity mode={addressError ? 'visible' : 'hidden'}>
@@ -145,7 +145,7 @@ export function ContactForm({ loading, onSubmit }: ContactFormProps) {
           rows={4}
           aria-invalid={!!messageError?.message}
           aria-describedby={!!messageError?.message ? 'messageErrorMessage' : undefined}
-          className={classNames('textarea textarea-bordered w-full', { 'textarea-error': messageError?.message })}
+          className={clsx('textarea textarea-bordered w-full', { 'textarea-error': messageError?.message })}
           {...register('message', {
             required: { value: true, message: 'Message is required' },
           })}
@@ -159,7 +159,7 @@ export function ContactForm({ loading, onSubmit }: ContactFormProps) {
         </Activity>
       </fieldset>
 
-      <button className={classNames('btn btn-primary mt-8', { loading })} type="submit" id="submit">
+      <button className={clsx('btn btn-primary mt-8', { loading })} type="submit" id="submit">
         Submit
       </button>
     </form>

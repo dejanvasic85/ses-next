@@ -1,5 +1,5 @@
 import NextLink from 'next/link';
-import classNames from 'class-names';
+import { clsx } from 'clsx';
 
 import { Icon } from '@/components/Icon/Icon';
 import type { NavItem } from '@/components/Navbar/navItems';
@@ -21,10 +21,10 @@ export function NavDrawerRow({ item, isCurrent, onClick }: NavDrawerRowProps) {
       href={item.href}
       onClick={onClick}
       aria-current={isCurrent ? 'page' : undefined}
-      className={classNames(rowStyles, isCurrent ? 'bg-primary/10' : 'hover:bg-base-200 active:bg-base-200')}
+      className={clsx(rowStyles, isCurrent ? 'bg-primary/10' : 'hover:bg-base-200 active:bg-base-200')}
     >
       <span
-        className={classNames(
+        className={clsx(
           tileStyles,
           isCurrent
             ? 'bg-primary text-primary-content'
@@ -34,7 +34,7 @@ export function NavDrawerRow({ item, isCurrent, onClick }: NavDrawerRowProps) {
         <Icon name={item.icon} size="md" />
       </span>
       <span
-        className={classNames(
+        className={clsx(
           'font-display flex-1 text-lg font-medium tracking-tight',
           isCurrent ? 'text-primary' : 'text-base-content',
         )}
@@ -44,7 +44,7 @@ export function NavDrawerRow({ item, isCurrent, onClick }: NavDrawerRowProps) {
       <Icon
         name="chevron-right"
         size="sm"
-        className={classNames(
+        className={clsx(
           'transition-transform duration-200 group-hover:translate-x-0.5',
           isCurrent ? 'text-primary' : 'text-base-content/30',
         )}

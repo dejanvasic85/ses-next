@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'class-names';
+import { clsx } from 'clsx';
 
 import { IconMap } from '@/components/Icon/IconMap';
 
@@ -24,5 +24,5 @@ interface IconProps {
 
 export function Icon({ className = '', name, size = 'md' }: IconProps) {
   const sizeClass = className.includes('h-') || className.includes('w-') ? '' : sizeClassMap[size];
-  return React.cloneElement(IconMap[name], { className: classNames(sizeClass, className) });
+  return React.cloneElement(IconMap[name], { className: clsx(sizeClass, className) });
 }
