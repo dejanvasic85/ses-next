@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'class-names';
+import { clsx } from 'clsx';
 
 type LinkButtonVariant = 'primary' | 'glass' | 'ghost';
 
@@ -15,7 +15,7 @@ const variantStyles: Record<LinkButtonVariant, string> = {
 };
 
 export const LinkButton = ({ variant = 'primary', className, children, ...rest }: LinkButtonProps) => (
-  <a className={classNames('btn', variantStyles[variant], className)} {...rest}>
+  <a className={clsx('btn', variantStyles[variant], className)} {...rest}>
     {children}
   </a>
 );

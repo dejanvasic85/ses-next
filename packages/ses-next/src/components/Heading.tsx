@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'class-names';
+import { clsx } from 'clsx';
 
 type HeadingAlign = 'center' | 'left';
 
@@ -27,7 +27,7 @@ export function Heading({ level, align = 'center', className, children }: Headin
   return React.createElement(
     `h${level}`,
     {
-      className: classNames(baseStyles, alignStyles[align], levelStyles[level], className),
+      className: clsx(baseStyles, alignStyles[align], levelStyles[level], className),
     },
     children,
   );

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import classNames from 'class-names';
+import { clsx } from 'clsx';
 
 import { Icon } from '@/components/Icon/Icon';
 import { NavBrand } from '@/components/Navbar/NavBrand';
@@ -61,7 +61,7 @@ export function NavDrawer({ isOpen, pathname, title, contactPhone, licence, onCl
    */
   return (
     <div
-      className={classNames(
+      className={clsx(
         'fixed inset-0 z-50 flex justify-end transition-[visibility] duration-0 md:hidden',
         isOpen ? 'pointer-events-auto visible delay-0' : 'pointer-events-none invisible delay-300',
       )}
@@ -69,7 +69,7 @@ export function NavDrawer({ isOpen, pathname, title, contactPhone, licence, onCl
       <div
         onClick={onClose}
         aria-hidden="true"
-        className={classNames(
+        className={clsx(
           // eslint-disable-next-line no-restricted-syntax -- a scrim is an overlay, not a themed surface; raw black stays legible under either theme
           'absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-300',
           isOpen ? 'opacity-100' : 'opacity-0',
@@ -83,7 +83,7 @@ export function NavDrawer({ isOpen, pathname, title, contactPhone, licence, onCl
         aria-label="Site menu"
         inert={!isOpen}
         onKeyDown={handleKeyDown}
-        className={classNames('relative', panelStyles, isOpen ? 'translate-x-0' : 'translate-x-full')}
+        className={clsx('relative', panelStyles, isOpen ? 'translate-x-0' : 'translate-x-full')}
       >
         <header className="border-base-300 flex h-16 shrink-0 items-center justify-between border-b pr-2 pl-4">
           <NavBrand title={title} onClick={onClose} />

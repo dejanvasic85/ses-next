@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import classNames from 'class-names';
+import { clsx } from 'clsx';
 
 import { Icon } from '@/components/Icon/Icon';
 import { ConditionalWrap } from '@/components/ConditionalWrap';
@@ -77,7 +77,7 @@ export function Testimonial(testimonial: TestimonialProps) {
           </div>
           <Rating starRating={starRating} name={displayName} />
           <div>
-            <div ref={textRef} className={classNames('text-base-content/80 pr-4', { 'line-clamp-4': !showMore })}>
+            <div ref={textRef} className={clsx('text-base-content/80 pr-4', { 'line-clamp-4': !showMore })}>
               &ldquo;{comment}&rdquo;
             </div>
             {(isClamped || showMore) && (

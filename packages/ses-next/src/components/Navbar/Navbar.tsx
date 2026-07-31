@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import classNames from 'class-names';
+import { clsx } from 'clsx';
 
 import { Container } from '@/components/Container';
 import { Icon } from '@/components/Icon/Icon';
@@ -70,7 +70,7 @@ export function Navbar({ contactPhone, title, licence }: NavbarProps) {
 
   return (
     <>
-      <nav aria-label="Main" className={classNames(navStyles, isScrolled && scrolledStyles)}>
+      <nav aria-label="Main" className={clsx(navStyles, isScrolled && scrolledStyles)}>
         <Container>
           <div className="flex h-16 w-full items-center justify-between gap-4">
             <NavBrand title={title} />
@@ -87,7 +87,7 @@ export function Navbar({ contactPhone, title, licence }: NavbarProps) {
                   </a>
                   <a
                     href={`tel:${contactPhone}`}
-                    className={classNames(iconButtonStyles, 'md:hidden')}
+                    className={clsx(iconButtonStyles, 'md:hidden')}
                     aria-label={`Call ${contactPhone}`}
                   >
                     <Icon name="phone" size="lg" />
@@ -99,7 +99,7 @@ export function Navbar({ contactPhone, title, licence }: NavbarProps) {
                 ref={menuButtonRef}
                 type="button"
                 onClick={() => setIsMenuOpen(true)}
-                className={classNames(iconButtonStyles, 'md:hidden')}
+                className={clsx(iconButtonStyles, 'md:hidden')}
                 aria-label="Open menu"
                 aria-expanded={isMenuOpen}
                 aria-haspopup="dialog"
@@ -113,7 +113,7 @@ export function Navbar({ contactPhone, title, licence }: NavbarProps) {
         {/* The bus bar doubles as the header's only divider — dim at rest, lit once you scroll. */}
         <span
           aria-hidden="true"
-          className={classNames(
+          className={clsx(
             'nav-busbar absolute inset-x-0 bottom-0 h-px transition-opacity duration-300',
             isScrolled ? 'opacity-100' : 'opacity-40',
           )}

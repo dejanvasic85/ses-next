@@ -1,5 +1,5 @@
 import NextLink from 'next/link';
-import classNames from 'class-names';
+import { clsx } from 'clsx';
 
 import { isCurrentNavItem, railItems } from '@/components/Navbar/navItems';
 
@@ -23,7 +23,7 @@ export function NavRail({ pathname }: NavRailProps) {
             <NextLink
               href={item.href}
               aria-current={isCurrent ? 'page' : undefined}
-              className={classNames(linkStyles, isCurrent ? 'text-primary' : restingStyles)}
+              className={clsx(linkStyles, isCurrent ? 'text-primary' : restingStyles)}
             >
               {item.label}
             </NextLink>
