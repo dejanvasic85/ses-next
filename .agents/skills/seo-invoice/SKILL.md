@@ -1,6 +1,6 @@
 ---
 name: seo-invoice
-description: 'Derive SEO retainer invoice line-items from the monthly SES scorecard (docs/seo-geo/scorecards/) instead of git. The SEO/CMS work (Sanity edits, GSC/GA analysis, scorecard authoring) leaves little or no commit trail, so git-invoice under-counts it. Use when the user says "seo invoice", "invoice the SEO work", "invoice the retainer", or invokes /seo-invoice. Pairs with git-invoice, which covers maintenance + code.'
+description: 'Derive the SEO uplift invoice bucket from the monthly SES scorecard (docs/seo-geo/scorecards/) instead of git. The SEO/CMS work (Sanity edits, GSC/GA analysis, scorecard authoring) leaves little or no commit trail, so git-invoice under-counts it. Use when the user says "seo invoice", "invoice the SEO work", "invoice the retainer", or invokes /seo-invoice. Pairs with git-invoice, which covers the Monthly subscription and Additional items buckets. For the full combined invoice, use /monthly-invoice.'
 argument-hint: 'Month to invoice. Examples: "July 2026", "2026-07", "last month". Defaults to the latest scorecard on disk.'
 user-invocable: true
 ---
@@ -73,9 +73,13 @@ Issue #642's checkboxes have been wrong before (marked done without the Sanity e
 
 _Source: docs/seo-geo/scorecards/<YYYY-MM>.md (not git)_
 
+### SEO uplift
+
 - Monthly SEO scorecard + performance analysis — GSC/GA 28-day review, N tracked keywords diffed vs prior month, movement attribution, next-month focus
 - [CMS/on-page change shipped this month]
 ```
+
+The "SEO uplift" heading matches the bucket name used by `/monthly-invoice` — when this skill is run standalone, keep the heading so the block can be pasted straight into the combined invoice without renaming.
 
 ### Step 6 — Follow-up
 
