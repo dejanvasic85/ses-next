@@ -57,12 +57,12 @@ Output a single markdown block, chat only — never write a file:
 ```markdown
 ## Invoice — Website Services — [Month YYYY]
 
-| Description | Amount |
-| --- | --- |
-| **Monthly subscription**<br>• Hosting<br>• Framework updates (Next.js, Sanity, Vercel)<br>• Dependency updates — [N+ Renovate PRs, notable bump] | |
-| **SEO uplift**<br>• [scorecard line item]<br>• [scorecard line item] | |
-| **Additional items**<br>• [extra maintenance/bug-fix line]<br>• [feature line] | |
-| **Total** | |
+| Description                                                                                                                                      | Amount |
+| ------------------------------------------------------------------------------------------------------------------------------------------------ | ------ |
+| **Monthly subscription**<br>• Hosting<br>• Framework updates (Next.js, Sanity, Vercel)<br>• Dependency updates — [N+ Renovate PRs, notable bump] |        |
+| **SEO uplift**<br>• [scorecard line item]<br>• [scorecard line item]                                                                             |        |
+| **Additional items**<br>• [extra maintenance/bug-fix line]<br>• [feature line]                                                                   |        |
+| **Total**                                                                                                                                        |        |
 ```
 
 Leave every Amount cell blank — pricing is the user's call, never invented. If a bucket has no content for the month (e.g. no scorecard was written), omit that row rather than leaving it empty, and say so in the chat reply.
