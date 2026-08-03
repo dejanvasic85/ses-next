@@ -5,11 +5,10 @@ import { safeJsonLd } from '@/lib/structuredData';
 
 export async function generateMetadata(): Promise<Metadata> {
   const siteSettings = await getSiteSettings();
-  const { companyName } = siteSettings;
+  const { companyName, phone } = siteSettings;
   return {
     title: `Electrician FAQs Melbourne | Common Questions Answered | ${companyName}`,
-    description:
-      'Answers to common questions about electrical work in Melbourne — costs, safety, switchboards, solar & more. Licensed electricians, 5.0★ rated. Call (03) 4050 7937.',
+    description: `Answers to common questions about electrical work in Melbourne — costs, safety, switchboards, solar & more. Licensed electricians, 5.0★ rated. Call ${phone}.`,
     alternates: {
       canonical: '/faq',
     },

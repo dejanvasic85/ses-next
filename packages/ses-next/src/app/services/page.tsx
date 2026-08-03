@@ -9,20 +9,23 @@ import { safeJsonLd } from '@/lib/structuredData';
 import type { ServiceItem } from '@/types';
 
 const servicesTitle = 'Electrical Services Melbourne | Licensed Electricians | SES';
-const servicesDescription =
-  'Full-range electrical services in Melbourne — solar, air conditioning, switchboards, lighting & more. 5.0★ rated, REC 24794, 19 yrs experience. Call (03) 4050 7937.';
 
-export const metadata: Metadata = {
-  title: servicesTitle,
-  description: servicesDescription,
-  alternates: {
-    canonical: '/services',
-  },
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  const { phone } = await getSiteSettings();
+  const servicesDescription = `Full-range electrical services in Melbourne — solar, air conditioning, switchboards, lighting & more. 5.0★ rated, REC 24794, 19 yrs experience. Call ${phone}.`;
+
+  return {
     title: servicesTitle,
     description: servicesDescription,
-  },
-};
+    alternates: {
+      canonical: '/services',
+    },
+    openGraph: {
+      title: servicesTitle,
+      description: servicesDescription,
+    },
+  };
+}
 
 type ServiceCardProps = {
   service: ServiceItem;
