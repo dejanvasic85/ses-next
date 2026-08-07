@@ -73,8 +73,8 @@ importers:
   packages/ses-next:
     dependencies:
       '@aws-sdk/client-ses':
-        specifier: 3.1103.0
-        version: 3.1103.0
+        specifier: 3.1104.0
+        version: 3.1104.0
       '@fontsource-variable/onest':
         specifier: 5.3.0
         version: 5.3.0
@@ -267,8 +267,8 @@ packages:
     resolution: {integrity: sha512-1B8mZ79ySqlTEfSQ87KZ0XkmTOKQFMO3lUYUGUtwNTUncJINr6nhRWEjk128oBWwEQnpJ7NfpDPjdfg1ICe3xw==}
     engines: {node: '>=16'}
 
-  '@aws-sdk/client-ses@3.1103.0':
-    resolution: {integrity: sha512-B6lLTQjFN+HQ/B+8WqZp+Ovnac7XcRnSi0MBslXjnKgtXXmuiY92eayVZf5Hi/pHcVHHd5nk8t2FhklZt6rdFQ==}
+  '@aws-sdk/client-ses@3.1104.0':
+    resolution: {integrity: sha512-x1Can6eGuwH0lVv5I3yM7NJZ85CJBRGWOzHwpps0U09rgA+VRcHtbQeJO8T5d6lVSRmiNnCwZMS5eR78GlOBDA==}
     engines: {node: '>=20.0.0'}
 
   '@aws-sdk/core@3.977.6':
@@ -6939,7 +6939,7 @@ snapshots:
 
   '@aws-lite/ssm@0.2.5': {}
 
-  '@aws-sdk/client-ses@3.1103.0':
+  '@aws-sdk/client-ses@3.1104.0':
     dependencies:
       '@aws-sdk/core': 3.977.6
       '@aws-sdk/credential-provider-node': 3.972.78
@@ -9580,7 +9580,7 @@ snapshots:
   '@sanity/mutate@0.18.1(xstate@5.32.5)':
     dependencies:
       '@isaacs/ttlcache': 2.1.5
-      '@sanity/client': 7.26.0
+      '@sanity/client': 7.26.2
       '@sanity/diff-match-patch': 3.2.0
       '@sanity/uuid': 3.0.3
       hotscript: 1.0.13
@@ -9732,7 +9732,7 @@ snapshots:
   '@sanity/sdk@2.18.0(@types/react@19.2.18)(react@19.2.8)(supports-color@8.1.1)(use-sync-external-store@1.6.0(react@19.2.8))(xstate@5.32.5)':
     dependencies:
       '@sanity/bifur-client': 1.0.0
-      '@sanity/client': 7.26.0
+      '@sanity/client': 7.26.2
       '@sanity/comlink': 4.0.1
       '@sanity/diff-match-patch': 3.2.0
       '@sanity/diff-patch': 6.0.0
@@ -9742,7 +9742,7 @@ snapshots:
       '@sanity/message-protocol': 0.23.0
       '@sanity/mutate': 0.18.1(xstate@5.32.5)
       '@sanity/telemetry': 1.1.0(react@19.2.8)
-      '@sanity/types': 6.8.0(@types/react@19.2.18)
+      '@sanity/types': 6.9.0(@types/react@19.2.18)
       groq: 3.88.1-typegen-experimental.0
       groq-js: 1.30.3(supports-color@8.1.1)
       reselect: 5.2.0
@@ -9788,7 +9788,7 @@ snapshots:
 
   '@sanity/types@6.9.0(@types/react@19.2.18)':
     dependencies:
-      '@sanity/client': 7.26.0
+      '@sanity/client': 7.26.2
       '@sanity/media-library-types': 1.6.0
       '@types/react': 19.2.18
 

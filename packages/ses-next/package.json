@@ -14,7 +14,7 @@
     "query": "npx tsx bin/query.ts"
   },
   "dependencies": {
-    "@aws-sdk/client-ses": "3.1103.0",
+    "@aws-sdk/client-ses": "3.1104.0",
     "@fontsource-variable/onest": "5.3.0",
     "@fontsource-variable/schibsted-grotesk": "5.3.0",
     "@playwright/test": "1.62.1",
