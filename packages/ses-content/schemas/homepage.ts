@@ -41,7 +41,6 @@ export default defineType({
           title: 'Call back',
           description: 'Appears in the contact form',
         },
-        {name: 'phone', type: 'string', title: 'Phone number'},
       ],
     }),
     defineField({

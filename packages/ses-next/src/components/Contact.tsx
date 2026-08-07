@@ -14,11 +14,12 @@ type ContactProps = {
   className?: string;
   contact: ContactContentModel;
   location: string | null;
+  phone: string;
   streetAddress?: string;
   suburb?: string;
 };
 
-export function Contact({ className, contact, location, streetAddress, suburb }: ContactProps) {
+export function Contact({ className, contact, location, phone, streetAddress, suburb }: ContactProps) {
   const { error, loading, messageSent, sendMessage } = useContact();
   const [firstBlurb = '', secondBlurb = ''] = contact.blurbs ?? [];
 
@@ -39,10 +40,10 @@ export function Contact({ className, contact, location, streetAddress, suburb }:
           </div>
         </div>
       </div>
-      <Activity mode={contact.phone ? 'visible' : 'hidden'}>
+      <Activity mode={phone ? 'visible' : 'hidden'}>
         <p className="mx-auto mb-12 max-w-screen-md px-4 text-center">
-          <LinkButton href={`tel:${contact.phone}`}>
-            <Icon name="phone" size="lg" /> {contact.phone}
+          <LinkButton href={`tel:${phone}`}>
+            <Icon name="phone" size="lg" /> {phone}
           </LinkButton>
         </p>
       </Activity>

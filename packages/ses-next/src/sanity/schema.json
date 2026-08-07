@@ -2258,13 +2258,6 @@
                 "type": "string"
               },
               "optional": true
-            },
-            "phone": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "string"
-              },
-              "optional": true
             }
           }
         },

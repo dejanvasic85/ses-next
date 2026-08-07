@@ -172,6 +172,7 @@ export default async function Home() {
         <Contact
           contact={homepageContent.contact}
           location={googleMapsLocation}
+          phone={phone}
           streetAddress={streetAddress}
           suburb={suburb}
         />

@@ -334,15 +334,12 @@ export const TermsAndConditionsSchema: z.ZodType<SanityTermsAndConditions> = z.o
   terms: SanityPortableTextSchema,
 });
 
-type SanityHomepageContact = NonNullable<SanityHomepageDoc['contact']>;
-
-export type ContactContentModel = Required<Pick<SanityHomepageContact, 'phone'>> & {
+export type ContactContentModel = {
   blurbs: string[] | null;
   callBack: string | null;
 };
 
 export const ContactSchema: z.ZodType<ContactContentModel> = z.object({
-  phone: z.string(),
   blurbs: z.array(z.string()).nullable(),
   callBack: z.string().nullable(),
 });

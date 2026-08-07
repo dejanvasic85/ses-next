@@ -105,7 +105,6 @@ export const mapHomepageTraining = (model: HomepageContentModel): Training[] => 
 
 export const mapHomepageContact = (model: HomepageContentModel): ContactContentModel => {
   return {
-    phone: model.contact.phone,
     blurbs: model.contact.blurbs,
     callBack: model.contact.callBack,
   };
