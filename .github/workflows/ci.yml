@@ -16,6 +16,10 @@ jobs:
     container:
       image: mcr.microsoft.com/playwright:v1.62.0-jammy
     timeout-minutes: 10
+    permissions:
+      contents: read
+      deployments: read
+      statuses: read
 
     steps:
       - uses: actions/checkout@v7
@@ -45,16 +49,16 @@ jobs:
 
       - name: Wait for Vercel deployment
         id: vercel-deployment
-        uses: patrickedqvist/wait-for-vercel-preview@v1.3.3
+        uses: vercel/wait-for-deployment-action@0e2b0c5c5cce31f1648108aeec56467187aca037 # main
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          max_timeout: 300
-          check_interval: 10
+          environment: preview
+          timeout: 300
+          check-interval: 10
 
       - name: Run Playwright tests
         run: pnpm --filter ses-next test:e2e
         env:
-          PLAYWRIGHT_TEST_BASE_URL: ${{ steps.vercel-deployment.outputs.url }}
+          PLAYWRIGHT_TEST_BASE_URL: ${{ steps.vercel-deployment.outputs.deployment-url }}
           REVALIDATE_SECRET: ${{ secrets.REVALIDATE_SECRET }}
           HOME: /root
 
