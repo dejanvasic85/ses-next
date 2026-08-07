@@ -384,7 +384,6 @@ export type Homepage = {
   contact?: {
     blurbs?: Array<string>;
     callBack?: string;
-    phone?: string;
   };
   services?: {
     blurbs?: Array<string>;
