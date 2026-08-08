@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
+import { Container } from '@/components/Container';
 import { getAllLocationPages, getSiteSettings } from '@/lib/content/contentService';
 import { ServiceBreadcrumb } from '@/components/ServiceBreadcrumb/ServiceBreadcrumb';
 import { safeJsonLd } from '@/lib/structuredData';
@@ -112,18 +113,18 @@ export default async function LocationsIndexPage() {
           }}
           aria-hidden="true"
         />
-        <div className="mx-auto max-w-screen-lg px-4 py-12 text-center md:px-8 md:py-16">
+        <Container width="wide" className="py-12 text-center md:py-16">
           <p className="text-primary mb-3 text-sm font-semibold tracking-widest uppercase">Melbourne&apos;s West</p>
           <h1 className="text-base-content mb-4 text-4xl font-extrabold sm:text-5xl">Areas We Serve</h1>
           <p className="text-base-content/70 mx-auto max-w-xl text-lg">
             Based in Altona North, we service Melbourne&apos;s western suburbs. Select your suburb below for local
             electricians, solar, and air conditioning.
           </p>
-        </div>
+        </Container>
       </div>
 
       {/* Suburb grid */}
-      <div className="mx-auto max-w-screen-lg px-4 pb-16 md:px-8">
+      <Container width="wide" className="pb-16">
         {pages.length > 0 ? (
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {pages.map((page) => (
@@ -133,11 +134,11 @@ export default async function LocationsIndexPage() {
         ) : (
           <p className="text-base-content/70 py-12 text-center">Location pages coming soon.</p>
         )}
-      </div>
+      </Container>
 
       {/* CTA strip */}
       <section aria-labelledby="locations-cta-heading" className="border-primary/10 bg-primary/5 border-t">
-        <div className="mx-auto flex max-w-screen-lg flex-col items-center justify-between gap-6 px-4 py-12 sm:flex-row md:px-8">
+        <Container width="wide" className="flex flex-col items-center justify-between gap-6 py-12 sm:flex-row">
           <div>
             <h2 id="locations-cta-heading" className="text-base-content text-xl font-bold">
               Don&apos;t see your suburb?
@@ -149,7 +150,7 @@ export default async function LocationsIndexPage() {
           <a href={`tel:${phone}`} className="btn btn-primary whitespace-nowrap" aria-label={`Call us on ${phone}`}>
             {phone}
           </a>
-        </div>
+        </Container>
       </section>
     </>
   );

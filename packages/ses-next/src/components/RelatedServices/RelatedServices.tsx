@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+import { Container } from '@/components/Container';
 import { Icon } from '@/components/Icon/Icon';
 import type { ServiceItem } from '@/types';
 
@@ -15,7 +16,7 @@ const getServicePath = (service: ServiceItem): string => {
 
 export function RelatedServices({ services }: RelatedServicesProps) {
   return (
-    <section aria-labelledby="related-services-heading" className="mx-auto mt-12 mb-8 max-w-screen-lg px-4 md:px-8">
+    <Container width="wide" as="section" className="mt-12 mb-8" aria-labelledby="related-services-heading">
       <h2 id="related-services-heading" className="text-base-content mb-6 text-3xl font-bold">
         Specialist Services
       </h2>
@@ -43,6 +44,6 @@ export function RelatedServices({ services }: RelatedServicesProps) {
           </article>
         ))}
       </div>
-    </section>
+    </Container>
   );
 }

@@ -15,6 +15,27 @@ To deploy the Sanity Studio schema, navigate to `packages/ses-content` and run:
 - The app folder should only contain routing components (page.tsx and route.ts)
 - Components that are relevant to a page, should still go in to the components folder
 
+## Layout
+
+Route pages and full-width sections should compose from the shared primitives in
+`src/components/Container.tsx` and `src/components/PageSection.tsx` rather than
+hand-rolling wrapper `className` strings.
+
+- `PageSection` — the `bg-base-100`/`bg-base-200` band with a route page's
+  standard vertical rhythm (`py-6 sm:py-8 lg:py-12`). Use `tone="muted"` for a
+  `bg-base-200` band.
+- `Container` — the horizontal width + padding wrapper (`mx-auto px-4 sm:px-6
+lg:px-8`). Pick a `width`: `narrow` (`max-w-4xl`, e.g. the services hub),
+  `standard` (`max-w-screen-xl`, e.g. FAQ/terms/error pages), `wide`
+  (`max-w-screen-lg`, e.g. prose articles and in-page sections), `expanded`
+  (`max-w-screen-2xl`, e.g. the image gallery), or `full` (no extra cap beyond
+  Tailwind's own `container` breakpoints, e.g. homepage sections nested in
+  `Section`). Use `as` to render a `section`, `article`, or `nav` instead of a
+  `div`, and pass `className` for one-off spacing (e.g. `mt-12 mb-8`) — never
+  re-add a `max-w-*` or `px-*` here.
+- `Section` (homepage-only) still owns the larger `py-16 md:py-24` rhythm for
+  full-bleed sections on `/`; it composes with `Container` the same way.
+
 ## Theming
 
 Semantic theme tokens are the styling contract. Raw Tailwind palette utilities

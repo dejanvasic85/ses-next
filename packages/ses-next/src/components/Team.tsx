@@ -1,4 +1,6 @@
+import { Container } from '@/components/Container';
 import { Heading } from '@/components/Heading';
+import { PageSection } from '@/components/PageSection';
 import { SanityImage } from '@/components/SanityImage';
 import { Icon } from '@/components/Icon/Icon';
 import type { Training } from '@/types';
@@ -20,8 +22,8 @@ export function Team({ blurbs, members, training }: TeamProps) {
 
   return (
     <>
-      <div className="bg-base-200 py-6 sm:py-8 lg:py-12">
-        <div className="mx-auto max-w-screen-xl px-4 md:px-8">
+      <PageSection tone="muted">
+        <Container width="standard">
           <div className="mb-10 md:mb-16">
             <Heading level={2}>Meet our Team</Heading>
             <p className="text-base-content/70 mx-auto max-w-screen-md text-center md:text-lg">{firstBlurb}</p>
@@ -45,7 +47,7 @@ export function Team({ blurbs, members, training }: TeamProps) {
               </div>
             ))}
           </div>
-        </div>
+        </Container>
 
         <div className="mt-12 p-12">
           <p className="text-base-content/70 mx-auto max-w-screen-md text-center md:text-lg">{secondBlurb}</p>
@@ -58,7 +60,7 @@ export function Team({ blurbs, members, training }: TeamProps) {
             </div>
           ))}
         </div>
-      </div>
+      </PageSection>
     </>
   );
 }

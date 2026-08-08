@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 
+import { Container } from '@/components/Container';
+import { PageSection } from '@/components/PageSection';
 import { getFAQs, getSiteSettings } from '@/lib/content/contentService';
 import { safeJsonLd } from '@/lib/structuredData';
 
@@ -46,8 +48,8 @@ export default async function FaqPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }} />
-      <div className="bg-base-100 py-6 sm:py-8 lg:py-12">
-        <div className="container mx-auto max-w-screen-xl px-4 md:px-8">
+      <PageSection>
+        <Container width="standard">
           <div className="mb-10 md:mb-16">
             <h1 className="text-base-content mb-4 text-center text-2xl font-bold md:mb-6 lg:text-3xl">
               Frequently asked questions
@@ -67,8 +69,8 @@ export default async function FaqPage() {
               </div>
             ))}
           </div>
-        </div>
-      </div>
+        </Container>
+      </PageSection>
     </>
   );
 }

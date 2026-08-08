@@ -1,3 +1,5 @@
+import { Container } from '@/components/Container';
+import { PageSection } from '@/components/PageSection';
 import { SanityImage } from '@/components/SanityImage';
 
 interface GalleryImage {
@@ -13,8 +15,8 @@ interface GalleryProps {
 export function Gallery({ imageGallery }: GalleryProps) {
   return (
     <>
-      <div className="bg-base-100 py-6 sm:py-8 lg:py-12">
-        <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
+      <PageSection>
+        <Container width="expanded">
           <h2 className="font-display text-base-content mb-8 text-center text-2xl font-bold md:mb-12 lg:text-3xl">
             Gallery
           </h2>
@@ -39,8 +41,8 @@ export function Gallery({ imageGallery }: GalleryProps) {
               </div>
             ))}
           </div>
-        </div>
-      </div>
+        </Container>
+      </PageSection>
     </>
   );
 }

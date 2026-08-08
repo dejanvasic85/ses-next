@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+import { Container } from '@/components/Container';
 import type { LocationPageNearbySuburbRef } from '@/types';
 
 type ServiceLocationsProps = {
@@ -21,7 +22,7 @@ const getCardSpanClass = (index: number): string => {
  */
 export function ServiceLocations({ serviceName, locations }: ServiceLocationsProps) {
   return (
-    <section aria-labelledby="service-locations-heading" className="mx-auto mt-14 mb-10 max-w-screen-xl px-4 md:px-8">
+    <Container width="standard" as="section" className="mt-14 mb-10" aria-labelledby="service-locations-heading">
       <div className="bg-neutral text-neutral-content relative overflow-hidden rounded-3xl px-6 py-10 shadow-2xl sm:px-8 lg:px-10">
         <div className="bg-secondary/25 absolute -top-16 -right-10 h-44 w-44 rounded-full blur-3xl" />
         <div className="bg-primary/25 absolute -bottom-20 -left-10 h-56 w-56 rounded-full blur-3xl" />
@@ -66,6 +67,6 @@ export function ServiceLocations({ serviceName, locations }: ServiceLocationsPro
           </ul>
         </div>
       </div>
-    </section>
+    </Container>
   );
 }

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { PortableText } from '@portabletext/react';
 
-import { CustomImage } from '@/components';
+import { Container, CustomImage, PageSection } from '@/components';
 import { getTermsAndConditions, getSiteSettings } from '@/lib/content/contentService';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -25,8 +25,8 @@ export default async function TermsPage() {
   }
 
   return (
-    <div className="bg-base-100 py-6 sm:py-8 lg:py-12">
-      <div className="container mx-auto max-w-screen-xl px-4 md:px-8">
+    <PageSection>
+      <Container width="standard">
         <div className="mb-10 md:mb-16">
           <h1 className="text-base-content mb-4 text-center text-2xl font-bold md:mb-6 lg:text-3xl">
             Terms of Service
@@ -42,7 +42,7 @@ export default async function TermsPage() {
             />
           </div>
         </div>
-      </div>
-    </div>
+      </Container>
+    </PageSection>
   );
 }

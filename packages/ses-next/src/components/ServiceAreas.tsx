@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+import { Container } from '@/components/Container';
 import type { ServiceAreaRef } from '@/types';
 
 const sectionTitle = "Serving Melbourne's Western Suburbs";
@@ -12,7 +13,7 @@ export function ServiceAreas({ areas }: ServiceAreasProps) {
   if (areas.length === 0) return null;
 
   return (
-    <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <Container width="wide">
       <div className="flex flex-col items-center gap-6">
         <div className="flex items-center gap-4">
           <span className="bg-base-300 h-px w-12" aria-hidden="true" />
@@ -38,6 +39,6 @@ export function ServiceAreas({ areas }: ServiceAreasProps) {
           ))}
         </ul>
       </div>
-    </div>
+    </Container>
   );
 }

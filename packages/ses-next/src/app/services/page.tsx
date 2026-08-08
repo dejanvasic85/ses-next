@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
+import { Container } from '@/components/Container';
 import { Heading } from '@/components/Heading';
 import { Icon } from '@/components/Icon/Icon';
+import { PageSection } from '@/components/PageSection';
 import { SanityImage } from '@/components/SanityImage';
 import { getAllLocationPages, getServicesHubContent, getSiteSettings, getServices } from '@/lib/content/contentService';
 import { safeJsonLd } from '@/lib/structuredData';
@@ -109,8 +111,8 @@ export default async function ServicesHubPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(collectionPageJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }} />
-      <div className="bg-base-100 py-6 sm:py-8 lg:py-12">
-        <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <PageSection>
+        <Container width="narrow">
           <div className="mx-auto mb-12 max-w-2xl text-center">
             <p className="text-secondary mb-3 text-sm font-semibold tracking-[0.2em] uppercase">Service Directory</p>
             <Heading level={1}>{hubContent.heading ?? 'Our Services'}</Heading>
@@ -173,8 +175,8 @@ export default async function ServicesHubPage() {
               </Link>
             </div>
           </section>
-        </div>
-      </div>
+        </Container>
+      </PageSection>
     </>
   );
 }
