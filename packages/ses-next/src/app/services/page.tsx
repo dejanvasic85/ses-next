@@ -27,41 +27,41 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-type ServiceCardProps = {
+type ServiceRowProps = {
   service: ServiceItem;
 };
 
-function ServiceCard({ service }: ServiceCardProps) {
+function ServiceRow({ service }: ServiceRowProps) {
   const { name, blurb, slug, icon = 'bolt', featuredImage } = service;
 
   return (
-    <article className="group surface-glass relative overflow-hidden rounded-lg transition-transform duration-200 hover:-translate-y-0.5">
+    <article className="group hover:bg-base-200/60 relative flex items-center gap-4 p-5 transition-colors sm:gap-5 sm:p-6">
       <Link href={`/services/${slug}`} className="absolute inset-0 z-10" prefetch={false}>
         <span className="sr-only">View {name} service</span>
       </Link>
-      <div className="flex h-full flex-col justify-between p-6">
-        <div className="space-y-2">
-          <div className="flex items-center gap-3">
-            <div className="bg-primary rounded-full p-2">
-              <Icon name={icon} size="xl" className="text-primary-content" />
-            </div>
-            <h3 className="border-primary border-b-2 text-lg font-semibold">{name}</h3>
-          </div>
-          <p className="text-base-content/70">{blurb}</p>
-        </div>
-        {featuredImage && (
-          <div className="relative mt-4 aspect-video w-full overflow-hidden rounded-lg">
-            <SanityImage
-              src={featuredImage.src}
-              alt={featuredImage.alt}
-              fill
-              className="object-cover object-center transition-all group-hover:scale-105"
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            />
-          </div>
-        )}
-        <span className="text-primary mt-4 inline-block font-medium group-hover:underline">Learn more →</span>
+      <div className="bg-primary flex-none rounded-full p-3">
+        <Icon name={icon} size="lg" className="text-primary-content" />
       </div>
+      <div className="min-w-0 flex-1">
+        <h3 className="border-primary inline-block border-b-2 text-lg font-semibold">{name}</h3>
+        <p className="text-base-content/70 mt-1 text-sm sm:text-base">{blurb}</p>
+      </div>
+      {featuredImage && (
+        <div className="relative hidden h-20 w-28 flex-none overflow-hidden rounded-lg sm:block">
+          <SanityImage
+            src={featuredImage.src}
+            alt={featuredImage.alt}
+            fill
+            className="object-cover object-center transition-transform group-hover:scale-105"
+            sizes="112px"
+          />
+        </div>
+      )}
+      <Icon
+        name="chevron-right"
+        size="md"
+        className="text-base-content/30 group-hover:text-primary flex-none transition-colors group-hover:translate-x-0.5"
+      />
     </article>
   );
 }
@@ -110,61 +110,54 @@ export default async function ServicesHubPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(collectionPageJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }} />
       <div className="bg-base-100 py-6 sm:py-8 lg:py-12">
-        <div className="mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto mb-12 max-w-screen-xl text-center">
-            <h1 className="text-base-content mb-6 text-3xl font-bold sm:text-4xl">
-              {hubContent.heading ?? 'Our Services'}
-            </h1>
+        <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto mb-12 max-w-2xl text-center">
+            <p className="text-secondary mb-3 text-sm font-semibold tracking-[0.2em] uppercase">Service Directory</p>
+            <Heading level={1}>{hubContent.heading ?? 'Our Services'}</Heading>
             {hubContent.intro &&
               hubContent.intro.map((paragraph, index) => (
-                <p key={index} className="text-base-content/70 mb-3 text-lg">
+                <p key={index} className="text-base-content/70 mb-3 text-lg last:mb-0">
                   {paragraph}
                 </p>
               ))}
           </div>
 
-          <div className="mt-12">
-            <Heading level={2}>Our Services</Heading>
-            <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <section aria-labelledby="services-heading" className="mb-16">
+            <Heading level={2} align="left">
+              Browse our services
+            </Heading>
+            <div className="surface-card divide-base-300 rounded-box divide-y overflow-hidden">
               {topLevelServices.map((service) => (
-                <ServiceCard key={service.id} service={service} />
+                <ServiceRow key={service.id} service={service} />
               ))}
-            </div>
-          </div>
-
-          <section aria-labelledby="service-areas-heading" className="mt-16">
-            <div className="mx-auto max-w-screen-xl">
-              <h2
-                id="service-areas-heading"
-                className="text-base-content/80 mb-4 text-center text-2xl font-bold md:mb-6 lg:text-3xl"
-              >
-                Service Areas
-              </h2>
-              <p className="text-base-content/70 mb-4 text-center">
-                We provide electrical services across Melbourne&apos;s western and inner-western suburbs, including:
-              </p>
-              {locationPages.length > 0 && (
-                <ul className="flex flex-wrap items-center justify-center gap-2" aria-label="Service areas">
-                  {locationPages.map(({ id, suburb, slug }) => (
-                    <li key={id}>
-                      <Link
-                        href={`/locations/${slug}`}
-                        className="bg-base-200 text-base-content/80 hover:bg-base-300 hover:text-base-content rounded-full px-3 py-1 text-sm transition-colors"
-                      >
-                        {suburb}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              )}
             </div>
           </section>
 
-          <section aria-labelledby="cta-heading" className="bg-primary/5 mt-16 rounded-xl p-8 text-center">
-            <h2
-              id="cta-heading"
-              className="text-base-content/80 mb-4 text-center text-2xl font-bold md:mb-6 lg:text-3xl"
-            >
+          <section aria-labelledby="service-areas-heading" className="mb-16">
+            <h2 id="service-areas-heading" className="text-base-content mb-4 text-xl font-semibold lg:text-2xl">
+              Service Areas
+            </h2>
+            <p className="text-base-content/70 mb-4">
+              We provide electrical services across Melbourne&apos;s western and inner-western suburbs, including:
+            </p>
+            {locationPages.length > 0 && (
+              <ul className="flex flex-wrap items-center gap-2" aria-label="Service areas">
+                {locationPages.map(({ id, suburb, slug }) => (
+                  <li key={id}>
+                    <Link
+                      href={`/locations/${slug}`}
+                      className="bg-base-200 text-base-content/80 hover:bg-base-300 hover:text-base-content rounded-full px-3 py-1 text-sm transition-colors"
+                    >
+                      {suburb}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+
+          <section aria-labelledby="cta-heading" className="surface-glass rounded-box p-8 text-center">
+            <h2 id="cta-heading" className="text-base-content mb-4 text-xl font-semibold lg:text-2xl">
               Get a Free Quote
             </h2>
             <p className="text-base-content/70 mb-6">
