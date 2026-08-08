@@ -18,6 +18,7 @@ export { ImageCarousel } from './ImageCarousel';
 export { LinkButton } from './LinkButton';
 export { Modal } from './Modal';
 export { Navbar } from './Navbar/Navbar';
+export { PageSection } from './PageSection';
 export { PopSuccess } from './PopSuccess';
 export { Rating } from './Rating';
 export { RelatedServices } from './RelatedServices/RelatedServices';

@@ -13,8 +13,10 @@ import {
   getSiteSettings,
 } from '@/lib/content/contentService';
 import { faqJsonLd, safeJsonLd } from '@/lib/structuredData';
+import { Container } from '@/components/Container';
 import { CustomImage } from '@/components/CustomImage';
 import { ImageCarousel } from '@/components/ImageCarousel';
+import { PageSection } from '@/components/PageSection';
 import { RelatedServices } from '@/components/RelatedServices/RelatedServices';
 import { ServiceLocations } from '@/components/ServiceLocations/ServiceLocations';
 import { SanityImage } from '@/components/SanityImage';
@@ -211,11 +213,11 @@ export default async function ServicePage({ params }: ServicePageProps) {
       )}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }} />
       <ServiceBreadcrumb items={breadcrumbItems} />
-      <div className="bg-base-100 py-6 sm:py-8 lg:py-12">
-        <article className="prose lg:prose-lg mx-auto max-w-screen-lg px-4 md:px-8">
+      <PageSection>
+        <Container width="wide" as="article" className="prose lg:prose-lg">
           <h1 className="text-center">{service.name}</h1>
           {service.content && <PortableText value={service.content} components={portableTextComponents} />}
-        </article>
+        </Container>
         {service.imageGallery && <ImageCarousel images={service.imageGallery} serviceName={service.name} />}
 
         {childServices.length > 0 && <RelatedServices services={childServices} />}
@@ -223,7 +225,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
         {locationPages.length > 0 && <ServiceLocations serviceName={service.name} locations={locationPages} />}
 
         {service.faqs && service.faqs.length > 0 && (
-          <section aria-labelledby="faq-heading" className="mx-auto mt-12 mb-8 max-w-screen-lg px-4 md:px-8">
+          <Container width="wide" as="section" className="mt-12 mb-8" aria-labelledby="faq-heading">
             <h2 id="faq-heading" className="text-base-content mb-6 text-3xl font-bold">
               Frequently Asked Questions
             </h2>
@@ -235,11 +237,11 @@ export default async function ServicePage({ params }: ServicePageProps) {
                 </div>
               ))}
             </dl>
-          </section>
+          </Container>
         )}
 
         {filteredBlogPosts.length > 0 && (
-          <div className="mx-auto mt-12 mb-8 max-w-screen-lg px-4 md:px-8">
+          <Container width="wide" className="mt-12 mb-8">
             <h2 className="text-base-content mb-2 text-3xl font-bold">Related Blog Posts</h2>
             <p className="text-base-content/70 mb-6">Explore our {service.name.toLowerCase()} articles and insights</p>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -277,9 +279,9 @@ export default async function ServicePage({ params }: ServicePageProps) {
                 </Link>
               ))}
             </div>
-          </div>
+          </Container>
         )}
-      </div>
+      </PageSection>
     </>
   );
 }

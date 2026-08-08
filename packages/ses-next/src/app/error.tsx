@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 
+import { Container, PageSection } from '@/components';
+
 export default function ErrorPage({
   error,
   unstable_retry,
@@ -10,8 +12,8 @@ export default function ErrorPage({
   unstable_retry: () => void;
 }) {
   return (
-    <div className="bg-base-100 py-6 sm:py-8 lg:py-12">
-      <div className="container mx-auto max-w-screen-xl px-4 md:px-8">
+    <PageSection>
+      <Container width="standard">
         <div className="mb-10 md:mb-16">
           <h1 className="text-base-content mb-4 text-center text-2xl font-bold md:mb-6 lg:text-3xl">Server Error</h1>
           <p className="text-base-content text-center text-lg">
@@ -27,7 +29,7 @@ export default function ErrorPage({
             </button>
           </div>
         </div>
-      </div>
-    </div>
+      </Container>
+    </PageSection>
   );
 }

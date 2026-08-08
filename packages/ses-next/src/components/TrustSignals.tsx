@@ -1,3 +1,4 @@
+import { Container } from '@/components/Container';
 import { Icon } from '@/components/Icon/Icon';
 import type { TrustSignal } from '@/types';
 
@@ -9,7 +10,7 @@ export function TrustSignals({ signals }: TrustSignalsProps) {
   if (signals.length === 0) return null;
 
   return (
-    <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <Container width="wide">
       <ul className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         {signals.map((signal) => (
           <li
@@ -26,6 +27,6 @@ export function TrustSignals({ signals }: TrustSignalsProps) {
           </li>
         ))}
       </ul>
-    </div>
+    </Container>
   );
 }

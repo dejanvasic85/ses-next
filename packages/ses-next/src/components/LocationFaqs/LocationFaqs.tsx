@@ -1,3 +1,4 @@
+import { Container } from '@/components/Container';
 import type { LocationPageFaq } from '@/types';
 
 type LocationFaqsProps = {
@@ -7,7 +8,7 @@ type LocationFaqsProps = {
 
 export function LocationFaqs({ faqs, suburb }: LocationFaqsProps) {
   return (
-    <section aria-labelledby="location-faq-heading" className="mx-auto mt-12 mb-8 max-w-screen-lg px-4 md:px-8">
+    <Container width="wide" as="section" className="mt-12 mb-8" aria-labelledby="location-faq-heading">
       <h2 id="location-faq-heading" className="text-base-content mb-6 text-3xl font-bold">
         Frequently Asked Questions — {suburb}
       </h2>
@@ -19,6 +20,6 @@ export function LocationFaqs({ faqs, suburb }: LocationFaqsProps) {
           </div>
         ))}
       </dl>
-    </section>
+    </Container>
   );
 }

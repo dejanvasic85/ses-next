@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+import { Container } from '@/components/Container';
 import type { LocationPageNearbySuburbRef } from '@/types';
 
 type LocationNearbySuburbsProps = {
@@ -9,7 +10,7 @@ type LocationNearbySuburbsProps = {
 
 export function LocationNearbySuburbs({ suburb, nearbySuburbs }: LocationNearbySuburbsProps) {
   return (
-    <section aria-labelledby="nearby-suburbs-heading" className="mx-auto mt-16 mb-12 max-w-5xl px-4 md:px-8">
+    <Container width="wide" as="section" className="mt-16 mb-12" aria-labelledby="nearby-suburbs-heading">
       <div className="surface-card bg-ambient relative overflow-hidden rounded-xl px-6 py-8 sm:px-8 lg:px-10">
         <div className="relative grid gap-8 lg:grid-cols-2 lg:items-start">
           <div className="max-w-xl">
@@ -56,6 +57,6 @@ export function LocationNearbySuburbs({ suburb, nearbySuburbs }: LocationNearbyS
           </div>
         </div>
       </div>
-    </section>
+    </Container>
   );
 }

@@ -7,7 +7,9 @@ import type { PortableTextComponents } from '@portabletext/react';
 
 import { getAllLocationPages, getLocationPageBySlug, getSiteSettings } from '@/lib/content/contentService';
 import { faqJsonLd, safeJsonLd } from '@/lib/structuredData';
+import { Container } from '@/components/Container';
 import { CustomImage } from '@/components/CustomImage';
+import { PageSection } from '@/components/PageSection';
 import { ServiceBreadcrumb } from '@/components/ServiceBreadcrumb/ServiceBreadcrumb';
 import { LocationNearbySuburbs } from '@/components/LocationNearbySuburbs/LocationNearbySuburbs';
 import { LocationServices } from '@/components/LocationServices/LocationServices';
@@ -130,11 +132,11 @@ export default async function LocationPage({ params }: LocationPageProps) {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd(page.faqs)) }} />
       )}
       <ServiceBreadcrumb items={breadcrumbItems} />
-      <div className="bg-base-100 py-6 sm:py-8 lg:py-12">
-        <article className="prose lg:prose-lg mx-auto max-w-screen-lg px-4 md:px-8">
+      <PageSection>
+        <Container width="wide" as="article" className="prose lg:prose-lg">
           <h1 className="text-center">Electrician {page.suburb}</h1>
           {page.intro && <PortableText value={page.intro} components={portableTextComponents} />}
-        </article>
+        </Container>
 
         {page.services.length > 0 && <LocationServices services={page.services} />}
 
@@ -143,7 +145,7 @@ export default async function LocationPage({ params }: LocationPageProps) {
         )}
 
         {page.faqs.length > 0 && <LocationFaqs faqs={page.faqs} suburb={page.suburb} />}
-      </div>
+      </PageSection>
     </>
   );
 }

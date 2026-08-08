@@ -1,5 +1,7 @@
 import Link from 'next/link';
 
+import { Container } from '@/components/Container';
+
 interface BreadcrumbItem {
   name: string;
   item?: string;
@@ -11,7 +13,7 @@ interface ServiceBreadcrumbProps {
 
 export function ServiceBreadcrumb({ items }: ServiceBreadcrumbProps) {
   return (
-    <nav aria-label="Breadcrumb" className="mx-auto max-w-screen-lg px-4 pt-4 md:px-8">
+    <Container width="wide" as="nav" className="pt-4" aria-label="Breadcrumb">
       <ol className="text-base-content/70 flex flex-wrap items-center gap-1 text-sm">
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
@@ -31,6 +33,6 @@ export function ServiceBreadcrumb({ items }: ServiceBreadcrumbProps) {
           );
         })}
       </ol>
-    </nav>
+    </Container>
   );
 }
