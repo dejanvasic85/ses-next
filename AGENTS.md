@@ -27,10 +27,12 @@ hand-rolling wrapper `className` strings.
 - `Container` — the horizontal width + padding wrapper (`mx-auto px-4 sm:px-6
 lg:px-8`). Pick a `width`: `narrow` (`max-w-4xl`, e.g. the services hub),
   `standard` (`max-w-screen-xl`, e.g. FAQ/terms/error pages), `wide`
-  (`max-w-screen-lg`, e.g. prose articles and in-page sections), or `full`
-  (no cap, e.g. homepage sections nested in `Section`). Use `as` to render a
-  `section`, `article`, or `nav` instead of a `div`, and pass `className` for
-  one-off spacing (e.g. `mt-12 mb-8`) — never re-add a `max-w-*` or `px-*` here.
+  (`max-w-screen-lg`, e.g. prose articles and in-page sections), `expanded`
+  (`max-w-screen-2xl`, e.g. the image gallery), or `full` (no extra cap beyond
+  Tailwind's own `container` breakpoints, e.g. homepage sections nested in
+  `Section`). Use `as` to render a `section`, `article`, or `nav` instead of a
+  `div`, and pass `className` for one-off spacing (e.g. `mt-12 mb-8`) — never
+  re-add a `max-w-*` or `px-*` here.
 - `Section` (homepage-only) still owns the larger `py-16 md:py-24` rhythm for
   full-bleed sections on `/`; it composes with `Container` the same way.
 

@@ -1,3 +1,4 @@
+import { Container } from '@/components/Container';
 import { PageSection } from '@/components/PageSection';
 import { SanityImage } from '@/components/SanityImage';
 
@@ -15,7 +16,7 @@ export function Gallery({ imageGallery }: GalleryProps) {
   return (
     <>
       <PageSection>
-        <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
+        <Container width="expanded">
           <h2 className="font-display text-base-content mb-8 text-center text-2xl font-bold md:mb-12 lg:text-3xl">
             Gallery
           </h2>
@@ -40,7 +41,7 @@ export function Gallery({ imageGallery }: GalleryProps) {
               </div>
             ))}
           </div>
-        </div>
+        </Container>
       </PageSection>
     </>
   );

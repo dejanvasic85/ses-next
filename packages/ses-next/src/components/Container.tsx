@@ -1,7 +1,7 @@
 import React from 'react';
 import { clsx } from 'clsx';
 
-type ContainerWidth = 'full' | 'narrow' | 'standard' | 'wide';
+type ContainerWidth = 'full' | 'narrow' | 'standard' | 'wide' | 'expanded';
 type ContainerElement = 'div' | 'article' | 'section' | 'nav';
 
 interface ContainerOwnProps {
@@ -18,6 +18,7 @@ const widthStyles: Record<ContainerWidth, string> = {
   narrow: 'max-w-4xl',
   standard: 'max-w-screen-xl',
   wide: 'max-w-screen-lg',
+  expanded: 'max-w-screen-2xl',
 };
 
 export function Container({ width = 'full', as: Tag = 'div', className, children, ...rest }: ContainerProps) {
