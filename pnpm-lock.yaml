@@ -85,8 +85,8 @@ importers:
         specifier: 1.62.1
         version: 1.62.1
       '@portabletext/react':
-        specifier: 7.0.1
-        version: 7.0.1(react@19.2.8)
+        specifier: 8.0.0
+        version: 8.0.0(react@19.2.8)
       '@sanity/image-url':
         specifier: 2.1.1
         version: 2.1.1
@@ -2061,6 +2061,12 @@ packages:
     peerDependencies:
       react: ^19
 
+  '@portabletext/react@8.0.0':
+    resolution: {integrity: sha512-xXWm0LvJrWPqv1BI2wR95q/+YNQW2hFl0wG26hoF0YUoQFhXz5jWZHlsvTtLx/IkFcPd+LCsfoYRgEHnLJslIQ==}
+    engines: {node: '>=22.12'}
+    peerDependencies:
+      react: ^19
+
   '@portabletext/sanity-bridge@3.2.5':
     resolution: {integrity: sha512-tLX7SQJzV2IUTCPRFMDUgZNujiti2/IT8aRTHaHsHo5oIxKcRaKidfM9ZeCt6L1TgtOELivxd3szytWTfYeddQ==}
     engines: {node: '>=20.19 <22 || >=22.12'}
@@ -2076,6 +2082,10 @@ packages:
   '@portabletext/toolkit@5.0.2':
     resolution: {integrity: sha512-Njc1LE1PMJkTx/wEPqZ6sOWGgFgX2B47fxpOQ/Ia4ByhsZoA5Sq8dNvvV5F052j/xE8TbOLiBEjS848FkKADDQ==}
     engines: {node: '>=20.19 <22 || >=22.12'}
+
+  '@portabletext/toolkit@6.0.0':
+    resolution: {integrity: sha512-+qSqe0KnefuZfNLUhzQRTpbSKxslZof+3pNwxg0DC8dfZ1yLKyyBUw6iR7EpDL+SJlrnpiBfEcfmEuFitK1NSQ==}
+    engines: {node: '>=22.12'}
 
   '@portabletext/types@4.0.2':
     resolution: {integrity: sha512-djfIGU9n6DRrunlvj2nIDAp17URo/nA4jSXGvf+Gupx8NLLy9fmJBZ3GL8yhqn9lSVc+cKCharjOa3aOBnWbRw==}
@@ -7582,7 +7592,7 @@ snapshots:
   '@codemirror/language@6.12.4':
     dependencies:
       '@codemirror/state': 6.7.1
-      '@codemirror/view': 6.43.6
+      '@codemirror/view': 6.43.8
       '@lezer/common': 1.5.2
       '@lezer/highlight': 1.2.3
       '@lezer/lr': 1.4.10
@@ -7591,7 +7601,7 @@ snapshots:
   '@codemirror/lint@6.9.6':
     dependencies:
       '@codemirror/state': 6.7.1
-      '@codemirror/view': 6.43.6
+      '@codemirror/view': 6.43.8
       crelt: 1.0.6
 
   '@codemirror/search@6.7.1':
@@ -7608,7 +7618,7 @@ snapshots:
     dependencies:
       '@codemirror/language': 6.12.4
       '@codemirror/state': 6.7.1
-      '@codemirror/view': 6.43.6
+      '@codemirror/view': 6.43.8
       '@lezer/highlight': 1.2.3
 
   '@codemirror/view@6.43.6':
@@ -8641,6 +8651,12 @@ snapshots:
       '@portabletext/types': 4.0.2
       react: 19.2.8
 
+  '@portabletext/react@8.0.0(react@19.2.8)':
+    dependencies:
+      '@portabletext/toolkit': 6.0.0
+      '@portabletext/types': 4.0.2
+      react: 19.2.8
+
   '@portabletext/sanity-bridge@3.2.5(@types/react@19.2.18)':
     dependencies:
       '@portabletext/schema': 2.2.4
@@ -8657,6 +8673,10 @@ snapshots:
       '@portabletext/types': 4.0.2
 
   '@portabletext/toolkit@5.0.2':
+    dependencies:
+      '@portabletext/types': 4.0.2
+
+  '@portabletext/toolkit@6.0.0':
     dependencies:
       '@portabletext/types': 4.0.2
 
@@ -9099,7 +9119,7 @@ snapshots:
 
   '@sanity/message-protocol@0.23.0':
     dependencies:
-      '@sanity/comlink': 4.0.1
+      '@sanity/comlink': 4.0.3
 
   '@sanity/message-protocol@0.24.0':
     dependencies:
@@ -9295,7 +9315,7 @@ snapshots:
     dependencies:
       '@sanity/bifur-client': 1.0.0
       '@sanity/client': 7.26.2
-      '@sanity/comlink': 4.0.1
+      '@sanity/comlink': 4.0.3
       '@sanity/diff-match-patch': 3.2.0
       '@sanity/diff-patch': 6.0.0
       '@sanity/id-utils': 1.0.0
@@ -9304,7 +9324,7 @@ snapshots:
       '@sanity/message-protocol': 0.23.0
       '@sanity/mutate': 0.18.1(xstate@5.32.5)
       '@sanity/telemetry': 1.1.0(react@19.2.8)
-      '@sanity/types': 6.9.1(@types/react@19.2.18)
+      '@sanity/types': 6.9.2(@types/react@19.2.18)
       groq: 3.88.1-typegen-experimental.0
       groq-js: 1.30.3(supports-color@8.1.1)
       reselect: 5.2.0
@@ -10450,7 +10470,7 @@ snapshots:
       '@codemirror/lint': 6.9.6
       '@codemirror/search': 6.7.1
       '@codemirror/state': 6.7.1
-      '@codemirror/view': 6.43.6
+      '@codemirror/view': 6.43.8
 
   color-convert@2.0.1:
     dependencies:
