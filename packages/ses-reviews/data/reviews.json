@@ -1,6 +1,19 @@
 {
   "reviews": [
     {
+      "id": "places/ChIJaaS9pMFn1moR6nbln1twd9A/reviews/Ci9DQUlRQUNvZENodHljRjlvT2pkS2NHVmlaV2hmUlZwRE9GbHljREZMTnpONllrRRAB",
+      "url": "https://www.google.com/maps/contrib/107362272472912610634/reviews",
+      "reviewer": {
+        "profileUrl": "https://www.google.com/maps/contrib/107362272472912610634/reviews",
+        "profilePhotoUrl": "https://lh3.googleusercontent.com/a/ACg8ocKJ40HhNFP-Ws9SYM7A_Zk54exlKN0prlSO-2PUIVc_U0r-dw=s128-c0x00000000-cc-rp-mo",
+        "displayName": "Ghasem Estabraghi"
+      },
+      "comment": "I highly recommend Storm Electrical Solutions. After having a very bad experience with a previous electrician who couldn't complete the power upgrade for my shop, Storm Electrical Solutions took on the job immediately and got started straight away. Thanks to their fast response and professionalism, my business was able to continue operating without unnecessary downtime.\nThe team was reliable, highly skilled, professional, and easy to deal with throughout the entire project. The quality of their work was excellent, and they kept me informed every step of the way.\nIf you're looking for an electrician you can trust, I wouldn't hesitate to recommend Storm Electrical Solutions for any commercial or residential electrical work. Thank you for the outstanding service!",
+      "starRating": 5,
+      "date": "a month ago",
+      "publishTime": "2026-07-02T05:57:16.268965226Z"
+    },
+    {
       "id": "places/ChIJaaS9pMFn1moR6nbln1twd9A/reviews/Ci9DQUlRQUNvZENodHljRjlvT2toaVdFOHphSFkyTmtrNVJqVktkVlJsWWt0dVJFRRAB",
       "url": "https://www.google.com/maps/contrib/106147482982424169086/reviews",
       "reviewer": {
