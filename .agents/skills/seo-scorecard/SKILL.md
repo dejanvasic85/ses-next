@@ -62,10 +62,12 @@ project memory.
 Needed, both 28-day range matching the report window:
 
 **Google Search Console:**
+
 - `Queries.csv` — per-query clicks, impressions, CTR, position
 - `Pages.csv` — per-URL clicks, impressions, CTR, position
 
 **GA4:**
+
 - **Acquisition** report (Reports → Acquisition → Traffic acquisition, or "User acquisition by
   channel") — session/user counts by channel, to see the organic-vs-direct-vs-referral mix
 - **Events** report (Reports → Engagement → Events) — counts for whatever the site's lead-tracking
@@ -79,6 +81,7 @@ insisting on a rigid layout.
 ### Step 3 — Compute the headline numbers
 
 From `Queries.csv`, compute (don't eyeball — use a script):
+
 - Total clicks, total impressions, blended CTR = clicks/impressions
 - Impression-weighted average position = Σ(impressions × position) / Σ(impressions)
 
@@ -114,7 +117,7 @@ document still had an empty field falling back to stale content, and the keyword
 
 **b. Match commit/change dates against the report window, not just "what happened this month."**
 On-page content changes typically take 4–6 weeks to surface in rankings. A ranking movement inside
-this month's window is usually caused by work that shipped *before* the window opened, not work that
+this month's window is usually caused by work that shipped _before_ the window opened, not work that
 shipped during it. Check `git log` (or the CMS's edit history) dates explicitly:
 
 ```bash
@@ -190,7 +193,7 @@ file where it'll get missed next time.
 - The tracked keyword set should be revisited periodically: promote anything that's newly ranking well
   and holds, retire anything structurally dead, add a fresh near-miss candidate from the latest export.
 - If GA4 event names differ from the reference list above, use whatever the project's actual
-  conversion events are — the GSC/GA4 metric *shapes* here are the pattern to follow, not the literal
+  conversion events are — the GSC/GA4 metric _shapes_ here are the pattern to follow, not the literal
   event names.
 - This skill produces one persisted file per month. Resist the urge to also keep the raw exports
   "just in case" — the whole point of the discipline is that the scorecard is the trend line, not the
