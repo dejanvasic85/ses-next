@@ -50,8 +50,8 @@ the user if genuinely unclear.
 Default to a 28-day window ending today. Confirm the resolved range in one line, e.g. "Writing the
 August 2026 scorecard, 28-day window ending 2026-08-24."
 
-Read the most recent prior scorecard in `scorecards/` to diff against, and read `_template.md` for
-section structure.
+Read the most recent prior scorecard in `docs/seo-geo/scorecards/` to diff against, and read
+`_template.md` for section structure.
 
 ### Step 2 — Get the raw exports
 
@@ -74,8 +74,8 @@ Needed, both 28-day range matching the report window:
   events are (e.g. `generate_lead`, `first_time_phone_call`, `repeat_phone_call`, `form_start`) — this
   is the north-star metric, more important than raw traffic
 
-Tell the user exactly where to drop the files (the dated `reports/<YYYY-MM-DD>/` folder). Exact
-subfolder structure or filenames don't matter — find and read whatever lands there rather than
+Tell the user exactly where to drop the files (the dated `docs/seo-geo/reports/<YYYY-MM-DD>/` folder).
+Exact subfolder structure or filenames don't matter — find and read whatever lands there rather than
 insisting on a rigid layout.
 
 ### Step 3 — Compute the headline numbers
@@ -138,7 +138,7 @@ git log --oneline --since="<window-start>" --until="<window-end>"
 ### Step 6 — Write the scorecard
 
 Copy `_template.md`'s structure (or the most recent month's file, since the template may lag the
-structure that's evolved in practice) into `scorecards/<YYYY-MM>.md`:
+structure that's evolved in practice) into `docs/seo-geo/scorecards/<YYYY-MM>.md`:
 
 ```yaml
 ---
