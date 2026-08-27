@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "seo-scorecard": {
+      "source": "dejanvasic85/skills",
+      "sourceType": "github",
+      "skillPath": "seo-scorecard/SKILL.md",
+      "computedHash": "c48163ca6b7eb2ea8f4024ab6e207d42e7a7f2658785e83fc23de196f70c9e7a"
+    }
+  }
+}
