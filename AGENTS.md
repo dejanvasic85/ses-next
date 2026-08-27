@@ -1,5 +1,22 @@
 # SES - Storm Electrical Solutions
 
+## Communication style
+
+All writing aimed at a human reader — chat responses, PR descriptions, commit
+messages, code comments, docs — must follow the plain language format defined
+in ISO 24495-1:2023. This does not change how you reason through a task, only
+how you write the words a person reads.
+
+- Write for the reader: use words and a structure they already understand
+- One idea per sentence; prefer short sentences over long, clause-heavy ones
+- Prefer common, everyday words over jargon, legalese, or unnecessarily formal
+  language; when a technical term is required, use it plainly without padding
+- Use active voice and name the actor (e.g. "run the build" not "the build
+  should be run")
+- Organize content so the reader can find what they need, understand it, and
+  act on it without re-reading
+- Say things once — avoid restating the same point in different words
+
 ## Commands
 
 This is a monorepo with multiple apps so each command should target specific workspace

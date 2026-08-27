@@ -1,14 +1,14 @@
 # SEO & GEO Tracking
 
 This folder holds the ongoing measurement loop for SES Melbourne's organic search and
-generative-engine visibility. Its job is to answer one question each month: **did the needle move,
+generative-engine visibility. Each month it answers one question: **did search visibility improve,
 and what should we do next?**
 
 ## Why this exists
 
-For months, SEO/GEO work shipped with no persistent way to tell whether it had impact. Raw report
-exports were downloaded twice (March and April 2026) but never distilled into a trend, then were lost
-in a docs reorg. This structure fixes that: **scorecards persist; raw data is disposable.**
+For months, SEO/GEO work shipped with no lasting way to tell whether it had impact. We downloaded raw
+report exports twice (March and April 2026) but never turned them into a trend, then lost them in a
+docs reorg. This structure fixes that: **scorecards persist; raw data is disposable.**
 
 ## The monthly ritual
 
@@ -24,7 +24,7 @@ in a docs reorg. This structure fixes that: **scorecards persist; raw data is di
    and produce `scorecards/<YYYY-MM>.md` from the template. It diffs against the previous scorecard
    with ▲/▼, attributes movement to specific work, and sets next month's focus.
 
-3. **Delete the raw CSVs** once the scorecard is written. The scorecard is the durable artifact.
+3. **Delete the raw CSVs** once the scorecard is written. The scorecard is the permanent record.
 
 ## What we track
 
