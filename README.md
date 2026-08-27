@@ -1,14 +1,14 @@
 # Storm electrical services landing page
 
-This is a play around home project for a friend's website.
+This is a personal project built for a friend's website.
 
-It was used to experiment with [Sanity IO](https://www.sanity.io/) and [Nextjs](https://nextjs.org/) deployed to vercel.
+It started as an experiment with [Sanity](https://www.sanity.io/) and [Next.js](https://nextjs.org/), deployed on Vercel.
 
 ## How does it work?
 
-Nextjs uses static site generation to build the pages from the content in Sanity. During the build, it would query the content API and generate the pages.
+Next.js statically generates the pages from content stored in Sanity. During the build, it queries the content API and builds each page.
 
-The schema for the content is configured first in source code within ses-content (sanity project). Once ready, the sanity studio can be launched the edit as well as publish the content.
+The content schema is defined first in code, in the `ses-content` package (the Sanity project). Once the schema is ready, launch Sanity Studio to edit and publish content.
 
 ## Getting started
 
@@ -20,7 +20,7 @@ npm install
 
 ### Running locally
 
-This project makes use of the npm workspaces so each sub repo has scripts for building and running.
+This project uses npm workspaces, so each package has its own scripts for building and running.
 
 Starting the sanity studio editor:
 
@@ -37,27 +37,27 @@ npm run dev -w ses-next
 ## Deploying
 
 **Website:**
-The project is deployed to vercel. It uses trunk based development where every main branch is pushed to production.
+The site deploys to Vercel using trunk-based development: every push to `main` goes straight to production.
 
 **Sanity studio:**
-The sanity studio is deployed manually using the sanity cli.
+Deploy Sanity Studio manually with the Sanity CLI.
 
-Make the required schema changes in the content project and then deploy it straight to production using the following command.
+Make the schema changes in the content project, then deploy straight to production with:
 
 ```sh
 npm run deploy:content
 ```
 
-We don't use any other development database at the moment so just make sure that the content schema is backward compatible.
+There's no separate development database, so keep the content schema backward compatible.
 
 ## Google reviews
 
-The google reviews are not managed by content and instead they need to be fetched using puppeteer.
+Google reviews aren't managed in Sanity — fetch them with Puppeteer instead.
 
-To update reviews run the following command:
+To update reviews, run:
 
 ```sh
 npm run update:reviews
 ```
 
-This should update the data.json file in the ses-reviews package which is then used by the nextjs App during build time to update the google reviews content.
+This updates `data.json` in the `ses-reviews` package, which the Next.js app reads at build time to populate the Google reviews content.
