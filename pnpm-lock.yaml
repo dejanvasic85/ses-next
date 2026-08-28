@@ -30,11 +30,11 @@ importers:
   packages/ses-content:
     dependencies:
       '@sanity/client':
-        specifier: 8.2.0
-        version: 8.2.0
+        specifier: 8.3.0
+        version: 8.3.0
       '@sanity/import':
         specifier: 6.0.4
-        version: 6.0.4(@sanity/client@8.2.0)(@types/react@19.2.18)(supports-color@8.1.1)
+        version: 6.0.4(@sanity/client@8.3.0)(@types/react@19.2.18)(supports-color@8.1.1)
       '@sanity/vision':
         specifier: 6.11.0
         version: 6.11.0(@babel/runtime@7.29.7)(@codemirror/lint@6.9.6)(@codemirror/theme-one-dark@6.1.3)(codemirror@6.0.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sanity@6.11.0(@babel/core@7.29.7(supports-color@8.1.1))(@babel/runtime@7.29.7)(@noble/hashes@2.2.0)(@rolldown/plugin-babel@0.2.3(@babel/core@7.29.7(supports-color@8.1.1))(@babel/runtime@7.29.7)(rolldown@1.2.2)(vite@8.2.1(@types/node@26.4.0)(esbuild@0.28.0)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0)))(@sanity/sdk@3.0.0-rc.1(@types/react@19.2.18)(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8))(xstate@5.32.5))(@types/node@26.4.0)(@types/react-dom@19.2.5(@types/react@19.2.18))(@types/react@19.2.18)(esbuild@0.28.0)(jiti@2.7.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(rolldown@1.2.2)(styled-components@6.5.3(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(supports-color@8.1.1)(typescript@6.0.3))(styled-components@6.5.3(react-dom@19.2.8(react@19.2.8))(react@19.2.8))
@@ -73,8 +73,8 @@ importers:
   packages/ses-next:
     dependencies:
       '@aws-sdk/client-ses':
-        specifier: 3.1118.0
-        version: 3.1118.0
+        specifier: 3.1119.0
+        version: 3.1119.0
       '@fontsource-variable/onest':
         specifier: 5.3.0
         version: 5.3.0
@@ -267,8 +267,8 @@ packages:
     resolution: {integrity: sha512-1B8mZ79ySqlTEfSQ87KZ0XkmTOKQFMO3lUYUGUtwNTUncJINr6nhRWEjk128oBWwEQnpJ7NfpDPjdfg1ICe3xw==}
     engines: {node: '>=16'}
 
-  '@aws-sdk/client-ses@3.1118.0':
-    resolution: {integrity: sha512-qamd2FQKRgdj/2ipytnuvHzVzwB49PVbYoC77+Ibf/jlJu9HOaNEvMjKtnDOxo0WmIe8bCZ5C4CVSS7MipmK/w==}
+  '@aws-sdk/client-ses@3.1119.0':
+    resolution: {integrity: sha512-A1fqlDJZP/VZfyLdA+TNdHLFJ2hJ1YKmRQcv1UMvILBBHnkcjEIrTdJHuT2fwnNE+XNls6kKVn9Rx4DUXoQl7w==}
     engines: {node: '>=20.0.0'}
 
   '@aws-sdk/core@3.977.9':
@@ -2354,8 +2354,8 @@ packages:
     resolution: {integrity: sha512-iEkGiHbrxCnT/A30A6pH+vX4otP3lLp935Vwuv0/YrnETxrKCn6PnsZU+TfTm6ZEZ9kZGs8wKP5yBLmZw5S6OQ==}
     engines: {node: '>=20'}
 
-  '@sanity/client@8.2.0':
-    resolution: {integrity: sha512-SK2o8uh9ayAYAHJtKvd3r78Y5QHlV6RA1H249rYXtm71rdvp4dVvQyf3E/QtYVaeIhrWufK1Mh7sbX6FDVLtWQ==}
+  '@sanity/client@8.3.0':
+    resolution: {integrity: sha512-h4Xk8Xb91vbBpgbLNqQ8Wc37W4rFE4Rc9lcsC01XaEb2dDVp/B5EtvgKCRR5HmVfVcMVyiw4+r+Qmrr+wtjJ/g==}
     engines: {node: '>=22.12.0'}
 
   '@sanity/codegen@8.0.0':
@@ -4325,15 +4325,6 @@ packages:
   get-it@8.8.3:
     resolution: {integrity: sha512-IfkbWqOGO2kd2Ccgiz/NIzk3bcwjtVqBm3RNa3j/veHg2q7c1DgS3EXrCrvIWH0jbNTbhkdblnxBP7Dm8CiH+A==}
     engines: {node: '>=14.0.0'}
-
-  get-it@9.5.0:
-    resolution: {integrity: sha512-99lU0uwyslDOTwYkmiPk9VSpd6Nw/iYQ0hFJU1Vz8MO+b11dxAiuK7Wzpzo2+KyQ+3jeq79BNetfEdaXBWd7CQ==}
-    engines: {node: '>=22.12.0'}
-    peerDependencies:
-      vitest: '>=2.0.0'
-    peerDependenciesMeta:
-      vitest:
-        optional: true
 
   get-it@9.5.1:
     resolution: {integrity: sha512-XCVgepH7ROA/VEW4iaorxII3ZqQt7bqNhRNdeOklqwWsl7iGuJCGL7jxkUzcWVpK5zsYr0WaMqeXrIfeL02Uig==}
@@ -6832,7 +6823,7 @@ snapshots:
 
   '@aws-lite/ssm@0.2.5': {}
 
-  '@aws-sdk/client-ses@3.1118.0':
+  '@aws-sdk/client-ses@3.1119.0':
     dependencies:
       '@aws-sdk/core': 3.977.9
       '@aws-sdk/credential-provider-node': 3.972.81
@@ -8996,7 +8987,7 @@ snapshots:
 
   '@sanity/access-ui@6.11.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(styled-components@6.5.3(react-dom@19.2.8(react@19.2.8))(react@19.2.8))':
     dependencies:
-      '@sanity/client': 8.2.0
+      '@sanity/client': 8.3.0
       '@sanity/icons': 5.2.1(react@19.2.8)
       '@sanity/ui': 4.0.6(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(styled-components@6.5.3(react-dom@19.2.8(react@19.2.8))(react@19.2.8))
       react: 19.2.8
@@ -9131,10 +9122,10 @@ snapshots:
     dependencies:
       '@inquirer/prompts': 8.5.2(@types/node@26.4.0)
       '@oclif/core': 4.13.5
-      '@sanity/client': 8.2.0
+      '@sanity/client': 8.3.0
       boxen: 8.0.1
       empathic: 2.0.1
-      get-it: 9.5.0
+      get-it: 9.5.1
       get-tsconfig: 4.14.0
       import-meta-resolve: 4.2.0
       jiti: 2.7.0
@@ -9168,10 +9159,10 @@ snapshots:
     dependencies:
       '@inquirer/prompts': 8.5.2(@types/node@26.4.0)
       '@oclif/core': 4.13.5
-      '@sanity/client': 8.2.0
+      '@sanity/client': 8.3.0
       boxen: 8.0.1
       empathic: 2.0.1
-      get-it: 9.5.0
+      get-it: 9.5.1
       get-tsconfig: 4.14.0
       import-meta-resolve: 4.2.0
       jiti: 2.7.0
@@ -9208,13 +9199,13 @@ snapshots:
       '@oclif/plugin-not-found': 3.2.88(@types/node@26.4.0)
       '@sanity/cli-build': 5.3.1(@babel/core@7.29.7(supports-color@8.1.1))(@babel/runtime@7.29.7)(@noble/hashes@2.2.0)(@types/node@26.4.0)(@types/react@19.2.18)(esbuild@0.28.0)(jiti@2.7.0)(rolldown@1.2.2)(tsx@4.23.12)(typescript@6.0.3)(yaml@2.9.0)
       '@sanity/cli-core': 3.3.0(@noble/hashes@2.2.0)(@types/node@26.4.0)(esbuild@0.28.0)(yaml@2.9.0)
-      '@sanity/client': 8.2.0
+      '@sanity/client': 8.3.0
       '@sanity/codegen': 8.0.0(react@19.2.8)(supports-color@8.1.1)
       '@sanity/descriptors': 1.3.0
       '@sanity/export': 6.2.0(supports-color@8.1.1)
       '@sanity/generate-help-url': 4.0.0
       '@sanity/id-utils': 1.0.0
-      '@sanity/import': 6.0.4(@sanity/client@8.2.0)(@types/react@19.2.18)(supports-color@8.1.1)
+      '@sanity/import': 6.0.4(@sanity/client@8.3.0)(@types/react@19.2.18)(supports-color@8.1.1)
       '@sanity/migrate': 8.0.2(@types/react@19.2.18)(supports-color@8.1.1)(xstate@5.32.5)
       '@sanity/runtime-cli': 17.7.1(@babel/core@7.29.7(supports-color@8.1.1))(@babel/runtime@7.29.7)(@noble/hashes@2.2.0)(@types/node@26.4.0)(@types/react@19.2.18)(esbuild@0.28.0)(rolldown@1.2.2)(tsx@4.23.12)(typescript@6.0.3)(yaml@2.9.0)
       '@sanity/schema': 6.10.1(@types/react@19.2.18)
@@ -9305,11 +9296,10 @@ snapshots:
       nanoid: 3.3.17
       rxjs: 7.8.2
 
-  '@sanity/client@8.2.0':
+  '@sanity/client@8.3.0':
     dependencies:
       eventsource: 5.1.0
-      get-it: 9.5.0
-      nanoid: 6.0.1
+      get-it: 9.5.1
       obug: 2.1.4
       rxjs: 7.8.2
     transitivePeerDependencies:
@@ -9420,10 +9410,10 @@ snapshots:
     dependencies:
       '@sanity/signed-urls': 2.0.4
 
-  '@sanity/import@6.0.4(@sanity/client@8.2.0)(@types/react@19.2.18)(supports-color@8.1.1)':
+  '@sanity/import@6.0.4(@sanity/client@8.3.0)(@types/react@19.2.18)(supports-color@8.1.1)':
     dependencies:
       '@sanity/asset-utils': 2.3.0
-      '@sanity/client': 8.2.0
+      '@sanity/client': 8.3.0
       '@sanity/generate-help-url': 4.0.0
       '@sanity/mutator': 6.10.1(@types/react@19.2.18)(supports-color@8.1.1)
       debug: 4.4.3(supports-color@8.1.1)
@@ -9539,9 +9529,9 @@ snapshots:
       '@sanity/client': 7.26.2
       '@sanity/uuid': 3.0.3
 
-  '@sanity/preview-url-secret@4.1.5(@sanity/client@8.2.0)':
+  '@sanity/preview-url-secret@4.1.5(@sanity/client@8.3.0)':
     dependencies:
-      '@sanity/client': 8.2.0
+      '@sanity/client': 8.3.0
       '@sanity/uuid': 3.0.3
 
   '@sanity/prism-groq@1.1.2': {}
@@ -9559,7 +9549,7 @@ snapshots:
       '@sanity/blueprints-parser': 0.5.0
       '@sanity/cli-build': 5.2.1(@babel/core@7.29.7(supports-color@8.1.1))(@babel/runtime@7.29.7)(@noble/hashes@2.2.0)(@types/node@26.4.0)(@types/react@19.2.18)(esbuild@0.28.0)(jiti@2.7.0)(rolldown@1.2.2)(tsx@4.23.12)(typescript@6.0.3)(yaml@2.9.0)
       '@sanity/cli-core': 3.1.0(@noble/hashes@2.2.0)(@types/node@26.4.0)(esbuild@0.28.0)(yaml@2.9.0)
-      '@sanity/client': 8.2.0
+      '@sanity/client': 8.3.0
       adm-zip: 0.6.0
       array-treeify: 0.2.0
       cardinal: 2.1.1
@@ -9733,7 +9723,7 @@ snapshots:
 
   '@sanity/types@6.11.0(@types/react@19.2.18)':
     dependencies:
-      '@sanity/client': 8.2.0
+      '@sanity/client': 8.3.0
       '@sanity/media-library-types': 1.6.0
       '@types/react': 19.2.18
     transitivePeerDependencies:
@@ -9800,7 +9790,7 @@ snapshots:
     dependencies:
       '@date-fns/tz': 1.5.0
       '@date-fns/utc': 2.1.1
-      '@sanity/client': 8.2.0
+      '@sanity/client': 8.3.0
       '@sanity/types': 6.11.0(@types/react@19.2.18)
       date-fns: 4.4.0
       rxjs: 7.8.2
@@ -9824,7 +9814,7 @@ snapshots:
       '@lezer/highlight': 1.2.3
       '@rexxars/react-json-inspector': 9.0.1(react@19.2.8)
       '@rexxars/react-split-pane': 1.0.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@sanity/client': 8.2.0
+      '@sanity/client': 8.3.0
       '@sanity/color': 3.0.8
       '@sanity/icons': 5.2.1(react@19.2.8)
       '@sanity/lezer-groq': 1.0.4
@@ -11837,10 +11827,6 @@ snapshots:
       through2: 4.0.2
       tunnel-agent: 0.6.0
 
-  get-it@9.5.0:
-    dependencies:
-      undici: 7.29.0
-
   get-it@9.5.1:
     dependencies:
       undici: 7.29.0
@@ -13327,7 +13313,7 @@ snapshots:
       '@sanity/asset-utils': 2.3.0
       '@sanity/bifur-client': 2.0.2
       '@sanity/cli': 8.3.0(@babel/core@7.29.7(supports-color@8.1.1))(@babel/runtime@7.29.7)(@noble/hashes@2.2.0)(@rolldown/plugin-babel@0.2.3(@babel/core@7.29.7(supports-color@8.1.1))(@babel/runtime@7.29.7)(rolldown@1.2.2)(vite@8.2.1(@types/node@26.4.0)(esbuild@0.28.0)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0)))(@types/node@26.4.0)(@types/react@19.2.18)(esbuild@0.28.0)(jiti@2.7.0)(rolldown@1.2.2)(supports-color@8.1.1)(typescript@6.0.3)(xstate@5.32.5)
-      '@sanity/client': 8.2.0
+      '@sanity/client': 8.3.0
       '@sanity/color': 3.0.8
       '@sanity/comlink': 4.0.3
       '@sanity/diff': 6.11.0
@@ -13345,7 +13331,7 @@ snapshots:
       '@sanity/mutate': 0.18.1(xstate@5.32.5)
       '@sanity/mutator': 6.11.0(@types/react@19.2.18)(supports-color@8.1.1)
       '@sanity/presentation-comlink': 2.2.3(@sanity/types@6.11.0(@types/react@19.2.18))
-      '@sanity/preview-url-secret': 4.1.5(@sanity/client@8.2.0)
+      '@sanity/preview-url-secret': 4.1.5(@sanity/client@8.3.0)
       '@sanity/prism-groq': 1.1.2
       '@sanity/schema': 6.11.0(@types/react@19.2.18)
       '@sanity/sdk-react': 2.20.1(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8))(xstate@5.32.5)
