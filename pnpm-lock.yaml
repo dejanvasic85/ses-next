@@ -76,8 +76,8 @@ importers:
         specifier: 3.1121.0
         version: 3.1121.0
       '@fontsource-variable/onest':
-        specifier: 5.3.0
-        version: 5.3.0
+        specifier: 5.3.1
+        version: 5.3.1
       '@fontsource-variable/schibsted-grotesk':
         specifier: 5.3.0
         version: 5.3.0
@@ -130,8 +130,8 @@ importers:
         specifier: 1.11.0
         version: 1.11.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       react-hook-form:
-        specifier: 7.86.0
-        version: 7.86.0(react@19.2.8)
+        specifier: 7.87.0
+        version: 7.87.0(react@19.2.8)
       react-modal:
         specifier: 3.16.3
         version: 3.16.3(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -1288,8 +1288,8 @@ packages:
   '@floating-ui/utils@0.2.12':
     resolution: {integrity: sha512-HpCo8tmWzLVad5s2d19EhAz5zqrrQ6s69qd6moPMQvkOuSwDT1YgRfWSVuc4ennqrgv3OHppiOGMQ7oC13yIww==}
 
-  '@fontsource-variable/onest@5.3.0':
-    resolution: {integrity: sha512-K4Es0F3M+iFnVY5mfunimhPSk1Uvl3eyovQVWjtf8oS00a7WSrSg2BD5Bh/pAcAZUe4ocV4M08dg5tvCULBJ7Q==}
+  '@fontsource-variable/onest@5.3.1':
+    resolution: {integrity: sha512-xaaw6G4HDB2/RczsWLD/2bnib4ykmQlTlBUN3GOEOiyErilZukQWVJG95h9zwAy0i8KY+QzDa+COPfqhI72Acw==}
 
   '@fontsource-variable/schibsted-grotesk@5.3.0':
     resolution: {integrity: sha512-ndS6H/KICWANchlHF3q4UdZD+xrZ3Ji0rUobIuXlgvDUzDfqZDsVuXPXZb636nJZMHE9zZ9Fmwgqazm8hMB50Q==}
@@ -5700,8 +5700,8 @@ packages:
       react: ^16.3 || ^17.0 || ^18.0 || ^19.0
       react-dom: ^17.0 || ^18.0 || ^19.0
 
-  react-hook-form@7.86.0:
-    resolution: {integrity: sha512-4kbWJrh5jPZt1+YqVcXcGKffGcXV/XVbozknLh0Yjh0KhpoAkus21TAQhzRYqNwFkkObmnSvRlZZ3GT+ehoIrA==}
+  react-hook-form@7.87.0:
+    resolution: {integrity: sha512-zhFzWvLxNHH+8839OnZcUxgMZw88ah2jZWDWvKWgF3Tpbnd0vKL+dlcuU3nZVWESZQjd81EW8K+wU+cYfYAc0w==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18 || ^19
@@ -8118,7 +8118,7 @@ snapshots:
 
   '@floating-ui/utils@0.2.12': {}
 
-  '@fontsource-variable/onest@5.3.0': {}
+  '@fontsource-variable/onest@5.3.1': {}
 
   '@fontsource-variable/schibsted-grotesk@5.3.0': {}
 
@@ -13068,7 +13068,7 @@ snapshots:
       react: 19.2.8
       react-dom: 19.2.8(react@19.2.8)
 
-  react-hook-form@7.86.0(react@19.2.8):
+  react-hook-form@7.87.0(react@19.2.8):
     dependencies:
       react: 19.2.8
 
