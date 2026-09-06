@@ -21,7 +21,7 @@
   ],
   "dependencies": {
     "@sanity/client": "8.5.0",
-    "@sanity/import": "6.0.4",
+    "@sanity/import": "7.0.1",
     "@sanity/vision": "6.12.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",
