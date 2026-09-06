@@ -20,7 +20,7 @@
     "sanity"
   ],
   "dependencies": {
-    "@sanity/client": "8.4.0",
+    "@sanity/client": "8.5.0",
     "@sanity/import": "6.0.4",
     "@sanity/vision": "6.12.0",
     "react": "19.2.8",
