@@ -9,6 +9,7 @@ import { SanityImage } from '@/components/SanityImage';
 import { getAllLocationPages, getServicesHubContent, getSiteSettings, getServices } from '@/lib/content/contentService';
 import { safeJsonLd } from '@/lib/structuredData';
 import type { ServiceItem } from '@/types';
+import { toTelHref } from '@/lib/phone';
 
 const servicesTitle = 'Electrical Services Melbourne | Licensed Electricians | SES';
 
@@ -166,7 +167,7 @@ export default async function ServicesHubPage() {
               Ready to get started? Contact our team for a free, no-obligation quote.
             </p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
-              <a href={`tel:${phone}`} className="btn btn-primary" aria-label={`Call us on ${phone}`}>
+              <a href={toTelHref(phone)} className="btn btn-primary" aria-label={`Call us on ${phone}`}>
                 <Icon name="phone" size="md" className="mr-2" />
                 {phone}
               </a>
