@@ -14,7 +14,7 @@
     "query": "npx tsx bin/query.ts"
   },
   "dependencies": {
-    "@aws-sdk/client-ses": "3.1128.0",
+    "@aws-sdk/client-ses": "3.1129.0",
     "@fontsource-variable/onest": "5.3.1",
     "@fontsource-variable/schibsted-grotesk": "5.3.0",
     "@playwright/test": "1.63.0",
@@ -30,20 +30,20 @@
     "next": "16.3.4",
     "next-sanity": "13.3.4",
     "postcss": "8.5.28",
-    "react": "19.2.8",
-    "react-dom": "19.2.8",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
     "react-google-recaptcha-v3": "1.11.0",
     "react-hook-form": "7.87.0",
     "react-modal": "3.16.3",
     "ses-reviews": "workspace:*",
     "tailwindcss": "4.3.3",
-    "zod": "4.5.4"
+    "zod": "4.6.1"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "16.3.4",
     "@types/node": "26.5.0",
-    "@types/react": "19.2.18",
-    "@types/react-dom": "19.2.7",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
     "@types/react-modal": "3.16.3",
     "dotenv": "17.4.2",
     "eslint-config-next": "16.3.4",
