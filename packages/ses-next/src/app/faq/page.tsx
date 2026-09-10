@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const { companyName, phone } = siteSettings;
   return {
     title: `Electrician FAQs Melbourne | Common Questions Answered | ${companyName}`,
-    description: `Answers to common questions about electrical work in Melbourne — costs, safety, switchboards, solar & more. Licensed electricians, 5.0★ rated. Call ${phone}.`,
+    description: `Answers to common questions about electrical work in Melbourne: costs, safety, switchboards and solar. Licensed electricians, 5.0★ rated. Call ${phone}.`,
     alternates: {
       canonical: '/faq',
     },

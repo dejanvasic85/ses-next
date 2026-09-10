@@ -9,6 +9,7 @@ import { ContactForm } from '@/components/ContactForm';
 import { PopSuccess } from '@/components/PopSuccess';
 import { Icon } from '@/components/Icon/Icon';
 import { ContactContentModel } from '@/types';
+import { toTelHref } from '@/lib/phone';
 
 type ContactProps = {
   className?: string;
@@ -42,7 +43,7 @@ export function Contact({ className, contact, location, phone, streetAddress, su
       </div>
       <Activity mode={phone ? 'visible' : 'hidden'}>
         <p className="mx-auto mb-12 max-w-screen-md px-4 text-center">
-          <LinkButton href={`tel:${phone}`}>
+          <LinkButton href={toTelHref(phone)}>
             <Icon name="phone" size="lg" /> {phone}
           </LinkButton>
         </p>
