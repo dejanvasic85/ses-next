@@ -39,9 +39,9 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: '/llms.txt',
-        destination: '/llms',
-        permanent: false,
+        source: '/llms',
+        destination: '/llms.txt',
+        permanent: true,
       },
     ];
   },
