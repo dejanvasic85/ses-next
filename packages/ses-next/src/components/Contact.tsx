@@ -10,6 +10,7 @@ import { PopSuccess } from '@/components/PopSuccess';
 import { Icon } from '@/components/Icon/Icon';
 import { ContactContentModel } from '@/types';
 import { toTelHref } from '@/lib/phone';
+import { phoneCallEvent, pushEvent } from '@/lib/analytics';
 
 type ContactProps = {
   className?: string;
@@ -21,6 +22,10 @@ type ContactProps = {
 };
 
 export function Contact({ className, contact, location, phone, streetAddress, suburb }: ContactProps) {
+  const handlePhoneClick = (): void => {
+    pushEvent({ event: phoneCallEvent });
+  };
+
   const { error, loading, messageSent, sendMessage } = useContact();
   const [firstBlurb = '', secondBlurb = ''] = contact.blurbs ?? [];
 
@@ -43,7 +48,7 @@ export function Contact({ className, contact, location, phone, streetAddress, su
       </div>
       <Activity mode={phone ? 'visible' : 'hidden'}>
         <p className="mx-auto mb-12 max-w-screen-md px-4 text-center">
-          <LinkButton href={toTelHref(phone)}>
+          <LinkButton href={toTelHref(phone)} onClick={handlePhoneClick}>
             <Icon name="phone" size="lg" /> {phone}
           </LinkButton>
         </p>

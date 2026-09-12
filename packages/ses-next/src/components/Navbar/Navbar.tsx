@@ -9,7 +9,7 @@ import { Icon } from '@/components/Icon/Icon';
 import { NavBrand } from '@/components/Navbar/NavBrand';
 import { NavDrawer } from '@/components/Navbar/NavDrawer';
 import { NavRail } from '@/components/Navbar/NavRail';
-import { toTelHref } from '@/lib/phone';
+import { CallLink } from '@/components/CallLink';
 
 /*
  * The bar rides transparent over the top of the page and condenses into glass
@@ -81,18 +81,18 @@ export function Navbar({ contactPhone, title, licence }: NavbarProps) {
 
               {contactPhone && (
                 <>
-                  <a href={toTelHref(contactPhone)} className={callButtonStyles}>
+                  <CallLink phone={contactPhone} className={callButtonStyles}>
                     <Icon name="phone" size="sm" />
                     <span className="hidden lg:inline">{contactPhone}</span>
                     <span className="lg:hidden">Call</span>
-                  </a>
-                  <a
-                    href={toTelHref(contactPhone)}
+                  </CallLink>
+                  <CallLink
+                    phone={contactPhone}
                     className={clsx(iconButtonStyles, 'md:hidden')}
                     aria-label={`Call ${contactPhone}`}
                   >
                     <Icon name="phone" size="lg" />
-                  </a>
+                  </CallLink>
                 </>
               )}
 
