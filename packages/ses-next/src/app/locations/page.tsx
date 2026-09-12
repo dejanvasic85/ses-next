@@ -6,7 +6,7 @@ import { getAllLocationPages, getSiteSettings } from '@/lib/content/contentServi
 import { ServiceBreadcrumb } from '@/components/ServiceBreadcrumb/ServiceBreadcrumb';
 import { safeJsonLd } from '@/lib/structuredData';
 import type { LocationPage } from '@/types';
-import { toTelHref } from '@/lib/phone';
+import { CallLink } from '@/components/CallLink';
 
 export const metadata: Metadata = {
   title: 'Service Areas — Melbourne Electricians | SES',
@@ -148,9 +148,9 @@ export default async function LocationsIndexPage() {
               We cover more of Melbourne&apos;s west — call us and we&apos;ll let you know.
             </p>
           </div>
-          <a href={toTelHref(phone)} className="btn btn-primary whitespace-nowrap" aria-label={`Call us on ${phone}`}>
+          <CallLink phone={phone} className="btn btn-primary whitespace-nowrap" aria-label={`Call us on ${phone}`}>
             {phone}
-          </a>
+          </CallLink>
         </Container>
       </section>
     </>

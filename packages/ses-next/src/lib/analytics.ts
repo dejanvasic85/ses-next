@@ -1,3 +1,5 @@
+export const phoneCallEvent = 'phone_call_click';
+
 type DataLayerEvent = {
   event: string;
   [key: string]: unknown;

@@ -5,7 +5,7 @@ import { Icon } from '@/components/Icon/Icon';
 import { NavBrand } from '@/components/Navbar/NavBrand';
 import { NavDrawerRow } from '@/components/Navbar/NavDrawerRow';
 import { isCurrentNavItem, navItems } from '@/components/Navbar/navItems';
-import { toTelHref } from '@/lib/phone';
+import { CallLink } from '@/components/CallLink';
 
 const easing = 'ease-[cubic-bezier(0.22,1,0.36,1)]';
 
@@ -112,10 +112,10 @@ export function NavDrawer({ isOpen, pathname, title, contactPhone, licence, onCl
         {(contactPhone || licence) && (
           <footer className="border-base-300 shrink-0 border-t p-4">
             {contactPhone && (
-              <a href={toTelHref(contactPhone)} onClick={onClose} className="btn btn-primary w-full gap-2 rounded-full">
+              <CallLink phone={contactPhone} onClick={onClose} className="btn btn-primary w-full gap-2 rounded-full">
                 <Icon name="phone" size="md" />
                 {contactPhone}
-              </a>
+              </CallLink>
             )}
             {licence && (
               <p className="text-base-content/50 mt-3 text-center text-xs tracking-wide">
