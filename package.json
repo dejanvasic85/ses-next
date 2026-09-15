@@ -24,7 +24,7 @@
     "next": "16.3.5",
     "prettier": "3.9.6",
     "prettier-plugin-tailwindcss": "0.8.1",
-    "turbo": "2.10.12"
+    "turbo": "2.10.13"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json}": [
