@@ -14,7 +14,7 @@
     "query": "npx tsx bin/query.ts"
   },
   "dependencies": {
-    "@aws-sdk/client-ses": "3.1133.0",
+    "@aws-sdk/client-ses": "3.1134.0",
     "@fontsource-variable/onest": "5.3.1",
     "@fontsource-variable/schibsted-grotesk": "5.3.0",
     "@playwright/test": "1.63.0",
@@ -48,7 +48,7 @@
     "dotenv": "17.4.2",
     "eslint-config-next": "16.3.5",
     "eslint-plugin-tailwindcss": "4.4.0",
-    "prettier": "3.9.6",
+    "prettier": "3.9.7",
     "typescript": "6.0.3"
   }
 }
