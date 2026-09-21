@@ -22,9 +22,9 @@
     "husky": "9.1.7",
     "lint-staged": "17.5.1",
     "next": "16.3.5",
-    "prettier": "3.9.7",
+    "prettier": "3.9.8",
     "prettier-plugin-tailwindcss": "0.8.1",
-    "turbo": "2.10.13"
+    "turbo": "2.11.2"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json}": [
@@ -32,5 +32,5 @@
       "pnpm --filter ses-next lint"
     ]
   },
-  "packageManager": "pnpm@12.4.2"
+  "packageManager": "pnpm@12.5.1"
 }
