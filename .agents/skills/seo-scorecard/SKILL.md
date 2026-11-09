@@ -80,10 +80,16 @@ insisting on a rigid layout.
 
 ### Step 3 — Compute the headline numbers
 
-From `Queries.csv`, compute (don't eyeball — use a script):
+Compute these with a script (don't eyeball):
 
-- Total clicks, total impressions, blended CTR = clicks/impressions
-- Impression-weighted average position = Σ(impressions × position) / Σ(impressions)
+- From `Chart.csv`: total clicks, total impressions and blended CTR. These are the headline figures,
+  because they count every click, including anonymised queries.
+- From `Queries.csv`: the same three figures, labelled "top 1,000 query rows". The export drops
+  anonymised queries and caps at 1,000 rows, so never present these sums as totals. Keep them as a
+  secondary series so months stay comparable.
+- From `Queries.csv`: impression-weighted average position = Σ(impressions × position) / Σ(impressions)
+- Report `form_start` and `generate_lead` as separate counts. GA4 does not link them, so do not
+  present them as a completion rate.
 
 From the GA4 events export, total up the lead-tracking events into a north-star "total lead actions"
 figure.
@@ -133,7 +139,10 @@ git log --oneline --since="<window-start>" --until="<window-end>"
   as a proven cause. Don't quietly attribute a metric swing to "SEO" when engineering work is the more
   likely cause.
 - SEO content changes are frequently CMS edits with **no git diff at all** — an empty git diff does not
-  mean no SEO work happened. Check the CMS directly.
+  mean no SEO work happened. Read `docs/seo-geo/changelog.md` for the publish date of each CMS change,
+  then check the CMS directly to confirm it is live. Sanity's `_updatedAt` is not a reliable change
+  date for drafts, so trust the log's date over it.
+- Add any CMS change made while writing the scorecard to the change log, so `/seo-invoice` can find it.
 
 ### Step 6 — Write the scorecard
 

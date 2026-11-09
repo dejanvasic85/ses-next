@@ -109,6 +109,7 @@ export const SanitySlugSchema: z.ZodType<SanitySlug> = z.object({
 export const SanityMarkDefSchema = z.object({
   _key: z.string(),
   _type: z.string(),
+  href: z.string().optional(),
 });
 
 export const SanityBlockSchema = z.object({
