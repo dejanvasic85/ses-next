@@ -41,16 +41,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  const servicePages: MetadataRoute.Sitemap = services.map(({ slug, parentService }) => {
+  const servicePages: MetadataRoute.Sitemap = services.map(({ slug, parentService, updatedAt }) => {
     const path = parentService ? `services/${parentService.slug}/${slug}` : `services/${slug}`;
     return {
       url: new URL(path, baseUrl).toString(),
+      lastModified: updatedAt ?? undefined,
       changeFrequency: changeFrequencyValue.service,
     };
   });
 
-  const blogPostPages: MetadataRoute.Sitemap = blogPosts.map(({ slug }) => ({
+  const blogPostPages: MetadataRoute.Sitemap = blogPosts.map(({ slug, publishedAt, updatedAt }) => ({
     url: new URL(`blog/${slug}`, baseUrl).toString(),
+    lastModified: updatedAt ?? publishedAt,
     changeFrequency: changeFrequencyValue.blogPost,
   }));
 
@@ -62,8 +64,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  const locationPageEntries: MetadataRoute.Sitemap = locationPages.map(({ slug }) => ({
+  const locationPageEntries: MetadataRoute.Sitemap = locationPages.map(({ slug, updatedAt }) => ({
     url: new URL(`locations/${slug}`, baseUrl).toString(),
+    lastModified: updatedAt ?? undefined,
     changeFrequency: changeFrequencyValue.locationPage,
   }));
 

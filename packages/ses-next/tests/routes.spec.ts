@@ -70,6 +70,14 @@ test.describe('Location Routes', () => {
     await expect(page.locator('nav').first()).toBeVisible();
   });
 
+  test('sitemap gives location pages a last modified date', async ({ request }) => {
+    const response = await request.get('/sitemap.xml');
+    const body = await response.text();
+    const locationEntry = body.match(/<url>\s*<loc>[^<]+\/locations\/electrician-[^<]+<\/loc>[\s\S]*?<\/url>/);
+
+    expect(locationEntry?.[0]).toMatch(/<lastmod>\d{4}-\d{2}-\d{2}/);
+  });
+
   test('locations index page loads correctly', async ({ page }) => {
     const response = await page.goto('/locations');
     expect(response?.status()).toBe(200);

@@ -86,6 +86,7 @@ export const homepageQuery = `*[_type == "homepage"][0]{
 
 export const servicesQuery = `*[_type == "service"]{
   _id,
+  _updatedAt,
   _type,
   name,
   description,
@@ -131,6 +132,7 @@ export const servicesQuery = `*[_type == "service"]{
 
 export const allBlogPostsQuery = `*[_type == "blog-post"] | order(publishedAt desc){
   _id,
+  _updatedAt,
   _type,
   title,
   description,
@@ -205,6 +207,7 @@ export const servicesHubQuery = `*[_type == "servicesHub"][0]{
 
 export const allLocationPagesQuery = `*[_type == "locationPage"]{
   _id,
+  _updatedAt,
   _type,
   suburb,
   slug,
