@@ -80,10 +80,16 @@ insisting on a rigid layout.
 
 ### Step 3 — Compute the headline numbers
 
-From `Queries.csv`, compute (don't eyeball — use a script):
+Compute these with a script (don't eyeball):
 
-- Total clicks, total impressions, blended CTR = clicks/impressions
-- Impression-weighted average position = Σ(impressions × position) / Σ(impressions)
+- From `Chart.csv`: total clicks, total impressions and blended CTR. These are the headline figures,
+  because they count every click, including anonymised queries.
+- From `Queries.csv`: the same three figures, labelled "top 1,000 query rows". The export drops
+  anonymised queries and caps at 1,000 rows, so never present these sums as totals. Keep them as a
+  secondary series so months stay comparable.
+- From `Queries.csv`: impression-weighted average position = Σ(impressions × position) / Σ(impressions)
+- Report `form_start` and `generate_lead` as separate counts. GA4 does not link them, so do not
+  present them as a completion rate.
 
 From the GA4 events export, total up the lead-tracking events into a north-star "total lead actions"
 figure.

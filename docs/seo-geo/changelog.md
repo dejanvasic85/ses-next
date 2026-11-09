@@ -52,7 +52,10 @@ of this file, because the repo is public.
 - **Changes:** the schema now keeps `href`. This brings back the in-text links on 15 published pages:
   7 location pages, 4 service pages, the services hub and 3 blog posts. An e2e test now fails if a
   service page renders a link with no `href`.
-- **Published:** with the PR that adds this entry
-- **Baseline:** none of these in-text links has counted until now. Read any internal-linking work
-  before November 2026 as never having shipped.
+- **Published:** when PR #775 merges, which deploys it to production. The merge commit date in
+  `git log` is the publish date.
+- **Baseline:** from late October 2025 until this fix, no in-text link rendered an `href`, whenever
+  it was added. Internal-linking work from that period was live in Sanity but passed no value. This
+  includes the 7 location page links added on 9 November. Links were not affected before late
+  October 2025.
 - **Billing note:** this is a code change, so `/git-invoice` bills it, not `/seo-invoice`.
