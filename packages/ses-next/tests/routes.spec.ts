@@ -42,6 +42,13 @@ test.describe('Service Routes', () => {
     await expect(page.locator('h1')).toBeVisible();
     await expect(page.locator('nav')).toBeVisible();
   });
+
+  test('links inside service page content have an href', async ({ page }) => {
+    await page.goto('/services/commercial-electrician');
+
+    await expect(page.locator('main a[href="/services/electrical-testing"]').first()).toBeVisible();
+    await expect(page.locator('main a:not([href])')).toHaveCount(0);
+  });
 });
 
 test.describe('Location Routes', () => {
