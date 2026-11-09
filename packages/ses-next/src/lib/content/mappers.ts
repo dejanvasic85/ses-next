@@ -33,6 +33,7 @@ export const mapBlogPost = (model: BlogPostContentModel): BlogPost => {
     publishedAt: model.publishedAt,
     tags: model.tags,
     body: model.body,
+    updatedAt: model._updatedAt ?? null,
   };
 };
 
@@ -72,6 +73,7 @@ export const mapService = (model: ServiceContentModel): ServiceItem => {
     seoDescription: model.seoDescription,
     serviceType: model.serviceType ?? null,
     faqs: model.faqs ?? null,
+    updatedAt: model._updatedAt ?? null,
   };
 };
 
@@ -133,6 +135,7 @@ export const mapLocationPage = (model: LocationPageContentModel): LocationPage =
   faqs: (model.faqs ?? []).map(({ question, answer }) => ({ question, answer })),
   seoTitle: model.seoTitle ?? null,
   seoDescription: model.seoDescription ?? null,
+  updatedAt: model._updatedAt ?? null,
 });
 
 export const mapSocialMedia = (

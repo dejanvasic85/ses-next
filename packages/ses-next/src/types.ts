@@ -296,7 +296,8 @@ export const SuburbRefSchema: z.ZodType<SuburbRefContentModel> = z.object({
 });
 
 export type LocationPageContentModel = Pick<SanityLocationPageDoc, '_id' | '_type'> &
-  Required<Pick<SanityLocationPageDoc, 'suburb'>> & {
+  Required<Pick<SanityLocationPageDoc, 'suburb'>> &
+  SanityDocumentIdentityFields & {
     slug: SanitySlug;
     isHub?: boolean | null;
     heroImage?: SanityImage | null;
@@ -309,6 +310,7 @@ export type LocationPageContentModel = Pick<SanityLocationPageDoc, '_id' | '_typ
   };
 
 export const LocationPageSchema: z.ZodType<LocationPageContentModel> = z.object({
+  ...sanityDocumentFieldsValue,
   _id: z.string(),
   _type: z.literal('locationPage'),
   suburb: z.string(),
@@ -371,13 +373,15 @@ export const TeamMemberSchema: z.ZodType<TeamMemberContentModel> = z.object({
 });
 
 export type BlogPostContentModel = Pick<SanityBlogPostDoc, '_id' | '_type'> &
-  Required<Pick<SanityBlogPostDoc, 'title' | 'description' | 'publishedAt' | 'tags'>> & {
+  Required<Pick<SanityBlogPostDoc, 'title' | 'description' | 'publishedAt' | 'tags'>> &
+  SanityDocumentIdentityFields & {
     slug: SanitySlug;
     photo: { asset: SanityImageAssetSlim };
     body: SanityPortableText;
   };
 
 export const BlogPostSchema: z.ZodType<BlogPostContentModel> = z.object({
+  ...sanityDocumentFieldsValue,
   _id: z.string(),
   _type: z.literal('blog-post'),
   title: z.string(),
@@ -621,6 +625,7 @@ export type ServiceItem = {
   seoDescription: string | null;
   serviceType: string | null;
   faqs: ServiceFaq[] | null;
+  updatedAt: string | null;
 };
 
 export type Team = {
@@ -637,6 +642,7 @@ export type BlogPost = {
   publishedAt: string;
   tags: string[];
   body: SanityPortableText;
+  updatedAt: string | null;
 };
 
 export type SiteSettings = {
@@ -708,6 +714,7 @@ export type LocationPage = {
   faqs: LocationPageFaq[];
   seoTitle: string | null;
   seoDescription: string | null;
+  updatedAt: string | null;
 };
 
 export type BasePageProps = {

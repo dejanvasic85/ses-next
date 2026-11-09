@@ -23,6 +23,21 @@ of this file, because the repo is public.
 
 ## 2026-11
 
+### 2026-11-09: Sitemap now tells Google when pages change (code change)
+
+- **Why:** Google was still showing Karl's old phone number in the snippets for the Seddon and Altona
+  North pages, eight weeks after it was removed on 16 September. The live pages are clean, so Google
+  had not re-crawled them. The sitemap gave no `lastmod` dates, so Google could not tell which pages
+  had changed.
+- **Changes:** service, location and blog post entries in `sitemap.xml` now carry `lastmod` from
+  Sanity's `_updatedAt`. Blog posts fall back to their publish date. Dejan also requested re-indexing
+  in GSC for the key pages on 9 November.
+- **Published:** when the sitemap PR merges. The merge commit date in `git log` is the publish date.
+- **Baseline:** the old number showed in Google's snippets for `electrician seddon` and
+  `electrician altona north` on 9 November. Check those snippets again before the 20 November
+  scorecard.
+- **Billing note:** a code change, so `/git-invoice` bills it.
+
 ### 2026-11-09: Commercial electrician page repositioned to the western suburbs
 
 - **Why:** GSC (11 Oct to 7 Nov, filtered to the page) showed it at position 55 for Melbourne-wide
