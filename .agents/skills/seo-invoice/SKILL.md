@@ -50,14 +50,16 @@ cat docs/seo-geo/scorecards/<YYYY-MM>.md
 
 If the file doesn't exist, say so — the scorecard must be written first (it's the source of truth). Do not fabricate line-items from memory or git.
 
-Also read GitHub issue #642 (`gh issue view 642`) — the on-page-ranking-uplift plan — to pick up any tasks marked done that month (✅ done items / checked boxes in its "Progress so far" section) — these are the CMS changes that shipped.
+Then read the SEO change log, `docs/seo-geo/changelog.md`. Every entry whose **Published** date falls in the month is a CMS change that shipped. This is the main source for CMS line-items. Skip entries still marked `pending`.
+
+Also read GitHub issue #642 (`gh issue view 642`) — the on-page-ranking-uplift plan — to pick up any tasks marked done that month (✅ done items / checked boxes in its "Progress so far" section) that are missing from the change log.
 
 ### Step 3 — Extract the billable work
 
 From the scorecard, harvest:
 
 - **Analysis & reporting** — the scorecard itself: reading GSC/GA exports, the tracked-keyword diff, the "What moved & why" reasoning, setting next month's focus. Always one line-item.
-- **CMS / on-page changes shipped that month** — from the scorecard's content sections and issue #642's completed tasks (e.g. "populated seoDescription", "added internal links", "rewrote titles/meta"). One line-item per coherent piece of work.
+- **CMS / on-page changes shipped that month** — from the change log's entries for the month, the scorecard's content sections and issue #642's completed tasks (e.g. "populated seoDescription", "added internal links", "rewrote titles/meta"). One line-item per coherent piece of work.
 - **New content** — a blog post or page authored that month **only if it did not land as a commit**. If the post/page file was committed to git, it belongs to `/git-invoice` (Feature work) — exclude it here to avoid double-billing. Cross-check with `git log` for the month; when in doubt, leave it to git and note the exclusion.
 
 Ignore infrastructure/deps — those belong to `/git-invoice`. **Ownership rule:** `/seo-invoice` covers only work with **no commit trail** (Sanity CMS edits, analysis, the scorecard). Anything that appears as a commit is git's to bill.

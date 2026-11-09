@@ -133,7 +133,10 @@ git log --oneline --since="<window-start>" --until="<window-end>"
   as a proven cause. Don't quietly attribute a metric swing to "SEO" when engineering work is the more
   likely cause.
 - SEO content changes are frequently CMS edits with **no git diff at all** — an empty git diff does not
-  mean no SEO work happened. Check the CMS directly.
+  mean no SEO work happened. Read `docs/seo-geo/changelog.md` for the publish date of each CMS change,
+  then check the CMS directly to confirm it is live. Sanity's `_updatedAt` is not a reliable change
+  date for drafts, so trust the log's date over it.
+- Add any CMS change made while writing the scorecard to the change log, so `/seo-invoice` can find it.
 
 ### Step 6 — Write the scorecard
 

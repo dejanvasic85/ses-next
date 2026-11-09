@@ -1,0 +1,58 @@
+# SEO change log
+
+A record of every SEO change that goes live, newest first. Most SEO work is a Sanity edit, which
+leaves no git commit, so this file is the only lasting record of it.
+
+- `/seo-invoice` reads this file to find the month's billable CMS work.
+- `/seo-scorecard` reads it to match ranking movement to the date a change went live.
+
+Add an entry when a change is published, not when it is planned. Keep prices and invoice amounts out
+of this file, because the repo is public.
+
+## Entry format
+
+```markdown
+### YYYY-MM-DD: short name of the change
+
+- **Why:** the data that prompted it
+- **Changes:** what changed, page by page
+- **Published:** date it went live
+- **Baseline:** the numbers to compare against later
+- **Issue:** #number
+```
+
+## 2026-11
+
+### 2026-11-09: Commercial electrician page repositioned to the western suburbs
+
+- **Why:** GSC (11 Oct to 7 Nov, filtered to the page) showed it at position 55 for Melbourne-wide
+  searches, including suburbs SES does not serve (Hawthorn, Kew, St Kilda). Its biggest query,
+  `commercial electrician melbourne`, sat at 46. The page's best result was a western suburb term,
+  `commercial office electrician moonee ponds`, at 16.1.
+- **Changes:**
+  - `/services/commercial-electrician`: new SEO title, SEO description and schema description, all
+    aimed at Melbourne's western suburbs. Rewrote the opening heading and first sentence the same way.
+    Linked the 10 service-area suburbs to their location pages. Added a paragraph naming the local
+    commercial areas (Brooklyn industrial area, Pier Street, Nicholson Street, Ballarat Street,
+    Hampshire Road, Union Road and Epsom Road).
+  - Location pages for Altona, Altona North, Ascot Vale, Footscray, Moonee Ponds, Sunshine and
+    Yarraville: linked their existing commercial sentence to `/services/commercial-electrician`.
+  - Ascot Vale and Moonee Ponds: added Commercial Electrician to their related services.
+- **Published:** 2026-11-09, checked live on the site the same day
+- **Baseline:** page position 55.0, 2,280 impressions, 0 clicks (28 days to 7 Nov). Expect the first
+  signal in the December scorecard, since on-page changes take 4 to 6 weeks to show.
+- **Issue:** #744
+
+### 2026-11-09: In-text links fixed site-wide (code change)
+
+- **Why:** while checking the change above on the live site, every link inside page text rendered as
+  `<a>` with no `href`. Google cannot follow a link with no address, so none of these internal links
+  passed any value. The cause was the portable text schema in `packages/ses-next/src/types.ts`, which
+  dropped the `href` field. It has been broken since about October 2025 (#311).
+- **Changes:** the schema now keeps `href`. This brings back the in-text links on 15 published pages:
+  7 location pages, 4 service pages, the services hub and 3 blog posts. An e2e test now fails if a
+  service page renders a link with no `href`.
+- **Published:** with the PR that adds this entry
+- **Baseline:** none of these in-text links has counted until now. Read any internal-linking work
+  before November 2026 as never having shipped.
+- **Billing note:** this is a code change, so `/git-invoice` bills it, not `/seo-invoice`.
