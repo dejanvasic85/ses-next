@@ -26,8 +26,8 @@ of this file, because the repo is public.
 ### 2026-11-13: Google Business Profile categories added
 
 - **Why:** the 9 November search check found SES 13th in the map pack for `electrician altona north`
-  and missing for `electrician seddon`. The map pack is driven by the Business Profile, not the
-  website. The profile listed no category for solar or EV chargers, though SES does both.
+  and missing for `electrician seddon`. The Business Profile is the main input to the map pack,
+  though website content and links also play a part. The profile listed no category for solar or EV chargers, though SES does both.
 - **Changes:** added two additional categories in the Business Profile: "Solar energy system service"
   and "Electric vehicle charging station contractor". The profile now has 8 of 10 categories. No
   suitable commercial category exists, so "Electrician" covers it. Also added Sunshine, Moonee Ponds
@@ -36,7 +36,8 @@ of this file, because the repo is public.
   for the two new categories (solar, EV charger installation) and added "Smoke alarm installation",
   since `smoke alarm installation melbourne` fell 15 places in October. Karl confirmed the existing
   services (including duct cleaning and security systems) are all work SES does.
-- **Published:** 2026-11-13 (Google may take a few days to review)
+- **Published:** edits saved 2026-11-13. Google reviews profile edits, so confirm they show on the
+  public profile, then use that date for attribution. Until then, treat this entry as pending.
 - **Baseline:** Business Profile, Jun to Oct 2026: about 13 calls and 33 website clicks in October.
   Full table in #776. Map pack: 13th for `electrician altona north`, not shown for
   `electrician seddon`.
