@@ -1,7 +1,7 @@
 packages:
   - 'packages/*'
 overrides:
-  '@playwright/test': 1.65.0
+  '@playwright/test': 1.65.1
 allowBuilds:
   aws-sdk: true
   esbuild: true
