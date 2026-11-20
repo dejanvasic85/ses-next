@@ -1,6 +1,19 @@
 {
   "reviews": [
     {
+      "id": "places/ChIJaaS9pMFn1moR6nbln1twd9A/reviews/Ci9DQUlRQUNvZENodHljRjlvT210bGFGUmZhakZxVTBOMGMwVnNORWRJY1VKVE4xRRAB",
+      "url": "https://www.google.com/maps/contrib/105670981303607086330/reviews",
+      "reviewer": {
+        "profileUrl": "https://www.google.com/maps/contrib/105670981303607086330/reviews",
+        "profilePhotoUrl": "https://lh3.googleusercontent.com/a/ACg8ocIAF-2Rv8jks-STEcfVVyh8G4UJFTp3ipvRZE6kp8kxKi-XCw=s128-c0x00000000-cc-rp-mo",
+        "displayName": "Nathan Bruce"
+      },
+      "comment": "Karl is great!!! Honest, reliable and trustworthy. We have had he and the team out for 3 jobs so far and likely more to come. They are our go to for all electrical work.",
+      "starRating": 5,
+      "date": "in the last week",
+      "publishTime": "2026-11-16T10:46:36.139469728Z"
+    },
+    {
       "id": "places/ChIJaaS9pMFn1moR6nbln1twd9A/reviews/Ci9DQUlRQUNvZENodHljRjlvT2tOTlYxTmtSbVZ0Y1hGRmVYWjRZWGM0WjIxb1dGRRAB",
       "url": "https://www.google.com/maps/contrib/112319022030706295604/reviews",
       "reviewer": {
