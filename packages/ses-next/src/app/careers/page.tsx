@@ -6,8 +6,6 @@ import { careersPath } from '@/lib/careers';
 import { getCareers, getSiteSettings } from '@/lib/content/contentService';
 import { jobPostingJsonLd, safeJsonLd } from '@/lib/structuredData';
 
-const isoDateLength = 10;
-
 export async function generateMetadata(): Promise<Metadata> {
   const [careers, { companyName }] = await Promise.all([getCareers(), getSiteSettings()]);
 
@@ -36,10 +34,12 @@ export default async function CareersPage() {
 
   const { companyName, baseUrl, companyLogo, phone, email, streetAddress, suburb, state, postcode } = siteSettings;
   const location = suburb && state ? `${suburb}, ${state}` : null;
-  const datePosted = careers.datePosted ?? careers.updatedAt?.slice(0, isoDateLength) ?? null;
+  const { datePosted } = careers;
+  const hasDescription = careers.intro.length > 0 || careers.responsibilities.length > 0;
 
   const jobPosting =
     datePosted &&
+    hasDescription &&
     jobPostingJsonLd({
       title: careers.roleTitle,
       intro: careers.intro,

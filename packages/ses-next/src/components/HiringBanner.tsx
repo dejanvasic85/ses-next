@@ -18,7 +18,19 @@ const subscribe = (listener: StoreListener) => {
   return () => window.removeEventListener(dismissEvent, listener);
 };
 
-const getSnapshot = () => window.sessionStorage.getItem(dismissedKey) === 'true';
+// Fallback for browsers that block sessionStorage, so the close button still works.
+let isDismissedInMemory = false;
+
+const getSnapshot = () => {
+  if (isDismissedInMemory) {
+    return true;
+  }
+  try {
+    return window.sessionStorage.getItem(dismissedKey) === 'true';
+  } catch {
+    return false;
+  }
+};
 
 const getServerSnapshot = () => false;
 
@@ -35,7 +47,12 @@ export function HiringBanner({ text }: HiringBannerProps) {
   const isDismissed = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   const handleDismiss = () => {
-    window.sessionStorage.setItem(dismissedKey, 'true');
+    isDismissedInMemory = true;
+    try {
+      window.sessionStorage.setItem(dismissedKey, 'true');
+    } catch {
+      // Storage is blocked; the in-memory flag hides the banner until the next page load.
+    }
     window.dispatchEvent(new Event(dismissEvent));
   };
 

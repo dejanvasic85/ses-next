@@ -525,12 +525,14 @@ export type CareersContentModel = Pick<SanityCareersDoc, '_id' | '_type'> & {
   applyText: string | null;
   applyEmail: string | null;
   datePosted: string | null;
+  _createdAt?: string;
   _updatedAt?: string;
 };
 
 export const CareersSchema: z.ZodType<CareersContentModel> = z.object({
   _id: z.string(),
   _type: z.literal('careers'),
+  _createdAt: z.string().optional(),
   _updatedAt: z.string().optional(),
   isHiring: z.boolean().nullable(),
   roleTitle: z.string().nullable(),

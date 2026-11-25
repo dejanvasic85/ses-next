@@ -5,6 +5,7 @@ import { careersQuery } from '@/lib/content/queries';
 const defaultTeamCardHeading = 'This could be you';
 const defaultTeamCardButton = 'Join the team';
 const defaultEmploymentType = 'FULL_TIME';
+const isoDateLength = 10;
 
 const mapCareers = (model: CareersContentModel, roleTitle: string): CareersContent => ({
   roleTitle,
@@ -21,7 +22,7 @@ const mapCareers = (model: CareersContentModel, roleTitle: string): CareersConte
   benefits: model.benefits ?? [],
   applyText: model.applyText,
   applyEmail: model.applyEmail,
-  datePosted: model.datePosted,
+  datePosted: model.datePosted ?? model._createdAt?.slice(0, isoDateLength) ?? null,
   updatedAt: model._updatedAt ?? null,
 });
 

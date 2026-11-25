@@ -288,6 +288,7 @@ export const termsAndConditionsQuery = `*[_type == "terms-and-conditions"]{
 export const careersQuery = `*[_type == "careers" && _id == "careers"][0]{
   _id,
   _type,
+  _createdAt,
   _updatedAt,
   isHiring,
   roleTitle,
