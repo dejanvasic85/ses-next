@@ -1,5 +1,6 @@
 import { sanityClient } from '@/sanity/lib/client';
 import { type CareersContent, type CareersContentModel, CareersSchema } from '@/types';
+import { careersFallbackValue } from '@/lib/content/careersFallback';
 import { careersQuery } from '@/lib/content/queries';
 
 const defaultTeamCardHeading = 'This could be you';
@@ -33,11 +34,7 @@ const mapCareers = (model: CareersContentModel, roleTitle: string): CareersConte
 export const getCareers = async (): Promise<CareersContent | null> => {
   try {
     const result = await sanityClient.fetch(careersQuery, {}, { next: { tags: ['careers'] } });
-    if (!result) {
-      return null;
-    }
-
-    const careers = CareersSchema.parse(result);
+    const careers = result ? CareersSchema.parse(result) : careersFallbackValue;
     if (!careers.isHiring || !careers.roleTitle) {
       return null;
     }
