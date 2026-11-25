@@ -429,6 +429,30 @@ export type Faq = {
   answer?: string;
 };
 
+export type Careers = {
+  _id: string;
+  _type: 'careers';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  isHiring?: boolean;
+  roleTitle?: string;
+  bannerText?: string;
+  teamCardHeading?: string;
+  teamCardButton?: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  heading?: string;
+  intro?: Array<string>;
+  employmentType?: 'FULL_TIME' | 'PART_TIME' | 'CONTRACTOR' | 'TEMPORARY';
+  responsibilities?: Array<string>;
+  requirements?: Array<string>;
+  benefits?: Array<string>;
+  applyText?: string;
+  applyEmail?: string;
+  datePosted?: string;
+};
+
 export type BlogPost = {
   _id: string;
   _type: 'blog-post';
@@ -584,6 +608,7 @@ export type AllSanitySchemaTypes =
   | TrainingReference
   | Homepage
   | Faq
+  | Careers
   | BlogPost
   | SanityImagePaletteSwatch
   | SanityImagePalette

@@ -284,3 +284,25 @@ export const termsAndConditionsQuery = `*[_type == "terms-and-conditions"]{
     }
   }
 }`;
+
+export const careersQuery = `*[_type == "careers" && _id == "careers"][0]{
+  _id,
+  _type,
+  _updatedAt,
+  isHiring,
+  roleTitle,
+  bannerText,
+  teamCardHeading,
+  teamCardButton,
+  seoTitle,
+  seoDescription,
+  heading,
+  intro,
+  employmentType,
+  responsibilities,
+  requirements,
+  benefits,
+  applyText,
+  applyEmail,
+  datePosted
+}`;

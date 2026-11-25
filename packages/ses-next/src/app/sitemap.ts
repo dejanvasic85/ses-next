@@ -1,5 +1,12 @@
 import type { MetadataRoute } from 'next';
-import { getAllLocationPages, getBlogPosts, getServices, getSiteSettings } from '@/lib/content/contentService';
+import { careersPath } from '@/lib/careers';
+import {
+  getAllLocationPages,
+  getBlogPosts,
+  getCareers,
+  getServices,
+  getSiteSettings,
+} from '@/lib/content/contentService';
 
 const changeFrequencyValue = {
   home: 'weekly',
@@ -10,6 +17,7 @@ const changeFrequencyValue = {
   blogPost: 'yearly',
   locationsHub: 'weekly',
   locationPage: 'monthly',
+  careers: 'weekly',
 } as const;
 
 const staticPageConfig = [
@@ -19,11 +27,12 @@ const staticPageConfig = [
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [services, siteSettings, blogPosts, locationPages] = await Promise.all([
+  const [services, siteSettings, blogPosts, locationPages, careers] = await Promise.all([
     getServices(),
     getSiteSettings(),
     getBlogPosts(),
     getAllLocationPages(),
+    getCareers(),
   ]);
 
   const { baseUrl } = siteSettings;
@@ -70,5 +79,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: changeFrequencyValue.locationPage,
   }));
 
-  return [...staticPages, ...servicesHub, ...servicePages, ...blogPostPages, ...locationsHub, ...locationPageEntries];
+  const careersPage: MetadataRoute.Sitemap = careers
+    ? [
+        {
+          url: new URL(careersPath.slice(1), baseUrl).toString(),
+          lastModified: careers.updatedAt ?? undefined,
+          changeFrequency: changeFrequencyValue.careers,
+        },
+      ]
+    : [];
+
+  return [
+    ...staticPages,
+    ...servicesHub,
+    ...servicePages,
+    ...blogPostPages,
+    ...locationsHub,
+    ...locationPageEntries,
+    ...careersPage,
+  ];
 }

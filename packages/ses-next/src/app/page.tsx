@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { googleReviews } from 'ses-reviews';
 
 import { About, Contact, Hero, Section, Services, ServiceAreas } from '@/components';
-import { getHomePageContent, getSiteSettings, getServices } from '@/lib/content/contentService';
+import { getCareers, getHomePageContent, getSiteSettings, getServices } from '@/lib/content/contentService';
 import { safeJsonLd, personJsonLd } from '@/lib/structuredData';
 import type { GoogleReview } from '@/types';
 
@@ -23,10 +23,11 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const [siteSettings, homepageContent, services] = await Promise.all([
+  const [siteSettings, homepageContent, services, careers] = await Promise.all([
     getSiteSettings(),
     getHomePageContent(),
     getServices(),
+    getCareers(),
   ]);
 
   const yearsExperience = new Date().getFullYear() - (siteSettings.establishedYear ?? 2007);
@@ -186,7 +187,13 @@ export default async function Home() {
         </Section>
       )}
       <Section id="about">
-        <About team={team} testimonials={reviews} googleReviewsUrl={googleMapsLocationPlaceUrl} training={training} />
+        <About
+          team={team}
+          testimonials={reviews}
+          googleReviewsUrl={googleMapsLocationPlaceUrl}
+          training={training}
+          careers={careers}
+        />
       </Section>
     </>
   );

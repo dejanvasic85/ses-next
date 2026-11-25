@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import type {
   BlogPost as SanityBlogPostDoc,
+  Careers as SanityCareersDoc,
   Faq as SanityFaqDoc,
   Homepage as SanityHomepageDoc,
   LocationPage as SanityLocationPageDoc,
@@ -503,6 +504,52 @@ export const ServicesHubSchema: z.ZodType<ServicesHubContentModel> = z.object({
   intro: z.array(z.string()).nullable(),
 });
 
+type SanityEmploymentType = NonNullable<SanityCareersDoc['employmentType']>;
+
+export const EmploymentTypeSchema = z.enum(['FULL_TIME', 'PART_TIME', 'CONTRACTOR', 'TEMPORARY']);
+
+export type CareersContentModel = Pick<SanityCareersDoc, '_id' | '_type'> & {
+  isHiring: boolean | null;
+  roleTitle: string | null;
+  bannerText: string | null;
+  teamCardHeading: string | null;
+  teamCardButton: string | null;
+  seoTitle: string | null;
+  seoDescription: string | null;
+  heading: string | null;
+  intro: string[] | null;
+  employmentType: SanityEmploymentType | null;
+  responsibilities: string[] | null;
+  requirements: string[] | null;
+  benefits: string[] | null;
+  applyText: string | null;
+  applyEmail: string | null;
+  datePosted: string | null;
+  _updatedAt?: string;
+};
+
+export const CareersSchema: z.ZodType<CareersContentModel> = z.object({
+  _id: z.string(),
+  _type: z.literal('careers'),
+  _updatedAt: z.string().optional(),
+  isHiring: z.boolean().nullable(),
+  roleTitle: z.string().nullable(),
+  bannerText: z.string().nullable(),
+  teamCardHeading: z.string().nullable(),
+  teamCardButton: z.string().nullable(),
+  seoTitle: z.string().nullable(),
+  seoDescription: z.string().nullable(),
+  heading: z.string().nullable(),
+  intro: z.array(z.string()).nullable(),
+  employmentType: EmploymentTypeSchema.nullable(),
+  responsibilities: z.array(z.string()).nullable(),
+  requirements: z.array(z.string()).nullable(),
+  benefits: z.array(z.string()).nullable(),
+  applyText: z.string().nullable(),
+  applyEmail: z.string().nullable(),
+  datePosted: z.string().nullable(),
+});
+
 type SanityTrustSignalItem = NonNullable<SanityHomepageDoc['trustSignals']>[number];
 
 export type TrustSignalContentModel = Required<Pick<SanityTrustSignalItem, 'value' | 'label'>> & { icon: Icon };
@@ -757,6 +804,27 @@ export type HomePageContent = {
   training: Training[];
   trustSignals: TrustSignal[];
   serviceAreas: ServiceAreaRef[];
+};
+
+export type EmploymentType = z.infer<typeof EmploymentTypeSchema>;
+
+export type CareersContent = {
+  roleTitle: string;
+  bannerText: string;
+  teamCardHeading: string;
+  teamCardButton: string;
+  seoTitle: string | null;
+  seoDescription: string | null;
+  heading: string;
+  intro: string[];
+  employmentType: EmploymentType;
+  responsibilities: string[];
+  requirements: string[];
+  benefits: string[];
+  applyText: string | null;
+  applyEmail: string | null;
+  datePosted: string | null;
+  updatedAt: string | null;
 };
 
 export type TermsAndConditionsContent = {
