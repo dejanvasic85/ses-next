@@ -3,7 +3,8 @@ import { Heading } from '@/components/Heading';
 import { PageSection } from '@/components/PageSection';
 import { SanityImage } from '@/components/SanityImage';
 import { Icon } from '@/components/Icon/Icon';
-import type { Training } from '@/types';
+import { TeamHiringCard } from '@/components/TeamHiringCard';
+import type { CareersContent, Training } from '@/types';
 
 interface TeamMember {
   avatar: string;
@@ -15,9 +16,10 @@ interface TeamProps {
   blurbs: string[];
   members: TeamMember[];
   training: Training[];
+  careers: CareersContent | null;
 }
 
-export function Team({ blurbs, members, training }: TeamProps) {
+export function Team({ blurbs, members, training, careers }: TeamProps) {
   const [firstBlurb, secondBlurb] = blurbs;
 
   return (
@@ -28,7 +30,7 @@ export function Team({ blurbs, members, training }: TeamProps) {
             <Heading level={2}>Meet our Team</Heading>
             <p className="text-base-content/70 mx-auto max-w-screen-md text-center md:text-lg">{firstBlurb}</p>
           </div>
-          <div className="flex flex-wrap items-stretch justify-center gap-4 lg:flex-row lg:gap-8">
+          <div className="flex flex-wrap items-stretch justify-center gap-4 md:flex-nowrap lg:flex-row lg:gap-8">
             {members.map(({ avatar, fullName, role }) => (
               <div key={fullName} className="flex w-full flex-col items-center rounded-lg p-4 md:w-1/4 lg:p-8">
                 <div className="bg-base-300 relative mb-2 h-24 w-24 overflow-hidden rounded-full shadow-lg md:mb-4 md:h-32 md:w-32">
@@ -46,6 +48,13 @@ export function Team({ blurbs, members, training }: TeamProps) {
                 </div>
               </div>
             ))}
+            {careers && (
+              <TeamHiringCard
+                heading={careers.teamCardHeading}
+                roleTitle={careers.roleTitle}
+                buttonText={careers.teamCardButton}
+              />
+            )}
           </div>
         </Container>
 

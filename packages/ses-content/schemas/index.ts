@@ -1,4 +1,5 @@
 import blogPost from './blogPost'
+import careers from './careers'
 import faq from './faq'
 import homepage from './homepage'
 import locationPage from './locationPage'
@@ -12,6 +13,7 @@ import training from './training'
 
 export const schemaTypes = [
   blogPost,
+  careers,
   faq,
   homepage,
   locationPage,

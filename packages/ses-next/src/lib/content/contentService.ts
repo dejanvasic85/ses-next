@@ -9,3 +9,4 @@ export { getBlogPosts, getBlogPostBySlug } from '@/lib/content/services/blogServ
 export { getAllLocationPages, getLocationPageBySlug } from '@/lib/content/services/locationService';
 export { getFAQs } from '@/lib/content/services/faqService';
 export { getTermsAndConditions } from '@/lib/content/services/termsService';
+export { getCareers } from '@/lib/content/services/careersService';

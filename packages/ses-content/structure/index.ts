@@ -10,9 +10,13 @@ export const structure = (S: StructureBuilder) => {
         .child(
           S.document().schemaType('siteSettings').documentId('siteSettings').title('Site Settings'),
         ),
+      S.listItem()
+        .title('Careers')
+        .id('careers')
+        .child(S.document().schemaType('careers').documentId('careers').title('Careers')),
       S.divider(),
       ...S.documentTypeListItems().filter(
-        (listItem) => !['siteSettings'].includes(listItem.getId() ?? ''),
+        (listItem) => !['siteSettings', 'careers'].includes(listItem.getId() ?? ''),
       ),
     ])
 }

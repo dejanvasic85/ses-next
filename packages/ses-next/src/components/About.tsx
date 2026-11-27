@@ -3,7 +3,7 @@ import { Heading } from '@/components/Heading';
 import { Icon } from '@/components/Icon/Icon';
 import { Team } from '@/components/Team';
 import { Testimonial } from '@/components/Testimonial';
-import { Team as TeamType, Training } from '@/types';
+import type { CareersContent, Team as TeamType, Training } from '@/types';
 
 interface TestimonialData {
   date: string;
@@ -22,12 +22,13 @@ interface AboutProps {
   testimonials: TestimonialData[];
   training: Training[];
   googleReviewsUrl: string | null;
+  careers: CareersContent | null;
 }
 
-export function About({ team, testimonials, training, googleReviewsUrl }: AboutProps) {
+export function About({ team, testimonials, training, googleReviewsUrl, careers }: AboutProps) {
   return (
     <Container>
-      <Team blurbs={team.blurbs ?? []} members={team.members} training={training} />
+      <Team blurbs={team.blurbs ?? []} members={team.members} training={training} careers={careers} />
       <div className="mx-auto mt-12 px-4 text-center md:px-8">
         <Heading level={2}>What our customers say</Heading>
         <div className="mt-8 grid gap-4 md:gap-8 lg:grid-cols-3">

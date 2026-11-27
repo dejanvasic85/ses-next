@@ -19,6 +19,7 @@ const allowedTypes = new Set([
   'training',
   'showcase',
   'servicesHub',
+  'careers',
 ]);
 
 export async function POST(request: Request) {
