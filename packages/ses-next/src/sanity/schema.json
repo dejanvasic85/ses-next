@@ -2656,6 +2656,13 @@
         },
         "optional": true
       },
+      "referralText": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
       "datePosted": {
         "type": "objectAttribute",
         "value": {

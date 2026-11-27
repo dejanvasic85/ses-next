@@ -127,6 +127,15 @@ export default defineType({
       group: 'page',
     }),
     defineField({
+      name: 'referralText',
+      title: 'Referral reward',
+      description:
+        'Shown under "How to apply" for people who know someone, e.g. the $1,000 finder\'s fee and its conditions. Leave blank to hide it.',
+      type: 'text',
+      rows: 3,
+      group: 'page',
+    }),
+    defineField({
       name: 'datePosted',
       title: 'Date posted',
       description: 'Used by Google job listings',

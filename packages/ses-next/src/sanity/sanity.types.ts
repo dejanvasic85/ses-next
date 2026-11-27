@@ -450,6 +450,7 @@ export type Careers = {
   benefits?: Array<string>;
   applyText?: string;
   applyEmail?: string;
+  referralText?: string;
   datePosted?: string;
 };
 

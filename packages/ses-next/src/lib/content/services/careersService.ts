@@ -23,6 +23,7 @@ const mapCareers = (model: CareersContentModel, roleTitle: string): CareersConte
   benefits: model.benefits ?? [],
   applyText: model.applyText,
   applyEmail: model.applyEmail,
+  referralText: model.referralText,
   datePosted: model.datePosted ?? model._createdAt?.slice(0, isoDateLength) ?? null,
   updatedAt: model._updatedAt ?? null,
 });

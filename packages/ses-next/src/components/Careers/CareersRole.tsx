@@ -23,7 +23,17 @@ interface CareersRoleProps {
 }
 
 export function CareersRole({ careers, location, phone, email }: CareersRoleProps) {
-  const { roleTitle, heading, intro, employmentType, responsibilities, requirements, benefits, applyText } = careers;
+  const {
+    roleTitle,
+    heading,
+    intro,
+    employmentType,
+    responsibilities,
+    requirements,
+    benefits,
+    applyText,
+    referralText,
+  } = careers;
 
   return (
     <PageSection>
@@ -60,7 +70,13 @@ export function CareersRole({ careers, location, phone, email }: CareersRoleProp
           <CareersList title="What we offer" items={benefits} />
         </div>
 
-        <CareersApply roleTitle={roleTitle} applyText={applyText} phone={phone} email={email} />
+        <CareersApply
+          roleTitle={roleTitle}
+          applyText={applyText}
+          referralText={referralText}
+          phone={phone}
+          email={email}
+        />
       </Container>
     </PageSection>
   );

@@ -44,7 +44,9 @@ export const careersFallbackValue: CareersContentModel = {
     'Competitive pay based on experience',
   ],
   applyText:
-    'Give Karl a call for a chat, or email your resume. Tell us a bit about your experience and when you could start.',
-  applyEmail: null,
+    'Send an email with your resume, or give Karl a call for a chat. Tell us a bit about your experience and when you could start.',
+  applyEmail: 'info@sesmelbourne.com.au',
+  referralText:
+    "Put a great A Grade Electrician in touch with us. If we hire them and they pass their 3-month probation, we'll pay you $1,000.",
   datePosted: '2026-11-26',
 };

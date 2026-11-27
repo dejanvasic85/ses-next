@@ -305,5 +305,6 @@ export const careersQuery = `*[_type == "careers" && _id == "careers"][0]{
   benefits,
   applyText,
   applyEmail,
+  referralText,
   datePosted
 }`;
